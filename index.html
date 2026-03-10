@@ -409,10 +409,11 @@
         const s = document.getElementById('call-status');
         r.className = 'demo-result visible';
 
-        const name = lookupData?.name || 'Contact identified';
-        const carrier = lookupData?.carrier || 'Mobile';
-        const lineType = lookupData?.line_type || 'mobile';
-        const location = lookupData?.location || '';
+        // Map enhanced API response (nested) to display fields
+        const name = lookupData?.person?.name || lookupData?.phone_intel?.caller_name || 'Contact identified';
+        const carrier = lookupData?.phone_intel?.carrier || 'Mobile';
+        const lineType = lookupData?.phone_intel?.line_type || 'mobile';
+        const location = lookupData?.person?.location || '';
 
         s.innerHTML = `
             <div class="call-intel">
@@ -449,9 +450,11 @@
             });
         } catch {}
 
+        const isFR = phone.startsWith('+33');
+        const amt = isFR ? '€1' : '$1';
         setResult('call-result', 'call-status',
             '<span class="success">&#9742; call in progress</span><br>' +
-            'your phone is ringing. our AI is collecting $1 from you.<br>' +
+            'your phone is ringing. our AI is collecting ' + amt + ' from you.<br>' +
             '<span style="font-size:11px;color:var(--text-dim)">try to negotiate, dispute, or refuse — it handles everything.</span>'
         );
         setTimeout(() => btn.disabled = false, 30000);
@@ -535,15 +538,24 @@
         const co = domain.replace(/\.(com|io|co|org|net|app)$/i, '');
         const fallbackCompany = co.charAt(0).toUpperCase() + co.slice(1);
 
-        const name = contact?.name || fallbackName;
-        const company = contact?.company || fallbackCompany;
-        const title = contact?.title || null;
-        const location = contact?.location || null;
-        const phone = contact?.phone || '+1***' + Math.floor(Math.random()*9000+1000);
-        const linkedin = contact?.linkedin || 'linkedin.com/in/' + local.substring(0,3) + '...';
+        // Map enhanced API response (nested person/company/phones) to display fields
+        const name = contact?.person?.name || fallbackName;
+        const company = contact?.company?.name || fallbackCompany;
+        const title = contact?.person?.title || null;
+        const location = contact?.person?.location || null;
+        const phone = contact?.phones?.[0]?.number || '+1***' + Math.floor(Math.random()*9000+1000);
+        const linkedin = contact?.person?.linkedin || 'linkedin.com/in/' + local.substring(0,3) + '...';
 
         // Recovery strategy (from API or generated client-side)
-        const strategy = contact?.recovery_strategy || buildClientStrategy(company, domain);
+        // Backend uses "company_profile", frontend uses "profile" — normalize
+        const rawStrategy = contact?.recovery_strategy || buildClientStrategy(company, domain);
+        const strategy = {
+            profile: rawStrategy.company_profile || rawStrategy.profile || company,
+            likely_reason: rawStrategy.likely_reason,
+            approach: rawStrategy.approach,
+            expected_days: rawStrategy.expected_days,
+            confidence: rawStrategy.confidence
+        };
 
         r.className = 'demo-result visible';
         s.innerHTML = `
