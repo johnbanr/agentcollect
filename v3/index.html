@@ -130,6 +130,44 @@
         .card-toggle svg{transition:transform .2s}
         .card-toggle.open svg{transform:rotate(180deg)}
 
+        /* ═══ RICH CASE STUDY (Microsoft) ═══ */
+        .card.card-featured{grid-column:1/-1}
+        .card-featured .card-inner{display:grid;grid-template-columns:1fr 1fr;gap:0}
+        .card-featured .card-left{padding-right:24px;border-right:1px solid var(--border)}
+        .card-featured .card-right{padding-left:24px}
+        .card-featured .card-expand{grid-column:1/-1}
+        .cs-video-wrap{position:relative;border-radius:10px;overflow:hidden;background:#000;margin-bottom:20px;cursor:pointer}
+        .cs-video-wrap video{width:100%;display:block;aspect-ratio:16/9;object-fit:contain;background:#000}
+        .cs-video-wrap img.cs-poster{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1;transition:opacity .3s}
+        .cs-video-wrap img.cs-poster.hidden{opacity:0;pointer-events:none}
+        .cs-play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.2);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1.5px solid rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;transition:transform .2s,background .2s}
+        .cs-video-wrap:hover .cs-play-btn{transform:translate(-50%,-50%) scale(1.08);background:rgba(255,255,255,.3)}
+        .cs-play-btn.hidden{display:none}
+        .cs-quote-block{padding:16px 20px;background:rgba(37,99,235,.03);border-left:3px solid var(--blue);border-radius:0 8px 8px 0;margin-bottom:20px}
+        .cs-quote-block p{font-size:14px;font-style:italic;color:var(--text);line-height:1.6;margin-bottom:8px}
+        .cs-quote-block cite{display:flex;align-items:center;gap:8px;font-style:normal;font-size:12px;color:var(--text-muted)}
+        .cs-quote-block cite img{width:28px;height:28px;border-radius:50%;object-fit:cover}
+        .cs-quote-block cite strong{color:var(--text);font-weight:600}
+        .cs-mini-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px}
+        .cs-mini-stat{padding:14px;background:var(--bg);border-radius:8px;text-align:center}
+        .cs-mini-stat-num{font-family:var(--display);font-size:22px;font-weight:900;letter-spacing:-.03em;color:var(--blue)}
+        .cs-mini-stat-label{font-size:11px;color:var(--text-muted);margin-top:2px}
+        .cs-evo-bar{display:flex;align-items:end;gap:8px;margin-bottom:16px;height:80px}
+        .cs-evo-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+        .cs-evo-fill{width:100%;border-radius:6px 6px 0 0;transition:height .6s ease}
+        .cs-evo-label-sm{font-size:10px;color:var(--text-muted);font-weight:500}
+        .cs-evo-num{font-family:var(--display);font-size:13px;font-weight:800;color:var(--text)}
+        .cs-region-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+        .cs-region{padding:10px 12px;border-radius:8px;border:1px solid var(--border);font-size:11px;line-height:1.4}
+        .cs-region strong{display:block;font-size:12px;margin-bottom:2px}
+        @media(max-width:768px){
+            .card-featured .card-inner{grid-template-columns:1fr}
+            .card-featured .card-left{padding-right:0;border-right:none;padding-bottom:20px;border-bottom:1px solid var(--border)}
+            .card-featured .card-right{padding-left:0;padding-top:20px}
+            .cs-mini-stats{grid-template-columns:repeat(2,1fr)}
+            .cs-region-grid{grid-template-columns:1fr}
+        }
+
         /* ═══ HOW ═══ */
         .how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:56px;counter-reset:step}
         .how-card{position:relative;padding:24px 20px;border:1px solid var(--border);border-radius:12px;transition:border-color .3s}
@@ -406,18 +444,66 @@
         <div class="section-title">Real results from real companies</div>
         <div class="section-sub">Enterprise teams that switched from collection agencies to AI agents.</div>
         <div class="cards-grid">
-            <div class="card reveal s1" onclick="toggleCard(this)">
+            <div class="card card-featured reveal s1" onclick="toggleCard(this)">
                 <img src="https://cdn.brandfetch.io/microsoft.com/w/512/h/80/logo" alt="Microsoft" class="card-logo">
                 <div class="card-headline">Replaced their collection agency. Zero headcount. AI handles everything.</div>
                 <div class="card-metric">
-                    <div class="card-num" style="color:var(--blue)">~50%</div>
-                    <div class="card-desc">recovery rate in 20 days</div>
+                    <div class="card-num" style="color:var(--blue)">3.2×</div>
+                    <div class="card-desc">recovery rate vs. their previous agency</div>
                 </div>
-                <button class="card-toggle" onclick="event.stopPropagation();toggleCard(this.closest('.card'))">See use case <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+                <button class="card-toggle" onclick="event.stopPropagation();toggleCard(this.closest('.card'))">See full case study <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
                 <div class="card-expand">
-                    <strong>Challenge:</strong> Microsoft had $2M+ in overdue B2B receivables across multiple business units, managed by a traditional collection agency with slow turnaround.<br><br>
-                    <strong>Solution:</strong> AgentCollect deployed AI agents that send demand letters, make voice calls, and handle disputes automatically. No integration needed — just an Excel upload.<br><br>
-                    <strong>Result:</strong> ~50% recovery rate in the first 20 days. Zero employees added. AI resolved disputes in under 60 seconds.
+                    <div class="card-inner">
+                        <div class="card-left">
+                            <!-- Video -->
+                            <div class="cs-video-wrap" onclick="event.stopPropagation();playMsVideo(this)">
+                                <img src="https://respaid.com/customers/microsoft/poster.jpg" alt="Neil Doyle - Microsoft" class="cs-poster">
+                                <video playsinline webkit-playsinline preload="metadata" id="ms-video">
+                                    <source src="https://respaid.com/customers/microsoft/case-study-v14-ios.mp4" type="video/mp4; codecs=avc1.4D401F">
+                                </video>
+                                <div class="cs-play-btn" id="ms-play-btn">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="rgba(255,255,255,.95)"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                                </div>
+                            </div>
+                            <!-- Quote -->
+                            <div class="cs-quote-block">
+                                <p>"Not one of them complained about the tone or the engagement. That's unheard of in collections."</p>
+                                <cite>
+                                    <img src="https://respaid.com/images/neil-doyle.png" alt="Neil Doyle">
+                                    <div><strong>Neil Doyle</strong> · Group Finance Manager, Microsoft</div>
+                                </cite>
+                            </div>
+                            <!-- Challenge / Solution -->
+                            <strong>Challenge:</strong> Collections is one of the riskiest places to deploy AI. A single hallucination and the complaint goes straight to marketing. Microsoft needed to recover across hundreds of enterprise accounts in 44 states — without damaging a single relationship.<br><br>
+                            <strong>Solution:</strong> AI agents that adapt tone by region (empathy-first in the South, direct in the Northeast), discover decision-makers beyond AP (+130% enrichment), and resolve 86% of disputes — 40% with zero human intervention.<br><br>
+                            <strong>Result:</strong> 3.2× the recovery rate of their previous agency. 99.7% positive CX score across thousands of touchpoints. Zero complaints.
+                        </div>
+                        <div class="card-right">
+                            <!-- Stats -->
+                            <div class="cs-mini-stats">
+                                <div class="cs-mini-stat"><div class="cs-mini-stat-num">99.7%</div><div class="cs-mini-stat-label">positive CX score</div></div>
+                                <div class="cs-mini-stat"><div class="cs-mini-stat-num">3.2×</div><div class="cs-mini-stat-label">recovery vs. agency</div></div>
+                                <div class="cs-mini-stat"><div class="cs-mini-stat-num">+130%</div><div class="cs-mini-stat-label">contacts enriched</div></div>
+                                <div class="cs-mini-stat"><div class="cs-mini-stat-num">44</div><div class="cs-mini-stat-label">US states reached</div></div>
+                            </div>
+                            <!-- Compounding -->
+                            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-bottom:10px">Every batch gets smarter</div>
+                            <div class="cs-evo-bar">
+                                <div class="cs-evo-col"><div class="cs-evo-num">1×</div><div class="cs-evo-fill" style="height:25%;background:var(--border)"></div><div class="cs-evo-label-sm">Batch 1</div></div>
+                                <div class="cs-evo-col"><div class="cs-evo-num">1.3×</div><div class="cs-evo-fill" style="height:40%;background:rgba(37,99,235,.3)"></div><div class="cs-evo-label-sm">+ AI Calls</div></div>
+                                <div class="cs-evo-col"><div class="cs-evo-num">3.2×</div><div class="cs-evo-fill" style="height:75%;background:var(--blue)"></div><div class="cs-evo-label-sm">+ Enrichment</div></div>
+                                <div class="cs-evo-col"><div class="cs-evo-num" style="color:var(--green)">5×+</div><div class="cs-evo-fill" style="height:100%;background:linear-gradient(to top,var(--blue),var(--green))"></div><div class="cs-evo-label-sm">+ Invoices</div></div>
+                            </div>
+                            <!-- Regional intelligence -->
+                            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin:20px 0 10px">AI adapts by region</div>
+                            <div class="cs-region-grid">
+                                <div class="cs-region" style="border-left:3px solid #ea580c"><strong>South</strong>Warmer tone, phone-first. Phone converts 2.3× higher.</div>
+                                <div class="cs-region" style="border-left:3px solid #3b82f6"><strong>Northeast</strong>Direct, email-first. Skip pleasantries, get to the invoice.</div>
+                                <div class="cs-region" style="border-left:3px solid #16a34a"><strong>West Coast</strong>Self-service preferred. 68% use the portal without a call.</div>
+                                <div class="cs-region" style="border-left:3px solid #6366f1"><strong>Midwest</strong>Relationship matters. Steady follow-ups with personal touch.</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="card reveal s2" onclick="toggleCard(this)">
@@ -599,13 +685,36 @@ function toggleCard(card){
     const expand=card.querySelector('.card-expand');
     const toggle=card.querySelector('.card-toggle');
     const isOpen=expand.classList.contains('open');
+    const isFeatured=card.classList.contains('card-featured');
+    const openLabel=isFeatured?'See full case study':'See use case';
     // Close all others
-    document.querySelectorAll('.card-expand.open').forEach(e=>{e.classList.remove('open');e.closest('.card').querySelector('.card-toggle').classList.remove('open');e.closest('.card').querySelector('.card-toggle').innerHTML='See use case <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>'});
+    document.querySelectorAll('.card-expand.open').forEach(e=>{
+        e.classList.remove('open');
+        const c=e.closest('.card'),t=c.querySelector('.card-toggle');
+        t.classList.remove('open');
+        const lbl=c.classList.contains('card-featured')?'See full case study':'See use case';
+        t.innerHTML=lbl+' <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>';
+        // Pause video if closing featured card
+        const vid=c.querySelector('video');if(vid){vid.pause()}
+    });
     if(!isOpen){
         expand.classList.add('open');
         toggle.classList.add('open');
         toggle.innerHTML='Close <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>';
     }
+}
+function playMsVideo(wrap){
+    const vid=wrap.querySelector('video');
+    const poster=wrap.querySelector('.cs-poster');
+    const btn=wrap.querySelector('.cs-play-btn');
+    if(vid.paused){
+        vid.play();
+        if(poster)poster.classList.add('hidden');
+        if(btn)btn.classList.add('hidden');
+    }else{
+        vid.pause();
+    }
+    vid.onended=()=>{if(poster)poster.classList.remove('hidden');if(btn)btn.classList.remove('hidden')};
 }
 
 window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',window.scrollY>20));
