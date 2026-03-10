@@ -15,7 +15,7 @@
     <meta name="twitter:title" content="AgentCollect — AI-Powered Debt Collection">
     <meta name="twitter:description" content="Enterprise AI agents that recover outstanding receivables. Try the $1 live demo.">
     <meta name="twitter:image" content="https://www.agentcollect.com/og.png">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232563EB'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-family='system-ui' font-weight='800' font-size='28'%3EAC%3C/text%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232563EB'/%3E%3Cpath d='M12 52C12 52 16 28 32 16C48 4 56 12 56 12' stroke='white' stroke-width='7' stroke-linecap='round' fill='none'/%3E%3Ccircle cx='54' cy='14' r='5' fill='white'/%3E%3Cpath d='M12 52L20 44' stroke='white' stroke-width='6' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -62,7 +62,8 @@
         .nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:box-shadow .3s}
         .nav.scrolled{box-shadow:0 1px 8px rgba(0,0,0,.04)}
         .nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 32px;display:flex;align-items:center;height:60px}
-        .logo{display:flex;align-items:center;gap:2px;text-decoration:none;margin-right:40px;font-family:var(--display);font-size:18px;font-weight:800;letter-spacing:-.04em;color:var(--text)}
+        .logo{display:flex;align-items:center;gap:8px;text-decoration:none;margin-right:40px;font-family:var(--display);font-size:18px;font-weight:800;letter-spacing:-.04em;color:var(--text)}
+        .logo-icon{flex-shrink:0}
         .logo span{color:var(--blue)}
         .nav-links{display:flex;gap:28px;flex:1}
         .nav-links a{color:var(--text-mid);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
@@ -342,13 +343,20 @@
             .stat-item:last-child{border-bottom:none}
         }
     </style>
+    <script>
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "vtpmvp6kvr");
+    </script>
 </head>
 <body>
 
 <!-- NAV -->
 <nav class="nav" id="nav">
 <div class="nav-inner">
-    <a href="/" class="logo">Agent<span>Collect</span></a>
+    <a href="/" class="logo"><svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="lg" x1="4" y1="28" x2="28" y2="4" gradientUnits="userSpaceOnUse"><stop stop-color="#2563EB"/><stop offset="1" stop-color="#4F46E5"/></linearGradient></defs><path d="M6 26C6 26 8 14 16 8C24 2 28 6 28 6" stroke="url(#lg)" stroke-width="3.5" stroke-linecap="round"/><circle cx="27" cy="7" r="2.5" fill="#2563EB"/><path d="M6 26L10 22" stroke="url(#lg)" stroke-width="3" stroke-linecap="round"/></svg>Agent<span>Collect</span></a>
     <div class="nav-links">
         <a href="#results">Customers</a>
         <a href="#how">How it works</a>
@@ -683,15 +691,15 @@
             <!-- Integration Logos -->
             <div>
                 <div class="integ-logos">
-                    <div class="integ-logo integ-featured"><img src="https://cdn.brandfetch.io/salesforce.com/w/512/h/80/logo" alt="Salesforce"></div>
-                    <div class="integ-logo"><img src="https://cdn.brandfetch.io/netsuite.com/w/512/h/80/logo" alt="NetSuite"></div>
-                    <div class="integ-logo"><img src="https://cdn.brandfetch.io/intuit.com/w/512/h/80/logo" alt="QuickBooks"></div>
-                    <div class="integ-logo"><img src="https://cdn.brandfetch.io/sap.com/w/512/h/80/logo" alt="SAP"></div>
-                    <div class="integ-logo"><img src="https://cdn.brandfetch.io/idaikibyp3/w/512/h/80/logo" alt="Xero"></div>
-                    <div class="integ-logo"><img src="https://cdn.brandfetch.io/hubspot.com/w/512/h/80/logo" alt="HubSpot"></div>
-                    <div class="integ-logo"><img src="https://cdn.brandfetch.io/freshbooks.com/w/512/h/80/logo" alt="FreshBooks"></div>
-                    <div class="integ-logo"><img src="https://cdn.brandfetch.io/sage.com/w/512/h/80/logo" alt="Sage"></div>
-                    <div class="integ-logo"><img src="https://cdn.brandfetch.io/zuora.com/w/512/h/80/logo" alt="Zuora"></div>
+                    <div class="integ-logo integ-featured"><img src="https://www.logo.wine/a/logo/Salesforce.com/Salesforce.com-Logo.wine.svg" alt="Salesforce"></div>
+                    <div class="integ-logo"><img src="https://cdn.worldvectorlogo.com/logos/netsuite.svg" alt="NetSuite"></div>
+                    <div class="integ-logo"><img src="https://cdn.worldvectorlogo.com/logos/quickbooks-2.svg" alt="QuickBooks"></div>
+                    <div class="integ-logo"><img src="https://www.logo.wine/a/logo/SAP_SE/SAP_SE-Logo.wine.svg" alt="SAP"></div>
+                    <div class="integ-logo"><img src="https://www.logo.wine/a/logo/Xero_(software)/Xero_(software)-Logo.wine.svg" alt="Xero"></div>
+                    <div class="integ-logo"><img src="https://www.logo.wine/a/logo/HubSpot/HubSpot-Logo.wine.svg" alt="HubSpot"></div>
+                    <div class="integ-logo"><img src="https://cdn.worldvectorlogo.com/logos/freshbooks-1.svg" alt="FreshBooks"></div>
+                    <div class="integ-logo"><img src="https://www.logo.wine/a/logo/Sage_Group/Sage_Group-Logo.wine.svg" alt="Sage"></div>
+                    <div class="integ-logo"><img src="https://www.logo.wine/a/logo/Zuora/Zuora-Logo.wine.svg" alt="Zuora"></div>
                     <div class="integ-count">+ 500 more via API, CSV, or direct integration</div>
                 </div>
             </div>
