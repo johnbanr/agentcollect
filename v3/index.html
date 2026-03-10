@@ -528,6 +528,14 @@
 const API = 'https://backend.widr.app/api/v1/demo';
 let agentEmail = '', agentPhone = null, contactData = null;
 
+// Known contacts — personalized demo experience
+const KNOWN = {
+    'j@respaid.com': {name:'John Banner',title:'CEO & Co-Founder',company:'Respaid',location:'San Francisco, CA',phone:'+1 (415) 867-4010',mobile:'+1 (415) ***-****',linkedin:'linkedin.com/in/johnbanner',greeting:'Hey John! You built this thing — let\'s see how it works on you.'},
+    'marc@salesforce.com': {name:'Marc Benioff',title:'Chair & CEO',company:'Salesforce',location:'San Francisco, CA',phone:'+1 (415) ***-****',mobile:'+1 (415) ***-****',linkedin:'linkedin.com/in/marcbenioff',greeting:'Welcome Marc. Let\'s show you what your AppExchange partner can do.'},
+    'satya@microsoft.com': {name:'Satya Nadella',title:'CEO',company:'Microsoft',location:'Redmond, WA',phone:'+1 (425) ***-****',mobile:'+1 (425) ***-****',linkedin:'linkedin.com/in/satyanadella',greeting:'Hi Satya. Microsoft already trusts us with $879K recovered — here\'s how.'},
+    'jensen@nvidia.com': {name:'Jensen Huang',title:'CEO & Founder',company:'NVIDIA',location:'Santa Clara, CA',phone:'+1 (408) ***-****',mobile:'+1 (408) ***-****',linkedin:'linkedin.com/in/jensenhuang',greeting:'Hey Jensen. AI collecting money from AI companies — poetic, right?'},
+};
+
 // Nav scroll
 window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',window.scrollY>20));
 
@@ -605,10 +613,11 @@ async function startAgent(){
     const guessName=parts.map(p=>p.charAt(0).toUpperCase()+p.slice(1)).join(' ');
     const co=domain.replace(/\.(com|io|co|org|net|app)$/i,'');
     const coName=co.charAt(0).toUpperCase()+co.slice(1);
+    const known = KNOWN[email.toLowerCase()] || null;
 
-    // Fetch real data in background
+    // Fetch real data in background (skip if known)
     let apiData = null;
-    const fetchPromise = fetch(API+'/find-contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})}).then(r=>r.json()).then(d=>{if(d.success&&d.data)apiData=d.data}).catch(()=>{});
+    const fetchPromise = known ? Promise.resolve() : fetch(API+'/find-contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})}).then(r=>r.json()).then(d=>{if(d.success&&d.data)apiData=d.data}).catch(()=>{});
 
     // ──── STEP 1: Identity ────
     showStep('identity');
@@ -624,12 +633,22 @@ async function startAgent(){
     await fetchPromise;
     contactData = apiData;
 
-    const nm = contactData?.person?.name || guessName;
-    const cp = contactData?.company?.name || coName;
-    const ti = contactData?.person?.title || null;
-    const lo = contactData?.person?.location || null;
+    const nm = known?.name || contactData?.person?.name || guessName;
+    const cp = known?.company || contactData?.company?.name || coName;
+    const ti = known?.title || contactData?.person?.title || null;
+    const lo = known?.location || contactData?.person?.location || null;
 
     document.getElementById('card-identity').classList.add('loaded');
+
+    // Show personalized greeting for known contacts
+    if(known?.greeting){
+        const greetDiv=document.createElement('div');
+        greetDiv.className='data-row';
+        greetDiv.innerHTML=`<span style="font-size:14px;color:var(--blue);font-weight:600;font-family:var(--display);width:100%;text-align:center;padding:8px 0">${known.greeting}</span>`;
+        document.getElementById('identity-rows').appendChild(greetDiv);
+        await sleep(50);greetDiv.classList.add('show');await sleep(400);
+    }
+
     await addDataRow('identity-rows','name',nm,'found');
     await addDataRow('identity-rows','company',cp);
     if(ti) await addDataRow('identity-rows','title',ti);
@@ -651,8 +670,8 @@ async function startAgent(){
     await addSource('phone-sources','Apollo');
     await sleep(800);
 
-    const ph = contactData?.phones?.[0]?.number || '+1***'+Math.floor(Math.random()*9000+1000);
-    const ph2 = '+1***'+Math.floor(Math.random()*9000+1000);
+    const ph = known?.phone || contactData?.phones?.[0]?.number || '+1***'+Math.floor(Math.random()*9000+1000);
+    const ph2 = known?.mobile || '+1***'+Math.floor(Math.random()*9000+1000);
     agentPhone = contactData?.phones?.[0]?.number || null;
 
     document.getElementById('card-phone').classList.add('loaded');
