@@ -4,345 +4,187 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AgentCollect — Your Invoices, Collected.</title>
-    <meta name="description" content="AI agents that collect your unpaid invoices. 50% recovery rate. 20 days.">
+    <meta name="description" content="AI agents that collect your unpaid invoices. 50% recovery rate. 20 days. Try it live.">
     <meta property="og:title" content="AgentCollect — Your Invoices, Collected.">
-    <meta property="og:description" content="AI agents that collect your unpaid invoices. 50% recovery rate. 20 days. Fully automated.">
+    <meta property="og:description" content="AI agents that collect your unpaid invoices. 50% recovery rate. 20 days. Try the live demo.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://agentcollect.com">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
             --bg: #faf8f5;
             --bg-card: #fff;
-            --bg-dark: #111;
             --border: rgba(0,0,0,0.06);
             --text: #111;
             --text-muted: rgba(0,0,0,0.45);
             --text-dim: rgba(0,0,0,0.2);
             --brand: #6366F1;
+            --brand-light: rgba(99,102,241,0.08);
+            --brand-medium: rgba(99,102,241,0.15);
             --emerald: #10B981;
+            --emerald-light: rgba(16,185,129,0.08);
+            --emerald-medium: rgba(16,185,129,0.15);
+            --pink: #EC4899;
+            --pink-light: rgba(236,72,153,0.08);
+            --pink-medium: rgba(236,72,153,0.15);
+            --mono: 'JetBrains Mono', monospace;
         }
 
         body {
             font-family: 'Inter', -apple-system, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
+            background: var(--bg); color: var(--text);
+            -webkit-font-smoothing: antialiased; overflow-x: hidden;
         }
         h1,h2,h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
 
         /* Animations */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-        @keyframes shimmer {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
-        }
-        @keyframes glow {
-            0%, 100% { opacity: 0.4; }
-            50% { opacity: 0.8; }
-        }
+        @keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+        @keyframes float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-8px); } }
+        @keyframes shimmer { 0% { background-position:-200% center; } 100% { background-position:200% center; } }
+        @keyframes glow { 0%,100% { opacity:0.4; } 50% { opacity:0.8; } }
+        @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+        @keyframes spin { to { transform:rotate(360deg); } }
+        @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
 
-        .anim-1 { animation: fadeUp 0.8s ease both; animation-delay: 0.1s; }
-        .anim-2 { animation: fadeUp 0.8s ease both; animation-delay: 0.25s; }
-        .anim-3 { animation: fadeUp 0.8s ease both; animation-delay: 0.4s; }
-        .anim-4 { animation: fadeUp 0.8s ease both; animation-delay: 0.55s; }
-        .anim-5 { animation: fadeIn 1s ease both; animation-delay: 0.7s; }
+        .anim-1 { animation: fadeUp 0.8s ease both 0.1s; }
+        .anim-2 { animation: fadeUp 0.8s ease both 0.25s; }
+        .anim-3 { animation: fadeUp 0.8s ease both 0.4s; }
+        .anim-5 { animation: fadeIn 1s ease both 0.7s; }
+
+        .reveal { opacity:0; transform:translateY(24px); transition:opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.visible { opacity:1; transform:translateY(0); }
 
         /* Nav */
-        nav {
-            max-width: 1200px; margin: 0 auto; padding: 24px 32px;
-            display: flex; justify-content: space-between; align-items: center;
-            animation: fadeIn 0.6s ease both;
-        }
-        .logo {
-            font-family: 'Plus Jakarta Sans'; font-size: 20px; font-weight: 800;
-            letter-spacing: -0.03em; color: var(--text); text-decoration: none;
-        }
-        .logo span { color: var(--brand); }
-        .nav-cta {
-            padding: 10px 24px; background: var(--text); color: #fff;
-            border: none; border-radius: 100px; font-family: inherit;
-            font-size: 13px; font-weight: 600; cursor: pointer;
-            text-decoration: none; transition: all 0.3s;
-        }
-        .nav-cta:hover { transform: scale(1.03); box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+        nav { max-width:1200px; margin:0 auto; padding:24px 32px; display:flex; justify-content:space-between; align-items:center; animation:fadeIn 0.6s ease both; }
+        .logo { font-family:'Plus Jakarta Sans'; font-size:20px; font-weight:800; letter-spacing:-0.03em; color:var(--text); text-decoration:none; }
+        .logo span { color:var(--brand); }
+        .nav-cta { padding:10px 24px; background:var(--text); color:#fff; border:none; border-radius:100px; font-family:inherit; font-size:13px; font-weight:600; cursor:pointer; text-decoration:none; transition:all 0.3s; }
+        .nav-cta:hover { transform:scale(1.03); box-shadow:0 4px 20px rgba(0,0,0,0.15); }
 
-        /* ===== HERO ===== */
-        .hero {
-            max-width: 1200px; margin: 0 auto; padding: 100px 32px 80px;
-            text-align: center; position: relative;
-        }
+        /* Hero */
+        .hero { max-width:1200px; margin:0 auto; padding:100px 32px 80px; text-align:center; position:relative; }
+        .hero::before { content:''; position:absolute; width:500px; height:500px; top:50%; left:50%; transform:translate(-50%,-50%); background:radial-gradient(circle,rgba(99,102,241,0.08) 0%,transparent 70%); border-radius:50%; pointer-events:none; animation:glow 4s ease-in-out infinite; }
+        .hero h1 { font-size:clamp(52px,9vw,96px); font-weight:800; letter-spacing:-0.045em; line-height:1; margin-bottom:24px; position:relative; }
+        .hero-sub { font-size:clamp(16px,2vw,20px); font-weight:400; color:var(--text-muted); line-height:1.6; max-width:420px; margin:0 auto 40px; }
+        .hero-cta { display:inline-flex; align-items:center; gap:10px; padding:16px 36px; background:var(--brand); color:#fff; border:none; border-radius:100px; font-family:'Plus Jakarta Sans'; font-size:15px; font-weight:600; cursor:pointer; text-decoration:none; transition:all 0.3s; position:relative; overflow:hidden; }
+        .hero-cta::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent); background-size:200% 100%; animation:shimmer 3s ease-in-out infinite; }
+        .hero-cta:hover { transform:translateY(-2px) scale(1.02); box-shadow:0 16px 40px rgba(99,102,241,0.3); }
+        .hero-cta svg { position:relative; z-index:1; transition:transform 0.2s; }
+        .hero-cta:hover svg { transform:translateX(3px); }
 
-        /* Glow orb behind hero */
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 500px; height: 500px;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            background: radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: glow 4s ease-in-out infinite;
-        }
+        /* Logos */
+        .logos { max-width:1200px; margin:0 auto; padding:0 32px 80px; text-align:center; }
+        .logos-label { font-size:11px; font-weight:500; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.14em; margin-bottom:28px; }
+        .logos-row { display:flex; justify-content:center; align-items:center; gap:56px; flex-wrap:wrap; }
+        .logos-row img { height:28px; opacity:0.35; transition:opacity 0.4s; filter:grayscale(100%) brightness(0); }
+        .logos-row img:hover { opacity:0.6; }
 
-        .hero h1 {
-            font-size: clamp(52px, 9vw, 96px);
-            font-weight: 800; letter-spacing: -0.045em;
-            line-height: 1; margin-bottom: 24px;
-            position: relative;
-        }
+        /* Stats */
+        .stats { max-width:900px; margin:0 auto; padding:0 32px 100px; }
+        .stats-grid { display:grid; grid-template-columns:repeat(3,1fr); }
+        .stat { text-align:center; padding:40px 24px; position:relative; }
+        .stat:not(:last-child)::after { content:''; position:absolute; right:0; top:20%; height:60%; width:1px; background:var(--border); }
+        .stat-value { font-family:'Plus Jakarta Sans'; font-size:clamp(40px,5vw,56px); font-weight:800; letter-spacing:-0.03em; margin-bottom:8px; }
+        .stat:nth-child(1) .stat-value { color:var(--brand); }
+        .stat:nth-child(2) .stat-value { color:var(--emerald); }
+        .stat:nth-child(3) .stat-value { color:var(--text); }
+        .stat-label { font-size:14px; color:var(--text-muted); }
 
-        .hero-sub {
-            font-size: clamp(16px, 2vw, 20px); font-weight: 400;
-            color: var(--text-muted); line-height: 1.6;
-            max-width: 420px; margin: 0 auto 40px;
-        }
+        /* Products — interactive cards */
+        .products { max-width:1200px; margin:0 auto; padding:0 32px 100px; }
+        .products-label { font-size:12px; font-weight:600; color:var(--brand); text-transform:uppercase; letter-spacing:0.1em; text-align:center; margin-bottom:16px; }
+        .products-title { font-size:clamp(28px,4vw,44px); font-weight:800; letter-spacing:-0.03em; text-align:center; margin-bottom:56px; }
+        .products-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
 
-        .hero-cta {
-            display: inline-flex; align-items: center; gap: 10px;
-            padding: 16px 36px; background: var(--brand); color: #fff;
-            border: none; border-radius: 100px;
-            font-family: 'Plus Jakarta Sans'; font-size: 15px; font-weight: 600;
-            cursor: pointer; text-decoration: none; transition: all 0.3s;
-            position: relative; overflow: hidden;
-        }
-        .hero-cta::after {
-            content: '';
-            position: absolute; inset: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            background-size: 200% 100%;
-            animation: shimmer 3s ease-in-out infinite;
-        }
-        .hero-cta:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 16px 40px rgba(99,102,241,0.3);
-        }
-        .hero-cta svg { position: relative; z-index: 1; transition: transform 0.2s; }
-        .hero-cta:hover svg { transform: translateX(3px); }
+        .product { background:var(--bg-card); border:1.5px solid var(--border); border-radius:20px; display:flex; flex-direction:column; transition:all 0.4s cubic-bezier(0.2,0,0,1); overflow:hidden; }
+        .product:hover { border-color:rgba(0,0,0,0.12); box-shadow:0 24px 48px rgba(0,0,0,0.06); transform:translateY(-4px); }
+        .product-top { padding:32px 28px 20px; }
+        .product-icon { width:48px; height:48px; border-radius:14px; display:flex; align-items:center; justify-content:center; margin-bottom:20px; }
+        .product:nth-child(1) .product-icon { background:var(--brand-light); }
+        .product:nth-child(2) .product-icon { background:var(--emerald-light); }
+        .product:nth-child(3) .product-icon { background:var(--pink-light); }
+        .product h3 { font-size:20px; font-weight:700; margin-bottom:8px; letter-spacing:-0.01em; }
+        .product .desc { font-size:14px; color:var(--text-muted); line-height:1.65; margin-bottom:0; }
 
-        /* ===== LOGOS ===== */
-        .logos {
-            max-width: 1200px; margin: 0 auto; padding: 0 32px 80px;
-            text-align: center;
-        }
-        .logos-label {
-            font-size: 11px; font-weight: 500; color: var(--text-dim);
-            text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 28px;
-        }
-        .logos-row {
-            display: flex; justify-content: center; align-items: center;
-            gap: 56px; flex-wrap: wrap;
-        }
-        .logos-row img {
-            height: 28px; opacity: 0.35; transition: opacity 0.4s;
-            filter: grayscale(100%) brightness(0);
-        }
-        .logos-row img:hover { opacity: 0.6; }
+        /* Demo input area inside product cards */
+        .demo-area { padding:20px 28px 28px; margin-top:auto; background:var(--bg); border-top:1.5px solid var(--border); }
+        .demo-label { font-family:var(--mono); font-size:10px; font-weight:500; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-dim); margin-bottom:10px; }
+        .input-row { display:flex; gap:8px; }
+        .demo-input { flex:1; padding:12px 14px; background:var(--bg-card); border:1.5px solid var(--border); border-radius:10px; color:var(--text); font-family:var(--mono); font-size:13px; outline:none; transition:all 0.2s; }
+        .demo-input::placeholder { color:var(--text-dim); }
+        .demo-input:focus { border-color:var(--brand); box-shadow:0 0 0 3px var(--brand-light); }
+        .demo-input.error { border-color:#EF4444; box-shadow:0 0 0 3px rgba(239,68,68,0.1); animation:shake 0.3s; }
+        .demo-btn { padding:12px 20px; border:none; border-radius:10px; font-family:'Plus Jakarta Sans'; font-size:13px; font-weight:700; cursor:pointer; transition:all 0.2s; white-space:nowrap; display:flex; align-items:center; gap:6px; color:#fff; }
+        .demo-btn:hover { transform:translateY(-1px); }
+        .demo-btn:disabled { opacity:0.5; cursor:not-allowed; transform:none; }
+        .product:nth-child(1) .demo-btn { background:var(--brand); }
+        .product:nth-child(1) .demo-btn:hover:not(:disabled) { box-shadow:0 6px 20px var(--brand-medium); }
+        .product:nth-child(2) .demo-btn { background:var(--emerald); }
+        .product:nth-child(2) .demo-btn:hover:not(:disabled) { box-shadow:0 6px 20px var(--emerald-medium); }
+        .product:nth-child(3) .demo-btn { background:var(--pink); }
+        .product:nth-child(3) .demo-btn:hover:not(:disabled) { box-shadow:0 6px 20px var(--pink-medium); }
 
-        /* ===== STATS ===== */
-        .stats {
-            max-width: 900px; margin: 0 auto; padding: 0 32px 100px;
-        }
-        .stats-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
-        }
-        .stat {
-            text-align: center; padding: 40px 24px;
-            position: relative;
-        }
-        .stat:not(:last-child)::after {
-            content: '';
-            position: absolute; right: 0; top: 20%; height: 60%;
-            width: 1px; background: var(--border);
-        }
-        .stat-value {
-            font-family: 'Plus Jakarta Sans';
-            font-size: clamp(40px, 5vw, 56px);
-            font-weight: 800; letter-spacing: -0.03em;
-            margin-bottom: 8px;
-        }
-        .stat:nth-child(1) .stat-value { color: var(--brand); }
-        .stat:nth-child(2) .stat-value { color: var(--emerald); }
-        .stat:nth-child(3) .stat-value { color: var(--text); }
-        .stat-label { font-size: 14px; color: var(--text-muted); }
+        /* Result areas */
+        .demo-result { margin-top:12px; padding:14px; background:var(--bg-card); border:1.5px solid var(--border); border-radius:10px; display:none; }
+        .demo-result.visible { display:block; animation:fadeUp 0.3s ease-out; }
+        .demo-result.loading { display:flex; align-items:center; gap:10px; }
+        .spinner { width:14px; height:14px; border:2px solid var(--border); border-top-color:var(--brand); border-radius:50%; animation:spin 0.8s linear infinite; flex-shrink:0; }
+        .result-text { font-size:13px; color:var(--text-muted); line-height:1.5; }
+        .result-text .success { color:var(--emerald); font-weight:600; }
+        .contact-grid { display:grid; }
+        .contact-row { display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--border); }
+        .contact-row:last-child { border-bottom:none; }
+        .contact-field { font-family:var(--mono); font-size:10px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.06em; }
+        .contact-value { font-family:var(--mono); font-size:12px; color:var(--text); font-weight:500; }
+        .contact-value.blur { filter:blur(5px); user-select:none; }
+        .contact-value.found { color:var(--emerald); }
+        .unlock-hint { margin-top:10px; padding-top:10px; border-top:1px solid var(--border); font-size:11px; color:var(--text-dim); text-align:center; }
+        .unlock-hint a { color:var(--pink); text-decoration:none; font-weight:600; }
 
-        /* ===== SCROLL REVEAL ===== */
-        .reveal {
-            opacity: 0; transform: translateY(24px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-        .reveal.visible {
-            opacity: 1; transform: translateY(0);
-        }
+        /* How it works */
+        .how { max-width:900px; margin:0 auto; padding:0 32px 100px; }
+        .how-label { font-size:12px; font-weight:600; color:var(--brand); text-transform:uppercase; letter-spacing:0.1em; text-align:center; margin-bottom:16px; }
+        .how-title { font-size:clamp(28px,4vw,44px); font-weight:800; letter-spacing:-0.03em; text-align:center; margin-bottom:56px; }
+        .steps { display:flex; flex-direction:column; position:relative; }
+        .steps::before { content:''; position:absolute; left:23px; top:28px; bottom:28px; width:2px; background:linear-gradient(to bottom,var(--brand),var(--emerald)); border-radius:2px; }
+        .step { display:flex; align-items:flex-start; gap:24px; padding:24px 0; }
+        .step-dot { width:48px; height:48px; flex-shrink:0; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Plus Jakarta Sans'; font-size:16px; font-weight:800; background:var(--bg-card); border:2px solid var(--border); position:relative; z-index:1; transition:all 0.3s; }
+        .step:hover .step-dot { border-color:var(--brand); color:var(--brand); box-shadow:0 0 0 4px rgba(99,102,241,0.1); }
+        .step h3 { font-size:17px; font-weight:700; margin-bottom:4px; }
+        .step p { font-size:14px; color:var(--text-muted); line-height:1.5; }
 
-        /* ===== PRODUCTS ===== */
-        .products {
-            max-width: 1200px; margin: 0 auto; padding: 0 32px 100px;
-        }
-        .products-label {
-            font-size: 12px; font-weight: 600; color: var(--brand);
-            text-transform: uppercase; letter-spacing: 0.1em;
-            text-align: center; margin-bottom: 16px;
-        }
-        .products-title {
-            font-size: clamp(28px, 4vw, 44px); font-weight: 800;
-            letter-spacing: -0.03em; text-align: center; margin-bottom: 56px;
-        }
-        .products-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-        }
-        .product {
-            background: var(--bg-card);
-            border: 1.5px solid var(--border);
-            border-radius: 20px; padding: 36px 32px;
-            transition: all 0.4s cubic-bezier(0.2, 0, 0, 1);
-            cursor: default;
-        }
-        .product:hover {
-            border-color: var(--brand);
-            transform: translateY(-6px);
-            box-shadow: 0 24px 48px rgba(0,0,0,0.06);
-        }
-        .product-icon {
-            width: 48px; height: 48px; border-radius: 14px;
-            display: flex; align-items: center; justify-content: center;
-            margin-bottom: 24px; font-size: 24px;
-        }
-        .product:nth-child(1) .product-icon { background: rgba(99,102,241,0.08); }
-        .product:nth-child(2) .product-icon { background: rgba(16,185,129,0.08); }
-        .product:nth-child(3) .product-icon { background: rgba(236,72,153,0.08); }
-        .product h3 {
-            font-size: 20px; font-weight: 700; margin-bottom: 10px;
-            letter-spacing: -0.01em;
-        }
-        .product p {
-            font-size: 14px; color: var(--text-muted); line-height: 1.65;
-        }
+        /* CTA */
+        .cta { text-align:center; padding:100px 32px; position:relative; }
+        .cta::before { content:''; position:absolute; width:400px; height:400px; top:50%; left:50%; transform:translate(-50%,-50%); background:radial-gradient(circle,rgba(16,185,129,0.06) 0%,transparent 70%); border-radius:50%; pointer-events:none; }
+        .cta-amount { font-family:'Plus Jakarta Sans'; font-size:clamp(80px,15vw,140px); font-weight:800; letter-spacing:-0.05em; background:linear-gradient(135deg,var(--brand),var(--emerald)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; line-height:1; margin-bottom:16px; animation:float 3s ease-in-out infinite; }
+        .cta h2 { font-size:clamp(20px,3vw,32px); font-weight:700; margin-bottom:12px; }
+        .cta p { font-size:16px; color:var(--text-muted); margin-bottom:32px; }
+        .cta-btn { display:inline-flex; align-items:center; gap:10px; padding:16px 36px; background:var(--text); color:#fff; border:none; border-radius:100px; font-family:'Plus Jakarta Sans'; font-size:15px; font-weight:600; cursor:pointer; text-decoration:none; transition:all 0.3s; }
+        .cta-btn:hover { transform:translateY(-2px); box-shadow:0 12px 32px rgba(0,0,0,0.15); }
 
-        /* ===== HOW ===== */
-        .how {
-            max-width: 900px; margin: 0 auto; padding: 0 32px 100px;
-        }
-        .how-label {
-            font-size: 12px; font-weight: 600; color: var(--brand);
-            text-transform: uppercase; letter-spacing: 0.1em;
-            text-align: center; margin-bottom: 16px;
-        }
-        .how-title {
-            font-size: clamp(28px, 4vw, 44px); font-weight: 800;
-            letter-spacing: -0.03em; text-align: center; margin-bottom: 56px;
-        }
-        .steps {
-            display: flex; flex-direction: column; gap: 0;
-            position: relative;
-        }
-        .steps::before {
-            content: ''; position: absolute;
-            left: 23px; top: 28px; bottom: 28px;
-            width: 2px; background: linear-gradient(to bottom, var(--brand), var(--emerald));
-            border-radius: 2px;
-        }
-        .step {
-            display: flex; align-items: flex-start; gap: 24px;
-            padding: 24px 0;
-        }
-        .step-dot {
-            width: 48px; height: 48px; flex-shrink: 0;
-            border-radius: 50%; display: flex; align-items: center;
-            justify-content: center; font-family: 'Plus Jakarta Sans';
-            font-size: 16px; font-weight: 800; background: var(--bg-card);
-            border: 2px solid var(--border); position: relative; z-index: 1;
-            transition: all 0.3s;
-        }
-        .step:hover .step-dot {
-            border-color: var(--brand); color: var(--brand);
-            box-shadow: 0 0 0 4px rgba(99,102,241,0.1);
-        }
-        .step h3 { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
-        .step p { font-size: 14px; color: var(--text-muted); line-height: 1.5; }
-
-        /* ===== CTA ===== */
-        .cta {
-            text-align: center; padding: 100px 32px;
-            position: relative;
-        }
-        .cta::before {
-            content: '';
-            position: absolute; width: 400px; height: 400px;
-            top: 50%; left: 50%; transform: translate(-50%, -50%);
-            background: radial-gradient(circle, rgba(16,185,129,0.06) 0%, transparent 70%);
-            border-radius: 50%; pointer-events: none;
-        }
-        .cta-amount {
-            font-family: 'Plus Jakarta Sans';
-            font-size: clamp(80px, 15vw, 140px);
-            font-weight: 800; letter-spacing: -0.05em;
-            background: linear-gradient(135deg, var(--brand), var(--emerald));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            line-height: 1; margin-bottom: 16px;
-            animation: float 3s ease-in-out infinite;
-        }
-        .cta h2 {
-            font-size: clamp(20px, 3vw, 32px);
-            font-weight: 700; margin-bottom: 12px;
-        }
-        .cta p {
-            font-size: 16px; color: var(--text-muted);
-            margin-bottom: 32px;
-        }
-        .cta-btn {
-            display: inline-flex; align-items: center; gap: 10px;
-            padding: 16px 36px; background: var(--text); color: #fff;
-            border: none; border-radius: 100px;
-            font-family: 'Plus Jakarta Sans'; font-size: 15px; font-weight: 600;
-            cursor: pointer; text-decoration: none; transition: all 0.3s;
-        }
-        .cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(0,0,0,0.15);
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            max-width: 1200px; margin: 0 auto; padding: 24px 32px 48px;
-            border-top: 1px solid var(--border);
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        footer span { font-size: 12px; color: var(--text-dim); }
-        .footer-note { font-style: italic; }
+        /* Footer */
+        footer { max-width:1200px; margin:0 auto; padding:24px 32px 48px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
+        footer span { font-size:12px; color:var(--text-dim); }
+        .footer-note { font-style:italic; }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .stats-grid { grid-template-columns: 1fr; }
-            .stat:not(:last-child)::after { display: none; }
-            .stat { padding: 24px; }
-            .products-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
-            .hero { padding: 72px 24px 60px; }
-            .logos-row { gap: 32px; }
-            .logos-row img { height: 18px; }
-            footer { flex-direction: column; gap: 8px; text-align: center; }
+        @media (max-width:768px) {
+            .stats-grid { grid-template-columns:1fr; }
+            .stat:not(:last-child)::after { display:none; }
+            .stat { padding:24px; }
+            .products-grid { grid-template-columns:1fr; max-width:440px; margin:0 auto; }
+            .hero { padding:72px 24px 60px; }
+            .logos-row { gap:32px; }
+            .logos-row img { height:18px; }
+            .input-row { flex-direction:column; }
+            .demo-btn { justify-content:center; }
+            footer { flex-direction:column; gap:8px; text-align:center; }
         }
     </style>
 </head>
@@ -359,8 +201,8 @@
         one bad call kills an enterprise relationship.<br>
         our AI recovers what's owed — without the risk.
     </p>
-    <a href="/2.html" class="hero-cta anim-3">
-        <span style="position:relative;z-index:1">see it live</span>
+    <a href="#try" class="hero-cta anim-3">
+        <span style="position:relative;z-index:1">try it yourself</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="position:relative;z-index:1"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
 </section>
@@ -378,52 +220,74 @@
 
 <section class="stats reveal">
     <div class="stats-grid">
-        <div class="stat">
-            <div class="stat-value">50%</div>
-            <div class="stat-label">recovery rate</div>
-        </div>
-        <div class="stat">
-            <div class="stat-value">20d</div>
-            <div class="stat-label">average resolution</div>
-        </div>
-        <div class="stat">
-            <div class="stat-value">&lt;0.1%</div>
-            <div class="stat-label">detect it's AI</div>
-        </div>
+        <div class="stat"><div class="stat-value">50%</div><div class="stat-label">recovery rate</div></div>
+        <div class="stat"><div class="stat-value">20d</div><div class="stat-label">average resolution</div></div>
+        <div class="stat"><div class="stat-value">&lt;0.1%</div><div class="stat-label">detect it's AI</div></div>
     </div>
 </section>
 
-<section class="products reveal">
-    <div class="products-label">three products</div>
+<section class="products reveal" id="try">
+    <div class="products-label">three products — try them live</div>
     <div class="products-title">everything automated.</div>
     <div class="products-grid">
+
+        <!-- AI Call -->
         <div class="product">
-            <div class="product-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                </svg>
+            <div class="product-top">
+                <div class="product-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <h3>AI call</h3>
+                <p class="desc">real-time voice that collects, negotiates, and handles objections. trained on 1B+ simulations.</p>
             </div>
-            <h3>AI call</h3>
-            <p>real-time voice that collects, negotiates, and handles objections. trained on 1B+ simulations.</p>
+            <div class="demo-area">
+                <div class="demo-label">// enter your phone number</div>
+                <div class="input-row">
+                    <input type="tel" class="demo-input" id="phone-input" placeholder="+1 (555) 000-0000">
+                    <button class="demo-btn" id="call-btn" onclick="triggerCall()">call me <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+                </div>
+                <div class="demo-result" id="call-result"><div class="result-text" id="call-status"></div></div>
+            </div>
         </div>
+
+        <!-- AI Email -->
         <div class="product">
-            <div class="product-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/>
-                </svg>
+            <div class="product-top">
+                <div class="product-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg>
+                </div>
+                <h3>AI email reply</h3>
+                <p class="desc">sends collection emails and handles every reply — disputes, questions, payment plans. autonomously.</p>
             </div>
-            <h3>AI email reply</h3>
-            <p>sends collection emails and handles every reply — disputes, questions, payment plans. autonomously.</p>
+            <div class="demo-area">
+                <div class="demo-label">// enter your email</div>
+                <div class="input-row">
+                    <input type="email" class="demo-input" id="email-input" placeholder="your@company.com">
+                    <button class="demo-btn" id="email-btn" onclick="triggerEmail()">email me <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+                </div>
+                <div class="demo-result" id="email-result"><div class="result-text" id="email-status"></div></div>
+            </div>
         </div>
+
+        <!-- Contact Finder -->
         <div class="product">
-            <div class="product-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#EC4899" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
-                </svg>
+            <div class="product-top">
+                <div class="product-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#EC4899" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                </div>
+                <h3>contact finder</h3>
+                <p class="desc">finds the right person — phone, email, LinkedIn — by cross-referencing 5+ sources in seconds.</p>
             </div>
-            <h3>contact finder</h3>
-            <p>finds the right person — phone, email, LinkedIn — by cross-referencing 5+ sources in seconds.</p>
+            <div class="demo-area">
+                <div class="demo-label">// enter your work email</div>
+                <div class="input-row">
+                    <input type="email" class="demo-input" id="finder-input" placeholder="your@company.com">
+                    <button class="demo-btn" id="finder-btn" onclick="triggerFinder()">find me <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+                </div>
+                <div class="demo-result" id="finder-result"><div class="result-text" id="finder-status"></div></div>
+            </div>
         </div>
+
     </div>
 </section>
 
@@ -431,34 +295,10 @@
     <div class="how-label">how it works</div>
     <div class="how-title">you upload. AI collects.</div>
     <div class="steps">
-        <div class="step">
-            <div class="step-dot">1</div>
-            <div>
-                <h3>upload your invoices</h3>
-                <p>drop an Excel or connect your ERP. takes 2 minutes.</p>
-            </div>
-        </div>
-        <div class="step">
-            <div class="step-dot">2</div>
-            <div>
-                <h3>AI finds the right contact</h3>
-                <p>direct phone, email, LinkedIn — across 5+ data sources.</p>
-            </div>
-        </div>
-        <div class="step">
-            <div class="step-dot">3</div>
-            <div>
-                <h3>AI reaches out respectfully</h3>
-                <p>calls, emails, follow-ups. handles every reply automatically.</p>
-            </div>
-        </div>
-        <div class="step">
-            <div class="step-dot">4</div>
-            <div>
-                <h3>you get paid</h3>
-                <p>invoice collected. relationship preserved.</p>
-            </div>
-        </div>
+        <div class="step"><div class="step-dot">1</div><div><h3>upload your invoices</h3><p>drop an Excel or connect your ERP. takes 2 minutes.</p></div></div>
+        <div class="step"><div class="step-dot">2</div><div><h3>AI finds the right contact</h3><p>direct phone, email, LinkedIn — across 5+ data sources.</p></div></div>
+        <div class="step"><div class="step-dot">3</div><div><h3>AI reaches out respectfully</h3><p>calls, emails, follow-ups. handles every reply automatically.</p></div></div>
+        <div class="step"><div class="step-dot">4</div><div><h3>you get paid</h3><p>invoice collected. relationship preserved.</p></div></div>
     </div>
 </section>
 
@@ -466,10 +306,7 @@
     <div class="cta-amount">$1</div>
     <h2>we'll try to collect $1 from you.</h2>
     <p>real AI call. real email. see if you can tell it's not human.</p>
-    <a href="/2.html" class="cta-btn">
-        try the demo
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
+    <a href="#try" class="cta-btn">try the demo <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
 </section>
 
 <footer>
@@ -478,18 +315,14 @@
 </footer>
 
 <script>
+    const API = 'https://backend.widr.app/api/v1/demo';
+
     // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.15 });
     reveals.forEach(el => observer.observe(el));
-
-    // Fallback: show all sections after 1.5s (for screenshot tools, slow loads)
     setTimeout(() => reveals.forEach(el => el.classList.add('visible')), 1500);
 
     // Smooth scroll
@@ -499,6 +332,107 @@
             document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
         });
     });
+
+    // Helpers
+    function setLoading(rId, sId, msg) {
+        const r = document.getElementById(rId), s = document.getElementById(sId);
+        r.className = 'demo-result loading visible';
+        s.innerHTML = '<div class="spinner"></div><span class="result-text">' + msg + '</span>';
+    }
+    function setResult(rId, sId, html) {
+        const r = document.getElementById(rId), s = document.getElementById(sId);
+        r.className = 'demo-result visible';
+        s.innerHTML = html;
+    }
+    function validate(id, type) {
+        const el = document.getElementById(id), val = el.value.trim();
+        if (!val || (type === 'email' && !val.includes('@')) || (type === 'tel' && val.length < 6)) {
+            el.classList.add('error');
+            setTimeout(() => el.classList.remove('error'), 600);
+            return null;
+        }
+        return val;
+    }
+    function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+    // AI Call
+    async function triggerCall() {
+        const phone = validate('phone-input', 'tel');
+        if (!phone) return;
+        const btn = document.getElementById('call-btn');
+        btn.disabled = true;
+        setLoading('call-result', 'call-status', 'dialing your number...');
+        try {
+            await fetch(API + '/call', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ phone }) });
+        } catch {}
+        setResult('call-result', 'call-status', '<span class="success">&#10003; call initiated</span><br>you\'ll receive a call in ~10 seconds. we\'re collecting $1 from you — try to resist.');
+        setTimeout(() => btn.disabled = false, 10000);
+    }
+
+    // AI Email
+    async function triggerEmail() {
+        const email = validate('email-input', 'email');
+        if (!email) return;
+        const btn = document.getElementById('email-btn');
+        btn.disabled = true;
+        setLoading('email-result', 'email-status', 'sending collection email...');
+        try {
+            await fetch(API + '/email', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email }) });
+        } catch {}
+        setResult('email-result', 'email-status', '<span class="success">&#10003; email sent</span><br>check your inbox (and spam). reply to it — dispute, negotiate, ask questions.');
+        setTimeout(() => btn.disabled = false, 5000);
+    }
+
+    // Contact Finder
+    async function triggerFinder() {
+        const email = validate('finder-input', 'email');
+        if (!email) return;
+        const btn = document.getElementById('finder-btn');
+        btn.disabled = true;
+
+        const steps = ['searching data sources...', 'cross-referencing records...', 'verifying contact methods...', 'ranking results...'];
+        for (let i = 0; i < steps.length; i++) {
+            setLoading('finder-result', 'finder-status', steps[i]);
+            await sleep(500 + Math.random() * 300);
+        }
+
+        let contact = null;
+        try {
+            const res = await fetch(API + '/find-contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email }) });
+            const data = await res.json();
+            if (data.success && data.data) contact = data.data;
+        } catch {}
+
+        if (contact && contact.name) {
+            setResult('finder-result', 'finder-status', `
+                <div class="contact-grid">
+                    <div class="contact-row"><span class="contact-field">name</span><span class="contact-value found">${contact.name}</span></div>
+                    ${contact.company ? `<div class="contact-row"><span class="contact-field">company</span><span class="contact-value">${contact.company}</span></div>` : ''}
+                    ${contact.title ? `<div class="contact-row"><span class="contact-field">title</span><span class="contact-value">${contact.title}</span></div>` : ''}
+                    <div class="contact-row"><span class="contact-field">phone</span><span class="contact-value blur">${contact.phone || '+1 (***) ***-****'}</span></div>
+                    <div class="contact-row"><span class="contact-field">linkedin</span><span class="contact-value blur">${contact.linkedin || 'linkedin.com/in/***'}</span></div>
+                </div>
+                <div class="unlock-hint">&#128274; full details available with access — <a href="mailto:j@respaid.com">request here</a></div>
+            `);
+        } else {
+            // Fallback: parse email
+            const [local, domain] = email.split('@');
+            const parts = local.replace(/[._\-]/g, ' ').split(' ');
+            const name = parts.map(p => p.charAt(0).toUpperCase() + p.slice(1)).join(' ');
+            const co = domain.replace(/\.(com|io|co|org|net|app)$/i, '');
+            const company = co.charAt(0).toUpperCase() + co.slice(1);
+            setResult('finder-result', 'finder-status', `
+                <div class="contact-grid">
+                    <div class="contact-row"><span class="contact-field">name</span><span class="contact-value found">${name}</span></div>
+                    <div class="contact-row"><span class="contact-field">company</span><span class="contact-value">${company}</span></div>
+                    <div class="contact-row"><span class="contact-field">phone</span><span class="contact-value blur">+1 (***) ***-****</span></div>
+                    <div class="contact-row"><span class="contact-field">linkedin</span><span class="contact-value blur">linkedin.com/in/***</span></div>
+                </div>
+                <div class="unlock-hint">&#128274; full profile available with access — <a href="mailto:j@respaid.com">request here</a></div>
+            `);
+        }
+        setTimeout(() => btn.disabled = false, 3000);
+    }
 </script>
 
 </body>
