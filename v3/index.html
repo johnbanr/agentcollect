@@ -664,6 +664,39 @@ async function typeText(el,text,speed=30){
 // ═══════════════════════════
 // MAIN AGENT FLOW — investigator style
 // ═══════════════════════════
+async function resetConsole(){
+    // Reset all steps
+    ['identity','intel','strategy','collect'].forEach(id=>{
+        const step=document.getElementById('step-'+id);
+        if(step){step.classList.remove('active','done')}
+        const card=document.getElementById('card-'+id);
+        if(card){card.classList.remove('loaded')}
+    });
+    // Clear data rows
+    ['identity-rows','intel-rows'].forEach(id=>{
+        const el=document.getElementById(id);
+        if(el)el.innerHTML='';
+    });
+    // Clear strategy rows
+    const stratCard=document.getElementById('card-strategy');
+    if(stratCard){stratCard.querySelectorAll('.strategy-row,.confidence-bar').forEach(el=>el.remove())}
+    // Reset profile card
+    const pc=document.getElementById('profile-card');
+    if(pc){pc.style.display='none'}
+    document.getElementById('profile-name').textContent='';
+    document.getElementById('profile-title').textContent='';
+    document.getElementById('profile-location').innerHTML='';
+    document.getElementById('profile-linkedin').style.display='none';
+    // Remove any greeting divs
+    document.querySelectorAll('#card-identity > div:not(#profile-card):not(#identity-rows)').forEach(el=>el.remove());
+    // Reset collect content
+    const cc=document.getElementById('collect-content');
+    if(cc)cc.innerHTML='';
+    // Hide action buttons
+    document.getElementById('agent-actions').classList.remove('show');
+    const callEl=document.getElementById('call-active');
+    if(callEl)callEl.classList.remove('show');
+}
 async function startAgent(){
     const email = document.getElementById('email-input').value.trim();
     if(!email || !email.includes('@')){
@@ -674,6 +707,9 @@ async function startAgent(){
     agentEmail = email;
     const btn=document.getElementById('go-btn');
     btn.disabled=true;
+
+    // Reset previous run
+    await resetConsole();
 
     const console_el=document.getElementById('agent-console');
     console_el.classList.add('active');
@@ -706,8 +742,8 @@ async function startAgent(){
     const ti = known?.title || contactData?.person?.title || null;
     const lo = known?.location || contactData?.person?.location || null;
     const li = known?.linkedin || contactData?.person?.linkedin || null;
-    const ph = known?.phone || contactData?.phones?.[0]?.number || '+1 (***) ***-'+Math.floor(Math.random()*9000+1000);
-    const ph2 = known?.mobile || '+1 (***) ***-'+Math.floor(Math.random()*9000+1000);
+    const ph = known?.phone || contactData?.phones?.[0]?.number || null;
+    const ph2 = known?.mobile || contactData?.phones?.[1]?.number || null;
 
     // Show profile card with avatar
     const profileCard = document.getElementById('profile-card');
@@ -748,9 +784,14 @@ async function startAgent(){
     }
     await sleep(200);
 
-    // Phone + email data rows
-    await addDataRow('identity-rows','phone',ph,'blur');
-    await addDataRow('identity-rows','mobile',ph2,'blur');
+    // Phone + email data rows — only show REAL found data, never fake
+    const hasRealPhone = known?.phone || contactData?.phones?.[0]?.number;
+    const hasRealMobile = known?.mobile || contactData?.phones?.[1]?.number;
+    if(hasRealPhone) await addDataRow('identity-rows','phone',ph,'found');
+    if(hasRealMobile) await addDataRow('identity-rows','mobile',ph2,'found');
+    if(!hasRealPhone && !hasRealMobile && contactData?.phones?.length){
+        await addDataRow('identity-rows','phone',contactData.phones[0].number,'found');
+    }
     await addDataRow('identity-rows','email','&#10003; deliverable','found');
 
     setIcon('identity',true);
@@ -824,7 +865,8 @@ async function startAgent(){
 
     document.getElementById('collect-content').innerHTML='<div class="thinking"><div class="thinking-dot"></div><div class="thinking-dot"></div><div class="thinking-dot"></div></div><div style="font-size:13px;color:var(--text-muted)">Sending $1 collection notice to '+email+'...</div>';
 
-    try{await fetch(API+'/email',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})})}catch{}
+    // Email sending disabled — test mode
+    // try{await fetch(API+'/email',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})})}catch{}
     await sleep(1200);
 
     document.getElementById('card-collect').classList.add('loaded');
@@ -842,7 +884,7 @@ async function startAgent(){
     await sleep(500);
 
     // Show action buttons — include phone number
-    document.getElementById('call-btn-text').textContent='Now call me at '+ph.replace(/\*+/g,'***')+' — let the AI collect $1';
+    document.getElementById('call-btn-text').textContent=ph ? 'Now call me at '+ph+' — let the AI collect $1' : 'Call me now — let the AI collect $1';
     document.getElementById('agent-actions').classList.add('show');
     btn.disabled=false;
 }
