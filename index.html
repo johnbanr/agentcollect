@@ -71,8 +71,6 @@
         .nav-links a{color:var(--text-mid);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
         .nav-links a:hover{color:var(--text)}
         .nav-right{display:flex;align-items:center;gap:20px}
-        .nav-login{color:var(--text-mid);text-decoration:none;font-size:14px;font-weight:500}
-        .nav-login:hover{color:var(--text)}
         .nav-cta{padding:9px 20px;background:var(--blue);color:#fff;border:none;border-radius:8px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s}
         .nav-cta:hover{background:var(--blue-dark)}
         .nav-mobile{display:none;background:none;border:none;cursor:pointer;padding:8px}
@@ -319,7 +317,7 @@
             .footer-top{grid-template-columns:1fr 1fr}
         }
         @media(max-width:768px){
-            .nav-links,.nav-login{display:none}
+            .nav-links{display:none}
             .nav-mobile{display:block}
             .nav-inner{padding:0 20px}
             .hero{padding:120px 20px 60px}
@@ -365,7 +363,6 @@
         <a href="#security">Security</a>
     </div>
     <div class="nav-right">
-        <a href="#" class="nav-login">Log in</a>
         <a href="#hero-input" class="nav-cta">Try the demo</a>
     </div>
     <button class="nav-mobile" onclick="document.getElementById('hero-input').scrollIntoView({behavior:'smooth'})">
@@ -779,10 +776,10 @@
             </div>
             <div class="footer-col">
                 <h4>Compliance</h4>
-                <a href="#">SOC 2 Type II</a>
-                <a href="#">CCPA / CPRA</a>
-                <a href="#">Regulation F</a>
-                <a href="#">GDPR</a>
+                <a href="/#security">SOC 2 Type II</a>
+                <a href="/privacy">CCPA / CPRA</a>
+                <a href="/terms">Regulation F</a>
+                <a href="/privacy">GDPR</a>
             </div>
             <div class="footer-col">
                 <h4>Company</h4>
@@ -794,7 +791,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <div class="footer-copy">&copy; 2026 AgentCollect, Inc. San Francisco, CA</div>
+            <div class="footer-copy">&copy; 2026 AgentCollect, Inc. New York, NY</div>
             <div class="footer-badges"><span class="footer-badge">SOC 2</span><span class="footer-badge">CCPA</span><span class="footer-badge">Reg F</span></div>
         </div>
     </div>
