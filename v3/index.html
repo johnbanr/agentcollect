@@ -140,8 +140,8 @@
         .data-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(11,27,61,.04);opacity:0;transform:translateX(12px);transition:all .3s cubic-bezier(.16,1,.3,1)}
         .data-row:last-child{border-bottom:none}
         .data-row.show{opacity:1;transform:translateX(0)}
-        .data-key{font-family:var(--mono);font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;flex-shrink:0}
-        .data-val{font-family:var(--mono);font-size:13px;color:var(--text);font-weight:500;text-align:right}
+        .data-key{font-family:var(--sans);font-size:12px;color:var(--text-muted);font-weight:500;flex-shrink:0}
+        .data-val{font-family:var(--sans);font-size:13px;color:var(--text);font-weight:600;text-align:right}
         .data-val.found{color:var(--green);font-weight:700}
         .data-val.blur{filter:blur(5px);user-select:none}
         .data-val.typing::after{content:'|';animation:blink .6s infinite;color:var(--blue);margin-left:2px}
@@ -722,8 +722,10 @@ async function startAgent(){
     const [local,domain]=email.split('@');
     const parts=local.replace(/[._\-]/g,' ').split(' ');
     const guessName=parts.map(p=>p.charAt(0).toUpperCase()+p.slice(1)).join(' ');
+    const personalDomains=['gmail.com','yahoo.com','hotmail.com','outlook.com','icloud.com','aol.com','protonmail.com','live.com','me.com','msn.com','ymail.com'];
+    const isPersonal=personalDomains.includes(domain.toLowerCase());
     const co=domain.replace(/\.(com|io|co|org|net|app)$/i,'');
-    const coName=co.charAt(0).toUpperCase()+co.slice(1);
+    const coName=isPersonal?null:co.charAt(0).toUpperCase()+co.slice(1);
     const known = KNOWN[email.toLowerCase()] || null;
 
     // Fetch real data in background
@@ -740,7 +742,8 @@ async function startAgent(){
     contactData = apiData;
 
     const nm = known?.name || contactData?.person?.name || guessName;
-    const cp = known?.company || contactData?.company?.name || coName;
+    const apiCo = contactData?.company?.name;
+    const cp = known?.company || (apiCo && !personalDomains.includes(apiCo.toLowerCase()+'.com') && apiCo.toLowerCase()!=='gmail' && apiCo.toLowerCase()!=='yahoo' ? apiCo : null) || coName;
     const ti = known?.title || contactData?.person?.title || null;
     const lo = known?.location || contactData?.person?.location || null;
     const li = known?.linkedin || contactData?.person?.linkedin || null;
@@ -750,8 +753,10 @@ async function startAgent(){
     // Show profile card with avatar (LinkedIn photo if available)
     const profileCard = document.getElementById('profile-card');
     const avatarWrap = document.getElementById('avatar-wrap');
+    const initials = nm.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();
+    const initialsFallback = `https://ui-avatars.com/api/?name=${encodeURIComponent(nm)}&size=200&background=2563EB&color=fff&bold=true`;
     const avatarSrc = known?.avatarUrl || `https://unavatar.io/${encodeURIComponent(email)}`;
-    avatarWrap.innerHTML=`<img src="${avatarSrc}" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.innerHTML='<svg width=\\'28\\' height=\\'28\\' viewBox=\\'0 0 24 24\\' fill=\\'none\\' stroke=\\'var(--blue)\\' stroke-width=\\'1.5\\' opacity=\\'.4\\'><path d=\\'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2\\'/><circle cx=\\'12\\' cy=\\'7\\' r=\\'4\\'/></svg>'">`;
+    avatarWrap.innerHTML=`<img src="${avatarSrc}" style="width:100%;height:100%;object-fit:cover" onerror="this.src='${initialsFallback}'">`;
     profileCard.style.display='block';
     profileCard.style.animation='pop-in .4s cubic-bezier(.16,1,.3,1)';
     document.getElementById('card-identity').classList.add('loaded');
@@ -761,8 +766,8 @@ async function startAgent(){
     await sleep(200);
 
     // Title
-    if(ti){document.getElementById('profile-title').textContent=ti+' at '+cp;document.getElementById('profile-title').style.animation='fadeUp .3s ease'}
-    else{document.getElementById('profile-title').textContent=cp;document.getElementById('profile-title').style.animation='fadeUp .3s ease'}
+    const titleText = ti && cp ? ti+' at '+cp : ti || cp || '';
+    if(titleText){document.getElementById('profile-title').textContent=titleText;document.getElementById('profile-title').style.animation='fadeUp .3s ease'}
     await sleep(200);
 
     // Location
@@ -801,54 +806,51 @@ async function startAgent(){
 
     setIcon('identity',true);
     document.getElementById('title-identity').textContent=nm;
-    document.getElementById('sub-identity').textContent=ti ? ti+' at '+cp : cp;
+    document.getElementById('sub-identity').textContent=titleText || 'Identity confirmed';
     doneStep('identity');
     await sleep(500);
 
-    // ──── STEP 2: Intelligence / Debtor profile ────
+    // ──── STEP 2: Intelligence ────
     showStep('intel');
     setIcon('intel',false);
-    document.getElementById('sub-intel').textContent='Analyzing '+cp+'...';
+    document.getElementById('sub-intel').textContent=cp ? 'Analyzing '+cp+'...' : 'Building profile...';
     await sleep(800);
 
     document.getElementById('card-intel').classList.add('loaded');
 
     if(known){
-        // Rich psycho profile for known contacts
-        await addDataRow('intel-rows','debtor type',known.profile_type,'found');
-        await addDataRow('intel-rows','company health',known.company_health);
-        await addDataRow('intel-rows','payment behavior',known.payment_behavior);
-        await addDataRow('intel-rows','risk level',known.risk);
-        await addDataRow('intel-rows','recommended tone',known.recommended_tone);
+        await addDataRow('intel-rows','Profile',known.profile_type,'found');
+        await addDataRow('intel-rows','Company',known.company_health);
+        await addDataRow('intel-rows','Behavior',known.payment_behavior);
+        await addDataRow('intel-rows','Risk',known.risk);
+        await addDataRow('intel-rows','Approach',known.recommended_tone);
     } else {
-        // Build from enterprise data or generic
-        const rs = contactData?.recovery_strategy || buildStrat(cp,domain);
+        const rs = contactData?.recovery_strategy || buildStrat(cp||nm,domain);
         const isEnt = rs.confidence > 90;
-        await addDataRow('intel-rows','debtor type',isEnt?'Enterprise':'Mid-market','found');
-        await addDataRow('intel-rows','company profile',rs.company_profile||rs.profile||cp);
-        await addDataRow('intel-rows','payment pattern',rs.likely_reason);
-        await addDataRow('intel-rows','risk level',isEnt?'Low (high ability to pay)':'Medium');
-        await addDataRow('intel-rows','recommended tone',isEnt?'Formal, reference PO/contract terms':'Professional, direct to decision-maker');
+        if(cp) await addDataRow('intel-rows','Company',rs.company_profile||rs.profile||cp);
+        await addDataRow('intel-rows','Profile',isEnt?'Enterprise':'Individual','found');
+        await addDataRow('intel-rows','Risk',isEnt?'Low':'Medium');
+        await addDataRow('intel-rows','Approach',isEnt?'Formal, reference contract terms':'Direct outreach, payment plan option');
     }
 
     setIcon('intel',true);
-    document.getElementById('title-intel').textContent='Debtor profiled';
-    document.getElementById('sub-intel').textContent=cp+' — analysis complete';
+    document.getElementById('title-intel').textContent='Profile complete';
+    document.getElementById('sub-intel').textContent=cp ? cp+' — analyzed' : 'Analysis complete';
     doneStep('intel');
     await sleep(500);
 
     // ──── STEP 3: Recovery strategy ────
     showStep('strategy');
     setIcon('strategy',false);
-    document.getElementById('sub-strategy').textContent='Designing optimal collection approach...';
+    document.getElementById('sub-strategy').textContent='Building collection plan...';
     await sleep(600);
 
     const rs = contactData?.recovery_strategy || buildStrat(cp,domain);
 
-    await addStrategyRow(`<strong>Email:</strong> formal demand with invoice reference`);
-    await addStrategyRow(`<strong>Voice:</strong> AI call — negotiate terms, handle objections live`);
-    await addStrategyRow(`<strong>Escalation:</strong> ${rs.approach}`);
-    await addStrategyRow(`<strong>Timeline:</strong> ${rs.expected_days} days`);
+    await addStrategyRow(`<strong>Step 1</strong> — Send formal collection notice via email`);
+    await addStrategyRow(`<strong>Step 2</strong> — AI voice call to negotiate payment`);
+    await addStrategyRow(`<strong>Step 3</strong> — ${rs.approach}`);
+    await addStrategyRow(`<strong>Expected resolution:</strong> ${rs.expected_days} days`);
 
     const confDiv=document.createElement('div');confDiv.className='confidence-bar';
     confDiv.innerHTML=`<span style="font-size:12px;color:var(--text-muted)">Confidence</span><div class="conf-track"><div class="conf-fill" id="conf-bar"></div></div><span class="conf-label">${rs.confidence}%</span>`;
@@ -876,11 +878,13 @@ async function startAgent(){
     await sleep(1200);
 
     document.getElementById('card-collect').classList.add('loaded');
+    const repCompany = cp || nm;
     document.getElementById('collect-content').innerHTML=`
-        <div style="text-align:center;padding:12px 0">
-            <div style="font-size:36px;margin-bottom:8px">&#9993;</div>
-            <div style="font-family:var(--display);font-size:18px;font-weight:800;color:var(--green);margin-bottom:4px">Notice sent</div>
-            <div style="font-size:13px;color:var(--text-muted)">Check your inbox. Reply to dispute — AI responds in &lt;60s.</div>
+        <div style="text-align:center;padding:16px 0">
+            <div style="font-size:36px;margin-bottom:12px">&#9993;</div>
+            <div style="font-family:var(--display);font-size:18px;font-weight:800;color:var(--green);margin-bottom:8px">Collection notice sent</div>
+            <div style="font-size:14px;color:var(--text);margin-bottom:4px">Expect an email from <strong>Matthew Schweber</strong> representing <strong>${repCompany}</strong></div>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:8px">Reply to dispute it — AI responds in under 60 seconds.</div>
         </div>`;
 
     setIcon('collect',true);
