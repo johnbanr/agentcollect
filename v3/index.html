@@ -887,6 +887,8 @@ async function startAgent(){
     const email=document.getElementById('email-input').value.trim();
     if(!email||!email.includes('@')){document.getElementById('email-input').classList.add('error');setTimeout(()=>document.getElementById('email-input').classList.remove('error'),600);return}
     agentEmail=email;const btn=document.getElementById('go-btn');btn.disabled=true;
+    // Track lead in DB + Slack notification
+    fetch(API+'/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,action:'started'})}).catch(()=>{});
     await resetConsole();
     const ce=document.getElementById('agent-console');ce.classList.add('active');document.getElementById('target-email').textContent=email;
     await sleep(200);ce.scrollIntoView({behavior:'smooth',block:'start'});
@@ -944,7 +946,10 @@ async function startAgent(){
     await addDataRow('identity-rows','Email','Verified deliverable','found');
 
     setIcon('identity',true);document.getElementById('title-identity').textContent=nm;
-    document.getElementById('sub-identity').textContent=titleText||'Identity confirmed';doneStep('identity');await sleep(400);
+    document.getElementById('sub-identity').textContent=titleText||'Identity confirmed';doneStep('identity');
+    // Update lead with resolved identity
+    fetch(API+'/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,name:nm,company:cp,title:ti,action:'identity_resolved'})}).catch(()=>{});
+    await sleep(400);
 
     showStep('intel');setIcon('intel',false);
     document.getElementById('sub-intel').textContent=cp?'Analyzing '+cp+'...':'Building profile...';await sleep(700);
