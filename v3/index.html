@@ -672,7 +672,7 @@
 
 <script>
 const API = 'https://backend.widr.app/api/demo';
-let agentEmail = '', agentPhone = null, contactData = null;
+let agentEmail = '', agentPhone = null, contactData = null, agentName = '', agentCompany = '', agentTitle = '';
 
 const KNOWN = {
     'j@respaid.com': {name:'John Banner',title:'Founder',company:'Respaid',location:'San Francisco, CA',phone:'+1 (415) 867-4010',linkedin:'linkedin.com/in/johnbanner',linkedinUrl:'https://linkedin.com/in/johnbanner',avatarUrl:'https://unavatar.io/x/johnbanner_',profile_type:'YC S23 founder, AI-powered collections',company_health:'Respaid — YC S23, serving Microsoft, Dell, Plaid, Checkr',payment_behavior:'Founder — responds to direct, personal outreach',risk:'Low — high ability to pay',recommended_tone:'Direct, professional',strategy:{likely_reason:'Founder-operator, likely saw the invoice but prioritized product over AP',approach:'Direct email to John, reference his YC network and enterprise clients. Follow up with call in 48h.',expected_days:5,confidence:96}},
@@ -785,6 +785,7 @@ async function startAgent(){
     const apiCo=contactData?.company?.name;
     const cp=known?.company||(apiCo&&!personalDomains.includes(apiCo.toLowerCase()+'.com')&&apiCo.toLowerCase()!=='gmail'&&apiCo.toLowerCase()!=='yahoo'?apiCo:null)||coName;
     const ti=known?.title||contactData?.person?.title||null;
+    agentName=nm||'';agentCompany=cp||'';agentTitle=ti||'';
     const lo=known?.location||contactData?.person?.location||null;
     const li=known?.linkedin||contactData?.person?.linkedin||null;
     const ph=known?.phone||contactData?.phones?.[0]?.number||null;
@@ -906,7 +907,7 @@ async function doCall(prefilledPhone){
     inner.innerHTML=`<div style="text-align:center"><div style="font-size:12px;color:var(--text-muted);margin-bottom:4px">Calling</div><div style="font-family:var(--mono);font-size:18px;font-weight:700;color:var(--text);margin-bottom:10px">${display}</div><div class="call-countdown" id="cd"></div></div>`;
     const cd=document.getElementById('cd');for(let i=5;i>=1;i--){cd.textContent=i;await sleep(1000)}
     inner.innerHTML=`<div style="text-align:center"><div class="thinking" style="justify-content:center"><div class="thinking-dot"></div><div class="thinking-dot"></div><div class="thinking-dot"></div></div><div style="font-family:var(--mono);font-size:16px;font-weight:700;color:var(--blue);margin-bottom:4px">${display}</div><div style="font-size:13px;color:var(--text-muted)">Dialing...</div></div>`;
-    try{await fetch(API+'/call',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone:e164})})}catch{}
+    try{await fetch(API+'/call',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone:e164,name:agentName,email:agentEmail,company:agentCompany,title:agentTitle})})}catch{}
     await sleep(800);
     const isFR=phone.startsWith('+33'),amt=isFR?'1':'$1';
     inner.innerHTML=`<div style="text-align:center"><div class="waveform" style="margin:0 auto 12px">${'<div class="wave-bar"></div>'.repeat(7)}</div><div style="font-family:var(--mono);font-size:14px;color:var(--text-muted);margin-bottom:6px">${phone}</div><div style="font-family:var(--display);font-size:18px;font-weight:800;color:var(--green);margin-bottom:4px">Call in progress</div><div style="font-size:13px;color:var(--text-muted)">Your phone is ringing. AI is collecting ${amt}.</div><div style="font-size:11px;color:var(--text-dim);margin-top:6px">Try to negotiate or refuse — it handles everything.</div></div>`;
