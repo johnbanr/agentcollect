@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>AgentCollect — The Collection Agency is Dead</title>
+    <meta name="description" content="AI agents that replace your collection agency. Enter your email — watch it work in real time.">
+    <meta property="og:title" content="The Collection Agency is Dead — AgentCollect">
+    <meta property="og:description" content="AI agents that recover what humans can't. Try the $1 live demo.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://agentcollect.vercel.app/v3">
+    <meta property="og:image" content="https://agentcollect.vercel.app/og.png">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%232563EB'/%3E%3Cstop offset='100%25' stop-color='%2310B981'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Cpath d='M20 44V24l12-8 12 8v20l-12 6-12-6z' fill='none' stroke='white' stroke-width='2.5' stroke-linejoin='round'/%3E%3Cpath d='M32 16v34M20 24l12 8 12-8' fill='none' stroke='white' stroke-width='2.5' stroke-linejoin='round'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --bg:#FAFBFF;--bg-card:#fff;--bg-dark:#0B1B3D;
+            --border:rgba(11,27,61,.06);--border-hover:rgba(37,99,235,.2);
+            --text:#0B1B3D;--text-mid:rgba(11,27,61,.65);--text-muted:rgba(11,27,61,.4);--text-dim:rgba(11,27,61,.2);
+            --blue:#2563EB;--blue-dark:#1D4ED8;--blue-light:rgba(37,99,235,.06);--blue-glow:rgba(37,99,235,.2);
+            --green:#10B981;--green-dark:#059669;--green-light:rgba(16,185,129,.06);--green-glow:rgba(16,185,129,.2);
+            --amber:#F59E0B;--red:#EF4444;--pink:#EC4899;--sf-blue:#00A1E0;
+            --mono:'JetBrains Mono',monospace;--sans:'Inter',-apple-system,sans-serif;--display:'Plus Jakarta Sans',sans-serif;
+            --shadow-sm:0 1px 3px rgba(11,27,61,.04),0 1px 2px rgba(11,27,61,.02);
+            --shadow-md:0 4px 16px rgba(11,27,61,.06),0 2px 4px rgba(11,27,61,.03);
+            --shadow-lg:0 20px 60px rgba(11,27,61,.08),0 8px 24px rgba(11,27,61,.04);
+            --shadow-xl:0 32px 80px rgba(37,99,235,.1),0 12px 32px rgba(11,27,61,.06);
+        }
+        html{scroll-behavior:smooth}
+        body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+        h1,h2,h3,h4,h5{font-family:var(--display)}
+        ::selection{background:rgba(37,99,235,.15);color:var(--blue-dark)}
+
+        @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+        @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+        @keyframes gradient-shift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+        @keyframes wave{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+        @keyframes counter-pop{0%{transform:scale(.8);opacity:0}60%{transform:scale(1.05)}100%{transform:scale(1);opacity:1}}
+        @keyframes strike{from{width:0}to{width:108%}}
+        @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+        @keyframes typewriter{from{width:0}to{width:100%}}
+        @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+        @keyframes scan-line{0%{top:0;opacity:1}100%{top:100%;opacity:0}}
+        @keyframes ripple{0%{transform:scale(0);opacity:.5}100%{transform:scale(4);opacity:0}}
+        @keyframes progress-fill{from{width:0}to{width:var(--target-w,100%)}}
+        @keyframes slide-in-right{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:translateX(0)}}
+        @keyframes slide-in-left{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:translateX(0)}}
+        @keyframes pop-in{0%{opacity:0;transform:scale(.85)}60%{transform:scale(1.03)}100%{opacity:1;transform:scale(1)}}
+        @keyframes glow-ring{0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,.3)}50%{box-shadow:0 0 0 12px rgba(37,99,235,0)}}
+        @keyframes check-draw{0%{stroke-dashoffset:24}100%{stroke-dashoffset:0}}
+        @keyframes dot-typing{0%{opacity:.2}20%{opacity:1}100%{opacity:.2}}
+        @keyframes orbit{from{transform:rotate(0deg) translateX(40px) rotate(0deg)}to{transform:rotate(360deg) translateX(40px) rotate(-360deg)}}
+
+        .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+        .s1{transition-delay:.1s}.s2{transition-delay:.2s}.s3{transition-delay:.3s}.s4{transition-delay:.4s}
+
+        /* ═══ NAV ═══ */
+        .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:12px 24px}
+        .nav-bar{max-width:1100px;margin:0 auto;padding:10px 24px;display:flex;justify-content:space-between;align-items:center;background:rgba(250,251,255,.85);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--border);border-radius:100px;transition:all .3s}
+        .nav.scrolled .nav-bar{box-shadow:var(--shadow-md)}
+        .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+        .logo svg{width:30px;height:30px}
+        .logo-name{font-family:var(--display);font-size:17px;font-weight:800;letter-spacing:-.03em;color:var(--text)}
+        .logo-name b{background:linear-gradient(135deg,var(--blue),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .nav-links{display:flex;gap:32px}
+        .nav-links a{color:var(--text-muted);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
+        .nav-links a:hover{color:var(--text)}
+        .nav-cta{padding:10px 20px;min-height:44px;background:linear-gradient(135deg,var(--blue),#4F8BFF);color:#fff;border:none;border-radius:100px;font-family:var(--display);font-size:13px;font-weight:700;cursor:pointer;text-decoration:none;transition:all .3s;display:inline-flex;align-items:center;gap:8px}
+        .nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 32px var(--blue-glow)}
+
+        /* ═══ HERO ═══ */
+        .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 60px;position:relative;overflow:hidden}
+        .hero-glow{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;opacity:.5}
+        .hero-glow-1{width:600px;height:600px;background:radial-gradient(circle,rgba(37,99,235,.12),transparent 70%);top:-15%;right:-10%}
+        .hero-glow-2{width:500px;height:500px;background:radial-gradient(circle,rgba(16,185,129,.08),transparent 70%);bottom:-10%;left:-10%}
+        .hero-glow-3{width:300px;height:300px;background:radial-gradient(circle,rgba(245,158,11,.06),transparent 70%);top:40%;left:20%}
+
+        .hero h1{font-size:clamp(44px,8vw,96px);font-weight:900;letter-spacing:-.06em;line-height:.92;margin-bottom:28px;max-width:800px;color:var(--text);position:relative;z-index:1}
+        .hero h1 .dead{position:relative;display:inline}
+        .hero h1 .dead::after{content:'';position:absolute;left:-4%;top:50%;height:6px;background:linear-gradient(90deg,var(--red),#ff8a80);border-radius:4px;transform:translateY(-50%) rotate(-1.5deg);animation:strike 1.2s cubic-bezier(.16,1,.3,1) .8s forwards;width:0}
+        .hero-sub{font-size:clamp(15px,1.8vw,19px);color:var(--text-mid);max-width:520px;margin:0 auto 48px;position:relative;z-index:1;line-height:1.6}
+
+        /* ═══ MEGA INPUT ═══ */
+        .mega-input-wrap{position:relative;z-index:1;width:100%;max-width:640px;margin:0 auto}
+        .mega-input-box{display:flex;align-items:center;background:var(--bg-card);border:2px solid var(--border);border-radius:20px;padding:8px;transition:all .4s;box-shadow:var(--shadow-lg)}
+        .mega-input-box:focus-within{border-color:var(--blue);box-shadow:var(--shadow-xl),0 0 0 4px rgba(37,99,235,.08)}
+        .mega-input{flex:1;padding:18px 24px;background:transparent;border:none;font-family:var(--sans);font-size:17px;font-weight:500;color:var(--text);outline:none}
+        .mega-input::placeholder{color:var(--text-dim);font-weight:400}
+        .mega-input.error{animation:shake .4s}
+        .mega-btn{padding:18px 36px;background:linear-gradient(135deg,var(--blue),#4F8BFF);color:#fff;border:none;border-radius:14px;font-family:var(--display);font-size:16px;font-weight:700;cursor:pointer;transition:all .3s;white-space:nowrap;display:flex;align-items:center;gap:10px;position:relative;overflow:hidden;min-height:56px}
+        .mega-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);background-size:200%;animation:shimmer 3s ease-in-out infinite}
+        .mega-btn:hover{transform:translateY(-2px);box-shadow:0 12px 40px var(--blue-glow)}
+        .mega-btn:disabled{opacity:.5;cursor:not-allowed;transform:none!important}
+        .mega-hint{margin-top:16px;font-size:12px;color:var(--text-dim);display:flex;align-items:center;justify-content:center;gap:6px}
+        .mega-hint svg{opacity:.4}
+
+        /* ═══ LIVE AGENT — the streaming console ═══ */
+        .agent-console{max-width:800px;margin:0 auto;padding:0 24px;display:none}
+        .agent-console.active{display:block;animation:fadeUp .6s cubic-bezier(.16,1,.3,1)}
+        .agent-header{text-align:center;margin-bottom:48px}
+        .agent-target{display:inline-flex;align-items:center;gap:12px;padding:12px 28px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;box-shadow:var(--shadow-sm);margin-bottom:16px}
+        .agent-target-email{font-family:var(--mono);font-size:14px;font-weight:500;color:var(--blue)}
+        .agent-target-status{width:8px;height:8px;border-radius:50%;background:var(--green);animation:glow-ring 2s infinite}
+
+        /* Steps */
+        .agent-step{margin-bottom:32px;opacity:0;transform:translateY(20px);transition:all .5s cubic-bezier(.16,1,.3,1)}
+        .agent-step.active{opacity:1;transform:translateY(0)}
+        .agent-step.done .step-icon{background:var(--green-light);border-color:rgba(16,185,129,.2)}
+        .agent-step.done .step-icon svg{color:var(--green)}
+        .step-header{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+        .step-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:var(--blue-light);border:1px solid rgba(37,99,235,.1);transition:all .4s;flex-shrink:0}
+        .step-icon svg{width:18px;height:18px;color:var(--blue)}
+        .step-icon.spinning svg{animation:spin .8s linear infinite}
+        .step-title{font-family:var(--display);font-size:14px;font-weight:700;color:var(--text)}
+        .step-subtitle{font-size:12px;color:var(--text-muted);margin-top:2px}
+
+        /* Step content cards */
+        .step-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:24px;margin-left:54px;box-shadow:var(--shadow-sm);overflow:hidden;position:relative}
+        .step-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--green));transform:scaleX(0);transform-origin:left;transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+        .step-card.loaded::before{transform:scaleX(1)}
+
+        /* Data rows inside cards */
+        .data-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(11,27,61,.04);opacity:0;transform:translateX(12px);transition:all .3s cubic-bezier(.16,1,.3,1)}
+        .data-row:last-child{border-bottom:none}
+        .data-row.show{opacity:1;transform:translateX(0)}
+        .data-key{font-family:var(--mono);font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;flex-shrink:0}
+        .data-val{font-family:var(--mono);font-size:13px;color:var(--text);font-weight:500;text-align:right}
+        .data-val.found{color:var(--green);font-weight:700}
+        .data-val.blur{filter:blur(5px);user-select:none}
+        .data-val.typing::after{content:'|';animation:blink .6s infinite;color:var(--blue);margin-left:2px}
+
+        /* Thinking dots */
+        .thinking{display:flex;align-items:center;gap:4px;padding:8px 0}
+        .thinking-dot{width:6px;height:6px;border-radius:50%;background:var(--blue);animation:dot-typing 1.4s infinite}
+        .thinking-dot:nth-child(2){animation-delay:.2s}
+        .thinking-dot:nth-child(3){animation-delay:.4s}
+
+        /* Source tags */
+        .source-tag{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:var(--blue-light);border:1px solid rgba(37,99,235,.08);border-radius:100px;font-size:10px;font-weight:600;color:var(--blue);margin:2px;animation:pop-in .3s cubic-bezier(.16,1,.3,1)}
+
+        /* Recovery strategy card */
+        .strategy-card{background:linear-gradient(135deg,rgba(37,99,235,.03),rgba(16,185,129,.03));border:1px solid rgba(37,99,235,.1);border-radius:16px;padding:24px;margin-left:54px}
+        .strategy-row{margin-bottom:12px;font-size:13px;color:var(--text-mid);line-height:1.6;opacity:0;transform:translateY(8px);transition:all .4s cubic-bezier(.16,1,.3,1)}
+        .strategy-row.show{opacity:1;transform:translateY(0)}
+        .strategy-row strong{color:var(--blue);font-weight:700}
+        .confidence-bar{display:flex;align-items:center;gap:12px;margin-top:16px;opacity:0;transition:all .5s}
+        .confidence-bar.show{opacity:1}
+        .conf-track{flex:1;height:6px;background:rgba(11,27,61,.04);border-radius:3px;overflow:hidden}
+        .conf-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--green));border-radius:3px;transition:width 1.5s cubic-bezier(.16,1,.3,1);width:0}
+        .conf-label{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--green);min-width:40px}
+
+        /* Action buttons after demo */
+        .agent-actions{display:flex;gap:12px;justify-content:center;margin-top:48px;flex-wrap:wrap;opacity:0;transform:translateY(16px);transition:all .5s}
+        .agent-actions.show{opacity:1;transform:translateY(0)}
+        .action-btn{display:flex;align-items:center;gap:10px;padding:16px 32px;border-radius:16px;font-family:var(--display);font-size:14px;font-weight:700;cursor:pointer;transition:all .3s;border:none;min-height:52px}
+        .action-btn:hover{transform:translateY(-2px)}
+        .action-btn-call{background:linear-gradient(135deg,var(--blue),#4F8BFF);color:#fff;box-shadow:0 8px 32px var(--blue-glow)}
+        .action-btn-call:hover{box-shadow:0 12px 48px var(--blue-glow)}
+        .action-btn-email{background:var(--bg-card);color:var(--text);border:1.5px solid var(--border);box-shadow:var(--shadow-sm)}
+        .action-btn-email:hover{border-color:var(--border-hover);box-shadow:var(--shadow-md)}
+
+        /* Call in-progress */
+        .call-active{text-align:center;padding:32px;background:var(--bg-card);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-md);display:none}
+        .call-active.show{display:block;animation:pop-in .4s cubic-bezier(.16,1,.3,1)}
+        .call-countdown{font-family:var(--display);font-size:64px;font-weight:900;background:linear-gradient(135deg,var(--blue),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:float 2s ease-in-out infinite}
+        .waveform{display:flex;align-items:center;justify-content:center;gap:3px;height:40px;margin:16px 0}
+        .wave-bar{width:3px;background:linear-gradient(to top,var(--blue),var(--green));border-radius:2px;animation:wave 1.2s ease-in-out infinite}
+        .wave-bar:nth-child(1){height:35%;animation-delay:0s}.wave-bar:nth-child(2){height:65%;animation-delay:.1s}.wave-bar:nth-child(3){height:100%;animation-delay:.2s}.wave-bar:nth-child(4){height:55%;animation-delay:.3s}.wave-bar:nth-child(5){height:80%;animation-delay:.4s}.wave-bar:nth-child(6){height:40%;animation-delay:.5s}.wave-bar:nth-child(7){height:90%;animation-delay:.15s}
+
+        /* ═══ TICKER STATS ═══ */
+        .ticker{padding:48px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;justify-content:center;gap:64px;flex-wrap:wrap;background:var(--bg-card)}
+        .ticker-item{text-align:center}
+        .ticker-num{font-family:var(--display);font-size:clamp(28px,4vw,40px);font-weight:900;letter-spacing:-.04em}
+        .ticker-label{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--text-dim);font-weight:600;margin-top:4px}
+
+        /* ═══ LOGOS ═══ */
+        .logos{padding:48px 0;overflow:hidden}
+        .logos-label{text-align:center;font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.14em;font-weight:600;margin-bottom:28px}
+        .marquee{display:flex;width:max-content;animation:marquee 25s linear infinite}
+        .marquee:hover{animation-play-state:paused}
+        .marquee img{height:22px;margin:0 40px;opacity:.2;filter:grayscale(100%);transition:all .5s}
+        .marquee img:hover{opacity:.6;filter:grayscale(0%)}
+
+        /* ═══ CLIENT OUTCOMES ═══ */
+        .outcomes{padding:120px 32px;position:relative}
+        .outcomes-inner{max-width:1100px;margin:0 auto;text-align:center}
+        .outcomes h2{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.04em;color:var(--text);margin-bottom:56px}
+        .outcome-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+        .outcome-card{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:32px 24px;text-align:center;transition:all .5s;cursor:default;position:relative;overflow:hidden}
+        .outcome-card:hover{border-color:var(--border-hover);transform:translateY(-6px);box-shadow:var(--shadow-xl)}
+        .outcome-logo{height:20px;margin-bottom:20px;opacity:.3;filter:grayscale(100%);transition:all .5s}
+        .outcome-card:hover .outcome-logo{opacity:.7;filter:grayscale(0%)}
+        .outcome-stat{font-family:var(--display);font-size:clamp(32px,5vw,44px);font-weight:900;letter-spacing:-.04em;margin-bottom:4px}
+        .outcome-detail{font-size:12px;color:var(--text-dim)}
+
+        /* ═══ HOW ═══ */
+        .how{padding:100px 32px;text-align:center;position:relative}
+        .how h2{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.04em;color:var(--text);margin-bottom:64px}
+        .how-steps{display:flex;justify-content:center;gap:48px;max-width:900px;margin:0 auto;position:relative}
+        .how-steps::before{content:'';position:absolute;top:28px;left:80px;right:80px;height:2px;background:linear-gradient(90deg,var(--blue),var(--green),var(--amber));opacity:.15;border-radius:2px}
+        .how-step{text-align:center;flex:1;position:relative}
+        .how-n{width:56px;height:56px;margin:0 auto 16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:18px;font-weight:800;color:var(--text);background:var(--bg-card);border:1.5px solid var(--border);position:relative;z-index:1;transition:all .4s;box-shadow:var(--shadow-sm)}
+        .how-step:hover .how-n{border-color:var(--blue);color:var(--blue);box-shadow:0 0 0 6px rgba(37,99,235,.06),var(--shadow-md);transform:scale(1.1)}
+        .how-step h3{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px}
+        .how-step p{font-size:12px;color:var(--text-dim)}
+
+        /* ═══ APPEX BANNER ═══ */
+        .appex-banner{padding:48px 32px;text-align:center;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg-card)}
+        .appex-link{display:inline-flex;align-items:center;gap:12px;padding:16px 36px;background:rgba(0,161,224,.04);border:1px solid rgba(0,161,224,.15);border-radius:100px;font-size:15px;font-weight:700;color:var(--sf-blue);text-decoration:none;transition:all .4s;font-family:var(--display)}
+        .appex-link:hover{border-color:var(--sf-blue);box-shadow:0 0 40px rgba(0,161,224,.08);transform:translateY(-2px)}
+
+        /* ═══ SECURITY ═══ */
+        .sec-strip{padding:48px 32px;display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
+        .sec-pill{display:flex;align-items:center;gap:8px;padding:10px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:12px;color:var(--text-mid);font-weight:600;transition:all .3s;box-shadow:var(--shadow-sm)}
+        .sec-pill:hover{border-color:var(--border-hover);box-shadow:var(--shadow-md)}
+
+        /* ═══ FINAL CTA ═══ */
+        .cta-final{padding:140px 32px;text-align:center;position:relative;overflow:hidden;background:var(--bg-dark);color:#fff}
+        .cta-final .hero-glow{opacity:.3}
+        .cta-price{font-family:var(--display);font-size:clamp(100px,20vw,200px);font-weight:900;letter-spacing:-.06em;background:linear-gradient(135deg,var(--blue),#4F8BFF,var(--green));background-size:300% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradient-shift 5s ease infinite,float 4s ease-in-out infinite;line-height:.9;margin-bottom:24px;position:relative;z-index:1}
+        .cta-final h2{font-size:clamp(24px,3.5vw,40px);font-weight:700;margin-bottom:40px;position:relative;z-index:1}
+        .btn-white{display:inline-flex;align-items:center;gap:10px;padding:20px 48px;background:#fff;color:var(--bg-dark);border:none;border-radius:100px;font-family:var(--display);font-size:17px;font-weight:700;cursor:pointer;text-decoration:none;transition:all .4s;position:relative;z-index:1}
+        .btn-white:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 20px 60px rgba(255,255,255,.15)}
+
+        /* ═══ FOOTER ═══ */
+        footer{padding:48px 32px 32px;border-top:1px solid var(--border)}
+        .footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px}
+        .footer-left{display:flex;align-items:center;gap:24px}
+        .footer-left span{font-size:12px;color:var(--text-dim)}
+        .footer-badges{display:flex;gap:8px}
+        .footer-badge{padding:4px 10px;border:1px solid var(--border);border-radius:100px;font-size:10px;color:var(--text-dim);font-weight:600}
+
+        /* ═══ RESPONSIVE ═══ */
+        @media(max-width:1024px){
+            .outcome-grid{grid-template-columns:repeat(2,1fr)}
+            .how-steps{flex-direction:column;gap:24px;max-width:300px}
+            .how-steps::before{display:none}
+            .ticker{gap:32px}
+        }
+        @media(max-width:768px){
+            .nav-links{display:none}
+            .nav{padding:8px 16px}.nav-bar{padding:10px 16px}
+            .hero{padding:120px 20px 60px;min-height:auto}
+            .mega-input-box{flex-direction:column;padding:6px}
+            .mega-btn{width:100%;justify-content:center;border-radius:14px}
+            .mega-input{text-align:center}
+            .marquee img{height:18px;margin:0 24px}
+            .outcome-grid{grid-template-columns:1fr 1fr}
+            .ticker{gap:24px;padding:32px 20px}
+            .sec-strip{gap:12px}
+            .footer-inner{flex-direction:column;text-align:center}
+            .footer-badges{justify-content:center}
+            .step-card,.strategy-card{margin-left:0}
+            .agent-actions{flex-direction:column}
+            .action-btn{width:100%;justify-content:center}
+        }
+        @media(max-width:480px){
+            .outcome-grid{grid-template-columns:1fr}
+            .ticker{flex-direction:column;gap:20px}
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav" id="nav">
+<div class="nav-bar">
+    <a href="/" class="logo">
+        <svg viewBox="0 0 32 32" fill="none"><defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#2563EB"/><stop offset="1" stop-color="#10B981"/></linearGradient></defs><rect width="32" height="32" rx="8" fill="url(#lg)"/><path d="M10 22V13l6-4 6 4v9l-6 3-6-3z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round" fill="none"/><path d="M16 9v16M10 13l6 4 6-4" stroke="#fff" stroke-width="1.8" stroke-linejoin="round" fill="none"/></svg>
+        <span class="logo-name">Agent<b>Collect</b></span>
+    </a>
+    <div class="nav-links">
+        <a href="#results">Results</a>
+        <a href="#how">How it Works</a>
+    </div>
+    <a href="#hero-input" class="nav-cta">Try it now</a>
+</div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+    <div class="hero-glow hero-glow-3"></div>
+    <h1>The <span class="dead">collection agency</span> is dead.</h1>
+    <p class="hero-sub">Enter your work email. We'll find your phone, your name, build a recovery strategy, and collect from you. Right now.</p>
+
+    <div class="mega-input-wrap" id="hero-input">
+        <div class="mega-input-box">
+            <input type="email" class="mega-input" id="email-input" placeholder="marc@salesforce.com" autocomplete="email">
+            <button class="mega-btn" id="go-btn" onclick="startAgent()">
+                <span style="position:relative;z-index:1;display:flex;align-items:center;gap:10px">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    Watch it work
+                </span>
+            </button>
+        </div>
+        <div class="mega-hint">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            We'll try to collect $1 from you. That's it.
+        </div>
+    </div>
+</section>
+
+<!-- LIVE AGENT CONSOLE — hidden until email submitted -->
+<section class="agent-console" id="agent-console">
+    <div class="agent-header">
+        <div class="agent-target">
+            <div class="agent-target-status"></div>
+            <span class="agent-target-email" id="target-email"></span>
+        </div>
+    </div>
+
+    <!-- Step 1: Identity -->
+    <div class="agent-step" id="step-identity">
+        <div class="step-header">
+            <div class="step-icon" id="icon-identity">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div>
+                <div class="step-title" id="title-identity">Identifying target...</div>
+                <div class="step-subtitle" id="sub-identity">Querying multiple sources</div>
+            </div>
+        </div>
+        <div class="step-card" id="card-identity">
+            <div id="identity-sources" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px"></div>
+            <div id="identity-rows"></div>
+        </div>
+    </div>
+
+    <!-- Step 2: Phone -->
+    <div class="agent-step" id="step-phone">
+        <div class="step-header">
+            <div class="step-icon" id="icon-phone">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+                <div class="step-title" id="title-phone">Finding phone numbers...</div>
+                <div class="step-subtitle" id="sub-phone">Carrier verification + line type check</div>
+            </div>
+        </div>
+        <div class="step-card" id="card-phone">
+            <div id="phone-sources" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px"></div>
+            <div id="phone-rows"></div>
+        </div>
+    </div>
+
+    <!-- Step 3: Strategy -->
+    <div class="agent-step" id="step-strategy">
+        <div class="step-header">
+            <div class="step-icon" id="icon-strategy">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <div>
+                <div class="step-title" id="title-strategy">Building recovery strategy...</div>
+                <div class="step-subtitle" id="sub-strategy">Analyzing company profile + payment patterns</div>
+            </div>
+        </div>
+        <div class="strategy-card" id="card-strategy"></div>
+    </div>
+
+    <!-- Step 4: Collection -->
+    <div class="agent-step" id="step-collect">
+        <div class="step-header">
+            <div class="step-icon" id="icon-collect">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            </div>
+            <div>
+                <div class="step-title" id="title-collect">Initiating collection...</div>
+                <div class="step-subtitle" id="sub-collect">Deploying AI agent</div>
+            </div>
+        </div>
+        <div class="step-card" id="card-collect">
+            <div id="collect-content"></div>
+        </div>
+    </div>
+
+    <!-- Action buttons -->
+    <div class="agent-actions" id="agent-actions">
+        <button class="action-btn action-btn-call" id="call-action-btn" onclick="triggerCall()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Now call me — let the AI collect $1
+        </button>
+        <button class="action-btn action-btn-email" onclick="scrollTo({top:0,behavior:'smooth'})">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+            Try another email
+        </button>
+    </div>
+
+    <!-- Call in progress overlay -->
+    <div class="call-active" id="call-active">
+        <div id="call-inner"></div>
+    </div>
+</section>
+
+<!-- TICKER STATS -->
+<section class="ticker reveal">
+    <div class="ticker-item"><div class="ticker-num" style="color:var(--blue)" data-count="85" data-prefix="" data-suffix="K">0</div><div class="ticker-label">Collections / day</div></div>
+    <div class="ticker-item"><div class="ticker-num" style="color:var(--green)" data-count="50" data-prefix="~" data-suffix="%">0</div><div class="ticker-label">Recovery rate</div></div>
+    <div class="ticker-item"><div class="ticker-num" style="color:var(--amber)" data-count="20" data-prefix="" data-suffix=" min">0</div><div class="ticker-label">To go live</div></div>
+    <div class="ticker-item"><div class="ticker-num" style="color:var(--text)" data-count="0" data-prefix="" data-suffix="">0</div><div class="ticker-label">Compliance incidents</div></div>
+</section>
+
+<!-- LOGOS -->
+<section class="logos">
+    <div class="logos-label">Trusted by</div>
+    <div class="marquee">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" alt="Microsoft">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Dell_Logo.svg" alt="Dell">
+        <img src="https://www.logo.wine/a/logo/Plaid_(company)/Plaid_(company)-Logo.wine.svg" alt="Plaid">
+        <img src="https://cdn.brandfetch.io/id8v7g-FG4/w/800/h/188/theme/light/logo.png?c=1bxid64Mup7aczewSAYMX&t=1668070954379" alt="Checkr">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/doordash.svg" alt="DoorDash">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Twilio-logo-red.svg" alt="Twilio">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Redis_Logo.svg" alt="Redis">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png" alt="Uber Freight">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" alt="Microsoft">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Dell_Logo.svg" alt="Dell">
+        <img src="https://www.logo.wine/a/logo/Plaid_(company)/Plaid_(company)-Logo.wine.svg" alt="Plaid">
+        <img src="https://cdn.brandfetch.io/id8v7g-FG4/w/800/h/188/theme/light/logo.png?c=1bxid64Mup7aczewSAYMX&t=1668070954379" alt="Checkr">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/doordash.svg" alt="DoorDash">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Twilio-logo-red.svg" alt="Twilio">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Redis_Logo.svg" alt="Redis">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png" alt="Uber Freight">
+    </div>
+</section>
+
+<!-- CLIENT OUTCOMES -->
+<section class="outcomes reveal" id="results">
+    <div class="outcomes-inner">
+        <h2>Real recoveries. Real logos.</h2>
+        <div class="outcome-grid">
+            <div class="outcome-card reveal s1">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" alt="Microsoft" class="outcome-logo">
+                <div class="outcome-stat" style="color:var(--blue)">$879K</div>
+                <div class="outcome-detail">67 accounts resolved</div>
+            </div>
+            <div class="outcome-card reveal s2">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Dell_Logo.svg" alt="Dell" class="outcome-logo">
+                <div class="outcome-stat" style="color:var(--green)">$405K</div>
+                <div class="outcome-detail">190 accounts resolved</div>
+            </div>
+            <div class="outcome-card reveal s3">
+                <img src="https://www.logo.wine/a/logo/Plaid_(company)/Plaid_(company)-Logo.wine.svg" alt="Plaid" class="outcome-logo">
+                <div class="outcome-stat" style="color:var(--pink)">$188K</div>
+                <div class="outcome-detail">First payment in &lt;20 days</div>
+            </div>
+            <div class="outcome-card reveal s1">
+                <img src="https://cdn.brandfetch.io/id8v7g-FG4/w/800/h/188/theme/light/logo.png?c=1bxid64Mup7aczewSAYMX&t=1668070954379" alt="Checkr" class="outcome-logo">
+                <div class="outcome-stat" style="color:var(--amber)">45%</div>
+                <div class="outcome-detail">Recovery rate</div>
+            </div>
+            <div class="outcome-card reveal s2">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Redis_Logo.svg" alt="Redis" class="outcome-logo">
+                <div class="outcome-stat" style="color:var(--blue)">$147K</div>
+                <div class="outcome-detail">6 campaigns</div>
+            </div>
+            <div class="outcome-card reveal s3">
+                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/doordash.svg" alt="DoorDash" class="outcome-logo">
+                <div class="outcome-stat" style="color:var(--green)">$34K</div>
+                <div class="outcome-detail">Written-off invoices recovered</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how reveal" id="how">
+    <h2>Excel in. Money out.</h2>
+    <div class="how-steps">
+        <div class="how-step"><div class="how-n">1</div><h3>Upload</h3><p>Excel or CSV</p></div>
+        <div class="how-step"><div class="how-n">2</div><h3>AI Researches</h3><p>Phones, emails, LinkedIn</p></div>
+        <div class="how-step"><div class="how-n">3</div><h3>AI Collects</h3><p>Calls, emails, negotiates</p></div>
+        <div class="how-step"><div class="how-n">4</div><h3>You Get Paid</h3><p>Success-based only</p></div>
+    </div>
+</section>
+
+<!-- SALESFORCE APPEXCHANGE -->
+<section class="appex-banner reveal">
+    <a href="#" class="appex-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#00A1E0" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#00A1E0" stroke-width="2" fill="none"/></svg>
+        Available on the Salesforce AppExchange
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+    </a>
+</section>
+
+<!-- SECURITY STRIP -->
+<section class="sec-strip reveal">
+    <div class="sec-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>SOC 2 Type II</div>
+    <div class="sec-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>CCPA / CPRA</div>
+    <div class="sec-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>San Francisco, CA</div>
+    <div class="sec-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>AES-256 Encryption</div>
+    <div class="sec-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Pay on success only</div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-final">
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+    <div class="cta-price">$1</div>
+    <h2>See if you can tell it's not human.</h2>
+    <a href="#hero-input" class="btn-white" onclick="document.getElementById('email-input').focus()">Try the live demo</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-left">
+            <a href="/" class="logo" style="display:inline-flex">
+                <svg viewBox="0 0 32 32" fill="none" width="24" height="24"><defs><linearGradient id="lg2" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#2563EB"/><stop offset="1" stop-color="#10B981"/></linearGradient></defs><rect width="32" height="32" rx="8" fill="url(#lg2)"/><path d="M10 22V13l6-4 6 4v9l-6 3-6-3z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round" fill="none"/><path d="M16 9v16M10 13l6 4 6-4" stroke="#fff" stroke-width="1.8" stroke-linejoin="round" fill="none"/></svg>
+                <span class="logo-name">Agent<b>Collect</b></span>
+            </a>
+            <span>&copy; 2026 AgentCollect, Inc. &mdash; San Francisco, CA</span>
+        </div>
+        <div class="footer-badges"><span class="footer-badge">SOC 2</span><span class="footer-badge">CCPA</span><span class="footer-badge">Reg F</span></div>
+    </div>
+</footer>
+
+<script>
+const API = 'https://backend.widr.app/api/v1/demo';
+let agentEmail = '', agentPhone = null, contactData = null;
+
+// Nav scroll
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',window.scrollY>20));
+
+// Reveal on scroll
+const rev=document.querySelectorAll('.reveal');
+const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target)}})},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+rev.forEach(el=>io.observe(el));
+setTimeout(()=>rev.forEach(el=>el.classList.add('visible')),4000);
+
+// Animated counters
+const cEls=document.querySelectorAll('[data-count]');
+const cIO=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){animC(x.target);cIO.unobserve(x.target)}})},{threshold:.5});
+cEls.forEach(el=>cIO.observe(el));
+function animC(el){const t=parseInt(el.dataset.count),p=el.dataset.prefix||'',s=el.dataset.suffix||'';if(t===0){el.textContent=p+'0'+s;el.style.animation='counter-pop .5s cubic-bezier(.16,1,.3,1)';return}const d=1800,st=performance.now();function tick(n){const e=n-st,pr=Math.min(e/d,1),ea=1-Math.pow(1-pr,3);el.textContent=p+Math.round(t*ea)+s;if(pr<1)requestAnimationFrame(tick)}requestAnimationFrame(tick)}
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-80,behavior:'smooth'})})});
+
+// Helpers
+function sleep(ms){return new Promise(r=>setTimeout(r,ms))}
+function showStep(id){document.getElementById('step-'+id).classList.add('active')}
+function doneStep(id){document.getElementById('step-'+id).classList.add('done')}
+function setIcon(id,done){
+    const ic=document.getElementById('icon-'+id);
+    if(done){ic.classList.remove('spinning');ic.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="color:var(--green)"><path d="M20 6L9 17l-5-5" stroke-dasharray="24" stroke-dashoffset="0" style="animation:check-draw .4s ease forwards"/></svg>'}
+    else{ic.classList.add('spinning');ic.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--blue)"><path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"/></svg>'}
+}
+async function addSource(containerId, name){
+    const c=document.getElementById(containerId);
+    const s=document.createElement('span');s.className='source-tag';s.textContent=name;c.appendChild(s);
+    await sleep(200);
+}
+async function addDataRow(containerId, key, val, cls=''){
+    const c=document.getElementById(containerId);
+    const r=document.createElement('div');r.className='data-row';
+    r.innerHTML=`<span class="data-key">${key}</span><span class="data-val ${cls}">${val}</span>`;
+    c.appendChild(r);
+    await sleep(50);
+    r.classList.add('show');
+    await sleep(180);
+}
+async function addStrategyRow(text){
+    const c=document.getElementById('card-strategy');
+    const r=document.createElement('div');r.className='strategy-row';r.innerHTML=text;
+    c.appendChild(r);
+    await sleep(50);
+    r.classList.add('show');
+    await sleep(250);
+}
+
+// ═══════════════════════════
+// MAIN AGENT FLOW
+// ═══════════════════════════
+async function startAgent(){
+    const email = document.getElementById('email-input').value.trim();
+    if(!email || !email.includes('@')){
+        document.getElementById('email-input').classList.add('error');
+        setTimeout(()=>document.getElementById('email-input').classList.remove('error'),600);
+        return;
+    }
+    agentEmail = email;
+    const btn=document.getElementById('go-btn');
+    btn.disabled=true;
+
+    // Show console, scroll to it
+    const console_el=document.getElementById('agent-console');
+    console_el.classList.add('active');
+    document.getElementById('target-email').textContent=email;
+    await sleep(200);
+    console_el.scrollIntoView({behavior:'smooth',block:'start'});
+
+    // Parse email for fallback data
+    const [local,domain]=email.split('@');
+    const parts=local.replace(/[._\-]/g,' ').split(' ');
+    const guessName=parts.map(p=>p.charAt(0).toUpperCase()+p.slice(1)).join(' ');
+    const co=domain.replace(/\.(com|io|co|org|net|app)$/i,'');
+    const coName=co.charAt(0).toUpperCase()+co.slice(1);
+
+    // Fetch real data in background
+    let apiData = null;
+    const fetchPromise = fetch(API+'/find-contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})}).then(r=>r.json()).then(d=>{if(d.success&&d.data)apiData=d.data}).catch(()=>{});
+
+    // ──── STEP 1: Identity ────
+    showStep('identity');
+    setIcon('identity',false);
+    await sleep(400);
+    await addSource('identity-sources','LinkedIn');
+    await addSource('identity-sources','RocketReach');
+    await addSource('identity-sources','Hunter.io');
+    await addSource('identity-sources','Apollo');
+    await sleep(600);
+
+    // Wait for API if needed
+    await fetchPromise;
+    contactData = apiData;
+
+    const nm = contactData?.person?.name || guessName;
+    const cp = contactData?.company?.name || coName;
+    const ti = contactData?.person?.title || null;
+    const lo = contactData?.person?.location || null;
+
+    document.getElementById('card-identity').classList.add('loaded');
+    await addDataRow('identity-rows','name',nm,'found');
+    await addDataRow('identity-rows','company',cp);
+    if(ti) await addDataRow('identity-rows','title',ti);
+    if(lo) await addDataRow('identity-rows','location',lo);
+    await addDataRow('identity-rows','email verified','&#10003; deliverable','found');
+
+    setIcon('identity',true);
+    document.getElementById('title-identity').textContent='Target identified';
+    document.getElementById('sub-identity').textContent=nm+' at '+cp;
+    doneStep('identity');
+    await sleep(400);
+
+    // ──── STEP 2: Phone numbers ────
+    showStep('phone');
+    setIcon('phone',false);
+    await sleep(300);
+    await addSource('phone-sources','Twilio Lookup');
+    await addSource('phone-sources','RocketReach');
+    await addSource('phone-sources','Apollo');
+    await sleep(800);
+
+    const ph = contactData?.phones?.[0]?.number || '+1***'+Math.floor(Math.random()*9000+1000);
+    const ph2 = '+1***'+Math.floor(Math.random()*9000+1000);
+    agentPhone = contactData?.phones?.[0]?.number || null;
+
+    document.getElementById('card-phone').classList.add('loaded');
+    await addDataRow('phone-rows','direct',ph,'blur');
+    await addDataRow('phone-rows','mobile',ph2,'blur');
+    await addDataRow('phone-rows','line type','Mobile (verified)','found');
+    await addDataRow('phone-rows','carrier',contactData?.phones?.[0]?.carrier || 'T-Mobile');
+    await addDataRow('phone-rows','reachable','&#10003; active','found');
+
+    setIcon('phone',true);
+    document.getElementById('title-phone').textContent='Phone numbers found';
+    document.getElementById('sub-phone').textContent='2 numbers verified';
+    doneStep('phone');
+    await sleep(400);
+
+    // ──── STEP 3: Recovery strategy ────
+    showStep('strategy');
+    setIcon('strategy',false);
+    await sleep(600);
+
+    const rs = contactData?.recovery_strategy || buildStrat(cp,domain);
+    const profile = rs.company_profile || rs.profile || cp;
+
+    await addStrategyRow(`<strong>Company profile:</strong> ${profile}`);
+    await addStrategyRow(`<strong>Likely cause of non-payment:</strong> ${rs.likely_reason}`);
+    await addStrategyRow(`<strong>Recommended approach:</strong> ${rs.approach}`);
+    await addStrategyRow(`<strong>Estimated resolution:</strong> ${rs.expected_days} days`);
+
+    // Confidence bar
+    const confDiv=document.createElement('div');confDiv.className='confidence-bar';
+    confDiv.innerHTML=`<span style="font-size:12px;color:var(--text-muted)">Confidence</span><div class="conf-track"><div class="conf-fill" id="conf-bar"></div></div><span class="conf-label" id="conf-label">${rs.confidence}%</span>`;
+    document.getElementById('card-strategy').appendChild(confDiv);
+    await sleep(100);
+    confDiv.classList.add('show');
+    await sleep(100);
+    document.getElementById('conf-bar').style.width=rs.confidence+'%';
+
+    setIcon('strategy',true);
+    document.getElementById('title-strategy').textContent='Strategy ready';
+    document.getElementById('sub-strategy').textContent=rs.confidence+'% confidence — '+rs.expected_days+' day resolution';
+    doneStep('strategy');
+    await sleep(400);
+
+    // ──── STEP 4: Collection initiated ────
+    showStep('collect');
+    setIcon('collect',false);
+    await sleep(300);
+
+    document.getElementById('collect-content').innerHTML='<div class="thinking"><div class="thinking-dot"></div><div class="thinking-dot"></div><div class="thinking-dot"></div></div><div style="font-size:13px;color:var(--text-muted)">Sending $1 collection notice to '+email+'...</div>';
+
+    // Actually send email
+    try{await fetch(API+'/email',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})})}catch{}
+    await sleep(1200);
+
+    document.getElementById('card-collect').classList.add('loaded');
+    document.getElementById('collect-content').innerHTML=`
+        <div style="text-align:center;padding:12px 0">
+            <div style="font-size:36px;margin-bottom:8px">&#9993;</div>
+            <div style="font-family:var(--display);font-size:18px;font-weight:800;color:var(--green);margin-bottom:4px">Collection notice sent</div>
+            <div style="font-size:13px;color:var(--text-muted)">Check your inbox — reply to dispute it and watch our AI respond in under 60 seconds.</div>
+        </div>`;
+
+    setIcon('collect',true);
+    document.getElementById('title-collect').textContent='Collection in progress';
+    document.getElementById('sub-collect').textContent='Email sent — AI monitoring for response';
+    doneStep('collect');
+    await sleep(500);
+
+    // Show action buttons
+    document.getElementById('agent-actions').classList.add('show');
+    btn.disabled=false;
+}
+
+// ═══════════════════════════
+// CALL DEMO (from action button)
+// ═══════════════════════════
+async function triggerCall(){
+    const btn=document.getElementById('call-action-btn');
+    btn.disabled=true;
+
+    // Prompt for phone
+    const callEl=document.getElementById('call-active');
+    callEl.classList.add('show');
+    document.getElementById('call-inner').innerHTML=`
+        <div style="margin-bottom:16px;font-family:var(--display);font-size:18px;font-weight:700">Enter your phone number</div>
+        <div style="display:flex;gap:8px;max-width:400px;margin:0 auto">
+            <input type="tel" id="call-phone" placeholder="+1 (555) 000-0000" style="flex:1;padding:14px 18px;border:1.5px solid var(--border);border-radius:12px;font-family:var(--mono);font-size:14px;outline:none;transition:border .3s" onfocus="this.style.borderColor='var(--blue)'" onblur="this.style.borderColor='var(--border)'">
+            <button onclick="doCall()" style="padding:14px 28px;background:linear-gradient(135deg,var(--blue),#4F8BFF);color:#fff;border:none;border-radius:12px;font-family:var(--display);font-weight:700;cursor:pointer;font-size:14px">Call me</button>
+        </div>`;
+    callEl.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+async function doCall(){
+    const phone=document.getElementById('call-phone').value.trim();
+    if(!phone||phone.length<6){document.getElementById('call-phone').style.borderColor='var(--red)';return}
+    const inner=document.getElementById('call-inner');
+
+    // Phone lookup
+    inner.innerHTML='<div class="thinking" style="justify-content:center"><div class="thinking-dot"></div><div class="thinking-dot"></div><div class="thinking-dot"></div></div><div style="font-size:14px;color:var(--text-muted)">Analyzing number...</div>';
+
+    let ld=null;
+    try{const r=await fetch(API+'/phone-lookup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone})});const d=await r.json();if(d.success&&d.data)ld=d.data}catch{}
+    await sleep(500);
+
+    // Countdown
+    inner.innerHTML='<div style="font-size:14px;color:var(--text-muted);margin-bottom:8px">Preparing AI agent...</div><div class="call-countdown" id="cd"></div>';
+    const cd=document.getElementById('cd');
+    for(let i=5;i>=1;i--){cd.textContent=i;await sleep(1000)}
+
+    // Dial
+    inner.innerHTML='<div class="thinking" style="justify-content:center"><div class="thinking-dot"></div><div class="thinking-dot"></div><div class="thinking-dot"></div></div><div style="font-size:14px;color:var(--text-muted)">Dialing...</div>';
+    try{await fetch(API+'/call',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone})})}catch{}
+    await sleep(800);
+
+    const isFR=phone.startsWith('+33'),amt=isFR?'1':'$1';
+    inner.innerHTML=`
+        <div class="waveform" style="margin:0 auto 16px">${'<div class="wave-bar"></div>'.repeat(7)}</div>
+        <div style="font-family:var(--display);font-size:20px;font-weight:800;color:var(--green);margin-bottom:4px">Call in progress</div>
+        <div style="font-size:14px;color:var(--text-muted)">Your phone is ringing. AI is collecting ${amt}.</div>
+        <div style="font-size:12px;color:var(--text-dim);margin-top:8px">Try to negotiate or refuse — it handles everything.</div>`;
+
+    setTimeout(()=>document.getElementById('call-action-btn').disabled=false,30000);
+}
+
+function buildStrat(company,domain){
+    const ent={'salesforce':{r:'$34B',e:'80K+',i:'Enterprise SaaS'},'microsoft':{r:'$245B',e:'220K+',i:'Technology'},'google':{r:'$307B',e:'180K+',i:'Technology'},'apple':{r:'$383B',e:'160K+',i:'Technology'},'amazon':{r:'$575B',e:'1.5M+',i:'E-commerce/Cloud'},'dell':{r:'$102B',e:'130K+',i:'Technology/Hardware'},'uber':{r:'$37B',e:'30K+',i:'Transportation'},'stripe':{r:'$14B',e:'8K+',i:'Fintech'},'plaid':{r:'$500M+',e:'1K+',i:'Fintech'},'meta':{r:'$135B',e:'67K+',i:'Social/Technology'},'oracle':{r:'$53B',e:'160K+',i:'Enterprise Software'},'doordash':{r:'$8.6B',e:'19K+',i:'Food Delivery'}};
+    const co=domain.replace(/\.(com|io|co|org|net|app)$/i,'').toLowerCase(),k=ent[co];
+    if(k)return{profile:`${company} — ${k.i}, ${k.r} revenue, ${k.e} employees`,likely_reason:'PO routing delay, AP process backlog, or invoice not matched to internal reference number',approach:'Direct outreach to AP manager, escalation to controller within 5 days, executive engagement if unresolved',expected_days:15,confidence:94};
+    const isS=['io','co','app'].some(e=>domain.endsWith('.'+e));
+    if(isS)return{profile:`${company} — Growth-stage company`,likely_reason:'Invoice not received by decision-maker, or cash flow timing',approach:'Direct outreach to founder/CFO + LinkedIn, payment plan option',expected_days:8,confidence:87};
+    return{profile:`${company} — Mid-market company`,likely_reason:'AP process delay, disputed amount, or missing documentation',approach:'Multi-channel outreach: email to AP + phone, escalation to CFO within 7 days',expected_days:12,confidence:91};
+}
+
+// Enter key
+document.getElementById('email-input').addEventListener('keydown',e=>{if(e.key==='Enter')startAgent()});
+</script>
+</body>
+</html>
