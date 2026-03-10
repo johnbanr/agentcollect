@@ -13,12 +13,12 @@
 
         :root {
             --bg: #faf8f5;
-            --bg-dark: #1c1917;
+            --bg-dark: #111;
             --bg-card: #fff;
-            --border: rgba(21,24,35,0.08);
-            --text: #151823;
-            --text-muted: rgba(21,24,35,0.55);
-            --text-dim: rgba(21,24,35,0.3);
+            --border: rgba(0,0,0,0.06);
+            --text: #111;
+            --text-muted: rgba(0,0,0,0.45);
+            --text-dim: rgba(0,0,0,0.2);
             --brand: #6366F1;
             --brand-light: rgba(99,102,241,0.08);
             --brand-medium: rgba(99,102,241,0.15);
@@ -60,12 +60,12 @@
         }
         .nav-link:hover { color: var(--text); }
         .nav-cta {
-            padding: 10px 24px; background: var(--text); color: var(--bg);
-            border: none; border-radius: 10px; font-family: inherit;
-            font-size: 14px; font-weight: 600; cursor: pointer;
-            text-decoration: none; transition: all 0.2s;
+            padding: 10px 24px; background: var(--text); color: #fff;
+            border: none; border-radius: 100px; font-family: inherit;
+            font-size: 13px; font-weight: 600; cursor: pointer;
+            text-decoration: none; transition: all 0.3s;
         }
-        .nav-cta:hover { opacity: 0.85; }
+        .nav-cta:hover { transform: scale(1.03); box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
 
         /* Hero */
         .hero { padding: 72px 0 48px; text-align: center; }
