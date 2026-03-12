@@ -1102,9 +1102,9 @@
     document.getElementById('demo-step-2').classList.remove('hidden');
 
     // Reverse lookup via backend
-    fetch('https://backend.widr.app/api/v1/demo/lookup?phone=' + encodeURIComponent(phone))
+    fetch('https://backend.widr.app/api/v1/demo/phone-lookup', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ phone: phone }) })
       .then(function(r) { return r.json(); })
-      .then(function(data) { showFoundAndCall(phone, data); })
+      .then(function(resp) { showFoundAndCall(phone, resp.data && resp.data.person ? resp.data.person : null); })
       .catch(function() { showFoundAndCall(phone, null); });
   }
 
