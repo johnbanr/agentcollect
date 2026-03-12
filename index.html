@@ -317,6 +317,7 @@
             .footer-top{grid-template-columns:1fr 1fr}
         }
         @media(max-width:768px){
+            .agency-vs [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}
             .nav-links{display:none}
             .nav-mobile{display:block}
             .nav-inner{padding:0 20px}
@@ -385,7 +386,7 @@
                 Try it now
             </button>
         </div>
-        <div class="input-hint">We'll try to collect $1 from you. That's it.</div>
+        <div class="input-hint">Your agency charges 30% and takes 6 months. See why that's over — in 30 seconds.</div>
     </div>
 </section>
 
@@ -481,17 +482,7 @@
     </div>
 </section>
 
-<!-- STATS -->
-<section class="stats reveal">
-    <div class="stats-inner">
-        <div class="stat-item"><div class="stat-num" style="color:var(--blue)" data-count="85" data-prefix="" data-suffix="K">0</div><div class="stat-label">Collections per day</div></div>
-        <div class="stat-item"><div class="stat-num" style="color:var(--green)" data-count="50" data-prefix="~" data-suffix="%">0</div><div class="stat-label">Average recovery rate</div></div>
-        <div class="stat-item"><div class="stat-num" style="color:var(--amber)" data-count="20" data-prefix="" data-suffix=" min">0</div><div class="stat-label">Time to go live</div></div>
-        <div class="stat-item"><div class="stat-num" data-count="0" data-prefix="" data-suffix="">0</div><div class="stat-label">Compliance incidents</div></div>
-    </div>
-</section>
-
-<!-- PULL QUOTE -->
+<!-- PULL QUOTE — moved above stats for immediate credibility -->
 <section class="pull-quote reveal">
     <div class="pull-quote-inner">
         <blockquote>Not one of them complained about the tone or the engagement. That's unheard of in collections.</blockquote>
@@ -505,12 +496,52 @@
     </div>
 </section>
 
+<!-- STATS -->
+<section class="stats reveal">
+    <div class="stats-inner">
+        <div class="stat-item"><div class="stat-num" style="color:var(--blue)" data-count="85" data-prefix="" data-suffix="K">0</div><div class="stat-label">Collections per day</div></div>
+        <div class="stat-item"><div class="stat-num" style="color:var(--green)" data-count="50" data-prefix="~" data-suffix="%">0</div><div class="stat-label">Average recovery rate</div></div>
+        <div class="stat-item"><div class="stat-num" style="color:var(--amber)" data-count="20" data-prefix="" data-suffix=" min">0</div><div class="stat-label">Time to go live</div></div>
+        <div class="stat-item"><div class="stat-num" data-count="0" data-prefix="" data-suffix="">0</div><div class="stat-label">Compliance incidents</div></div>
+    </div>
+</section>
+
+<!-- AGENCY VS AGENT -->
+<section class="agency-vs reveal" style="padding:72px 32px;background:var(--bg);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+    <div style="max-width:var(--max-w);margin:0 auto">
+        <div class="section-label" style="text-align:center">The old model is broken</div>
+        <h2 style="font-family:var(--display);font-size:clamp(26px,3.5vw,42px);font-weight:900;letter-spacing:-.03em;text-align:center;margin-bottom:48px;color:var(--text)">Collection agencies: a 1980s model for a 2025 problem.</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:800px;margin:0 auto">
+            <div style="background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:28px">
+                <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-bottom:20px">Collection Agency</div>
+                <div style="display:flex;flex-direction:column;gap:14px">
+                    <div style="display:flex;align-items:flex-start;gap:10px"><span style="color:var(--red);font-size:16px;flex-shrink:0;margin-top:1px">✕</span><span style="font-size:14px;color:var(--text-mid)">25–35% of every dollar recovered — whether they work hard or not</span></div>
+                    <div style="display:flex;align-items:flex-start;gap:10px"><span style="color:var(--red);font-size:16px;flex-shrink:0;margin-top:1px">✕</span><span style="font-size:14px;color:var(--text-mid)">4–6 months to see results</span></div>
+                    <div style="display:flex;align-items:flex-start;gap:10px"><span style="color:var(--red);font-size:16px;flex-shrink:0;margin-top:1px">✕</span><span style="font-size:14px;color:var(--text-mid)">FDCPA violations that damage your brand</span></div>
+                    <div style="display:flex;align-items:flex-start;gap:10px"><span style="color:var(--red);font-size:16px;flex-shrink:0;margin-top:1px">✕</span><span style="font-size:14px;color:var(--text-mid)">Your debtors hear a stranger's name, not yours</span></div>
+                    <div style="display:flex;align-items:flex-start;gap:10px"><span style="color:var(--red);font-size:16px;flex-shrink:0;margin-top:1px">✕</span><span style="font-size:14px;color:var(--text-mid)">No visibility. No data. No feedback loop.</span></div>
+                </div>
+            </div>
+            <div style="background:#fff;border:1.5px solid var(--green);border-radius:16px;padding:28px;box-shadow:0 0 0 4px rgba(16,185,129,.06)">
+                <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--green);margin-bottom:20px">AI Agent</div>
+                <div style="display:flex;flex-direction:column;gap:14px">
+                    <div style="display:flex;align-items:flex-start;gap:10px"><span style="color:var(--green);font-size:16px;flex-shrink:0;margin-top:1px">✓</span><span style="font-size:14px;color:var(--text-mid)">Success-fee only — you pay nothing if we recover nothing</span></div>
+                    <div style="display:flex;align-items:flex-start;gap:10px"><span style="color:var(--green);font-size:16px;flex-shrink:0;margin-top:1px">✓</span><span style="font-size:14px;color:var(--text-mid)">First results in 20 days</span></div>
+                    <div style="display:flex;align-items:flex-start;gap:10px"><span style="color:var(--green);font-size:16px;flex-shrink:0;margin-top:1px">✓</span><span style="font-size:14px;color:var(--text-mid)">Zero compliance incidents — 99.7% positive CX score</span></div>
+                    <div style="display:flex;align-items:flex-start;gap:10px"><span style="color:var(--green);font-size:16px;flex-shrink:0;margin-top:1px">✓</span><span style="font-size:14px;color:var(--text-mid)">Your brand, your tone — invisible to the debtor</span></div>
+                    <div style="display:flex;align-items:flex-start;gap:10px"><span style="color:var(--green);font-size:16px;flex-shrink:0;margin-top:1px">✓</span><span style="font-size:14px;color:var(--text-mid)">Full dashboard. Every call, every email, every outcome.</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- CUSTOMERS -->
 <section class="section reveal" id="results">
     <div class="section-inner">
         <div class="section-label">Customers</div>
         <div class="section-title">They fired their collection agency.</div>
-        <div class="section-sub">Fortune 500 teams that replaced human collectors with AI agents. Same compliance. 3× the results.</div>
+        <div class="section-sub">Microsoft, Dell, and Plaid already replaced their agency. They're not going back.</div>
         <div class="cards-grid">
             <div class="card card-featured reveal s1" onclick="toggleCard(this)">
                 <img src="https://cdn.brandfetch.io/microsoft.com/w/512/h/80/logo" alt="Microsoft" class="card-logo">
