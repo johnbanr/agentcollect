@@ -66,7 +66,7 @@
       display: flex; align-items: center; gap: 6px;
       background: var(--primary); color: white;
       text-decoration: none;
-      padding: 9px 18px; border-radius: 8px;
+      padding: 9px 18px; min-height: 44px; border-radius: 8px;
       font-size: 14px; font-weight: 600;
       transition: background .15s;
     }
@@ -82,7 +82,7 @@
     }
 
     .container {
-      max-width: 860px;
+      max-width: 1060px;
       width: 100%;
       margin: 0 auto;
     }
@@ -701,6 +701,10 @@
       color: var(--primary);
       text-decoration: none;
       font-weight: 600;
+      display: inline-block;
+      padding: 6px 0;
+      min-height: 44px;
+      line-height: 44px;
     }
 
     /* ===== FOOTER ===== */
@@ -788,7 +792,7 @@
     </div>
 
     <div class="hero-logos">
-      <img class="company-logo" src="https://img.logo.dev/konicaminolta.com?token=pk_SfCBTRLlQtGVnODdRoMuEg&size=80&format=png" alt="Konica Minolta" style="height:44px;width:auto;object-fit:contain;" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:20px;color:var(--text)\'>Konica Minolta</span>'" />
+      <img class="company-logo" src="https://cdn.brandfetch.io/konicaminolta.com/w/400/h/80/logo" alt="Konica Minolta" style="height:44px;width:auto;object-fit:contain;" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:20px;color:var(--text)\'>Konica Minolta</span>'" />
       <span class="hero-x">×</span>
       <div class="hero-ac-logo">
         <svg width="32" height="32" viewBox="0 0 28 28" fill="none">
@@ -841,7 +845,7 @@
       </div>
     </div>
 
-    <p class="hero-hint">Or call directly: <a href="tel:+16288773918" style="color:var(--primary);font-weight:600;" onclick="gtag('event','call_hero',{})">(628) 877-3918</a></p>
+    <p class="hero-hint">Or call directly: <a href="tel:+16288773918" style="color:var(--primary);font-weight:600;display:inline-block;padding:10px 0;min-height:44px;line-height:1.2;" onclick="gtag('event','call_hero',{})">(628) 877-3918</a></p>
 
   </div>
 </section>
@@ -993,15 +997,15 @@
     <div class="proof-clients">
       <span>Trusted by</span>
       <div class="client-chip">
-        <img src="https://img.logo.dev/dell.com?token=pk_SfCBTRLlQtGVnODdRoMuEg&size=40&format=png" alt="Dell" onerror="this.style.display='none'"/>
+        <img src="https://cdn.brandfetch.io/dell.com/w/400/h/80/logo" alt="Dell" onerror="this.style.display='none'"/>
         <span>Dell</span>
       </div>
       <div class="client-chip">
-        <img src="https://img.logo.dev/microsoft.com?token=pk_SfCBTRLlQtGVnODdRoMuEg&size=40&format=png" alt="Microsoft" onerror="this.style.display='none'"/>
+        <img src="https://cdn.brandfetch.io/microsoft.com/w/400/h/80/logo" alt="Microsoft" onerror="this.style.display='none'"/>
         <span>Microsoft</span>
       </div>
       <div class="client-chip">
-        <img src="https://img.logo.dev/plaid.com?token=pk_SfCBTRLlQtGVnODdRoMuEg&size=40&format=png" alt="Plaid" onerror="this.style.display='none'"/>
+        <img src="https://cdn.brandfetch.io/plaid.com/w/400/h/80/logo" alt="Plaid" onerror="this.style.display='none'"/>
         <span>Plaid</span>
       </div>
       <span>to contact their customers on their behalf.</span>
