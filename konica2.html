@@ -37,8 +37,8 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-      background: var(--page-bg);
-      color: var(--text);
+      background: var(--dark-bg);
+      color: var(--dark-text);
       line-height: 1.5;
     }
 
@@ -59,7 +59,7 @@
     .nav-logo {
       display: flex; align-items: center; gap: 8px;
       text-decoration: none;
-      font-weight: 700; font-size: 16px; color: var(--text);
+      font-weight: 700; font-size: 16px; color: var(--dark-text);
     }
 
     .nav-cta {
@@ -105,7 +105,8 @@
 
     /* ===== SCREEN 1 — HERO (Enemy Framing) ===== */
     #hero {
-      background: var(--card-bg);
+      background: var(--dark-bg);
+      color: var(--dark-text);
       text-align: center;
       padding-top: 120px;
     }
@@ -137,7 +138,7 @@
     .hero-x {
       font-size: 22px;
       font-weight: 300;
-      color: var(--muted);
+      color: var(--dark-muted);
     }
 
     .hero-ac-logo {
@@ -146,7 +147,7 @@
       gap: 8px;
       font-weight: 700;
       font-size: 17px;
-      color: var(--text);
+      color: var(--dark-text);
     }
 
     h1 {
@@ -161,7 +162,7 @@
 
     .hero-sub {
       font-size: 18px;
-      color: var(--muted);
+      color: var(--dark-muted);
       max-width: 580px;
       margin: 0 auto 36px;
       line-height: 1.6;
@@ -193,15 +194,15 @@
 
     .agency-item .ai-label {
       font-size: 11px;
-      color: var(--muted);
+      color: var(--dark-muted);
       margin-top: 2px;
       display: block;
     }
 
     /* Demo box */
     .demo-box {
-      background: var(--page-bg);
-      border: 1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
       border-radius: 14px;
       padding: 24px;
       max-width: 480px;
@@ -210,7 +211,7 @@
 
     .demo-label {
       font-size: 13px;
-      color: var(--muted);
+      color: var(--dark-muted);
       margin-bottom: 14px;
       text-align: left;
     }
@@ -282,7 +283,7 @@
 
     .hero-hint {
       font-size: 13px;
-      color: var(--muted);
+      color: var(--dark-muted);
       text-align: center;
     }
 
@@ -653,7 +654,8 @@
 
     /* ===== SCREEN 7 — POC CTA ===== */
     #cta {
-      background: var(--card-bg);
+      background: var(--dark-bg);
+      color: var(--dark-text);
       text-align: center;
     }
 
@@ -669,7 +671,7 @@
 
     .cta-sub {
       font-size: 17px;
-      color: var(--muted);
+      color: var(--dark-muted);
       max-width: 500px;
       margin: 0 auto 16px;
       line-height: 1.6;
@@ -706,7 +708,7 @@
       align-items: flex-start;
       gap: 10px;
       font-size: 14px;
-      color: var(--text);
+      color: var(--dark-text);
     }
 
     .poc-list li::before {
@@ -726,7 +728,7 @@
 
     .cta-email {
       font-size: 14px;
-      color: var(--muted);
+      color: var(--dark-muted);
     }
 
     .cta-email a {
@@ -741,8 +743,8 @@
 
     /* ===== FOOTER ===== */
     footer {
-      background: var(--page-bg);
-      border-top: 1px solid var(--border);
+      background: var(--dark-bg);
+      border-top: 1px solid rgba(255,255,255,.1);
       padding: 24px 32px;
       display: flex;
       align-items: center;
@@ -752,7 +754,7 @@
     }
 
     footer .brand { font-size: 13px; font-weight: 600; color: var(--primary); }
-    footer .note { font-size: 12px; color: var(--muted); }
+    footer .note { font-size: 12px; color: var(--dark-muted); }
 
     /* ===== SCROLL DOTS ===== */
     .dots {
