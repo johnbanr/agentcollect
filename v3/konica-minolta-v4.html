@@ -29,8 +29,9 @@ section{padding:80px 24px}
 /* Nav */
 .nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);height:52px;display:flex;align-items:center}
 .nav-inner{max-width:900px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;width:100%}
-.nav-logo{display:flex;align-items:center;gap:8px;text-decoration:none;font-weight:800;font-size:15px;color:var(--text)}
+.nav-logo{display:flex;align-items:center;gap:6px;text-decoration:none;font-weight:800;font-size:15px;color:var(--text);letter-spacing:-.3px}
 .nav-logo .a-mark{background:var(--primary);color:#fff;width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800}
+.nav-logo .word{letter-spacing:-.3px}
 .nav-logo .collect{color:var(--primary)}
 .nav-expiry{font-size:11px;color:var(--light-muted);display:flex;align-items:center;gap:5px}
 .nav-cta{background:var(--primary);color:#fff;padding:7px 16px;border-radius:6px;font-weight:700;font-size:13px;text-decoration:none}
@@ -137,7 +138,7 @@ h1 strong,h2 strong{font-weight:800}
 <nav class="nav">
   <div class="nav-inner">
     <a href="https://agentcollect.com" class="nav-logo">
-      <span class="a-mark">a</span>agent<span class="collect">collect</span>
+      <span class="a-mark">a</span><span class="word">agent<span class="collect">collect</span></span>
     </a>
     <div class="nav-expiry">
       Built for Konica Minolta — <strong id="days-left" style="margin-left:3px;"></strong>
@@ -150,7 +151,7 @@ h1 strong,h2 strong{font-weight:800}
 <section style="padding-top:120px;text-align:center">
   <div class="container reveal">
     <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:32px;">
-      <svg height="22" viewBox="0 0 220 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Konica Minolta"><rect width="28" height="28" rx="2" fill="#E82529" y="2"/><path d="M6 8 L14 16 L6 24 M14 8 L22 16 L14 24" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><text x="36" y="23" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="15" fill="#E82529" letter-spacing="0.5">KONICA MINOLTA</text></svg>
+      <img src="https://cdn.brandfetch.io/konicaminolta.com/w/512/h/80/logo" alt="Konica Minolta" style="height:28px;" />
       <span style="color:var(--light-muted);font-size:16px;">&times;</span>
       <span class="nav-logo" style="font-size:14px;pointer-events:none"><span class="a-mark" style="width:20px;height:20px;font-size:11px;">a</span>agent<span class="collect">collect</span></span>
     </div>
@@ -184,11 +185,11 @@ h1 strong,h2 strong{font-weight:800}
 
     <div style="margin-top:40px;padding-top:28px;border-top:1px solid var(--border);">
       <div style="font-size:11px;color:var(--light-muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px;">Trusted to collect on behalf of</div>
-      <div style="display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap;opacity:.5">
-        <span style="font-weight:800;font-size:14px;letter-spacing:.5px;">Microsoft</span>
-        <span style="font-weight:800;font-size:14px;letter-spacing:.5px;">Dell</span>
-        <span style="font-weight:800;font-size:14px;letter-spacing:.5px;">Plaid</span>
-        <span style="font-weight:800;font-size:14px;letter-spacing:.5px;">Checkr</span>
+      <div style="display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap;opacity:.45">
+        <img src="https://cdn.brandfetch.io/microsoft.com/w/512/h/80/logo" alt="Microsoft" style="height:20px;" />
+        <img src="https://cdn.brandfetch.io/dell.com/w/512/h/80/logo" alt="Dell" style="height:20px;" />
+        <img src="https://cdn.brandfetch.io/plaid.com/w/512/h/80/logo" alt="Plaid" style="height:20px;" />
+        <img src="https://cdn.brandfetch.io/checkr.com/w/512/h/80/logo" alt="Checkr" style="height:20px;" />
       </div>
     </div>
   </div>
