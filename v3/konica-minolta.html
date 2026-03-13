@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgentCollect × Konica Minolta — AI Collections Demo</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GRZZT9K05B"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-GRZZT9K05B');</script>
+  <!-- Clarity -->
+  <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","vr6uvxdalw");</script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary:    #684ED1;
+      --primary-lo: rgba(104,78,209,0.08);
+      --primary-md: rgba(104,78,209,0.18);
+      --text:       #1C1A25;
+      --text2:      #27293F;
+      --muted:      #8084B2;
+      --border:     #DFE0EC;
+      --page-bg:    #f5f6fa;
+      --card-bg:    #fff;
+      --green:      #16A34A;
+      --green-bg:   #f0fdf4;
+      --red:        #DC2626;
+      --orange:     #ea580c;
+      --blue:       #3b82f6;
+      --indigo:     #6366f1;
+      --radius:     10px;
+      --sans:       'Plus Jakarta Sans', 'Inter', sans-serif;
+      --sidebar-w:  280px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--page-bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Progress Bar ── */
+    .progress-bar {
+      position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+      background: linear-gradient(90deg, var(--primary), #a78bfa);
+      z-index: 300; transition: width 0.1s linear; border-radius: 0 2px 2px 0;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(245,246,250,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      height: 56px; display: flex; align-items: center;
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+    .nav-logo-text { font-weight: 800; font-size: 16px; color: var(--text); letter-spacing: -0.3px; }
+    .nav-expiry { font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 4px; }
+    .nav-cta {
+      background: var(--primary); color: #fff;
+      padding: 8px 16px; border-radius: 8px;
+      font-weight: 700; font-size: 13px; text-decoration: none;
+      display: flex; align-items: center; gap: 6px;
+      transition: opacity .15s;
+    }
+    .nav-cta:hover { opacity: .88; }
+
+    /* ── Expiry banner ── */
+    .expiry-banner {
+      background: #fff; border-bottom: 1px solid var(--border);
+      padding: 7px 0; text-align: center;
+      font-size: 12px; color: var(--muted);
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+
+    /* ── Layout ── */
+    .cs-layout {
+      display: grid;
+      grid-template-columns: 1fr var(--sidebar-w);
+      gap: 48px;
+      padding: 48px 0 80px;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .cs-layout { grid-template-columns: 1fr; }
+      .cs-sidebar { display: none; }
+    }
+
+    /* ── Sidebar ── */
+    .cs-sidebar {
+      position: sticky; top: 72px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden;
+    }
+    .sidebar-header {
+      padding: 20px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .sidebar-logo { width: 40px; height: 40px; border-radius: 8px; object-fit: contain; background: #fff; }
+    .sidebar-company { font-weight: 700; font-size: 15px; }
+    .sidebar-industry { font-size: 12px; color: var(--muted); }
+    .sidebar-stats { padding: 16px 20px; display: flex; flex-direction: column; gap: 14px; }
+    .sidebar-stat-row { display: flex; justify-content: space-between; align-items: center; }
+    .sidebar-stat-label { font-size: 13px; color: var(--muted); }
+    .sidebar-stat-value { font-size: 13px; font-weight: 600; color: var(--text); }
+    .sidebar-tags { padding: 0 20px 16px; display: flex; flex-wrap: wrap; gap: 6px; }
+    .sidebar-tag {
+      font-size: 11px; font-weight: 600; padding: 4px 10px;
+      background: var(--primary-lo); color: var(--primary);
+      border-radius: 20px; border: 1px solid var(--primary-md);
+    }
+    .sidebar-cta {
+      margin: 0 20px 20px; display: flex; align-items: center; justify-content: center;
+      gap: 8px; background: var(--primary); color: #fff;
+      padding: 12px; border-radius: 10px; font-weight: 700; font-size: 14px;
+      text-decoration: none; transition: opacity .15s;
+    }
+    .sidebar-cta:hover { opacity: .88; }
+
+    /* ── Hero ── */
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;
+      color: var(--primary); margin-bottom: 20px;
+    }
+    .hero-logos { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+    .hero-logos img { height: 32px; width: auto; object-fit: contain; }
+    .hero-x { font-size: 16px; color: var(--muted); font-weight: 300; }
+    .hero-ac-logo {
+      display: flex; align-items: center; gap: 6px;
+      font-weight: 800; font-size: 16px; color: var(--text); letter-spacing: -0.3px;
+    }
+    .hero-ac-logo svg { width: 24px; height: 24px; }
+    h1 {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800; line-height: 1.1;
+      letter-spacing: -1px; margin-bottom: 16px;
+    }
+    .hero-intro {
+      font-size: 17px; color: var(--muted); line-height: 1.65;
+      max-width: 580px; margin-bottom: 32px;
+    }
+
+    /* ── Demo box ── */
+    .demo-box {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px; margin-bottom: 8px;
+      max-width: 500px;
+    }
+    .demo-label { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+    .demo-input-row { display: flex; gap: 10px; }
+    .demo-input {
+      flex: 1; border: 1.5px solid var(--border); border-radius: 8px;
+      padding: 13px 16px; font-family: var(--sans); font-size: 16px;
+      color: var(--text); background: var(--page-bg); outline: none;
+      transition: border-color .2s;
+    }
+    .demo-input:focus { border-color: var(--primary); background: #fff; }
+    .call-btn {
+      background: var(--primary); color: #fff;
+      border: none; border-radius: 8px; padding: 13px 20px;
+      font-family: var(--sans); font-weight: 700; font-size: 14px;
+      cursor: pointer; display: flex; align-items: center; gap: 8px;
+      white-space: nowrap; transition: opacity .15s;
+    }
+    .call-btn:hover { opacity: .88; }
+    .demo-enriching { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--muted); }
+    .demo-found-card {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--green-bg); border: 1px solid #bbf7d0;
+      border-radius: 10px; padding: 12px 16px; margin-bottom: 12px;
+    }
+    .demo-found-initials {
+      width: 40px; height: 40px; border-radius: 50%; background: var(--primary);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 700; font-size: 14px; flex-shrink: 0;
+    }
+    .demo-found-name { font-weight: 700; font-size: 14px; }
+    .demo-found-title { font-size: 12px; color: var(--muted); }
+    .demo-found-badge {
+      margin-left: auto; background: #dcfce7; color: var(--green);
+      font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 20px;
+    }
+    .demo-calling { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; color: var(--primary); }
+    .pulse {
+      width: 12px; height: 12px; border-radius: 50%; background: var(--primary);
+      flex-shrink: 0; animation: pulse 1.2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.6);opacity:.5} }
+    .hidden { display: none !important; }
+    .hero-hint { font-size: 13px; color: var(--muted); margin-top: 10px; max-width: 500px; }
+    .hero-hint a { color: var(--primary); font-weight: 600; text-decoration: none; }
+
+    /* ── Stats bar ── */
+    .stats-bar {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: 12px;
+      overflow: hidden; margin: 40px 0;
+    }
+    .stat-cell { background: var(--card-bg); padding: 20px 16px; text-align: center; }
+    .stat-num { font-size: 28px; font-weight: 800; color: var(--text); letter-spacing: -1px; }
+    .stat-lbl { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+    /* ── Section ── */
+    .section-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 2px; color: var(--primary); margin-bottom: 14px; display: block;
+    }
+    h2 {
+      font-size: clamp(22px, 3vw, 30px); font-weight: 800;
+      letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 16px;
+    }
+    .cs-section { margin-bottom: 56px; }
+    .cs-section p { font-size: 15px; color: var(--muted); line-height: 1.65; margin-bottom: 14px; }
+
+    /* ── Intel cards ── */
+    .intel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 24px; }
+    .intel-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px;
+    }
+    .intel-icon { font-size: 20px; margin-bottom: 10px; }
+    .intel-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+    .intel-card p { font-size: 13px; color: var(--muted); margin: 0; line-height: 1.5; }
+    .intel-card a {
+      display: inline-flex; align-items: center; gap: 4px;
+      margin-top: 10px; font-size: 12px; font-weight: 600;
+      color: var(--primary); text-decoration: none;
+    }
+    .intel-card a:hover { text-decoration: underline; }
+
+    /* ── Dossier ── */
+    .dossier-header {
+      display: flex; align-items: center; gap: 16px; margin-bottom: 10px;
+    }
+    .dossier-logo { height: 36px; width: auto; object-fit: contain; }
+    .dossier-company-name { font-weight: 800; font-size: 18px; }
+    .dossier-meta { font-size: 13px; color: var(--muted); }
+    .dossier-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #fef9c3; border: 1px solid #fde68a;
+      border-radius: 8px; padding: 6px 12px;
+      font-size: 12px; color: #854d0e; font-weight: 600; margin-bottom: 28px;
+    }
+    .escalation-ladder { display: flex; flex-direction: column; gap: 0; }
+    .escalation-step {
+      background: var(--card-bg); border: 1.5px solid var(--border);
+      border-radius: 12px; padding: 18px 20px; position: relative;
+    }
+    .step-badge {
+      position: absolute; top: -10px; left: 16px;
+      font-size: 10px; font-weight: 700; padding: 3px 10px;
+      border-radius: 20px; letter-spacing: .5px; color: #fff;
+    }
+    .step-1 { border-color: #bbf7d0; }
+    .step-1 .step-badge { background: var(--green); }
+    .step-2 { border-color: #fed7aa; }
+    .step-2 .step-badge { background: var(--orange); }
+    .step-3 { border-color: #c7d2fe; }
+    .step-3 .step-badge { background: var(--indigo); }
+    .step-excluded { background: #f9fafb; border: 1.5px dashed #d1d5db; opacity: .65; }
+    .escalation-arrow {
+      display: flex; align-items: center; gap: 8px; padding: 6px 16px;
+      font-size: 12px; color: var(--muted);
+    }
+    .contact-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .contact-avatar { width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0; }
+    .contact-name { font-weight: 700; font-size: 15px; }
+    .contact-title { font-size: 12px; color: var(--muted); }
+    .contact-data { display: flex; flex-direction: column; gap: 6px; }
+    .contact-data-row { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+    .data-badge {
+      font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 10px;
+    }
+    .badge-verified { background: #dcfce7; color: var(--green); }
+    .badge-mobile { background: #dcfce7; color: var(--green); }
+    .badge-active { background: #fef9c3; color: #854d0e; }
+    .excluded-name { font-weight: 700; font-size: 15px; color: #6b7280; text-decoration: line-through; }
+    .excluded-note { font-size: 12px; color: #9ca3af; margin-top: 4px; }
+    .excluded-badge {
+      margin-left: auto; background: #fee2e2; color: var(--red);
+      font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 20px; flex-shrink: 0;
+    }
+    .dossier-note {
+      margin-top: 24px; padding: 16px 20px;
+      background: var(--primary-lo); border: 1px solid var(--primary-md);
+      border-radius: 10px; display: flex; align-items: flex-start; gap: 12px;
+    }
+    .dossier-note p { font-size: 13px; color: var(--text2); line-height: 1.5; margin: 0; }
+
+    /* ── Disputes ── */
+    .dispute-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 24px; }
+    .dispute-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px;
+    }
+    .dispute-quote {
+      font-size: 14px; font-style: italic; color: var(--text2);
+      border-left: 3px solid var(--border); padding-left: 12px; margin-bottom: 14px;
+      line-height: 1.5;
+    }
+    .dispute-response { font-size: 12px; color: var(--muted); margin-bottom: 12px; line-height: 1.4; }
+    .dispute-stat { font-size: 22px; font-weight: 800; color: var(--green); }
+    .dispute-stat-lbl { font-size: 11px; color: var(--muted); }
+
+    /* ── How it works timeline ── */
+    .timeline {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0; margin-top: 24px; position: relative;
+    }
+    .timeline::before {
+      content: ''; position: absolute; top: 28px; left: 16%; right: 16%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--green), var(--primary), var(--indigo));
+      z-index: 0;
+    }
+    .timeline-node {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px 16px; text-align: center;
+      position: relative; z-index: 1; margin: 0 6px;
+    }
+    .timeline-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--primary); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 13px; margin: 0 auto 10px;
+    }
+    .timeline-title { font-weight: 700; font-size: 14px; margin-bottom: 6px; }
+    .timeline-desc { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+    /* ── Fade in ── */
+    .fade-in { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* ── CTA section ── */
+    #cta {
+      background: var(--text); border-radius: 16px;
+      padding: 48px 40px; text-align: center; margin-bottom: 40px;
+    }
+    #cta h2 { color: #fff; margin-bottom: 12px; }
+    #cta p { color: rgba(255,255,255,.6); margin-bottom: 28px; font-size: 15px; }
+    .cta-actions { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .cta-btn-primary {
+      background: var(--primary); color: #fff;
+      padding: 14px 28px; border-radius: 10px;
+      font-weight: 700; font-size: 15px; text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
+      transition: opacity .15s;
+    }
+    .cta-btn-primary:hover { opacity: .88; }
+    .cta-btn-secondary {
+      color: rgba(255,255,255,.6); font-size: 14px; text-decoration: none;
+    }
+    .cta-btn-secondary:hover { color: #fff; }
+
+    /* SVG icon helpers */
+    .ico { flex-shrink: 0; }
+  </style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div class="progress-bar" id="progress-bar"></div>
+
+<!-- Nav -->
+<nav>
+  <div class="container nav-inner">
+    <a href="https://agentcollect.com" class="nav-logo">
+      <svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+      <span class="nav-logo-text">AgentCollect</span>
+    </a>
+    <div class="nav-expiry">
+      <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      Custom demo — <strong id="days-left" style="color:var(--text);margin-left:2px;"></strong>
+    </div>
+    <a href="tel:+12016277551" class="nav-cta" onclick="gtag('event','call_nav',{})">
+      <svg class="ico" width="13" height="13" viewBox="0 0 24 24" fill="white"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+      (201) 627-7551
+    </a>
+  </div>
+</nav>
+
+<div class="expiry-banner">
+  <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+  Built exclusively for Konica Minolta — <strong id="days-left-2" style="color:var(--text);margin:0 3px;"></strong>
+</div>
+
+<div class="container">
+  <div class="cs-layout">
+
+    <!-- ── MAIN CONTENT ── -->
+    <main>
+
+      <!-- HERO -->
+      <section id="hero" style="margin-bottom:48px;">
+        <div class="hero-badge">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+          Personalized demo
+        </div>
+
+        <div class="hero-logos">
+          <img src="https://img.logo.dev/konicaminolta.us?token=pk_SfCBTRLlQtGVnODdRoMuEg" alt="Konica Minolta" onerror="this.style.display='none'" />
+          <span class="hero-x">×</span>
+          <div class="hero-ac-logo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+            AgentCollect
+          </div>
+        </div>
+
+        <h1>Your AI collection agent.<br><strong>Already running.</strong></h1>
+        <p class="hero-intro">Enter your number below. The agent calls you back in seconds — branded Konica Minolta, collecting a $4,750 bizhub lease. See exactly what your debtors experience.</p>
+
+        <!-- Demo box -->
+        <div class="demo-box">
+          <div id="demo-step-1">
+            <p class="demo-label">Enter your number — the agent calls you now.</p>
+            <div class="demo-input-row">
+              <input type="tel" id="demo-phone" placeholder="(415) 867-4010" class="demo-input" maxlength="14" />
+              <button class="call-btn" onclick="startDemo()" id="demo-btn">
+                <svg class="ico" width="13" height="13" viewBox="0 0 24 24" fill="white"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+                Call me
+              </button>
+            </div>
+          </div>
+          <div id="demo-step-2" class="hidden">
+            <div class="demo-enriching">
+              <div class="pulse"></div>
+              <span id="enriching-text">Looking you up...</span>
+            </div>
+          </div>
+          <div id="demo-step-3" class="hidden">
+            <div class="demo-found-card">
+              <div class="demo-found-initials" id="found-initials">?</div>
+              <div>
+                <div class="demo-found-name" id="found-name">Identifying...</div>
+                <div class="demo-found-title" id="found-title"></div>
+              </div>
+              <span class="demo-found-badge">✓ identified</span>
+            </div>
+            <div class="demo-calling">
+              <div class="pulse"></div>
+              Calling you now — try not to pay $4,750.
+            </div>
+          </div>
+        </div>
+        <p class="hero-hint">Or call directly: <a href="tel:+12016277551" onclick="gtag('event','call_hero',{})">(201) 627-7551</a></p>
+      </section>
+
+      <!-- STATS BAR -->
+      <div class="stats-bar fade-in">
+        <div class="stat-cell">
+          <div class="stat-num">49%</div>
+          <div class="stat-lbl">resolved in 20 days</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">86%</div>
+          <div class="stat-lbl">disputes closed</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">3.2×</div>
+          <div class="stat-lbl">recovery vs agencies</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">Reg F</div>
+          <div class="stat-lbl">compliant by design</div>
+        </div>
+      </div>
+
+      <!-- INTEL — What we found -->
+      <section class="cs-section fade-in">
+        <span class="section-label">What we found</span>
+        <h2>Konica Minolta's AR<br><strong>profile, publicly.</strong></h2>
+        <div class="intel-grid">
+          <div class="intel-card">
+            <div class="intel-icon">🔗</div>
+            <h3>DLL handles your leasing</h3>
+            <p>De Lage Landen finances bizhub C and AccurioPress lease portfolios. When collections go sideways, DLL is a financing arm — not a recovery specialist.</p>
+            <a href="https://www.dllgroup.com" target="_blank" rel="noopener">Public partnership ↗</a>
+          </div>
+          <div class="intel-card">
+            <div class="intel-icon">⚠️</div>
+            <h3>Disputes are public</h3>
+            <p>Lease termination and billing disputes show up on BBB and Ripoff Report. When they do, it's Konica's name on the review — not DLL's.</p>
+            <a href="https://www.bbb.org/search?find_text=konica+minolta" target="_blank" rel="noopener">Public reviews ↗</a>
+          </div>
+          <div class="intel-card">
+            <div class="intel-icon">📊</div>
+            <h3>Active AR hiring</h3>
+            <p>LinkedIn shows active AR and collections hiring at Konica Minolta — a public signal that recovery capacity is a real constraint at current scale.</p>
+            <a href="https://www.linkedin.com/jobs/search/?keywords=konica+minolta+collections" target="_blank" rel="noopener">LinkedIn Jobs ↗</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- DOSSIER — Zwanger-Pesiri -->
+      <section class="cs-section fade-in">
+        <span class="section-label">Recovery playbook — live demo</span>
+        <div class="dossier-header">
+          <img src="https://img.logo.dev/zprad.com?token=pk_SfCBTRLlQtGVnODdRoMuEg" alt="Zwanger-Pesiri" class="dossier-logo" onerror="this.style.display='none'" />
+          <div>
+            <div class="dossier-company-name">Zwanger-Pesiri Radiology</div>
+            <div class="dossier-meta">23 locations · Long Island, NY · ~$134M revenue · confirmed Konica Minolta customer</div>
+          </div>
+        </div>
+        <h2>If they stopped paying<br><strong>their Konica invoice.</strong></h2>
+        <div class="dossier-badge">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+          Enriched live — same pipeline we run on your actual debtors
+        </div>
+
+        <div class="escalation-ladder">
+
+          <!-- Step 1 -->
+          <div class="escalation-step step-1">
+            <span class="step-badge">STEP 1 — First contact</span>
+            <div class="contact-row">
+              <img src="https://ui-avatars.com/api/?name=Donna+Montalbano&background=16a34a&color=fff&size=84&bold=true" alt="" class="contact-avatar" />
+              <div>
+                <div class="contact-name">Donna Montalbano</div>
+                <div class="contact-title">Accounts Payable — processes all vendor invoices</div>
+              </div>
+            </div>
+            <div class="contact-data">
+              <div class="contact-data-row">
+                <svg class="ico" width="13" height="13" fill="none" stroke="var(--muted)" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg>
+                dmontalbano@zprad.com
+              </div>
+              <div class="contact-data-row">
+                <svg class="ico" width="13" height="13" fill="none" stroke="var(--muted)" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+                (516) 7██-████
+              </div>
+            </div>
+          </div>
+
+          <div class="escalation-arrow">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+            No response in 5 days → escalate
+          </div>
+
+          <!-- Step 2 -->
+          <div class="escalation-step step-2">
+            <span class="step-badge">STEP 2 — Escalation</span>
+            <div class="contact-row">
+              <img src="https://ui-avatars.com/api/?name=Randi+Morgenstern&background=ea580c&color=fff&size=84&bold=true" alt="" class="contact-avatar" />
+              <div>
+                <div class="contact-name">Randi Morgenstern</div>
+                <div class="contact-title">Accounting Manager — supervises AP across 23 locations</div>
+              </div>
+            </div>
+            <div class="contact-data">
+              <div class="contact-data-row">
+                <svg class="ico" width="13" height="13" fill="none" stroke="var(--muted)" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg>
+                rmorgenstern@zprad.com
+                <span class="data-badge badge-verified">✓ SMTP verified</span>
+              </div>
+              <div class="contact-data-row">
+                <svg class="ico" width="13" height="13" fill="none" stroke="var(--muted)" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+                (212) 570-2075
+                <span class="data-badge badge-active">active line</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="escalation-arrow">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+            Still no resolution → senior escalation
+          </div>
+
+          <!-- Step 3 -->
+          <div class="escalation-step step-3">
+            <span class="step-badge">STEP 3 — Senior escalation</span>
+            <div class="contact-row">
+              <img src="https://ui-avatars.com/api/?name=John+Fargnoli&background=4f46e5&color=fff&size=84&bold=true" alt="" class="contact-avatar" />
+              <div>
+                <div class="contact-name">John Fargnoli</div>
+                <div class="contact-title">CFO — final financial authority</div>
+              </div>
+            </div>
+            <div class="contact-data">
+              <div class="contact-data-row">
+                <svg class="ico" width="13" height="13" fill="none" stroke="var(--muted)" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg>
+                jfargnoli@zprad.com
+                <span class="data-badge badge-verified">✓ SMTP verified</span>
+              </div>
+              <div class="contact-data-row">
+                <svg class="ico" width="13" height="13" fill="none" stroke="var(--muted)" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+                (516) 458-5660
+                <span class="data-badge badge-mobile">📱 mobile · Verizon</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CEO excluded -->
+          <div class="escalation-step step-excluded" style="margin-top:12px;">
+            <div class="contact-row" style="margin:0;">
+              <img src="https://ui-avatars.com/api/?name=Steven+Mendelsohn&background=9ca3af&color=fff&size=84&bold=true" alt="" class="contact-avatar" style="filter:grayscale(1);" />
+              <div style="flex:1;">
+                <div class="excluded-name">Steven Mendelsohn, MD — CEO</div>
+                <div class="excluded-note">Not contacted — reaching the CEO risks damaging Konica Minolta's commercial relationship with Zwanger-Pesiri.</div>
+              </div>
+              <span class="excluded-badge">⛔ excluded</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="dossier-note">
+          <svg width="18" height="18" fill="none" stroke="var(--primary)" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:1px;"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+          <p>This is the same pipeline we run on every debtor in your portfolio — AP contact first, escalation path pre-mapped, CEO always protected. <strong>Your brand stays intact.</strong></p>
+        </div>
+      </section>
+
+      <!-- DISPUTES -->
+      <section class="cs-section fade-in">
+        <span class="section-label">Objection handling</span>
+        <h2>The top 3 disputes.<br><strong>AI handles them all.</strong></h2>
+        <div class="dispute-grid">
+          <div class="dispute-card">
+            <div class="dispute-quote">"I already paid this invoice."</div>
+            <div class="dispute-response">AI requests proof of payment, cross-references with your system, closes or escalates within 24h.</div>
+            <div class="dispute-stat">86%</div>
+            <div class="dispute-stat-lbl">resolved without human</div>
+          </div>
+          <div class="dispute-card">
+            <div class="dispute-quote">"The equipment is faulty — we're withholding payment."</div>
+            <div class="dispute-response">AI logs the dispute, notifies your support team, and holds collections pending resolution confirmation.</div>
+            <div class="dispute-stat">72%</div>
+            <div class="dispute-stat-lbl">resolved in under 48h</div>
+          </div>
+          <div class="dispute-card">
+            <div class="dispute-quote">"We never received the invoice."</div>
+            <div class="dispute-response">AI re-sends directly to AP contact, CC's accounting manager, logs delivery confirmation.</div>
+            <div class="dispute-stat">94%</div>
+            <div class="dispute-stat-lbl">re-sent &amp; acknowledged</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section class="cs-section fade-in">
+        <span class="section-label">How it works</span>
+        <h2>Three steps.<br><strong>Fully automated.</strong></h2>
+        <div class="timeline">
+          <div class="timeline-node">
+            <div class="timeline-num">01</div>
+            <div class="timeline-title">Upload your AR</div>
+            <div class="timeline-desc">CSV or API. Name, amount, contact. We enrich the rest — direct lines, decision-makers, escalation paths.</div>
+          </div>
+          <div class="timeline-node">
+            <div class="timeline-num">02</div>
+            <div class="timeline-title">AI contacts, branded as you</div>
+            <div class="timeline-desc">Every email and call goes out under the Konica Minolta brand. Business hours only. Reg F compliant.</div>
+          </div>
+          <div class="timeline-node">
+            <div class="timeline-num">03</div>
+            <div class="timeline-title">Recover or escalate</div>
+            <div class="timeline-desc">~49% resolve in 20 days. Disputes handled. The rest escalate on a schedule you control — full audit trail.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <div id="cta" class="fade-in">
+        <h2>Ready to see this<br><strong>on your actual portfolio?</strong></h2>
+        <p>One call with our team. We show you live enrichment on your debtors, not a slide deck.</p>
+        <div class="cta-actions">
+          <a href="tel:+12016277551" class="cta-btn-primary" onclick="gtag('event','call_cta',{})">
+            <svg class="ico" width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+            Call (201) 627-7551
+          </a>
+          <a href="mailto:j@agentcollect.com" class="cta-btn-secondary">or email j@agentcollect.com →</a>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="cs-sidebar">
+      <div class="sidebar-header">
+        <img src="https://img.logo.dev/konicaminolta.us?token=pk_SfCBTRLlQtGVnODdRoMuEg" alt="Konica Minolta" class="sidebar-logo" onerror="this.style.display='none'" />
+        <div>
+          <div class="sidebar-company">Konica Minolta</div>
+          <div class="sidebar-industry">Document Technology</div>
+        </div>
+      </div>
+      <div class="sidebar-stats">
+        <div class="sidebar-stat-row">
+          <span class="sidebar-stat-label">Industry</span>
+          <span class="sidebar-stat-value">B2B Tech / Leasing</span>
+        </div>
+        <div class="sidebar-stat-row">
+          <span class="sidebar-stat-label">HQ</span>
+          <span class="sidebar-stat-value">Ramsey, NJ</span>
+        </div>
+        <div class="sidebar-stat-row">
+          <span class="sidebar-stat-label">Revenue</span>
+          <span class="sidebar-stat-value">$8B+ globally</span>
+        </div>
+        <div class="sidebar-stat-row">
+          <span class="sidebar-stat-label">AR challenge</span>
+          <span class="sidebar-stat-value">Lease disputes & aging</span>
+        </div>
+        <div class="sidebar-stat-row">
+          <span class="sidebar-stat-label">Demo expires</span>
+          <span class="sidebar-stat-value" id="sidebar-expiry"></span>
+        </div>
+      </div>
+      <div class="sidebar-tags">
+        <span class="sidebar-tag">AI Voice</span>
+        <span class="sidebar-tag">AI Email</span>
+        <span class="sidebar-tag">Contact Enrichment</span>
+        <span class="sidebar-tag">Dispute Resolution</span>
+        <span class="sidebar-tag">Reg F Compliant</span>
+      </div>
+      <a href="tel:+12016277551" class="sidebar-cta" onclick="gtag('event','call_sidebar',{})">
+        <svg class="ico" width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+        Call the demo agent
+      </a>
+    </aside>
+
+  </div><!-- .cs-layout -->
+</div><!-- .container -->
+
+<script>
+  // ── Expiry countdown ──
+  (function() {
+    var created = new Date('2026-03-12');
+    var expires = new Date(created); expires.setDate(expires.getDate() + 30);
+    var diff = Math.ceil((expires - new Date()) / 86400000);
+    var txt = diff > 0 ? 'expires in ' + diff + ' day' + (diff !== 1 ? 's' : '') : 'expired';
+    var d = document.getElementById('days-left'); if (d) d.textContent = txt;
+    var d2 = document.getElementById('days-left-2'); if (d2) d2.textContent = txt;
+    var d3 = document.getElementById('sidebar-expiry');
+    if (d3) d3.textContent = expires.toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'});
+  })();
+
+  // ── Progress bar ──
+  window.addEventListener('scroll', function() {
+    var el = document.getElementById('progress-bar');
+    var pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+    if (el) el.style.width = pct + '%';
+  });
+
+  // ── Fade in on scroll ──
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
+
+  // ── Phone formatter ──
+  document.getElementById('demo-phone').addEventListener('input', function(e) {
+    var v = e.target.value.replace(/\D/g,'').substring(0,10), out = '';
+    if (v.length > 0) out = '(' + v.substring(0,3);
+    if (v.length >= 4) out += ') ' + v.substring(3,6);
+    if (v.length >= 7) out += '-' + v.substring(6,10);
+    e.target.value = out;
+  });
+  document.getElementById('demo-phone').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') startDemo();
+  });
+
+  // ── Demo flow ──
+  function startDemo() {
+    var raw = document.getElementById('demo-phone').value.replace(/\D/g,'');
+    if (raw.length < 10) { document.getElementById('demo-phone').focus(); return; }
+    var phone = '+1' + raw;
+    gtag('event', 'demo_call_requested', { phone_entered: true });
+    document.getElementById('demo-step-1').classList.add('hidden');
+    document.getElementById('demo-step-2').classList.remove('hidden');
+    fetch('https://backend.widr.app/api/v1/demo/phone-lookup', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone: phone })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(resp) { showFoundAndCall(phone, resp.data && resp.data.person ? resp.data.person : null); })
+    .catch(function() { showFoundAndCall(phone, null); });
+  }
+
+  function showFoundAndCall(phone, data) {
+    document.getElementById('demo-step-2').classList.add('hidden');
+    document.getElementById('demo-step-3').classList.remove('hidden');
+    if (data && data.name) {
+      var initials = data.name.split(' ').map(function(w){return w[0];}).join('').substring(0,2).toUpperCase();
+      document.getElementById('found-initials').textContent = initials;
+      document.getElementById('found-name').textContent = data.name;
+      document.getElementById('found-title').textContent = data.title || data.company || '';
+    } else {
+      document.getElementById('found-initials').textContent = '?';
+      document.getElementById('found-name').textContent = 'Identity confirmed';
+      document.getElementById('found-title').textContent = 'Calling you now...';
+    }
+    fetch('https://backend.widr.app/api/v1/demo/prospect-call', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        phone: phone, prospect: 'Konica Minolta',
+        product: 'bizhub C3110i copier lease', amount: '$4,750',
+        from_number: '+12016277551',
+        name: data && data.name ? data.name : null
+      })
+    }).catch(function() { window.location.href = 'tel:+12016277551'; });
+  }
+</script>
+</body>
+</html>
