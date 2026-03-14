@@ -350,27 +350,31 @@ h1 strong,h2 strong{font-weight:800}
   </div>
 </section>
 
-<!-- S4 — DARK PLAYER (amazon.respaid.com style) -->
+<!-- S4 — DARK PLAYER (amazon.respaid.com style — synced transcript) -->
 <section style="padding:80px 24px;">
   <div class="container">
-    <div class="reveal" style="text-align:center;margin-bottom:32px;">
-      <h2>See how the agent<br><strong>thinks.</strong></h2>
-    </div>
-
     <div class="reveal dark-player">
       <div class="dark-player-inner">
-        <div class="dark-left">
-          <div><span class="dark-speaker ai">AI Agent</span></div>
-          <div class="dark-text">Hi, this is Sarah from Konica Minolta — calling about an outstanding invoice.</div>
-          <div><span class="dark-speaker human">Contact</span></div>
-          <div class="dark-text human-text">"...is it AI?"</div>
-          <div><span class="dark-speaker ai">AI Agent</span></div>
-          <div class="dark-text">Ha — no, I'm Sarah. About that invoice — someone else on your team?</div>
+        <div class="dark-left" id="dark-transcript">
+          <!-- Lines appear synced with audio -->
+          <div class="dark-line" data-at="0" style="opacity:0;transform:translateY(8px);transition:all .4s;">
+            <span class="dark-speaker ai">AI Agent</span>
+            <div class="dark-text">Hi, this is Sarah from Konica Minolta — calling about an outstanding invoice.</div>
+          </div>
+          <div class="dark-line" data-at="12" style="opacity:0;transform:translateY(8px);transition:all .4s;">
+            <span class="dark-speaker human">Contact</span>
+            <div class="dark-text human-text">"...is it AI?"</div>
+          </div>
+          <div class="dark-line" data-at="16" style="opacity:0;transform:translateY(8px);transition:all .4s;">
+            <span class="dark-speaker ai">AI Agent</span>
+            <div class="dark-text">Ha — no, I'm Sarah. About that invoice — someone else on your team?</div>
+          </div>
         </div>
         <div class="dark-right">
           <h3>AI Reasoning</h3>
-          <div class="dark-badge orange">Skepticism detected — deflecting naturally</div>
-          <div class="dark-badge green">Resolved — invoice resent, follow-up in 3 days</div>
+          <div class="dark-badge green" id="r1" style="opacity:0;transition:opacity .4s;">Contact verified ✓</div>
+          <div class="dark-badge orange" id="r2" style="opacity:0;transition:opacity .4s;">Skepticism — deflecting</div>
+          <div class="dark-badge green" id="r3" style="opacity:0;transition:opacity .4s;">Resolved — follow-up in 3 days</div>
         </div>
       </div>
       <div class="dark-bar">
@@ -385,6 +389,7 @@ h1 strong,h2 strong{font-weight:800}
           <source src="https://dxc03zgurdly9.cloudfront.net/74fb900c432127ea0f920d6c76def8852e6ff88fb08fd02db7fd3b37da54a7d9/recording.wav" type="audio/wav">
         </audio>
       </div>
+      <div style="text-align:center;padding:12px 0 16px;"><span style="font-size:13px;color:rgba(255,255,255,.3);">Click play — transcript syncs with audio</span></div>
     </div>
   </div>
 </section>
@@ -441,11 +446,38 @@ document.getElementById('demo-phone').addEventListener('keydown',function(e){if(
 function startDemo(){var r=document.getElementById('demo-phone').value.replace(/\D/g,'');if(r.length<10){document.getElementById('demo-phone').focus();return}var p='+1'+r;gtag('event','demo_call_requested',{phone_entered:true});document.getElementById('demo-step-1').classList.add('hidden');document.getElementById('demo-step-2').classList.remove('hidden');fetch('https://backend.widr.app/api/v1/demo/phone-lookup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone:p})}).then(function(r){return r.json()}).then(function(d){showFound(p,d.data&&d.data.person?d.data.person:null)}).catch(function(){showFound(p,null)})}
 function showFound(p,d){document.getElementById('demo-step-2').classList.add('hidden');document.getElementById('demo-step-3').classList.remove('hidden');if(d&&d.name){var i=d.name.split(' ').map(function(w){return w[0]}).join('').substring(0,2).toUpperCase();document.getElementById('found-initials').textContent=i;document.getElementById('found-name').textContent=d.name;document.getElementById('found-title').textContent=d.title||d.company||''}else{document.getElementById('found-initials').textContent='?';document.getElementById('found-name').textContent='Identity confirmed';document.getElementById('found-title').textContent='Calling you now...'}fetch('https://backend.widr.app/api/v1/demo/prospect-call',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone:p,prospect:'Konica Minolta',product:'bizhub C3110i copier lease',amount:'$4,750',from_number:'+12016277551',name:d&&d.name?d.name:null})}).catch(function(){window.location.href='tel:+12016277551'})}
 
-// Audio player
+// Audio player with synced transcript + reasoning
 var callRafId=null;
+var reasoningTimings=[{id:'r1',at:2},{id:'r2',at:14},{id:'r3',at:20}];
+var shownR={};
 function callFmt(t){var m=Math.floor(t/60),s=Math.floor(t%60);return m+':'+(s<10?'0':'')+s}
-function callTick(){var a=document.getElementById('call-audio'),p=document.getElementById('call-progress'),t=document.getElementById('call-time');if(!a)return;var d=a.duration||85;p.style.width=(a.currentTime/d*100)+'%';t.textContent=callFmt(a.currentTime)+' / '+callFmt(d);if(!a.paused&&!a.ended)callRafId=requestAnimationFrame(callTick)}
-function toggleCall(){var a=document.getElementById('call-audio'),i=document.getElementById('call-play-icon');if(!a)return;if(a.paused||a.ended){a.play().then(function(){i.innerHTML='<rect x="6" y="4" width="4" height="16" fill="white"/><rect x="14" y="4" width="4" height="16" fill="white"/>';callRafId=requestAnimationFrame(callTick)}).catch(function(){})}else{a.pause();i.innerHTML='<polygon points="5,3 19,12 5,21"/>';cancelAnimationFrame(callRafId)}}
+function callTick(){
+  var a=document.getElementById('call-audio'),p=document.getElementById('call-progress'),t=document.getElementById('call-time');
+  if(!a)return;var d=a.duration||85;
+  p.style.width=(a.currentTime/d*100)+'%';
+  t.textContent=callFmt(a.currentTime)+' / '+callFmt(d);
+  // Sync transcript lines
+  document.querySelectorAll('.dark-line').forEach(function(el){
+    if(a.currentTime>=parseFloat(el.dataset.at)){el.style.opacity='1';el.style.transform='none';}
+  });
+  // Sync reasoning badges
+  reasoningTimings.forEach(function(r){
+    if(!shownR[r.id]&&a.currentTime>=r.at){shownR[r.id]=true;document.getElementById(r.id).style.opacity='1';}
+  });
+  if(!a.paused&&!a.ended)callRafId=requestAnimationFrame(callTick);
+}
+function toggleCall(){
+  var a=document.getElementById('call-audio'),i=document.getElementById('call-play-icon');
+  if(!a)return;
+  if(a.paused||a.ended){
+    a.play().then(function(){
+      i.innerHTML='<rect x="6" y="4" width="4" height="16" fill="white"/><rect x="14" y="4" width="4" height="16" fill="white"/>';
+      callRafId=requestAnimationFrame(callTick);
+    }).catch(function(){});
+  }else{
+    a.pause();i.innerHTML='<polygon points="5,3 19,12 5,21"/>';cancelAnimationFrame(callRafId);
+  }
+}
 function seekCall(e){var a=document.getElementById('call-audio'),r=e.currentTarget.getBoundingClientRect();a.currentTime=((e.clientX-r.left)/r.width)*(a.duration||85);if(!a.paused)callTick()}
 document.addEventListener('DOMContentLoaded',function(){var a=document.getElementById('call-audio');if(a)a.addEventListener('ended',function(){document.getElementById('call-play-icon').innerHTML='<polygon points="5,3 19,12 5,21"/>';cancelAnimationFrame(callRafId)})});
 </script>
