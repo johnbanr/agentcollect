@@ -27,18 +27,14 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',syst
 .nav-expiry{font-size:13px;color:var(--light-muted);letter-spacing:-.2px}
 .nav-phone{color:var(--text);font-weight:700;font-size:14px;text-decoration:none;letter-spacing:-.3px}
 
-/* Hero — full viewport */
+/* Hero — full viewport, 3 elements: title + subtitle + demo */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 32px 80px}
-.hero h1{font-size:clamp(40px,7vw,72px);font-weight:300;letter-spacing:-2.5px;line-height:1.05;max-width:780px}
+.hero h1{font-size:clamp(40px,7vw,72px);font-weight:300;letter-spacing:-2.5px;line-height:1.05;max-width:740px}
 .hero h1 strong{font-weight:900;color:var(--red)}
-.hero-sub{font-size:20px;color:var(--muted);margin-top:24px;max-width:620px;line-height:1.6;font-weight:400}
-
-/* Trigger banner */
-.trigger-banner{margin-top:32px;display:inline-flex;align-items:center;gap:10px;background:#fef3c7;border:1px solid #fde68a;border-radius:100px;padding:10px 20px;font-size:13px;color:#92400e;font-weight:500}
-.trigger-dot{width:6px;height:6px;border-radius:50%;background:#f59e0b;flex-shrink:0}
+.hero-sub{font-size:20px;color:var(--muted);margin-top:24px;max-width:600px;line-height:1.6;font-weight:400}
 
 /* Demo box */
-.demo-wrap{margin-top:48px;width:100%;max-width:440px}
+.demo-wrap{margin-top:56px;width:100%;max-width:440px}
 .demo-label{font-size:15px;font-weight:600;color:var(--text);margin-bottom:4px}
 .demo-sub{font-size:14px;color:var(--muted);margin-bottom:16px}
 .demo-row{display:flex;gap:8px}
@@ -58,7 +54,7 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',syst
 
 /* DLL Section — problem-first */
 .problem{padding:160px 32px;text-align:center}
-.problem h2{font-size:clamp(32px,5vw,56px);font-weight:300;letter-spacing:-1.5px;line-height:1.1;max-width:700px;margin:0 auto}
+.problem h2{font-size:clamp(32px,5vw,56px);font-weight:300;letter-spacing:-1.5px;line-height:1.1;max-width:640px;margin:0 auto}
 .problem h2 strong{font-weight:900;color:var(--red)}
 .problem-sub{font-size:18px;color:var(--muted);margin-top:20px;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.6}
 
@@ -74,13 +70,6 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',syst
 .review q{font-size:16px;line-height:1.6;font-style:italic;display:block}
 .review-src{font-size:12px;color:var(--muted);margin-top:8px}
 .review-verdict{font-size:15px;color:var(--red);font-weight:700;text-align:center;margin-top:40px}
-
-/* Inline CTA — re-emerges after problem section */
-.inline-cta{text-align:center;padding:0 32px 80px}
-.inline-cta-text{font-size:16px;color:var(--muted);margin-bottom:16px}
-.inline-cta-text strong{color:var(--text);font-weight:700}
-.inline-cta a{display:inline-block;background:var(--primary);color:#fff;padding:14px 32px;border-radius:100px;font-weight:700;font-size:15px;text-decoration:none;letter-spacing:-.3px;transition:transform .2s}
-.inline-cta a:hover{transform:scale(1.03)}
 
 /* Dark player — showcase piece */
 .player-section{padding:0 32px 160px}
@@ -130,11 +119,6 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',syst
 .chain-role{font-size:12px;color:var(--muted);margin-top:2px}
 .chain-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-top:12px;display:inline-block;padding:4px 10px;border-radius:100px}
 
-/* Champion callout */
-.champion-callout{max-width:560px;margin:48px auto 0;padding:24px 28px;border-radius:16px;background:rgba(37,99,235,.04);border:1px solid rgba(37,99,235,.12);text-align:center}
-.champion-callout p{font-size:15px;color:var(--muted);line-height:1.6}
-.champion-callout strong{color:var(--text);font-weight:700}
-
 /* Comparison table */
 .compare-section{padding:160px 32px;text-align:center;background:var(--bg-alt)}
 .compare-section h2{font-size:clamp(32px,5vw,56px);font-weight:300;letter-spacing:-1.5px;line-height:1.1;max-width:550px;margin:0 auto}
@@ -154,11 +138,9 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',syst
 .verdict td:nth-child(2){color:var(--red)!important}
 .verdict td:nth-child(3){color:var(--primary)!important}
 
-/* Logos + industry stat */
+/* Logos */
 .logos{display:flex;align-items:center;justify-content:center;gap:40px;opacity:.3;margin-top:64px;flex-wrap:wrap}
 .logos img{height:18px}
-.industry-proof{margin-top:24px;font-size:14px;color:var(--muted);font-weight:500}
-.industry-proof strong{color:var(--text)}
 
 /* CTA — dark, breathing, one action */
 .cta-section{padding:160px 32px;text-align:center;background:#0a0a14;color:#fff}
@@ -170,9 +152,6 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',syst
 .cta-btn:hover{transform:scale(1.04)}
 .cta-or{display:block;margin-top:16px;font-size:14px;color:rgba(255,255,255,.3)}
 .cta-or a{color:rgba(255,255,255,.3);text-decoration:none}
-.cta-soft{display:block;margin-top:24px;font-size:15px;color:rgba(255,255,255,.5)}
-.cta-soft a{color:var(--primary);text-decoration:none;font-weight:600}
-.cta-surround{margin-top:40px;padding-top:32px;border-top:1px solid rgba(255,255,255,.06);font-size:13px;color:rgba(255,255,255,.25);max-width:440px;margin-left:auto;margin-right:auto;line-height:1.6}
 
 /* Footer */
 .foot{padding:32px;text-align:center;font-size:12px;color:rgba(0,0,0,.15)}
@@ -195,8 +174,6 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',syst
   .demo-row{flex-direction:column}
   .demo-btn{text-align:center;justify-content:center}
   .compare-table th,.compare-table td{padding:12px 14px;font-size:13px}
-  .trigger-banner{font-size:12px;padding:8px 16px}
-  .inline-cta{padding:0 24px 60px}
 }
 </style>
 </head>
@@ -211,17 +188,11 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',syst
   <a href="tel:+12016277551" class="nav-phone" onclick="gtag('event','call_nav',{})">(201) 627-7551</a>
 </nav>
 
-<!-- 1. HERO — Pattern interrupt with specificity + trigger -->
+<!-- 1. HERO — Problem statement + demo dare -->
 <section class="hero">
   <div class="rv">
-    <h1>DLL Finance has <strong>47 complaints</strong> on BBB. They collect in <em>your</em> name.</h1>
-    <p class="hero-sub">Every call DLL makes to a Konica Minolta debtor is a call from <em>you</em>. Their 1-star rating is your 1-star rating. Their FDCPA violations are your lawsuits.</p>
-
-    <!-- Kyle's Rec #1: Trigger/Hook — real current event -->
-    <div class="trigger-banner">
-      <span class="trigger-dot"></span>
-      Konica Minolta just announced a new leadership team effective April 1. New leadership, same collection agency?
-    </div>
+    <h1>Your collection agency<br>is <strong>destroying</strong> your brand.</h1>
+    <p class="hero-sub">DLL Finance collects your bizhub leases with a 1-star BBB rating and FDCPA violations. New leadership starts April 1 &mdash; same agency.</p>
 
     <div class="demo-wrap">
       <div id="ds1">
@@ -251,7 +222,7 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',syst
   </div>
 </section>
 
-<!-- 2. DLL EXPOSED — the enemy, big numbers, BBB specificity -->
+<!-- 2. DLL EXPOSED — the enemy, big numbers -->
 <section class="problem">
   <div class="rv">
     <h2>This is who calls debtors<br><strong>in your name.</strong></h2>
@@ -290,12 +261,6 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',syst
     <p class="review-verdict">These aren't our words. These are your customers' words.</p>
   </div>
 </section>
-
-<!-- Kyle's Rec #8: Inline CTA re-emerges after problem section -->
-<div class="inline-cta rv">
-  <p class="inline-cta-text">Seen enough? <strong>200 accounts. 60 days. $0 upfront.</strong></p>
-  <a href="https://cal.com/johnb/30" target="_blank" onclick="gtag('event','book_inline_1',{})">I dare you to prove it</a>
-</div>
 
 <!-- 3. DARK PLAYER — proof it works -->
 <section class="player-section" style="padding-top:160px">
@@ -345,7 +310,7 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',syst
   </div>
 </section>
 
-<!-- 4. CONTACT CHAIN — compact horizontal + champion identifier -->
+<!-- 4. CONTACT CHAIN — compact horizontal -->
 <section class="chain-section" style="background:var(--bg-alt)">
   <div class="rv">
     <h2>We mapped the decision chain<br><strong>before this page loaded.</strong></h2>
@@ -379,22 +344,11 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',syst
         <div class="chain-tag" style="background:rgba(220,38,38,.08);color:var(--red)">Protected</div>
       </div>
     </div>
-
-    <!-- Kyle's Rec #4: Champion Identifier — Below/Above the Line -->
-    <div class="champion-callout">
-      <p>Not the right person? <strong>Forward this to your Head of Collections or VP Finance</strong> &mdash; they'll know exactly what this means.</p>
-    </div>
   </div>
 </section>
 
-<!-- Kyle's Rec #8: Inline CTA re-emerges after chain section -->
-<div class="inline-cta rv" style="padding-top:80px;background:var(--bg-alt)">
-  <p class="inline-cta-text">Worth a closer look? <strong>See the full analysis.</strong></p>
-  <a href="#compare" onclick="gtag('event','scroll_to_compare',{})">See how we compare</a>
-</div>
-
 <!-- 5. COMPARISON TABLE -->
-<section class="compare-section" id="compare">
+<section class="compare-section">
   <div class="rv">
     <h2>Side by side.<br><strong>No contest.</strong></h2>
     <p class="compare-sub">Same debtor, same invoice, completely different experience.</p>
@@ -411,49 +365,32 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',syst
       <tr class="verdict"><td>Verdict</td><td>Liability</td><td>Asset</td></tr>
     </table>
 
-    <!-- Kyle's Rec #3: Industry-specific social proof -->
     <div class="logos">
       <img src="https://cdn.brandfetch.io/microsoft.com/w/512/h/80/logo" alt="Microsoft" />
       <img src="https://cdn.brandfetch.io/dell.com/w/512/h/80/logo" alt="Dell" />
       <img src="https://cdn.brandfetch.io/plaid.com/w/512/h/80/logo" alt="Plaid" />
       <img src="https://cdn.brandfetch.io/checkr.com/w/512/h/80/logo" alt="Checkr" />
     </div>
-    <p class="industry-proof">B2B equipment leasing companies recover <strong>3.2x more</strong> with AI-powered collections vs. traditional agencies.</p>
   </div>
 </section>
 
-<!-- 6. CTA — the dare + Kyle's soft alternative + surround sound + real urgency -->
+<!-- 6. CTA — the dare -->
 <section class="cta-section">
   <div class="rv">
     <h2>200 of your worst accounts.<br><strong>60 days. $0 upfront.</strong></h2>
     <p class="cta-detail">15% of what we recover. Nothing recovered, nothing owed.</p>
     <div class="cta-price">$4,750 per bizhub. We'll get it.</div>
-
-    <!-- Primary CTA: Marc's dare (kept intact) -->
     <a href="https://cal.com/johnb/30" target="_blank" class="cta-btn" onclick="gtag('event','book_cta',{})">I dare you to prove it</a>
     <span class="cta-or"><a href="tel:+12016277551" onclick="gtag('event','call_cta',{})">or call (201) 627-7551</a></span>
-
-    <!-- Kyle's Rec #2: Softer secondary CTA -->
-    <span class="cta-soft">Not ready to call? <a href="mailto:j@agentcollect.com?subject=Konica%20Minolta%20%E2%80%94%20worth%20a%20look&body=Send%20me%20the%20full%20analysis." onclick="gtag('event','email_cta',{})">Forward this to your Head of AR</a> &mdash; they'll know what to do.</span>
-
-    <!-- Kyle's Rec #7: Multi-channel reinforcement (Surround Sound) -->
-    <div class="cta-surround">
-      We'll also send a brief analysis by email with your account-specific numbers. One page. No sales pitch. Just data.
-    </div>
+    <p style="margin-top:32px;font-size:14px;color:rgba(255,255,255,.25)">Not the right person? Forward this to your Head of Collections.</p>
   </div>
 </section>
 
 <div class="foot">Zwanger-Pesiri Radiology used as sample. All contacts from public sources.</div>
 
 <script>
-// Expiry — Kyle's Rec #6: Tied to real event (new leadership effective April 1)
-(function(){
-  var target=new Date('2026-04-01');
-  var diff=Math.ceil((target-new Date())/864e5);
-  var el=document.getElementById('days-left');
-  if(diff>0) el.textContent=diff+' day'+(diff!==1?'s':'')+' until new leadership takes over';
-  else el.textContent='new leadership is now in place';
-})();
+// Expiry
+(function(){var d=new Date('2026-04-11'),diff=Math.ceil((d-new Date())/864e5);document.getElementById('days-left').textContent=diff>0?'expires in '+diff+' day'+(diff!==1?'s':''):'expired'})();
 
 // Reveal
 var ro=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('v')})},{threshold:.15});
