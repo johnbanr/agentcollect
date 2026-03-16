@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgentCollect × Konica Minolta</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GRZZT9K05B"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-GRZZT9K05B');</script>
+<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","vr6uvxdalw");</script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --red:#C41E3A;
+  --cream:#FFF8F0;
+  --black:#0C0B0A;
+  --blue:#2563eb;
+  --dark:#1A1917;
+  --muted:#8A857D;
+  --border:rgba(12,11,10,.12);
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--cream);color:var(--black);font-family:'Plus Jakarta Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.georgia{font-family:Georgia,'Times New Roman',serif}
+
+/* ===== CINEMATIC REVEAL ===== */
+.rv{opacity:0;transform:scale(.94);transition:opacity 1s cubic-bezier(.22,1,.36,1),transform 1.2s cubic-bezier(.22,1,.36,1)}
+.rv.v{opacity:1;transform:scale(1)}
+.rv-up{opacity:0;transform:translateY(60px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform 1s cubic-bezier(.22,1,.36,1)}
+.rv-up.v{opacity:1;transform:none}
+.rv-left{opacity:0;transform:translateX(-80px);transition:opacity .8s ease,transform 1s ease}
+.rv-left.v{opacity:1;transform:none}
+.rv-right{opacity:0;transform:translateX(80px);transition:opacity .8s ease,transform 1s ease}
+.rv-right.v{opacity:1;transform:none}
+.hidden{display:none!important}
+
+/* ===== NAV ===== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,248,240,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(12,11,10,.06)}
+.nav-logo{display:flex;align-items:center;gap:6px;text-decoration:none;font-weight:800;font-size:15px;color:var(--black);letter-spacing:-.3px}
+.nav-logo .mark{background:var(--blue);color:#fff;width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800}
+.nav-logo .c{color:var(--blue)}
+.nav-expiry{font-size:12px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;font-weight:600}
+.nav-phone{color:var(--black);font-weight:800;font-size:14px;text-decoration:none;letter-spacing:-.3px}
+
+/* ===== SCENE 1: HERO ===== */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:140px 40px 100px 80px;position:relative;z-index:2}
+.hero-right{position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+
+/* Shield SVG */
+.shield-container{position:absolute;right:-10%;top:50%;transform:translateY(-50%);width:700px;height:700px;opacity:.08}
+
+/* Diagonal cut */
+.hero::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:120px;background:var(--cream);clip-path:polygon(0 100%,100% 0,100% 100%)}
+
+.hero .km-logo{height:32px;margin-bottom:48px;opacity:.7;filter:grayscale(0)}
+.hero h1{font-family:Georgia,serif;font-size:clamp(38px,5.5vw,68px);font-weight:400;line-height:1.06;letter-spacing:-2px;color:var(--black);max-width:600px}
+.hero h1 em{font-style:italic;color:var(--red);font-weight:400}
+.hero-sub{font-size:17px;color:var(--muted);margin-top:28px;max-width:480px;line-height:1.7;font-weight:400}
+.hero-sub strong{color:var(--red);font-weight:700}
+
+/* Demo box */
+.demo-wrap{margin-top:56px;max-width:420px}
+.demo-label{font-size:18px;font-weight:800;color:var(--black);margin-bottom:4px;letter-spacing:-.3px}
+.demo-sub{font-size:14px;color:var(--muted);margin-bottom:20px}
+.demo-row{display:flex;gap:8px}
+.demo-input{flex:1;background:#fff;border:2px solid var(--black);border-radius:0;padding:16px 20px;font-family:inherit;font-size:16px;color:var(--black);outline:none;transition:border-color .2s}
+.demo-input::placeholder{color:#bbb}
+.demo-input:focus{border-color:var(--red)}
+.demo-btn{background:var(--red);color:#fff;border:none;padding:16px 28px;font-family:inherit;font-weight:900;font-size:15px;cursor:pointer;text-transform:uppercase;letter-spacing:1px;transition:transform .15s,background .2s}
+.demo-btn:hover{background:#A01830;transform:scale(1.02)}
+.demo-enriching{display:flex;align-items:center;justify-content:center;gap:12px;font-size:15px;color:var(--muted);padding:16px 0}
+.demo-found{display:flex;align-items:center;gap:14px;background:rgba(22,163,74,.06);border:2px solid rgba(22,163,74,.2);padding:12px 20px 12px 12px;margin-bottom:12px}
+.demo-found-init{width:40px;height:40px;background:var(--black);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:14px;flex-shrink:0}
+.demo-found-tag{margin-left:auto;background:rgba(22,163,74,.12);color:#16a34a;font-size:10px;font-weight:700;padding:3px 10px;text-transform:uppercase;letter-spacing:.5px}
+.demo-calling{display:flex;align-items:center;justify-content:center;gap:10px;font-size:15px;font-weight:700;color:var(--red)}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.3}}
+.pulse{width:10px;height:10px;border-radius:50%;background:var(--red);animation:pulse 1.2s infinite;flex-shrink:0}
+.demo-note{font-size:12px;color:var(--muted);margin-top:16px;font-style:italic}
+
+/* ===== GEOMETRIC DIVIDER ===== */
+.divider-angular{height:120px;background:var(--black);clip-path:polygon(0 0,100% 40%,100% 100%,0 60%);margin:0}
+.divider-angular-reverse{height:120px;background:var(--cream);clip-path:polygon(0 40%,100% 0,100% 60%,0 100%);margin:0}
+.divider-red{height:6px;background:var(--red);width:80px;margin:0 auto 48px}
+
+/* ===== SCENE 2: DLL PROBLEM ===== */
+.problem{background:var(--black);color:var(--cream);padding:140px 40px 160px;position:relative;overflow:hidden}
+.problem::before{content:'';position:absolute;top:-60px;left:0;right:0;height:120px;background:var(--cream);clip-path:polygon(0 0,100% 0,100% 100%,0 40%)}
+.problem::after{content:'';position:absolute;bottom:-60px;left:0;right:0;height:120px;background:var(--cream);clip-path:polygon(0 0,100% 60%,100% 100%,0 100%)}
+
+.problem-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:center}
+.problem-text h2{font-family:Georgia,serif;font-size:clamp(32px,4.5vw,56px);font-weight:400;line-height:1.08;letter-spacing:-1.5px;color:var(--cream)}
+.problem-text h2 em{color:var(--red);font-style:italic}
+.problem-text p{font-size:16px;color:rgba(255,248,240,.5);margin-top:24px;line-height:1.7;max-width:380px}
+
+/* Ratings */
+.ratings-col{display:flex;flex-direction:column;gap:32px}
+.rating-card{padding:32px;background:rgba(255,248,240,.04);border:1px solid rgba(255,248,240,.08);position:relative}
+.rating-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--red)}
+.rating-num{font-family:Georgia,serif;font-size:72px;font-weight:400;color:var(--red);line-height:1;letter-spacing:-3px}
+.rating-label{font-size:12px;color:rgba(255,248,240,.4);margin-top:4px;text-transform:uppercase;letter-spacing:1px;font-weight:600}
+.rating-link{font-size:11px;color:rgba(255,248,240,.25);text-decoration:none;margin-top:4px;display:inline-block}
+.rating-link:hover{color:var(--red)}
+
+/* Reviews */
+.reviews-wrap{max-width:800px;margin:80px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.review{padding:32px;background:rgba(255,248,240,.03);border:1px solid rgba(255,248,240,.06);position:relative}
+.review::before{content:'\201C';font-family:Georgia,serif;font-size:80px;color:var(--red);opacity:.3;position:absolute;top:-10px;left:16px;line-height:1}
+.review q{font-family:Georgia,serif;font-size:15px;line-height:1.7;font-style:italic;display:block;color:rgba(255,248,240,.6);quotes:none}
+.review q strong{font-weight:700;color:var(--cream)}
+.review-src{font-size:11px;color:rgba(255,248,240,.25);margin-top:14px;text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+.review-verdict{text-align:center;margin-top:64px;font-family:Georgia,serif;font-size:20px;font-style:italic;color:var(--red)}
+
+/* ===== SCENE 3: TRANSCRIPT PLAYER ===== */
+.player-section{padding:140px 40px 160px;background:var(--cream);position:relative}
+.player-section h2{font-family:Georgia,serif;font-size:clamp(32px,4.5vw,56px);font-weight:400;line-height:1.08;letter-spacing:-1.5px;text-align:center;max-width:500px;margin:0 auto 64px}
+.player-section h2 em{color:var(--red);font-style:italic}
+
+/* Film-strip player */
+.film-player{background:var(--black);max-width:940px;margin:0 auto;position:relative;overflow:hidden}
+/* Sprocket holes */
+.film-player::before,.film-player::after{content:'';position:absolute;top:0;bottom:0;width:28px;background:repeating-linear-gradient(to bottom,transparent,transparent 20px,rgba(255,248,240,.06) 20px,rgba(255,248,240,.06) 24px,transparent 24px,transparent 44px);z-index:2}
+.film-player::before{left:0}
+.film-player::after{right:0}
+.film-header{padding:32px 56px 0;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:3}
+.film-header-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:rgba(255,248,240,.2)}
+.film-live{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;color:#C41E3A;text-transform:uppercase;letter-spacing:1px}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.film-live-dot{width:6px;height:6px;border-radius:50%;background:var(--red);animation:blink 1.5s infinite}
+.film-body{display:grid;grid-template-columns:1.3fr 1fr;min-height:320px;position:relative;z-index:3}
+.film-transcript{padding:28px 56px 40px;display:flex;flex-direction:column;justify-content:center;gap:28px}
+.film-line{opacity:0;transform:translateY(16px) scale(.96);transition:all .6s cubic-bezier(.22,1,.36,1)}
+.film-line.shown{opacity:1;transform:none}
+.film-speaker{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:2px;margin-bottom:6px;display:block}
+.film-speaker.ai{color:var(--red)}
+.film-speaker.hu{color:rgba(255,248,240,.3)}
+.film-text{font-family:Georgia,serif;font-size:clamp(16px,2vw,20px);font-weight:400;line-height:1.55;color:var(--cream)}
+.film-text.hu{color:rgba(255,248,240,.4);font-size:clamp(14px,1.6vw,17px)}
+.film-reasoning{padding:28px 40px 40px;border-left:1px solid rgba(255,248,240,.06);display:flex;flex-direction:column;justify-content:center;gap:14px}
+.film-reasoning h3{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:rgba(255,248,240,.2);margin-bottom:8px}
+.film-badge{padding:14px 18px;font-size:13px;font-weight:700;opacity:0;transform:translateX(20px);transition:all .6s cubic-bezier(.22,1,.36,1);border-left:3px solid transparent}
+.film-badge.shown{opacity:1;transform:none}
+.film-badge.green{background:rgba(22,163,74,.08);color:#4ade80;border-left-color:#16a34a}
+.film-badge.orange{background:rgba(251,191,36,.08);color:#fbbf24;border-left-color:#d97706}
+.film-controls{display:flex;align-items:center;gap:20px;padding:20px 56px;border-top:1px solid rgba(255,248,240,.06);position:relative;z-index:3}
+.film-play{width:48px;height:48px;background:var(--red);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .15s}
+.film-play:hover{transform:scale(1.06)}
+.film-track{flex:1;height:2px;background:rgba(255,248,240,.1);cursor:pointer;position:relative}
+.film-fill{height:100%;background:var(--red);width:0%;transition:width .1s linear}
+.film-time{font-size:11px;color:rgba(255,248,240,.25);font-variant-numeric:tabular-nums;white-space:nowrap;letter-spacing:.5px}
+.film-hint{text-align:center;padding:12px 0 20px;font-size:11px;color:rgba(255,248,240,.15);position:relative;z-index:3;text-transform:uppercase;letter-spacing:1px}
+
+/* ===== SCENE 4: CONTACT CHAIN ===== */
+.chain-section{padding:140px 40px 160px;background:var(--cream);text-align:center;position:relative}
+.chain-section h2{font-family:Georgia,serif;font-size:clamp(32px,4.5vw,56px);font-weight:400;line-height:1.08;letter-spacing:-1.5px;max-width:600px;margin:0 auto}
+.chain-section h2 em{color:var(--red);font-style:italic}
+.chain-sub{font-size:15px;color:var(--muted);margin-top:20px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.6}
+
+.chain-strip{display:flex;justify-content:center;gap:3px;margin-top:64px;flex-wrap:wrap}
+.chain-card{background:#fff;padding:36px 24px;text-align:center;width:210px;position:relative;border:1px solid rgba(12,11,10,.06);transition:transform .3s ease}
+.chain-card:hover{transform:translateY(-4px)}
+.chain-card:first-child{border-left:4px solid #16a34a}
+.chain-card:nth-child(2){border-left:4px solid #d97706}
+.chain-card:nth-child(3){border-left:4px solid var(--blue)}
+.chain-card:last-child{border-left:4px solid var(--red)}
+.chain-card.protected{background:repeating-linear-gradient(45deg,#fff,#fff 8px,#FAFAF8 8px,#FAFAF8 16px)}
+.chain-avatar{width:52px;height:52px;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:800;margin-bottom:14px;letter-spacing:-.5px}
+.chain-avatar.g1{background:var(--black)}
+.chain-avatar.g2{background:var(--muted)}
+.chain-avatar.g3{background:var(--blue)}
+.chain-avatar.g4{background:var(--red)}
+.chain-name{font-weight:800;font-size:14px;color:var(--black)}
+.chain-role{font-size:12px;color:var(--muted);margin-top:2px}
+.chain-contact-info{margin-top:12px;display:flex;flex-direction:column;gap:4px}
+.chain-contact-line{display:flex;align-items:center;justify-content:center;gap:6px;font-size:11px;color:var(--muted)}
+.chain-contact-line svg{flex-shrink:0;opacity:.4}
+.chain-tag{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-top:14px;display:inline-block;padding:4px 12px}
+
+/* ===== SCENE 5: COMPARISON ===== */
+.compare-section{background:var(--black);color:var(--cream);padding:140px 40px 160px;text-align:center;position:relative}
+.compare-section::before{content:'';position:absolute;top:-60px;left:0;right:0;height:120px;background:var(--cream);clip-path:polygon(0 0,100% 0,0 100%)}
+.compare-section h2{font-family:Georgia,serif;font-size:clamp(32px,4.5vw,56px);font-weight:400;line-height:1.08;letter-spacing:-1.5px;max-width:500px;margin:0 auto}
+.compare-section h2 em{color:var(--red);font-style:italic}
+
+.compare-table{width:100%;max-width:740px;margin:64px auto 0;border-collapse:collapse}
+.compare-table th,.compare-table td{padding:18px 24px;text-align:left;font-size:14px;border-bottom:1px solid rgba(255,248,240,.06)}
+.compare-table tr:last-child td{border-bottom:none}
+.compare-table th{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,248,240,.3);border-bottom:2px solid rgba(255,248,240,.1)}
+.compare-table th:nth-child(2){color:var(--red)}
+.compare-table th:nth-child(3){color:var(--blue)}
+.compare-table td:first-child{font-weight:700;color:var(--cream);font-size:13px;text-transform:uppercase;letter-spacing:.5px}
+.compare-table td:nth-child(2){color:rgba(255,248,240,.35)}
+.compare-table td:nth-child(3){font-weight:600;color:var(--cream)}
+.verdict td{border-top:2px solid var(--red)!important;padding-top:24px}
+.verdict td:nth-child(2){color:var(--red)!important;font-weight:900!important;font-size:16px}
+.verdict td:nth-child(3){color:var(--blue)!important;font-weight:900!important;font-size:16px}
+
+.logos{display:flex;justify-content:center;gap:48px;margin-top:72px;flex-wrap:wrap;align-items:center}
+.logos img{height:20px;opacity:.2;filter:brightness(10);transition:opacity .3s}
+.logos img:hover{opacity:.4}
+
+/* ===== SCENE 6: CTA ===== */
+.cta-section{background:var(--black);color:var(--cream);padding:120px 40px 140px;text-align:center;position:relative}
+.cta-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--red)}
+.cta-section h2{font-family:Georgia,serif;font-size:clamp(30px,4vw,52px);font-weight:400;line-height:1.08;letter-spacing:-1.5px;max-width:600px;margin:0 auto}
+.cta-section h2 em{color:var(--red);font-style:italic}
+.cta-detail{font-size:16px;color:rgba(255,248,240,.45);margin-top:24px;line-height:1.7}
+.cta-price{font-family:Georgia,serif;font-size:24px;font-style:italic;color:var(--cream);margin-top:32px;letter-spacing:-.5px}
+.cta-btn{display:inline-block;margin-top:40px;background:var(--red);color:#fff;text-decoration:none;padding:20px 48px;font-family:inherit;font-weight:900;font-size:15px;text-transform:uppercase;letter-spacing:2px;transition:transform .15s,background .2s}
+.cta-btn:hover{background:#A01830;transform:scale(1.03)}
+.cta-or{display:block;margin-top:20px;font-size:14px;color:rgba(255,248,240,.35)}
+.cta-or a{color:rgba(255,248,240,.5);text-decoration:none;font-weight:600}
+.cta-or a:hover{color:var(--cream)}
+.cta-forward{font-size:13px;color:rgba(255,248,240,.25);margin-top:32px;font-style:italic}
+
+/* Footer */
+.foot{padding:40px;text-align:center;font-size:11px;color:var(--muted);background:var(--cream);letter-spacing:.5px}
+
+/* ===== VERTICAL ACCENT TEXT ===== */
+.vert-text{position:absolute;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:3px;writing-mode:vertical-rl;color:rgba(12,11,10,.08);pointer-events:none}
+
+/* ===== GEOMETRIC ACCENT SHAPES ===== */
+.geo-circle{position:absolute;border-radius:50%;border:2px solid var(--red);opacity:.1;pointer-events:none}
+.geo-line{position:absolute;background:var(--red);opacity:.08;pointer-events:none}
+
+/* ===== SPINNER ===== */
+@keyframes spin{to{transform:rotate(360deg)}}
+.spinner{width:16px;height:16px;border:2px solid var(--muted);border-top-color:var(--black);border-radius:50%;animation:spin .8s linear infinite}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-left{padding:120px 24px 80px}
+  .hero-right{display:none}
+  .problem-inner{grid-template-columns:1fr;gap:48px;text-align:center}
+  .problem-inner .problem-text p{margin-left:auto;margin-right:auto}
+  .reviews-wrap{grid-template-columns:1fr}
+  .film-body{grid-template-columns:1fr}
+  .film-reasoning{border-left:none;border-top:1px solid rgba(255,248,240,.06);padding:20px 56px 28px}
+  .chain-strip{flex-direction:column;align-items:center}
+  .chain-card{width:280px}
+  .compare-table th,.compare-table td{padding:14px 12px;font-size:12px}
+  .nav{padding:14px 20px}
+  .nav-expiry{display:none}
+}
+@media(max-width:480px){
+  .hero-left{padding:100px 20px 60px}
+  .problem{padding:100px 20px 120px}
+  .player-section{padding:100px 20px 120px}
+  .chain-section{padding:100px 20px 120px}
+  .compare-section{padding:100px 20px 120px}
+  .cta-section{padding:80px 20px 100px}
+  .film-player::before,.film-player::after{width:16px}
+  .film-header,.film-controls{padding-left:36px;padding-right:36px}
+  .film-transcript{padding-left:36px;padding-right:36px}
+  .film-reasoning{padding-left:36px;padding-right:36px}
+  .demo-row{flex-direction:column}
+  .demo-btn{justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="/" class="nav-logo"><span class="mark">a</span>agent<span class="c">collect</span></a>
+  <span class="nav-expiry">Konica Minolta &middot; <span id="days-left"></span></span>
+  <a href="tel:+12016277551" class="nav-phone">(201) 627-7551</a>
+</nav>
+
+<!-- SCENE 1: HERO -->
+<section class="hero">
+  <!-- Vertical accent -->
+  <span class="vert-text" style="left:20px;top:50%;transform:translateY(-50%) rotate(180deg)">Scene I</span>
+
+  <div class="hero-left">
+    <div class="rv">
+      <img src="https://cdn.brandfetch.io/konicaminolta.com/w/512/h/80/logo" alt="Konica Minolta" class="km-logo">
+      <h1>Your collection agency is <em>destroying</em> your brand.</h1>
+      <p class="hero-sub">DLL Finance collects your bizhub leases with a <strong>2.2-star Google rating</strong> and FDCPA violations on record.</p>
+
+      <!-- Demo -->
+      <div class="demo-wrap">
+        <div id="ds1">
+          <div class="demo-label">We already built your agent.</div>
+          <div class="demo-sub">Enter your number. Try not to pay $4,750.</div>
+          <div class="demo-row">
+            <input type="tel" class="demo-input" id="demo-phone" placeholder="(555) 555-5555" autocomplete="tel">
+            <button class="demo-btn" onclick="startDemo()">Prove us wrong</button>
+          </div>
+          <p class="demo-note">Real AI agent. Real call. Matched to your area code.</p>
+        </div>
+        <div id="ds2" class="hidden">
+          <div class="demo-enriching"><div class="spinner"></div>Identifying you...</div>
+        </div>
+        <div id="ds3" class="hidden">
+          <div class="demo-found">
+            <div class="demo-found-init" id="fi">?</div>
+            <div><div id="fn" style="font-weight:700;font-size:14px;color:var(--black)"></div><div id="ft" style="font-size:12px;color:var(--muted)"></div></div>
+            <div class="demo-found-tag">Verified</div>
+          </div>
+          <div class="demo-calling"><div class="pulse"></div>Calling you now...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <!-- Large geometric shield, cracked -->
+    <svg class="rv" width="500" height="600" viewBox="0 0 500 600" fill="none" style="opacity:.06">
+      <path d="M250 20L450 100V300C450 450 250 580 250 580S50 450 50 300V100L250 20Z" stroke="#0C0B0A" stroke-width="3"/>
+      <!-- Crack line -->
+      <path d="M250 20L230 180L270 280L220 400L260 580" stroke="#C41E3A" stroke-width="2" stroke-dasharray="4 4"/>
+      <!-- Left shard -->
+      <path d="M250 20L50 100V300C50 380 120 460 200 520L230 180L250 20Z" fill="#0C0B0A" opacity=".3"/>
+    </svg>
+    <!-- Geometric accents -->
+    <div class="geo-circle" style="width:200px;height:200px;top:15%;right:10%"></div>
+    <div class="geo-line" style="width:1px;height:300px;top:20%;right:35%;transform:rotate(15deg)"></div>
+  </div>
+</section>
+
+<!-- SCENE 2: DLL PROBLEM -->
+<section class="problem">
+  <span class="vert-text" style="right:20px;top:50%;transform:translateY(-50%);color:rgba(255,248,240,.05)">Scene II</span>
+
+  <div class="problem-inner rv">
+    <div class="problem-text">
+      <h2>This is who calls debtors <em>in your name.</em></h2>
+      <p>Every negative review is a review of your brand. Every FDCPA complaint is a lawsuit risk for you.</p>
+    </div>
+
+    <div class="ratings-col">
+      <a href="https://www.google.com/maps/place/DLL+Finance" target="_blank" class="rating-card" style="text-decoration:none;color:inherit">
+        <div class="rating-num">2.2</div>
+        <div class="rating-label">Google Reviews</div>
+        <span class="rating-link">View on Google Maps &rarr;</span>
+      </a>
+      <a href="https://www.lemberglaw.com/fdcpa-violations/" target="_blank" class="rating-card" style="text-decoration:none;color:inherit">
+        <div class="rating-num" style="font-size:48px">FDCPA</div>
+        <div class="rating-label">Violations on Record</div>
+        <span class="rating-link">View on Lemberg Law &rarr;</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="reviews-wrap rv-up">
+    <div class="review">
+      <q><strong>The Konica Bizhub cost us $8,000 over seven years.</strong> NO customer service. STAY AWAY.</q>
+      <div class="review-src">RevDex (verified complaint)</div>
+    </div>
+    <div class="review">
+      <q><strong>Equivalent to owning a timeshare.</strong> They don't return calls, don't negotiate.</q>
+      <div class="review-src">BBB &middot; Feb 2026</div>
+    </div>
+  </div>
+
+  <div class="review-verdict rv-up">These aren't our words. These are your customers' words.</div>
+</section>
+
+<!-- SCENE 3: TRANSCRIPT PLAYER -->
+<section class="player-section">
+  <span class="vert-text" style="left:20px;top:50%;transform:translateY(-50%) rotate(180deg);color:rgba(12,11,10,.06)">Scene III</span>
+
+  <h2 class="rv"><em>Hear it.</em> Then try to say no.</h2>
+
+  <div class="film-player rv-up">
+    <div class="film-header">
+      <span class="film-header-label">Recorded call transcript</span>
+      <span class="film-live"><span class="film-live-dot"></span> AI Agent</span>
+    </div>
+    <div class="film-body">
+      <div class="film-transcript">
+        <div class="film-line" data-at="0">
+          <span class="film-speaker ai">AgentCollect AI</span>
+          <div class="film-text">"Hi, I'm calling from Konica Minolta's accounts team regarding an outstanding balance of $4,750."</div>
+        </div>
+        <div class="film-line" data-at="10">
+          <span class="film-speaker hu">Contact</span>
+          <div class="film-text hu">"Wait... is this an AI?"</div>
+        </div>
+        <div class="film-line" data-at="16">
+          <span class="film-speaker ai">AgentCollect AI</span>
+          <div class="film-text">"I am an AI assistant. I'm here to help resolve this. Would you like to set up a payment plan today?"</div>
+        </div>
+      </div>
+      <div class="film-reasoning">
+        <h3>AI Reasoning</h3>
+        <div class="film-badge green" id="r1">Contact verified</div>
+        <div class="film-badge orange" id="r2">Skepticism detected</div>
+        <div class="film-badge green" id="r3">Resolved. Follow-up in 3 days</div>
+      </div>
+    </div>
+    <div class="film-controls">
+      <button class="film-play" id="pbtn" onclick="toggle()">
+        <svg id="picon" width="14" height="14" viewBox="0 0 24 24" fill="white"><polygon points="6,3 20,12 6,21"/></svg>
+      </button>
+      <div class="film-track" onclick="seek(event)">
+        <div class="film-fill" id="pbar"></div>
+      </div>
+      <div class="film-time" id="ptime">0:00 / 1:25</div>
+      <audio id="aud" preload="none">
+        <source src="https://dxc03zgurdly9.cloudfront.net/74fb900c432127ea0f920d6c76def8852e6ff88fb08fd02db7fd3b37da54a7d9/recording.wav" type="audio/wav">
+      </audio>
+    </div>
+    <div class="film-hint">Press play. Transcript syncs with audio.</div>
+  </div>
+</section>
+
+<!-- SCENE 4: CONTACT CHAIN -->
+<section class="chain-section">
+  <span class="vert-text" style="right:20px;top:50%;transform:translateY(-50%);color:rgba(12,11,10,.06)">Scene IV</span>
+
+  <div class="rv">
+    <h2>If a client stopped paying,<br><em>here's who we'd call.</em></h2>
+    <p class="chain-sub">Simulation on Zwanger-Pesiri Radiology, a real Konica Minolta customer.</p>
+  </div>
+
+  <div class="chain-strip rv-up">
+    <div class="chain-card">
+      <div class="chain-avatar g1">DM</div>
+      <div class="chain-name">Donna M.</div>
+      <div class="chain-role">Accounts Payable</div>
+      <div class="chain-contact-info">
+        <div class="chain-contact-line">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+          d...@zprad.com
+        </div>
+        <div class="chain-contact-line">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+          (516) ...&#8722;3421
+        </div>
+      </div>
+      <div class="chain-tag" style="background:rgba(22,163,74,.1);color:#16a34a">First contact</div>
+    </div>
+
+    <div class="chain-card">
+      <div class="chain-avatar g2">RM</div>
+      <div class="chain-name">Randi M.</div>
+      <div class="chain-role">Accounting Mgr</div>
+      <div class="chain-contact-info">
+        <div class="chain-contact-line">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+          r...@zprad.com
+        </div>
+        <div class="chain-contact-line">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+          (516) ...&#8722;8104
+        </div>
+      </div>
+      <div class="chain-tag" style="background:rgba(217,119,6,.1);color:#d97706">+5 days</div>
+    </div>
+
+    <div class="chain-card">
+      <div class="chain-avatar g3">JF</div>
+      <div class="chain-name">John F.</div>
+      <div class="chain-role">CFO</div>
+      <div class="chain-contact-info">
+        <div class="chain-contact-line">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+          j...@zprad.com
+        </div>
+        <div class="chain-contact-line">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+          (516) ...&#8722;7200
+        </div>
+      </div>
+      <div class="chain-tag" style="background:rgba(37,99,235,.1);color:var(--blue)">Escalation</div>
+    </div>
+
+    <div class="chain-card protected">
+      <div class="chain-avatar g4">
+        <svg width="20" height="20" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="chain-name">Steven M., MD</div>
+      <div class="chain-role">CEO</div>
+      <div class="chain-tag" style="background:rgba(196,30,58,.1);color:var(--red)">Protected</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:6px">Do not contact</div>
+    </div>
+  </div>
+</section>
+
+<!-- SCENE 5: COMPARISON -->
+<section class="compare-section">
+  <span class="vert-text" style="left:20px;top:50%;transform:translateY(-50%) rotate(180deg);color:rgba(255,248,240,.03)">Scene V</span>
+
+  <div class="rv">
+    <h2>Side by side. <em>No contest.</em></h2>
+
+    <table class="compare-table">
+      <tr><th style="width:28%"></th><th>DLL Finance</th><th>AgentCollect</th></tr>
+      <tr><td>Google Reviews</td><td>2.2 / 5</td><td>Brand-preserving</td></tr>
+      <tr><td>Speed</td><td>60 to 120 days</td><td>49% in 20 days</td></tr>
+      <tr><td>Call Experience</td><td>"Rude, aggressive"</td><td>Branded Konica Minolta</td></tr>
+      <tr><td>Disputes</td><td>Ignored voicemails</td><td>AI handles 86%</td></tr>
+      <tr><td>Compliance</td><td>FDCPA violations</td><td>Reg F by design</td></tr>
+      <tr><td>CEO Protected</td><td>No control</td><td>Never contacted</td></tr>
+      <tr class="verdict"><td>Verdict</td><td>Liability</td><td>Asset</td></tr>
+    </table>
+
+    <div class="logos">
+      <img src="https://cdn.brandfetch.io/microsoft.com/w/512/h/80/logo" alt="Microsoft" />
+      <img src="https://cdn.brandfetch.io/dell.com/w/512/h/80/logo" alt="Dell" />
+      <img src="https://cdn.brandfetch.io/plaid.com/w/512/h/80/logo" alt="Plaid" />
+      <img src="https://cdn.brandfetch.io/checkr.com/w/512/h/80/logo" alt="Checkr" />
+    </div>
+  </div>
+</section>
+
+<!-- SCENE 6: CTA -->
+<section class="cta-section">
+  <div class="rv">
+    <h2>200 of your worst accounts.<br><em>60 days. $0 upfront.</em></h2>
+    <p class="cta-detail">Success-based pricing. You pay nothing if we recover nothing.</p>
+    <div class="cta-price">$4,750 per bizhub. We'll get it.</div>
+    <a href="https://cal.com/johnb/30" target="_blank" class="cta-btn" onclick="gtag('event','book_cta',{})">I dare you to prove it</a>
+    <span class="cta-or"><a href="tel:+12016277551" onclick="gtag('event','call_cta',{})">or call (201) 627-7551</a></span>
+    <p class="cta-forward">Not the right person? Forward this to your Head of Collections.</p>
+  </div>
+</section>
+
+<div class="foot">Zwanger-Pesiri Radiology used as sample. All contacts from public sources.</div>
+
+<script>
+// Expiry countdown
+(function(){var d=new Date('2026-04-11'),diff=Math.ceil((d-new Date())/864e5);document.getElementById('days-left').textContent=diff>0?'expires in '+diff+' day'+(diff!==1?'s':''):'expired'})();
+
+// Cinematic reveal on scroll (fade + scale)
+var ro=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('v')}})},{threshold:.12});
+document.querySelectorAll('.rv,.rv-up,.rv-left,.rv-right').forEach(function(el){ro.observe(el)});
+
+// Phone format
+var ph=document.getElementById('demo-phone');
+ph.addEventListener('input',function(e){var v=e.target.value.replace(/\D/g,'').substring(0,10),o='';if(v.length>0)o='('+v.substring(0,3);if(v.length>=4)o+=') '+v.substring(3,6);if(v.length>=7)o+='-'+v.substring(6,10);e.target.value=o});
+ph.addEventListener('keydown',function(e){if(e.key==='Enter')startDemo()});
+
+// Demo flow
+function startDemo(){
+  var r=ph.value.replace(/\D/g,'');if(r.length<10){ph.focus();return}
+  var p='+1'+r;
+  gtag('event','demo_call_requested',{phone_entered:true});
+  document.getElementById('ds1').classList.add('hidden');
+  document.getElementById('ds2').classList.remove('hidden');
+  fetch('https://backend.widr.app/api/v1/demo/phone-lookup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone:p})}).then(function(r){return r.json()}).then(function(d){showFound(p,d.data&&d.data.person?d.data.person:null)}).catch(function(){showFound(p,null)})
+}
+function showFound(p,d){
+  document.getElementById('ds2').classList.add('hidden');
+  document.getElementById('ds3').classList.remove('hidden');
+  if(d&&d.name){
+    var i=d.name.split(' ').map(function(w){return w[0]}).join('').substring(0,2).toUpperCase();
+    document.getElementById('fi').textContent=i;
+    document.getElementById('fn').textContent=d.name;
+    document.getElementById('ft').textContent=d.title||d.company||''
+  }else{
+    document.getElementById('fi').textContent='?';
+    document.getElementById('fn').textContent='Identity confirmed';
+    document.getElementById('ft').textContent=''
+  }
+  fetch('https://backend.widr.app/api/v1/demo/prospect-call',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone:p,prospect:'Konica Minolta',product:'bizhub C3110i copier lease',amount:'$4,750',from_number:'+12016277551',name:d&&d.name?d.name:null})}).catch(function(){window.location.href='tel:+12016277551'})
+}
+
+// Audio player with synced transcript
+var aud=document.getElementById('aud'),raf=null;
+var rTimings=[{id:'r1',at:2},{id:'r2',at:14},{id:'r3',at:20}];
+var rShown={};
+function fmt(t){var m=Math.floor(t/60),s=Math.floor(t%60);return m+':'+(s<10?'0':'')+s}
+function tick(){
+  if(!aud)return;var d=aud.duration||85;
+  document.getElementById('pbar').style.width=(aud.currentTime/d*100)+'%';
+  document.getElementById('ptime').textContent=fmt(aud.currentTime)+' / '+fmt(d);
+  document.querySelectorAll('.film-line').forEach(function(el){
+    if(aud.currentTime>=parseFloat(el.dataset.at))el.classList.add('shown');
+  });
+  rTimings.forEach(function(r){
+    if(!rShown[r.id]&&aud.currentTime>=r.at){rShown[r.id]=true;document.getElementById(r.id).classList.add('shown')}
+  });
+  if(!aud.paused&&!aud.ended)raf=requestAnimationFrame(tick);
+}
+function toggle(){
+  if(!aud)return;
+  if(aud.paused||aud.ended){
+    aud.play().then(function(){
+      document.getElementById('picon').innerHTML='<rect x="6" y="4" width="4" height="16" fill="white"/><rect x="14" y="4" width="4" height="16" fill="white"/>';
+      raf=requestAnimationFrame(tick);
+    }).catch(function(){});
+  }else{
+    aud.pause();document.getElementById('picon').innerHTML='<polygon points="6,3 20,12 6,21"/>';cancelAnimationFrame(raf);
+  }
+}
+function seek(e){var r=e.currentTarget.getBoundingClientRect();aud.currentTime=((e.clientX-r.left)/r.width)*(aud.duration||85);if(!aud.paused)tick()}
+aud&&aud.addEventListener('ended',function(){document.getElementById('picon').innerHTML='<polygon points="6,3 20,12 6,21"/>';cancelAnimationFrame(raf)});
+</script>
+</body>
+</html>
