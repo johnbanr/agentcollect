@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200">
+<title>OG Export</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 1200px; height: 630px; overflow: hidden; }
+.og {
+  width: 1200px; height: 630px; background: #0B1B3D;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  position: relative;
+}
+.wordmark {
+  font-family: 'Plus Jakarta Sans'; font-weight: 900; font-size: 72px;
+  color: white; letter-spacing: -2px;
+}
+.dot-circle {
+  display: inline-block; width: 14px; height: 14px; border-radius: 50%;
+  background: #7C6DC8; margin-left: 4px; vertical-align: baseline;
+}
+.tagline {
+  font-family: 'Plus Jakarta Sans'; font-weight: 500; font-size: 24px;
+  color: #94A3B8; margin-top: 12px;
+}
+.logos {
+  position: absolute; bottom: 48px;
+  display: flex; align-items: center; gap: 32px;
+}
+.logos .label {
+  font-family: 'Plus Jakarta Sans'; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 2px; color: #475569;
+}
+.logos img { height: 22px; filter: grayscale(100%) brightness(10); opacity: 0.4; }
+</style>
+</head>
+<body>
+<div class="og">
+  <div class="wordmark">AgentCollect<span class="dot-circle"></span></div>
+  <div class="tagline">The end of manual collection.</div>
+  <div class="logos">
+    <div class="label">Trusted by</div>
+    <img src="https://cdn.brandfetch.io/microsoft.com/w/512/h/80/logo" alt="Microsoft">
+    <img src="https://cdn.brandfetch.io/dell.com/w/512/h/80/logo" alt="Dell">
+    <img src="https://cdn.brandfetch.io/checkr.com/w/512/h/80/logo" alt="Checkr">
+    <img src="https://cdn.brandfetch.io/redis.com/w/512/h/80/logo" alt="Redis">
+    <img src="https://cdn.brandfetch.io/plaid.com/w/512/h/80/logo" alt="Plaid">
+  </div>
+</div>
+</body>
+</html>
