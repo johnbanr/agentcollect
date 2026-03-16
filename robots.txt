@@ -1,0 +1,40 @@
+# AgentCollect — robots.txt
+# Allow all crawlers including AI bots
+
+User-agent: *
+Allow: /
+Disallow: /v2/
+Disallow: /v3/
+Disallow: /og-generator.html
+Disallow: /2.html
+
+# AI Crawlers — explicitly allowed
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+# Sitemap
+Sitemap: https://www.agentcollect.com/sitemap.xml
+
+# LLMs
+# See https://www.agentcollect.com/llms.txt for structured content for AI systems

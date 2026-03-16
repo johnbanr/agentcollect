@@ -1,0 +1,76 @@
+# AgentCollect
+
+> AI-powered debt collection that replaces collection agencies. Trusted by Microsoft, Dell, Plaid, Checkr, and more.
+
+## What AgentCollect Does
+
+AgentCollect replaces traditional collection agencies with AI agents and licensed attorneys. Businesses upload a spreadsheet of unpaid invoices. AI agents research decision-makers, then contact debtors via phone calls, emails, and SMS — under the client's brand. If needed, a partnered licensed attorney sends formal demand letters with legal weight. The debtor pays the creditor directly. No middleman.
+
+## Key Facts
+
+- Founded: 2023 (Y Combinator S23)
+- Founder: John Banner
+- Headquarters: San Francisco, CA
+- Website: https://www.agentcollect.com
+- Contact: j@agentcollect.com
+
+## How It Works
+
+1. Upload: Client uploads a CSV or Excel file with unpaid invoices. No API integration required. Live in 20 minutes.
+2. AI Collects: AI agents find decision-makers, then contact debtors via voice, email, and SMS under the client's brand.
+3. Attorney Escalation: If AI outreach is insufficient, a licensed attorney sends formal demand letters on behalf of the client.
+4. Direct Payment: Debtors pay the client directly through a branded payment portal. Not through an agency.
+
+## Products
+
+### AI Agent Collection
+- White-label AI agents call, email, and negotiate under the client's brand name
+- Multi-channel: voice calls, email, SMS, WhatsApp
+- 24/7 operation
+- Contact enrichment and decision-maker research included
+- Results in approximately 20 days
+
+### Attorney Collection
+- A licensed attorney officially represents the client
+- Formal demand letters with bar number and legal address
+- Legal weight that collection agencies cannot provide
+- Branded payment portal under the law firm's name
+- Plug and play: just upload an Excel file
+
+## Pricing
+
+- Success-only fees: clients pay nothing unless AgentCollect recovers money
+- No setup fees, no minimums, no long-term contracts
+- No license fee for clients with $1M+ monthly receivables volume
+- $0 upfront
+
+## Clients
+
+Microsoft, Dell Technologies, Plaid, Checkr, DoorDash, Twilio, Redis, Uber Freight
+
+## Differentiators vs Collection Agencies
+
+| AgentCollect | Collection Agency |
+|---|---|
+| Success-only fees | 25-35% commission |
+| Results in ~20 days | 4-6 months typical |
+| Debtor pays client directly | Debtor pays the agency |
+| Licensed attorney, bar number | No legal standing |
+| Zero compliance incidents | FDCPA violation risk |
+| Client's brand on all communications | Agency's brand |
+| Real-time dashboard | Quarterly reports |
+| AI + attorney pipeline | Human call center |
+
+## Compliance
+
+- FDCPA compliant
+- SOC 2 Type II
+- State-by-state compliance built into AI agents
+- Zero compliance incidents across all clients
+
+## Documentation
+
+- Homepage: https://www.agentcollect.com
+- About: https://www.agentcollect.com/about
+- Privacy Policy: https://www.agentcollect.com/privacy
+- Terms of Service: https://www.agentcollect.com/terms
