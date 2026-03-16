@@ -12,6 +12,8 @@
 { "source": "/konica-v7-draplin", "destination": "/v3/konica-v7-draplin.html" },
 { "source": "/konica-v7-bass", "destination": "/v3/konica-v7-bass.html" },
 { "source": "/konica-v7-rand", "destination": "/v3/konica-v7-rand.html" },
+{ "source": "/konica-v7-brian", "destination": "/v3/konica-v7-brian.html" },
+{ "source": "/konica-v7-marc", "destination": "/v3/konica-v7-marc.html" },
 { "source": "/konica-minolta-v3", "destination": "/v3/konica-minolta.html" },
 { "source": "/konica-minolta-v4", "destination": "/v3/konica-minolta-v4.html" },
 { "source": "/konica2", "destination": "/konica2.html" },
