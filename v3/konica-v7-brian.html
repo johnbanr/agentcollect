@@ -92,6 +92,9 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',syst
 .dll-inner{max-width:1152px;margin:0 auto;padding:0 32px;text-align:center}
 .section-label{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:16px}
 .dll-inner h2{font-size:clamp(32px,4vw,48px);font-weight:800;letter-spacing:-.02em;line-height:1.1;max-width:580px;margin:0 auto}
+.dll-name-callout{margin-top:24px;display:flex;flex-direction:column;align-items:center;gap:4px}
+.dll-name-label{font-size:14px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600}
+.dll-name-big{font-size:clamp(32px,5vw,48px);font-weight:900;color:var(--red);letter-spacing:-1px}
 .dll-sub{font-size:16px;color:var(--muted);margin-top:16px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.6}
 
 /* Rating cards - Airbnb card style */
@@ -305,8 +308,12 @@ a.review-src:hover{color:var(--blue)}
   <div class="dll-inner">
     <div class="rv">
       <div class="section-label">The problem</div>
-      <h2>This is who calls debtors in your name.</h2>
-      <p class="dll-sub">Every negative review is a review of your brand. Every FDCPA complaint is a lawsuit risk for you.</p>
+      <h2>This is who calls debtors <span class="accent">in your name.</span></h2>
+      <div class="dll-name-callout">
+        <span class="dll-name-label">Your current agency</span>
+        <span class="dll-name-big">DLL Finance</span>
+      </div>
+      <p class="dll-sub">Every negative review about DLL is a review about Konica Minolta. Every FDCPA complaint is a lawsuit risk for you.</p>
     </div>
 
     <div class="rating-cards rv rv-d1">
