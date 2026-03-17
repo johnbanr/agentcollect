@@ -128,13 +128,17 @@
         .dash-company-logo{height:20px;opacity:.4;margin-bottom:10px}
         .dash-dispute{display:flex;align-items:flex-start;gap:8px;padding:4px 0;font-size:13px;color:var(--text-mid);line-height:1.4}
         .dash-dispute-num{font-size:10px;font-weight:800;color:var(--amber);min-width:16px}
-        .dash-dm-card{display:flex;align-items:center;gap:12px}
-        .dash-dm-avatar{width:44px;height:44px;border-radius:50%;overflow:hidden;flex-shrink:0;background:var(--indigo-light);display:flex;align-items:center;justify-content:center}
-        .dash-dm-avatar img{width:100%;height:100%;object-fit:cover}
-        .dash-dm-name{font-family:var(--display);font-size:15px;font-weight:700;color:var(--text)}
-        .dash-dm-title{font-size:12px;color:var(--text-mid)}
-        .dash-dm-contact{margin-top:10px;font-size:12px;color:var(--text-muted)}
-        .dash-dm-contact span{font-family:var(--mono);color:var(--indigo);font-weight:500}
+        .dash-contacts-found{font-size:12px;color:var(--green);font-weight:600;margin-bottom:10px}
+        .dash-contact-flow{display:flex;flex-direction:column;gap:6px}
+        .dash-contact{display:flex;align-items:center;gap:10px;padding:6px 8px;border-radius:8px;transition:all .2s}
+        .dash-contact.active{background:rgba(79,70,229,.04);border:1px solid rgba(79,70,229,.1)}
+        .dash-contact:not(.active){opacity:.5}
+        .dash-contact-avatar{width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0}
+        .dash-contact-name{font-family:var(--display);font-size:13px;font-weight:700;color:var(--text)}
+        .dash-contact-title{font-size:11px;color:var(--text-muted)}
+        .dash-contact-badge{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 6px;border-radius:4px;background:var(--indigo-light);color:var(--indigo);margin-left:auto;white-space:nowrap}
+        .dash-contact-badge.escalation{background:rgba(245,158,11,.08);color:var(--amber)}
+        .dash-contact-badge.dm{background:rgba(16,185,129,.08);color:var(--green)}
         .dash-plan-step{display:flex;align-items:center;gap:8px;padding:3px 0}
         .dash-plan-day{display:inline-flex;align-items:center;justify-content:center;width:28px;height:20px;border-radius:4px;font-size:10px;font-weight:800;font-family:var(--display);color:#fff;flex-shrink:0}
         .dash-plan-text{font-size:12px;color:var(--text-mid);line-height:1.3}
@@ -452,7 +456,7 @@
             <div id="dash-disputes-content" class="dash-content"><div class="dash-loading"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>
         </div>
         <div class="dash-card" id="dash-dm">
-            <div class="dash-label">Decision maker</div>
+            <div class="dash-label">Contacts found</div>
             <div id="dash-dm-content" class="dash-content"><div class="dash-loading"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>
         </div>
         <div class="dash-card" id="dash-plan">
@@ -774,7 +778,11 @@ const COMPANIES = {
         products: 'bizhub C series multifunction printers, managed print services, IT solutions',
         size: '39,000+ employees, $8.2B revenue',
         disputes: ['Early lease termination fees on bizhub copier contracts', 'Maintenance billing disputes on service agreements', 'Auto-renewal disagreements on managed print contracts'],
-        dm: {name: 'Head of Credit & Collections', title: 'Director of Credit', photo: null, phone_masked: '+1 (***) ***-**18', email_masked: 'c***s@konicaminolta.com'},
+        contacts: [
+            {name: 'Christine Sayers', title: 'AP Specialist', photo: 'https://ui-avatars.com/api/?name=Christine+Sayers&background=4F46E5&color=fff&size=200', phone_masked: '+1 (***) ***-**18', email_masked: 'c***s@konicaminolta.com', role: 'First contact'},
+            {name: 'Robert Tanaka', title: 'Director of Credit', photo: 'https://ui-avatars.com/api/?name=Robert+Tanaka&background=10B981&color=fff&size=200', email_masked: 'r***a@konicaminolta.com', role: 'Escalation'},
+            {name: 'Patricia Vance', title: 'VP Collections', photo: 'https://ui-avatars.com/api/?name=Patricia+Vance&background=F59E0B&color=fff&size=200', role: 'Decision maker'}
+        ],
         plan: {d1: 'AI email from your brand referencing specific lease agreement', d3: 'AI phone call to AP contact with invoice details', d7: 'Attorney demand letter with bar number and legal notice', d14: 'Payment portal live — debtor pays you directly'}
     },
     'pitneyBowes.com': {
@@ -782,7 +790,11 @@ const COMPANIES = {
         products: 'Postage meters, shipping solutions, SendPro, global ecommerce',
         size: '11,000+ employees, $3.3B revenue',
         disputes: ['Postage meter lease early termination penalties', 'Overcharges on shipping volume commitments', 'Service level agreement disputes on SendPro'],
-        dm: {name: 'VP of Finance', title: 'VP Finance & Treasury', photo: null},
+        contacts: [
+            {name: 'Amanda Liu', title: 'Accounts Payable Lead', photo: 'https://ui-avatars.com/api/?name=Amanda+Liu&background=6366F1&color=fff&size=200', phone_masked: '+1 (***) ***-**52', email_masked: 'a***u@pb.com', role: 'First contact'},
+            {name: 'James Whitfield', title: 'Controller', photo: 'https://ui-avatars.com/api/?name=James+Whitfield&background=EC4899&color=fff&size=200', email_masked: 'j***d@pb.com', role: 'Escalation'},
+            {name: 'Karen Obrien', title: 'VP Finance & Treasury', photo: 'https://ui-avatars.com/api/?name=Karen+Obrien&background=F59E0B&color=fff&size=200', role: 'Decision maker'}
+        ],
         plan: {d1: 'AI email referencing specific meter lease or shipping contract', d3: 'AI call to accounts receivable with documentation', d7: 'Attorney demand letter — formal legal notice', d14: 'Payment portal live with installment options'}
     },
     'ironmountain.com': {
@@ -790,7 +802,11 @@ const COMPANIES = {
         products: 'Records storage, data center colocation, secure shredding, digital transformation',
         size: '26,000+ employees, $5.5B revenue',
         disputes: ['Storage contract minimum commitment disputes', 'Retrieval and access fee disagreements', 'Auto-renewal terms on records management contracts'],
-        dm: {name: 'Director of Accounts Receivable', title: 'Director AR', photo: null},
+        contacts: [
+            {name: 'Melissa Dunn', title: 'AR Analyst', photo: 'https://ui-avatars.com/api/?name=Melissa+Dunn&background=4F46E5&color=fff&size=200', phone_masked: '+1 (***) ***-**63', email_masked: 'm***n@ironmountain.com', role: 'First contact'},
+            {name: 'Scott Brewster', title: 'Director AR', photo: 'https://ui-avatars.com/api/?name=Scott+Brewster&background=10B981&color=fff&size=200', email_masked: 's***r@ironmountain.com', role: 'Escalation'},
+            {name: 'Linda Chen', title: 'SVP Finance', photo: 'https://ui-avatars.com/api/?name=Linda+Chen&background=EF4444&color=fff&size=200', role: 'Decision maker'}
+        ],
         plan: {d1: 'AI email referencing storage contract and outstanding balance', d3: 'AI call to AP with full documentation trail', d7: 'Attorney demand with contract terms cited', d14: 'Direct payment portal — no middleman'}
     },
     'brinks.com': {
@@ -798,7 +814,11 @@ const COMPANIES = {
         products: 'Cash-in-transit, ATM management, CompuSafe, smart safe solutions',
         size: '67,000+ employees, $4.8B revenue',
         disputes: ['Service level disputes on cash-in-transit contracts', 'CompuSafe billing discrepancies', 'Contract term disputes on security service agreements'],
-        dm: {name: 'SVP Finance', title: 'SVP Finance & Controller', photo: null},
+        contacts: [
+            {name: 'Rachel Ford', title: 'Billing Coordinator', photo: 'https://ui-avatars.com/api/?name=Rachel+Ford&background=8B5CF6&color=fff&size=200', phone_masked: '+1 (***) ***-**91', email_masked: 'r***d@brinks.com', role: 'First contact'},
+            {name: 'Thomas Garrett', title: 'Controller', photo: 'https://ui-avatars.com/api/?name=Thomas+Garrett&background=F59E0B&color=fff&size=200', email_masked: 't***t@brinks.com', role: 'Escalation'},
+            {name: 'Daniel Reeves', title: 'SVP Finance', photo: 'https://ui-avatars.com/api/?name=Daniel+Reeves&background=10B981&color=fff&size=200', role: 'Decision maker'}
+        ],
         plan: {d1: 'AI email with specific contract and service references', d3: 'AI call to finance team with invoice documentation', d7: 'Attorney letter with legal standing', d14: 'Payment portal with direct settlement options'}
     },
     'ricoh.com': {
@@ -806,7 +826,11 @@ const COMPANIES = {
         products: 'Multifunction printers, production printing, IT services, document management',
         size: '80,000+ employees, $15B revenue',
         disputes: ['Printer lease early termination on large fleet contracts', 'Toner and consumables billing disputes', 'Managed print service SLA disagreements'],
-        dm: {name: 'Head of Credit Management', title: 'Director Credit & Collections', photo: null},
+        contacts: [
+            {name: 'Yuki Nakamura', title: 'Credit Analyst', photo: 'https://ui-avatars.com/api/?name=Yuki+Nakamura&background=4F46E5&color=fff&size=200', phone_masked: '+1 (***) ***-**27', email_masked: 'y***a@ricoh.com', role: 'First contact'},
+            {name: 'Brian Walsh', title: 'Director Credit & Collections', photo: 'https://ui-avatars.com/api/?name=Brian+Walsh&background=EC4899&color=fff&size=200', email_masked: 'b***h@ricoh.com', role: 'Escalation'},
+            {name: 'Margaret Hoffman', title: 'VP Finance', photo: 'https://ui-avatars.com/api/?name=Margaret+Hoffman&background=F59E0B&color=fff&size=200', role: 'Decision maker'}
+        ],
         plan: {d1: 'AI email referencing fleet contract and outstanding balance', d3: 'AI call with complete documentation', d7: 'Attorney demand letter — formal legal weight', d14: 'Self-service payment portal live'}
     },
     'microsoft.com': {
@@ -814,7 +838,11 @@ const COMPANIES = {
         products: 'Azure, Microsoft 365, Dynamics, Surface, Xbox, enterprise licensing',
         size: '220,000+ employees, $245B revenue',
         disputes: ['Enterprise license true-up billing disputes', 'Azure consumption overages vs. committed spend', 'Multi-year EA renewal disagreements'],
-        dm: {name: 'Neil Doyle', title: 'OTC Transformation Lead', photo: 'https://respaid.com/images/neil-doyle.png', phone_masked: '+1 (425) ***-**37', email_masked: 'n***e@microsoft.com', linkedin_url: 'https://linkedin.com/in/neildoyle'},
+        contacts: [
+            {name: 'Neil Doyle', title: 'OTC Transformation Lead', photo: 'https://respaid.com/images/neil-doyle.png', phone_masked: '+1 (425) ***-**37', email_masked: 'n***e@microsoft.com', linkedin_url: 'https://linkedin.com/in/neildoyle', role: 'First contact'},
+            {name: 'Priya Sharma', title: 'Senior Finance Manager', photo: 'https://ui-avatars.com/api/?name=Priya+Sharma&background=10B981&color=fff&size=200', email_masked: 'p***a@microsoft.com', role: 'Escalation'},
+            {name: 'Kevin Torres', title: 'VP Finance Operations', photo: 'https://ui-avatars.com/api/?name=Kevin+Torres&background=F59E0B&color=fff&size=200', role: 'Decision maker'}
+        ],
         plan: {d1: 'AI email under your brand to AP department', d3: 'AI call to procurement with PO reference', d7: 'Escalation to VP Finance via attorney notice', d14: 'Direct payment through branded portal'}
     },
     'dell.com': {
@@ -822,7 +850,11 @@ const COMPANIES = {
         products: 'Servers, storage, laptops, VMware, IT infrastructure',
         size: '130,000+ employees, $102B revenue',
         disputes: ['Hardware lease return condition disputes', 'Service contract auto-renewal disagreements', 'Volume licensing true-up disputes across business units'],
-        dm: {name: 'VP Credit & Collections', title: 'VP Credit Operations', photo: null, phone_masked: '+1 (512) ***-**44', email_masked: 'c***t@dell.com'},
+        contacts: [
+            {name: 'Catherine Torres', title: 'AP Manager', photo: 'https://ui-avatars.com/api/?name=Catherine+Torres&background=6366F1&color=fff&size=200', phone_masked: '+1 (512) ***-**44', email_masked: 'c***t@dell.com', role: 'First contact'},
+            {name: 'Mark Henderson', title: 'Director Credit Operations', photo: 'https://ui-avatars.com/api/?name=Mark+Henderson&background=10B981&color=fff&size=200', email_masked: 'm***n@dell.com', role: 'Escalation'},
+            {name: 'Susan Blackwell', title: 'VP Credit & Collections', photo: 'https://ui-avatars.com/api/?name=Susan+Blackwell&background=EF4444&color=fff&size=200', role: 'Decision maker'}
+        ],
         plan: {d1: 'AI email per business unit with specific PO references', d3: 'AI call to each division independently', d7: 'Attorney letter referencing master service agreement', d14: 'Centralized payment portal — all units, one view'}
     },
     'checkr.com': {
@@ -830,7 +862,11 @@ const COMPANIES = {
         products: 'Background checks, continuous monitoring, compliance solutions, Checkr Pay',
         size: '1,000+ employees, high-growth',
         disputes: ['Volume commitment shortfall on annual contracts', 'Per-check pricing disputes on enterprise plans', 'API integration billing vs. actual usage'],
-        dm: {name: 'Head of Finance', title: 'VP Finance', photo: null},
+        contacts: [
+            {name: 'Sarah Mitchell', title: 'AP Specialist', photo: 'https://ui-avatars.com/api/?name=Sarah+Mitchell&background=4F46E5&color=fff&size=200', phone_masked: '+1 (***) ***-**18', email_masked: 's***l@checkr.com', role: 'First contact'},
+            {name: 'David Park', title: 'Controller', photo: 'https://ui-avatars.com/api/?name=David+Park&background=10B981&color=fff&size=200', email_masked: 'd***k@checkr.com', role: 'Escalation'},
+            {name: 'Jennifer Wu', title: 'VP Finance', photo: 'https://ui-avatars.com/api/?name=Jennifer+Wu&background=F59E0B&color=fff&size=200', role: 'Decision maker'}
+        ],
         plan: {d1: 'AI email to finance referencing contract terms', d3: 'AI call with usage data and invoice detail', d7: 'Attorney notice with contract citation', d14: 'Payment portal with flexible resolution options'}
     },
     'doordash.com': {
@@ -838,7 +874,11 @@ const COMPANIES = {
         products: 'DoorDash marketplace, DashPass, Drive (white-label), Storefront',
         size: '19,000+ employees, $8.6B revenue',
         disputes: ['Restaurant partner commission disputes', 'Promotional credit billing disagreements', 'Marketplace fee structure changes'],
-        dm: {name: 'Director of Partner Finance', title: 'Director Partner Finance', photo: null},
+        contacts: [
+            {name: 'Emily Tran', title: 'Partner Finance Analyst', photo: 'https://ui-avatars.com/api/?name=Emily+Tran&background=8B5CF6&color=fff&size=200', phone_masked: '+1 (***) ***-**76', email_masked: 'e***n@doordash.com', role: 'First contact'},
+            {name: 'Jason Reilly', title: 'Director Partner Finance', photo: 'https://ui-avatars.com/api/?name=Jason+Reilly&background=F59E0B&color=fff&size=200', email_masked: 'j***y@doordash.com', role: 'Escalation'},
+            {name: 'Angela Price', title: 'VP Finance', photo: 'https://ui-avatars.com/api/?name=Angela+Price&background=10B981&color=fff&size=200', role: 'Decision maker'}
+        ],
         plan: {d1: 'AI email referencing specific partner agreement', d3: 'AI call with delivery data and commission detail', d7: 'Attorney letter — preserves partnership while collecting', d14: 'Partner payment portal — settle while staying active'}
     },
     'plaid.com': {
@@ -846,7 +886,11 @@ const COMPANIES = {
         products: 'API for bank connections, identity verification, income verification, Plaid Transfer',
         size: '1,000+ employees, high-growth fintech',
         disputes: ['API call volume overage disputes', 'Enterprise contract minimum commitment shortfalls', 'Implementation fee disagreements'],
-        dm: {name: 'Head of Finance Operations', title: 'Director Finance Ops', photo: null},
+        contacts: [
+            {name: 'Natalie Cross', title: 'Billing Operations', photo: 'https://ui-avatars.com/api/?name=Natalie+Cross&background=4F46E5&color=fff&size=200', phone_masked: '+1 (***) ***-**35', email_masked: 'n***s@plaid.com', role: 'First contact'},
+            {name: 'Ryan Okafor', title: 'Finance Manager', photo: 'https://ui-avatars.com/api/?name=Ryan+Okafor&background=EC4899&color=fff&size=200', email_masked: 'r***r@plaid.com', role: 'Escalation'},
+            {name: 'Lisa Bergman', title: 'Director Finance Ops', photo: 'https://ui-avatars.com/api/?name=Lisa+Bergman&background=F59E0B&color=fff&size=200', role: 'Decision maker'}
+        ],
         plan: {d1: 'AI email with API usage data and contract reference', d3: 'AI call to finance with detailed breakdown', d7: 'Attorney notice citing SaaS agreement terms', d14: 'Self-service resolution portal'}
     }
 };
@@ -919,7 +963,7 @@ async function startAnalysis() {
     let data = company ? {
         company: { name: company.name, domain, industry: company.industry, products: company.products, size: company.size, logo_url: 'https://cdn.brandfetch.io/'+domain+'/w/512/h/80/logo' },
         disputes: company.disputes,
-        decision_maker: { name: company.dm.name, title: company.dm.title, photo_url: company.dm.photo, phone_masked: company.dm.phone_masked||null, email_masked: company.dm.email_masked||null, linkedin_url: company.dm.linkedin_url||null },
+        contacts: company.contacts,
         plan: { day_1: company.plan.d1, day_3: company.plan.d3, day_7: company.plan.d7, day_14: company.plan.d14 }
     } : null;
 
@@ -940,7 +984,9 @@ async function startAnalysis() {
         data = {
             company: { name: coName, domain, industry: isSaas ? 'Technology / SaaS' : 'Business Services', products: 'Analyzing...', size: 'Researching...', logo_url: 'https://cdn.brandfetch.io/'+domain+'/w/512/h/80/logo' },
             disputes: fallbackDisputes,
-            decision_maker: { name: 'Finance Team', title: 'Accounts Receivable', photo_url: null, phone_masked: null, email_masked: null },
+            contacts: [
+                {name: 'Finance Team', title: 'Accounts Receivable', photo: null, role: 'First contact'}
+            ],
             plan: { day_1: 'AI email referencing specific outstanding invoice', day_3: 'AI phone call to AP with full documentation', day_7: 'Attorney demand letter with legal notice', day_14: 'Payment portal live — debtor pays you directly' }
         };
     }
@@ -966,27 +1012,37 @@ async function startAnalysis() {
     ).join('');
     document.getElementById('dash-disputes').classList.add('loaded');
 
-    // CARD 3: DECISION MAKER (after 2.2s)
+    // CARD 3: CONTACTS FOUND (after 2.2s)
     await sleep(700);
-    const dm = data.decision_maker;
-    const avatarSrc = dm.photo_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(dm.name)}&size=200&background=4F46E5&color=fff&bold=true`;
+    const contacts = data.contacts || [];
     const dmEl = document.getElementById('dash-dm-content');
-    let dmContactHtml = '';
-    if (dm.phone_masked || dm.email_masked) {
+    const firstContact = contacts[0] || {};
+    let contactsHtml = contacts.map((c, i) => {
+        const isActive = i === 0;
+        const avatarSrc = c.photo || `https://ui-avatars.com/api/?name=${encodeURIComponent(c.name)}&size=200&background=4F46E5&color=fff&bold=true`;
+        const badgeClass = c.role === 'Escalation' ? ' escalation' : (c.role === 'Decision maker' ? ' dm' : '');
+        return `<div class="dash-contact${isActive ? ' active' : ''}">
+            <img src="${avatarSrc}" alt="${c.name}" class="dash-contact-avatar" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(c.name)}&size=200&background=4F46E5&color=fff&bold=true'">
+            <div>
+                <div class="dash-contact-name">${c.name}</div>
+                <div class="dash-contact-title">${c.title}</div>
+            </div>
+            <span class="dash-contact-badge${badgeClass}">${c.role}</span>
+        </div>`;
+    }).join('');
+    let maskedInfoHtml = '';
+    if (firstContact.phone_masked || firstContact.email_masked) {
         const parts = [];
-        if (dm.phone_masked) parts.push('<span>'+dm.phone_masked+'</span>');
-        if (dm.email_masked) parts.push('<span>'+dm.email_masked+'</span>');
-        dmContactHtml = '<div class="dash-dm-contact">'+parts.join(' &middot; ')+'</div>';
+        if (firstContact.phone_masked) parts.push('<span style="font-family:var(--mono);color:var(--indigo)">'+firstContact.phone_masked+'</span>');
+        if (firstContact.email_masked) parts.push('<span style="font-family:var(--mono);color:var(--indigo)">'+firstContact.email_masked+'</span>');
+        maskedInfoHtml = '<div style="margin-top:8px;font-size:11px;color:var(--text-muted)">'+parts.join(' &middot; ')+'</div>';
     }
     dmEl.innerHTML = `
-        <div class="dash-dm-card">
-            <div class="dash-dm-avatar"><img src="${avatarSrc}" alt="${dm.name}" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(dm.name)}&size=200&background=4F46E5&color=fff&bold=true'"></div>
-            <div>
-                <div class="dash-dm-name">${dm.name}</div>
-                <div class="dash-dm-title">${dm.title}${data.company.name ? ' at '+data.company.name : ''}</div>
-            </div>
+        <div class="dash-contacts-found">${contacts.length} contact${contacts.length !== 1 ? 's' : ''} found</div>
+        <div class="dash-contact-flow">
+            ${contactsHtml}
         </div>
-        ${dmContactHtml}
+        ${maskedInfoHtml}
     `;
     document.getElementById('dash-dm').classList.add('loaded');
 
