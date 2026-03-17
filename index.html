@@ -676,9 +676,9 @@
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                 </div>
                 <h3>Attorney-supervised AI collection.</h3>
-                <div class="path-desc">Licensed NY attorney (Schweber Law) signs. AI handles outreach and follow-up.</div>
+                <div class="path-desc">Licensed attorney signs. AI handles calls, emails, and follow-up — full collection sequence under legal cover.</div>
                 <div class="path-features">
-                    <div class="path-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Formal demand letters with bar number</div>
+                    <div class="path-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>AI calls + emails under attorney cover</div>
                     <div class="path-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Debtor pays you directly</div>
                     <div class="path-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Upload Excel, live in minutes</div>
                 </div>
@@ -823,7 +823,7 @@
                 </div>
                 <div>
                     <div style="font-family:var(--display);font-size:14px;font-weight:800;color:var(--text);margin-bottom:3px">Attorney oversight</div>
-                    <div style="font-size:12px;color:var(--text-muted);line-height:1.5">Licensed NY attorney (Schweber Law) reviews every escalation.</div>
+                    <div style="font-size:12px;color:var(--text-muted);line-height:1.5">Licensed attorney reviews every escalation. Full compliance, zero friction.</div>
                 </div>
             </div>
             <div style="background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:24px;display:flex;align-items:flex-start;gap:14px">
@@ -906,7 +906,7 @@ const COMPANIES = {
             {name: 'Robert Tanaka', title: 'Director of Credit', photo: 'https://ui-avatars.com/api/?name=Robert+Tanaka&background=10B981&color=fff&size=200', email_masked: 'r***a@konicaminolta.com', role: 'Escalation'},
             {name: 'Patricia Vance', title: 'VP Collections', photo: 'https://ui-avatars.com/api/?name=Patricia+Vance&background=F59E0B&color=fff&size=200', role: 'Decision maker'}
         ],
-        plan: {d1: 'AI email from your brand referencing specific lease agreement', d3: 'AI phone call to AP contact with invoice details', d7: 'Attorney demand letter with bar number and legal notice', d14: 'Payment portal live — debtor pays you directly'}
+        plan: {d1: 'AI email from your brand referencing specific lease agreement', d3: 'AI phone call to AP contact with invoice details', d7: 'Attorney-supervised escalation — formal legal pressure applied', d14: 'Payment portal live — debtor pays you directly'}
     },
     'pitneyBowes.com': {
         name: 'Pitney Bowes', industry: 'Shipping & Mailing Technology',
@@ -918,7 +918,7 @@ const COMPANIES = {
             {name: 'James Whitfield', title: 'Controller', photo: 'https://ui-avatars.com/api/?name=James+Whitfield&background=EC4899&color=fff&size=200', email_masked: 'j***d@pb.com', role: 'Escalation'},
             {name: 'Karen Obrien', title: 'VP Finance & Treasury', photo: 'https://ui-avatars.com/api/?name=Karen+Obrien&background=F59E0B&color=fff&size=200', role: 'Decision maker'}
         ],
-        plan: {d1: 'AI email referencing specific meter lease or shipping contract', d3: 'AI call to accounts receivable with documentation', d7: 'Attorney demand letter — formal legal notice', d14: 'Payment portal live with installment options'}
+        plan: {d1: 'AI email referencing specific meter lease or shipping contract', d3: 'AI call to accounts receivable with documentation', d7: 'Attorney-supervised escalation — formal legal pressure applied', d14: 'Payment portal live with installment options'}
     },
     'ironmountain.com': {
         name: 'Iron Mountain', industry: 'Information Management / Storage',
@@ -942,7 +942,7 @@ const COMPANIES = {
             {name: 'Thomas Garrett', title: 'Controller', photo: 'https://ui-avatars.com/api/?name=Thomas+Garrett&background=F59E0B&color=fff&size=200', email_masked: 't***t@brinks.com', role: 'Escalation'},
             {name: 'Daniel Reeves', title: 'SVP Finance', photo: 'https://ui-avatars.com/api/?name=Daniel+Reeves&background=10B981&color=fff&size=200', role: 'Decision maker'}
         ],
-        plan: {d1: 'AI email with specific contract and service references', d3: 'AI call to finance team with invoice documentation', d7: 'Attorney letter with legal standing', d14: 'Payment portal with direct settlement options'}
+        plan: {d1: 'AI email with specific contract and service references', d3: 'AI call to finance team with invoice documentation', d7: 'Attorney-supervised escalation — legal standing applied', d14: 'Payment portal with direct settlement options'}
     },
     'ricoh.com': {
         name: 'Ricoh', industry: 'Office Equipment / Digital Services',
@@ -954,7 +954,7 @@ const COMPANIES = {
             {name: 'Brian Walsh', title: 'Director Credit & Collections', photo: 'https://ui-avatars.com/api/?name=Brian+Walsh&background=EC4899&color=fff&size=200', email_masked: 'b***h@ricoh.com', role: 'Escalation'},
             {name: 'Margaret Hoffman', title: 'VP Finance', photo: 'https://ui-avatars.com/api/?name=Margaret+Hoffman&background=F59E0B&color=fff&size=200', role: 'Decision maker'}
         ],
-        plan: {d1: 'AI email referencing fleet contract and outstanding balance', d3: 'AI call with complete documentation', d7: 'Attorney demand letter — formal legal weight', d14: 'Self-service payment portal live'}
+        plan: {d1: 'AI email referencing fleet contract and outstanding balance', d3: 'AI call with complete documentation', d7: 'Attorney-supervised escalation — formal legal weight applied', d14: 'Self-service payment portal live'}
     },
     'microsoft.com': {
         name: 'Microsoft', industry: 'Technology / Enterprise Software',
@@ -1239,7 +1239,7 @@ async function startAnalysis() {
             company: { name: coName, domain, industry: isSaas ? 'Technology / SaaS' : 'Business Services', products: 'Analyzing...', size: 'Researching...', logo_url: 'https://cdn.brandfetch.io/'+domain+'/w/512/h/80/logo' },
             disputes: fallbackDisputes,
             contacts: [{name: 'Finance Team', title: 'Accounts Receivable', photo: null, role: 'First contact'}],
-            plan: { day_1: 'AI email referencing specific outstanding invoice', day_3: 'AI phone call to AP with full documentation', day_7: 'Attorney demand letter with legal notice', day_14: 'Payment portal live — debtor pays you directly' }
+            plan: { day_1: 'AI email referencing specific outstanding invoice', day_3: 'AI phone call to AP with full documentation', day_7: 'Attorney-supervised escalation — formal legal pressure applied', day_14: 'Payment portal live — debtor pays you directly' }
         };
     }
 
