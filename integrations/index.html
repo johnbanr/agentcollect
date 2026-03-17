@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<title>AgentCollect Integrations: Connect Your ERP, CRM & Billing Tools</title>
+<meta name="description" content="AgentCollect connects to your ERP, CRM, and billing tools. Overdue invoices automatically trigger AI collection. Payments sync back in real-time.">
+<meta property="og:title" content="AgentCollect Integrations: Connect Your ERP, CRM & Billing Tools">
+<meta property="og:description" content="AgentCollect connects to your ERP, CRM, and billing tools. Overdue invoices automatically trigger AI collection. Payments sync back in real-time.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.agentcollect.com/integrations">
+<link rel="canonical" href="https://www.agentcollect.com/integrations">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "AgentCollect Integrations",
+  "description": "AgentCollect connects to your ERP, CRM, and billing tools. Overdue invoices automatically trigger AI collection.",
+  "url": "https://www.agentcollect.com/integrations",
+  "publisher": {"@type": "Organization", "name": "AgentCollect", "url": "https://www.agentcollect.com"},
+  "about": {
+    "@type": "SoftwareApplication",
+    "name": "AgentCollect",
+    "applicationCategory": "BusinessApplication",
+    "description": "AI-powered B2B debt collection platform that integrates with ERP, CRM, and billing tools"
+  }
+}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#FAFBFF;--bg-card:#fff;--bg-dark:#0B1B3D;
+  --border:#E8ECF2;
+  --text:#0B1B3D;--text-mid:#475569;--text-muted:#94A3B8;
+  --indigo:#4F46E5;--indigo-dark:#4338CA;--indigo-light:rgba(79,70,229,.06);
+  --green:#10B981;
+  --mono:'JetBrains Mono',monospace;--sans:'Inter',-apple-system,sans-serif;--display:'Plus Jakarta Sans',sans-serif;
+  --shadow-md:0 4px 12px rgba(0,0,0,.06);
+  --max-w:1140px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.15}
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:60px}
+.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 32px;display:flex;align-items:center;height:100%}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;margin-right:40px;font-family:var(--display);font-size:18px;font-weight:800;letter-spacing:-.04em;color:var(--text)}
+.logo-dot{color:var(--indigo)}
+.nav-links{display:flex;gap:28px;flex:1}
+.nav-links a{color:var(--text-mid);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--indigo);font-weight:600}
+.nav-cta{padding:9px 20px;background:var(--indigo);color:#fff;border:none;border-radius:8px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s;display:inline-flex;align-items:center}
+.nav-cta:hover{background:var(--indigo-dark)}
+.hero{padding:120px 32px 64px;max-width:var(--max-w);margin:0 auto}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:var(--indigo-light);border:1px solid rgba(79,70,229,.15);border-radius:100px;font-family:var(--mono);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--indigo);margin-bottom:20px}
+.hero h1{font-size:clamp(32px,4.5vw,48px);font-weight:900;color:var(--text);margin-bottom:20px;max-width:700px}
+.hero h1 em{font-style:normal;color:var(--indigo)}
+.hero-sub{font-size:17px;line-height:1.7;color:var(--text-mid);max-width:620px;margin-bottom:0}
+.content{max-width:var(--max-w);margin:0 auto;padding:0 32px 80px}
+.section-tag{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--indigo);margin-bottom:12px;font-weight:500;margin-top:48px}
+.intro-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:40px 0}
+.intro-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px}
+.intro-card h3{font-size:16px;font-weight:700;margin-bottom:8px}
+.intro-card p{font-size:14px;color:var(--text-mid);line-height:1.6}
+.intro-card .stat{font-family:var(--display);font-size:28px;font-weight:900;color:var(--indigo);margin-bottom:4px;letter-spacing:-.03em}
+.category-section{margin-bottom:48px}
+.category-label{font-family:var(--display);font-size:18px;font-weight:800;color:var(--text);margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--border)}
+.integrations-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.integration-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px;transition:border-color .2s,box-shadow .2s;cursor:pointer;text-decoration:none;display:block}
+.integration-card:hover{border-color:var(--indigo);box-shadow:0 4px 16px rgba(79,70,229,.1)}
+.integration-logo{width:48px;height:48px;border-radius:10px;background:var(--indigo-light);border:1px solid rgba(79,70,229,.15);display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-family:var(--mono);font-size:12px;font-weight:700;color:var(--indigo);letter-spacing:-.02em}
+.integration-name{font-family:var(--display);font-size:15px;font-weight:800;color:var(--text);margin-bottom:6px}
+.integration-desc{font-size:13px;color:var(--text-mid);line-height:1.55;margin-bottom:12px}
+.integration-link{font-size:13px;font-weight:600;color:var(--indigo)}
+.csv-note{background:var(--indigo-light);border:1px solid rgba(79,70,229,.15);border-radius:12px;padding:20px 24px;display:flex;align-items:center;gap:16px;margin:32px 0}
+.csv-note-icon{width:40px;height:40px;background:var(--indigo);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.csv-note-text{font-size:14px;color:var(--text-mid);line-height:1.6}
+.csv-note-text strong{color:var(--text)}
+.cta-box{background:var(--bg-dark);border-radius:20px;padding:64px 40px;text-align:center;margin:64px 0;position:relative;overflow:hidden}
+.cta-box::before{content:'';position:absolute;top:-40%;left:-40%;width:180%;height:180%;background:radial-gradient(ellipse at 50% 80%,rgba(79,70,229,.12) 0%,transparent 50%);pointer-events:none}
+.cta-box h2{font-size:32px;font-weight:900;color:#fff;margin-bottom:12px;position:relative}
+.cta-box p{font-size:16px;color:var(--text-muted);margin-bottom:28px;position:relative}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--indigo);color:#fff;border:none;border-radius:10px;font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s;position:relative}
+.cta-btn:hover{background:var(--indigo-dark)}
+.footer{border-top:1px solid var(--border);padding:40px 32px;text-align:center}
+.footer-inner{max-width:var(--max-w);margin:0 auto}
+.footer-logo{font-family:var(--display);font-size:16px;font-weight:800;color:var(--text);letter-spacing:-.03em;margin-bottom:8px}
+.footer-logo span{color:var(--indigo)}
+.footer-links{display:flex;gap:24px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
+.footer-links a{font-size:13px;color:var(--text-muted);text-decoration:none}
+.footer-copy{font-size:12px;color:var(--text-muted)}
+@media(max-width:768px){
+  .hero{padding:100px 20px 48px}
+  .content{padding:0 20px 60px}
+  .nav-links{display:none}
+  .intro-grid{grid-template-columns:1fr}
+  .integrations-grid{grid-template-columns:repeat(2,1fr)}
+  .cta-box{padding:48px 24px}
+}
+@media(max-width:480px){
+  .integrations-grid{grid-template-columns:1fr}
+}
+@media(min-width:769px) and (max-width:1024px){
+  .integrations-grid{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo">AgentCollect<span class="logo-dot">.</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/compliance">Compliance</a>
+      <a href="/contact">Contact</a>
+    </div>
+    <a href="/contact" class="nav-cta">Get a demo</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">Integrations</div>
+  <h1>Integrate with your <em>existing stack</em></h1>
+  <p class="hero-sub">AgentCollect connects to your ERP, CRM, and billing tools. Overdue invoices automatically trigger AI collection. Payments sync back in real-time.</p>
+</div>
+
+<div class="content">
+
+  <div class="intro-grid">
+    <div class="intro-card">
+      <div class="stat">14+</div>
+      <h3>Integrations</h3>
+      <p>Native connectors for the most popular ERP, CRM, and billing platforms in B2B finance.</p>
+    </div>
+    <div class="intro-card">
+      <div class="stat">Real-time</div>
+      <h3>Bidirectional Sync</h3>
+      <p>Invoice status and payment data sync back to your system automatically — no manual reconciliation.</p>
+    </div>
+    <div class="intro-card">
+      <div class="stat">20 min</div>
+      <h3>Setup Time</h3>
+      <p>Connect your ERP or billing tool in under 20 minutes. No developer required for most integrations.</p>
+    </div>
+  </div>
+
+  <!-- ERP & Accounting -->
+  <div class="category-section">
+    <div class="section-tag">Category</div>
+    <div class="category-label">ERP &amp; Accounting</div>
+    <div class="integrations-grid">
+
+      <a href="/integrations/quickbooks" class="integration-card">
+        <div class="integration-logo">QB</div>
+        <div class="integration-name">QuickBooks</div>
+        <div class="integration-desc">Sync overdue invoices from QuickBooks Online or Desktop. Payments recorded automatically when collected.</div>
+        <div class="integration-link">View integration &rarr;</div>
+      </a>
+
+      <a href="/integrations/netsuite" class="integration-card">
+        <div class="integration-logo">NS</div>
+        <div class="integration-name">NetSuite</div>
+        <div class="integration-desc">Pull aged AR from NetSuite via API. Ideal for mid-market companies with complex invoice structures.</div>
+        <div class="integration-link">View integration &rarr;</div>
+      </a>
+
+      <a href="/integrations/sage" class="integration-card">
+        <div class="integration-logo">SG</div>
+        <div class="integration-name">Sage</div>
+        <div class="integration-desc">Connect Sage 50, 100, or Intacct to automatically escalate overdue B2B invoices to AgentCollect.</div>
+        <div class="integration-link">View integration &rarr;</div>
+      </a>
+
+      <a href="/integrations/xero" class="integration-card">
+        <div class="integration-logo">XR</div>
+        <div class="integration-name">Xero</div>
+        <div class="integration-desc">Xero native integration. Overdue invoices past your threshold automatically enter the collection queue.</div>
+        <div class="integration-link">View integration &rarr;</div>
+      </a>
+
+      <a href="/integrations/microsoft-dynamics" class="integration-card">
+        <div class="integration-logo">D365</div>
+        <div class="integration-name">Microsoft Dynamics</div>
+        <div class="integration-desc">Connect Dynamics 365 Finance &amp; Operations or Business Central to automate AR collections at scale.</div>
+        <div class="integration-link">View integration &rarr;</div>
+      </a>
+
+      <a href="/integrations/sap" class="integration-card">
+        <div class="integration-logo">SAP</div>
+        <div class="integration-name">SAP</div>
+        <div class="integration-desc">SAP S/4HANA and SAP Business One connector. Route high-value overdue invoices directly to AI collection.</div>
+        <div class="integration-link">View integration &rarr;</div>
+      </a>
+
+      <a href="/integrations/freshbooks" class="integration-card">
+        <div class="integration-logo">FB</div>
+        <div class="integration-name">FreshBooks</div>
+        <div class="integration-desc">FreshBooks integration for service businesses. Escalate unpaid invoices after your grace period automatically.</div>
+        <div class="integration-link">View integration &rarr;</div>
+      </a>
+
+      <a href="/integrations/bill-com" class="integration-card">
+        <div class="integration-logo">BILL</div>
+        <div class="integration-name">Bill.com</div>
+        <div class="integration-desc">Connect Bill.com to automatically move aging receivables into active collection when they cross your threshold.</div>
+        <div class="integration-link">View integration &rarr;</div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- CRM -->
+  <div class="category-section">
+    <div class="section-tag">Category</div>
+    <div class="category-label">CRM</div>
+    <div class="integrations-grid">
+
+      <a href="/integrations/salesforce" class="integration-card">
+        <div class="integration-logo">SF</div>
+        <div class="integration-name">Salesforce</div>
+        <div class="integration-desc">Sync collection status to Salesforce accounts. Your sales team stays informed without logging into AgentCollect.</div>
+        <div class="integration-link">View integration &rarr;</div>
+      </a>
+
+      <a href="/integrations/hubspot" class="integration-card">
+        <div class="integration-logo">HS</div>
+        <div class="integration-name">HubSpot</div>
+        <div class="integration-desc">Connect HubSpot CRM to automatically flag accounts with overdue invoices and pause outbound sequences during collection.</div>
+        <div class="integration-link">View integration &rarr;</div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- Billing & Subscriptions -->
+  <div class="category-section">
+    <div class="section-tag">Category</div>
+    <div class="category-label">Billing &amp; Subscriptions</div>
+    <div class="integrations-grid">
+
+      <a href="/integrations/stripe" class="integration-card">
+        <div class="integration-logo">STR</div>
+        <div class="integration-name">Stripe Billing</div>
+        <div class="integration-desc">Route failed Stripe invoices to AI collection when smart retries fail. Recover subscription and B2B invoice revenue.</div>
+        <div class="integration-link">View integration &rarr;</div>
+      </a>
+
+      <a href="/integrations/chargebee" class="integration-card">
+        <div class="integration-logo">CB</div>
+        <div class="integration-name">Chargebee</div>
+        <div class="integration-desc">Connect Chargebee to escalate dunning failures to human-in-the-loop AI collection rather than churning the account.</div>
+        <div class="integration-link">View integration &rarr;</div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- AR Platforms -->
+  <div class="category-section">
+    <div class="section-tag">Category</div>
+    <div class="category-label">AR Platforms</div>
+    <div class="integrations-grid">
+
+      <a href="/integrations/highradius" class="integration-card">
+        <div class="integration-logo">HR</div>
+        <div class="integration-name">HighRadius</div>
+        <div class="integration-desc">HighRadius users can route delinquent accounts to AgentCollect when internal AR workflows are exhausted.</div>
+        <div class="integration-link">View integration &rarr;</div>
+      </a>
+
+      <a href="/integrations/billtrust" class="integration-card">
+        <div class="integration-logo">BT</div>
+        <div class="integration-name">Billtrust</div>
+        <div class="integration-desc">Connect Billtrust to hand off seriously overdue invoices to AI-powered collection while keeping other accounts in your AR workflow.</div>
+        <div class="integration-link">View integration &rarr;</div>
+      </a>
+
+    </div>
+  </div>
+
+  <div class="csv-note">
+    <div class="csv-note-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+    </div>
+    <div class="csv-note-text">
+      <strong>Don't see your tool?</strong> CSV and Excel always work. Upload a spreadsheet with your overdue invoices and debtor contacts — go live in 20 minutes, no integration required.
+    </div>
+  </div>
+
+  <div class="cta-box">
+    <h2>Ready to connect?</h2>
+    <p>Most teams are live in 20 minutes. We handle the integration — you handle the cash.</p>
+    <a href="/contact" class="cta-btn">Get a free pilot &rarr;</a>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">AgentCollect<span>.</span></div>
+    <div class="footer-links">
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 AgentCollect (YC S23). All rights reserved.</div>
+  </div>
+</footer>
+
+</body>
+</html>
