@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<title>What is an Aging Report? B2B Accounts Receivable Definition | AgentCollect</title>
+<meta name="description" content="Aging Report: a financial report that categorizes outstanding invoices by how long they've been overdue. How it applies to B2B commercial debt collection.">
+<meta property="og:title" content="What is an Aging Report? | AgentCollect Glossary">
+<meta property="og:description" content="An AR aging report categorizes outstanding invoices by how long they've been overdue — your primary tool for prioritizing collection efforts and managing cash flow risk.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.agentcollect.com/glossary/aging-report">
+<link rel="canonical" href="https://www.agentcollect.com/glossary/aging-report">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"DefinedTerm","name":"Aging Report","description":"A financial report that categorizes outstanding invoices by how long they've been overdue.","inDefinedTermSet":{"@type":"DefinedTermSet","name":"B2B Debt Collection Glossary","url":"https://www.agentcollect.com/glossary"}}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "What are the standard aging buckets on an AR aging report?", "acceptedAnswer": {"@type": "Answer", "text": "The standard AR aging buckets are: Current (not yet due), 1-30 days past due, 31-60 days past due, 61-90 days past due, and 90+ days past due. Some companies add a 120+ days bucket for heavily aged receivables. Each bucket represents a different risk level and collection priority."}},
+    {"@type": "Question", "name": "How often should you run an AR aging report?", "acceptedAnswer": {"@type": "Answer", "text": "Best practice is to review your AR aging report weekly. Monthly is the minimum for any company extending credit terms. For high-volume B2B operations, daily automated monitoring is standard — especially for any account that moves into the 31-60 day bucket, which is the critical intervention window."}},
+    {"@type": "Question", "name": "What percentage of AR is typically uncollectable?", "acceptedAnswer": {"@type": "Answer", "text": "Industry averages for B2B bad debt: 1-2% of current AR, 5-10% of 31-60 day AR, 15-25% of 61-90 day AR, and 30-50%+ of 90+ day AR. Companies that act aggressively within 30 days of a missed payment see significantly better recovery rates across all buckets."}}
+  ]
+}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#FAFBFF;--bg-card:#fff;--bg-dark:#0B1B3D;
+  --border:#E8ECF2;
+  --text:#0B1B3D;--text-mid:#475569;--text-muted:#94A3B8;
+  --indigo:#4F46E5;--indigo-dark:#4338CA;--indigo-light:rgba(79,70,229,.06);
+  --green:#10B981;--green-light:rgba(16,185,129,.06);
+  --red:#EF4444;--red-light:rgba(239,68,68,.06);--yellow:#F59E0B;
+  --mono:'JetBrains Mono',monospace;--sans:'Inter',-apple-system,sans-serif;--display:'Plus Jakarta Sans',sans-serif;
+  --max-w:1140px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--display);letter-spacing:-.03em;line-height:1.15}
+::selection{background:rgba(79,70,229,.12)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:60px}
+.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 32px;display:flex;align-items:center;height:100%}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;margin-right:40px;font-family:var(--display);font-size:18px;font-weight:800;letter-spacing:-.04em;color:var(--text)}
+.logo-dot{color:var(--indigo)}
+.nav-links{display:flex;gap:28px;flex:1}
+.nav-links a{color:var(--text-mid);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a.active{color:var(--indigo);font-weight:600}
+.nav-cta{padding:9px 20px;background:var(--indigo);color:#fff;border:none;border-radius:8px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s;display:inline-flex;align-items:center}
+.nav-cta:hover{background:var(--indigo-dark)}
+.hero{padding:120px 32px 64px;max-width:var(--max-w);margin:0 auto}
+.breadcrumb{font-size:13px;color:var(--text-muted);margin-bottom:32px}
+.breadcrumb a{color:var(--indigo);text-decoration:none}
+.breadcrumb a:hover{text-decoration:underline}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:var(--indigo-light);border:1px solid rgba(79,70,229,.15);border-radius:100px;font-family:var(--mono);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--indigo);margin-bottom:20px}
+.hero h1{font-size:clamp(32px,4.5vw,48px);font-weight:900;color:var(--text);margin-bottom:20px;max-width:760px}
+.hero h1 em{font-style:normal;color:var(--indigo)}
+.hero-sub{font-size:17px;line-height:1.7;color:var(--text-mid);max-width:640px;margin-bottom:32px}
+.content{max-width:var(--max-w);margin:0 auto;padding:0 32px 80px}
+.section{margin-bottom:64px}
+.section-tag{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--indigo);margin-bottom:12px;font-weight:500}
+.section h2{font-size:28px;font-weight:800;margin-bottom:16px}
+.section p{font-size:16px;line-height:1.8;color:var(--text-mid);margin-bottom:16px;max-width:720px}
+.section p strong{color:var(--text);font-weight:600}
+.def-card{background:var(--bg-card);border:1px solid var(--border);border-left:4px solid var(--indigo);border-radius:16px;padding:32px;margin-bottom:32px}
+.def-card p{font-size:16px;color:var(--text-mid);line-height:1.8;margin-bottom:12px;max-width:none}
+.def-card p:last-child{margin-bottom:0}
+.key-points{list-style:none;padding:0;margin:0}
+.key-points li{font-size:15px;color:var(--text-mid);line-height:1.7;padding:10px 0 10px 28px;position:relative;border-bottom:1px solid var(--border)}
+.key-points li:last-child{border-bottom:none}
+.key-points li::before{content:'';position:absolute;left:0;top:18px;width:8px;height:8px;border-radius:50%;background:var(--indigo)}
+.key-points li strong{color:var(--text)}
+.aging-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px}
+.aging-table th{text-align:left;padding:14px 20px;font-family:var(--display);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);border-bottom:2px solid var(--border)}
+.aging-table td{padding:14px 20px;border-bottom:1px solid var(--border);color:var(--text)}
+.aging-table tr:last-child td{border-bottom:none}
+.bucket-current{background:var(--green-light)}
+.bucket-30{background:rgba(79,70,229,.04)}
+.bucket-60{background:rgba(245,158,11,.08)}
+.bucket-90{background:rgba(239,68,68,.06)}
+.bucket-90plus{background:rgba(239,68,68,.12)}
+.risk-badge{display:inline-flex;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:600}
+.risk-low{background:var(--green-light);color:var(--green)}
+.risk-medium{background:rgba(245,158,11,.12);color:var(--yellow)}
+.risk-high{background:rgba(239,68,68,.1);color:var(--red)}
+.risk-critical{background:rgba(239,68,68,.2);color:var(--red)}
+.example-box{background:var(--indigo-light);border:1px solid rgba(79,70,229,.15);border-radius:16px;padding:32px;margin:32px 0}
+.example-box h3{font-size:18px;font-weight:800;margin-bottom:12px;color:var(--text)}
+.example-box p{font-size:15px;color:var(--text-mid);line-height:1.7;margin-bottom:8px;max-width:none}
+.agentcollect-box{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:32px;margin:32px 0;position:relative;overflow:hidden}
+.agentcollect-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--indigo),var(--green))}
+.agentcollect-box h3{font-size:18px;font-weight:800;margin-bottom:12px}
+.agentcollect-box p{font-size:15px;color:var(--text-mid);line-height:1.7;margin-bottom:10px;max-width:none}
+.agentcollect-box p:last-child{margin-bottom:0}
+.related-terms{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.related-term{display:inline-flex;padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:500;color:var(--text-mid);text-decoration:none;transition:all .15s}
+.related-term:hover{border-color:var(--indigo);color:var(--indigo);background:var(--indigo-light)}
+.faq-item{border-bottom:1px solid var(--border);padding:24px 0}
+.faq-q{font-family:var(--display);font-size:17px;font-weight:700;color:var(--text);margin-bottom:10px}
+.faq-a{font-size:15px;color:var(--text-mid);line-height:1.7;max-width:720px}
+.cta-box{background:var(--bg-dark);border-radius:20px;padding:64px 40px;text-align:center;margin:64px 0;position:relative;overflow:hidden}
+.cta-box::before{content:'';position:absolute;top:-40%;left:-40%;width:180%;height:180%;background:radial-gradient(ellipse at 50% 80%,rgba(79,70,229,.12) 0%,transparent 50%);pointer-events:none}
+.cta-box h2{font-size:32px;font-weight:900;color:#fff;margin-bottom:12px;position:relative}
+.cta-box p{font-size:16px;color:var(--text-muted);margin-bottom:28px;position:relative}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--indigo);color:#fff;border:none;border-radius:10px;font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s;position:relative}
+.cta-btn:hover{background:var(--indigo-dark)}
+.footer{border-top:1px solid var(--border);padding:40px 32px;text-align:center}
+.footer-inner{max-width:var(--max-w);margin:0 auto}
+.footer-logo{font-family:var(--display);font-size:16px;font-weight:800;color:var(--text);letter-spacing:-.03em;margin-bottom:8px}
+.footer-logo span{color:var(--indigo)}
+.footer-links{display:flex;gap:24px;justify-content:center;margin-bottom:12px}
+.footer-links a{font-size:13px;color:var(--text-muted);text-decoration:none}
+.footer-links a:hover{color:var(--text)}
+.footer-copy{font-size:12px;color:var(--text-muted)}
+@media(max-width:768px){
+  .hero{padding:100px 20px 48px}
+  .content{padding:0 20px 60px}
+  .nav-links{display:none}
+  .cta-box{padding:48px 24px}
+  .aging-table{font-size:12px}
+  .aging-table td,.aging-table th{padding:10px 12px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo">AgentCollect<span class="logo-dot">.</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/glossary" class="active">Glossary</a>
+      <a href="/contact">Contact</a>
+    </div>
+    <a href="/contact" class="nav-cta">Get a demo</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="breadcrumb">
+    <a href="/">Home</a> / <a href="/glossary">Glossary</a> / Aging Report
+  </div>
+  <div class="hero-tag">AR Glossary</div>
+  <h1>What is an <em>Aging Report</em>?</h1>
+  <p class="hero-sub">An AR aging report is a financial report that categorizes all outstanding invoices by how long they've been overdue — your primary tool for prioritizing collections, managing cash flow risk, and calculating your bad debt reserve.</p>
+</div>
+
+<div class="content">
+
+  <div class="section">
+    <div class="section-tag">Definition</div>
+    <h2>Accounts Receivable Aging Report Explained</h2>
+    <div class="def-card">
+      <p>An <strong>accounts receivable (AR) aging report</strong> is a financial document that groups a company's outstanding invoices into time-based "buckets" based on how long they've been past due. The standard buckets are: Current, 1-30 days, 31-60 days, 61-90 days, and 90+ days past due.</p>
+      <p>The aging report is the foundation of every AR management process. It tells you at a glance where your money is stuck, which accounts need immediate attention, and how much of your AR is at risk of becoming bad debt. Without an aging report, AR management is guesswork.</p>
+      <p>The single most important insight from an aging report: <strong>the older an invoice, the less likely it will ever be collected.</strong> An invoice at 0-30 days overdue has a 90%+ recovery rate. At 90+ days, that drops below 50%. At 180+ days, below 25%. Speed of intervention is everything.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-tag">Key Points</div>
+    <h2>What You Need to Know About Aging Reports</h2>
+    <ul class="key-points">
+      <li><strong>The 60-day window is your collection inflection point.</strong> Accounts addressed before 60 days overdue recover at roughly 2x the rate of accounts left until 90+ days.</li>
+      <li><strong>Use it to calculate your bad debt reserve.</strong> Apply industry-standard write-off percentages to each aging bucket to estimate your allowance for doubtful accounts.</li>
+      <li><strong>Run it weekly at minimum.</strong> A monthly aging review means some accounts sit 30+ extra days before anyone notices.</li>
+      <li><strong>Sort by dollar amount within each bucket.</strong> Prioritize the largest overdue balances first — don't spend equal time on a $500 invoice and a $50,000 invoice.</li>
+      <li><strong>The 90+ bucket is a leading indicator of cash flow problems.</strong> If your 90+ bucket is growing each month, your collection process is failing — not your customers.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-tag">Standard Buckets</div>
+    <h2>AR Aging Report: Risk by Bucket</h2>
+    <table class="aging-table">
+      <thead>
+        <tr>
+          <th>Aging Bucket</th>
+          <th>Days Past Due</th>
+          <th>Typical Recovery Rate</th>
+          <th>Risk Level</th>
+          <th>Action Required</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="bucket-current">
+          <td><strong>Current</strong></td>
+          <td>Not yet due</td>
+          <td>95-99%</td>
+          <td><span class="risk-badge risk-low">Low</span></td>
+          <td>Monitor</td>
+        </tr>
+        <tr class="bucket-30">
+          <td><strong>1-30 Days</strong></td>
+          <td>1 to 30 days late</td>
+          <td>85-95%</td>
+          <td><span class="risk-badge risk-low">Low-Medium</span></td>
+          <td>Reminder + first call</td>
+        </tr>
+        <tr class="bucket-60">
+          <td><strong>31-60 Days</strong></td>
+          <td>31 to 60 days late</td>
+          <td>65-80%</td>
+          <td><span class="risk-badge risk-medium">Medium</span></td>
+          <td>Active outreach + escalation</td>
+        </tr>
+        <tr class="bucket-90">
+          <td><strong>61-90 Days</strong></td>
+          <td>61 to 90 days late</td>
+          <td>40-60%</td>
+          <td><span class="risk-badge risk-high">High</span></td>
+          <td>Formal demand + attorney warning</td>
+        </tr>
+        <tr class="bucket-90plus">
+          <td><strong>90+ Days</strong></td>
+          <td>Over 90 days late</td>
+          <td>15-40%</td>
+          <td><span class="risk-badge risk-critical">Critical</span></td>
+          <td>Attorney demand or agency referral</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-tag">Example</div>
+    <h2>Reading an Aging Report: B2B Example</h2>
+    <div class="example-box">
+      <h3>Technology Company: $420K Total AR</h3>
+      <p><strong>Current (not yet due):</strong> $180,000 — healthy, no action needed</p>
+      <p><strong>1-30 days past due:</strong> $95,000 — send reminders, make first calls</p>
+      <p><strong>31-60 days past due:</strong> $85,000 — active collection needed now; this is the critical window</p>
+      <p><strong>61-90 days past due:</strong> $40,000 — formal demands; risk of bad debt increasing rapidly</p>
+      <p><strong>90+ days past due:</strong> $20,000 — escalate to attorney or collection agency immediately</p>
+      <p style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(79,70,229,.15)"><strong>Bad debt reserve estimate:</strong> Apply standard percentages: 0% of current + 5% of 1-30 + 15% of 31-60 + 30% of 61-90 + 50% of 90+ = $0 + $4,750 + $12,750 + $12,000 + $10,000 = <strong>~$39,500 reserve</strong> (9.4% of total AR)</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-tag">AgentCollect</div>
+    <h2>How AgentCollect Uses Your Aging Report</h2>
+    <div class="agentcollect-box">
+      <h3>Real-Time Aging Monitoring + Automated Action</h3>
+      <p>AgentCollect connects to your invoicing system and monitors your AR aging in real time. The moment an invoice moves from Current into the 1-30 day bucket, an AI agent is automatically dispatched — no manual review of the aging report required.</p>
+      <p>Each aging bucket triggers a different level of action: gentle reminder for 1-30 days, active phone outreach for 31-60 days, formal demand language for 61-90 days, and automatic attorney escalation for 90+ day accounts. Your aging report becomes an automated action plan, not just a report to review.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-tag">Related Terms</div>
+    <h2>Related AR Glossary Terms</h2>
+    <div class="related-terms">
+      <a href="/glossary/accounts-receivable" class="related-term">Accounts Receivable</a>
+      <a href="/glossary/days-sales-outstanding" class="related-term">Days Sales Outstanding</a>
+      <a href="/glossary/bad-debt" class="related-term">Bad Debt</a>
+      <a href="/glossary/dunning" class="related-term">Dunning</a>
+      <a href="/glossary/charge-off" class="related-term">Charge-Off</a>
+      <a href="/glossary/net-30-60-90" class="related-term">Net 30 / 60 / 90</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-tag">FAQ</div>
+    <h2>Aging Report FAQ</h2>
+    <div class="faq-item">
+      <div class="faq-q">What are the standard aging buckets on an AR aging report?</div>
+      <div class="faq-a">The standard AR aging buckets are: Current (not yet due), 1-30 days past due, 31-60 days past due, 61-90 days past due, and 90+ days past due. Some companies add a 120+ days bucket for heavily aged receivables. Each bucket represents a different risk level and collection priority.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How often should you run an AR aging report?</div>
+      <div class="faq-a">Best practice is to review your AR aging report weekly. Monthly is the minimum for any company extending credit terms. For high-volume B2B operations, daily automated monitoring is standard — especially for any account that moves into the 31-60 day bucket, which is the critical intervention window.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What percentage of AR is typically uncollectable?</div>
+      <div class="faq-a">Industry averages for B2B bad debt: 1-2% of current AR, 5-10% of 31-60 day AR, 15-25% of 61-90 day AR, and 30-50%+ of 90+ day AR. Companies that act aggressively within 30 days of a missed payment see significantly better recovery rates across all buckets.</div>
+    </div>
+  </div>
+
+  <div class="cta-box">
+    <h2>Aging report full of 60+ day accounts?</h2>
+    <p>AgentCollect turns your aging report into an automated action plan. AI agents contact every overdue account — automatically, under your brand.</p>
+    <a href="/contact" class="cta-btn">Start a free pilot &rarr;</a>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">AgentCollect<span>.</span></div>
+    <div class="footer-links">
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 AgentCollect (YC S23). All rights reserved.</div>
+  </div>
+</footer>
+
+</body>
+</html>
