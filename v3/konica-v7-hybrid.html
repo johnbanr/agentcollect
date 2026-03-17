@@ -90,7 +90,7 @@ a.review-src:hover{color:var(--blue)}
 .wave-bar:nth-child(1){animation-delay:0s;height:28px}.wave-bar:nth-child(2){animation-delay:.15s;height:36px}.wave-bar:nth-child(3){animation-delay:.3s;height:24px}.wave-bar:nth-child(4){animation-delay:.1s;height:40px}.wave-bar:nth-child(5){animation-delay:.25s;height:30px}.wave-bar:nth-child(6){animation-delay:.05s;height:34px}.wave-bar:nth-child(7){animation-delay:.2s;height:26px}
 .preplay-btn{width:64px;height:64px;border-radius:50%;background:var(--blue);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:1;transition:transform .15s,box-shadow .15s}
 .preplay-btn:hover{transform:scale(1.08);box-shadow:0 0 0 12px rgba(79,70,229,.15)}
-.preplay-text{margin-top:16px;font-size:15px;color:rgba(255,255,255,.45);z-index:1}
+.preplay-text{margin-top:16px;font-size:16px;color:rgba(255,255,255,.45);z-index:1}
 .dark-body{display:grid;grid-template-columns:1.2fr 1fr;min-height:280px}
 .dark-body.hidden{display:none}
 .dark-transcript{padding:20px 36px 28px;display:flex;flex-direction:column;justify-content:flex-start;gap:18px;overflow-y:auto;max-height:300px}
@@ -128,7 +128,7 @@ a.review-src:hover{color:var(--blue)}
 .contact-card.protected::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 12px,rgba(0,0,0,.01) 12px,rgba(0,0,0,.01) 24px);pointer-events:none;border-radius:18px}
 .contact-card.protected{position:relative;overflow:hidden}
 .contact-photo{width:68px;height:68px;border-radius:50%;object-fit:cover;margin:0 auto 14px;display:block;box-shadow:0 2px 8px rgba(0,0,0,.1)}
-.contact-name{font-weight:700;font-size:15px;color:var(--text)}
+.contact-name{font-weight:700;font-size:16px;color:var(--text)}
 .contact-role{font-size:14px;color:var(--muted);margin-top:3px}
 .contact-info{margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
 .contact-detail{font-size:14px;color:var(--muted);margin-top:5px;font-family:monospace;letter-spacing:.3px}
@@ -150,9 +150,6 @@ a.review-src:hover{color:var(--blue)}
 .cta-or{display:block;margin-top:14px;font-size:16px;color:rgba(255,255,255,.6);position:relative}
 .cta-or a{color:rgba(255,255,255,.7);text-decoration:none}
 .cta-forward{margin-top:28px;font-size:16px;color:rgba(255,255,255,.55);position:relative}
-.cta-logos{display:flex;align-items:center;justify-content:center;gap:36px;margin-top:56px;flex-wrap:wrap;position:relative}
-.cta-logos img{height:16px;opacity:.25;filter:brightness(10)}
-
 .foot{padding:28px;text-align:center;font-size:14px;color:var(--muted)}
 
 /* MOBILE */
@@ -170,6 +167,7 @@ a.review-src:hover{color:var(--blue)}
   .strategy-section{padding:80px 24px}
   .chain-grid{grid-template-columns:1fr 1fr;gap:14px}
   .cta-section{padding:80px 24px}
+  .how-grid{grid-template-columns:1fr!important}
 }
 @media(max-width:480px){
   .chain-grid{grid-template-columns:1fr}
@@ -228,7 +226,7 @@ a.review-src:hover{color:var(--blue)}
 <section style="padding:80px 32px;max-width:1080px;margin:0 auto">
   <div class="rv" style="text-align:center">
     <h2 style="font-size:clamp(26px,3.5vw,36px);font-weight:800;letter-spacing:-.02em;margin-bottom:48px">AI agents that call, email, and negotiate. Under your brand.</h2>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;text-align:center;max-width:800px;margin:0 auto">
+    <div class="how-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;text-align:center;max-width:800px;margin:0 auto">
       <div>
         <div style="width:48px;height:48px;border-radius:14px;background:rgba(79,70,229,.08);display:flex;align-items:center;justify-content:center;margin:0 auto 14px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg></div>
         <div style="font-weight:700;font-size:16px;margin-bottom:6px">Branded calls</div>
@@ -357,12 +355,6 @@ a.review-src:hover{color:var(--blue)}
     <a href="https://cal.com/johnb/30" target="_blank" class="cta-btn" onclick="gtag('event','book_cta',{})">Book a live demo</a>
     <span class="cta-or"><a href="tel:+12016277551" onclick="gtag('event','call_cta',{})">or call (201) 627-7551</a></span>
     <p class="cta-forward">Not the right person? Forward this to your Head of Collections.</p>
-    <div class="cta-logos">
-      <img src="https://cdn.brandfetch.io/microsoft.com/w/512/h/80/logo" alt="Microsoft">
-      <img src="https://cdn.brandfetch.io/dell.com/w/512/h/80/logo" alt="Dell">
-      <img src="https://cdn.brandfetch.io/plaid.com/w/512/h/80/logo" alt="Plaid">
-      <img src="https://cdn.brandfetch.io/checkr.com/w/512/h/80/logo" alt="Checkr">
-    </div>
   </div>
 </section>
 
