@@ -111,6 +111,8 @@
 { "source": "/glossary/third-party-collection", "destination": "/glossary/third-party-collection.html" },
 { "source": "/glossary/skip-tracing", "destination": "/glossary/skip-tracing.html" },
 { "source": "/glossary/debt-collection-attorney", "destination": "/glossary/debt-collection-attorney.html" },
+{ "source": "/tools/dso-calculator", "destination": "/tools/dso-calculator.html" },
+{ "source": "/tools/agency-cost-calculator", "destination": "/tools/agency-cost-calculator.html" },
 { "source": "/about", "destination": "/about.html" },
     { "source": "/careers", "destination": "/careers.html" },
     { "source": "/contact", "destination": "/contact.html" },
