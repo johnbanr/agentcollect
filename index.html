@@ -84,8 +84,8 @@
         .nav-mobile{display:none;background:none;border:none;cursor:pointer;padding:8px;min-width:44px;min-height:44px}
 
         /* HERO */
-        .hero{padding:72px 32px 8px;text-align:center;position:relative;background:#fff;overflow:hidden}
-        .hero h1{font-size:clamp(32px,4vw,52px);font-weight:900;letter-spacing:-.04em;line-height:1.05;margin-bottom:20px;max-width:700px;margin-left:auto;margin-right:auto;color:var(--text)}
+        .hero{padding:56px 32px 0;text-align:center;position:relative;background:#fff;overflow:hidden}
+        .hero h1{font-size:clamp(28px,2.5vw,38px);font-weight:900;letter-spacing:-.04em;line-height:1.05;margin-bottom:12px;max-width:700px;margin-left:auto;margin-right:auto;color:var(--text)}
 
         /* GRADIENT MESH */
         .hero::after{content:'';position:absolute;inset:0;pointer-events:none;
@@ -202,8 +202,8 @@
         }
 
         /* PROOF BAR */
-        .proof-bar{padding:20px 32px;background:#fff}
-        .proof-bar-label{text-align:center;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--text-dim);margin-bottom:16px}
+        .proof-bar{padding:16px 32px;background:#fff}
+        .proof-bar-label{display:none}
         .proof-bar-inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap}
         .proof-item{display:flex;flex-direction:column;align-items:center;gap:10px;position:relative;cursor:default}
         .proof-item img{height:24px;opacity:.4;filter:grayscale(100%);object-fit:contain;transition:all .4s}
@@ -432,12 +432,9 @@
 
 <!-- 1. HERO — Clean: title + search + explanation -->
 <section class="hero" id="hero">
-    <div class="hero-badge"><span class="dot"></span> Trusted by Microsoft, Dell, and Plaid</div>
-    <h1>The end of manual<br>collection.</h1>
+    <h1 style="white-space:nowrap">The end of manual collection.</h1>
 
     <div class="hero-input-wrap" id="hero-input">
-        <div style="font-family:var(--display);font-size:16px;font-weight:700;color:var(--text);text-align:center;margin-bottom:6px">Enter your website.</div>
-        <div style="font-size:14px;color:var(--text-mid);text-align:center;margin-bottom:16px;max-width:380px;margin-left:auto;margin-right:auto">We'll find who owes you money, why they're not paying, and how to get it back.</div>
         <div class="input-box" style="max-width:520px;margin:0 auto">
             <input type="text" class="input-field" id="url-input" placeholder="yourcompany.com" autocomplete="off" spellcheck="false" style="font-size:17px;padding:18px 20px">
             <button class="input-btn" id="go-btn" onclick="startAnalysis()" style="padding:18px 32px;font-size:16px;border-radius:12px">
@@ -508,8 +505,7 @@
 
 <!-- 2. PROOF BAR -->
 <section class="proof-bar reveal" id="proof">
-    <div class="gradient-divider" style="margin-bottom:48px"></div>
-    <div class="proof-bar-label">Trusted by teams at</div>
+    <div class="gradient-divider" style="margin-bottom:16px"></div>
     <div class="proof-bar-inner">
         <div class="proof-item">
             <img src="https://cdn.brandfetch.io/microsoft.com/w/512/h/80/logo" alt="Microsoft">
