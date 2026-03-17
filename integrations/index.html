@@ -1,317 +1,754 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="index, follow">
-<title>AgentCollect Integrations: Connect Your ERP, CRM & Billing Tools</title>
-<meta name="description" content="AgentCollect connects to your ERP, CRM, and billing tools. Overdue invoices automatically trigger AI collection. Payments sync back in real-time.">
-<meta property="og:title" content="AgentCollect Integrations: Connect Your ERP, CRM & Billing Tools">
-<meta property="og:description" content="AgentCollect connects to your ERP, CRM, and billing tools. Overdue invoices automatically trigger AI collection. Payments sync back in real-time.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://www.agentcollect.com/integrations">
-<link rel="canonical" href="https://www.agentcollect.com/integrations">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "AgentCollect Integrations",
-  "description": "AgentCollect connects to your ERP, CRM, and billing tools. Overdue invoices automatically trigger AI collection.",
-  "url": "https://www.agentcollect.com/integrations",
-  "publisher": {"@type": "Organization", "name": "AgentCollect", "url": "https://www.agentcollect.com"},
-  "about": {
-    "@type": "SoftwareApplication",
-    "name": "AgentCollect",
-    "applicationCategory": "BusinessApplication",
-    "description": "AI-powered B2B debt collection platform that integrates with ERP, CRM, and billing tools"
-  }
-}
-</script>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#FAFBFF;--bg-card:#fff;--bg-dark:#0B1B3D;
-  --border:#E8ECF2;
-  --text:#0B1B3D;--text-mid:#475569;--text-muted:#94A3B8;
-  --indigo:#4F46E5;--indigo-dark:#4338CA;--indigo-light:rgba(79,70,229,.06);
-  --green:#10B981;
-  --mono:'JetBrains Mono',monospace;--sans:'Inter',-apple-system,sans-serif;--display:'Plus Jakarta Sans',sans-serif;
-  --shadow-md:0 4px 12px rgba(0,0,0,.06);
-  --max-w:1140px;
-}
-html{scroll-behavior:smooth}
-body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.15}
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:60px}
-.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 32px;display:flex;align-items:center;height:100%}
-.logo{display:flex;align-items:center;gap:8px;text-decoration:none;margin-right:40px;font-family:var(--display);font-size:18px;font-weight:800;letter-spacing:-.04em;color:var(--text)}
-.logo-dot{color:var(--indigo)}
-.nav-links{display:flex;gap:28px;flex:1}
-.nav-links a{color:var(--text-mid);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
-.nav-links a:hover,.nav-links a.active{color:var(--indigo);font-weight:600}
-.nav-cta{padding:9px 20px;background:var(--indigo);color:#fff;border:none;border-radius:8px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s;display:inline-flex;align-items:center}
-.nav-cta:hover{background:var(--indigo-dark)}
-.hero{padding:120px 32px 64px;max-width:var(--max-w);margin:0 auto}
-.hero-tag{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:var(--indigo-light);border:1px solid rgba(79,70,229,.15);border-radius:100px;font-family:var(--mono);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--indigo);margin-bottom:20px}
-.hero h1{font-size:clamp(32px,4.5vw,48px);font-weight:900;color:var(--text);margin-bottom:20px;max-width:700px}
-.hero h1 em{font-style:normal;color:var(--indigo)}
-.hero-sub{font-size:17px;line-height:1.7;color:var(--text-mid);max-width:620px;margin-bottom:0}
-.content{max-width:var(--max-w);margin:0 auto;padding:0 32px 80px}
-.section-tag{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--indigo);margin-bottom:12px;font-weight:500;margin-top:48px}
-.intro-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:40px 0}
-.intro-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px}
-.intro-card h3{font-size:16px;font-weight:700;margin-bottom:8px}
-.intro-card p{font-size:14px;color:var(--text-mid);line-height:1.6}
-.intro-card .stat{font-family:var(--display);font-size:28px;font-weight:900;color:var(--indigo);margin-bottom:4px;letter-spacing:-.03em}
-.category-section{margin-bottom:48px}
-.category-label{font-family:var(--display);font-size:18px;font-weight:800;color:var(--text);margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--border)}
-.integrations-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.integration-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px;transition:border-color .2s,box-shadow .2s;cursor:pointer;text-decoration:none;display:block}
-.integration-card:hover{border-color:var(--indigo);box-shadow:0 4px 16px rgba(79,70,229,.1)}
-.integration-logo{width:48px;height:48px;border-radius:10px;background:var(--indigo-light);border:1px solid rgba(79,70,229,.15);display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-family:var(--mono);font-size:12px;font-weight:700;color:var(--indigo);letter-spacing:-.02em}
-.integration-name{font-family:var(--display);font-size:15px;font-weight:800;color:var(--text);margin-bottom:6px}
-.integration-desc{font-size:13px;color:var(--text-mid);line-height:1.55;margin-bottom:12px}
-.integration-link{font-size:13px;font-weight:600;color:var(--indigo)}
-.csv-note{background:var(--indigo-light);border:1px solid rgba(79,70,229,.15);border-radius:12px;padding:20px 24px;display:flex;align-items:center;gap:16px;margin:32px 0}
-.csv-note-icon{width:40px;height:40px;background:var(--indigo);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.csv-note-text{font-size:14px;color:var(--text-mid);line-height:1.6}
-.csv-note-text strong{color:var(--text)}
-.cta-box{background:var(--bg-dark);border-radius:20px;padding:64px 40px;text-align:center;margin:64px 0;position:relative;overflow:hidden}
-.cta-box::before{content:'';position:absolute;top:-40%;left:-40%;width:180%;height:180%;background:radial-gradient(ellipse at 50% 80%,rgba(79,70,229,.12) 0%,transparent 50%);pointer-events:none}
-.cta-box h2{font-size:32px;font-weight:900;color:#fff;margin-bottom:12px;position:relative}
-.cta-box p{font-size:16px;color:var(--text-muted);margin-bottom:28px;position:relative}
-.cta-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--indigo);color:#fff;border:none;border-radius:10px;font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s;position:relative}
-.cta-btn:hover{background:var(--indigo-dark)}
-.footer{border-top:1px solid var(--border);padding:40px 32px;text-align:center}
-.footer-inner{max-width:var(--max-w);margin:0 auto}
-.footer-logo{font-family:var(--display);font-size:16px;font-weight:800;color:var(--text);letter-spacing:-.03em;margin-bottom:8px}
-.footer-logo span{color:var(--indigo)}
-.footer-links{display:flex;gap:24px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
-.footer-links a{font-size:13px;color:var(--text-muted);text-decoration:none}
-.footer-copy{font-size:12px;color:var(--text-muted)}
-@media(max-width:768px){
-  .hero{padding:100px 20px 48px}
-  .content{padding:0 20px 60px}
-  .nav-links{display:none}
-  .intro-grid{grid-template-columns:1fr}
-  .integrations-grid{grid-template-columns:repeat(2,1fr)}
-  .cta-box{padding:48px 24px}
-}
-@media(max-width:480px){
-  .integrations-grid{grid-template-columns:1fr}
-}
-@media(min-width:769px) and (max-width:1024px){
-  .integrations-grid{grid-template-columns:repeat(3,1fr)}
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <title>Integrations — AgentCollect</title>
+    <meta name="description" content="Connect your ERP, CRM, or billing system in minutes. AgentCollect works with QuickBooks, NetSuite, Salesforce, Stripe, and 30+ more. Or just upload an Excel file.">
+    <meta property="og:title" content="Integrations — AgentCollect">
+    <meta property="og:description" content="Works with everything you already use. No migration, no IT project.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.agentcollect.com/integrations">
+    <meta property="og:image" content="https://www.agentcollect.com/og.png?v=5">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Integrations — AgentCollect">
+    <meta name="twitter:description" content="Works with everything you already use. No migration, no IT project.">
+    <meta name="twitter:image" content="https://www.agentcollect.com/og.png?v=5">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --bg:#FAFBFF;--bg-card:#fff;--bg-dark:#0B1B3D;--bg-warm:#F8F7F5;
+            --border:#E8ECF2;--border-hover:rgba(79,70,229,.18);
+            --text:#0B1B3D;--text-mid:#374151;--text-muted:#64748B;--text-dim:#94A3B8;
+            --indigo:#4F46E5;--indigo-dark:#4338CA;--indigo-light:rgba(79,70,229,.04);--indigo-glow:rgba(79,70,229,.08);
+            --green:#10B981;--green-dark:#059669;--green-light:rgba(16,185,129,.04);
+            --amber:#F59E0B;--red:#EF4444;
+            --mono:'JetBrains Mono',monospace;--sans:'Inter',-apple-system,sans-serif;--display:'Plus Jakarta Sans',sans-serif;
+            --shadow-sm:0 1px 2px rgba(0,0,0,.03);
+            --shadow-md:0 2px 8px rgba(0,0,0,.04);
+            --shadow-lg:0 8px 24px rgba(0,0,0,.06);
+            --radius:14px;
+            --max-w:1120px;
+        }
+        html{scroll-behavior:smooth}
+        body{font-family:var(--sans);font-size:17px;background:#fff;color:var(--text);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden;line-height:1.7;position:relative}
+
+        body::before{content:'';position:fixed;inset:0;z-index:-1;background-image:
+            linear-gradient(rgba(79,70,229,.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(79,70,229,.03) 1px, transparent 1px);
+            background-size:64px 64px;pointer-events:none}
+
+        h1,h2,h3,h4,h5{font-family:var(--display);line-height:1.15;letter-spacing:-.04em}
+        ::selection{background:rgba(79,70,229,.08)}
+
+        .gradient-divider{height:1px;background:linear-gradient(90deg,transparent,var(--indigo),var(--green),transparent);opacity:.3;max-width:var(--max-w);margin:0 auto}
+
+        @keyframes pulse-ring{0%{box-shadow:0 0 0 0 rgba(79,70,229,.2)}70%{box-shadow:0 0 0 6px rgba(79,70,229,0)}100%{box-shadow:0 0 0 0 rgba(79,70,229,0)}}
+
+        .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+        .s1{transition-delay:.1s}.s2{transition-delay:.2s}.s3{transition-delay:.3s}
+
+        /* NAV */
+        .nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+        .nav.scrolled{box-shadow:0 1px 3px rgba(0,0,0,.02)}
+        .nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 32px;display:flex;align-items:center;height:64px}
+        .logo{display:inline-flex;align-items:baseline;text-decoration:none;margin-right:auto;font-family:var(--display);font-size:18px;font-weight:900;letter-spacing:-.04em;color:var(--text)}
+        .dot-circle{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--indigo);margin-left:1px;vertical-align:super}
+        .logo-tagline{font-size:11px;color:var(--text-muted);font-weight:400;margin-left:14px;padding-left:14px;border-left:1px solid var(--border);white-space:nowrap;letter-spacing:-.01em;margin-right:28px}
+        .nav-links{display:flex;gap:32px;margin-right:28px}
+        .nav-links a{color:var(--text-muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s;letter-spacing:-.01em}
+        .nav-links a:hover{color:var(--text)}
+        .nav-right{display:flex;align-items:center;gap:10px}
+        .nav-cta{padding:14px 28px;background:var(--indigo);color:#fff;border:none;border-radius:12px;font-family:var(--sans);font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;letter-spacing:-.01em}
+        .nav-cta:hover{background:var(--indigo-dark)}
+        .nav-cta-ghost{padding:14px 28px;background:transparent;color:var(--text-mid);border:1px solid var(--border);border-radius:12px;font-family:var(--sans);font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center}
+        .nav-cta-ghost:hover{border-color:var(--text-mid);color:var(--text)}
+        .nav-mobile{display:none;background:none;border:none;cursor:pointer;padding:8px;min-width:44px;min-height:44px}
+
+        /* SECTION HELPERS */
+        .section-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--indigo);margin-bottom:12px}
+        .section-title{font-size:clamp(28px,3.5vw,42px);font-weight:900;color:var(--text);margin-bottom:12px}
+        .section-sub{font-size:17px;color:var(--text-mid);max-width:480px;line-height:1.65;letter-spacing:-.01em}
+
+        /* HERO */
+        .hero{padding:120px 32px 80px;text-align:center;position:relative;background:#fff;overflow:hidden}
+        .hero::after{content:'';position:absolute;inset:0;pointer-events:none;
+            background:
+                radial-gradient(ellipse 600px 600px at 70% 20%, rgba(79,70,229,.04), transparent),
+                radial-gradient(ellipse 500px 500px at 30% 80%, rgba(16,185,129,.03), transparent)}
+        .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:rgba(79,70,229,.04);border:1px solid rgba(79,70,229,.1);border-radius:100px;font-size:12px;font-weight:600;color:var(--indigo);margin-bottom:20px;letter-spacing:.02em;position:relative;z-index:1}
+        .hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse-ring 2s infinite}
+        .hero h1{font-size:clamp(36px,5.5vw,60px);font-weight:900;letter-spacing:-.04em;line-height:1.05;margin-bottom:20px;max-width:760px;margin-left:auto;margin-right:auto;color:var(--text);position:relative;z-index:1}
+        .hero-sub{font-size:18px;color:var(--text-mid);max-width:540px;margin:0 auto 40px;line-height:1.65;letter-spacing:-.01em;position:relative;z-index:1}
+        .hero-cta{display:inline-flex;align-items:center;gap:8px;padding:16px 36px;background:var(--indigo);color:#fff;border:none;border-radius:12px;font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;letter-spacing:-.01em;position:relative;z-index:1}
+        .hero-cta:hover{background:var(--indigo-dark);transform:translateY(-1px);box-shadow:0 8px 24px rgba(79,70,229,.2)}
+        .hero-stats{display:flex;justify-content:center;gap:48px;margin-top:48px;position:relative;z-index:1}
+        .hero-stat{text-align:center}
+        .hero-stat-num{font-family:var(--mono);font-size:28px;font-weight:500;color:var(--indigo);letter-spacing:-.03em;line-height:1}
+        .hero-stat-label{font-size:12px;color:var(--text-muted);margin-top:4px;font-weight:500}
+
+        /* LOGO GRID SECTION — DARK */
+        .integrations-grid-section{background:var(--bg-dark);padding:80px 32px;position:relative;overflow:hidden}
+        .integrations-grid-section::before{content:'';position:absolute;inset:0;background-image:
+            linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+            background-size:64px 64px;pointer-events:none}
+        .integrations-grid-inner{max-width:var(--max-w);margin:0 auto;position:relative}
+        .integrations-grid-header{text-align:center;margin-bottom:56px}
+        .integrations-grid-header .section-label{color:rgba(255,255,255,.4)}
+        .integrations-grid-header .section-title{color:#fff}
+        .integrations-grid-header .section-sub{color:rgba(255,255,255,.55);margin:12px auto 0}
+
+        /* CATEGORY GROUP */
+        .category-group{margin-bottom:40px}
+        .category-header{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+        .category-label-text{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:rgba(255,255,255,.35);white-space:nowrap}
+        .category-badge{font-size:10px;font-weight:600;padding:3px 10px;border-radius:100px;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.4);letter-spacing:.04em;white-space:nowrap}
+        .category-line{flex:1;height:1px;background:rgba(255,255,255,.06)}
+
+        /* INTEGRATION CARDS GRID */
+        .cards-row{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+
+        /* SINGLE INTEGRATION CARD */
+        .int-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:20px 14px 16px;display:flex;flex-direction:column;align-items:center;gap:10px;transition:all .25s;cursor:default;position:relative;overflow:hidden}
+        .int-card::before{content:'';position:absolute;inset:0;border-radius:14px;background:linear-gradient(135deg,rgba(79,70,229,.1),transparent);opacity:0;transition:opacity .25s}
+        .int-card:hover{border-color:rgba(79,70,229,.4);transform:translateY(-3px);box-shadow:0 8px 32px rgba(79,70,229,.2)}
+        .int-card:hover::before{opacity:1}
+        .int-card.coming-soon{opacity:.4;border-style:dashed}
+        .int-card.coming-soon:hover{transform:none;box-shadow:none;border-color:rgba(255,255,255,.1);opacity:.4}
+        .int-card.coming-soon:hover::before{opacity:0}
+
+        /* LOGO WRAPPER */
+        .int-logo-wrap{width:100%;height:40px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+        .int-logo-wrap img{max-height:32px;max-width:88%;object-fit:contain;filter:brightness(0) invert(1);opacity:.65;transition:opacity .25s}
+        .int-card:hover .int-logo-wrap img{opacity:1}
+        .int-logo-fallback{width:40px;height:40px;border-radius:50%;background:rgba(79,70,229,.25);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:13px;font-weight:800;color:#a5b4fc}
+        .int-logo-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center}
+        .int-logo-icon.green-bg{background:rgba(16,185,129,.15)}
+        .int-logo-icon.indigo-bg{background:rgba(79,70,229,.15)}
+
+        /* CARD BOTTOM */
+        .int-card-name{font-size:11px;font-weight:600;color:rgba(255,255,255,.45);letter-spacing:-.01em;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+        .int-card-status{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:2px 8px;border-radius:100px}
+        .int-card-status.connected{background:rgba(16,185,129,.15);color:#34D399}
+        .int-card-status.coming{background:rgba(245,158,11,.12);color:#FCD34D}
+        .int-card-status.no-setup{background:rgba(16,185,129,.12);color:#34D399}
+
+        /* NO INTEGRATION NEEDED CALLOUT */
+        .no-integration{padding:80px 32px;background:var(--bg-warm)}
+        .no-integration-inner{max-width:var(--max-w);margin:0 auto}
+        .no-integration-box{background:#fff;border:1px solid var(--border);border-radius:20px;padding:48px 56px;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;box-shadow:var(--shadow-lg)}
+        .no-integration-box-label{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--green);margin-bottom:16px}
+        .no-integration-box-label::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green)}
+        .no-integration-box h2{font-size:clamp(24px,2.8vw,34px);font-weight:900;letter-spacing:-.04em;color:var(--text);margin-bottom:12px;line-height:1.2}
+        .no-integration-box p{font-size:17px;color:var(--text-mid);line-height:1.65;max-width:440px}
+        .no-integration-cta{padding:16px 32px;background:var(--green);color:#fff;border:none;border-radius:12px;font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;white-space:nowrap;display:inline-flex;align-items:center;gap:8px}
+        .no-integration-cta:hover{background:var(--green-dark);transform:translateY(-1px);box-shadow:0 8px 24px rgba(16,185,129,.2)}
+
+        /* DIRECT IMPORT CARDS */
+        .direct-imports{padding:0 32px 80px;background:var(--bg-warm)}
+        .direct-imports-inner{max-width:var(--max-w);margin:0 auto}
+        .direct-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+        .direct-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:28px;display:flex;align-items:flex-start;gap:16px;transition:all .2s}
+        .direct-card:hover{border-color:var(--border-hover);transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+        .direct-card-icon{width:44px;height:44px;border-radius:12px;background:rgba(16,185,129,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .direct-card h3{font-family:var(--display);font-size:16px;font-weight:800;color:var(--text);letter-spacing:-.02em;margin-bottom:4px}
+        .direct-card p{font-size:14px;color:var(--text-muted);line-height:1.55}
+        .direct-card-badge{display:inline-block;margin-top:10px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:3px 10px;border-radius:100px;background:rgba(16,185,129,.08);color:var(--green)}
+
+        /* API SECTION */
+        .api-section{padding:80px 32px;background:#fff}
+        .api-section-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+        .api-section-text{max-width:440px}
+        .api-section-text h2{font-size:clamp(26px,3vw,38px);font-weight:900;letter-spacing:-.04em;color:var(--text);margin-bottom:16px;line-height:1.2}
+        .api-section-text p{font-size:16px;color:var(--text-mid);line-height:1.65;margin-bottom:24px}
+        .api-features{display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
+        .api-feature{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text-mid)}
+        .api-feature-dot{width:6px;height:6px;border-radius:50%;background:var(--indigo);flex-shrink:0}
+        .api-btns{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+        .api-cta{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--indigo);color:#fff;border:none;border-radius:12px;font-family:var(--sans);font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;letter-spacing:-.01em}
+        .api-cta:hover{background:var(--indigo-dark);transform:translateY(-1px)}
+        .api-cta-ghost{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:transparent;color:var(--text-mid);border:1px solid var(--border);border-radius:12px;font-family:var(--sans);font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;transition:all .2s;letter-spacing:-.01em}
+        .api-cta-ghost:hover{border-color:var(--text-mid);color:var(--text)}
+
+        /* CODE BLOCK */
+        .code-block{background:var(--bg-dark);border-radius:var(--radius);overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.12)}
+        .code-block-header{display:flex;align-items:center;gap:8px;padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)}
+        .code-dot{width:10px;height:10px;border-radius:50%}
+        .code-dot.red{background:#ff5f57}.code-dot.yellow{background:#febc2e}.code-dot.green-dot{background:#28c840}
+        .code-filename{font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.3);margin-left:auto}
+        .code-body{padding:24px;overflow-x:auto}
+        .code-body pre{font-family:var(--mono);font-size:13px;line-height:1.8;color:rgba(255,255,255,.75)}
+        .code-c{color:#C678DD}
+        .code-s{color:#98C379}
+        .code-m{color:rgba(255,255,255,.25);font-style:italic}
+        .code-f{color:#61AFEF}
+        .code-v{color:#E5C07B}
+
+        /* CTA DARK */
+        .cta{padding:110px 32px;text-align:center;background:var(--bg-dark);color:#fff;position:relative;overflow:hidden}
+        .cta::before{content:'';position:absolute;inset:0;background-image:
+            linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+            background-size:64px 64px;pointer-events:none}
+        .cta h2{font-size:clamp(30px,4vw,52px);font-weight:900;letter-spacing:-.04em;margin-bottom:16px;line-height:1.1;position:relative}
+        .cta p{font-size:17px;opacity:.65;max-width:440px;margin:0 auto 48px;line-height:1.65;letter-spacing:-.01em;position:relative}
+        .cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative}
+        .cta-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border:none;border-radius:12px;font-family:var(--sans);font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;letter-spacing:-.01em}
+        .cta-btn:hover{transform:translateY(-1px)}
+        .cta-btn-primary{background:#fff;color:var(--bg-dark)}
+        .cta-btn-primary:hover{box-shadow:0 8px 24px rgba(255,255,255,.1)}
+        .cta-btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.15)}
+        .cta-btn-ghost:hover{border-color:rgba(255,255,255,.35)}
+
+        /* FOOTER — 5 COLUMNS */
+        footer{background:#fff;border-top:1px solid var(--border);padding:56px 32px 32px}
+        .footer-inner{max-width:var(--max-w);margin:0 auto}
+        .footer-top{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr 1fr;gap:32px;margin-bottom:40px}
+        .footer-brand-name{font-family:var(--display);font-size:16px;font-weight:800;color:var(--text);letter-spacing:-.03em;margin-bottom:10px;display:inline-flex;align-items:baseline}
+        .footer-tagline{font-size:13px;color:var(--text-dim);line-height:1.65;max-width:220px;margin-top:8px}
+        .footer-col h4{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--text-muted);margin-bottom:16px}
+        .footer-col a{display:block;font-size:13px;color:var(--text-muted);text-decoration:none;margin-bottom:10px;transition:color .2s}
+        .footer-col a:hover{color:var(--text)}
+        .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid var(--border);flex-wrap:wrap;gap:12px}
+        .footer-copy{font-size:12px;color:var(--text-dim)}
+        .footer-badges{display:flex;gap:8px}
+        .footer-badge{padding:4px 10px;border:1px solid var(--border);border-radius:4px;font-size:10px;color:var(--text-dim);font-weight:600;letter-spacing:.02em}
+
+        /* TRUST BAR */
+        .trust{padding:24px 32px;border-top:1px solid var(--border);background:#fff}
+        .trust-inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
+        .trust-item{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-dim);font-weight:500}
+        .trust-item svg{flex-shrink:0;opacity:.4}
+        .trust-sep{width:1px;height:14px;background:var(--border)}
+
+        /* RESPONSIVE */
+        @media(max-width:1200px){.cards-row{grid-template-columns:repeat(5,1fr)}}
+        @media(max-width:1024px){
+            .cards-row{grid-template-columns:repeat(4,1fr)}
+            .api-section-inner{grid-template-columns:1fr;gap:48px}
+            .api-section-text{max-width:100%}
+            .no-integration-box{grid-template-columns:1fr;gap:24px}
+            .footer-top{grid-template-columns:1fr 1fr;gap:24px}
+        }
+        @media(max-width:768px){
+            .nav-links{display:none}
+            .nav-mobile{display:block}
+            .nav-inner{padding:0 20px}
+            .logo-tagline{display:none}
+            .nav-right .nav-cta-ghost{display:none}
+            .hero{padding:100px 20px 48px}
+            .hero-stats{gap:24px;flex-wrap:wrap}
+            .cards-row{grid-template-columns:repeat(3,1fr)}
+            .direct-cards{grid-template-columns:1fr}
+            .no-integration-box{padding:32px}
+            .cta{padding:80px 20px}
+            .footer-top{grid-template-columns:1fr 1fr}
+            .footer-bottom{flex-direction:column;text-align:center}
+        }
+        @media(max-width:480px){
+            .cards-row{grid-template-columns:repeat(2,1fr)}
+            .hero-stats{flex-direction:column;gap:16px}
+        }
+    </style>
+    <script>
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "vtpmvp6kvr");
+    </script>
 </head>
 <body>
 
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="/" class="logo">AgentCollect<span class="logo-dot">.</span></a>
+<!-- NAV -->
+<nav class="nav" id="nav">
+<div class="nav-inner">
+    <a href="/" class="logo">Agent<span>Collect</span><span class="dot-circle"></span></a>
+    <span class="logo-tagline">The end of manual collection.</span>
     <div class="nav-links">
-      <a href="/">Home</a>
-      <a href="/about">About</a>
-      <a href="/compliance">Compliance</a>
-      <a href="/contact">Contact</a>
+        <a href="/ai-collection">AI Collection</a>
+        <a href="/attorney-collection">Attorney Collection</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/security">Security</a>
     </div>
-    <a href="/contact" class="nav-cta">Get a demo</a>
-  </div>
+    <div class="nav-right">
+        <a href="https://cal.com/johnb/30" class="nav-cta-ghost" target="_blank">Talk to us</a>
+        <a href="https://cal.com/johnb/30" class="nav-cta" target="_blank">Book a demo</a>
+    </div>
+    <button class="nav-mobile" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="1.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+</div>
 </nav>
 
-<div class="hero">
-  <div class="hero-tag">Integrations</div>
-  <h1>Integrate with your <em>existing stack</em></h1>
-  <p class="hero-sub">AgentCollect connects to your ERP, CRM, and billing tools. Overdue invoices automatically trigger AI collection. Payments sync back in real-time.</p>
-</div>
-
-<div class="content">
-
-  <div class="intro-grid">
-    <div class="intro-card">
-      <div class="stat">14+</div>
-      <h3>Integrations</h3>
-      <p>Native connectors for the most popular ERP, CRM, and billing platforms in B2B finance.</p>
+<!-- HERO -->
+<section class="hero" id="hero">
+    <div class="hero-badge"><span class="hero-badge-dot"></span> 30+ integrations live</div>
+    <h1>Works with everything<br>you already use.</h1>
+    <p class="hero-sub">Connect your ERP, CRM, or billing system in minutes. Or just upload an Excel file.</p>
+    <a href="https://cal.com/johnb/30" class="hero-cta" target="_blank">
+        See your integrations
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <div class="hero-stats">
+        <div class="hero-stat">
+            <div class="hero-stat-num">30+</div>
+            <div class="hero-stat-label">Live integrations</div>
+        </div>
+        <div class="hero-stat">
+            <div class="hero-stat-num">&lt;5 min</div>
+            <div class="hero-stat-label">Setup time</div>
+        </div>
+        <div class="hero-stat">
+            <div class="hero-stat-num">0</div>
+            <div class="hero-stat-label">IT projects required</div>
+        </div>
     </div>
-    <div class="intro-card">
-      <div class="stat">Real-time</div>
-      <h3>Bidirectional Sync</h3>
-      <p>Invoice status and payment data sync back to your system automatically — no manual reconciliation.</p>
+</section>
+
+<div class="gradient-divider"></div>
+
+<!-- MEGA LOGO GRID — DARK SECTION -->
+<section class="integrations-grid-section reveal" id="integrations">
+    <div class="integrations-grid-inner">
+        <div class="integrations-grid-header">
+            <div class="section-label">Connected platforms</div>
+            <div class="section-title">Every system. One pipeline.</div>
+            <p class="section-sub">No migration. No IT project. Plug in and run.</p>
+        </div>
+
+        <!-- ERP & ACCOUNTING -->
+        <div class="category-group">
+            <div class="category-header">
+                <span class="category-label-text">ERP &amp; Accounting</span>
+                <span class="category-badge">Bi-directional sync</span>
+                <span class="category-line"></span>
+            </div>
+            <div class="cards-row">
+                <div class="int-card">
+                    <div class="int-logo-wrap"><img src="https://cdn.brandfetch.io/quickbooks.intuit.com/w/512/h/80/logo" alt="QuickBooks" loading="lazy"></div>
+                    <div class="int-card-name">QuickBooks</div>
+                    <span class="int-card-status connected">Connected</span>
+                </div>
+                <div class="int-card">
+                    <div class="int-logo-wrap"><img src="https://cdn.brandfetch.io/netsuite.com/w/512/h/80/logo" alt="NetSuite" loading="lazy"></div>
+                    <div class="int-card-name">NetSuite</div>
+                    <span class="int-card-status connected">Connected</span>
+                </div>
+                <div class="int-card">
+                    <div class="int-logo-wrap"><img src="https://cdn.brandfetch.io/sap.com/w/512/h/80/logo" alt="SAP" loading="lazy"></div>
+                    <div class="int-card-name">SAP</div>
+                    <span class="int-card-status connected">Connected</span>
+                </div>
+                <div class="int-card">
+                    <div class="int-logo-wrap"><img src="https://cdn.brandfetch.io/xero.com/w/512/h/80/logo" alt="Xero" loading="lazy"></div>
+                    <div class="int-card-name">Xero</div>
+                    <span class="int-card-status connected">Connected</span>
+                </div>
+                <div class="int-card">
+                    <div class="int-logo-wrap"><img src="https://cdn.brandfetch.io/sage.com/w/512/h/80/logo" alt="Sage" loading="lazy"></div>
+                    <div class="int-card-name">Sage</div>
+                    <span class="int-card-status connected">Connected</span>
+                </div>
+                <div class="int-card">
+                    <div class="int-logo-wrap"><img src="https://cdn.brandfetch.io/microsoft.com/w/512/h/80/logo" alt="Dynamics 365" loading="lazy"></div>
+                    <div class="int-card-name">Dynamics 365</div>
+                    <span class="int-card-status connected">Connected</span>
+                </div>
+                <div class="int-card">
+                    <div class="int-logo-wrap"><img src="https://cdn.brandfetch.io/freshbooks.com/w/512/h/80/logo" alt="FreshBooks" loading="lazy"></div>
+                    <div class="int-card-name">FreshBooks</div>
+                    <span class="int-card-status connected">Connected</span>
+                </div>
+                <div class="int-card">
+                    <div class="int-logo-wrap"><img src="https://cdn.brandfetch.io/bill.com/w/512/h/80/logo" alt="Bill.com" loading="lazy"></div>
+                    <div class="int-card-name">Bill.com</div>
+                    <span class="int-card-status connected">Connected</span>
+                </div>
+                <div class="int-card">
+                    <div class="int-logo-wrap"><img src="https://cdn.brandfetch.io/waveapps.com/w/512/h/80/logo" alt="Wave" loading="lazy"></div>
+                    <div class="int-card-name">Wave</div>
+                    <span class="int-card-status connected">Connected</span>
+                </div>
+                <div class="int-card">
+                    <div class="int-logo-wrap"><img src="https://cdn.brandfetch.io/zoho.com/w/512/h/80/logo" alt="Zoho Books" loading="lazy"></div>
+                    <div class="int-card-name">Zoho Books</div>
+                    <span class="int-card-status connected">Connected</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CRM -->
+        <div class="category-group">
+            <div class="category-header">
+                <span class="category-label-text">CRM</span>
+                <span class="category-badge">Read + write back</span>
+                <span class="category-line"></span>
+            </div>
+            <div class="cards-row">
+                <div class="int-card">
+                    <div class="int-logo-wrap"><img src="https://cdn.brandfetch.io/salesforce.com/w/512/h/80/logo" alt="Salesforce" loading="lazy"></div>
+                    <div class="int-card-name">Salesforce</div>
+                    <span class="int-card-status connected">Connected</span>
+                </div>
+                <div class="int-card">
+                    <div class="int-logo-wrap"><img src="https://cdn.brandfetch.io/hubspot.com/w/512/h/80/logo" alt="HubSpot" loading="lazy"></div>
+                    <div class="int-card-name">HubSpot</div>
+                    <span class="int-card-status connected">Connected</span>
+                </div>
+                <div class="int-card">
+                    <div class="int-logo-wrap"><img src="https://cdn.brandfetch.io/zoho.com/w/512/h/80/logo" alt="Zoho CRM" loading="lazy"></div>
+                    <div class="int-card-name">Zoho CRM</div>
+                    <span class="int-card-status connected">Connected</span>
+                </div>
+                <div class="int-card">
+                    <div class="int-logo-wrap"><img src="https://cdn.brandfetch.io/pipedrive.com/w/512/h/80/logo" alt="Pipedrive" loading="lazy"></div>
+                    <div class="int-card-name">Pipedrive</div>
+                    <span class="int-card-status connected">Connected</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- BILLING & PAYMENTS -->
+        <div class="category-group">
+            <div class="category-header">
+                <span class="category-label-text">Billing &amp; Payments</span>
+                <span class="category-badge">Auto-sync</span>
+                <span class="category-line"></span>
+            </div>
+            <div class="cards-row">
+                <div class="int-card">
+                    <div class="int-logo-wrap"><img src="https://cdn.brandfetch.io/stripe.com/w/512/h/80/logo" alt="Stripe" loading="lazy"></div>
+                    <div class="int-card-name">Stripe</div>
+                    <span class="int-card-status connected">Connected</span>
+                </div>
+                <div class="int-card">
+                    <div class="int-logo-wrap"><img src="https://cdn.brandfetch.io/chargebee.com/w/512/h/80/logo" alt="Chargebee" loading="lazy"></div>
+                    <div class="int-card-name">Chargebee</div>
+                    <span class="int-card-status connected">Connected</span>
+                </div>
+                <div class="int-card">
+                    <div class="int-logo-wrap"><img src="https://cdn.brandfetch.io/recurly.com/w/512/h/80/logo" alt="Recurly" loading="lazy"></div>
+                    <div class="int-card-name">Recurly</div>
+                    <span class="int-card-status connected">Connected</span>
+                </div>
+                <div class="int-card">
+                    <div class="int-logo-wrap"><img src="https://cdn.brandfetch.io/zuora.com/w/512/h/80/logo" alt="Zuora" loading="lazy"></div>
+                    <div class="int-card-name">Zuora</div>
+                    <span class="int-card-status connected">Connected</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- AR AUTOMATION -->
+        <div class="category-group">
+            <div class="category-header">
+                <span class="category-label-text">AR Automation</span>
+                <span class="category-badge">Replace or complement</span>
+                <span class="category-line"></span>
+            </div>
+            <div class="cards-row">
+                <div class="int-card">
+                    <div class="int-logo-wrap"><img src="https://cdn.brandfetch.io/highradius.com/w/512/h/80/logo" alt="HighRadius" loading="lazy"></div>
+                    <div class="int-card-name">HighRadius</div>
+                    <span class="int-card-status connected">Connected</span>
+                </div>
+                <div class="int-card">
+                    <div class="int-logo-wrap"><img src="https://cdn.brandfetch.io/billtrust.com/w/512/h/80/logo" alt="Billtrust" loading="lazy"></div>
+                    <div class="int-card-name">Billtrust</div>
+                    <span class="int-card-status connected">Connected</span>
+                </div>
+                <div class="int-card">
+                    <div class="int-logo-wrap"><img src="https://cdn.brandfetch.io/gaviti.com/w/512/h/80/logo" alt="Gaviti" loading="lazy"></div>
+                    <div class="int-card-name">Gaviti</div>
+                    <span class="int-card-status connected">Connected</span>
+                </div>
+                <div class="int-card coming-soon">
+                    <div class="int-logo-wrap"><img src="https://cdn.brandfetch.io/kolleno.com/w/512/h/80/logo" alt="Kolleno" loading="lazy"></div>
+                    <div class="int-card-name">Kolleno</div>
+                    <span class="int-card-status coming">Coming soon</span>
+                </div>
+                <div class="int-card coming-soon">
+                    <div class="int-logo-wrap"><img src="https://cdn.brandfetch.io/versapay.com/w/512/h/80/logo" alt="Versapay" loading="lazy"></div>
+                    <div class="int-card-name">Versapay</div>
+                    <span class="int-card-status coming">Coming soon</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- DIRECT IMPORT -->
+        <div class="category-group">
+            <div class="category-header">
+                <span class="category-label-text">Direct import</span>
+                <span class="category-badge">No integration needed</span>
+                <span class="category-line"></span>
+            </div>
+            <div class="cards-row">
+                <div class="int-card">
+                    <div class="int-logo-wrap">
+                        <div class="int-logo-icon green-bg">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg>
+                        </div>
+                    </div>
+                    <div class="int-card-name">Excel / CSV</div>
+                    <span class="int-card-status no-setup">No setup</span>
+                </div>
+                <div class="int-card">
+                    <div class="int-logo-wrap">
+                        <div class="int-logo-icon indigo-bg">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        </div>
+                    </div>
+                    <div class="int-card-name">REST API</div>
+                    <span class="int-card-status no-setup">No setup</span>
+                </div>
+                <div class="int-card">
+                    <div class="int-logo-wrap">
+                        <div class="int-logo-icon green-bg">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        </div>
+                    </div>
+                    <div class="int-card-name">Email forward</div>
+                    <span class="int-card-status no-setup">No setup</span>
+                </div>
+            </div>
+        </div>
+
     </div>
-    <div class="intro-card">
-      <div class="stat">20 min</div>
-      <h3>Setup Time</h3>
-      <p>Connect your ERP or billing tool in under 20 minutes. No developer required for most integrations.</p>
+</section>
+
+<!-- NO INTEGRATION NEEDED CALLOUT -->
+<section class="no-integration reveal" id="no-setup">
+    <div class="no-integration-inner">
+        <div class="no-integration-box">
+            <div>
+                <div class="no-integration-box-label">Zero friction</div>
+                <h2>Don't want to connect anything?<br>Just drop an Excel file. That's it.</h2>
+                <p>Upload your spreadsheet and results come in hours. No API keys, no IT tickets, no migration project. You can always connect your ERP later — results don't wait.</p>
+            </div>
+            <a href="/" class="no-integration-cta">
+                Try it now
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
     </div>
-  </div>
+</section>
 
-  <!-- ERP & Accounting -->
-  <div class="category-section">
-    <div class="section-tag">Category</div>
-    <div class="category-label">ERP &amp; Accounting</div>
-    <div class="integrations-grid">
-
-      <a href="/integrations/quickbooks" class="integration-card">
-        <div class="integration-logo">QB</div>
-        <div class="integration-name">QuickBooks</div>
-        <div class="integration-desc">Sync overdue invoices from QuickBooks Online or Desktop. Payments recorded automatically when collected.</div>
-        <div class="integration-link">View integration &rarr;</div>
-      </a>
-
-      <a href="/integrations/netsuite" class="integration-card">
-        <div class="integration-logo">NS</div>
-        <div class="integration-name">NetSuite</div>
-        <div class="integration-desc">Pull aged AR from NetSuite via API. Ideal for mid-market companies with complex invoice structures.</div>
-        <div class="integration-link">View integration &rarr;</div>
-      </a>
-
-      <a href="/integrations/sage" class="integration-card">
-        <div class="integration-logo">SG</div>
-        <div class="integration-name">Sage</div>
-        <div class="integration-desc">Connect Sage 50, 100, or Intacct to automatically escalate overdue B2B invoices to AgentCollect.</div>
-        <div class="integration-link">View integration &rarr;</div>
-      </a>
-
-      <a href="/integrations/xero" class="integration-card">
-        <div class="integration-logo">XR</div>
-        <div class="integration-name">Xero</div>
-        <div class="integration-desc">Xero native integration. Overdue invoices past your threshold automatically enter the collection queue.</div>
-        <div class="integration-link">View integration &rarr;</div>
-      </a>
-
-      <a href="/integrations/microsoft-dynamics" class="integration-card">
-        <div class="integration-logo">D365</div>
-        <div class="integration-name">Microsoft Dynamics</div>
-        <div class="integration-desc">Connect Dynamics 365 Finance &amp; Operations or Business Central to automate AR collections at scale.</div>
-        <div class="integration-link">View integration &rarr;</div>
-      </a>
-
-      <a href="/integrations/sap" class="integration-card">
-        <div class="integration-logo">SAP</div>
-        <div class="integration-name">SAP</div>
-        <div class="integration-desc">SAP S/4HANA and SAP Business One connector. Route high-value overdue invoices directly to AI collection.</div>
-        <div class="integration-link">View integration &rarr;</div>
-      </a>
-
-      <a href="/integrations/freshbooks" class="integration-card">
-        <div class="integration-logo">FB</div>
-        <div class="integration-name">FreshBooks</div>
-        <div class="integration-desc">FreshBooks integration for service businesses. Escalate unpaid invoices after your grace period automatically.</div>
-        <div class="integration-link">View integration &rarr;</div>
-      </a>
-
-      <a href="/integrations/bill-com" class="integration-card">
-        <div class="integration-logo">BILL</div>
-        <div class="integration-name">Bill.com</div>
-        <div class="integration-desc">Connect Bill.com to automatically move aging receivables into active collection when they cross your threshold.</div>
-        <div class="integration-link">View integration &rarr;</div>
-      </a>
-
+<!-- DIRECT IMPORT DETAIL CARDS -->
+<section class="direct-imports reveal">
+    <div class="direct-imports-inner">
+        <div class="direct-cards">
+            <div class="direct-card">
+                <div class="direct-card-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg>
+                </div>
+                <div>
+                    <h3>Excel &amp; CSV</h3>
+                    <p>Export from any system. Drag and drop. We handle column matching, deduplication, and validation automatically.</p>
+                    <span class="direct-card-badge">No integration needed</span>
+                </div>
+            </div>
+            <div class="direct-card">
+                <div class="direct-card-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                </div>
+                <div>
+                    <h3>REST API</h3>
+                    <p>Push invoices programmatically. Get webhooks when debtors pay or respond. Full OpenAPI spec, sandbox environment included.</p>
+                    <span class="direct-card-badge">No setup</span>
+                </div>
+            </div>
+            <div class="direct-card">
+                <div class="direct-card-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div>
+                    <h3>Email forward</h3>
+                    <p>Forward your invoices to your dedicated inbox. We extract everything automatically. Works with any billing system.</p>
+                    <span class="direct-card-badge">Forward &amp; done</span>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+</section>
 
-  <!-- CRM -->
-  <div class="category-section">
-    <div class="section-tag">Category</div>
-    <div class="category-label">CRM</div>
-    <div class="integrations-grid">
+<div class="gradient-divider"></div>
 
-      <a href="/integrations/salesforce" class="integration-card">
-        <div class="integration-logo">SF</div>
-        <div class="integration-name">Salesforce</div>
-        <div class="integration-desc">Sync collection status to Salesforce accounts. Your sales team stays informed without logging into AgentCollect.</div>
-        <div class="integration-link">View integration &rarr;</div>
-      </a>
+<!-- API SECTION -->
+<section class="api-section reveal" id="api">
+    <div class="api-section-inner">
+        <div class="api-section-text">
+            <div class="section-label">For developers</div>
+            <h2>Build your own integration.</h2>
+            <p>Simple REST API. Upload invoices, get real-time webhooks when debtors pay or respond. Integrate in an afternoon.</p>
+            <div class="api-features">
+                <div class="api-feature"><span class="api-feature-dot"></span>POST invoices, GET results — minimal surface area</div>
+                <div class="api-feature"><span class="api-feature-dot"></span>Webhooks on payment, dispute, and contact events</div>
+                <div class="api-feature"><span class="api-feature-dot"></span>Full OpenAPI spec + sandbox environment</div>
+                <div class="api-feature"><span class="api-feature-dot"></span>Generous rate limits — built for bulk uploads</div>
+            </div>
+            <div class="api-btns">
+                <a href="https://cal.com/johnb/30" class="api-cta" target="_blank">Request API access</a>
+                <a href="/api" class="api-cta-ghost">View docs</a>
+            </div>
+        </div>
+        <div class="code-block">
+            <div class="code-block-header">
+                <div class="code-dot red"></div>
+                <div class="code-dot yellow"></div>
+                <div class="code-dot green-dot"></div>
+                <span class="code-filename">upload-invoices.sh</span>
+            </div>
+            <div class="code-body">
+<pre><span class="code-m"># Upload invoices — collection starts immediately</span>
+<span class="code-c">curl</span> <span class="code-f">-X POST</span> https://api.agentcollect.com/v1/invoices \
+  <span class="code-f">-H</span> <span class="code-s">"Authorization: Bearer YOUR_API_KEY"</span> \
+  <span class="code-f">-H</span> <span class="code-s">"Content-Type: application/json"</span> \
+  <span class="code-f">-d</span> <span class="code-s">'{
+    "invoices": [{
+      "debtor_name": "Acme Corp",
+      "debtor_email": "ap@acme.com",
+      "amount": 12400,
+      "due_date": "2025-11-15",
+      "invoice_number": "INV-4892"
+    }]
+  }'</span>
 
-      <a href="/integrations/hubspot" class="integration-card">
-        <div class="integration-logo">HS</div>
-        <div class="integration-name">HubSpot</div>
-        <div class="integration-desc">Connect HubSpot CRM to automatically flag accounts with overdue invoices and pause outbound sequences during collection.</div>
-        <div class="integration-link">View integration &rarr;</div>
-      </a>
-
+<span class="code-m"># Response</span>
+<span class="code-s">{
+  "collection_id": "col_9xTk2mNpQ",
+  "status": "active",
+  "first_contact": "2025-11-18T09:00:00Z"
+}</span></pre>
+            </div>
+        </div>
     </div>
-  </div>
+</section>
 
-  <!-- Billing & Subscriptions -->
-  <div class="category-section">
-    <div class="section-tag">Category</div>
-    <div class="category-label">Billing &amp; Subscriptions</div>
-    <div class="integrations-grid">
+<div class="gradient-divider"></div>
 
-      <a href="/integrations/stripe" class="integration-card">
-        <div class="integration-logo">STR</div>
-        <div class="integration-name">Stripe Billing</div>
-        <div class="integration-desc">Route failed Stripe invoices to AI collection when smart retries fail. Recover subscription and B2B invoice revenue.</div>
-        <div class="integration-link">View integration &rarr;</div>
-      </a>
-
-      <a href="/integrations/chargebee" class="integration-card">
-        <div class="integration-logo">CB</div>
-        <div class="integration-name">Chargebee</div>
-        <div class="integration-desc">Connect Chargebee to escalate dunning failures to human-in-the-loop AI collection rather than churning the account.</div>
-        <div class="integration-link">View integration &rarr;</div>
-      </a>
-
+<!-- TRUST BAR -->
+<section class="trust">
+    <div class="trust-inner">
+        <div class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            SOC 2 Type II
+        </div>
+        <div class="trust-sep"></div>
+        <div class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            TLS 1.3 encryption
+        </div>
+        <div class="trust-sep"></div>
+        <div class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+            FDCPA compliant
+        </div>
+        <div class="trust-sep"></div>
+        <div class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            99.9% uptime SLA
+        </div>
+        <div class="trust-sep"></div>
+        <div class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Dedicated support
+        </div>
     </div>
-  </div>
+</section>
 
-  <!-- AR Platforms -->
-  <div class="category-section">
-    <div class="section-tag">Category</div>
-    <div class="category-label">AR Platforms</div>
-    <div class="integrations-grid">
-
-      <a href="/integrations/highradius" class="integration-card">
-        <div class="integration-logo">HR</div>
-        <div class="integration-name">HighRadius</div>
-        <div class="integration-desc">HighRadius users can route delinquent accounts to AgentCollect when internal AR workflows are exhausted.</div>
-        <div class="integration-link">View integration &rarr;</div>
-      </a>
-
-      <a href="/integrations/billtrust" class="integration-card">
-        <div class="integration-logo">BT</div>
-        <div class="integration-name">Billtrust</div>
-        <div class="integration-desc">Connect Billtrust to hand off seriously overdue invoices to AI-powered collection while keeping other accounts in your AR workflow.</div>
-        <div class="integration-link">View integration &rarr;</div>
-      </a>
-
+<!-- CTA DARK -->
+<section class="cta reveal" id="cta">
+    <h2>Your stack is already supported.<br>Book a 30-min demo.</h2>
+    <p>We'll connect to your system live and show you what AgentCollect finds in your unpaid invoices.</p>
+    <div class="cta-btns">
+        <a href="https://cal.com/johnb/30" class="cta-btn cta-btn-primary" target="_blank">Book a demo — 30 min</a>
+        <a href="/" class="cta-btn cta-btn-ghost">Try with a spreadsheet</a>
     </div>
-  </div>
+</section>
 
-  <div class="csv-note">
-    <div class="csv-note-icon">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+<!-- FOOTER — 5 COLUMNS -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div>
+                <div class="footer-brand-name">Agent<span>Collect</span><span class="dot-circle" style="width:6px;height:6px;margin-left:1px;vertical-align:super"></span></div>
+                <p class="footer-tagline">The end of manual collection.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Product</h4>
+                <a href="/ai-collection">AI Collection</a>
+                <a href="/attorney-collection">Attorney Collection</a>
+                <a href="/pricing">Pricing</a>
+                <a href="/integrations">API &amp; Integrations</a>
+            </div>
+            <div class="footer-col">
+                <h4>Trust</h4>
+                <a href="/security">Security &amp; Trust</a>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+                <a href="/compliance">State Compliance</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="/integrations">Integrations</a>
+                <a href="/compare">Compare</a>
+                <a href="/glossary">Glossary</a>
+                <a href="/dso-calculator">DSO Calculator</a>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="/about">About</a>
+                <a href="https://cal.com/johnb/30" target="_blank">Contact</a>
+                <a href="/careers">Careers</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-copy">&copy; 2025 AgentCollect. All rights reserved.</div>
+            <div class="footer-badges">
+                <div class="footer-badge">SOC 2</div>
+                <div class="footer-badge">FDCPA</div>
+                <div class="footer-badge">GDPR</div>
+            </div>
+        </div>
     </div>
-    <div class="csv-note-text">
-      <strong>Don't see your tool?</strong> CSV and Excel always work. Upload a spreadsheet with your overdue invoices and debtor contacts — go live in 20 minutes, no integration required.
-    </div>
-  </div>
-
-  <div class="cta-box">
-    <h2>Ready to connect?</h2>
-    <p>Most teams are live in 20 minutes. We handle the integration — you handle the cash.</p>
-    <a href="/contact" class="cta-btn">Get a free pilot &rarr;</a>
-  </div>
-
-</div>
-
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-logo">AgentCollect<span>.</span></div>
-    <div class="footer-links">
-      <a href="/about">About</a>
-      <a href="/contact">Contact</a>
-      <a href="/privacy">Privacy</a>
-      <a href="/terms">Terms</a>
-    </div>
-    <div class="footer-copy">&copy; 2026 AgentCollect (YC S23). All rights reserved.</div>
-  </div>
 </footer>
 
+<script>
+    // NAV scroll shadow
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', function() {
+        nav.classList.toggle('scrolled', window.scrollY > 10);
+    }, { passive: true });
+
+    // Reveal on scroll
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+            if (e.isIntersecting) {
+                e.target.classList.add('visible');
+                observer.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(function(el) { observer.observe(el); });
+
+    // Logo fallback — show initials when image fails to load
+    document.querySelectorAll('.int-logo-wrap img').forEach(function(img) {
+        img.addEventListener('error', function() {
+            var card = this.closest('.int-card');
+            var name = card ? (card.querySelector('.int-card-name') || {}).textContent || '?' : '?';
+            var initials = name.trim().split(/\s+/).map(function(w) { return w[0]; }).join('').slice(0, 2).toUpperCase();
+            this.parentNode.innerHTML = '<div class="int-logo-fallback">' + initials + '</div>';
+        });
+    });
+</script>
 </body>
 </html>

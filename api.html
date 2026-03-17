@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <title>API & Developers — AgentCollect</title>
+    <meta name="description" content="Simple REST API. Upload invoices, receive payment webhooks. No middleware. Live in 5 minutes.">
+    <meta property="og:title" content="API & Developers — AgentCollect">
+    <meta property="og:description" content="Simple REST API. Upload invoices, receive payment webhooks. No middleware.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.agentcollect.com/api">
+    <meta property="og:image" content="https://www.agentcollect.com/og.png?v=5">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="API & Developers — AgentCollect">
+    <meta name="twitter:description" content="Simple REST API. Upload invoices, receive payment webhooks. No middleware.">
+    <meta name="twitter:image" content="https://www.agentcollect.com/og.png?v=5">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --bg:#FAFBFF;--bg-card:#fff;--bg-dark:#0B1B3D;--bg-warm:#F8F7F5;
+            --border:#E8ECF2;--border-hover:rgba(79,70,229,.18);
+            --text:#0B1B3D;--text-mid:#374151;--text-muted:#64748B;--text-dim:#94A3B8;
+            --indigo:#4F46E5;--indigo-dark:#4338CA;--indigo-light:rgba(79,70,229,.04);--indigo-glow:rgba(79,70,229,.08);
+            --green:#10B981;--green-dark:#059669;--green-light:rgba(16,185,129,.04);
+            --amber:#F59E0B;--red:#EF4444;
+            --mono:'JetBrains Mono',monospace;--sans:'Inter',-apple-system,sans-serif;--display:'Plus Jakarta Sans',sans-serif;
+            --shadow-sm:0 1px 2px rgba(0,0,0,.03);
+            --shadow-md:0 2px 8px rgba(0,0,0,.04);
+            --shadow-lg:0 8px 24px rgba(0,0,0,.06);
+            --radius:14px;
+            --max-w:1120px;
+        }
+        html{scroll-behavior:smooth}
+        body{font-family:var(--sans);font-size:17px;background:#fff;color:var(--text);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden;line-height:1.7;position:relative}
+
+        /* SUBTLE GRID BACKGROUND */
+        body::before{content:'';position:fixed;inset:0;z-index:-1;background-image:
+            linear-gradient(rgba(79,70,229,.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(79,70,229,.03) 1px, transparent 1px);
+            background-size:64px 64px;pointer-events:none}
+
+        h1,h2,h3,h4,h5{font-family:var(--display);line-height:1.15;letter-spacing:-.04em}
+        ::selection{background:rgba(79,70,229,.08)}
+
+        /* GRADIENT DIVIDER */
+        .gradient-divider{height:1px;background:linear-gradient(90deg,transparent,var(--indigo),var(--green),transparent);opacity:.3;max-width:var(--max-w);margin:0 auto}
+
+        @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes pulse-ring{0%{box-shadow:0 0 0 0 rgba(79,70,229,.2)}70%{box-shadow:0 0 0 6px rgba(79,70,229,0)}100%{box-shadow:0 0 0 0 rgba(79,70,229,0)}}
+        @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+        @keyframes gradient-shift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+        @keyframes cursor-blink{0%,100%{opacity:1}49%{opacity:1}50%{opacity:0}99%{opacity:0}}
+        @keyframes type-in{from{width:0}to{width:100%}}
+
+        .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+        .s1{transition-delay:.1s}.s2{transition-delay:.2s}.s3{transition-delay:.3s}.s4{transition-delay:.4s}
+
+        /* NAV */
+        .nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+        .nav.scrolled{box-shadow:0 1px 3px rgba(0,0,0,.02)}
+        .nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 32px;display:flex;align-items:center;height:64px}
+        .logo{display:inline-flex;align-items:baseline;text-decoration:none;margin-right:auto;font-family:var(--display);font-size:18px;font-weight:900;letter-spacing:-.04em;color:var(--text)}
+        .dot-circle{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--indigo);margin-left:1px;vertical-align:super}
+        .logo-tagline{font-size:11px;color:var(--text-muted);font-weight:400;margin-left:14px;padding-left:14px;border-left:1px solid var(--border);white-space:nowrap;letter-spacing:-.01em;margin-right:28px}
+        .nav-links{display:flex;gap:32px;margin-right:28px}
+        .nav-links a{color:var(--text-muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s;letter-spacing:-.01em}
+        .nav-links a:hover,.nav-links a.active{color:var(--text)}
+        .nav-links a.active{color:var(--indigo)}
+        .nav-right{display:flex;align-items:center;gap:10px}
+        .nav-cta{padding:14px 28px;background:var(--indigo);color:#fff;border:none;border-radius:12px;font-family:var(--sans);font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;letter-spacing:-.01em}
+        .nav-cta:hover{background:var(--indigo-dark)}
+        .nav-cta-ghost{padding:14px 28px;background:transparent;color:var(--text-mid);border:1px solid var(--border);border-radius:12px;font-family:var(--sans);font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center}
+        .nav-cta-ghost:hover{border-color:var(--text-mid);color:var(--text)}
+        .nav-mobile{display:none;background:none;border:none;cursor:pointer;padding:8px;min-width:44px;min-height:44px}
+
+        /* HERO */
+        .hero{padding:120px 32px 64px;text-align:center;position:relative;background:#fff;overflow:hidden}
+        .hero::after{content:'';position:absolute;inset:0;pointer-events:none;
+            background:
+                radial-gradient(ellipse 600px 500px at 70% 10%, rgba(79,70,229,.05), transparent),
+                radial-gradient(ellipse 500px 400px at 20% 90%, rgba(16,185,129,.03), transparent)}
+
+        .hero-badge{display:inline-flex;align-items:center;gap:10px;margin-bottom:24px;position:relative;z-index:1;
+            padding:8px 20px;background:rgba(79,70,229,.04);border:1px solid rgba(79,70,229,.1);border-radius:100px}
+        .hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse-ring 2s infinite}
+        .hero-badge-text{font-size:12px;color:var(--text-muted);font-weight:500}
+        .hero-badge-tag{font-family:var(--mono);font-size:12px;color:var(--indigo);font-weight:600;padding:2px 8px;background:rgba(79,70,229,.06);border-radius:4px}
+
+        .hero h1{font-size:clamp(36px,5.5vw,64px);font-weight:900;letter-spacing:-.04em;line-height:1.05;margin-bottom:20px;max-width:760px;margin-left:auto;margin-right:auto;color:var(--text);position:relative;z-index:1}
+        .hero h1 span{color:var(--indigo)}
+
+        .hero-sub{font-size:19px;color:var(--text-mid);max-width:520px;margin:0 auto 36px;line-height:1.6;letter-spacing:-.01em;position:relative;z-index:1}
+
+        .hero-cta-group{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:40px;position:relative;z-index:1}
+        .btn-primary{display:inline-flex;align-items:center;gap:8px;padding:16px 32px;background:var(--indigo);color:#fff;border:none;border-radius:12px;font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;letter-spacing:-.01em}
+        .btn-primary:hover{background:var(--indigo-dark);transform:translateY(-1px)}
+        .btn-outline{display:inline-flex;align-items:center;gap:8px;padding:16px 32px;background:transparent;color:var(--text-mid);border:1px solid var(--border);border-radius:12px;font-family:var(--sans);font-size:15px;font-weight:500;cursor:pointer;text-decoration:none;transition:all .2s;letter-spacing:-.01em}
+        .btn-outline:hover{border-color:var(--text-mid);color:var(--text);transform:translateY(-1px)}
+
+        .hero-spec-row{display:inline-flex;gap:24px;align-items:center;position:relative;z-index:1;flex-wrap:wrap;justify-content:center}
+        .hero-spec{font-family:var(--mono);font-size:12px;color:var(--text-muted);padding:5px 12px;background:rgba(0,0,0,.02);border:1px solid var(--border);border-radius:6px}
+
+        /* TERMINAL ANIMATION */
+        .terminal{background:var(--bg-dark);border-radius:var(--radius);padding:20px 24px;max-width:560px;margin:0 auto;position:relative;z-index:1;text-align:left;box-shadow:0 20px 60px rgba(11,27,61,.15),0 4px 12px rgba(0,0,0,.08)}
+        .terminal-bar{display:flex;align-items:center;gap:8px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.06)}
+        .term-dot{width:10px;height:10px;border-radius:50%}
+        .term-dot.red{background:#ff5f57}.term-dot.yellow{background:#febc2e}.term-dot.green{background:#28c840}
+        .terminal-title{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.3);margin-left:8px}
+        .term-line{font-family:var(--mono);font-size:13px;line-height:1.8;display:flex;align-items:flex-start;gap:10px}
+        .term-prompt{color:var(--green);flex-shrink:0}
+        .term-cmd{color:#E2E8F0}
+        .term-comment{color:rgba(255,255,255,.3);font-size:12px}
+        .term-output{color:var(--green);font-size:12px;padding:6px 0 6px 20px;border-left:2px solid rgba(16,185,129,.3)}
+        .term-cursor{display:inline-block;width:7px;height:13px;background:var(--indigo);border-radius:1px;margin-left:2px;animation:cursor-blink 1.2s infinite}
+        .term-key{color:var(--indigo)}
+        .term-str{color:#A5F3C0}
+        .term-num{color:var(--amber)}
+        .term-field{color:#93C5FD}
+
+        /* SECTION HELPERS */
+        .section-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--indigo);margin-bottom:12px}
+        .section-title{font-size:clamp(28px,3.5vw,42px);font-weight:900;color:var(--text);margin-bottom:12px}
+        .section-sub{font-size:17px;color:var(--text-mid);max-width:480px;line-height:1.65;letter-spacing:-.01em}
+
+        /* QUICK START */
+        .quickstart{padding:110px 32px;background:#fff}
+        .quickstart-inner{max-width:var(--max-w);margin:0 auto}
+        .quickstart-header{text-align:center;margin-bottom:56px}
+        .quickstart-header .section-sub{max-width:480px;margin:12px auto 0}
+
+        .steps-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:40px}
+        .step-tab{padding:16px 20px;background:#fff;border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:all .2s;position:relative;text-align:left}
+        .step-tab:hover{border-color:var(--border-hover)}
+        .step-tab.active{border-color:var(--indigo);background:var(--indigo-light)}
+        .step-tab.active::after{content:'';position:absolute;bottom:-9px;left:50%;transform:translateX(-50%);width:0;height:0;border:8px solid transparent;border-top-color:var(--indigo)}
+        .step-num{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--text-muted);margin-bottom:4px;letter-spacing:.04em}
+        .step-tab.active .step-num{color:var(--indigo)}
+        .step-title{font-family:var(--display);font-size:15px;font-weight:700;color:var(--text);letter-spacing:-.02em}
+        .step-tab.active .step-title{color:var(--indigo)}
+        .step-est{font-size:12px;color:var(--text-muted);margin-top:3px}
+
+        .code-pane{display:none}
+        .code-pane.active{display:block}
+
+        /* CODE BLOCK */
+        .code-block{background:var(--bg-dark);border-radius:var(--radius);overflow:hidden;box-shadow:0 8px 32px rgba(11,27,61,.12),0 2px 8px rgba(0,0,0,.06)}
+        .code-block-header{display:flex;align-items:center;gap:8px;padding:14px 20px;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.06)}
+        .code-header-dots{display:flex;gap:6px}
+        .code-dot{width:10px;height:10px;border-radius:50%}
+        .code-dot.red{background:#ff5f57}.code-dot.yellow{background:#febc2e}.code-dot.green{background:#28c840}
+        .code-lang{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.3);margin-left:8px;flex:1}
+        .copy-btn{display:flex;align-items:center;gap:5px;padding:5px 12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:6px;color:rgba(255,255,255,.5);font-family:var(--mono);font-size:11px;cursor:pointer;transition:all .2s}
+        .copy-btn:hover{background:rgba(255,255,255,.1);color:rgba(255,255,255,.8)}
+        .copy-btn.copied{background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.3);color:var(--green)}
+        .code-body{padding:24px;overflow-x:auto}
+        .code-body pre{font-family:var(--mono);font-size:13px;line-height:1.85;color:#E2E8F0;white-space:pre}
+
+        /* SYNTAX COLORS */
+        .sh-cmd{color:#93C5FD}
+        .sh-flag{color:rgba(255,255,255,.5)}
+        .sh-url{color:#A5F3C0}
+        .sh-str{color:#FDE68A}
+        .sh-key{color:#93C5FD}
+        .sh-val{color:#A5F3C0}
+        .sh-num{color:var(--amber)}
+        .sh-comment{color:rgba(255,255,255,.3)}
+        .sh-event{color:var(--green)}
+        .sh-method{color:var(--indigo);color:#C4B5FD}
+        .sh-punc{color:rgba(255,255,255,.4)}
+
+        /* BELOW CODE NOTE */
+        .code-note{margin-top:20px;padding:16px 20px;background:rgba(79,70,229,.04);border:1px solid rgba(79,70,229,.1);border-radius:10px;font-size:14px;color:var(--text-mid);display:flex;align-items:flex-start;gap:12px}
+        .code-note-icon{flex-shrink:0;margin-top:1px;opacity:.7}
+
+        /* ENDPOINTS */
+        .endpoints{padding:110px 32px;background:var(--bg-warm)}
+        .endpoints-inner{max-width:var(--max-w);margin:0 auto}
+        .endpoints-header{text-align:center;margin-bottom:56px}
+        .endpoints-header .section-sub{max-width:480px;margin:12px auto 0}
+
+        .endpoint-table{width:100%;border-collapse:collapse;background:#fff;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow-md)}
+        .endpoint-table th{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--text-muted);padding:14px 20px;border-bottom:1px solid var(--border);text-align:left;background:#FAFBFF}
+        .endpoint-table td{padding:16px 20px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:middle}
+        .endpoint-table tr:last-child td{border-bottom:none}
+        .endpoint-table tr:hover td{background:rgba(79,70,229,.01)}
+        .endpoint-path{font-family:var(--mono);font-size:13px;color:var(--text)}
+        .method-badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:5px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.02em}
+        .method-post{background:rgba(79,70,229,.08);color:var(--indigo)}
+        .method-get{background:rgba(16,185,129,.08);color:var(--green-dark)}
+        .endpoint-desc{font-size:14px;color:var(--text-mid)}
+
+        /* WEBHOOKS */
+        .webhooks{padding:110px 32px;background:#fff}
+        .webhooks-inner{max-width:var(--max-w);margin:0 auto}
+        .webhooks-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;max-width:960px;margin:0 auto}
+        .webhooks-events{display:flex;flex-direction:column;gap:12px}
+        .webhook-event{padding:16px 20px;background:#fff;border:1px solid var(--border);border-radius:12px;display:flex;align-items:flex-start;gap:14px;transition:all .2s;cursor:default}
+        .webhook-event:hover{border-color:var(--border-hover);transform:translateX(2px);box-shadow:var(--shadow-sm)}
+        .webhook-event-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:4px}
+        .webhook-event-dot.green{background:var(--green)}
+        .webhook-event-dot.indigo{background:var(--indigo)}
+        .webhook-event-dot.amber{background:var(--amber)}
+        .webhook-event-dot.red{background:var(--red)}
+        .webhook-event-name{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--text);margin-bottom:3px}
+        .webhook-event-desc{font-size:13px;color:var(--text-muted);line-height:1.5}
+
+        /* WHITE LABEL */
+        .whitelabel{padding:110px 32px;background:var(--bg-warm)}
+        .whitelabel-inner{max-width:var(--max-w);margin:0 auto;max-width:860px}
+        .whitelabel-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+        .whitelabel-body{font-size:17px;color:var(--text-mid);line-height:1.7}
+        .whitelabel-body p{margin-bottom:16px}
+        .brand-pass-preview{background:#fff;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-md)}
+        .brand-pass-bar{height:4px;background:linear-gradient(90deg,var(--indigo),var(--green))}
+        .brand-pass-body{padding:20px 24px}
+        .brand-pass-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--text-muted);margin-bottom:10px}
+        .brand-pass-field{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
+        .brand-pass-key{font-family:var(--mono);font-size:11px;color:var(--text-muted)}
+        .brand-pass-val{font-family:var(--mono);font-size:13px;color:var(--text);padding:7px 12px;background:var(--bg);border:1px solid var(--border);border-radius:7px}
+        .brand-pass-val.indigo{color:var(--indigo)}
+        .brand-pass-val.green{color:var(--green)}
+
+        /* SLA */
+        .sla{padding:110px 32px;background:#fff}
+        .sla-inner{max-width:var(--max-w);margin:0 auto}
+        .sla-header{text-align:center;margin-bottom:56px}
+        .sla-header .section-sub{max-width:480px;margin:12px auto 0}
+        .sla-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:900px;margin:0 auto}
+        .sla-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:28px 20px;text-align:center;transition:all .2s}
+        .sla-card:hover{border-color:var(--border-hover);transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+        .sla-num{font-family:var(--mono);font-size:clamp(22px,2.8vw,32px);font-weight:500;letter-spacing:-.03em;line-height:1;margin-bottom:8px}
+        .sla-num.c-indigo{color:var(--indigo)}
+        .sla-num.c-green{color:var(--green)}
+        .sla-num.c-amber{color:var(--amber)}
+        .sla-label{font-size:13px;color:var(--text-muted);font-weight:500;line-height:1.4}
+
+        /* SANDBOX */
+        .sandbox{padding:110px 32px;background:var(--bg-warm)}
+        .sandbox-inner{max-width:var(--max-w);margin:0 auto;text-align:center}
+        .sandbox-card{max-width:640px;margin:40px auto 0;background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:40px;box-shadow:var(--shadow-md)}
+        .sandbox-key{font-family:var(--mono);font-size:15px;padding:12px 20px;background:var(--bg);border:1px solid var(--border);border-radius:8px;display:inline-block;margin:20px 0;color:var(--text-muted);letter-spacing:.02em}
+        .sandbox-key span{color:var(--indigo)}
+        .sandbox-features{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px;text-align:left}
+        .sandbox-feature{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text-mid)}
+        .sandbox-check{width:18px;height:18px;border-radius:50%;background:rgba(16,185,129,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+        /* CTA */
+        .cta{padding:110px 32px;text-align:center;background:var(--bg-dark);color:#fff;position:relative;overflow:hidden}
+        .cta::before{content:'';position:absolute;inset:0;background-image:
+            linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+            background-size:64px 64px;pointer-events:none}
+        .cta h2{font-size:clamp(30px,4vw,52px);font-weight:900;letter-spacing:-.04em;margin-bottom:16px;line-height:1.1;position:relative}
+        .cta p{font-size:17px;opacity:.65;max-width:440px;margin:0 auto 48px;line-height:1.65;letter-spacing:-.01em;position:relative}
+        .cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative}
+        .cta-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border:none;border-radius:12px;font-family:var(--sans);font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;letter-spacing:-.01em}
+        .cta-btn:hover{transform:translateY(-1px)}
+        .cta-btn-primary{background:#fff;color:var(--bg-dark)}
+        .cta-btn-primary:hover{box-shadow:0 8px 24px rgba(255,255,255,.1)}
+        .cta-btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.15)}
+        .cta-btn-ghost:hover{border-color:rgba(255,255,255,.35)}
+
+        /* FOOTER */
+        footer{background:#fff;border-top:1px solid var(--border);padding:56px 32px 32px}
+        .footer-inner{max-width:var(--max-w);margin:0 auto}
+        .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:32px;margin-bottom:40px}
+        .footer-brand{font-family:var(--display);font-size:16px;font-weight:800;color:var(--text);letter-spacing:-.03em;margin-bottom:12px}
+        .footer-tagline{font-size:14px;color:var(--text-dim);line-height:1.65;max-width:220px}
+        .footer-col h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--text-muted);margin-bottom:16px}
+        .footer-col a{display:block;font-size:14px;color:var(--text-muted);text-decoration:none;margin-bottom:10px;transition:color .2s}
+        .footer-col a:hover{color:var(--text)}
+        .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid var(--border);flex-wrap:wrap;gap:12px}
+        .footer-copy{font-size:12px;color:var(--text-dim)}
+        .footer-badges{display:flex;gap:8px}
+        .footer-badge{padding:4px 10px;border:1px solid var(--border);border-radius:4px;font-size:10px;color:var(--text-dim);font-weight:600;letter-spacing:.02em}
+
+        /* TRUST BAR */
+        .trust{padding:32px;border-top:1px solid var(--border);background:#fff}
+        .trust-inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
+        .trust-item{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-dim);font-weight:500}
+        .trust-item svg{flex-shrink:0;opacity:.4}
+        .trust-sep{width:1px;height:14px;background:var(--border)}
+
+        /* RESPONSIVE */
+        @media(max-width:1024px){
+            .footer-top{grid-template-columns:1fr 1fr 1fr}
+            .sla-grid{grid-template-columns:repeat(2,1fr)}
+            .webhooks-grid{grid-template-columns:1fr}
+            .whitelabel-grid{grid-template-columns:1fr}
+        }
+        @media(max-width:768px){
+            .nav-links{display:none}
+            .nav-mobile{display:block}
+            .nav-inner{padding:0 20px}
+            .logo-tagline{display:none}
+            .nav-right .nav-cta-ghost{display:none}
+            .hero{padding:100px 20px 48px}
+            .steps-row{grid-template-columns:1fr}
+            .step-tab.active::after{display:none}
+            .sla-grid{grid-template-columns:1fr 1fr}
+            .sandbox-features{grid-template-columns:1fr}
+            .footer-top{grid-template-columns:1fr 1fr;gap:24px}
+            .footer-bottom{flex-direction:column;text-align:center}
+            .footer-badges{justify-content:center}
+            .quickstart{padding:80px 20px}
+            .endpoints{padding:80px 20px}
+            .webhooks{padding:80px 20px}
+            .whitelabel{padding:80px 20px}
+            .sla{padding:80px 20px}
+            .sandbox{padding:80px 20px}
+            .cta{padding:80px 20px}
+            .cta-btns{flex-direction:column;align-items:center}
+            .hero-cta-group{flex-direction:column;align-items:center}
+        }
+        @media(max-width:480px){
+            .sla-grid{grid-template-columns:1fr 1fr}
+            .footer-top{grid-template-columns:1fr}
+        }
+    </style>
+    <script>
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "vtpmvp6kvr");
+    </script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+<div class="nav-inner">
+    <a href="/" class="logo">Agent<span>Collect</span><span class="dot-circle"></span></a>
+    <span class="logo-tagline">The end of manual collection.</span>
+    <div class="nav-links">
+        <a href="/ai-collection">AI Collection</a>
+        <a href="/attorney-collection">Attorney Collection</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/security">Security</a>
+    </div>
+    <div class="nav-right">
+        <a href="https://cal.com/johnb/30" class="nav-cta-ghost" target="_blank">Talk to us</a>
+        <a href="https://cal.com/johnb/30" class="nav-cta" target="_blank">Request API access</a>
+    </div>
+    <button class="nav-mobile" id="nav-mobile-btn" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="1.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+    <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        <span class="hero-badge-text">REST API · Webhooks · OpenAPI spec</span>
+        <span class="hero-badge-tag">v1</span>
+    </div>
+    <h1>Your AR system.<br><span>Our collection engine.</span></h1>
+    <p class="hero-sub">Simple REST API. Upload invoices, receive payment webhooks. No middleware. No agents. No friction.</p>
+    <div class="hero-cta-group">
+        <a href="https://cal.com/johnb/30" class="btn-primary" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M14 10l6.1-6.1M9 21H3v-6M10 14l-6.1 6.1"/></svg>
+            Request API access
+        </a>
+        <a href="#quickstart" class="btn-outline">
+            See the docs
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+        </a>
+    </div>
+    <div class="hero-spec-row">
+        <span class="hero-spec">JSON</span>
+        <span class="hero-spec">REST</span>
+        <span class="hero-spec">Webhooks</span>
+        <span class="hero-spec">OAuth 2.0</span>
+        <span class="hero-spec">OpenAPI 3.1</span>
+    </div>
+
+    <!-- TERMINAL ANIMATION -->
+    <div class="terminal" style="margin-top:48px">
+        <div class="terminal-bar">
+            <span class="term-dot red"></span>
+            <span class="term-dot yellow"></span>
+            <span class="term-dot green"></span>
+            <span class="terminal-title">api.agentcollect.com — POST /v1/campaigns</span>
+        </div>
+        <div class="term-line" style="margin-bottom:4px">
+            <span class="term-prompt">$</span>
+            <span class="term-cmd"><span class="sh-cmd">curl</span> <span class="sh-flag">-X POST</span> <span class="sh-url">https://api.agentcollect.com/v1/campaigns</span> \</span>
+        </div>
+        <div class="term-line" style="margin-bottom:4px;padding-left:14px">
+            <span class="term-cmd"><span class="sh-flag">-H</span> <span class="sh-str">"Authorization: Bearer sk_live_..."</span> \</span>
+        </div>
+        <div class="term-line" style="margin-bottom:8px;padding-left:14px">
+            <span class="term-cmd"><span class="sh-flag">-d</span> <span class="sh-str">'{"company":"Acme Corp","invoice_amount":15000}'</span></span>
+        </div>
+        <div class="term-output">
+            <div>&#123;</div>
+            <div>&nbsp;&nbsp;<span class="sh-key">"id"</span>: <span class="sh-str">"cmp_9xQk4Fw2"</span>,</div>
+            <div>&nbsp;&nbsp;<span class="sh-key">"status"</span>: <span class="sh-str">"active"</span>,</div>
+            <div>&nbsp;&nbsp;<span class="sh-key">"first_contact_at"</span>: <span class="sh-str">"2026-03-17T15:00:00Z"</span>,</div>
+            <div>&nbsp;&nbsp;<span class="sh-key">"message"</span>: <span class="sh-str">"Collection started. Webhook fires on payment."</span></div>
+            <div>&#125;</div>
+        </div>
+        <div class="term-line" style="margin-top:12px">
+            <span class="term-prompt">$</span>
+            <span class="term-cursor"></span>
+        </div>
+    </div>
+</section>
+
+<div class="gradient-divider"></div>
+
+<!-- QUICK START -->
+<section class="quickstart reveal" id="quickstart">
+    <div class="quickstart-inner">
+        <div class="quickstart-header">
+            <div class="section-label" style="text-align:center">Quick start</div>
+            <div class="section-title" style="text-align:center">Live in 5 minutes</div>
+            <p class="section-sub" style="text-align:center;margin:12px auto 0">Three API calls. Authenticate, upload your invoices, and start receiving payment webhooks.</p>
+        </div>
+
+        <div class="steps-row">
+            <div class="step-tab active" onclick="showStep(0)" id="step-tab-0">
+                <div class="step-num">Step 01</div>
+                <div class="step-title">Authenticate</div>
+                <div class="step-est">~30 seconds</div>
+            </div>
+            <div class="step-tab" onclick="showStep(1)" id="step-tab-1">
+                <div class="step-num">Step 02</div>
+                <div class="step-title">Upload invoices</div>
+                <div class="step-est">~2 minutes</div>
+            </div>
+            <div class="step-tab" onclick="showStep(2)" id="step-tab-2">
+                <div class="step-num">Step 03</div>
+                <div class="step-title">Receive payment webhook</div>
+                <div class="step-est">When debtor pays</div>
+            </div>
+        </div>
+
+        <!-- STEP 0 — Authenticate -->
+        <div class="code-pane active" id="step-pane-0">
+            <div class="code-block">
+                <div class="code-block-header">
+                    <div class="code-header-dots">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                    </div>
+                    <span class="code-lang">bash — authenticate.sh</span>
+                    <button class="copy-btn" onclick="copyCode(this,'auth-code')">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                        Copy
+                    </button>
+                </div>
+                <div class="code-body">
+                    <pre id="auth-code"><span class="sh-comment"># Exchange your API key for a Bearer token</span>
+<span class="sh-cmd">curl</span> <span class="sh-flag">-X POST</span> <span class="sh-url">https://api.agentcollect.com/v1/auth</span> \
+  <span class="sh-flag">-H</span> <span class="sh-str">"Content-Type: application/json"</span> \
+  <span class="sh-flag">-d</span> <span class="sh-str">'{"api_key": "your_key_here"}'</span>
+
+<span class="sh-comment"># Response</span>
+&#123;
+  <span class="sh-key">"access_token"</span>: <span class="sh-str">"eyJhbGci..."</span>,
+  <span class="sh-key">"token_type"</span>: <span class="sh-str">"Bearer"</span>,
+  <span class="sh-key">"expires_in"</span>: <span class="sh-num">3600</span>,
+  <span class="sh-key">"scope"</span>: <span class="sh-str">"campaigns:write payments:read"</span>
+&#125;</pre>
+                </div>
+            </div>
+            <div class="code-note">
+                <svg class="code-note-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--indigo)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                API keys are scoped per environment. Use <code style="font-family:var(--mono);font-size:12px;background:rgba(79,70,229,.06);padding:2px 6px;border-radius:4px;color:var(--indigo)">sk_test_...</code> for sandbox and <code style="font-family:var(--mono);font-size:12px;background:rgba(79,70,229,.06);padding:2px 6px;border-radius:4px;color:var(--indigo)">sk_live_...</code> for production.
+            </div>
+        </div>
+
+        <!-- STEP 1 — Upload invoices -->
+        <div class="code-pane" id="step-pane-1">
+            <div class="code-block">
+                <div class="code-block-header">
+                    <div class="code-header-dots">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                    </div>
+                    <span class="code-lang">bash — create_campaign.sh</span>
+                    <button class="copy-btn" onclick="copyCode(this,'campaign-code')">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                        Copy
+                    </button>
+                </div>
+                <div class="code-body">
+                    <pre id="campaign-code"><span class="sh-cmd">curl</span> <span class="sh-flag">-X POST</span> <span class="sh-url">https://api.agentcollect.com/v1/campaigns</span> \
+  <span class="sh-flag">-H</span> <span class="sh-str">"Authorization: Bearer YOUR_TOKEN"</span> \
+  <span class="sh-flag">-H</span> <span class="sh-str">"Content-Type: application/json"</span> \
+  <span class="sh-flag">-d</span> <span class="sh-str">'{
+    "company": "Your Company Inc.",
+    "debtors": [&#123;
+      "company_name": "Acme Corp",
+      "contact_email": "ap@acmecorp.com",
+      "invoice_amount": 15000,
+      "invoice_date": "2025-10-01",
+      "invoice_number": "INV-2025-0847"
+    &#125;]
+  }'</span>
+
+<span class="sh-comment"># Response</span>
+&#123;
+  <span class="sh-key">"campaign_id"</span>: <span class="sh-str">"cmp_9xQk4Fw2"</span>,
+  <span class="sh-key">"status"</span>: <span class="sh-str">"active"</span>,
+  <span class="sh-key">"debtors_enrolled"</span>: <span class="sh-num">1</span>,
+  <span class="sh-key">"total_amount"</span>: <span class="sh-num">15000</span>,
+  <span class="sh-key">"first_contact_at"</span>: <span class="sh-str">"2026-03-17T15:00:00Z"</span>
+&#125;</pre>
+                </div>
+            </div>
+            <div class="code-note">
+                <svg class="code-note-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--indigo)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                You can enroll up to 500 debtors per campaign. Batch imports via CSV are also available — pass <code style="font-family:var(--mono);font-size:12px;background:rgba(79,70,229,.06);padding:2px 6px;border-radius:4px;color:var(--indigo)">"source": "csv_url"</code> with a signed S3 URL.
+            </div>
+        </div>
+
+        <!-- STEP 2 — Webhook -->
+        <div class="code-pane" id="step-pane-2">
+            <div class="code-block">
+                <div class="code-block-header">
+                    <div class="code-header-dots">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                    </div>
+                    <span class="code-lang">json — webhook payload (payment.received)</span>
+                    <button class="copy-btn" onclick="copyCode(this,'webhook-code')">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                        Copy
+                    </button>
+                </div>
+                <div class="code-body">
+                    <pre id="webhook-code">&#123;
+  <span class="sh-key">"event"</span>: <span class="sh-str">"payment.received"</span>,
+  <span class="sh-key">"id"</span>: <span class="sh-str">"evt_Kp2mZxQ8"</span>,
+  <span class="sh-key">"created_at"</span>: <span class="sh-str">"2026-03-17T14:22:00Z"</span>,
+  <span class="sh-key">"data"</span>: &#123;
+    <span class="sh-key">"campaign_id"</span>: <span class="sh-str">"cmp_9xQk4Fw2"</span>,
+    <span class="sh-key">"debtor"</span>: <span class="sh-str">"Acme Corp"</span>,
+    <span class="sh-key">"invoice_number"</span>: <span class="sh-str">"INV-2025-0847"</span>,
+    <span class="sh-key">"amount_collected"</span>: <span class="sh-num">15000</span>,
+    <span class="sh-key">"method"</span>: <span class="sh-str">"bank_transfer"</span>,
+    <span class="sh-key">"days_to_collect"</span>: <span class="sh-num">12</span>,
+    <span class="sh-key">"timestamp"</span>: <span class="sh-str">"2026-03-17T14:22:00Z"</span>
+  &#125;
+&#125;</pre>
+                </div>
+            </div>
+            <div class="code-note">
+                <svg class="code-note-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--indigo)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                Webhooks are signed with HMAC-SHA256. Verify the <code style="font-family:var(--mono);font-size:12px;background:rgba(79,70,229,.06);padding:2px 6px;border-radius:4px;color:var(--indigo)">X-AgentCollect-Signature</code> header before processing.
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<div class="gradient-divider"></div>
+
+<!-- KEY ENDPOINTS -->
+<section class="endpoints reveal" id="endpoints">
+    <div class="endpoints-inner">
+        <div class="endpoints-header">
+            <div class="section-label" style="text-align:center">Reference</div>
+            <div class="section-title" style="text-align:center">Key endpoints</div>
+            <p class="section-sub" style="text-align:center;margin:12px auto 0">Every endpoint returns JSON. All timestamps are ISO 8601 UTC. Pagination via cursor.</p>
+        </div>
+
+        <div style="max-width:860px;margin:0 auto">
+            <table class="endpoint-table">
+                <thead>
+                    <tr>
+                        <th style="width:80px">Method</th>
+                        <th>Endpoint</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="method-badge method-post">POST</span></td>
+                        <td><span class="endpoint-path">/v1/campaigns</span></td>
+                        <td class="endpoint-desc">Create a collection campaign and enroll debtors</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method-badge method-get">GET</span></td>
+                        <td><span class="endpoint-path">/v1/campaigns/{id}</span></td>
+                        <td class="endpoint-desc">Get campaign status, collected amount, and timeline</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method-badge method-get">GET</span></td>
+                        <td><span class="endpoint-path">/v1/campaigns/{id}/contacts</span></td>
+                        <td class="endpoint-desc">Get enriched contacts discovered for each debtor</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method-badge method-get">GET</span></td>
+                        <td><span class="endpoint-path">/v1/payments</span></td>
+                        <td class="endpoint-desc">List all received payments across campaigns</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method-badge method-post">POST</span></td>
+                        <td><span class="endpoint-path">/v1/webhooks</span></td>
+                        <td class="endpoint-desc">Register a webhook endpoint URL for event delivery</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method-badge method-post">POST</span></td>
+                        <td><span class="endpoint-path">/v1/auth</span></td>
+                        <td class="endpoint-desc">Exchange API key for a short-lived Bearer token</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method-badge method-get">GET</span></td>
+                        <td><span class="endpoint-path">/v1/payments/{id}</span></td>
+                        <td class="endpoint-desc">Get payment detail including method and breakdown</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<div class="gradient-divider"></div>
+
+<!-- WEBHOOKS -->
+<section class="webhooks reveal" id="webhooks">
+    <div class="webhooks-inner">
+        <div style="text-align:center;margin-bottom:56px">
+            <div class="section-label">Event-driven</div>
+            <div class="section-title">Webhooks</div>
+            <p class="section-sub" style="margin:12px auto 0">Register once, receive events in real time. No polling required.</p>
+        </div>
+
+        <div class="webhooks-grid">
+            <div class="webhooks-events">
+                <div class="webhook-event">
+                    <span class="webhook-event-dot indigo"></span>
+                    <div>
+                        <div class="webhook-event-name">campaign.started</div>
+                        <div class="webhook-event-desc">AI collection sequence has begun. Expect first contact within 1–4 hours.</div>
+                    </div>
+                </div>
+                <div class="webhook-event">
+                    <span class="webhook-event-dot indigo"></span>
+                    <div>
+                        <div class="webhook-event-name">contact.enriched</div>
+                        <div class="webhook-event-desc">New decision-maker contact found and verified for a debtor.</div>
+                    </div>
+                </div>
+                <div class="webhook-event">
+                    <span class="webhook-event-dot green"></span>
+                    <div>
+                        <div class="webhook-event-name">payment.received</div>
+                        <div class="webhook-event-desc">Debtor made a payment. Includes amount, method, and invoice number.</div>
+                    </div>
+                </div>
+                <div class="webhook-event">
+                    <span class="webhook-event-dot amber"></span>
+                    <div>
+                        <div class="webhook-event-name">case.escalated</div>
+                        <div class="webhook-event-desc">Debtor non-responsive after AI outreach. Licensed attorney assigned.</div>
+                    </div>
+                </div>
+                <div class="webhook-event">
+                    <span class="webhook-event-dot indigo"></span>
+                    <div>
+                        <div class="webhook-event-name">campaign.completed</div>
+                        <div class="webhook-event-desc">Mandate ended. Final summary payload includes recovery rate and timeline.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <div class="code-header-dots">
+                            <span class="code-dot red"></span>
+                            <span class="code-dot yellow"></span>
+                            <span class="code-dot green"></span>
+                        </div>
+                        <span class="code-lang">bash — register webhook</span>
+                        <button class="copy-btn" onclick="copyCode(this,'wh-reg-code')">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                            Copy
+                        </button>
+                    </div>
+                    <div class="code-body">
+                        <pre id="wh-reg-code"><span class="sh-cmd">curl</span> <span class="sh-flag">-X POST</span> <span class="sh-url">https://api.agentcollect.com/v1/webhooks</span> \
+  <span class="sh-flag">-H</span> <span class="sh-str">"Authorization: Bearer YOUR_TOKEN"</span> \
+  <span class="sh-flag">-d</span> <span class="sh-str">'{
+    "url": "https://yourapp.com/webhooks/ac",
+    "events": [
+      "payment.received",
+      "case.escalated",
+      "campaign.completed"
+    ]
+  }'</span>
+
+<span class="sh-comment"># Response</span>
+&#123;
+  <span class="sh-key">"webhook_id"</span>: <span class="sh-str">"wh_7Lm3pRx1"</span>,
+  <span class="sh-key">"secret"</span>: <span class="sh-str">"whsec_..."</span>,
+  <span class="sh-key">"status"</span>: <span class="sh-str">"active"</span>
+&#125;</pre>
+                    </div>
+                </div>
+                <div class="code-note" style="margin-top:14px">
+                    <svg class="code-note-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--indigo)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    Delivery: 3 retries with exponential backoff (1s, 5s, 30s). Failed events are visible in the dashboard for manual replay.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="gradient-divider"></div>
+
+<!-- WHITE LABEL VIA API -->
+<section class="whitelabel reveal" id="whitelabel">
+    <div class="whitelabel-inner" style="max-width:var(--max-w);margin:0 auto">
+        <div style="text-align:center;margin-bottom:56px">
+            <div class="section-label">White-label</div>
+            <div class="section-title">Brand it fully via API</div>
+            <p class="section-sub" style="margin:12px auto 0">Pass your brand in the campaign payload. Every email, phone call, and payment page carries your name — not ours.</p>
+        </div>
+        <div class="whitelabel-grid" style="max-width:860px;margin:0 auto;align-items:start">
+            <div>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <div class="code-header-dots">
+                            <span class="code-dot red"></span>
+                            <span class="code-dot yellow"></span>
+                            <span class="code-dot green"></span>
+                        </div>
+                        <span class="code-lang">json — brand object in campaign payload</span>
+                        <button class="copy-btn" onclick="copyCode(this,'brand-code')">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                            Copy
+                        </button>
+                    </div>
+                    <div class="code-body">
+                        <pre id="brand-code">&#123;
+  <span class="sh-key">"company"</span>: <span class="sh-str">"Your Company Inc."</span>,
+  <span class="sh-key">"brand"</span>: &#123;
+    <span class="sh-key">"name"</span>: <span class="sh-str">"Your Company"</span>,
+    <span class="sh-key">"logo_url"</span>: <span class="sh-str">"https://yourco.com/logo.png"</span>,
+    <span class="sh-key">"domain"</span>: <span class="sh-str">"yourcompany.com"</span>,
+    <span class="sh-key">"from_email"</span>: <span class="sh-str">"ar@yourcompany.com"</span>,
+    <span class="sh-key">"colors"</span>: &#123;
+      <span class="sh-key">"primary"</span>: <span class="sh-str">"#1E40AF"</span>,
+      <span class="sh-key">"accent"</span>: <span class="sh-str">"#10B981"</span>
+    &#125;
+  &#125;,
+  <span class="sh-key">"debtors"</span>: <span class="sh-punc">[...]</span>
+&#125;</pre>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="brand-pass-preview">
+                    <div class="brand-pass-bar"></div>
+                    <div class="brand-pass-body">
+                        <div class="brand-pass-label">What the debtor sees</div>
+                        <div class="brand-pass-field">
+                            <span class="brand-pass-key">From</span>
+                            <span class="brand-pass-val indigo">ar@yourcompany.com</span>
+                        </div>
+                        <div class="brand-pass-field">
+                            <span class="brand-pass-key">Subject</span>
+                            <span class="brand-pass-val">Invoice #2025-0847 — Your Company</span>
+                        </div>
+                        <div class="brand-pass-field">
+                            <span class="brand-pass-key">Caller ID</span>
+                            <span class="brand-pass-val">Your Company Collections</span>
+                        </div>
+                        <div class="brand-pass-field">
+                            <span class="brand-pass-key">Payment page</span>
+                            <span class="brand-pass-val green">pay.yourcompany.com/inv-0847</span>
+                        </div>
+                    </div>
+                </div>
+                <p style="font-size:14px;color:var(--text-muted);margin-top:16px;line-height:1.6">AgentCollect is invisible. The debtor never knows we exist. Every touchpoint feels native to your brand.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="gradient-divider"></div>
+
+<!-- RATE LIMITS & SLA -->
+<section class="sla reveal" id="sla">
+    <div class="sla-inner">
+        <div class="sla-header">
+            <div class="section-label" style="text-align:center">Reliability</div>
+            <div class="section-title" style="text-align:center">Rate limits &amp; SLA</div>
+            <p class="section-sub" style="text-align:center;margin:12px auto 0">Built for production workloads. Enterprise plans include dedicated infrastructure and custom rate limits.</p>
+        </div>
+
+        <div class="sla-grid">
+            <div class="sla-card">
+                <div class="sla-num c-indigo">1,000</div>
+                <div class="sla-label">Requests per minute<br>per API key</div>
+            </div>
+            <div class="sla-card">
+                <div class="sla-num c-green">99.9%</div>
+                <div class="sla-label">Uptime SLA<br>monitored 24/7</div>
+            </div>
+            <div class="sla-card">
+                <div class="sla-num c-amber">&lt;200ms</div>
+                <div class="sla-label">p99 response time<br>all endpoints</div>
+            </div>
+            <div class="sla-card">
+                <div class="sla-num c-indigo">3×</div>
+                <div class="sla-label">Webhook retries<br>exponential backoff</div>
+            </div>
+        </div>
+
+        <div style="max-width:640px;margin:32px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div style="padding:16px 20px;background:var(--bg);border:1px solid var(--border);border-radius:10px">
+                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--text-muted);margin-bottom:8px">Rate limit headers</div>
+                <div style="font-family:var(--mono);font-size:12px;color:var(--text-mid);line-height:2">
+                    X-RateLimit-Limit: 1000<br>
+                    X-RateLimit-Remaining: 994<br>
+                    X-RateLimit-Reset: 1742221360
+                </div>
+            </div>
+            <div style="padding:16px 20px;background:var(--bg);border:1px solid var(--border);border-radius:10px">
+                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--text-muted);margin-bottom:8px">Error format</div>
+                <div style="font-family:var(--mono);font-size:12px;color:var(--text-mid);line-height:2">
+                    <span style="color:var(--indigo)">"error"</span>: "rate_limit_exceeded",<br>
+                    <span style="color:var(--indigo)">"retry_after"</span>: 42,<br>
+                    <span style="color:var(--indigo)">"status"</span>: 429
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="gradient-divider"></div>
+
+<!-- SANDBOX -->
+<section class="sandbox reveal" id="sandbox">
+    <div class="sandbox-inner">
+        <div class="section-label">No commitment</div>
+        <div class="section-title">Test in sandbox first</div>
+        <p class="section-sub" style="margin:12px auto 0;max-width:500px">Sandbox campaigns use fake money but real AI behavior. Same models, same outreach logic, same webhook events.</p>
+
+        <div class="sandbox-card">
+            <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:4px">Sandbox API key format</div>
+            <div class="sandbox-key"><span>sk_test_</span>••••••••••••••••••••••••</div>
+            <div style="font-size:14px;color:var(--text-muted);margin-bottom:24px">Swap to <code style="font-family:var(--mono);font-size:12px;background:rgba(79,70,229,.06);padding:2px 6px;border-radius:4px;color:var(--indigo)">sk_live_</code> when you're ready for production. No code changes needed.</div>
+            <div class="sandbox-features">
+                <div class="sandbox-feature">
+                    <div class="sandbox-check">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    Real AI agents, fake money
+                </div>
+                <div class="sandbox-feature">
+                    <div class="sandbox-check">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    Live webhook delivery
+                </div>
+                <div class="sandbox-feature">
+                    <div class="sandbox-check">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    Simulated payment events
+                </div>
+                <div class="sandbox-feature">
+                    <div class="sandbox-check">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    Same API surface as prod
+                </div>
+                <div class="sandbox-feature">
+                    <div class="sandbox-check">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    No credit card required
+                </div>
+                <div class="sandbox-feature">
+                    <div class="sandbox-check">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    Instant onboarding
+                </div>
+            </div>
+            <a href="https://cal.com/johnb/30" class="btn-primary" target="_blank" style="margin-top:28px;width:100%;justify-content:center">
+                Get sandbox credentials
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust">
+    <div class="trust-inner">
+        <div class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            SOC 2 Type II
+        </div>
+        <div class="trust-sep"></div>
+        <div class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            HTTPS + TLS 1.3
+        </div>
+        <div class="trust-sep"></div>
+        <div class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            99.9% uptime SLA
+        </div>
+        <div class="trust-sep"></div>
+        <div class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            HMAC webhook signing
+        </div>
+        <div class="trust-sep"></div>
+        <div class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            FDCPA compliant
+        </div>
+    </div>
+</div>
+
+<!-- CTA -->
+<section class="cta reveal">
+    <h2>Request API access.</h2>
+    <p>We'll send your credentials within 24 hours. Ship in your first sprint.</p>
+    <div class="cta-btns">
+        <a href="https://cal.com/johnb/30" class="cta-btn cta-btn-primary" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M14 10l6.1-6.1M9 21H3v-6M10 14l-6.1 6.1"/></svg>
+            Request API access
+        </a>
+        <a href="/security" class="cta-btn cta-btn-ghost">Security &amp; Trust</a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div>
+                <div class="footer-brand">Agent<span>Collect</span><span class="dot-circle" style="width:5px;height:5px"></span></div>
+                <div class="footer-tagline">The end of manual collection.</div>
+            </div>
+            <div class="footer-col">
+                <h4>Product</h4>
+                <a href="/ai-collection">AI Collection</a>
+                <a href="/attorney-collection">Attorney Collection</a>
+                <a href="/pricing">Pricing</a>
+                <a href="/api">API &amp; Integrations</a>
+            </div>
+            <div class="footer-col">
+                <h4>Trust</h4>
+                <a href="/security">Security &amp; Trust</a>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+                <a href="/compliance">State Compliance</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="/integrations">Integrations</a>
+                <a href="/compare">Compare</a>
+                <a href="/glossary">Glossary</a>
+                <a href="/dso-calculator">DSO Calculator</a>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="/about">About</a>
+                <a href="https://cal.com/johnb/30" target="_blank">Contact</a>
+                <a href="/careers">Careers</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-copy">&copy; 2026 AgentCollect, Inc. San Francisco, CA</div>
+            <div class="footer-badges">
+                <span class="footer-badge">SOC 2</span>
+                <span class="footer-badge">CCPA</span>
+                <span class="footer-badge">Reg F</span>
+                <span class="footer-badge">REST API</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+// NAV scroll effect
+window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 10);
+});
+
+// Reveal on scroll
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+}, { threshold: 0.07 });
+revealEls.forEach(el => observer.observe(el));
+
+// Step tabs
+function showStep(idx) {
+    for (let i = 0; i < 3; i++) {
+        document.getElementById('step-tab-' + i).classList.toggle('active', i === idx);
+        document.getElementById('step-pane-' + i).classList.toggle('active', i === idx);
+    }
+}
+
+// Copy code
+function copyCode(btn, id) {
+    const el = document.getElementById(id);
+    // Strip HTML tags to get plain text
+    const plain = el.innerText || el.textContent;
+    navigator.clipboard.writeText(plain).then(() => {
+        btn.classList.add('copied');
+        btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Copied';
+        setTimeout(() => {
+            btn.classList.remove('copied');
+            btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy';
+        }, 2200);
+    });
+}
+</script>
+
+</body>
+</html>

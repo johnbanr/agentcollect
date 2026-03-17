@@ -356,7 +356,7 @@
         /* RESPONSIVE */
         @media(max-width:1024px){
             .cards-grid{grid-template-columns:repeat(2,1fr)}
-            .footer-top{grid-template-columns:1fr 1fr}
+            .footer-top{grid-template-columns:1fr 1fr 1fr !important}
             .annotation{display:none !important}
             .respectful-grid{grid-template-columns:1fr;gap:40px}
             .stats-grid{grid-template-columns:repeat(2,1fr)}
@@ -415,9 +415,10 @@
     <a href="/" class="logo">Agent<span>Collect</span><span class="dot-circle"></span></a>
     <span class="logo-tagline">The end of manual collection.</span>
     <div class="nav-links">
-        <a href="#paths">Products</a>
-        <a href="#results">Results</a>
-        <a href="#how">How it works</a>
+        <a href="/ai-collection">AI Collection</a>
+        <a href="/attorney-collection">Attorney Collection</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/security">Security</a>
     </div>
     <div class="nav-right">
         <a href="https://cal.com/johnb/30" class="nav-cta-ghost" target="_blank">Talk to us</a>
@@ -604,7 +605,7 @@
                     <div class="path-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--indigo)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>We find who to contact</div>
                 </div>
                 <div class="path-best">Best for: active clients, recent invoices.</div>
-                <a href="https://cal.com/johnb/30" target="_blank" class="path-cta path-cta-outline">Learn more</a>
+                <a href="/ai-collection" class="path-cta path-cta-outline">Learn more →</a>
             </div>
             <div class="path-card recommended">
                 <div class="path-icon" style="background:var(--green-light)">
@@ -618,7 +619,36 @@
                     <div class="path-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Upload Excel, live in minutes</div>
                 </div>
                 <div class="path-best">Best for: aging invoices, quick start.</div>
-                <a href="https://cal.com/johnb/30" target="_blank" class="path-cta path-cta-primary">Start a free pilot</a>
+                <a href="/attorney-collection" class="path-cta path-cta-primary">Learn more →</a>
+            </div>
+        </div>
+
+        <!-- Mini compare strip -->
+        <div style="max-width:900px;margin:32px auto 0;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:#fff">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid var(--border)">
+                <div style="padding:12px 20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--text-dim);background:var(--bg)"></div>
+                <div style="padding:12px 20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--text-muted);text-align:center;border-left:1px solid var(--border);background:var(--bg)">Traditional agency</div>
+                <div style="padding:12px 20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--indigo);text-align:center;border-left:1px solid var(--border);background:var(--indigo-light)">AgentCollect</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid var(--border)">
+                <div style="padding:14px 20px;font-size:13px;color:var(--text-mid);font-weight:500">Recovery rate</div>
+                <div style="padding:14px 20px;font-size:13px;color:var(--text-muted);text-align:center;border-left:1px solid var(--border)">10–20%</div>
+                <div style="padding:14px 20px;font-size:13px;color:var(--green);font-weight:600;text-align:center;border-left:1px solid var(--border);background:var(--green-light)">~50%</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid var(--border)">
+                <div style="padding:14px 20px;font-size:13px;color:var(--text-mid);font-weight:500">Time to results</div>
+                <div style="padding:14px 20px;font-size:13px;color:var(--text-muted);text-align:center;border-left:1px solid var(--border)">4–6 months</div>
+                <div style="padding:14px 20px;font-size:13px;color:var(--green);font-weight:600;text-align:center;border-left:1px solid var(--border);background:var(--green-light)">20 days</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid var(--border)">
+                <div style="padding:14px 20px;font-size:13px;color:var(--text-mid);font-weight:500">Brand damage risk</div>
+                <div style="padding:14px 20px;font-size:13px;color:var(--text-muted);text-align:center;border-left:1px solid var(--border)">High</div>
+                <div style="padding:14px 20px;font-size:13px;color:var(--green);font-weight:600;text-align:center;border-left:1px solid var(--border);background:var(--green-light)">Zero</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr">
+                <div style="padding:14px 20px;font-size:13px;color:var(--text-mid);font-weight:500">Setup time</div>
+                <div style="padding:14px 20px;font-size:13px;color:var(--text-muted);text-align:center;border-left:1px solid var(--border)">Weeks + contract</div>
+                <div style="padding:14px 20px;font-size:13px;color:var(--green);font-weight:600;text-align:center;border-left:1px solid var(--border);background:var(--green-light)">20 minutes</div>
             </div>
         </div>
     </div>
@@ -679,20 +709,69 @@
     </div>
 </section>
 
-<!-- 7. TRUST BAR -->
-<section class="trust reveal" id="security">
-    <div class="trust-inner">
-        <div class="trust-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--indigo)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>SOC 2 Type II</div>
-        <div class="trust-sep"></div>
-        <div class="trust-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Microsoft SSPA</div>
-        <div class="trust-sep"></div>
-        <div class="trust-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>CCPA / CPRA</div>
-        <div class="trust-sep"></div>
-        <div class="trust-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Regulation F</div>
-        <div class="trust-sep"></div>
-        <div class="trust-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>AES-256</div>
-        <div class="trust-sep"></div>
-        <div class="trust-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Pay on success only</div>
+<!-- 7. TRUST SECTION -->
+<section class="reveal" id="security" style="padding:80px 32px;background:var(--bg)">
+    <div style="max-width:var(--max-w);margin:0 auto">
+        <div style="text-align:center;margin-bottom:48px">
+            <div class="section-label">Enterprise-grade security</div>
+            <div class="section-title" style="max-width:480px;margin:0 auto">Built for teams that can't afford compliance incidents.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:900px;margin:0 auto">
+            <div style="background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:24px;display:flex;align-items:flex-start;gap:14px">
+                <div style="width:36px;height:36px;border-radius:10px;background:var(--indigo-light);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--indigo)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div>
+                    <div style="font-family:var(--display);font-size:14px;font-weight:800;color:var(--text);margin-bottom:3px">SOC 2 Type II</div>
+                    <div style="font-size:12px;color:var(--text-muted);line-height:1.5">Independently audited. Data security, availability, and confidentiality.</div>
+                </div>
+            </div>
+            <div style="background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:24px;display:flex;align-items:flex-start;gap:14px">
+                <div style="width:36px;height:36px;border-radius:10px;background:var(--indigo-light);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--indigo)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                </div>
+                <div>
+                    <div style="font-family:var(--display);font-size:14px;font-weight:800;color:var(--text);margin-bottom:3px">Microsoft SSPA</div>
+                    <div style="font-size:12px;color:var(--text-muted);line-height:1.5">Passed Microsoft's Supplier Security & Privacy Assurance audit.</div>
+                </div>
+            </div>
+            <div style="background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:24px;display:flex;align-items:flex-start;gap:14px">
+                <div style="width:36px;height:36px;border-radius:10px;background:var(--indigo-light);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--indigo)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+                </div>
+                <div>
+                    <div style="font-family:var(--display);font-size:14px;font-weight:800;color:var(--text);margin-bottom:3px">Regulation F + FDCPA</div>
+                    <div style="font-size:12px;color:var(--text-muted);line-height:1.5">Every communication complies. CCPA / CPRA and TCPA included.</div>
+                </div>
+            </div>
+            <div style="background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:24px;display:flex;align-items:flex-start;gap:14px">
+                <div style="width:36px;height:36px;border-radius:10px;background:rgba(16,185,129,.06);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </div>
+                <div>
+                    <div style="font-family:var(--display);font-size:14px;font-weight:800;color:var(--text);margin-bottom:3px">AES-256 + TLS 1.3</div>
+                    <div style="font-size:12px;color:var(--text-muted);line-height:1.5">Encrypted at rest and in transit. AWS us-east-1. No data sold.</div>
+                </div>
+            </div>
+            <div style="background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:24px;display:flex;align-items:flex-start;gap:14px">
+                <div style="width:36px;height:36px;border-radius:10px;background:rgba(16,185,129,.06);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <div>
+                    <div style="font-family:var(--display);font-size:14px;font-weight:800;color:var(--text);margin-bottom:3px">Attorney oversight</div>
+                    <div style="font-size:12px;color:var(--text-muted);line-height:1.5">Licensed NY attorney (Schweber Law) reviews every escalation.</div>
+                </div>
+            </div>
+            <div style="background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:24px;display:flex;align-items:flex-start;gap:14px">
+                <div style="width:36px;height:36px;border-radius:10px;background:rgba(16,185,129,.06);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <div>
+                    <div style="font-family:var(--display);font-size:14px;font-weight:800;color:var(--text);margin-bottom:3px">0 compliance incidents</div>
+                    <div style="font-size:12px;color:var(--text-muted);line-height:1.5">Across 168,000+ collection sequences. <a href="/security" style="color:var(--indigo);text-decoration:none">Full security details →</a></div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -709,34 +788,42 @@
 <!-- FOOTER -->
 <footer>
     <div class="footer-inner">
-        <div class="footer-top">
+        <div class="footer-top" style="grid-template-columns:2fr 1fr 1fr 1fr 1fr">
             <div>
                 <div class="footer-brand">Agent<span>Collect</span><span class="dot-circle" style="width:5px;height:5px"></span></div>
-                <div class="footer-tagline">The end of manual collection.</div>
+                <div class="footer-tagline">The end of manual collection.<br>Trusted by Microsoft, Dell, and Plaid.</div>
             </div>
             <div class="footer-col">
                 <h4>Product</h4>
-                <a href="#paths">AI Collection</a>
-                <a href="#paths">Attorney Collection</a>
-                <a href="https://cal.com/johnb/30" target="_blank">Pricing</a>
-                <a href="#results">Results</a>
+                <a href="/ai-collection">AI Collection</a>
+                <a href="/attorney-collection">Attorney Collection</a>
+                <a href="/pricing">Pricing</a>
+                <a href="/api">API & Integrations</a>
             </div>
             <div class="footer-col">
-                <h4>Compliance</h4>
-                <a href="#security">SOC 2</a>
-                <a href="/privacy">CCPA / CPRA</a>
-                <a href="/terms">Regulation F</a>
+                <h4>Trust</h4>
+                <a href="/security">Security & Trust</a>
+                <a href="/compliance">State Compliance</a>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="/integrations">Integrations</a>
+                <a href="/compare">Compare</a>
+                <a href="/glossary">Glossary</a>
+                <a href="/tools/dso-calculator">DSO Calculator</a>
             </div>
             <div class="footer-col">
                 <h4>Company</h4>
                 <a href="/about">About</a>
+                <a href="/careers">Careers</a>
                 <a href="https://cal.com/johnb/30" target="_blank">Contact</a>
-                <a href="/privacy">Privacy</a>
             </div>
         </div>
         <div class="footer-bottom">
             <div class="footer-copy">&copy; 2026 AgentCollect, Inc. San Francisco, CA</div>
-            <div class="footer-badges"><span class="footer-badge">SOC 2</span><span class="footer-badge">CCPA</span><span class="footer-badge">Reg F</span></div>
+            <div class="footer-badges"><span class="footer-badge">SOC 2</span><span class="footer-badge">SSPA</span><span class="footer-badge">CCPA</span><span class="footer-badge">Reg F</span></div>
         </div>
     </div>
 </footer>
