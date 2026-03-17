@@ -1057,12 +1057,13 @@ let cycling = true;
 let cycleTimer = null;
 
 function fillDashboardAnimated(domain) {
+    const card = document.getElementById('hero-card');
+    if (!card) return; // dashboard not in DOM, skip silently
     const company = findCompany(domain);
     if (!company) return;
     const contact = company.contacts[0];
 
     // Fade out the hero card
-    const card = document.getElementById('hero-card');
     card.style.opacity = '0';
 
     setTimeout(() => {
