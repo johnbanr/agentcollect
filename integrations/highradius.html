@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<title>AgentCollect + HighRadius: Automate B2B Debt Collection | AgentCollect</title>
+<meta name="description" content="Complement HighRadius AR automation with AgentCollect. When HighRadius workflows hit their limit, AgentCollect adds voice calls and attorney-backed demand letters for harder accounts.">
+<meta property="og:title" content="AgentCollect + HighRadius: Automate B2B Debt Collection | AgentCollect">
+<meta property="og:description" content="HighRadius excels at email dunning. AgentCollect adds voice + attorney escalation for accounts HR couldn't collect. Fills the gap in HighRadius Autonomous Receivables.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.agentcollect.com/integrations/highradius">
+<link rel="canonical" href="https://www.agentcollect.com/integrations/highradius">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Does AgentCollect replace HighRadius?", "acceptedAnswer": {"@type": "Answer", "text": "No. AgentCollect complements HighRadius. HighRadius handles automated email dunning, remittance matching, and deduction management at scale — it is excellent at what it does. AgentCollect adds the layer HighRadius doesn't provide: real AI voice calls, attorney-backed demand letters, and legal escalation for accounts that email alone can't reach."}},
+    {"@type": "Question", "name": "How does the HighRadius integration work technically?", "acceptedAnswer": {"@type": "Answer", "text": "Integration is available via the HighRadius API or file-based export. For HighRadius Autonomous Receivables customers, AgentCollect can receive escalated AR items via API webhook. For other HighRadius deployments, a scheduled file export from HighRadius to AgentCollect works equally well."}},
+    {"@type": "Question", "name": "Is this compatible with HighRadius Autonomous Receivables?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. AgentCollect is designed to complement HighRadius Autonomous Receivables. When HighRadius's AI-driven collections reach their limit — typically accounts that don't respond to automated email — AgentCollect's voice agents and legal escalation path picks them up."}},
+    {"@type": "Question", "name": "What types of AR items should be escalated from HighRadius to AgentCollect?", "acceptedAnswer": {"@type": "Answer", "text": "The best candidates are: accounts that have not responded to HighRadius's email dunning after 30-60 days, high-balance accounts where the ROI of a voice call is clear, and accounts approaching the statute of limitations window where legal escalation may be necessary."}}
+  ]
+}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#FAFBFF;--bg-card:#fff;--bg-dark:#0B1B3D;
+  --border:#E8ECF2;
+  --text:#0B1B3D;--text-mid:#475569;--text-muted:#94A3B8;
+  --indigo:#4F46E5;--indigo-dark:#4338CA;--indigo-light:rgba(79,70,229,.06);--indigo-glow:rgba(79,70,229,.15);
+  --green:#10B981;--green-light:rgba(16,185,129,.06);
+  --mono:'JetBrains Mono',monospace;--sans:'Inter',-apple-system,sans-serif;--display:'Plus Jakarta Sans',sans-serif;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.05);
+  --shadow-md:0 4px 12px rgba(0,0,0,.06);
+  --max-w:1140px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--display);letter-spacing:-.03em;line-height:1.15}
+::selection{background:rgba(79,70,229,.12)}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:60px}
+.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 32px;display:flex;align-items:center;height:100%}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;margin-right:40px;font-family:var(--display);font-size:18px;font-weight:800;letter-spacing:-.04em;color:var(--text)}
+.logo-dot{color:var(--indigo)}
+.nav-links{display:flex;gap:28px;flex:1}
+.nav-links a{color:var(--text-mid);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a.active{color:var(--indigo);font-weight:600}
+.nav-cta{padding:9px 20px;background:var(--indigo);color:#fff;border:none;border-radius:8px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s;display:inline-flex;align-items:center}
+.nav-cta:hover{background:var(--indigo-dark)}
+
+.hero{padding:120px 32px 64px;max-width:var(--max-w);margin:0 auto}
+.breadcrumb{font-size:13px;color:var(--text-muted);margin-bottom:32px}
+.breadcrumb a{color:var(--indigo);text-decoration:none}
+.breadcrumb a:hover{text-decoration:underline}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:var(--indigo-light);border:1px solid rgba(79,70,229,.15);border-radius:100px;font-family:var(--mono);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--indigo);margin-bottom:20px}
+.hero h1{font-size:clamp(32px,4.5vw,48px);font-weight:900;color:var(--text);margin-bottom:20px;max-width:720px}
+.hero h1 em{font-style:normal;color:var(--indigo)}
+.hero-sub{font-size:17px;line-height:1.7;color:var(--text-mid);max-width:640px;margin-bottom:32px}
+
+.flow-section{max-width:var(--max-w);margin:0 auto;padding:0 32px 64px}
+.flow-diagram{display:flex;align-items:center;gap:0;background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:32px;overflow-x:auto}
+.flow-node{flex:1;min-width:160px;text-align:center;padding:20px 16px}
+.flow-node-icon{width:48px;height:48px;border-radius:12px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.flow-node-icon.hr{background:#1B3A6B;color:#fff}
+.flow-node-icon.ac{background:var(--indigo);color:#fff}
+.flow-node-icon.pay{background:var(--green);color:#fff}
+.flow-node-label{font-family:var(--display);font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px}
+.flow-node-sub{font-size:12px;color:var(--text-muted)}
+.flow-arrow{font-size:24px;color:var(--border);padding:0 8px;flex-shrink:0}
+
+.content{max-width:var(--max-w);margin:0 auto;padding:0 32px 80px}
+.section{margin-bottom:64px}
+.section-tag{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--indigo);margin-bottom:12px;font-weight:500}
+.section h2{font-size:28px;font-weight:800;margin-bottom:24px}
+.section p{font-size:16px;line-height:1.8;color:var(--text-mid);margin-bottom:16px;max-width:720px}
+
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:8px}
+.step{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:28px}
+.step-num{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--indigo);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.step h3{font-size:18px;font-weight:800;margin-bottom:8px}
+.step p{font-size:14px;color:var(--text-mid);line-height:1.7}
+
+.sync-table{width:100%;border-collapse:collapse;margin-top:8px;font-size:14px}
+.sync-table th{text-align:left;padding:14px 20px;font-family:var(--display);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);border-bottom:2px solid var(--border)}
+.sync-table td{padding:14px 20px;border-bottom:1px solid var(--border);color:var(--text)}
+.sync-table tr:last-child td{border-bottom:none}
+.sync-table .hl{background:var(--indigo-light)}
+.badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:600;font-family:var(--mono)}
+.badge-hr{background:rgba(27,58,107,.08);color:#1B3A6B}
+.badge-indigo{background:var(--indigo-light);color:var(--indigo)}
+
+.benefits{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:8px}
+.benefit{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:28px}
+.benefit-icon{font-size:28px;margin-bottom:12px}
+.benefit h3{font-size:17px;font-weight:800;margin-bottom:8px}
+.benefit p{font-size:14px;color:var(--text-mid);line-height:1.7}
+
+.faq-item{border-bottom:1px solid var(--border);padding:24px 0}
+.faq-q{font-family:var(--display);font-size:17px;font-weight:700;color:var(--text);margin-bottom:10px}
+.faq-a{font-size:15px;color:var(--text-mid);line-height:1.7;max-width:720px}
+
+.cta-box{background:var(--bg-dark);border-radius:20px;padding:64px 40px;text-align:center;margin:64px 0;position:relative;overflow:hidden}
+.cta-box::before{content:'';position:absolute;top:-40%;left:-40%;width:180%;height:180%;background:radial-gradient(ellipse at 50% 80%,rgba(79,70,229,.12) 0%,transparent 50%);pointer-events:none}
+.cta-box h2{font-size:32px;font-weight:900;color:#fff;margin-bottom:12px;position:relative}
+.cta-box p{font-size:16px;color:var(--text-muted);margin-bottom:28px;position:relative}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--indigo);color:#fff;border:none;border-radius:10px;font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s;position:relative}
+.cta-btn:hover{background:var(--indigo-dark)}
+
+.integrations-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin-top:20px}
+.int-link{display:block;padding:10px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--text-mid);font-size:13px;font-weight:500;transition:all .15s}
+.int-link:hover{border-color:var(--indigo);color:var(--indigo);background:var(--indigo-light)}
+.int-link.current{border-color:var(--indigo);color:var(--indigo);background:var(--indigo-light);font-weight:600}
+
+.footer{border-top:1px solid var(--border);padding:40px 32px;text-align:center}
+.footer-inner{max-width:var(--max-w);margin:0 auto}
+.footer-logo{font-family:var(--display);font-size:16px;font-weight:800;color:var(--text);letter-spacing:-.03em;margin-bottom:8px}
+.footer-logo span{color:var(--indigo)}
+.footer-links{display:flex;gap:24px;justify-content:center;margin-bottom:12px}
+.footer-links a{font-size:13px;color:var(--text-muted);text-decoration:none}
+.footer-links a:hover{color:var(--text)}
+.footer-copy{font-size:12px;color:var(--text-muted)}
+
+@media(max-width:768px){
+  .hero{padding:100px 20px 48px}
+  .content,.flow-section{padding:0 20px 60px}
+  .nav-links{display:none}
+  .flow-diagram{flex-direction:column;gap:8px}
+  .flow-arrow{transform:rotate(90deg)}
+  .cta-box{padding:48px 24px}
+  .sync-table{font-size:13px}
+  .sync-table td,.sync-table th{padding:10px 12px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo">AgentCollect<span class="logo-dot">.</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/integrations" class="active">Integrations</a>
+      <a href="/contact">Contact</a>
+    </div>
+    <a href="/contact" class="nav-cta">Get a demo</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="breadcrumb">
+    <a href="/">Home</a> / <a href="/integrations">Integrations</a> / HighRadius
+  </div>
+  <div class="hero-tag">Integration Guide</div>
+  <h1>AgentCollect + <em>HighRadius</em></h1>
+  <p class="hero-sub">Complement HighRadius's AR automation with AgentCollect's AI collection agents. When HighRadius's automated workflows hit their limit, AgentCollect takes over with voice calls and attorney-backed demand letters.</p>
+</div>
+
+<!-- FLOW DIAGRAM -->
+<div class="flow-section">
+  <div class="flow-diagram">
+    <div class="flow-node">
+      <div class="flow-node-icon hr">HR</div>
+      <div class="flow-node-label">HighRadius</div>
+      <div class="flow-node-sub">Escalated AR items</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node">
+      <div class="flow-node-icon ac">AC</div>
+      <div class="flow-node-label">AgentCollect</div>
+      <div class="flow-node-sub">Voice + attorney layer</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node">
+      <div class="flow-node-icon pay">$</div>
+      <div class="flow-node-label">Payment</div>
+      <div class="flow-node-sub">Outcome synced to HR</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- HOW IT WORKS -->
+  <div class="section">
+    <div class="section-tag">How It Works</div>
+    <h2>Three steps to a complete AR stack</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">Step 01 — Connect</div>
+        <h3>Export escalated accounts</h3>
+        <p>Send escalated AR items from HighRadius to AgentCollect via API or scheduled file export. AgentCollect accepts both real-time webhook pushes and batch CSV/SFTP uploads — no change to your existing HighRadius configuration needed.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">Step 02 — Configure</div>
+        <h3>Define the escalation threshold</h3>
+        <p>Set criteria for when HighRadius should hand off to AgentCollect — typically accounts that haven't responded to automated email after a defined number of days, or high-balance accounts that warrant voice outreach.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">Step 03 — Collect</div>
+        <h3>Voice + legal where email stops</h3>
+        <p>AgentCollect's AI voice agents call the debtor, negotiate, and escalate to attorney demand letters when needed — all under your brand. Collection outcomes sync back to HighRadius so your AR team sees the full picture.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT SYNCS -->
+  <div class="section">
+    <div class="section-tag">Data Sync</div>
+    <h2>What syncs between HighRadius and AgentCollect</h2>
+    <table class="sync-table">
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Direction</th>
+          <th>Method</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="hl">
+          <td><strong>Escalated AR items</strong></td>
+          <td><span class="badge badge-hr">HR → AC</span></td>
+          <td>API or file export (CSV/SFTP)</td>
+        </tr>
+        <tr>
+          <td>Customer contact details</td>
+          <td><span class="badge badge-hr">HR → AC</span></td>
+          <td>API or file export</td>
+        </tr>
+        <tr class="hl">
+          <td><strong>Collection outcomes (contacted, promised, disputed)</strong></td>
+          <td><span class="badge badge-indigo">AC → HR</span></td>
+          <td>API webhook</td>
+        </tr>
+        <tr>
+          <td>Payment received confirmation</td>
+          <td><span class="badge badge-indigo">AC → HR</span></td>
+          <td>API webhook</td>
+        </tr>
+        <tr class="hl">
+          <td><strong>Case closure / legal escalation status</strong></td>
+          <td><span class="badge badge-indigo">AC → HR</span></td>
+          <td>API webhook</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- KEY BENEFITS -->
+  <div class="section">
+    <div class="section-tag">Key Benefits</div>
+    <h2>Why enterprise finance teams add AgentCollect to HighRadius</h2>
+    <div class="benefits">
+      <div class="benefit">
+        <div class="benefit-icon">📞</div>
+        <h3>Voice fills HighRadius's gap</h3>
+        <p>HighRadius excels at automated email dunning and remittance matching. It doesn't make phone calls. AgentCollect's AI voice agents handle the calls that move hard accounts — brand-safe and compliant.</p>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">⚖️</div>
+        <h3>Attorney escalation path</h3>
+        <p>HighRadius stops at collections software. AgentCollect includes an attorney-backed demand letter and legal escalation path for accounts that require it — no separate law firm engagement needed.</p>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">🔁</div>
+        <h3>Outcomes sync back to HighRadius</h3>
+        <p>Every collection outcome — contacted, promised, paid, disputed — syncs back to HighRadius. Your AR team sees the complete story in HighRadius without switching to another dashboard.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section">
+    <div class="section-tag">FAQ</div>
+    <h2>HighRadius integration questions</h2>
+    <div class="faq-item">
+      <div class="faq-q">Does AgentCollect replace HighRadius?</div>
+      <div class="faq-a">No. AgentCollect complements HighRadius. HighRadius handles automated email dunning, remittance matching, and deduction management at scale — it is excellent at what it does. AgentCollect adds the layer HighRadius doesn't provide: real AI voice calls, attorney-backed demand letters, and legal escalation for accounts that email alone can't reach.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How does the HighRadius integration work technically?</div>
+      <div class="faq-a">Integration is available via the HighRadius API or file-based export. For HighRadius Autonomous Receivables customers, AgentCollect can receive escalated AR items via API webhook. For other HighRadius deployments, a scheduled file export from HighRadius to AgentCollect works equally well.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is this compatible with HighRadius Autonomous Receivables?</div>
+      <div class="faq-a">Yes. AgentCollect is designed to complement HighRadius Autonomous Receivables. When HighRadius's AI-driven collections reach their limit — typically accounts that don't respond to automated email — AgentCollect's voice agents and legal escalation path picks them up.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What types of AR items should be escalated from HighRadius to AgentCollect?</div>
+      <div class="faq-a">The best candidates are: accounts that have not responded to HighRadius's email dunning after 30-60 days, high-balance accounts where the ROI of a voice call is clear, and accounts approaching the statute of limitations window where legal escalation may be necessary.</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-box">
+    <h2>Extend HighRadius with AgentCollect</h2>
+    <p>Connect in days, not months. Success-only fees — you pay nothing until we collect.</p>
+    <a href="/contact" class="cta-btn">Talk to our team &rarr;</a>
+  </div>
+
+  <!-- OTHER INTEGRATIONS -->
+  <div class="section">
+    <div class="section-tag">All Integrations</div>
+    <h2>Connect your existing stack</h2>
+    <div class="integrations-grid">
+      <a href="/integrations/quickbooks" class="int-link">QuickBooks</a>
+      <a href="/integrations/netsuite" class="int-link">NetSuite</a>
+      <a href="/integrations/sage" class="int-link">Sage</a>
+      <a href="/integrations/xero" class="int-link">Xero</a>
+      <a href="/integrations/microsoft-dynamics" class="int-link">Microsoft Dynamics</a>
+      <a href="/integrations/sap" class="int-link">SAP</a>
+      <a href="/integrations/freshbooks" class="int-link">FreshBooks</a>
+      <a href="/integrations/bill-com" class="int-link">Bill.com</a>
+      <a href="/integrations/salesforce" class="int-link">Salesforce</a>
+      <a href="/integrations/hubspot" class="int-link">HubSpot</a>
+      <a href="/integrations/stripe-billing" class="int-link">Stripe Billing</a>
+      <a href="/integrations/chargebee" class="int-link">Chargebee</a>
+      <a href="/integrations/highradius" class="int-link current">HighRadius</a>
+      <a href="/integrations/billtrust" class="int-link">Billtrust</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">AgentCollect<span>.</span></div>
+    <div class="footer-links">
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 AgentCollect (YC S23). All rights reserved.</div>
+  </div>
+</footer>
+
+</body>
+</html>

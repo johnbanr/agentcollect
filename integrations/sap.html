@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<title>AgentCollect + SAP: Automate B2B Debt Collection | AgentCollect</title>
+<meta name="description" content="Connect SAP to AgentCollect and automatically collect overdue invoices with AI agents. Success-only fees. Live in 20 minutes.">
+<meta property="og:title" content="AgentCollect + SAP: Automate B2B Debt Collection | AgentCollect">
+<meta property="og:description" content="Connect SAP S/4HANA or SAP Business One to AgentCollect for automated enterprise B2B debt collection. SAP-compatible API integration, no custom ABAP required.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.agentcollect.com/integrations/sap">
+<link rel="canonical" href="https://www.agentcollect.com/integrations/sap">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"AgentCollect","applicationCategory":"BusinessApplication","description":"Connect SAP S/4HANA or SAP Business One to AgentCollect for automated enterprise B2B debt collection via SAP OData APIs and FI-AR posting.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","description":"Success-only fees"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does AgentCollect require custom ABAP development in SAP?","acceptedAnswer":{"@type":"Answer","text":"No custom ABAP development is required. AgentCollect connects to SAP S/4HANA via standard OData APIs (SAP Gateway) published by SAP. For SAP Business One, we use the Service Layer REST API. Both approaches use standard SAP integration patterns with no modifications to your SAP system."}},{"@type":"Question","name":"Which SAP systems does AgentCollect support?","acceptedAnswer":{"@type":"Answer","text":"AgentCollect supports SAP S/4HANA (cloud and on-premise), SAP Business One (via Service Layer), and SAP ECC 6.0 (via SAP Gateway OData). SAP ERP Central Component (ECC) customers can connect using the same OData approach as S/4HANA."}},{"@type":"Question","name":"How does AgentCollect post payments back to SAP FI-AR?","acceptedAnswer":{"@type":"Answer","text":"When AgentCollect collects a payment, we post it back to SAP FI-AR using the standard IncomingPayment OData API (for S/4HANA) or the BusinessPartners/IncomingPayments Service Layer endpoint (for SAP B1). The posting creates a proper FI document with the correct accounting entries — no journal entry workarounds."}},{"@type":"Question","name":"Can AgentCollect update the dunning level in SAP?","acceptedAnswer":{"@type":"Answer","text":"Yes. For SAP S/4HANA, AgentCollect can update the dunning level (MAHNS) on the customer open item (BSID table) via the CustomerDunning OData entity. This keeps your SAP dunning history accurate and prevents duplicate dunning notices from SAP and AgentCollect."}}]}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#FAFBFF;--bg-card:#fff;--bg-dark:#0B1B3D;
+  --border:#E8ECF2;
+  --text:#0B1B3D;--text-mid:#475569;--text-muted:#94A3B8;
+  --indigo:#4F46E5;--indigo-dark:#4338CA;--indigo-light:rgba(79,70,229,.06);--indigo-glow:rgba(79,70,229,.15);
+  --green:#10B981;--green-light:rgba(16,185,129,.06);
+  --mono:'JetBrains Mono',monospace;--sans:'Inter',-apple-system,sans-serif;--display:'Plus Jakarta Sans',sans-serif;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.05);
+  --shadow-md:0 4px 12px rgba(0,0,0,.06);
+  --max-w:1140px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--display);letter-spacing:-.03em;line-height:1.15}
+::selection{background:rgba(79,70,229,.12)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:60px}
+.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 32px;display:flex;align-items:center;height:100%}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;margin-right:40px;font-family:var(--display);font-size:18px;font-weight:800;letter-spacing:-.04em;color:var(--text)}
+.logo-dot{color:var(--indigo)}
+.nav-links{display:flex;gap:28px;flex:1}
+.nav-links a{color:var(--text-mid);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a.active{color:var(--indigo);font-weight:600}
+.nav-cta{padding:9px 20px;background:var(--indigo);color:#fff;border:none;border-radius:8px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s;display:inline-flex;align-items:center}
+.nav-cta:hover{background:var(--indigo-dark)}
+.hero{padding:120px 32px 64px;max-width:var(--max-w);margin:0 auto}
+.breadcrumb{font-size:13px;color:var(--text-muted);margin-bottom:32px}
+.breadcrumb a{color:var(--indigo);text-decoration:none}
+.breadcrumb a:hover{text-decoration:underline}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:var(--indigo-light);border:1px solid rgba(79,70,229,.15);border-radius:100px;font-family:var(--mono);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--indigo);margin-bottom:20px}
+.hero h1{font-size:clamp(32px,4.5vw,48px);font-weight:900;color:var(--text);margin-bottom:20px;max-width:720px}
+.hero h1 em{font-style:normal;color:var(--indigo)}
+.hero-sub{font-size:17px;line-height:1.7;color:var(--text-mid);max-width:640px;margin-bottom:32px}
+.platform-pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px}
+.platform-pill{padding:6px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:600;color:var(--text-mid)}
+.platform-pill.active{border-color:var(--indigo);color:var(--indigo);background:var(--indigo-light)}
+.flow-section{max-width:var(--max-w);margin:0 auto;padding:0 32px 64px}
+.flow-diagram{display:flex;align-items:center;justify-content:center;gap:0;margin:40px 0;flex-wrap:wrap}
+.flow-node{background:var(--bg-card);border:2px solid var(--border);border-radius:16px;padding:24px 32px;text-align:center;min-width:160px}
+.flow-node.highlight{border-color:var(--indigo);background:var(--indigo-light)}
+.flow-node-icon{font-size:28px;margin-bottom:8px}
+.flow-node-label{font-family:var(--display);font-weight:700;font-size:15px;color:var(--text)}
+.flow-node-sub{font-size:12px;color:var(--text-muted);margin-top:4px}
+.flow-arrow{display:flex;flex-direction:column;align-items:center;padding:0 16px;gap:4px}
+.flow-arrow-line{width:48px;height:2px;background:var(--indigo);opacity:.3;position:relative}
+.flow-arrow-line::after{content:'▶';position:absolute;right:-8px;top:-8px;color:var(--indigo);opacity:.5;font-size:12px}
+.flow-arrow-label{font-family:var(--mono);font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em}
+.content{max-width:var(--max-w);margin:0 auto;padding:0 32px 80px}
+.section{margin-bottom:64px}
+.section-tag{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--indigo);margin-bottom:12px;font-weight:500}
+.section h2{font-size:28px;font-weight:800;margin-bottom:24px}
+.section p{font-size:16px;line-height:1.8;color:var(--text-mid);margin-bottom:16px;max-width:720px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:8px}
+.step-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:32px}
+.step-num{font-family:var(--display);font-size:13px;font-weight:800;color:var(--indigo);background:var(--indigo-light);border:1px solid rgba(79,70,229,.15);border-radius:8px;padding:4px 10px;display:inline-block;margin-bottom:16px;letter-spacing:.04em}
+.step-card h3{font-size:18px;font-weight:800;margin-bottom:10px}
+.step-card p{font-size:14px;color:var(--text-mid);line-height:1.7}
+.compare{width:100%;border-collapse:collapse;margin:8px 0;font-size:14px}
+.compare th{text-align:left;padding:14px 20px;font-family:var(--display);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);border-bottom:2px solid var(--border)}
+.compare td{padding:14px 20px;border-bottom:1px solid var(--border);color:var(--text)}
+.compare tr:last-child td{border-bottom:none}
+.compare .hl{background:var(--indigo-light)}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:600;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em}
+.badge-out{background:rgba(79,70,229,.08);color:var(--indigo)}
+.badge-in{background:var(--green-light);color:var(--green)}
+.benefits{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:8px}
+.benefit-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:28px}
+.benefit-icon{font-size:24px;margin-bottom:14px}
+.benefit-card h3{font-size:16px;font-weight:800;margin-bottom:8px}
+.benefit-card p{font-size:14px;color:var(--text-mid);line-height:1.65}
+.faq-item{border-bottom:1px solid var(--border);padding:24px 0}
+.faq-q{font-family:var(--display);font-size:17px;font-weight:700;color:var(--text);margin-bottom:10px}
+.faq-a{font-size:15px;color:var(--text-mid);line-height:1.7;max-width:720px}
+.faq-a code{font-family:var(--mono);font-size:13px;background:var(--indigo-light);padding:2px 6px;border-radius:4px;color:var(--indigo)}
+.cta-box{background:var(--bg-dark);border-radius:20px;padding:64px 40px;text-align:center;margin:64px 0;position:relative;overflow:hidden}
+.cta-box::before{content:'';position:absolute;top:-40%;left:-40%;width:180%;height:180%;background:radial-gradient(ellipse at 50% 80%,rgba(79,70,229,.12) 0%,transparent 50%);pointer-events:none}
+.cta-box h2{font-size:32px;font-weight:900;color:#fff;margin-bottom:12px;position:relative}
+.cta-box p{font-size:16px;color:var(--text-muted);margin-bottom:28px;position:relative}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--indigo);color:#fff;border:none;border-radius:10px;font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s;position:relative}
+.cta-btn:hover{background:var(--indigo-dark)}
+.integrations-section{margin:64px 0}
+.integrations-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin-top:20px}
+.int-link{display:block;padding:10px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--text-mid);font-size:13px;font-weight:500;transition:all .15s}
+.int-link:hover{border-color:var(--indigo);color:var(--indigo);background:var(--indigo-light)}
+.int-link.current{border-color:var(--indigo);color:var(--indigo);background:var(--indigo-light);font-weight:600}
+.footer{border-top:1px solid var(--border);padding:40px 32px;text-align:center}
+.footer-inner{max-width:var(--max-w);margin:0 auto}
+.footer-logo{font-family:var(--display);font-size:16px;font-weight:800;color:var(--text);letter-spacing:-.03em;margin-bottom:8px}
+.footer-logo span{color:var(--indigo)}
+.footer-links{display:flex;gap:24px;justify-content:center;margin-bottom:12px}
+.footer-links a{font-size:13px;color:var(--text-muted);text-decoration:none}
+.footer-links a:hover{color:var(--text)}
+.footer-copy{font-size:12px;color:var(--text-muted)}
+.tech-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;background:rgba(15,23,42,.04);border:1px solid var(--border);border-radius:6px;font-family:var(--mono);font-size:11px;color:var(--text-mid);margin:4px 4px 4px 0}
+@media(max-width:768px){
+  .hero{padding:100px 20px 48px}
+  .flow-section,.content{padding:0 20px 60px}
+  .nav-links{display:none}
+  .cta-box{padding:48px 24px}
+  .flow-diagram{gap:8px}
+  .flow-arrow-line{width:24px}
+  .integrations-grid{grid-template-columns:1fr 1fr}
+  .compare{font-size:13px}
+  .compare td,.compare th{padding:10px 12px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo">AgentCollect<span class="logo-dot">.</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/integrations" class="active">Integrations</a>
+      <a href="/contact">Contact</a>
+    </div>
+    <a href="/contact" class="nav-cta">Get a demo</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="breadcrumb">
+    <a href="/">Home</a> / <a href="/integrations">Integrations</a> / SAP
+  </div>
+  <div class="hero-tag">Integration Guide</div>
+  <h1>AgentCollect + <em>SAP</em></h1>
+  <p class="hero-sub">Connect SAP S/4HANA or SAP Business One to AgentCollect for automated enterprise B2B debt collection. SAP-compatible OData API integration with full FI-AR posting — no custom ABAP required, no SAP modifications.</p>
+  <div class="platform-pills">
+    <span class="platform-pill active">SAP S/4HANA</span>
+    <span class="platform-pill active">SAP Business One</span>
+    <span class="platform-pill active">SAP ECC 6.0</span>
+  </div>
+</div>
+
+<!-- FLOW DIAGRAM -->
+<div class="flow-section">
+  <div class="flow-diagram">
+    <div class="flow-node">
+      <div class="flow-node-icon">🔷</div>
+      <div class="flow-node-label">SAP</div>
+      <div class="flow-node-sub">Open AR items (BSID)</div>
+    </div>
+    <div class="flow-arrow">
+      <div class="flow-arrow-line"></div>
+      <div class="flow-arrow-label">Open AR items</div>
+    </div>
+    <div class="flow-node highlight">
+      <div class="flow-node-icon">🤖</div>
+      <div class="flow-node-label">AgentCollect</div>
+      <div class="flow-node-sub">AI agents collect</div>
+    </div>
+    <div class="flow-arrow">
+      <div class="flow-arrow-line"></div>
+      <div class="flow-arrow-label">FI-AR posting</div>
+    </div>
+    <div class="flow-node">
+      <div class="flow-node-icon">📊</div>
+      <div class="flow-node-label">SAP FI-AR</div>
+      <div class="flow-node-sub">IncomingPayment posted</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- HOW IT WORKS -->
+  <div class="section">
+    <div class="section-tag">How It Works</div>
+    <h2>SAP-native collection automation — no ABAP, no risk</h2>
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">Step 01 — Connect</div>
+        <h3>SAP Gateway OData connection</h3>
+        <p>AgentCollect connects to SAP S/4HANA via SAP Gateway using standard OData APIs. For SAP Business One, we use the Service Layer REST API. Your Basis team configures the communication user in SM59 — no transports, no custom code, no system modifications.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">Step 02 — Configure</div>
+        <h3>FI-AR entity and dunning mapping</h3>
+        <p>Map AgentCollect to your open AR items via the BSID table (customer open items). Configure collection triggers by dunning area, credit control area, or company code. Set minimum balance thresholds and exclude strategic accounts.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">Step 03 — Collect</div>
+        <h3>AI agents collect, FI-AR stays clean</h3>
+        <p>AI agents contact debtors by phone, email, and SMS. When payment is received, AgentCollect posts an IncomingPayment back to SAP FI-AR using the standard OData API — creating a proper FI document that clears the open item in BSID.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT SYNCS -->
+  <div class="section">
+    <div class="section-tag">Data Sync</div>
+    <h2>What syncs between SAP and AgentCollect</h2>
+    <table class="compare">
+      <thead>
+        <tr>
+          <th>Direction</th>
+          <th>Data</th>
+          <th>Frequency</th>
+          <th>SAP Object</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="hl">
+          <td><span class="badge badge-out">SAP → AC</span></td>
+          <td><strong>Open AR items</strong></td>
+          <td>Every 2 hours</td>
+          <td>BSID / CustomerOpenItems OData</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-in">AC → SAP</span></td>
+          <td><strong>FI-AR posting (incoming payment)</strong></td>
+          <td>Real-time</td>
+          <td>IncomingPayment OData / Service Layer</td>
+        </tr>
+        <tr class="hl">
+          <td><span class="badge badge-in">AC → SAP</span></td>
+          <td><strong>Dunning level update</strong></td>
+          <td>Real-time</td>
+          <td>CustomerDunning OData (MAHNS field)</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-out">SAP → AC</span></td>
+          <td><strong>Customer master data</strong></td>
+          <td>On sync</td>
+          <td>Customer OData / BusinessPartner</td>
+        </tr>
+        <tr class="hl">
+          <td><span class="badge badge-out">SAP → AC</span></td>
+          <td><strong>Company code / credit control area</strong></td>
+          <td>On sync</td>
+          <td>CompanyCode / CreditControlArea</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="margin-top:16px;font-size:13px;color:var(--text-muted)">Tech stack: <span class="tech-badge">SAP Gateway OData</span><span class="tech-badge">Service Layer REST</span><span class="tech-badge">OAuth 2.0</span><span class="tech-badge">No ABAP required</span><span class="tech-badge">Multi-company code</span></p>
+  </div>
+
+  <!-- KEY BENEFITS -->
+  <div class="section">
+    <div class="section-tag">Key Benefits</div>
+    <h2>Built for SAP finance teams</h2>
+    <div class="benefits">
+      <div class="benefit-card">
+        <div class="benefit-icon">🔧</div>
+        <h3>Zero ABAP, zero modifications</h3>
+        <p>AgentCollect uses only standard SAP OData APIs published via SAP Gateway. No custom ABAP development, no transport requests, no risk to your SAP system stability or support agreement.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">📋</div>
+        <h3>Proper FI-AR posting</h3>
+        <p>Payments post back as native FI documents that clear the open item in BSID — not as journal entry workarounds. Your FI-AR accountants see clean, standard SAP postings that reconcile correctly.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🔔</div>
+        <h3>Dunning level sync</h3>
+        <p>AgentCollect writes the dunning level back to the CustomerDunning entity in SAP. This prevents conflicting dunning notices from SAP's standard dunning run and AgentCollect's AI agents operating simultaneously.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section">
+    <div class="section-tag">FAQ</div>
+    <h2>SAP integration FAQ</h2>
+    <div class="faq-item">
+      <div class="faq-q">Does AgentCollect require custom ABAP development in SAP?</div>
+      <div class="faq-a">No custom ABAP development is required. AgentCollect connects to SAP S/4HANA via standard OData APIs (SAP Gateway) published by SAP. For SAP Business One, we use the Service Layer REST API. Both approaches use standard SAP integration patterns with no modifications to your SAP system.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Which SAP systems does AgentCollect support?</div>
+      <div class="faq-a">AgentCollect supports SAP S/4HANA (cloud and on-premise), SAP Business One (via Service Layer), and SAP ECC 6.0 (via SAP Gateway OData). SAP ERP Central Component (ECC) customers can connect using the same OData approach as S/4HANA.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How does AgentCollect post payments back to SAP FI-AR?</div>
+      <div class="faq-a">When AgentCollect collects a payment, we post it back to SAP FI-AR using the standard <code>IncomingPayment</code> OData API (for S/4HANA) or the <code>BusinessPartners/IncomingPayments</code> Service Layer endpoint (for SAP B1). The posting creates a proper FI document with the correct accounting entries — no journal entry workarounds.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can AgentCollect update the dunning level in SAP?</div>
+      <div class="faq-a">Yes. For SAP S/4HANA, AgentCollect can update the dunning level (<code>MAHNS</code>) on the customer open item (BSID table) via the <code>CustomerDunning</code> OData entity. This keeps your SAP dunning history accurate and prevents duplicate dunning notices from SAP and AgentCollect.</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-box">
+    <h2>Ready to automate your SAP collections?</h2>
+    <p>No ABAP. No SAP modifications. Proper FI-AR postings. Success-only fees.</p>
+    <a href="/contact" class="cta-btn">Start a free pilot &rarr;</a>
+  </div>
+
+  <!-- OTHER INTEGRATIONS -->
+  <div class="integrations-section">
+    <div class="section-tag">All Integrations</div>
+    <h2>Connect your accounting stack</h2>
+    <div class="integrations-grid">
+      <a href="/integrations/quickbooks" class="int-link">QuickBooks</a>
+      <a href="/integrations/netsuite" class="int-link">NetSuite</a>
+      <a href="/integrations/sage" class="int-link">Sage</a>
+      <a href="/integrations/xero" class="int-link">Xero</a>
+      <a href="/integrations/microsoft-dynamics" class="int-link">Microsoft Dynamics</a>
+      <a href="/integrations/sap" class="int-link current">SAP</a>
+      <a href="/integrations/freshbooks" class="int-link">FreshBooks</a>
+      <a href="/integrations/bill-com" class="int-link">Bill.com</a>
+      <a href="/integrations/salesforce" class="int-link">Salesforce</a>
+      <a href="/integrations/hubspot" class="int-link">HubSpot</a>
+      <a href="/integrations/stripe-billing" class="int-link">Stripe Billing</a>
+      <a href="/integrations/chargebee" class="int-link">Chargebee</a>
+      <a href="/integrations/highradius" class="int-link">HighRadius</a>
+      <a href="/integrations/billtrust" class="int-link">Billtrust</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">AgentCollect<span>.</span></div>
+    <div class="footer-links">
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 AgentCollect (YC S23). All rights reserved.</div>
+  </div>
+</footer>
+
+</body>
+</html>
