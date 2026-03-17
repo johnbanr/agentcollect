@@ -795,6 +795,14 @@ aud && aud.addEventListener('ended', function() {
   stopAllTypewriters();
   cancelAnimationFrame(raf);
 });
+
+// Auto-start analysis if domain is pre-filled
+(function() {
+  var input = document.getElementById('domain-input');
+  if (input && input.value && input.value.trim().length > 0) {
+    startAnalysis();
+  }
+})();
 </script>
 </body>
 </html>
