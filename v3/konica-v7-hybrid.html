@@ -80,7 +80,7 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',syst
 .intel-row-value.good{color:var(--green-dark)}
 
 .intel-rating{display:inline-flex;align-items:center;gap:6px}
-.intel-stars{color:#fbbf24;font-size:13px;letter-spacing:1px}
+.intel-stars{color:#fbbf24;font-size:14px;letter-spacing:1px}
 
 .intel-contacts{display:flex;align-items:center;gap:12px;background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.15);border-radius:14px;padding:16px 20px;margin-top:20px}
 .intel-contacts-icon{width:40px;height:40px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0}
@@ -101,7 +101,7 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',syst
 .intel-try button:hover{transform:translateY(-1px);box-shadow:0 2px 8px rgba(79,70,229,.25)}
 .intel-try button:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}
 
-.intel-error{font-size:13px;color:var(--red);margin-top:8px;display:none}
+.intel-error{font-size:14px;color:var(--red);margin-top:8px;display:none}
 .intel-error.show{display:block}
 
 /* Loading state */
@@ -182,7 +182,7 @@ a.review-src:hover{color:var(--blue)}
 .typing-cursor{display:inline-block;width:2px;height:1em;background:rgba(255,255,255,.7);vertical-align:text-bottom;margin-left:2px;animation:blink-cursor .7s step-end infinite}
 .dark-reasoning{padding:24px 40px 32px;border-left:1px solid rgba(255,255,255,.05);display:flex;flex-direction:column;justify-content:flex-start;gap:12px}
 .dark-reasoning.hidden{display:none}
-.dark-reasoning h3{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.4);margin-bottom:6px}
+.dark-reasoning h3{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.45);margin-bottom:6px}
 .dark-badge{padding:12px 18px;border-radius:14px;font-size:15px;font-weight:600;opacity:0;transform:translateX(20px);transition:opacity .5s ease,transform .5s ease}
 .dark-badge.shown{opacity:1;transform:none}
 .dark-badge.green{background:rgba(5,150,105,.12);color:#34d399}
@@ -329,6 +329,7 @@ a.review-src:hover{color:var(--blue)}
         </div>
       </div>
 
+      <div style="font-size:14px;color:var(--muted);margin-bottom:8px;font-weight:500">We analyzed your AR environment and found:</div>
       <div class="intel-row">
         <span class="intel-row-label">Current collection partner</span>
         <span class="intel-row-value bad">DLL Finance</span>
@@ -356,9 +357,9 @@ a.review-src:hover{color:var(--blue)}
 
       <hr class="intel-divider">
 
-      <div class="intel-try-label">Try with your company:</div>
+      <div class="intel-try-label">Enter any company name to see their AR profile:</div>
       <div class="intel-try">
-        <input type="text" id="company-input" placeholder="e.g. Acme Corp" />
+        <input type="text" id="company-input" placeholder="e.g. Microsoft, Dell, Acme Corp" />
         <button id="analyze-btn" onclick="analyzeCompany()">Analyze</button>
       </div>
       <div class="intel-loading" id="intel-loading">
@@ -375,9 +376,9 @@ a.review-src:hover{color:var(--blue)}
   <div class="dll-inner">
     <div class="rv">
       <div class="section-label">The problem</div>
-      <h2>This is who calls debtors <span class="accent">in your name.</span></h2>
+      <h2>This is the agency collecting <span class="accent">on your behalf.</span></h2>
       <div class="dll-name-callout">
-        <span class="dll-name-label">Your current agency</span>
+        <span class="dll-name-label">Konica Minolta's current collection agency</span>
         <span class="dll-name-big">DLL Finance</span>
       </div>
       <p class="dll-sub">Every negative review about DLL is a review about Konica Minolta. Every FDCPA complaint is a lawsuit risk for you.</p>
@@ -469,8 +470,8 @@ a.review-src:hover{color:var(--blue)}
   <div class="chain-inner">
     <div class="rv">
       <div class="section-label">Intelligence</div>
-      <h2>If a client stopped paying, here's who we'd call.</h2>
-      <p class="chain-sub">Simulation on Zwanger-Pesiri Radiology, a real Konica Minolta customer.</p>
+      <h2>If a client stopped paying, here's who we'd contact at their company.</h2>
+      <p class="chain-sub">Real AR decision-makers at Zwanger-Pesiri Radiology (a Konica Minolta client), identified from public sources.</p>
     </div>
 
     <div class="chain-grid rv rv-d1">

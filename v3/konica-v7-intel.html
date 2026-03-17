@@ -140,7 +140,7 @@ h1,h2,h3,.hero-title,.section-title{font-family:'Plus Jakarta Sans',system-ui,sa
 .objection-card:hover{background:rgba(255,255,255,.06);transform:translateY(-2px)}
 .objection-quote{font-size:20px;font-weight:700;color:rgba(255,255,255,.9);line-height:1.35;margin-bottom:16px;font-family:'Plus Jakarta Sans',sans-serif}
 .objection-freq{font-size:14px;font-weight:600;color:var(--indigo);margin-bottom:20px;display:inline-block;background:rgba(79,70,229,.12);padding:4px 12px;border-radius:100px}
-.objection-response-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.55);margin-bottom:8px}
+.objection-response-label{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.55);margin-bottom:8px}
 .objection-response{font-size:15px;color:rgba(255,255,255,.7);line-height:1.6;margin-bottom:20px}
 .objection-legal{font-size:14px;color:rgba(255,255,255,.55);font-family:'JetBrains Mono',monospace;padding-top:16px;border-top:1px solid rgba(255,255,255,.06)}
 
@@ -151,7 +151,7 @@ h1,h2,h3,.hero-title,.section-title{font-family:'Plus Jakarta Sans',system-ui,sa
 /* Dark player */
 .dark-player{background:#0a0a14;border-radius:24px;overflow:hidden;max-width:960px;margin:0 auto;box-shadow:0 25px 50px -12px rgba(0,0,0,.25);max-height:700px}
 .dark-header{padding:24px 40px 0;display:flex;align-items:center;justify-content:space-between}
-.dark-header-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.45)}
+.dark-header-label{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.45)}
 .dark-live{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#34d399}
 @keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.3}}
 .dark-live-dot{width:6px;height:6px;border-radius:50%;background:#34d399;animation:pulse-dot 2s infinite}
@@ -178,7 +178,7 @@ h1,h2,h3,.hero-title,.section-title{font-family:'Plus Jakarta Sans',system-ui,sa
 .dark-line{opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}
 .dark-line.shown{opacity:.6;transform:none}
 .dark-line.active{opacity:1}
-.dark-speaker{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;display:block}
+.dark-speaker{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;display:block}
 .dark-speaker.ai{color:#818cf8}
 .dark-speaker.hu{color:rgba(255,255,255,.5)}
 .dark-text{font-size:clamp(15px,1.8vw,18px);font-weight:400;line-height:1.55;color:rgba(255,255,255,.92);min-height:1.55em}
@@ -187,7 +187,7 @@ h1,h2,h3,.hero-title,.section-title{font-family:'Plus Jakarta Sans',system-ui,sa
 .typing-cursor{display:inline-block;width:2px;height:1em;background:rgba(255,255,255,.7);vertical-align:text-bottom;margin-left:2px;animation:blink-cursor .7s step-end infinite}
 .dark-reasoning{padding:24px 40px 32px;border-left:1px solid rgba(255,255,255,.05);display:flex;flex-direction:column;justify-content:flex-start;gap:12px}
 .dark-reasoning.hidden{display:none}
-.dark-reasoning h3{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.4);margin-bottom:6px}
+.dark-reasoning h3{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.45);margin-bottom:6px}
 .dark-badge{padding:12px 18px;border-radius:14px;font-size:15px;font-weight:600;opacity:0;transform:translateX(20px);transition:opacity .5s ease,transform .5s ease}
 .dark-badge.shown{opacity:1;transform:none}
 .dark-badge.green{background:rgba(5,150,105,.12);color:#34d399}
@@ -262,7 +262,7 @@ h1,h2,h3,.hero-title,.section-title{font-family:'Plus Jakarta Sans',system-ui,sa
 <section class="hero" id="hero-section">
   <div class="hero-inner" id="hero-content">
     <h1 class="hero-title">What if your clients actually paid?</h1>
-    <p class="hero-sub">Enter any company domain. We'll show you exactly how we'd recover their unpaid invoices.</p>
+    <p class="hero-sub">Enter any company domain below. We'll analyze their AR contacts, build an escalation strategy, and show you exactly how we'd recover their unpaid invoices.</p>
     <div class="search-wrap">
       <div class="search-bar">
         <input type="text" id="domain-input" class="search-input" placeholder="konicaminolta.com" value="konicaminolta.com">
@@ -324,7 +324,8 @@ h1,h2,h3,.hero-title,.section-title{font-family:'Plus Jakarta Sans',system-ui,sa
   <section class="result-section escalation-section rv">
     <div class="container">
       <span class="section-label">Recovery simulation: Zwanger-Pesiri Radiology</span>
-      <h2 class="section-title">A real Konica Minolta client. Here's who we'd contact if they stopped paying.</h2>
+      <h2 class="section-title">If this Konica Minolta client stopped paying, here's who we'd contact at their company.</h2>
+      <p class="section-sub">These are real AR decision-makers at Zwanger-Pesiri Radiology (the debtor), identified from public sources. Our AI escalates through them automatically.</p>
       <div class="chain-timeline" id="chain-timeline">
         <div class="chain-line"></div>
       </div>
@@ -335,7 +336,8 @@ h1,h2,h3,.hero-title,.section-title{font-family:'Plus Jakarta Sans',system-ui,sa
   <section class="result-section objection-section rv">
     <div class="container">
       <span class="section-label">Objection Playbook</span>
-      <h2 class="section-title">Your clients don't pay for 3 reasons. Here's how AI handles each one.</h2>
+      <h2 class="section-title">The 3 most common debtor objections. Here's how AI handles each one.</h2>
+      <p class="section-sub" style="color:rgba(255,255,255,.55)">When your clients push back on paying, our AI responds in real-time with compliant, effective rebuttals.</p>
       <div class="objection-grid" id="objection-grid"></div>
     </div>
   </section>
@@ -623,7 +625,7 @@ function resetAndAnalyze() {
   heroSection.style.padding = '120px 32px 80px';
 
   // Rebuild hero content
-  document.getElementById('hero-content').innerHTML = '<h1 class="hero-title">What if your clients actually paid?</h1><p class="hero-sub">Enter any company domain. We\'ll show you exactly how we\'d recover their unpaid invoices.</p><div class="search-wrap"><div class="search-bar"><input type="text" id="domain-input" class="search-input" placeholder="konicaminolta.com" value="' + domain + '"><button class="search-btn" id="analyze-btn" onclick="startAnalysis()">Analyze</button></div><p class="hero-note">Try it. It\'s real.</p></div>';
+  document.getElementById('hero-content').innerHTML = '<h1 class="hero-title">What if your clients actually paid?</h1><p class="hero-sub">Enter any company domain below. We\'ll analyze their AR contacts, build an escalation strategy, and show you exactly how we\'d recover their unpaid invoices.</p><div class="search-wrap"><div class="search-bar"><input type="text" id="domain-input" class="search-input" placeholder="konicaminolta.com" value="' + domain + '"><button class="search-btn" id="analyze-btn" onclick="startAnalysis()">Analyze</button></div><p class="hero-note">Try it. It\'s real.</p></div>';
   document.getElementById('domain-input').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') startAnalysis();
   });
