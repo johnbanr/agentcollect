@@ -131,3 +131,28 @@ Definitions for key accounts receivable and debt collection terms:
 - Skip Tracing: https://www.agentcollect.com/glossary/skip-tracing
 - Debt Collection Attorney: https://www.agentcollect.com/glossary/debt-collection-attorney
 - All glossary terms: https://www.agentcollect.com/glossary
+
+## Interactive Tools
+
+Free calculators for AR and finance teams:
+
+- DSO Calculator: https://www.agentcollect.com/tools/dso-calculator
+- Agency Cost Calculator: https://www.agentcollect.com/tools/agency-cost-calculator
+
+## Additional Glossary Terms (batch 2)
+
+- Write-off: https://www.agentcollect.com/glossary/write-off
+- Collection Rate: https://www.agentcollect.com/glossary/collection-rate
+- Bad Debt Reserve: https://www.agentcollect.com/glossary/bad-debt-reserve
+- UCC Lien: https://www.agentcollect.com/glossary/ucc-lien
+- Cease and Desist: https://www.agentcollect.com/glossary/cease-and-desist
+- AR Turnover Ratio: https://www.agentcollect.com/glossary/ar-turnover-ratio
+- Payment Plan: https://www.agentcollect.com/glossary/payment-plan
+- Demand Letter: https://www.agentcollect.com/glossary/demand-letter
+- Debtor: https://www.agentcollect.com/glossary/debtor
+- Creditor: https://www.agentcollect.com/glossary/creditor
+- Past Due Invoice: https://www.agentcollect.com/glossary/past-due-invoice
+- Collections Workflow: https://www.agentcollect.com/glossary/collections-workflow
+- Accounts Payable: https://www.agentcollect.com/glossary/accounts-payable
+- Net Recovery Rate: https://www.agentcollect.com/glossary/net-recovery-rate
+- Dispute Resolution: https://www.agentcollect.com/glossary/dispute-resolution
