@@ -117,6 +117,18 @@ a.review-src:hover{color:var(--blue)}
 .dark-fill{height:100%;background:var(--blue);border-radius:4px;width:0%;transition:width .1s linear}
 .dark-time{font-size:14px;color:rgba(255,255,255,.45);font-variant-numeric:tabular-nums}
 
+/* ===== SCENARIO TABS ===== */
+.scenario-badge{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--muted);margin-bottom:24px;padding:6px 16px;border-radius:100px;background:rgba(79,70,229,.06)}
+.scenario-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--blue)}
+.scenario-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:900px;margin:0 auto 32px}
+.scenario-tab{background:#fff;border-radius:16px;padding:20px 22px;box-shadow:var(--shadow);border:1px solid var(--border);cursor:pointer;text-align:left;transition:border-color .2s,box-shadow .2s;position:relative}
+.scenario-tab:hover{box-shadow:var(--shadow-lg)}
+.scenario-tab.active{border:2px solid var(--blue)}
+.scenario-tab.active::after{content:'';position:absolute;top:12px;right:12px;width:8px;height:8px;border-radius:50%;background:var(--blue)}
+.scenario-tab-title{font-weight:700;font-size:15px;color:var(--text);margin-bottom:6px}
+.scenario-tab-desc{font-size:14px;color:var(--muted);line-height:1.5;margin-bottom:10px}
+.scenario-tab-result{font-size:14px;font-weight:600;color:var(--green-dark)}
+
 /* ===== SECTION 3: HOW WE'D DO IT ===== */
 .strategy-section{padding:120px 32px;background:var(--warm)}
 .strategy-inner{max-width:1080px;margin:0 auto;text-align:center}
@@ -164,6 +176,7 @@ a.review-src:hover{color:var(--blue)}
   .dark-reasoning{border-left:none;border-top:1px solid rgba(255,255,255,.05)}
   .dark-header,.dark-transcript,.dark-reasoning,.dark-controls{padding-left:20px;padding-right:20px}
   .dark-preplay{min-height:240px}
+  .scenario-tabs{grid-template-columns:1fr}
   .strategy-section{padding:80px 24px}
   .chain-grid{grid-template-columns:1fr 1fr;gap:14px}
   .cta-section{padding:80px 24px}
@@ -255,10 +268,32 @@ a.review-src:hover{color:var(--blue)}
 
 <!-- SECTION 3: THE PROOF (AUDIO) -->
 <section class="audio-section">
-  <div class="rv">
+  <div class="rv" style="text-align:center">
     <h2>This is what it sounds like when we collect.</h2>
-    <p class="audio-sub">A real AI call, branded Konica Minolta. No scripts. No humans.</p>
+    <p class="audio-sub">Real AI calls. Real debtors. Real results.</p>
   </div>
+
+  <div class="rv rv-d1" style="text-align:center">
+    <div class="scenario-badge"><span class="scenario-badge-dot"></span>Live Call Examples</div>
+    <div class="scenario-tabs">
+      <div class="scenario-tab active" data-scenario="0" onclick="switchScenario(0)">
+        <div class="scenario-tab-title">Wrong Contact</div>
+        <div class="scenario-tab-desc">AI handles outdated contact info gracefully</div>
+        <div class="scenario-tab-result">&#10003; Contact updated</div>
+      </div>
+      <div class="scenario-tab" data-scenario="1" onclick="switchScenario(1)">
+        <div class="scenario-tab-title">Gatekeeper Bypass</div>
+        <div class="scenario-tab-desc">AI gets accounting email from receptionist</div>
+        <div class="scenario-tab-result">&#10003; Email obtained</div>
+      </div>
+      <div class="scenario-tab" data-scenario="2" onclick="switchScenario(2)">
+        <div class="scenario-tab-title">Payment Dispute</div>
+        <div class="scenario-tab-desc">AI handles already-paid claim</div>
+        <div class="scenario-tab-result">&#10003; Dispute resolved</div>
+      </div>
+    </div>
+  </div>
+
   <div class="rv rv-d1 dark-player">
     <div class="dark-header">
       <span class="dark-header-label">Recording excerpt</span>
@@ -267,7 +302,7 @@ a.review-src:hover{color:var(--blue)}
     <div class="dark-preplay" id="preplay" onclick="startPlayback()">
       <div class="dark-waveform"><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div></div>
       <button class="preplay-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="8,4 20,12 8,20"/></svg></button>
-      <div class="preplay-text">Press play</div>
+      <div class="preplay-text">Click to play real AI call</div>
     </div>
     <div class="dark-body hidden" id="dark-body">
       <div class="dark-transcript" id="dt"></div>
@@ -458,6 +493,22 @@ function seek(e){
   if(!aud.paused)tick();
 }
 aud&&aud.addEventListener('ended',function(){document.getElementById('picon').innerHTML='<polygon points="6,3 20,12 6,21"/>';stopAllTypewriters();cancelAnimationFrame(raf)});
+
+// Scenario tab switching
+function switchScenario(idx){
+  document.querySelectorAll('.scenario-tab').forEach(function(t,i){
+    if(i===idx){t.classList.add('active')}else{t.classList.remove('active')}
+  });
+  // Reset player to pre-play state for the new scenario
+  if(playerStarted){
+    aud.pause();aud.currentTime=0;cancelAnimationFrame(raf);
+    document.getElementById('preplay').classList.remove('hidden');
+    document.getElementById('dark-body').classList.add('hidden');
+    document.getElementById('dark-controls').classList.add('hidden');
+    document.getElementById('picon').innerHTML='<rect x="6" y="4" width="4" height="16" fill="white"/><rect x="14" y="4" width="4" height="16" fill="white"/>';
+    playerStarted=false;
+  }
+}
 </script>
 </body>
 </html>
