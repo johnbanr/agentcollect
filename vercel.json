@@ -1,6 +1,7 @@
 {
   "rewrites": [
-{ "source": "/konica-minolta", "destination": "/v3/konica-v7-brian.html" },
+{ "source": "/konica-minolta", "destination": "/v3/konica-v7-hybrid.html" },
+{ "source": "/analyze", "destination": "/v3/konica-v7-intel.html" },
 { "source": "/konica-minolta2", "destination": "/v3/konica-minolta-v4-brian.html" },
 { "source": "/konica-minolta3", "destination": "/v3/konica-minolta-v4-marc.html" },
 { "source": "/konica-minolta4", "destination": "/v3/konica-minolta-v4-final.html" },
