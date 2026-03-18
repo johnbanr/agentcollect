@@ -67,7 +67,9 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',syst
 .proof-num{font-size:44px;font-weight:900;color:var(--red);line-height:1;letter-spacing:-1px}
 .proof-num-sm{font-size:32px}
 .proof-label{font-size:14px;color:var(--muted);margin-top:6px;font-weight:500}
-.proof-card img{height:20px;opacity:.5;margin-bottom:10px;mix-blend-mode:multiply;background:transparent}
+.proof-card img{height:20px;opacity:.85;margin-bottom:10px;mix-blend-mode:multiply;background:transparent}
+.proof-agency{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--red);margin-bottom:8px}
+.proof-context-line{font-size:12px;color:var(--muted);margin-top:8px;font-style:italic;line-height:1.4}
 
 .reviews{max-width:640px;margin:32px auto 0;display:flex;flex-direction:column;gap:14px}
 .review{background:#fff;border-radius:14px;padding:24px 28px;box-shadow:var(--shadow-sm);border:1px solid rgba(0,0,0,.04);text-align:left}
@@ -263,16 +265,19 @@ a.review-src:hover{color:var(--blue)}
     <a href="https://cal.com/johnb/30" target="_blank" class="hero-cta" onclick="gtag('event','hero_cta',{})">Book a live demo →</a>
   </div>
 
-  <div class="proof-context rv">What we're replacing:</div>
+  <div class="proof-context rv">DLL Finance — currently collecting under the Konica Minolta name:</div>
   <div class="proof-strip rv rv-d1">
     <a href="https://www.bbb.org/us/ia/johnston/profile/financing/dll-finance-llc-0664-32006959/customer-reviews" target="_blank" rel="noopener" class="proof-card">
-      <img src="https://cdn.brandfetch.io/bbb.org/w/200/h/40/logo" alt="BBB" onerror="this.style.opacity='0.3';this.title=this.alt">
+      <div class="proof-agency">DLL Finance — BBB</div>
       <div class="proof-num">2.1</div>
-      <div class="proof-label">Rating (20 reviews)</div>
+      <div class="proof-label">/ 5 stars (20 reviews)</div>
+      <div class="proof-context-line">Your customers see "Konica Minolta" when they complain.</div>
     </a>
     <a href="https://lemberglaw.com/dll-finance-collections-complaints/" target="_blank" rel="noopener" class="proof-card">
+      <div class="proof-agency">DLL Finance — Legal</div>
       <div class="proof-num proof-num-sm">FDCPA</div>
       <div class="proof-label">Violations on record</div>
+      <div class="proof-context-line">Federal consumer protection law. Under your brand.</div>
     </a>
   </div>
 
@@ -457,7 +462,7 @@ a.review-src:hover{color:var(--blue)}
     <div class="suggest-steps">
       <div class="suggest-step">
         <div class="suggest-num">Step 1</div>
-        <div class="suggest-title">Forward this to your Head of AR</div>
+        <div class="suggest-title" id="suggest-fwd">Forward this to your Head of AR</div>
         <div class="suggest-desc">They own the DLL relationship and know exactly what the brand complaints cost. This will land.</div>
       </div>
       <div class="suggest-step">
@@ -494,6 +499,15 @@ a.review-src:hover{color:var(--blue)}
 // Reveal
 var ro=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('v')})},{threshold:.12});
 document.querySelectorAll('.rv').forEach(function(el){ro.observe(el)});
+
+// Personalization — ?to=Prenom
+(function(){
+  var name=(new URLSearchParams(window.location.search)).get('to');
+  if(name){
+    var el=document.getElementById('suggest-fwd');
+    if(el) el.textContent='Forward this to '+name;
+  }
+})();
 
 // ===== TRANSCRIPT DATA =====
 var wrongContactTranscript=[{start:0,end:1.68,text:"This is Sarah on a recorded line.",type:"speech",words:[{word:"This",time:0},{word:"is",time:.22},{word:"Sarah",time:.6},{word:"on",time:.6},{word:"a",time:.84},{word:"recorded",time:.98},{word:"line.",time:1.3}]},{start:1.82,end:2.74,text:"How may I assist you?",type:"speech",words:[{word:"How",time:1.82},{word:"may",time:1.94},{word:"I",time:2.06},{word:"assist",time:2.28},{word:"you?",time:2.4}]},{start:2.74,end:3.5,text:"Contact answered",type:"thinking"},{start:3.56,end:4.48,text:"I'm returning a phone call.",type:"debtor",words:[{word:"I'm",time:3.56},{word:"returning",time:3.56},{word:"a",time:3.8},{word:"phone",time:4.1},{word:"call.",time:4.26}]},{start:4.48,end:5,text:"Proceeding with disclosure...",type:"thinking"},{start:5.06,end:8.96,text:"I'm calling about $25,830 owed to [creditor].",type:"speech",words:[{word:"I'm",time:5.06},{word:"calling",time:5.38},{word:"about",time:5.38},{word:"$25,830",time:5.64},{word:"owed",time:7.22},{word:"to",time:7.8},{word:"[creditor].",time:8.42}]},{start:9.36,end:11.28,text:"Do you recognize the outstanding balance?",type:"speech",words:[{word:"Do",time:9.36},{word:"you",time:9.9},{word:"recognize",time:10.32},{word:"the",time:10.32},{word:"outstanding",time:10.56},{word:"balance?",time:10.9}]},{start:11.28,end:12,text:"Awaiting confirmation...",type:"thinking"},{start:12.12,end:12.46,text:"No.",type:"debtor",words:[{word:"No.",time:12.12}]},{start:12.46,end:13.6,text:"Balance not recognized",type:"thinking"},{start:13.7,end:17.84,text:"Maybe it was a colleague since I haven't worked for [company] for almost 10 years.",type:"debtor",words:[{word:"Maybe",time:13.7},{word:"it",time:14.24},{word:"was",time:14.36},{word:"a",time:14.44},{word:"colleague",time:14.6},{word:"since",time:14.88},{word:"I",time:15.36},{word:"haven't",time:15.52},{word:"worked",time:15.8},{word:"for",time:16.06},{word:"[company]",time:16.44},{word:"for",time:16.72},{word:"almost",time:17},{word:"10",time:17.28},{word:"years.",time:17.58}]},{start:17.84,end:18.4,text:"Wrong contact detected",type:"thinking"},{start:18.48,end:19.62,text:"Thanks for letting me know.",type:"speech",words:[{word:"Thanks",time:18.48},{word:"for",time:18.84},{word:"letting",time:19.1},{word:"me",time:19.12},{word:"know.",time:19.44}]},{start:19.76,end:21.78,text:"Uh, it sounds like this may be a wrong contact.",type:"speech",words:[{word:"Uh,",time:19.76},{word:"it",time:20.3},{word:"sounds",time:20.42},{word:"like",time:20.42},{word:"this",time:20.6},{word:"may",time:20.78},{word:"be",time:20.94},{word:"a",time:21},{word:"wrong",time:21.2},{word:"contact.",time:21.32}]},{start:22.34,end:23.26,text:"I'll update our records.",type:"speech",words:[{word:"I'll",time:22.34},{word:"update",time:22.56},{word:"our",time:22.72},{word:"records.",time:22.94}]},{start:23.26,end:23.8,text:"Updating CRM: Wrong contact",type:"action"},{start:23.86,end:25.06,text:"You won't be contacted further.",type:"speech",words:[{word:"You",time:23.86},{word:"won't",time:23.96},{word:"be",time:24.08},{word:"contacted",time:24.24},{word:"further.",time:24.62}]},{start:25.6,end:26,text:"Take care.",type:"speech",words:[{word:"Take",time:25.6},{word:"care.",time:25.74}]},{start:26,end:26.2,text:"Call completed: Contact removed",type:"action"}];
