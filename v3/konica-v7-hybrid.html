@@ -51,7 +51,7 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',syst
 
 /* ===== SECTION 1: THE PROBLEM ===== */
 .hero{padding:160px 32px 120px;text-align:center;max-width:1080px;margin:0 auto}
-.hero-km{height:28px;opacity:.6;margin-bottom:32px;mix-blend-mode:multiply;background:transparent}
+.hero-km{height:36px;margin-bottom:36px;background:transparent}
 .hero-label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--blue);margin-bottom:20px}
 .hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;letter-spacing:-.03em;line-height:1.08;max-width:800px;margin:0 auto}
 .hero h1 .red{color:var(--red)}
@@ -197,6 +197,19 @@ a.review-src:hover{color:var(--blue)}
 .cta-or{display:block;margin-top:14px;font-size:16px;color:rgba(255,255,255,.6)}
 .cta-or a{color:rgba(255,255,255,.7);text-decoration:none}
 .cta-forward{margin-top:28px;font-size:16px;color:rgba(255,255,255,.55)}
+/* ===== SUGGESTION SECTION ===== */
+.suggest-section{padding:80px 32px;background:#f0f4ff;text-align:center}
+.suggest-inner{max-width:760px;margin:0 auto}
+.suggest-label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:20px}
+.suggest-section h2{font-size:clamp(22px,2.5vw,34px);font-weight:800;letter-spacing:-.02em;line-height:1.15;margin-bottom:36px}
+.suggest-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:0}
+.suggest-step{background:#fff;border-radius:16px;padding:28px 20px;box-shadow:0 2px 12px rgba(0,0,0,.06);text-align:left}
+.suggest-num{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:10px}
+.suggest-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px}
+.suggest-desc{font-size:14px;color:var(--muted);line-height:1.55}
+.suggest-forward{margin-top:32px;font-size:15px;color:var(--muted)}
+.suggest-forward strong{color:var(--text)}
+@media(max-width:640px){.suggest-steps{grid-template-columns:1fr}}
 .foot{padding:28px 32px;text-align:center;font-size:14px;color:var(--muted);max-width:1080px;margin:0 auto}
 
 /* MOBILE */
@@ -244,9 +257,9 @@ a.review-src:hover{color:var(--blue)}
 <section class="hero">
   <div class="rv">
     <div class="hero-label">KONA AI AGENT — LIVE DEMO</div>
-    <img src="https://cdn.brandfetch.io/konicaminolta.com/w/512/h/80/logo" alt="Konica Minolta" class="hero-km" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='block')"><span class="logo-fallback" style="display:none;font-size:22px;font-weight:800;color:var(--text)">Konica Minolta</span>
-    <h1>Book the meeting. We'll have the KONA AI Agent ready — and <span class="green">recover cash live in the room.</span></h1>
-    <p class="hero-sub">We build your branded Konica Minolta AI agent before you arrive. During the demo, it calls your past-due accounts. You watch the cash collected in real time. No integration. No setup fee.</p>
+    <img src="./konica-minolta-logo.svg" alt="Konica Minolta" class="hero-km">
+    <h1>DLL Finance is collecting under your brand. <span class="green">We built the KONA AI Agent to replace them.</span></h1>
+    <p class="hero-sub">Book a 30-min meeting — we'll have your branded AI agent ready before you arrive, and recover cash from your accounts live in the room.</p>
     <a href="https://cal.com/johnb/30" target="_blank" class="hero-cta" onclick="gtag('event','hero_cta',{})">Book a live demo →</a>
   </div>
 
@@ -436,11 +449,37 @@ a.review-src:hover{color:var(--blue)}
   </div>
 </section>
 
+<!-- SUGGESTION SECTION -->
+<section class="suggest-section">
+  <div class="suggest-inner rv">
+    <div class="suggest-label">Our suggestion</div>
+    <h2>Here's what we'd do if we were you</h2>
+    <div class="suggest-steps">
+      <div class="suggest-step">
+        <div class="suggest-num">Step 1</div>
+        <div class="suggest-title">Forward this to your Head of AR</div>
+        <div class="suggest-desc">They own the DLL relationship and know exactly what the brand complaints cost. This will land.</div>
+      </div>
+      <div class="suggest-step">
+        <div class="suggest-num">Step 2</div>
+        <div class="suggest-title">Book a 30-min call</div>
+        <div class="suggest-desc">We'll walk your AR team through how the KONA AI Agent works — no slides, live accounts, live calls.</div>
+      </div>
+      <div class="suggest-step">
+        <div class="suggest-num">Step 3</div>
+        <div class="suggest-title">Watch it recover cash in the room</div>
+        <div class="suggest-desc">Your branded agent calls your accounts during the demo. You see collections happen in real time. Zero setup before.</div>
+      </div>
+    </div>
+    <p class="suggest-forward">Not the right person? Forward to <strong>Head of AR, VP Finance, or CFO</strong> — they'll thank you.</p>
+  </div>
+</section>
+
 <!-- SECTION 5: CTA -->
 <section class="cta-section">
   <div class="cta-inner rv">
-    <h2>Book a meeting. We'll have a live Konica Minolta agent configured before you arrive.</h2>
-    <p class="cta-detail">If we don't recover anything before the demo, you pay nothing. Ever.</p>
+    <h2>Book the meeting. The KONA AI Agent will be ready.</h2>
+    <p class="cta-detail">If we don't recover anything during the demo, you pay nothing. Ever.</p>
     <a href="https://cal.com/johnb/30" target="_blank" class="cta-btn" onclick="gtag('event','book_cta',{})">Book a live demo</a>
     <p class="cta-forward">Not the right person? Forward to your Head of AR or CFO.</p>
   </div>
