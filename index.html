@@ -138,52 +138,30 @@
             background:#fff;border:1px solid var(--border);border-radius:18px;padding:4px;
             box-shadow:0 4px 24px rgba(0,0,0,.04),0 1px 3px rgba(0,0,0,.02)}
 
-        /* SINGLE AGENT CARD */
-        .dash-loading{display:flex;gap:4px;padding:8px 0}
-        .typing-dot{width:5px;height:5px;border-radius:50%;background:var(--indigo);animation:typing-dot 1.4s infinite}
-        .typing-dot:nth-child(2){animation-delay:.2s}
-        .typing-dot:nth-child(3){animation-delay:.4s}
-        @keyframes spin-loader{to{transform:rotate(360deg)}}
-        .load-spinner{animation:spin-loader .8s linear infinite}
-        .load-step.active{opacity:1!important;color:var(--text)!important}
-        .load-step.done{opacity:.6!important}
-        .load-step.done .load-spinner{animation:none;border-color:var(--green)!important;border-top-color:var(--green)!important;background:var(--green);position:relative}
-        .load-step.done .load-spinner::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700}
-
-        .agent-card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:32px 32px 28px;max-width:640px;margin:0 auto;position:relative;overflow:hidden;animation:pop-in .4s cubic-bezier(.16,1,.3,1);box-shadow:0 8px 32px rgba(0,0,0,.06)}
-        .agent-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--indigo),var(--green))}
-
-        /* HEADER — logo + name */
-        .agent-header{display:flex;align-items:center;gap:16px;margin-bottom:4px}
-        .agent-logo-wrap{width:52px;height:52px;border-radius:12px;border:1px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;padding:6px}
-        .agent-logo{width:100%;height:100%;object-fit:contain}
-        .agent-logo-fallback{width:100%;height:100%;display:none;align-items:center;justify-content:center;font-family:var(--display);font-size:22px;font-weight:900;color:var(--indigo);letter-spacing:-.04em}
-        .agent-name{font-family:var(--display);font-size:24px;font-weight:900;color:var(--text);letter-spacing:-.04em;line-height:1.1}
-        .agent-meta{font-size:12px;color:var(--text-muted);letter-spacing:.04em;margin-bottom:20px;margin-top:2px;padding-left:68px}
-
-        /* AGENT SECTION */
-        .agent-section-label{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--indigo);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px}
-        .agent-section-label::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse-ring 2s infinite;flex-shrink:0}
-        .agent-divider{height:1px;background:var(--border);margin-bottom:16px}
-
-        /* PLAN STEPS */
-        .agent-plan-step{display:flex;align-items:center;gap:14px;padding:10px 0;border-bottom:1px solid rgba(0,0,0,.04)}
-        .agent-plan-step:last-child{border-bottom:none}
-        .agent-plan-pill{display:inline-flex;align-items:center;justify-content:center;min-width:36px;padding:4px 10px;border-radius:100px;font-size:11px;font-weight:800;font-family:var(--display);color:#fff;flex-shrink:0;letter-spacing:-.01em}
-        .agent-plan-text{font-size:14px;color:var(--text-mid);line-height:1.5;font-weight:500}
-
-        /* CONTACTS */
-        .agent-contacts-line{display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);font-size:13px}
-        .agent-contacts-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;animation:pulse-ring 2s infinite}
-        .agent-business{font-size:13px;color:var(--text-mid);line-height:1.6;margin-bottom:4px}
-        .agent-contacts-grid{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:4px}
-        .agent-contact{display:flex;align-items:center;gap:8px}
-        .agent-contact-photo{width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0}
-        .agent-contact-info{display:flex;flex-direction:column}
-        .agent-contact-name{font-size:13px;font-weight:600;color:var(--text);line-height:1.2}
-        .agent-contact-title{font-size:11px;color:var(--text-muted);line-height:1.2}
-        .agent-contacts-text{color:var(--green);font-weight:600}
-        .agent-contacts-fallback{color:var(--text-muted)}
+        /* AGENT BUILD SIMULATION */
+        .agent-build{background:var(--bg-dark);border-radius:18px;padding:24px 24px 0;max-width:640px;margin:0 auto;position:relative;overflow:hidden;animation:pop-in .4s;box-shadow:0 8px 32px rgba(0,0,0,.15);color:#fff}
+        .agent-build::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--indigo),var(--green))}
+        .build-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.06)}
+        .build-header-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse-ring 2s infinite}
+        .build-header-text{font-size:11px;font-weight:600;color:rgba(255,255,255,.4);letter-spacing:.06em;text-transform:uppercase;font-family:var(--mono)}
+        .build-line{display:flex;align-items:flex-start;gap:10px;padding:5px 0;opacity:0;transform:translateY(4px);transition:opacity .3s,transform .3s}
+        .build-line.visible{opacity:1;transform:translateY(0)}
+        .build-line-prefix{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.25);flex-shrink:0;margin-top:2px;min-width:20px}
+        .build-line-label{font-size:10px;color:rgba(255,255,255,.35);min-width:65px;flex-shrink:0;margin-top:2px;text-transform:uppercase;letter-spacing:.04em}
+        .build-line-value{font-size:13px;color:rgba(255,255,255,.85);line-height:1.4}
+        .build-line-value.green{color:var(--green)}.build-line-value.amber{color:var(--amber)}.build-line-value.indigo{color:rgba(129,140,248,1)}
+        .build-progress{margin:16px 0 0;padding:12px 0}
+        .build-progress-bar{height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;margin-bottom:6px}
+        .build-progress-fill{height:100%;background:linear-gradient(90deg,var(--indigo),var(--green));border-radius:2px;width:0%;transition:width 1.2s cubic-bezier(.16,1,.3,1)}
+        .build-progress-label{font-size:10px;color:rgba(255,255,255,.3);text-align:right;font-family:var(--mono)}
+        .build-blur{position:relative;padding:0 0 20px}
+        .build-blur.locked::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent,var(--bg-dark) 60%);backdrop-filter:blur(3px);z-index:1}
+        .build-cta{position:relative;z-index:2;text-align:center;padding:16px 0 24px}
+        .build-cta-title{font-family:var(--display);font-size:18px;font-weight:800;color:#fff;margin-bottom:4px}
+        .build-cta-sub{font-size:12px;color:rgba(255,255,255,.45);margin-bottom:16px;line-height:1.5}
+        .build-cta-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:var(--green);color:#fff;border:none;border-radius:12px;font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s;letter-spacing:-.01em}
+        .build-cta-btn:hover{background:var(--green-dark)}
+        @media(max-width:768px){.agent-build{padding:18px 16px 0;border-radius:14px}}
 
         /* CAROUSEL DOTS */
         .carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:16px;position:relative;z-index:1}
@@ -481,59 +459,29 @@
             <span id="cycle-domain"></span>
         </div>
         <div id="carousel-dots" style="display:none"></div>
-        <div class="agent-card" id="dash-agent-card">
-            <!-- Loading state — progressive steps -->
-            <div id="dash-loading-state" style="padding:12px 0">
-                <div id="load-steps" style="display:flex;flex-direction:column;gap:10px">
-                    <div class="load-step" id="load-step-1" style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-muted);opacity:.3;transition:opacity .4s">
-                        <div style="width:18px;height:18px;border:2px solid var(--border);border-radius:50%;border-top-color:var(--indigo);flex-shrink:0" class="load-spinner"></div>
-                        <span>Analyzing your company...</span>
-                    </div>
-                    <div class="load-step" id="load-step-2" style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-muted);opacity:.3;transition:opacity .4s">
-                        <div style="width:18px;height:18px;border:2px solid var(--border);border-radius:50%;border-top-color:var(--green);flex-shrink:0" class="load-spinner"></div>
-                        <span>Finding decision makers...</span>
-                    </div>
-                    <div class="load-step" id="load-step-3" style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-muted);opacity:.3;transition:opacity .4s">
-                        <div style="width:18px;height:18px;border:2px solid var(--border);border-radius:50%;border-top-color:var(--amber);flex-shrink:0" class="load-spinner"></div>
-                        <span>Building your collection agent...</span>
-                    </div>
-                </div>
+        <div class="agent-build" id="dash-agent-card">
+            <div class="build-header">
+                <div class="build-header-dot"></div>
+                <div class="build-header-text" id="build-status">Initializing...</div>
             </div>
-            <!-- Populated content (hidden until loaded) -->
-            <div id="dash-populated" style="display:none">
-                <div class="agent-header">
-                    <div class="agent-logo-wrap" id="dash-logo-wrap">
-                        <img id="dash-new-logo" src="" alt="" class="agent-logo"
-                            onload="this.style.display='block';document.getElementById('dash-logo-fallback').style.display='none'"
-                            onerror="this.style.display='none';document.getElementById('dash-logo-fallback').style.display='flex'">
-                        <div id="dash-logo-fallback" class="agent-logo-fallback" style="display:none"></div>
-                    </div>
-                    <div id="dash-new-name" class="agent-name"></div>
-                </div>
-                <div id="dash-new-meta" class="agent-meta"></div>
-
-                <div class="agent-section-label">Why they don't pay you</div>
-                <div class="agent-divider"></div>
-                <div id="dash-new-disputes" style="display:flex;flex-direction:column;gap:6px;margin-bottom:4px"></div>
-
-                <div class="agent-section-label" style="margin-top:16px">Decision makers we found</div>
-                <div class="agent-divider"></div>
-                <div id="dash-new-contacts-detail" class="agent-contacts-grid"></div>
-
-                <div class="agent-section-label" style="margin-top:16px">Your collection agent</div>
-                <div class="agent-divider"></div>
-                <div id="dash-new-plan"></div>
+            <div id="build-lines"></div>
+            <div class="build-progress">
+                <div class="build-progress-bar"><div class="build-progress-fill" id="build-progress-fill"></div></div>
+                <div class="build-progress-label" id="build-progress-label">0%</div>
+            </div>
+            <div class="build-blur" id="build-blur-section">
+                <div id="build-locked-lines"></div>
+            </div>
+            <div class="build-cta" id="build-cta" style="display:none">
+                <div class="build-cta-title">Your agent is 80% ready.</div>
+                <div class="build-cta-sub">Book a 30-min call. We'll complete it live —<br>real AI collection call during the meeting.</div>
+                <a href="https://cal.com/johnb/30" target="_blank" class="build-cta-btn">Complete my agent →</a>
             </div>
         </div>
     </div>
 
-    <!-- CTA actions — hidden during cycling, shown after user enters domain -->
+    <!-- Try another -->
     <div class="a-actions" id="a-actions">
-        <div style="text-align:center;margin-bottom:16px;max-width:440px;margin-left:auto;margin-right:auto">
-            <div style="font-family:var(--display);font-size:18px;font-weight:800;color:var(--text);margin-bottom:6px">Your agent is built. Want to hear it live?</div>
-            <div style="font-size:13px;color:var(--text-mid);line-height:1.5">Book a 30-min call. We'll run a real AI collection call during the meeting.</div>
-        </div>
-        <a href="https://cal.com/johnb/30" target="_blank" class="path-cta path-cta-primary" style="padding:16px 36px;font-size:15px;gap:10px">Hear your agent live →</a>
         <button class="path-cta path-cta-outline" onclick="resetAndScroll()" style="padding:14px 28px">Try another company</button>
     </div>
 </section>
@@ -1209,17 +1157,7 @@ async function startAnalysis() {
     document.getElementById('hero-input').style.display = 'none';
     document.getElementById('hero-dashboard').style.display = 'block';
 
-    // Reset single card to loading state
-    document.getElementById('dash-loading-state').style.display = '';
-    document.getElementById('dash-populated').style.display = 'none';
-    // Reset load steps
-    document.querySelectorAll('.load-step').forEach(s => { s.classList.remove('active','done'); s.style.opacity = '.3'; });
-
-    // Animate step 1
-    const step1 = document.getElementById('load-step-1');
-    step1.classList.add('active');
-    step1.querySelector('span').textContent = `Analyzing ${domain}...`;
-
+    // === DATA LOADING ===
     let data = company ? {
         company: { name: company.name, domain, industry: company.industry, products: company.products, size: company.size, logo_url: 'https://cdn.brandfetch.io/'+domain+'/w/512/h/80/logo' },
         disputes: company.disputes,
@@ -1231,89 +1169,102 @@ async function startAnalysis() {
         method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({domain})
     }).then(r => r.json()).then(r => { if(r.success && r.data) data = r.data; }).catch(e => console.warn('API:', e));
 
-    await sleep(600);
-    // Step 1 done, step 2 active
-    step1.classList.remove('active'); step1.classList.add('done');
-    const step2 = document.getElementById('load-step-2');
-    step2.classList.add('active');
-    await sleep(500);
-    // Step 2 done, step 3 active
-    step2.classList.remove('active'); step2.classList.add('done');
-    const step3 = document.getElementById('load-step-3');
-    step3.classList.add('active');
+    // === AGENT BUILD SIMULATION ===
+    const buildLines = document.getElementById('build-lines');
+    const lockedLines = document.getElementById('build-locked-lines');
+    const progressFill = document.getElementById('build-progress-fill');
+    const progressLabel = document.getElementById('build-progress-label');
+    const buildStatus = document.getElementById('build-status');
+    const buildCta = document.getElementById('build-cta');
+    const blurSection = document.getElementById('build-blur-section');
+
+    buildLines.innerHTML = '';
+    lockedLines.innerHTML = '';
+    progressFill.style.width = '0%';
+    progressLabel.textContent = '0%';
+    buildCta.style.display = 'none';
+    blurSection.classList.remove('locked');
+
+    function setProgress(pct) { progressFill.style.width = pct+'%'; progressLabel.textContent = pct+'%'; }
+    async function addLine(container, prefix, label, value, cls) {
+        const el = document.createElement('div');
+        el.className = 'build-line';
+        el.innerHTML = `<span class="build-line-prefix">${prefix}</span><span class="build-line-label">${label}</span><span class="build-line-value ${cls||''}">${value}</span>`;
+        container.appendChild(el);
+        await sleep(60);
+        el.classList.add('visible');
+        await sleep(180);
+    }
+
+    // Phase 1: Company (0-20%)
+    buildStatus.textContent = 'Analyzing ' + domain + '...';
     await sleep(400);
     if (!company) await apiPromise;
 
     if (!data) {
         const coName = domain.replace(/\.(com|io|co|org|net|app|us)$/,'').replace(/[-_]/g,' ').replace(/^./,c=>c.toUpperCase());
         const isSaas = ['io','app','co'].some(t => domain.endsWith('.'+t));
-        const fallbackDisputes = isSaas
-            ? ['Subscription cancellation mid-contract with outstanding balance', 'Usage overage disputes on annual commitment', 'Disputed charges after free trial conversion']
-            : ['Outstanding balance past agreed payment terms', 'Disputed invoice amount or missing purchase order', 'Service completed but payment not released by AP'];
         data = {
             company: { name: coName, domain, industry: isSaas ? 'Technology / SaaS' : 'Business Services', products: 'Analyzing...', size: 'Researching...', logo_url: 'https://cdn.brandfetch.io/'+domain+'/w/512/h/80/logo' },
-            disputes: fallbackDisputes,
+            disputes: isSaas
+                ? ['Subscription cancellation mid-contract', 'Usage overage disputes on annual commitment', 'Disputed charges after free trial conversion']
+                : ['Outstanding balance past payment terms', 'Disputed invoice amount or missing PO', 'Service completed but payment not released'],
             contacts: [{name: 'Finance Team', title: 'Accounts Receivable', photo: null, role: 'First contact'}],
-            plan: { day_1: 'AI email referencing specific outstanding invoice', day_3: 'AI phone call to AP with full documentation', day_7: 'Attorney-supervised escalation — formal legal pressure applied', day_14: 'Payment portal live — debtor pays you directly' }
+            plan: { day_1: 'AI email referencing specific outstanding invoice', day_3: 'AI call to AP with full documentation', day_7: 'Formal escalation with compliance notice', day_14: 'Payment portal — debtor pays you directly' }
         };
     }
 
-    const logoUrl = 'https://cdn.brandfetch.io/'+domain+'/w/512/h/80/logo';
+    const coName = data.company.name || 'Company';
+    await addLine(buildLines, '→', 'agent', coName + ' Collection Agent', 'indigo');
+    await addLine(buildLines, '→', 'company', (data.company.industry || '') + ' · ' + (data.company.size || ''), '');
+    setProgress(15);
 
-    // Build plan steps
-    const planData = data.plan || {};
-    const steps = [
-        {day: 'D1',  text: planData.day_1  || planData.d1  || 'AI email under your brand', color: 'var(--indigo)'},
-        {day: 'D3',  text: planData.day_3  || planData.d3  || 'AI call with invoice documentation', color: '#6366F1'},
-        {day: 'D7',  text: planData.day_7  || planData.d7  || 'Formal escalation with compliance notice', color: 'var(--amber)'},
-        {day: 'D14', text: planData.day_14 || planData.d14 || 'Payment portal — debtors pay you directly', color: 'var(--green)'}
-    ];
-
-    // Build contacts line (legacy — kept for data ref)
-    const contacts = data.contacts || [];
-
-    // Populate single card
-    await sleep(800);
-    const logoImg = document.getElementById('dash-new-logo');
-    logoImg.style.display = 'block';
-    logoImg.src = logoUrl;
-    logoImg.alt = data.company.name;
-    // Set fallback initial (first letter of company name)
-    document.getElementById('dash-logo-fallback').textContent = (data.company.name || '?')[0].toUpperCase();
-    document.getElementById('dash-new-name').textContent = data.company.name;
-    const metaParts = [data.company.industry];
-    if (data.company.size) metaParts.push(data.company.size);
-    document.getElementById('dash-new-meta').textContent = metaParts.join(' · ');
-    document.getElementById('dash-new-plan').innerHTML = steps.map(s =>
-        `<div class="agent-plan-step"><span class="agent-plan-pill" style="background:${s.color}">${s.day}</span><span class="agent-plan-text">${s.text}</span></div>`
-    ).join('');
-
-    // Disputes — why they don't pay
+    // Phase 2: Why they don't pay (20-40%)
+    buildStatus.textContent = 'Analyzing payment risks...';
+    await sleep(200);
     const disputes = data.disputes || [];
-    const disputesHtml = disputes.map((d, i) => {
-        const text = typeof d === 'string' ? d : d.text || '';
-        return `<div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--text-mid)"><span style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--amber);flex-shrink:0">#${i+1}</span><span>${text}</span></div>`;
-    }).join('');
-    document.getElementById('dash-new-disputes').innerHTML = disputesHtml || '<span style="font-size:13px;color:var(--text-muted)">We\'d analyze your AR patterns during onboarding</span>';
+    for (let i = 0; i < Math.min(disputes.length, 2); i++) {
+        const text = typeof disputes[i] === 'string' ? disputes[i] : disputes[i].text || '';
+        await addLine(buildLines, '#'+(i+1), 'risk', text, 'amber');
+    }
+    setProgress(35);
 
-    // Contacts detail with photos
-    const contactsDetail = (data.contacts || []).map(c =>
-        `<div class="agent-contact">
-            <img src="${c.photo || 'https://ui-avatars.com/api/?name='+encodeURIComponent(c.name)+'&background=94A3B8&color=fff&size=64'}" alt="${c.name}" class="agent-contact-photo">
-            <div class="agent-contact-info">
-                <span class="agent-contact-name">${c.name}</span>
-                <span class="agent-contact-title">${c.title || c.role || ''}</span>
-            </div>
-        </div>`
-    ).join('');
-    document.getElementById('dash-new-contacts-detail').innerHTML = contactsDetail || '<span style="font-size:13px;color:var(--text-muted)">We\'d identify your decision makers during onboarding</span>';
+    // Phase 3: Decision makers (40-60%)
+    buildStatus.textContent = 'Finding decision makers...';
+    await sleep(250);
+    const contacts = data.contacts || [];
+    for (let i = 0; i < Math.min(contacts.length, 2); i++) {
+        await addLine(buildLines, '✓', 'found', contacts[i].name + ' — ' + (contacts[i].title || ''), 'green');
+    }
+    setProgress(55);
 
-    // Show populated card
-    document.getElementById('dash-loading-state').style.display = 'none';
-    document.getElementById('dash-populated').style.display = '';
+    // Phase 4: Strategy (60-80%)
+    buildStatus.textContent = 'Building collection strategy...';
+    await sleep(250);
+    const planData = data.plan || {};
+    const d1 = planData.day_1 || planData.d1 || 'AI email under your brand';
+    const d3 = planData.day_3 || planData.d3 || 'AI call with documentation';
+    await addLine(buildLines, 'D1', 'email', d1, '');
+    await addLine(buildLines, 'D3', 'call', d3, '');
+    setProgress(80);
 
-    // SHOW CTA
-    await sleep(500);
+    // Phase 5: LOCK at 80%
+    buildStatus.textContent = 'Agent 80% ready';
+    await sleep(300);
+    const d7 = planData.day_7 || planData.d7 || 'Formal escalation';
+    const d14 = planData.day_14 || planData.d14 || 'Payment portal live';
+    lockedLines.innerHTML = `
+        <div class="build-line visible"><span class="build-line-prefix">D7</span><span class="build-line-label">escalate</span><span class="build-line-value">${d7}</span></div>
+        <div class="build-line visible"><span class="build-line-prefix">D14</span><span class="build-line-label">portal</span><span class="build-line-value">${d14}</span></div>
+        <div class="build-line visible"><span class="build-line-prefix">☎</span><span class="build-line-label">voice</span><span class="build-line-value">AI phone agent for ${coName} — configured</span></div>
+        <div class="build-line visible"><span class="build-line-prefix">✉</span><span class="build-line-label">email</span><span class="build-line-value">Email sequence under ${coName} brand — ready</span></div>
+    `;
+    blurSection.classList.add('locked');
+
+    await sleep(400);
+    buildCta.style.display = '';
+
+    await sleep(300);
     document.getElementById('a-actions').classList.add('show');
     btn.disabled = false;
 }
