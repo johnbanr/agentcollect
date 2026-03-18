@@ -127,25 +127,33 @@
         .typing-dot:nth-child(2){animation-delay:.2s}
         .typing-dot:nth-child(3){animation-delay:.4s}
 
-        .agent-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:28px 28px 24px;max-width:600px;margin:0 auto;position:relative;overflow:hidden;animation:pop-in .4s cubic-bezier(.16,1,.3,1)}
+        .agent-card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:32px 32px 28px;max-width:640px;margin:0 auto;position:relative;overflow:hidden;animation:pop-in .4s cubic-bezier(.16,1,.3,1);box-shadow:0 8px 32px rgba(0,0,0,.06)}
         .agent-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--indigo),var(--green))}
 
-        .agent-header{display:flex;align-items:center;gap:14px;margin-bottom:6px}
-        .agent-logo{height:40px;object-fit:contain;max-width:160px}
-        .agent-name{font-family:var(--display);font-size:22px;font-weight:800;color:var(--text);letter-spacing:-.04em;line-height:1.1}
-        .agent-meta{font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:20px;margin-top:4px}
+        /* HEADER — logo + name */
+        .agent-header{display:flex;align-items:center;gap:16px;margin-bottom:4px}
+        .agent-logo-wrap{width:52px;height:52px;border-radius:12px;border:1px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;padding:6px}
+        .agent-logo{width:100%;height:100%;object-fit:contain}
+        .agent-logo-fallback{width:100%;height:100%;display:none;align-items:center;justify-content:center;font-family:var(--display);font-size:22px;font-weight:900;color:var(--indigo);letter-spacing:-.04em}
+        .agent-name{font-family:var(--display);font-size:24px;font-weight:900;color:var(--text);letter-spacing:-.04em;line-height:1.1}
+        .agent-meta{font-size:12px;color:var(--text-muted);letter-spacing:.04em;margin-bottom:20px;margin-top:2px;padding-left:68px}
 
-        .agent-section-label{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--indigo);text-transform:uppercase;margin-bottom:12px;margin-top:20px}
-        .agent-divider{height:1px;background:var(--border);margin-bottom:14px}
+        /* AGENT SECTION */
+        .agent-section-label{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--indigo);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+        .agent-section-label::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse-ring 2s infinite;flex-shrink:0}
+        .agent-divider{height:1px;background:var(--border);margin-bottom:16px}
 
-        .agent-plan-step{display:flex;align-items:flex-start;gap:12px;padding:5px 0}
-        .agent-plan-pill{display:inline-flex;align-items:center;justify-content:center;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:800;font-family:var(--display);color:#fff;flex-shrink:0;letter-spacing:-.01em;margin-top:1px}
-        .agent-plan-text{font-size:14px;color:var(--text-mid);line-height:1.5}
+        /* PLAN STEPS */
+        .agent-plan-step{display:flex;align-items:center;gap:14px;padding:10px 0;border-bottom:1px solid rgba(0,0,0,.04)}
+        .agent-plan-step:last-child{border-bottom:none}
+        .agent-plan-pill{display:inline-flex;align-items:center;justify-content:center;min-width:36px;padding:4px 10px;border-radius:100px;font-size:11px;font-weight:800;font-family:var(--display);color:#fff;flex-shrink:0;letter-spacing:-.01em}
+        .agent-plan-text{font-size:14px;color:var(--text-mid);line-height:1.5;font-weight:500}
 
-        .agent-contacts-line{display:flex;align-items:center;gap:8px;margin-top:18px;padding-top:16px;border-top:1px solid var(--border);font-size:13px}
-        .agent-contacts-dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0}
+        /* CONTACTS */
+        .agent-contacts-line{display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);font-size:13px}
+        .agent-contacts-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;animation:pulse-ring 2s infinite}
         .agent-contacts-text{color:var(--green);font-weight:600}
-        .agent-contacts-fallback{color:var(--text-muted);font-style:italic}
+        .agent-contacts-fallback{color:var(--text-muted)}
 
         /* CAROUSEL DOTS */
         .carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:16px;position:relative;z-index:1}
@@ -443,7 +451,12 @@
             <!-- Populated content (hidden until loaded) -->
             <div id="dash-populated" style="display:none">
                 <div class="agent-header">
-                    <img id="dash-new-logo" src="" alt="" class="agent-logo" onerror="this.style.display='none'">
+                    <div class="agent-logo-wrap" id="dash-logo-wrap">
+                        <img id="dash-new-logo" src="" alt="" class="agent-logo"
+                            onload="this.style.display='block';document.getElementById('dash-logo-fallback').style.display='none'"
+                            onerror="this.style.display='none';document.getElementById('dash-logo-fallback').style.display='flex'">
+                        <div id="dash-logo-fallback" class="agent-logo-fallback" style="display:none"></div>
+                    </div>
                     <div id="dash-new-name" class="agent-name"></div>
                 </div>
                 <div id="dash-new-meta" class="agent-meta"></div>
@@ -1180,8 +1193,12 @@ async function startAnalysis() {
 
     // Populate single card
     await sleep(800);
-    document.getElementById('dash-new-logo').src = logoUrl;
-    document.getElementById('dash-new-logo').alt = data.company.name;
+    const logoImg = document.getElementById('dash-new-logo');
+    logoImg.style.display = 'block';
+    logoImg.src = logoUrl;
+    logoImg.alt = data.company.name;
+    // Set fallback initial (first letter of company name)
+    document.getElementById('dash-logo-fallback').textContent = (data.company.name || '?')[0].toUpperCase();
     document.getElementById('dash-new-name').textContent = data.company.name;
     const metaParts = [data.company.industry];
     if (data.company.size) metaParts.push(data.company.size);
