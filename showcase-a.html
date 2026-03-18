@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgentCollect — Real Calls, Real Results</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #050505;
+  color: #fff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Logo */
+.logo {
+  position: fixed;
+  top: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.15;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: -0.5px;
+  z-index: 10;
+  user-select: none;
+}
+.logo .dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: #4F46E5;
+  border-radius: 50%;
+  margin-left: 1px;
+  vertical-align: super;
+  position: relative;
+  top: -4px;
+}
+
+/* Scene dots */
+.scene-dots {
+  position: fixed;
+  top: 32px;
+  right: 40px;
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+.scene-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  transition: background 0.4s ease, transform 0.3s ease;
+}
+.scene-dot.active {
+  background: rgba(255,255,255,0.7);
+  transform: scale(1.3);
+}
+.scene-dot.done {
+  background: rgba(129, 140, 248, 0.5);
+}
+
+/* Waveform */
+.waveform {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 120px;
+  z-index: 1;
+}
+.wave-bar {
+  width: 3px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  height: 20%;
+  transition: background 0.3s ease;
+}
+.waveform.active .wave-bar {
+  background: rgba(129, 140, 248, 0.25);
+  animation: waveAnim var(--duration) ease-in-out infinite alternate;
+}
+@keyframes waveAnim {
+  0% { height: var(--min-h); }
+  100% { height: var(--max-h); }
+}
+
+/* Subtitle area */
+.subtitle-area {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 700px;
+  text-align: center;
+  z-index: 10;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.speaker-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  height: 16px;
+}
+.speaker-label.visible { opacity: 0.5; }
+.speaker-label.human { color: rgba(255,255,255,0.5); }
+.speaker-label.agent { color: rgba(129, 140, 248, 0.6); }
+
+.subtitle-text {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.4;
+  min-height: 50px;
+}
+.subtitle-text .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  margin-right: 0.25em;
+}
+.subtitle-text .word.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.subtitle-text.human .word { color: #fff; }
+.subtitle-text.agent .word { color: #818cf8; }
+
+/* Badge */
+.badge {
+  position: fixed;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.9);
+  background: rgba(129, 140, 248, 0.12);
+  border: 1px solid rgba(129, 140, 248, 0.25);
+  color: #818cf8;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 10px 28px;
+  border-radius: 40px;
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  z-index: 20;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.badge.visible {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+/* Tap overlay */
+.tap-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 5, 5, 0.92);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  cursor: pointer;
+  transition: opacity 0.6s ease;
+}
+.tap-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.tap-ring {
+  width: 100px;
+  height: 100px;
+  border: 2px solid rgba(129, 140, 248, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: tapPulse 2s ease-in-out infinite;
+  margin-bottom: 28px;
+}
+.tap-ring svg {
+  width: 32px;
+  height: 32px;
+  fill: rgba(255,255,255,0.7);
+}
+@keyframes tapPulse {
+  0%, 100% { transform: scale(1); border-color: rgba(129, 140, 248, 0.3); }
+  50% { transform: scale(1.08); border-color: rgba(129, 140, 248, 0.6); }
+}
+.tap-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+
+/* Ambient glow */
+.ambient-glow {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(129, 140, 248, 0.04) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.5s ease;
+}
+.ambient-glow.active {
+  background: radial-gradient(circle, rgba(129, 140, 248, 0.08) 0%, transparent 70%);
+}
+
+@media (max-width: 600px) {
+  .subtitle-text { font-size: 22px; }
+  .subtitle-area { bottom: 60px; width: 92%; }
+  .waveform { height: 80px; }
+  .wave-bar { width: 2px; }
+  .waveform { gap: 2px; }
+  .logo { font-size: 18px; top: 20px; }
+  .scene-dots { top: 24px; right: 20px; }
+  .badge { font-size: 11px; padding: 8px 20px; bottom: 40px; }
+  .speaker-label { font-size: 10px; }
+  .tap-ring { width: 80px; height: 80px; }
+  .tap-text { font-size: 12px; letter-spacing: 3px; }
+}
+</style>
+</head>
+<body>
+
+<div class="logo">AgentCollect<span class="dot"></span></div>
+
+<div class="scene-dots">
+  <div class="scene-dot active" id="dot0"></div>
+  <div class="scene-dot" id="dot1"></div>
+  <div class="scene-dot" id="dot2"></div>
+</div>
+
+<div class="ambient-glow" id="glow"></div>
+
+<div class="waveform" id="waveform"></div>
+
+<div class="subtitle-area" id="subtitleArea">
+  <div class="speaker-label" id="speakerLabel"></div>
+  <div class="subtitle-text" id="subtitleText"></div>
+</div>
+
+<div class="badge" id="badge"></div>
+
+<div class="tap-overlay" id="tapOverlay">
+  <div class="tap-ring">
+    <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+  </div>
+  <div class="tap-text">Tap to listen</div>
+</div>
+
+<script>
+// Build waveform bars
+const waveformEl = document.getElementById('waveform');
+const BAR_COUNT = 40;
+for (let i = 0; i < BAR_COUNT; i++) {
+  const bar = document.createElement('div');
+  bar.className = 'wave-bar';
+  const center = Math.abs(i - BAR_COUNT / 2) / (BAR_COUNT / 2);
+  const minH = 8 + Math.random() * 12;
+  const maxH = 30 + (1 - center) * 50 + Math.random() * 20;
+  bar.style.setProperty('--min-h', minH + '%');
+  bar.style.setProperty('--max-h', maxH + '%');
+  bar.style.setProperty('--duration', (0.8 + Math.random() * 0.8) + 's');
+  bar.style.animationDelay = (Math.random() * 0.6) + 's';
+  bar.style.height = minH + '%';
+  waveformEl.appendChild(bar);
+}
+
+// Scene data
+const scenes = [
+  {
+    audio: 'https://dxc03zgurdly9.cloudfront.net/075961824e83d68a634b91afb75f59fba97b1b2951c58dc43ec9a5e3bc58b806/recording.wav',
+    audioStart: 30,
+    badge: 'Objection handled',
+    beats: [
+      { delay: 500, speaker: 'KHALIL', type: 'human', text: 'I guess I do have' },
+      { delay: 1500, speaker: 'KHALIL', type: 'human', text: 'questions about it.' },
+      { delay: 2700, speaker: 'KHALIL', type: 'human', text: 'What are we getting' },
+      { delay: 3600, speaker: 'KHALIL', type: 'human', text: 'charged for exactly?' },
+      { delay: 5000, speaker: null, type: 'clear' },
+      { delay: 5800, speaker: 'AI AGENT', type: 'agent', text: 'Twenty-nine ninety-nine.' },
+      { delay: 7500, speaker: 'AI AGENT', type: 'agent', text: 'Background check from [Client].' },
+      { delay: 10000, speaker: null, type: 'badge' },
+    ]
+  },
+  {
+    audio: 'https://dxc03zgurdly9.cloudfront.net/00d79b2208aee99e88fb7a0033974bba3140f3b905b388429b22133e4694c670/recording.wav',
+    audioStart: 56,
+    badge: 'AP contact collected',
+    beats: [
+      { delay: 200, speaker: 'JONATHAN', type: 'human', text: "I don't deal" },
+      { delay: 900, speaker: 'JONATHAN', type: 'human', text: 'with that.' },
+      { delay: 1800, speaker: 'JONATHAN', type: 'human', text: "You'd wanna call" },
+      { delay: 2900, speaker: 'JONATHAN', type: 'human', text: 'accounts payable.' },
+      { delay: 5000, speaker: null, type: 'clear' },
+      { delay: 6000, speaker: 'AI AGENT', type: 'agent', text: 'Could you provide the name' },
+      { delay: 6900, speaker: 'AI AGENT', type: 'agent', text: 'or contact info for AP?' },
+      { delay: 9500, speaker: null, type: 'badge' },
+    ]
+  },
+  {
+    audio: 'https://dxc03zgurdly9.cloudfront.net/10b4ec959b4a004a6bf47dcfa2da0a213c7ce231590e295d9c60faffde486685/recording.wav',
+    audioStart: 50,
+    badge: 'Paid during the call',
+    beats: [
+      { delay: 1800, speaker: 'RACHEL', type: 'human', text: "I'm paying it today." },
+      { delay: 3000, speaker: 'RACHEL', type: 'human', text: 'I have it coming in.' },
+      { delay: 5200, speaker: null, type: 'clear' },
+      { delay: 5700, speaker: 'RACHEL', type: 'human', text: 'I, again,' },
+      { delay: 6200, speaker: 'RACHEL', type: 'human', text: 'am so sorry.' },
+      { delay: 8500, speaker: null, type: 'clear' },
+      { delay: 9000, speaker: 'RACHEL', type: 'human', text: 'It is being paid, honestly.' },
+      { delay: 10200, speaker: 'RACHEL', type: 'human', text: "I'm in front of my computer" },
+      { delay: 11200, speaker: 'RACHEL', type: 'human', text: 'putting it in right now.' },
+      { delay: 13000, speaker: null, type: 'badge' },
+    ]
+  }
+];
+
+let currentScene = 0;
+let audioEl = null;
+let beatTimeouts = [];
+
+const subtitleText = document.getElementById('subtitleText');
+const speakerLabel = document.getElementById('speakerLabel');
+const badgeEl = document.getElementById('badge');
+const tapOverlay = document.getElementById('tapOverlay');
+const glow = document.getElementById('glow');
+
+function clearSubtitles() {
+  subtitleText.innerHTML = '';
+  speakerLabel.classList.remove('visible');
+  speakerLabel.className = 'speaker-label';
+}
+
+function clearBadge() {
+  badgeEl.classList.remove('visible');
+}
+
+function showBadge(text) {
+  clearSubtitles();
+  badgeEl.textContent = text;
+  badgeEl.classList.add('visible');
+}
+
+function showWords(text, type) {
+  const words = text.split(' ');
+  words.forEach((w, i) => {
+    const span = document.createElement('span');
+    span.className = 'word';
+    span.textContent = w;
+    subtitleText.appendChild(span);
+    setTimeout(() => span.classList.add('visible'), i * 80);
+  });
+}
+
+function setSpeaker(name, type) {
+  if (!name) return;
+  speakerLabel.textContent = name;
+  speakerLabel.className = 'speaker-label visible ' + type;
+  subtitleText.className = 'subtitle-text ' + type;
+}
+
+function appendText(text) {
+  // Add a thin space before new words if there's already content
+  const existing = subtitleText.querySelectorAll('.word');
+  const words = text.split(' ');
+  words.forEach((w, i) => {
+    const span = document.createElement('span');
+    span.className = 'word';
+    span.textContent = w;
+    subtitleText.appendChild(span);
+    setTimeout(() => span.classList.add('visible'), i * 80);
+  });
+}
+
+function updateDots() {
+  for (let i = 0; i < 3; i++) {
+    const dot = document.getElementById('dot' + i);
+    dot.className = 'scene-dot';
+    if (i < currentScene) dot.classList.add('done');
+    if (i === currentScene) dot.classList.add('active');
+  }
+}
+
+function playScene(index) {
+  // Clear previous
+  beatTimeouts.forEach(t => clearTimeout(t));
+  beatTimeouts = [];
+  clearSubtitles();
+  clearBadge();
+  currentScene = index;
+  updateDots();
+
+  if (index >= scenes.length) {
+    // Loop back
+    currentScene = 0;
+    playScene(0);
+    return;
+  }
+
+  const scene = scenes[index];
+
+  // Audio
+  if (audioEl) {
+    audioEl.pause();
+    audioEl.removeEventListener('playing', audioEl._onPlaying);
+    audioEl = null;
+  }
+
+  audioEl = new Audio(scene.audio);
+  audioEl.currentTime = scene.audioStart;
+
+  // Determine scene duration for auto-advance
+  const lastBeat = scene.beats[scene.beats.length - 1];
+  const sceneDuration = lastBeat.delay + 3000; // 3s after last beat
+
+  function startBeats() {
+    waveformEl.classList.add('active');
+    glow.classList.add('active');
+
+    let currentSpeaker = null;
+
+    scene.beats.forEach(beat => {
+      const t = setTimeout(() => {
+        if (beat.type === 'clear') {
+          clearSubtitles();
+          currentSpeaker = null;
+        } else if (beat.type === 'badge') {
+          clearSubtitles();
+          showBadge(scene.badge);
+        } else {
+          if (beat.speaker !== currentSpeaker) {
+            subtitleText.innerHTML = '';
+            setSpeaker(beat.speaker, beat.type);
+            currentSpeaker = beat.speaker;
+          }
+          appendText(beat.text);
+        }
+      }, beat.delay);
+      beatTimeouts.push(t);
+    });
+
+    // Auto-advance
+    const adv = setTimeout(() => {
+      waveformEl.classList.remove('active');
+      glow.classList.remove('active');
+      clearBadge();
+      clearSubtitles();
+      setTimeout(() => playScene(index + 1), 800);
+    }, sceneDuration);
+    beatTimeouts.push(adv);
+  }
+
+  audioEl._onPlaying = startBeats;
+  audioEl.addEventListener('playing', startBeats, { once: true });
+  audioEl.play().catch(() => {});
+}
+
+// Tap to start
+tapOverlay.addEventListener('click', () => {
+  tapOverlay.classList.add('hidden');
+  playScene(0);
+});
+</script>
+</body>
+</html>

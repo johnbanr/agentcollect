@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgentCollect — Real Calls, Real Results</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --bg:#050505;
+            --ai:#818cf8;--ai-bright:#a5b4fc;--ai-deep:#4f46e5;
+            --green:#34d399;
+            --human-bubble:rgba(255,255,255,.08);
+            --ai-bubble:rgba(129,140,248,.15);
+            --display:'Plus Jakarta Sans',system-ui,sans-serif;
+            --mono:'JetBrains Mono',monospace;
+        }
+        html,body{height:100%;overflow:hidden}
+        body{font-family:var(--display);background:var(--bg);color:#fff;-webkit-font-smoothing:antialiased}
+        ::selection{background:rgba(129,140,248,.15)}
+
+        /* ═══ LAYOUT ═══ */
+        .app{display:flex;flex-direction:column;height:100vh;width:100%}
+
+        /* ═══ HEADER ═══ */
+        .header{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;flex-shrink:0;
+            border-bottom:1px solid rgba(255,255,255,.04)}
+        .logo{font-family:var(--display);font-size:13px;font-weight:800;letter-spacing:-.02em;
+            color:rgba(255,255,255,.15);text-decoration:none}
+        .logo .dot{display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--ai);
+            margin-left:1px;vertical-align:super}
+        .play-btn{display:flex;align-items:center;gap:8px;padding:8px 18px;border-radius:100px;border:1px solid rgba(129,140,248,.2);
+            background:rgba(129,140,248,.06);color:var(--ai);font-family:var(--display);font-size:13px;font-weight:600;
+            cursor:pointer;transition:all .25s;white-space:nowrap}
+        .play-btn:hover{border-color:rgba(129,140,248,.4);background:rgba(129,140,248,.12)}
+        .play-btn.on{border-color:rgba(52,211,153,.3);background:rgba(52,211,153,.06);color:var(--green)}
+        .play-btn svg{width:16px;height:16px;fill:currentColor}
+        .play-btn .eq{display:flex;align-items:flex-end;gap:2px;height:14px}
+        .play-btn .eq-bar{width:2px;background:var(--green);border-radius:1px;animation:eq 1s ease-in-out infinite}
+        .play-btn .eq-bar:nth-child(1){height:4px;animation-delay:0s}
+        .play-btn .eq-bar:nth-child(2){height:10px;animation-delay:.15s}
+        .play-btn .eq-bar:nth-child(3){height:4px;animation-delay:.3s}
+        .play-btn .eq-bar:nth-child(4){height:8px;animation-delay:.1s}
+        @keyframes eq{0%,100%{height:3px}50%{height:14px}}
+
+        /* ═══ CHAT CONTAINER ═══ */
+        .chat-wrap{flex:1;overflow-y:auto;overflow-x:hidden;display:flex;justify-content:center;
+            scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.06) transparent}
+        .chat-wrap::-webkit-scrollbar{width:4px}
+        .chat-wrap::-webkit-scrollbar-thumb{background:rgba(255,255,255,.06);border-radius:2px}
+        .chat{max-width:600px;width:100%;padding:24px 16px 100px;display:flex;flex-direction:column;gap:4px}
+
+        /* ═══ SPEAKER LABEL ═══ */
+        .speaker{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+            margin-top:16px;margin-bottom:4px;opacity:0;animation:fade-in .3s forwards}
+        .speaker.human{color:rgba(255,255,255,.25);text-align:left;padding-left:4px}
+        .speaker.ai{color:rgba(129,140,248,.4);text-align:right;padding-right:4px;
+            display:flex;align-items:center;justify-content:flex-end;gap:5px}
+        .speaker.ai::before{content:'';display:inline-block;width:12px;height:12px;
+            background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23818cf8'%3E%3Cpath d='M12 2a2 2 0 012 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 017 7v1h1.27c.34-.6.99-1 1.73-1a2 2 0 110 4c-.74 0-1.39-.4-1.73-1H20v1a7 7 0 01-7 7h-1v1.27c.6.34 1 .99 1 1.73a2 2 0 11-4 0c0-.74.4-1.39 1-1.73V19h-1a7 7 0 01-7-7v-1H.73C.39 11.6-.26 12-1 12a2 2 0 110-4c.74 0 1.39.4 1.73 1H4v-1a7 7 0 017-7h1V4.73c-.6-.34-1-.99-1-1.73a2 2 0 012-2zm0 7a5 5 0 00-5 5 5 5 0 005 5 5 5 0 005-5 5 5 0 00-5-5z'/%3E%3C/svg%3E") center/contain no-repeat;opacity:.4}
+
+        /* ═══ BUBBLES ═══ */
+        .bubble{max-width:85%;padding:12px 18px;font-size:16px;font-weight:500;line-height:1.5;
+            position:relative;opacity:0;word-wrap:break-word}
+
+        /* Human — left, dark gray */
+        .bubble.human{align-self:flex-start;background:var(--human-bubble);color:#fff;
+            border-radius:18px 18px 18px 4px;transform:translateX(-30px);animation:slide-left .4s cubic-bezier(.34,1.56,.64,1) forwards}
+        .bubble.human.tail{border-radius:18px 18px 18px 4px}
+        .bubble.human.no-tail{border-radius:18px 18px 18px 18px}
+
+        /* AI — right, indigo */
+        .bubble.ai{align-self:flex-end;background:var(--ai-bubble);color:var(--ai-bright);
+            border-radius:18px 18px 4px 18px;transform:translateX(30px);animation:slide-right .4s cubic-bezier(.34,1.56,.64,1) forwards}
+        .bubble.ai.tail{border-radius:18px 18px 4px 18px}
+        .bubble.ai.no-tail{border-radius:18px 18px 18px 18px}
+
+        @keyframes slide-left{to{opacity:1;transform:translateX(0)}}
+        @keyframes slide-right{to{opacity:1;transform:translateX(0)}}
+        @keyframes fade-in{to{opacity:1}}
+
+        /* Word reveal */
+        .bubble .w{opacity:0;display:inline;transition:opacity .12s}
+        .bubble .w.in{opacity:1}
+
+        /* ═══ TYPING INDICATOR ═══ */
+        .typing{align-self:flex-end;display:flex;align-items:center;gap:4px;padding:12px 20px;
+            background:var(--ai-bubble);border-radius:18px 18px 4px 18px;opacity:0;animation:slide-right .3s forwards}
+        .typing-dot{width:6px;height:6px;border-radius:50%;background:rgba(129,140,248,.4);animation:bounce-dot 1.2s infinite}
+        .typing-dot:nth-child(2){animation-delay:.15s}
+        .typing-dot:nth-child(3){animation-delay:.3s}
+        @keyframes bounce-dot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+
+        /* ═══ OUTCOME CARD ═══ */
+        .outcome{max-width:85%;align-self:center;margin-top:16px;padding:14px 24px;border-radius:14px;
+            font-size:14px;font-weight:600;display:flex;align-items:center;gap:10px;
+            opacity:0;transform:scale(.92);animation:pop-in .5s cubic-bezier(.16,1,.3,1) forwards}
+        .outcome.green{background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.12);color:var(--green)}
+        .outcome.indigo{background:rgba(129,140,248,.06);border:1px solid rgba(129,140,248,.1);color:var(--ai)}
+        .outcome svg{width:18px;height:18px;fill:currentColor;flex-shrink:0}
+        @keyframes pop-in{to{opacity:1;transform:scale(1)}}
+
+        /* ═══ SCENE TABS ═══ */
+        .scene-nav{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:center;gap:6px;
+            padding:12px 16px 20px;background:linear-gradient(transparent,rgba(5,5,5,.95) 40%);z-index:100}
+        .scene-tab{padding:10px 20px;border-radius:10px;font-size:13px;font-weight:600;color:rgba(255,255,255,.35);
+            cursor:pointer;transition:all .25s;font-family:var(--display);white-space:nowrap;border:none;
+            background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.04)}
+        .scene-tab:hover{color:rgba(255,255,255,.5);background:rgba(255,255,255,.06)}
+        .scene-tab.active{color:var(--ai);background:rgba(129,140,248,.08);border-color:rgba(129,140,248,.15)}
+        .scene-tab .num{font-family:var(--mono);font-size:10px;opacity:.4;margin-right:5px}
+
+        /* ═══ RESPONSIVE ═══ */
+        @media(max-width:640px){
+            .header{padding:12px 16px}
+            .play-btn span{display:none}
+            .chat{padding:16px 10px 100px}
+            .bubble{max-width:92%;font-size:15px;padding:10px 14px}
+            .outcome{max-width:95%}
+            .scene-tab{padding:8px 14px;font-size:12px}
+        }
+    </style>
+</head>
+<body>
+
+<div class="app">
+    <!-- Header -->
+    <div class="header">
+        <a href="/" class="logo">AgentCollect<span class="dot"></span></a>
+        <button class="play-btn" id="audioBtn">
+            <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+            <span>Listen to call</span>
+        </button>
+    </div>
+
+    <!-- Chat area -->
+    <div class="chat-wrap" id="chatWrap">
+        <div class="chat" id="chat"></div>
+    </div>
+</div>
+
+<!-- Scene tabs -->
+<div class="scene-nav" id="sceneNav"></div>
+
+<script>
+(function(){
+    const scenes = [
+        // Scene 1: Objection handled
+        {
+            audio: 'https://dxc03zgurdly9.cloudfront.net/075961824e83d68a634b91afb75f59fba97b1b2951c58dc43ec9a5e3bc58b806/recording.wav',
+            audioStart: 30,
+            navLabel: 'Objection',
+            beats: [
+                { delay: 500, speaker: 'human', name: 'Khalil', text: 'I guess I do have questions about it.' },
+                { delay: 2700, speaker: 'human', name: 'Khalil', text: 'What are we getting charged for exactly?' },
+                { delay: 5000, typing: true },
+                { delay: 5800, speaker: 'ai', text: 'Twenty-nine ninety-nine. Background check from your provider.' },
+                { delay: 10500, outcome: true, text: 'Objection handled. Directed to portal.', cls: 'indigo' },
+            ]
+        },
+        // Scene 2: Gatekeeper — contact collected
+        {
+            audio: 'https://dxc03zgurdly9.cloudfront.net/00d79b2208aee99e88fb7a0033974bba3140f3b905b388429b22133e4694c670/recording.wav',
+            audioStart: 56,
+            navLabel: 'Gatekeeper',
+            beats: [
+                { delay: 200, speaker: 'human', name: 'Jonathan', text: "I don't deal with that." },
+                { delay: 1800, speaker: 'human', name: 'Jonathan', text: "You'd wanna call accounts payable." },
+                { delay: 5200, typing: true },
+                { delay: 6000, speaker: 'ai', text: 'Could you provide the name or contact info for accounts payable?' },
+                { delay: 10000, outcome: true, text: 'AP contact collected. Phone + email.', cls: 'indigo' },
+            ]
+        },
+        // Scene 3: Pays on the spot
+        {
+            audio: 'https://dxc03zgurdly9.cloudfront.net/10b4ec959b4a004a6bf47dcfa2da0a213c7ce231590e295d9c60faffde486685/recording.wav',
+            audioStart: 50,
+            navLabel: 'Payment',
+            beats: [
+                { delay: 1800, speaker: 'human', name: 'Rachel', text: "I'm paying it today. I have it coming in." },
+                { delay: 5700, speaker: 'human', name: 'Rachel', text: 'I, again, am so sorry.' },
+                { delay: 9000, speaker: 'human', name: 'Rachel', text: "It is being paid, honestly. I'm in front of my computer putting it in right now." },
+                { delay: 13500, outcome: true, text: 'Paid during the call. $0 manual work.', cls: 'green' },
+            ]
+        }
+    ];
+
+    let ci = 0, timers = [], audioEl = null, audioOn = false;
+    const chat = document.getElementById('chat');
+    const chatWrap = document.getElementById('chatWrap');
+    const navEl = document.getElementById('sceneNav');
+    const audioBtn = document.getElementById('audioBtn');
+
+    // Build nav tabs
+    scenes.forEach((s, i) => {
+        const tab = document.createElement('button');
+        tab.className = 'scene-tab' + (i === 0 ? ' active' : '');
+        tab.innerHTML = '<span class="num">' + (i + 1) + '</span>' + s.navLabel;
+        tab.addEventListener('click', () => playScene(i));
+        navEl.appendChild(tab);
+    });
+
+    // Audio toggle
+    audioBtn.addEventListener('click', () => {
+        audioOn = !audioOn;
+        audioBtn.classList.toggle('on', audioOn);
+        if (audioOn) {
+            audioBtn.innerHTML = '<span class="eq"><span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span></span><span>Playing</span>';
+            playScene(ci);
+        } else {
+            audioBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg><span>Listen to call</span>';
+            if (audioEl) { audioEl.pause(); audioEl = null; }
+        }
+    });
+
+    function autoScroll() {
+        chatWrap.scrollTo({ top: chatWrap.scrollHeight, behavior: 'smooth' });
+    }
+
+    function revealWords(bubble, stagger) {
+        const words = bubble.querySelectorAll('.w');
+        words.forEach((w, i) => {
+            const t = setTimeout(() => { w.classList.add('in'); }, i * (stagger || 80));
+            timers.push(t);
+        });
+    }
+
+    function wrapWords(text) {
+        return text.split(/\s+/).map(w => '<span class="w">' + w + '</span>').join(' ');
+    }
+
+    function playScene(idx) {
+        timers.forEach(t => clearTimeout(t)); timers = [];
+        if (audioEl) { audioEl.pause(); audioEl = null; }
+        ci = idx;
+        const scene = scenes[idx];
+        navEl.querySelectorAll('.scene-tab').forEach((t, i) => t.classList.toggle('active', i === idx));
+
+        chat.innerHTML = '';
+        chatWrap.scrollTop = 0;
+
+        let lastSpeaker = null;
+
+        function scheduleBeats() {
+            let lastEnd = 0;
+
+            scene.beats.forEach(beat => {
+                const t = setTimeout(() => {
+                    // Typing indicator
+                    if (beat.typing) {
+                        const typing = document.createElement('div');
+                        typing.className = 'typing';
+                        typing.id = 'typingIndicator';
+                        typing.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+                        chat.appendChild(typing);
+                        autoScroll();
+                        return;
+                    }
+
+                    // Remove typing indicator when AI responds
+                    if (beat.speaker === 'ai') {
+                        const ti = document.getElementById('typingIndicator');
+                        if (ti) ti.remove();
+                    }
+
+                    // Outcome card
+                    if (beat.outcome) {
+                        const card = document.createElement('div');
+                        card.className = 'outcome ' + beat.cls;
+                        const icon = beat.cls === 'green'
+                            ? '<svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>'
+                            : '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>';
+                        card.innerHTML = icon + '<span>' + beat.text + '</span>';
+                        chat.appendChild(card);
+                        autoScroll();
+                        return;
+                    }
+
+                    // Speaker label (only when speaker changes)
+                    if (beat.speaker && beat.speaker !== lastSpeaker) {
+                        const label = document.createElement('div');
+                        label.className = 'speaker ' + beat.speaker;
+                        label.textContent = beat.speaker === 'ai' ? 'AI Agent' : (beat.name || 'Human');
+                        chat.appendChild(label);
+                        lastSpeaker = beat.speaker;
+                    }
+
+                    // Bubble
+                    const bubble = document.createElement('div');
+                    bubble.className = 'bubble ' + beat.speaker + ' tail';
+                    bubble.innerHTML = wrapWords(beat.text);
+                    chat.appendChild(bubble);
+                    autoScroll();
+
+                    // Word-by-word reveal after bubble slides in
+                    setTimeout(() => revealWords(bubble, 80), 350);
+
+                }, beat.delay);
+                timers.push(t);
+                lastEnd = Math.max(lastEnd, beat.delay + (beat.outcome ? 3000 : 2000));
+            });
+
+            // Auto-advance
+            const adv = setTimeout(() => {
+                // Fade out
+                chat.style.transition = 'opacity .4s';
+                chat.style.opacity = '0';
+                setTimeout(() => {
+                    chat.style.opacity = '1';
+                    playScene((idx + 1) % scenes.length);
+                }, 500);
+            }, lastEnd + 2500);
+            timers.push(adv);
+        }
+
+        // Audio: wait for playing event
+        if (audioOn && scene.audio) {
+            audioEl = new Audio(scene.audio);
+            audioEl.currentTime = scene.audioStart || 0;
+            audioEl.addEventListener('playing', function onPlay() {
+                audioEl.removeEventListener('playing', onPlay);
+                scheduleBeats();
+            }, { once: true });
+            audioEl.play().catch(() => { scheduleBeats(); });
+        } else {
+            scheduleBeats();
+        }
+    }
+
+    // Keyboard
+    document.addEventListener('keydown', e => {
+        if (e.code === 'ArrowRight') playScene((ci + 1) % scenes.length);
+        if (e.code === 'ArrowLeft') playScene((ci - 1 + scenes.length) % scenes.length);
+        if (e.code === 'Space') { e.preventDefault(); audioBtn.click(); }
+    });
+
+    playScene(0);
+})();
+</script>
+</body>
+</html>
