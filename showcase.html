@@ -3,102 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgentCollect — This Is What AI Sounds Like</title>
+    <title>AgentCollect — One of Them Isn't Human</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         :root{
             --bg:#050505;
-            --human:rgba(255,255,255,.12);--human-hot:#fff;
-            --ai:#818cf8;--ai-dim:rgba(129,140,248,.15);
-            --green:#34d399;--red:#ff4444;
+            --ai:#818cf8;--ai-bright:#a5b4fc;--ai-glow:rgba(129,140,248,.06);--ai-deep:#4f46e5;
+            --green:#34d399;
             --display:'Plus Jakarta Sans',system-ui,sans-serif;
             --sans:'Inter',system-ui,sans-serif;
+            --mono:'JetBrains Mono',monospace;
         }
-        html,body{height:100%;overflow:hidden;background:var(--bg);color:#fff;font-family:var(--sans);-webkit-font-smoothing:antialiased}
-        ::selection{background:rgba(129,140,248,.2)}
+        html{scroll-behavior:smooth;scroll-snap-type:y mandatory}
+        body{font-family:var(--sans);background:var(--bg);color:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+        ::selection{background:rgba(129,140,248,.15)}
 
-        /* STAGE */
-        .stage{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+        /* ═══ SECTIONS ═══ */
+        section{width:100%;min-height:100vh;scroll-snap-align:start}
 
-        /* LOGO */
+        /* ═══ HERO — CINEMATIC ═══ */
+        .hero{position:relative;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+
+        /* Ambient */
+        .ambient{position:absolute;inset:0;pointer-events:none;z-index:0}
+        .orb{position:absolute;border-radius:50%;filter:blur(150px)}
+        .orb.a{width:700px;height:700px;background:rgba(79,70,229,.12);top:-300px;left:-250px;animation:fa 22s ease-in-out infinite}
+        .orb.b{width:500px;height:500px;background:rgba(124,58,237,.08);bottom:-250px;right:-200px;animation:fb 26s ease-in-out infinite}
+        @keyframes fa{0%,100%{transform:translate(0,0)}50%{transform:translate(50px,30px)}}
+        @keyframes fb{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,-25px)}}
+
+        /* Logo */
         .logo{position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:100;font-family:var(--display);font-size:13px;font-weight:800;
-            letter-spacing:-.02em;color:rgba(255,255,255,.15);text-decoration:none}
+            letter-spacing:-.02em;color:rgba(255,255,255,.15);text-decoration:none;transition:color .3s}
         .logo .d{display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--ai);margin-left:1px;vertical-align:super}
 
-        /* AUDIO TOGGLE */
-        .audio-toggle{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);z-index:100;
-            padding:8px 20px;border-radius:100px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);
-            backdrop-filter:blur(20px);color:rgba(255,255,255,.35);font-size:11px;font-weight:600;cursor:pointer;
-            font-family:var(--sans);letter-spacing:.03em;transition:all .3s;display:flex;align-items:center;gap:6px}
-        .audio-toggle:hover{border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.5)}
-        .audio-toggle.on{border-color:rgba(129,140,248,.3);color:var(--ai);background:rgba(129,140,248,.05)}
-        .audio-toggle svg{width:14px;height:14px;fill:currentColor}
+        /* Stage */
+        .stage{position:relative;z-index:2;width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:0 40px}
 
-        /* CTA */
-        .cta-float{position:fixed;bottom:28px;right:28px;z-index:100;padding:10px 22px;background:#4f46e5;color:#fff;border:none;
-            border-radius:10px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;
-            transition:all .2s;opacity:0;animation:cta-in 1s 2s forwards}
-        .cta-float:hover{background:#4338ca;transform:translateY(-1px);box-shadow:0 4px 16px rgba(79,70,229,.3)}
-        @keyframes cta-in{to{opacity:1}}
-
-        /* SCENE CONTAINER */
+        /* SCENE */
         .scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 40px;
-            opacity:0;transition:opacity .6s cubic-bezier(.16,1,.3,1)}
+            opacity:0;transition:opacity .5s cubic-bezier(.16,1,.3,1)}
         .scene.active{opacity:1}
 
-        /* TEXT LINES */
-        .line{text-align:center;max-width:1100px;width:100%;opacity:0;transform:translateY(30px) scale(.97);
-            transition:all .7s cubic-bezier(.16,1,.3,1);margin:8px 0}
-        .line.show{opacity:1;transform:translateY(0) scale(1)}
+        /* TEXT LINE */
+        .line{text-align:center;max-width:1100px;width:100%;opacity:0;transform:translateY(25px);
+            transition:all .6s cubic-bezier(.16,1,.3,1);margin:6px 0}
+        .line.show{opacity:1;transform:translateY(0)}
 
-        /* SPEAKER LABEL */
-        .speaker{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
-        .speaker.human{color:rgba(255,255,255,.2)}
-        .speaker.ai{color:rgba(129,140,248,.4)}
+        /* SPEAKER TAG */
+        .tag{display:inline-flex;align-items:center;gap:5px;margin-bottom:6px;opacity:.5}
+        .tag-dot{width:6px;height:6px;border-radius:50%}
+        .tag-name{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-family:var(--mono)}
 
-        /* THE TEXT — this is the star */
-        .words{font-family:var(--display);font-weight:900;letter-spacing:-.05em;line-height:.95}
+        /* Human tag */
+        .tag.human .tag-dot{background:rgba(255,255,255,.3)}
+        .tag.human .tag-name{color:rgba(255,255,255,.25)}
 
-        /* Sizes */
-        .words.xl{font-size:clamp(48px,8vw,120px)}
-        .words.lg{font-size:clamp(36px,6vw,88px)}
-        .words.md{font-size:clamp(28px,4.5vw,64px)}
-        .words.sm{font-size:clamp(20px,3vw,42px)}
+        /* AI tag — the star */
+        .tag.ai .tag-dot{background:var(--ai);box-shadow:0 0 8px rgba(129,140,248,.4);animation:ai-pulse 2s infinite}
+        .tag.ai .tag-name{color:rgba(129,140,248,.5)}
+        .tag.ai::before{content:'';display:inline-block;width:14px;height:14px;margin-right:2px;
+            background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23818cf8'%3E%3Cpath d='M12 2a2 2 0 012 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 017 7v1h1.27c.34-.6.99-1 1.73-1a2 2 0 110 4c-.74 0-1.39-.4-1.73-1H20v1a7 7 0 01-7 7h-1v1.27c.6.34 1 .99 1 1.73a2 2 0 11-4 0c0-.74.4-1.39 1-1.73V19h-1a7 7 0 01-7-7v-1H.73C.39 11.6-.26 12-1 12a2 2 0 110-4c.74 0 1.39.4 1.73 1H4v-1a7 7 0 017-7h1V4.73c-.6-.34-1-.99-1-1.73a2 2 0 012-2zm0 7a5 5 0 00-5 5 5 5 0 005 5 5 5 0 005-5 5 5 0 00-5-5z'/%3E%3C/svg%3E") center/contain no-repeat;opacity:.4}
+        @keyframes ai-pulse{0%,100%{opacity:1}50%{opacity:.5}}
 
-        /* Colors / Moods */
-        .words.angry{color:#fff;text-shadow:0 0 80px rgba(255,68,68,.15)}
-        .words.frustrated{color:rgba(255,255,255,.85)}
-        .words.calm{color:var(--ai)}
-        .words.soft{color:rgba(129,140,248,.7)}
+        /* THE WORDS */
+        .words{font-family:var(--display);font-weight:900;letter-spacing:-.05em;line-height:.92}
+        .words.xxl{font-size:clamp(52px,9vw,140px)}
+        .words.xl{font-size:clamp(44px,7.5vw,110px)}
+        .words.lg{font-size:clamp(34px,5.5vw,80px)}
+        .words.md{font-size:clamp(24px,4vw,56px)}
+
+        /* Human text — raw, white, bold */
+        .words.human{color:#fff}
+        .words.human.hot{text-shadow:0 0 60px rgba(255,255,255,.08)}
+        .words.human.dim{color:rgba(255,255,255,.2)}
+        .words.human.mid{color:rgba(255,255,255,.6)}
+
+        /* AI text — indigo, composed, glowing */
+        .words.ai{color:var(--ai)}
+        .words.ai.soft{color:rgba(129,140,248,.55)}
+        .words.ai.bright{color:var(--ai-bright)}
+
+        /* Outcome */
         .words.win{color:var(--green)}
-        .words.dim{color:rgba(255,255,255,.25)}
-        .words.surprise{color:rgba(255,255,255,.9)}
 
-        /* OUTCOME BADGE */
+        /* BADGE */
         .badge{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;border-radius:100px;
-            font-family:var(--sans);font-size:14px;font-weight:600;opacity:0;transform:scale(.9);
+            font-family:var(--sans);font-size:14px;font-weight:600;opacity:0;transform:scale(.92);
             transition:all .5s cubic-bezier(.16,1,.3,1)}
         .badge.show{opacity:1;transform:scale(1)}
-        .badge.green{background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.15);color:var(--green)}
-        .badge.indigo{background:rgba(129,140,248,.06);border:1px solid rgba(129,140,248,.12);color:var(--ai)}
+        .badge.green{background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.12);color:var(--green)}
+        .badge.indigo{background:var(--ai-glow);border:1px solid rgba(129,140,248,.1);color:var(--ai)}
 
-        /* PROGRESS DOTS */
-        .dots{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);z-index:100;display:flex;gap:6px;
-            opacity:0;animation:cta-in .5s 1.5s forwards}
-        .dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.1);transition:all .3s}
-        .dot.active{background:var(--ai);width:20px;border-radius:3px}
+        /* HOOK TEXT */
+        .hook{font-family:var(--display);font-weight:900;font-size:clamp(40px,7vw,100px);letter-spacing:-.05em;line-height:.95;
+            text-align:center;max-width:800px;opacity:0;animation:hook-in 1.2s .2s cubic-bezier(.16,1,.3,1) forwards}
+        .hook em{font-style:normal;color:var(--ai)}
+        .hook-sub{font-size:clamp(14px,1.8vw,18px);color:rgba(255,255,255,.25);margin-top:14px;font-weight:400;
+            opacity:0;animation:hook-in .8s .8s forwards}
+        @keyframes hook-in{to{opacity:1}}
 
-        /* RESPONSIVE */
+        /* DOTS */
+        .dots{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:100;display:flex;gap:5px}
+        .dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.1);transition:all .3s;cursor:pointer}
+        .dot.active{background:var(--ai);width:18px;border-radius:3px}
+
+        /* AUDIO BTN */
+        .audio-btn{position:fixed;bottom:24px;right:24px;z-index:100;padding:7px 16px;border-radius:100px;
+            border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);backdrop-filter:blur(20px);
+            color:rgba(255,255,255,.25);font-size:11px;font-weight:600;cursor:pointer;font-family:var(--sans);
+            transition:all .3s;display:flex;align-items:center;gap:5px}
+        .audio-btn:hover{border-color:rgba(255,255,255,.12);color:rgba(255,255,255,.4)}
+        .audio-btn.on{border-color:rgba(129,140,248,.2);color:var(--ai);background:rgba(129,140,248,.03)}
+        .audio-btn svg{width:12px;height:12px;fill:currentColor}
+
+        /* ═══ SEARCH SECTION ═══ */
+        .search-section{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 24px;
+            background:var(--bg);position:relative;scroll-snap-align:start}
+        .search-section::before{content:'';position:absolute;top:0;left:20%;right:20%;height:1px;
+            background:linear-gradient(90deg,transparent,rgba(255,255,255,.04),transparent)}
+        .search-head{text-align:center;margin-bottom:40px}
+        .search-head h2{font-family:var(--display);font-size:clamp(32px,5vw,64px);font-weight:900;letter-spacing:-.05em;line-height:1;margin-bottom:12px}
+        .search-head h2 em{font-style:normal;color:var(--ai)}
+        .search-head p{font-size:clamp(15px,1.8vw,18px);color:rgba(255,255,255,.3);font-weight:400;max-width:480px;margin:0 auto}
+        .search-bar{display:flex;align-items:center;max-width:520px;width:100%;background:rgba(255,255,255,.03);
+            border:1px solid rgba(255,255,255,.06);border-radius:16px;overflow:hidden;transition:border-color .3s}
+        .search-bar:focus-within{border-color:rgba(129,140,248,.2)}
+        .search-bar input{flex:1;padding:18px 22px;background:transparent;border:none;outline:none;color:#fff;
+            font-family:var(--mono);font-size:15px;letter-spacing:-.01em}
+        .search-bar input::placeholder{color:rgba(255,255,255,.15)}
+        .search-bar button{padding:14px 26px;background:var(--ai-deep);color:#fff;border:none;font-family:var(--sans);
+            font-size:14px;font-weight:600;cursor:pointer;transition:background .2s;margin:5px;border-radius:12px;white-space:nowrap}
+        .search-bar button:hover{background:#4338ca}
+
+        /* Trust logos */
+        .trust{display:flex;align-items:center;gap:24px;margin-top:40px;flex-wrap:wrap;justify-content:center}
+        .trust-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.1)}
+        .trust img{height:18px;opacity:.15;filter:grayscale(100%);transition:opacity .3s}
+        .trust img:hover{opacity:.3}
+
+        /* Scroll indicator */
+        .scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:10;
+            display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0;animation:hook-in 1s 4s forwards}
+        .scroll-hint span{font-size:9px;color:rgba(255,255,255,.15);font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+        .scroll-arrow{width:16px;height:16px;border-right:1.5px solid rgba(255,255,255,.12);border-bottom:1.5px solid rgba(255,255,255,.12);
+            transform:rotate(45deg);animation:bounce-arrow 2s infinite}
+        @keyframes bounce-arrow{0%,100%{transform:rotate(45deg) translate(0,0)}50%{transform:rotate(45deg) translate(3px,3px)}}
+
+        /* ═══ RESPONSIVE ═══ */
         @media(max-width:640px){
             .scene{padding:0 20px}
-            .cta-float{bottom:auto;top:24px;right:16px;padding:8px 16px;font-size:12px}
-            .audio-toggle{bottom:16px;padding:6px 16px;font-size:10px}
-            .dots{bottom:52px}
+            .audio-btn{bottom:auto;top:24px;right:14px;padding:5px 12px;font-size:10px}
             .logo{top:26px;left:16px;transform:none}
+            .dots{bottom:16px}
+            .search-bar{flex-direction:column}
+            .search-bar input{width:100%;text-align:center}
+            .search-bar button{width:calc(100% - 10px);margin:0 5px 5px}
+            .scroll-hint{bottom:48px}
         }
     </style>
 </head>
@@ -106,70 +171,94 @@
 
 <a href="/" class="logo">AgentCollect<span class="d"></span></a>
 
-<!-- Audio toggle -->
-<button class="audio-toggle" id="audioBtn">
-    <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8.5v7a4.49 4.49 0 0 0 2.5-3.5zM14 3.23v2.06a6.51 6.51 0 0 1 0 13.42v2.06A8.51 8.51 0 0 0 14 3.23z"/></svg>
-    Enable audio
+<button class="audio-btn" id="audioBtn">
+    <svg viewBox="0 0 24 24"><path d="M16.5 12A4.5 4.5 0 0014 8.5v7a4.49 4.49 0 002.5-3.5zM14 3.23v2.06a6.51 6.51 0 010 13.42v2.06A8.51 8.51 0 0014 3.23zM3 9v6h4l5 5V4L7 9H3z"/></svg>
+    <span id="audioLabel">Audio</span>
 </button>
 
-<!-- CTA -->
-<a href="https://cal.com/johnb/30" class="cta-float" target="_blank">Book a demo</a>
-
-<!-- Progress dots -->
 <div class="dots" id="dots"></div>
 
-<!-- STAGE -->
-<div class="stage" id="stage"></div>
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="hero">
+    <div class="ambient"><div class="orb a"></div><div class="orb b"></div></div>
+    <div class="stage" id="stage"></div>
+    <div class="scroll-hint" id="scrollHint"><span>Scroll</span><div class="scroll-arrow"></div></div>
+</section>
+
+<!-- ═══ SEARCH ═══ -->
+<section class="search-section">
+    <div class="search-head">
+        <h2>Build <em>yours</em>.</h2>
+        <p>Enter your website. See the agent we'd build for your business in 20 seconds.</p>
+    </div>
+    <div class="search-bar">
+        <input type="text" placeholder="yourcompany.com" id="urlInput">
+        <button onclick="window.location.href='/'">Build my agent</button>
+    </div>
+    <div class="trust">
+        <span class="trust-label">Trusted by</span>
+        <img src="https://cdn.brandfetch.io/microsoft.com/w/512/h/80/logo" alt="Microsoft">
+        <img src="https://cdn.brandfetch.io/dell.com/w/512/h/80/logo" alt="Dell">
+        <img src="https://cdn.brandfetch.io/plaid.com/w/512/h/80/logo" alt="Plaid">
+        <img src="https://cdn.brandfetch.io/checkr.com/w/512/h/80/logo" alt="Checkr">
+        <img src="https://cdn.brandfetch.io/doordash.com/w/512/h/80/logo" alt="DoorDash">
+    </div>
+</section>
 
 <script>
 (function(){
-    // ═══════════════════════════════════════
-    // SCENES — pure cinema
-    // ═══════════════════════════════════════
+    // ═══ SCENES ═══
+    // Hook scene (no audio) + 3 conversation scenes
     const scenes = [
-        // Scene 1: The angry debtor → AI stays cool → pays
+        // HOOK — the intrigue
+        {
+            audio: null,
+            beats: [
+                { delay: 0, html: '<div class="hook">One of them<br><em>isn\'t human.</em></div>' },
+                { delay: 1200, html: '<div class="hook-sub">Three real calls. Three real outcomes. Guess which voice is AI.</div>' },
+                { delay: 4500, clear: true },
+            ]
+        },
+        // Scene 1: Objection → handled
         {
             audio: 'https://dxc03zgurdly9.cloudfront.net/075961824e83d68a634b91afb75f59fba97b1b2951c58dc43ec9a5e3bc58b806/recording.wav',
             audioStart: 8,
             beats: [
-                { delay: 0, speaker: 'human', text: '"What are we getting', size: 'lg', mood: 'frustrated' },
-                { delay: 600, speaker: null, text: 'charged for exactly?"', size: 'xl', mood: 'angry' },
-                { delay: 2500, clear: true },
-                { delay: 3000, speaker: 'ai', text: '$29.99.', size: 'xl', mood: 'calm' },
-                { delay: 3600, speaker: null, text: 'Background check from Checkr.', size: 'md', mood: 'soft' },
-                { delay: 5500, clear: true },
-                { delay: 6000, speaker: 'human', text: '"Can I pay from', size: 'md', mood: 'frustrated' },
-                { delay: 6400, speaker: null, text: 'the website?"', size: 'lg', mood: 'surprise' },
-                { delay: 8000, clear: true },
-                { delay: 8500, speaker: 'ai', text: 'Use the portal link', size: 'lg', mood: 'calm' },
-                { delay: 9000, speaker: null, text: 'in the email.', size: 'md', mood: 'soft' },
-                { delay: 10800, clear: true },
-                { delay: 11200, speaker: 'human', text: '"Got it.', size: 'lg', mood: 'surprise' },
-                { delay: 11800, speaker: null, text: 'Bye bye."', size: 'xl', mood: 'dim' },
-                { delay: 13500, clear: true },
-                { delay: 14000, badge: true, text: 'Objection handled. Directed to portal.', cls: 'indigo' },
+                { delay: 0, speaker: 'human', name: 'Khalil', text: '"What are we getting', size: 'lg', style: 'human' },
+                { delay: 500, text: 'charged for exactly?"', size: 'xxl', style: 'human hot' },
+                { delay: 2800, clear: true },
+                { delay: 3300, speaker: 'ai', text: '$29.99.', size: 'xxl', style: 'ai bright' },
+                { delay: 3900, text: 'Background check from Checkr.', size: 'lg', style: 'ai soft' },
+                { delay: 6000, clear: true },
+                { delay: 6500, speaker: 'human', name: 'Khalil', text: '"Can I pay from the website?"', size: 'xl', style: 'human mid' },
+                { delay: 8500, clear: true },
+                { delay: 9000, speaker: 'ai', text: 'Use the link in the email.', size: 'xl', style: 'ai' },
+                { delay: 9600, text: 'It closes your balance.', size: 'md', style: 'ai soft' },
+                { delay: 11500, clear: true },
+                { delay: 12000, speaker: 'human', name: 'Khalil', text: '"Got it. Bye bye."', size: 'xl', style: 'human dim' },
+                { delay: 14000, clear: true },
+                { delay: 14500, badge: true, text: 'Objection handled. Directed to portal.', cls: 'indigo' },
             ]
         },
-        // Scene 2: Gatekeeper → AI gets the contact
+        // Scene 2: Gatekeeper → contact collected
         {
             audio: 'https://dxc03zgurdly9.cloudfront.net/00d79b2208aee99e88fb7a0033974bba3140f3b905b388429b22133e4694c670/recording.wav',
             audioStart: 56,
             beats: [
-                { delay: 0, speaker: 'human', text: '"I don\'t deal', size: 'lg', mood: 'frustrated' },
-                { delay: 500, speaker: null, text: 'with that."', size: 'xl', mood: 'angry' },
-                { delay: 2500, clear: true },
-                { delay: 3000, speaker: 'ai', text: 'Could you give me', size: 'md', mood: 'calm' },
-                { delay: 3400, speaker: null, text: 'the AP contact?', size: 'lg', mood: 'calm' },
-                { delay: 5200, clear: true },
-                { delay: 5600, speaker: 'human', text: '"One sec...', size: 'md', mood: 'dim' },
-                { delay: 6800, speaker: null, text: '916-845-8340."', size: 'xl', mood: 'surprise' },
-                { delay: 9000, clear: true },
-                { delay: 9400, speaker: 'ai', text: 'And their email?', size: 'lg', mood: 'calm' },
-                { delay: 11000, clear: true },
-                { delay: 11400, speaker: 'human', text: '"ap-invoices', size: 'lg', mood: 'surprise' },
-                { delay: 11900, speaker: null, text: '@caloes.ca.gov"', size: 'md', mood: 'dim' },
-                { delay: 14000, clear: true },
-                { delay: 14500, badge: true, text: 'New AP contact collected.', cls: 'indigo' },
+                { delay: 0, speaker: 'human', name: 'Employee', text: '"I don\'t deal', size: 'xl', style: 'human' },
+                { delay: 400, text: 'with that."', size: 'xxl', style: 'human hot' },
+                { delay: 2600, clear: true },
+                { delay: 3100, speaker: 'ai', text: 'Could you connect me', size: 'lg', style: 'ai' },
+                { delay: 3500, text: 'with accounts payable?', size: 'xl', style: 'ai bright' },
+                { delay: 5500, clear: true },
+                { delay: 6000, speaker: 'human', name: 'Employee', text: '"One sec...', size: 'md', style: 'human dim' },
+                { delay: 7200, text: '916-845-8340."', size: 'xxl', style: 'human hot' },
+                { delay: 9500, clear: true },
+                { delay: 10000, speaker: 'ai', text: 'And their email?', size: 'xl', style: 'ai' },
+                { delay: 11800, clear: true },
+                { delay: 12200, speaker: 'human', name: 'Employee', text: '"ap-invoices@caloes.ca.gov"', size: 'lg', style: 'human mid' },
+                { delay: 14500, clear: true },
+                { delay: 15000, badge: true, text: 'New AP contact. Phone + email.', cls: 'indigo' },
             ]
         },
         // Scene 3: Pays on the spot — the closer
@@ -177,35 +266,29 @@
             audio: 'https://dxc03zgurdly9.cloudfront.net/10b4ec959b4a004a6bf47dcfa2da0a213c7ce231590e295d9c60faffde486685/recording.wav',
             audioStart: 35,
             beats: [
-                { delay: 0, speaker: 'human', text: '"I\'m paying it', size: 'lg', mood: 'surprise' },
-                { delay: 500, speaker: null, text: 'right now!"', size: 'xl', mood: 'angry' },
-                { delay: 2800, clear: true },
-                { delay: 3200, speaker: 'human', text: '"It slipped through', size: 'md', mood: 'frustrated' },
-                { delay: 3600, speaker: null, text: 'the cracks."', size: 'lg', mood: 'dim' },
-                { delay: 5500, clear: true },
-                { delay: 6000, speaker: 'ai', text: 'No worries.', size: 'xl', mood: 'calm' },
-                { delay: 6800, speaker: null, text: 'I\'ll stay on the line.', size: 'md', mood: 'soft' },
-                { delay: 9000, clear: true },
-                { delay: 9800, speaker: 'human', text: '"Payment', size: 'lg', mood: 'surprise' },
-                { delay: 10200, speaker: null, text: 'sent."', size: 'xl', mood: 'win' },
-                { delay: 12500, clear: true },
-                { delay: 13000, badge: true, text: 'Paid during the call. $0 manual work.', cls: 'green' },
+                { delay: 0, speaker: 'human', name: 'Rachel', text: '"I\'m paying it', size: 'xl', style: 'human' },
+                { delay: 400, text: 'right now!"', size: 'xxl', style: 'human hot' },
+                { delay: 2600, clear: true },
+                { delay: 3000, speaker: 'human', name: 'Rachel', text: '"It slipped through the cracks."', size: 'lg', style: 'human dim' },
+                { delay: 5200, clear: true },
+                { delay: 5700, speaker: 'ai', text: 'No worries.', size: 'xxl', style: 'ai bright' },
+                { delay: 6400, text: 'I\'ll stay on the line.', size: 'lg', style: 'ai soft' },
+                { delay: 8500, clear: true },
+                { delay: 9500, speaker: 'human', name: 'Rachel', text: '"Payment', size: 'xl', style: 'human' },
+                { delay: 9900, text: 'sent."', size: 'xxl', style: 'win' },
+                { delay: 12200, clear: true },
+                { delay: 12700, badge: true, text: 'Paid during the call. $0 manual work.', cls: 'green' },
             ]
         }
     ];
 
-    // ═══════════════════════════════════════
-    // STATE
-    // ═══════════════════════════════════════
-    let currentScene = 0;
-    let timers = [];
-    let audioEl = null;
-    let audioEnabled = false;
+    let ci = 0, timers = [], audioEl = null, audioOn = false;
     const stage = document.getElementById('stage');
     const dotsEl = document.getElementById('dots');
     const audioBtn = document.getElementById('audioBtn');
+    const audioLabel = document.getElementById('audioLabel');
 
-    // Build dots
+    // Build dots (skip hook scene)
     scenes.forEach((_, i) => {
         const d = document.createElement('div');
         d.className = 'dot' + (i === 0 ? ' active' : '');
@@ -213,122 +296,96 @@
         dotsEl.appendChild(d);
     });
 
-    // ═══════════════════════════════════════
-    // AUDIO TOGGLE
-    // ═══════════════════════════════════════
+    // Audio toggle
     audioBtn.addEventListener('click', () => {
-        audioEnabled = !audioEnabled;
-        audioBtn.classList.toggle('on', audioEnabled);
-        audioBtn.innerHTML = audioEnabled
-            ? '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8.5v7a4.49 4.49 0 0 0 2.5-3.5zM14 3.23v2.06a6.51 6.51 0 0 1 0 13.42v2.06A8.51 8.51 0 0 0 14 3.23z"/></svg> Audio on'
-            : '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8.5v7a4.49 4.49 0 0 0 2.5-3.5zM14 3.23v2.06a6.51 6.51 0 0 1 0 13.42v2.06A8.51 8.51 0 0 0 14 3.23z"/></svg> Enable audio';
-        if (audioEnabled && !audioEl) {
-            // Restart current scene with audio
-            playScene(currentScene);
-        }
-        if (!audioEnabled && audioEl) {
-            audioEl.pause();
-            audioEl = null;
-        }
+        audioOn = !audioOn;
+        audioBtn.classList.toggle('on', audioOn);
+        audioLabel.textContent = audioOn ? 'On' : 'Audio';
+        if (audioOn) playScene(ci);
+        if (!audioOn && audioEl) { audioEl.pause(); audioEl = null; }
     });
 
-    // ═══════════════════════════════════════
-    // PLAY SCENE
-    // ═══════════════════════════════════════
+    function makeTag(speaker, name) {
+        if (speaker === 'ai') {
+            return '<div class="tag ai"><div class="tag-dot"></div><div class="tag-name">AI Agent</div></div>';
+        }
+        return '<div class="tag human"><div class="tag-dot"></div><div class="tag-name">' + (name || 'Debtor') + '</div></div>';
+    }
+
     function playScene(idx) {
-        // Clear previous
-        timers.forEach(t => clearTimeout(t));
-        timers = [];
+        timers.forEach(t => clearTimeout(t)); timers = [];
         if (audioEl) { audioEl.pause(); audioEl = null; }
-
-        currentScene = idx;
+        ci = idx;
         const scene = scenes[idx];
-
-        // Update dots
         dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === idx));
 
-        // Clear stage
+        // Hide scroll hint after hook
+        if (idx > 0) document.getElementById('scrollHint').style.display = 'none';
+
         stage.innerHTML = '';
         const container = document.createElement('div');
         container.className = 'scene active';
         stage.appendChild(container);
 
         // Audio
-        if (audioEnabled) {
+        if (audioOn && scene.audio) {
             audioEl = new Audio(scene.audio);
-            audioEl.currentTime = scene.audioStart;
+            audioEl.currentTime = scene.audioStart || 0;
             audioEl.play().catch(() => {});
         }
 
-        // Schedule beats
-        let lastBeatEnd = 0;
+        let lastEnd = 0;
         scene.beats.forEach(beat => {
             const t = setTimeout(() => {
                 if (beat.clear) {
-                    // Fade out all lines
-                    container.querySelectorAll('.line').forEach(l => {
-                        l.style.opacity = '0';
-                        l.style.transform = 'translateY(-20px) scale(.98)';
+                    container.querySelectorAll('.line,.hook-wrap').forEach(l => {
+                        l.style.opacity = '0'; l.style.transform = 'translateY(-15px)';
                     });
-                    setTimeout(() => {
-                        container.querySelectorAll('.line').forEach(l => l.remove());
-                    }, 400);
+                    setTimeout(() => container.querySelectorAll('.line,.hook-wrap').forEach(l => l.remove()), 350);
                     return;
                 }
-
+                if (beat.html) {
+                    const w = document.createElement('div');
+                    w.className = 'hook-wrap';
+                    w.innerHTML = beat.html;
+                    container.appendChild(w);
+                    return;
+                }
                 if (beat.badge) {
                     const b = document.createElement('div');
                     b.className = 'line';
                     b.innerHTML = '<div class="badge ' + beat.cls + '">' + beat.text + '</div>';
                     container.appendChild(b);
-                    requestAnimationFrame(() => {
-                        b.classList.add('show');
-                        b.querySelector('.badge').classList.add('show');
-                    });
+                    requestAnimationFrame(() => { b.classList.add('show'); b.querySelector('.badge').classList.add('show'); });
                     return;
                 }
-
                 const line = document.createElement('div');
                 line.className = 'line';
-                let html = '';
-                if (beat.speaker) {
-                    html += '<div class="speaker ' + beat.speaker + '">' + (beat.speaker === 'ai' ? 'AI Agent' : 'Debtor') + '</div>';
-                }
-                html += '<div class="words ' + beat.size + ' ' + beat.mood + '">' + beat.text + '</div>';
-                line.innerHTML = html;
+                let h = '';
+                if (beat.speaker) h += makeTag(beat.speaker, beat.name);
+                h += '<div class="words ' + (beat.size || 'lg') + ' ' + (beat.style || '') + '">' + beat.text + '</div>';
+                line.innerHTML = h;
                 container.appendChild(line);
                 requestAnimationFrame(() => requestAnimationFrame(() => line.classList.add('show')));
-
             }, beat.delay);
             timers.push(t);
-            lastBeatEnd = Math.max(lastBeatEnd, beat.delay + (beat.badge ? 3000 : 0));
+            lastEnd = Math.max(lastEnd, beat.delay + (beat.badge ? 2800 : beat.html ? 1000 : 0));
         });
 
-        // Auto-advance to next scene
-        const advanceDelay = lastBeatEnd + 2500;
         const adv = setTimeout(() => {
-            // Fade out
             container.style.opacity = '0';
-            setTimeout(() => {
-                const next = (idx + 1) % scenes.length;
-                playScene(next);
-            }, 600);
-        }, advanceDelay);
+            setTimeout(() => playScene((idx + 1) % scenes.length), 500);
+        }, lastEnd + 2200);
         timers.push(adv);
     }
 
-    // ═══════════════════════════════════════
-    // KEYBOARD
-    // ═══════════════════════════════════════
+    // Keyboard
     document.addEventListener('keydown', e => {
-        if (e.code === 'ArrowRight') playScene((currentScene + 1) % scenes.length);
-        if (e.code === 'ArrowLeft') playScene((currentScene - 1 + scenes.length) % scenes.length);
+        if (e.code === 'ArrowRight') playScene((ci + 1) % scenes.length);
+        if (e.code === 'ArrowLeft') playScene((ci - 1 + scenes.length) % scenes.length);
         if (e.code === 'Space') { e.preventDefault(); audioBtn.click(); }
     });
 
-    // ═══════════════════════════════════════
-    // START
-    // ═══════════════════════════════════════
     playScene(0);
 })();
 </script>
