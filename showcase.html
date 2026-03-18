@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AgentCollect — Hear What AI Collection Sounds Like</title>
-    <meta name="description" content="Real AI collection calls. Real debtors. Real payments. Listen to scenarios that will make you question everything about manual collection.">
+    <meta name="description" content="Real AI collection calls. Real payments collected by an AI agent they thought was human.">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,392 +12,304 @@
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         :root{
-            --bg:#0a0a0b;
-            --text:#fafafa;--text-mid:rgba(255,255,255,.7);--text-muted:rgba(255,255,255,.4);--text-dim:rgba(255,255,255,.15);
-            --indigo:#818cf8;--indigo-bright:#a5b4fc;--indigo-glow:rgba(129,140,248,.12);--indigo-deep:#4f46e5;
-            --green:#34d399;--green-glow:rgba(52,211,153,.1);
-            --border:rgba(255,255,255,.06);--border-active:rgba(129,140,248,.3);
+            --bg:#08080a;
+            --text:#f5f5f7;--text-mid:rgba(255,255,255,.65);--text-muted:rgba(255,255,255,.35);--text-dim:rgba(255,255,255,.12);
+            --indigo:#818cf8;--indigo-bright:#c7d2fe;--indigo-glow:rgba(129,140,248,.08);--indigo-deep:#4f46e5;
+            --green:#34d399;--green-soft:rgba(52,211,153,.08);
+            --border:rgba(255,255,255,.05);
             --mono:'JetBrains Mono',monospace;--sans:'Inter',-apple-system,sans-serif;--display:'Plus Jakarta Sans',sans-serif;
         }
-        html{scroll-behavior:smooth}
-        body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow:hidden;height:100vh;width:100vw;position:relative}
-        h1,h2,h3{font-family:var(--display);letter-spacing:-.05em;line-height:1}
-        ::selection{background:rgba(129,140,248,.2)}
+        html,body{height:100%;overflow:hidden}
+        body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+        ::selection{background:rgba(129,140,248,.15)}
 
-        /* ═══════════ AMBIENT ═══════════ */
-        .ambient{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-        .orb{position:absolute;border-radius:50%;filter:blur(140px);will-change:transform}
-        .orb.a{width:700px;height:700px;background:rgba(79,70,229,.2);top:-250px;left:-200px;animation:float-a 20s ease-in-out infinite}
-        .orb.b{width:600px;height:600px;background:rgba(124,58,237,.15);bottom:-250px;right:-200px;animation:float-b 25s ease-in-out infinite}
-        .orb.c{width:400px;height:400px;background:rgba(52,211,153,.08);top:40%;left:60%;animation:float-c 18s ease-in-out infinite}
-        @keyframes float-a{0%,100%{transform:translate(0,0)}50%{transform:translate(80px,60px)}}
-        @keyframes float-b{0%,100%{transform:translate(0,0)}50%{transform:translate(-60px,-40px)}}
-        @keyframes float-c{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,30px)}}
+        /* ═══ AMBIENT ═══ */
+        .ambient{position:fixed;inset:0;z-index:0;pointer-events:none}
+        .orb{position:absolute;border-radius:50%;filter:blur(150px);will-change:transform}
+        .orb.a{width:800px;height:800px;background:rgba(79,70,229,.14);top:-350px;left:-300px;animation:fa 22s ease-in-out infinite}
+        .orb.b{width:600px;height:600px;background:rgba(124,58,237,.1);bottom:-300px;right:-250px;animation:fb 28s ease-in-out infinite}
+        @keyframes fa{0%,100%{transform:translate(0,0)}50%{transform:translate(60px,40px)}}
+        @keyframes fb{0%,100%{transform:translate(0,0)}50%{transform:translate(-50px,-30px)}}
+        .noise{position:fixed;inset:0;z-index:1;opacity:.02;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-        /* Noise */
-        .noise{position:fixed;inset:0;z-index:1;opacity:.025;pointer-events:none;
-            background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+        /* ═══ STAGE ═══ */
+        .stage{position:relative;z-index:2;width:100%;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 24px}
 
-        /* ═══════════ LAYOUT — 100vh ═══════════ */
-        .stage{position:relative;z-index:2;width:100%;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 32px}
+        /* ═══ GIANT TYPO ═══ */
+        .typo-bg{position:absolute;z-index:1;width:100%;text-align:center;top:50%;transform:translateY(-50%);pointer-events:none;user-select:none;padding:0 20px}
+        .typo-bg h1{font-family:var(--display);font-size:clamp(80px,14vw,200px);font-weight:900;letter-spacing:-.07em;line-height:.85;
+            color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.04);
+            opacity:0;animation:typo-in 1.5s .1s cubic-bezier(.16,1,.3,1) forwards}
+        @keyframes typo-in{0%{opacity:0;transform:scale(.95) translateY(20px)}100%{opacity:1;transform:scale(1) translateY(0)}}
 
-        /* ═══════════ LOGO TOP ═══════════ */
-        .top-logo{position:absolute;top:28px;left:50%;transform:translateX(-50%);z-index:10;font-family:var(--display);font-size:14px;font-weight:800;letter-spacing:-.02em;color:var(--text-muted);text-decoration:none;opacity:0;animation:fade-in .8s .2s forwards}
-        .top-logo .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--indigo);margin-left:1px;vertical-align:super}
+        /* ═══ PLAYER ═══ */
+        .card-wrap{position:relative;z-index:5;width:100%;max-width:520px;opacity:0;animation:card-in 1s .3s cubic-bezier(.16,1,.3,1) forwards}
+        @keyframes card-in{0%{opacity:0;transform:translateY(30px)}100%{opacity:1;transform:translateY(0)}}
 
-        /* ═══════════ BIG TYPO BACKGROUND ═══════════ */
-        .big-typo{position:absolute;z-index:1;width:100%;text-align:center;pointer-events:none;user-select:none;top:50%;transform:translateY(-50%)}
-        .big-typo h1{font-size:clamp(72px,12vw,160px);font-weight:900;letter-spacing:-.06em;line-height:.9;
-            background:linear-gradient(180deg,rgba(255,255,255,.07) 0%,rgba(255,255,255,.02) 100%);
-            -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-            opacity:0;animation:typo-in 1.2s .1s forwards}
-        @keyframes typo-in{0%{opacity:0;transform:translateY(30px) scale(.97)}100%{opacity:1;transform:translateY(0) scale(1)}}
+        .card{background:rgba(12,12,16,.8);backdrop-filter:blur(60px) saturate(1.5);-webkit-backdrop-filter:blur(60px) saturate(1.5);
+            border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:24px 28px 20px;position:relative;
+            box-shadow:0 24px 80px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.02) inset}
+        .card::before{content:'';position:absolute;top:-1px;left:15%;right:15%;height:1px;
+            background:linear-gradient(90deg,transparent,rgba(129,140,248,.3),rgba(52,211,153,.2),transparent);border-radius:1px}
 
-        /* ═══════════ PLAYER FLOATING CARD ═══════════ */
-        .card-wrap{position:relative;z-index:5;width:100%;max-width:580px;opacity:0;animation:card-in 1s .4s forwards}
-        @keyframes card-in{0%{opacity:0;transform:translateY(40px) scale(.96)}100%{opacity:1;transform:translateY(0) scale(1)}}
-
-        .card{background:rgba(15,15,20,.75);backdrop-filter:blur(40px) saturate(1.4);-webkit-backdrop-filter:blur(40px) saturate(1.4);
-            border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:28px 32px 24px;
-            box-shadow:0 20px 60px rgba(0,0,0,.4),0 0 0 1px rgba(255,255,255,.03) inset,0 0 80px rgba(79,70,229,.06)}
-        .card-glow{position:absolute;top:-1px;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,var(--indigo),var(--green),transparent);opacity:.5;border-radius:1px}
-
-        /* Card header */
-        .card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-        .card-meta{display:flex;align-items:center;gap:8px}
-        .live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px rgba(52,211,153,.5);animation:pulse 2s infinite}
-        @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
-        .card-label{font-size:12px;color:var(--text-muted);font-weight:500;font-family:var(--mono)}
-        .card-label strong{color:var(--text-mid);font-weight:600}
-        .card-time{font-family:var(--mono);font-size:12px;color:var(--text-dim);letter-spacing:.02em}
+        /* Header */
+        .c-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+        .c-meta{display:flex;align-items:center;gap:8px}
+        .dot-live{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px rgba(52,211,153,.5);animation:pls 2s infinite}
+        @keyframes pls{0%,100%{opacity:1}50%{opacity:.4}}
+        .c-label{font-size:11px;color:var(--text-muted);font-weight:500;font-family:var(--mono)}
+        .c-label b{color:var(--text-mid);font-weight:600}
+        .c-time{font-family:var(--mono);font-size:11px;color:var(--text-dim)}
 
         /* Waveform */
-        .waveform{display:flex;align-items:center;justify-content:center;gap:1.5px;height:44px;margin-bottom:12px;cursor:pointer}
-        .waveform .bar{width:2.5px;border-radius:2px;transition:height .1s ease;min-height:3px}
-        .waveform .bar.past{background:linear-gradient(to top,var(--indigo),var(--indigo-bright))}
-        .waveform .bar.future{background:rgba(255,255,255,.06)}
-        .waveform .bar.active{background:var(--green);box-shadow:0 0 6px rgba(52,211,153,.3)}
-
-        /* Controls */
-        .controls{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:14px}
-        .skip-btn{width:32px;height:32px;border-radius:50%;background:transparent;border:1px solid rgba(255,255,255,.05);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;color:var(--text-dim)}
-        .skip-btn:hover{border-color:rgba(255,255,255,.12);color:var(--text-muted)}
-        .skip-btn svg{width:14px;height:14px;fill:currentColor}
-        .play-btn{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s cubic-bezier(.16,1,.3,1)}
-        .play-btn:hover{background:rgba(255,255,255,.1);transform:scale(1.06)}
-        .play-btn:active{transform:scale(.95)}
-        .play-btn svg{width:20px;height:20px;fill:#fff}
-        .play-btn.playing{background:var(--indigo-glow);border-color:var(--border-active)}
-        .play-btn.playing svg{fill:var(--indigo-bright)}
+        .wave{display:flex;align-items:center;justify-content:center;gap:1.5px;height:40px;margin-bottom:16px;cursor:pointer}
+        .wave .b{width:2px;border-radius:1.5px;min-height:2px;transition:height .08s ease}
+        .wave .b.past{background:var(--indigo)}
+        .wave .b.future{background:rgba(255,255,255,.05)}
+        .wave .b.now{background:var(--green);box-shadow:0 0 4px rgba(52,211,153,.3)}
 
         /* Progress */
-        .progress{width:100%;height:2px;background:rgba(255,255,255,.05);border-radius:2px;cursor:pointer;position:relative;margin-bottom:20px}
-        .progress-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--indigo),var(--green));width:0%;transition:width .1s linear}
+        .prog{width:100%;height:2px;background:rgba(255,255,255,.04);border-radius:1px;margin-bottom:18px;cursor:pointer}
+        .prog-fill{height:100%;border-radius:1px;background:linear-gradient(90deg,var(--indigo),var(--green));width:0%}
+
+        /* Controls — minimal */
+        .ctrls{display:flex;align-items:center;justify-content:center;gap:20px;margin-bottom:16px}
+        .sk{width:28px;height:28px;border-radius:50%;background:transparent;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-dim);transition:color .2s}
+        .sk:hover{color:var(--text-muted)}
+        .sk svg{width:14px;height:14px;fill:currentColor}
+        .pl{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s cubic-bezier(.16,1,.3,1)}
+        .pl:hover{background:rgba(255,255,255,.09);transform:scale(1.05)}
+        .pl:active{transform:scale(.94)}
+        .pl svg{width:18px;height:18px;fill:#fff}
+        .pl.on{background:var(--indigo-glow);border-color:rgba(129,140,248,.2)}
+        .pl.on svg{fill:var(--indigo-bright)}
 
         /* Transcript */
-        .transcript{display:flex;flex-direction:column;gap:10px;min-height:160px}
-        .t-line{opacity:0;transform:translateY(10px);transition:all .5s cubic-bezier(.16,1,.3,1);display:flex;gap:12px;align-items:flex-start}
-        .t-line.visible{opacity:1;transform:translateY(0)}
-        .t-line.dim{opacity:.2}
-        .t-avatar{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;margin-top:1px}
-        .t-line.agent .t-avatar{background:var(--indigo-glow);color:var(--indigo-bright);border:1px solid rgba(129,140,248,.1)}
-        .t-line.debtor .t-avatar{background:rgba(255,255,255,.03);color:var(--text-muted);border:1px solid var(--border)}
-        .t-name{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
-        .t-line.agent .t-name{color:var(--indigo)}
-        .t-line.debtor .t-name{color:var(--text-dim)}
-        .t-text{font-size:14px;line-height:1.5;color:var(--text-mid)}
-        .t-line.agent .t-text{color:rgba(255,255,255,.88)}
+        .txn{display:flex;flex-direction:column;gap:8px;min-height:140px}
+        .tl{opacity:0;transform:translateY(8px);transition:all .45s cubic-bezier(.16,1,.3,1);display:flex;gap:10px}
+        .tl.vis{opacity:1;transform:translateY(0)}
+        .tl.dim{opacity:.15}
+        .tl .av{width:24px;height:24px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0;margin-top:1px}
+        .tl.ag .av{background:rgba(129,140,248,.06);color:var(--indigo);border:1px solid rgba(129,140,248,.08)}
+        .tl.db .av{background:rgba(255,255,255,.02);color:var(--text-muted);border:1px solid rgba(255,255,255,.04)}
+        .tl .nm{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:1px}
+        .tl.ag .nm{color:rgba(129,140,248,.6)}
+        .tl.db .nm{color:var(--text-dim)}
+        .tl .tx{font-size:13px;line-height:1.5;color:var(--text-mid)}
+        .tl.ag .tx{color:rgba(255,255,255,.85)}
 
         /* Outcome */
-        .outcome{margin-top:14px;padding:10px 16px;border-radius:12px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px;opacity:0;transform:translateY(6px);transition:all .5s cubic-bezier(.16,1,.3,1);border:1px solid transparent}
-        .outcome.visible{opacity:1;transform:translateY(0)}
-        .outcome.green{background:var(--green-glow);border-color:rgba(52,211,153,.12);color:var(--green)}
-        .outcome.indigo{background:var(--indigo-glow);border-color:rgba(129,140,248,.12);color:var(--indigo-bright)}
+        .out{margin-top:12px;padding:8px 14px;border-radius:10px;font-size:12px;font-weight:600;display:flex;align-items:center;gap:7px;
+            opacity:0;transform:translateY(4px);transition:all .4s cubic-bezier(.16,1,.3,1);border:1px solid transparent}
+        .out.vis{opacity:1;transform:translateY(0)}
+        .out.g{background:var(--green-soft);border-color:rgba(52,211,153,.08);color:var(--green)}
+        .out.i{background:var(--indigo-glow);border-color:rgba(129,140,248,.08);color:var(--indigo)}
 
         /* Autoplay */
-        .autoplay-bar{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 0 0;opacity:0;transition:opacity .3s}
-        .autoplay-bar.visible{opacity:1}
-        .autoplay-bar span{font-size:11px;color:var(--text-dim)}
-        .autoplay-progress{width:100px;height:2px;background:rgba(255,255,255,.04);border-radius:2px;overflow:hidden}
-        .autoplay-fill{height:100%;background:var(--indigo);width:0%;border-radius:2px}
+        .ap{display:flex;align-items:center;justify-content:center;gap:6px;padding:10px 0 0;opacity:0;transition:opacity .3s}
+        .ap.vis{opacity:1}
+        .ap span{font-size:10px;color:var(--text-dim)}
+        .ap-bar{width:80px;height:2px;background:rgba(255,255,255,.03);border-radius:1px;overflow:hidden}
+        .ap-fill{height:100%;background:var(--indigo);width:0%}
 
-        /* ═══════════ PILLS — BELOW CARD ═══════════ */
-        .pills{display:flex;gap:6px;margin-top:20px;opacity:0;animation:fade-in .8s .7s forwards;flex-wrap:wrap;justify-content:center}
-        .pill{padding:8px 18px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:100px;font-size:12px;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all .3s cubic-bezier(.16,1,.3,1);white-space:nowrap;font-family:var(--sans)}
-        .pill:hover{background:rgba(255,255,255,.06);color:var(--text-mid)}
-        .pill.active{background:var(--indigo-glow);border-color:var(--border-active);color:var(--indigo-bright)}
-        .pill .em{margin-right:5px}
+        /* ═══ PILLS ═══ */
+        .pills{display:flex;gap:6px;margin-top:16px;opacity:0;animation:fi .6s .6s forwards;flex-wrap:wrap;justify-content:center}
+        .pill{padding:7px 16px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:100px;font-size:11px;font-weight:600;
+            color:var(--text-muted);cursor:pointer;transition:all .25s;font-family:var(--sans);white-space:nowrap}
+        .pill:hover{background:rgba(255,255,255,.04);color:var(--text-mid)}
+        .pill.on{background:var(--indigo-glow);border-color:rgba(129,140,248,.2);color:var(--indigo-bright)}
 
-        /* ═══════════ CTA ROW ═══════════ */
-        .cta-row{display:flex;gap:10px;margin-top:16px;opacity:0;animation:fade-in .8s .9s forwards}
-        .cta-main{padding:12px 28px;background:var(--indigo-deep);color:#fff;border:none;border-radius:12px;font-family:var(--sans);font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:6px}
-        .cta-main:hover{background:#4338ca;box-shadow:0 6px 20px rgba(79,70,229,.25)}
-        .cta-ghost{padding:12px 20px;background:transparent;color:var(--text-muted);border:1px solid var(--border);border-radius:12px;font-family:var(--sans);font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;transition:all .2s}
-        .cta-ghost:hover{border-color:rgba(255,255,255,.12);color:var(--text-mid)}
+        /* ═══ CTA ═══ */
+        .ctas{display:flex;gap:8px;margin-top:12px;opacity:0;animation:fi .6s .8s forwards}
+        .cta{padding:10px 24px;background:var(--indigo-deep);color:#fff;border:none;border-radius:10px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:5px}
+        .cta:hover{background:#4338ca;box-shadow:0 4px 16px rgba(79,70,229,.2)}
+        .cta2{padding:10px 18px;background:transparent;color:var(--text-muted);border:1px solid var(--border);border-radius:10px;font-family:var(--sans);font-size:13px;font-weight:500;cursor:pointer;text-decoration:none;transition:all .2s}
+        .cta2:hover{border-color:rgba(255,255,255,.1);color:var(--text-mid)}
 
-        @keyframes fade-in{0%{opacity:0}100%{opacity:1}}
+        /* ═══ LOGO ═══ */
+        .logo{position:absolute;top:24px;left:50%;transform:translateX(-50%);z-index:10;font-family:var(--display);font-size:13px;font-weight:800;letter-spacing:-.02em;color:rgba(255,255,255,.25);text-decoration:none;opacity:0;animation:fi .5s .15s forwards}
+        .logo .d{display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--indigo);margin-left:1px;vertical-align:super}
 
-        /* ═══════════ RESPONSIVE ═══════════ */
-        @media(max-width:680px){
-            .stage{padding:0 16px}
-            .big-typo h1{font-size:clamp(52px,16vw,90px)}
-            .card{padding:20px 18px 18px;border-radius:18px}
-            .controls{gap:10px}
-            .play-btn{width:42px;height:42px}
-            .play-btn svg{width:18px;height:18px}
-            .t-text{font-size:13px}
-            .t-avatar{width:24px;height:24px;font-size:9px}
-            .pills{gap:4px}
-            .pill{padding:7px 14px;font-size:11px}
-            .cta-row{flex-direction:column;width:100%;max-width:580px}
-            .cta-main,.cta-ghost{width:100%;justify-content:center;text-align:center}
-            .top-logo{top:16px}
+        @keyframes fi{0%{opacity:0}100%{opacity:1}}
+
+        /* ═══ CLICK OVERLAY (autoplay workaround) ═══ */
+        .click-gate{position:fixed;inset:0;z-index:100;cursor:pointer;display:flex;align-items:center;justify-content:center;background:transparent}
+        .click-gate.gone{display:none}
+        .click-hint{font-size:11px;color:var(--text-dim);font-weight:500;letter-spacing:.05em;text-transform:uppercase;
+            padding:8px 20px;border:1px solid rgba(255,255,255,.06);border-radius:100px;backdrop-filter:blur(10px);
+            animation:hint-pulse 2s infinite;position:absolute;bottom:24px}
+        @keyframes hint-pulse{0%,100%{opacity:.6}50%{opacity:1}}
+
+        /* ═══ RESPONSIVE ═══ */
+        @media(max-width:640px){
+            .stage{padding:0 14px}
+            .typo-bg h1{font-size:clamp(60px,18vw,100px)}
+            .card{padding:18px 16px 16px;border-radius:16px}
+            .txn{min-height:120px}
+            .tl .tx{font-size:12px}
+            .pills{gap:4px}.pill{padding:6px 12px;font-size:10px}
+            .ctas{flex-direction:column;width:100%;max-width:520px}
+            .cta,.cta2{width:100%;justify-content:center;text-align:center}
         }
     </style>
 </head>
 <body>
 
-<!-- Ambient -->
-<div class="ambient">
-    <div class="orb a"></div>
-    <div class="orb b"></div>
-    <div class="orb c"></div>
-</div>
+<div class="ambient"><div class="orb a"></div><div class="orb b"></div></div>
 <div class="noise"></div>
 
-<!-- Stage — single viewport -->
+<!-- Click gate for audio autoplay -->
+<div class="click-gate" id="gate">
+    <div class="click-hint">Click anywhere to start</div>
+</div>
+
 <div class="stage">
-    <!-- Logo -->
-    <a href="/" class="top-logo">AgentCollect<span class="dot"></span></a>
+    <a href="/" class="logo">AgentCollect<span class="d"></span></a>
 
-    <!-- Giant background text -->
-    <div class="big-typo">
-        <h1>Make it<br>collect.</h1>
-    </div>
+    <div class="typo-bg"><h1>Make it<br>collect.</h1></div>
 
-    <!-- Floating player card -->
     <div class="card-wrap">
         <div class="card">
-            <div class="card-glow"></div>
-            <!-- Head -->
-            <div class="card-head">
-                <div class="card-meta">
-                    <div class="live-dot" id="liveDot"></div>
-                    <div class="card-label" id="cardLabel"><strong>Live call</strong> &middot; Checkr</div>
-                </div>
-                <div class="card-time" id="cardTime">0:00 / 0:00</div>
+            <div class="c-head">
+                <div class="c-meta"><div class="dot-live" id="dot"></div><div class="c-label" id="lbl"><b>Live call</b> &middot; Checkr</div></div>
+                <div class="c-time" id="tm">0:00</div>
             </div>
-            <!-- Waveform -->
-            <div class="waveform" id="waveform"></div>
-            <!-- Controls -->
-            <div class="controls">
-                <button class="skip-btn" id="prevBtn" aria-label="Previous">
-                    <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" transform="scale(-1,1) translate(-24,0)"/></svg>
-                </button>
-                <button class="play-btn" id="playBtn" aria-label="Play">
-                    <svg viewBox="0 0 24 24" id="playIcon"><polygon points="8,4 20,12 8,20"/></svg>
-                </button>
-                <button class="skip-btn" id="nextBtn" aria-label="Next">
-                    <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
-                </button>
+            <div class="wave" id="wv"></div>
+            <div class="ctrls">
+                <button class="sk" id="prv"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" transform="scale(-1,1) translate(-24,0)"/></svg></button>
+                <button class="pl" id="pl"><svg viewBox="0 0 24 24" id="pi"><polygon points="8,4 20,12 8,20"/></svg></button>
+                <button class="sk" id="nxt"><svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></button>
             </div>
-            <!-- Progress -->
-            <div class="progress" id="progressBar">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-            <!-- Transcript -->
-            <div class="transcript" id="transcript"></div>
-            <!-- Outcome -->
-            <div class="outcome" id="outcome"></div>
-            <!-- Autoplay -->
-            <div class="autoplay-bar" id="autoplayBar">
-                <span>Next in</span>
-                <div class="autoplay-progress"><div class="autoplay-fill" id="autoplayFill"></div></div>
-            </div>
+            <div class="prog" id="prg"><div class="prog-fill" id="pf"></div></div>
+            <div class="txn" id="txn"></div>
+            <div class="out" id="ot"></div>
+            <div class="ap" id="ap"><span>Next</span><div class="ap-bar"><div class="ap-fill" id="af"></div></div></div>
         </div>
     </div>
 
-    <!-- Pills -->
     <div class="pills" id="pills">
-        <div class="pill active" data-idx="0"><span class="em">&#128176;</span>Pays on the spot</div>
-        <div class="pill" data-idx="1"><span class="em">&#10067;</span>Handles objections</div>
-        <div class="pill" data-idx="2"><span class="em">&#128268;</span>Gets the AP contact</div>
+        <div class="pill on" data-i="0">Pays on the spot</div>
+        <div class="pill" data-i="1">Handles objections</div>
+        <div class="pill" data-i="2">Gets the AP contact</div>
     </div>
 
-    <!-- CTA -->
-    <div class="cta-row">
-        <a href="https://cal.com/johnb/30" class="cta-main" target="_blank">
-            Book a demo
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="/" class="cta-ghost">How it works</a>
+    <div class="ctas">
+        <a href="https://cal.com/johnb/30" class="cta" target="_blank">Book a demo <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="/" class="cta2">How it works</a>
     </div>
 </div>
 
 <script>
 (function(){
-    const scenarios = [
-        {
-            id: 'pays',
-            label: 'Checkr collection',
-            url: 'https://dxc03zgurdly9.cloudfront.net/10b4ec959b4a004a6bf47dcfa2da0a213c7ce231590e295d9c60faffde486685/recording.wav',
-            startTime: 35, endTime: 52,
-            lines: [
-                { t: 0, role: 'agent', name: 'AI', text: 'We represent Checkr on an outstanding invoice.' },
-                { t: 3, role: 'debtor', name: 'Rachel', text: "I'm paying it right now! It slipped through the cracks." },
-                { t: 8, role: 'agent', name: 'AI', text: 'No worries. I can stay on the line while you complete the payment.' },
-                { t: 13, role: 'debtor', name: 'Rachel', text: 'Payment sent.' },
-                { t: 15, role: 'agent', name: 'AI', text: "We'll close your file. Thanks!" }
-            ],
-            outcome: { text: 'Paid during the call', cls: 'green', icon: '\u2705' }
-        },
-        {
-            id: 'objection',
-            label: 'Checkr callback',
-            url: 'https://dxc03zgurdly9.cloudfront.net/075961824e83d68a634b91afb75f59fba97b1b2951c58dc43ec9a5e3bc58b806/recording.wav',
-            startTime: 8, endTime: 24,
-            lines: [
-                { t: 0, role: 'debtor', name: 'Khalil', text: "What are we getting charged for exactly?" },
-                { t: 3, role: 'agent', name: 'AI', text: '$29.99 for a Background Check from Checkr.' },
-                { t: 7, role: 'debtor', name: 'Khalil', text: 'Can I pay from the Checkr website?' },
-                { t: 10, role: 'agent', name: 'AI', text: "Use the portal link in the email \u2014 that closes your balance." },
-                { t: 14, role: 'debtor', name: 'Khalil', text: "Got it. Bye bye." }
-            ],
-            outcome: { text: 'Objection handled \u2014 sent to portal', cls: 'indigo', icon: '\ud83d\udccb' }
-        },
-        {
-            id: 'referral',
-            label: 'CalOES outbound',
-            url: 'https://dxc03zgurdly9.cloudfront.net/00d79b2208aee99e88fb7a0033974bba3140f3b905b388429b22133e4694c670/recording.wav',
-            startTime: 56, endTime: 74,
-            lines: [
-                { t: 0, role: 'debtor', name: 'Employee', text: "I don't deal with that. Call accounts payable." },
-                { t: 4, role: 'agent', name: 'AI', text: 'Could you provide the contact info for AP?' },
-                { t: 8, role: 'debtor', name: 'Employee', text: "One sec\u2026 916-845-8340." },
-                { t: 12, role: 'agent', name: 'AI', text: "Thanks. And their email?" },
-                { t: 15, role: 'debtor', name: 'Employee', text: 'ap-invoices@caloes.ca.gov.' },
-                { t: 17, role: 'agent', name: 'AI', text: "Got it. We'll reach out to AP." }
-            ],
-            outcome: { text: 'AP contact collected from gatekeeper', cls: 'indigo', icon: '\ud83d\udcde' }
-        }
+    const S=[
+        {id:'pays',lbl:'Checkr',url:'https://dxc03zgurdly9.cloudfront.net/10b4ec959b4a004a6bf47dcfa2da0a213c7ce231590e295d9c60faffde486685/recording.wav',
+         s:35,e:52,lines:[
+            {t:0,r:'a',n:'AI',x:'We represent Checkr on an outstanding invoice.'},
+            {t:3,r:'d',n:'Rachel',x:"I'm paying it right now! It slipped through the cracks."},
+            {t:8,r:'a',n:'AI',x:'No worries. I\u2019ll stay on the line while you complete the payment.'},
+            {t:13,r:'d',n:'Rachel',x:'Payment sent.'},
+            {t:15,r:'a',n:'AI',x:"We\u2019ll close your file. Thanks!"}],
+         out:{x:'Paid during the call',c:'g',i:'\u2705'}},
+        {id:'obj',lbl:'Checkr callback',url:'https://dxc03zgurdly9.cloudfront.net/075961824e83d68a634b91afb75f59fba97b1b2951c58dc43ec9a5e3bc58b806/recording.wav',
+         s:8,e:24,lines:[
+            {t:0,r:'d',n:'Khalil',x:'What are we getting charged for exactly?'},
+            {t:3,r:'a',n:'AI',x:'$29.99 for a Background Check from Checkr.'},
+            {t:7,r:'d',n:'Khalil',x:'Can I pay from the Checkr website?'},
+            {t:10,r:'a',n:'AI',x:'Use the portal link in the email \u2014 it closes your balance.'},
+            {t:14,r:'d',n:'Khalil',x:'Got it. Bye bye.'}],
+         out:{x:'Objection handled \u2014 directed to portal',c:'i',i:'\ud83d\udccb'}},
+        {id:'ref',lbl:'CalOES',url:'https://dxc03zgurdly9.cloudfront.net/00d79b2208aee99e88fb7a0033974bba3140f3b905b388429b22133e4694c670/recording.wav',
+         s:56,e:74,lines:[
+            {t:0,r:'d',n:'Employee',x:"I don't deal with that. Call accounts payable."},
+            {t:4,r:'a',n:'AI',x:'Could you give me the AP contact info?'},
+            {t:8,r:'d',n:'Employee',x:'One sec\u2026 916-845-8340.'},
+            {t:12,r:'a',n:'AI',x:"Thanks. And their email?"},
+            {t:15,r:'d',n:'Employee',x:'ap-invoices@caloes.ca.gov.'},
+            {t:17,r:'a',n:'AI',x:"Got it. We\u2019ll reach out to AP."}],
+         out:{x:'AP contact collected from gatekeeper',c:'i',i:'\ud83d\udcde'}}
     ];
 
-    let currentIdx = 0, audio = null, isPlaying = false, autoplayTimer = null, waveformBars = [], waveFrame = null;
-    const $ = id => document.getElementById(id);
-    const playBtn=$('playBtn'), playIcon=$('playIcon'), cardLabel=$('cardLabel'), cardTime=$('cardTime');
-    const progressFill=$('progressFill'), progressBar=$('progressBar');
-    const transcriptEl=$('transcript'), outcomeEl=$('outcome');
-    const autoplayBar=$('autoplayBar'), autoplayFillEl=$('autoplayFill');
-    const waveformEl=$('waveform'), liveDot=$('liveDot');
+    let ci=0,au=null,playing=false,atm=null,bars=[],wf=null;
+    const $=id=>document.getElementById(id);
+    const pl=$('pl'),pi=$('pi'),lbl=$('lbl'),tm=$('tm'),pf=$('pf'),prg=$('prg');
+    const txn=$('txn'),ot=$('ot'),ap=$('ap'),af=$('af'),wv=$('wv');
     const pills=document.querySelectorAll('.pill');
 
-    function buildWaveform(){
-        waveformEl.innerHTML='';waveformBars=[];
-        const n=90;
-        for(let i=0;i<n;i++){
-            const bar=document.createElement('div');
-            bar.className='bar future';
-            const c=n/2,d=Math.abs(i-c)/c;
-            const h=Math.max(3,(1-d*.7)*32+Math.sin(i*.7)*7+Math.random()*5);
-            bar.style.height=h+'px';bar._h=h;
-            waveformEl.appendChild(bar);waveformBars.push(bar);
-        }
-    }
+    // Waveform
+    function mkWave(){wv.innerHTML='';bars=[];for(let i=0;i<100;i++){const b=document.createElement('div');b.className='b future';const c=50,d=Math.abs(i-c)/c;const h=Math.max(2,(1-d*.7)*28+Math.sin(i*.65)*6+Math.random()*4);b.style.height=h+'px';b._h=h;wv.appendChild(b);bars.push(b)}}
+    function animW(){if(!playing)return;const s=S[ci],el=au?au.currentTime-s.s:0,dur=s.e-s.s,p=dur>0?el/dur:0,ai=Math.floor(p*bars.length);
+        bars.forEach((b,i)=>{if(i<ai){b.className='b past';b.style.height=b._h+'px'}else if(i===ai){b.className='b now';b.style.height=(b._h+Math.random()*10)+'px'}else{b.className='b future';b.style.height=b._h+'px'}});
+        wf=requestAnimationFrame(animW)}
+    function rstW(){cancelAnimationFrame(wf);bars.forEach(b=>{b.className='b future';b.style.height=b._h+'px'})}
 
-    function animWave(){
-        if(!isPlaying)return;
-        const s=scenarios[currentIdx],el=audio?audio.currentTime-s.startTime:0,dur=s.endTime-s.startTime;
-        const pct=dur>0?el/dur:0,ai=Math.floor(pct*waveformBars.length);
-        waveformBars.forEach((b,i)=>{
-            if(i<ai){b.className='bar past';b.style.height=b._h+'px'}
-            else if(i===ai){b.className='bar active';b.style.height=(b._h+Math.random()*12)+'px'}
-            else{b.className='bar future';b.style.height=b._h+'px'}
-        });
-        waveFrame=requestAnimationFrame(animWave);
-    }
-
-    function resetWave(){cancelAnimationFrame(waveFrame);waveformBars.forEach(b=>{b.className='bar future';b.style.height=b._h+'px'})}
-
-    function renderTranscript(s){
-        transcriptEl.innerHTML='';
-        s.lines.forEach(l=>{
-            const d=document.createElement('div');
-            d.className='t-line '+(l.role==='agent'?'agent':'debtor');d.dataset.time=l.t;
-            d.innerHTML='<div class="t-avatar">'+(l.role==='agent'?'AI':l.name[0])+'</div><div><div class="t-name">'+(l.role==='agent'?'AI Agent':l.name)+'</div><div class="t-text">\u201C'+l.text+'\u201D</div></div>';
-            transcriptEl.appendChild(d);
-        });
-    }
-
-    function updateTranscript(elapsed){
-        const lines=transcriptEl.querySelectorAll('.t-line');let last=-1;
-        lines.forEach((l,i)=>{const t=+l.dataset.time;if(elapsed>=t){l.classList.add('visible');l.classList.remove('dim');last=i}else l.classList.remove('visible')});
-        lines.forEach((l,i)=>{if(i<last-1&&l.classList.contains('visible'))l.classList.add('dim')});
-    }
+    // Transcript
+    function mkTx(s){txn.innerHTML='';s.lines.forEach(l=>{const d=document.createElement('div');d.className='tl '+(l.r==='a'?'ag':'db');d.dataset.t=l.t;
+        d.innerHTML='<div class="av">'+(l.r==='a'?'AI':l.n[0])+'</div><div><div class="nm">'+(l.r==='a'?'AI Agent':l.n)+'</div><div class="tx">\u201C'+l.x+'\u201D</div></div>';txn.appendChild(d)})}
+    function upTx(el){const ls=txn.querySelectorAll('.tl');let last=-1;ls.forEach((l,i)=>{if(el>=+l.dataset.t){l.classList.add('vis');l.classList.remove('dim');last=i}else l.classList.remove('vis')});
+        ls.forEach((l,i)=>{if(i<last-1&&l.classList.contains('vis'))l.classList.add('dim')})}
 
     function fmt(s){if(isNaN(s)||s<0)s=0;return Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0')}
 
-    function loadScenario(idx,auto){
-        if(audio){audio.pause();audio.ontimeupdate=null;audio=null}
-        isPlaying=false;clearAuto();cancelAnimationFrame(waveFrame);
-        currentIdx=idx;const s=scenarios[idx];
-        pills.forEach((p,i)=>p.classList.toggle('active',i===idx));
-        cardLabel.innerHTML='<strong>Live call</strong> &middot; '+s.label;
-        const dur=s.endTime-s.startTime;cardTime.textContent='0:00 / '+fmt(dur);
-        progressFill.style.width='0%';renderTranscript(s);
-        outcomeEl.className='outcome';outcomeEl.innerHTML='';resetWave();
-        playBtn.classList.remove('playing');playIcon.innerHTML='<polygon points="8,4 20,12 8,20"/>';
-        if(auto)setTimeout(()=>play(),250);
+    function load(idx,auto){
+        if(au){au.pause();au.ontimeupdate=null;au=null}playing=false;clrAp();cancelAnimationFrame(wf);
+        ci=idx;const s=S[idx];
+        pills.forEach((p,i)=>p.classList.toggle('on',i===idx));
+        lbl.innerHTML='<b>Live call</b> &middot; '+s.lbl;
+        tm.textContent=fmt(s.e-s.s);pf.style.width='0%';
+        mkTx(s);ot.className='out';ot.innerHTML='';rstW();
+        pl.classList.remove('on');pi.innerHTML='<polygon points="8,4 20,12 8,20"/>';
+        if(auto)setTimeout(()=>go(),200);
     }
 
-    function play(){
-        const s=scenarios[currentIdx];clearAuto();
-        if(!audio){
-            audio=new Audio(s.url);audio.preload='auto';audio.currentTime=s.startTime;
-            audio.ontimeupdate=function(){
-                const el=audio.currentTime-s.startTime,dur=s.endTime-s.startTime;
-                if(el<0)return;
-                if(audio.currentTime>=s.endTime){audio.pause();isPlaying=false;onEnd();return}
-                progressFill.style.width=Math.min(el/dur*100,100)+'%';
-                cardTime.textContent=fmt(el)+' / '+fmt(dur);updateTranscript(el);
+    function go(){
+        const s=S[ci];clrAp();
+        if(!au){
+            au=new Audio(s.url);au.preload='auto';au.currentTime=s.s;
+            au.ontimeupdate=function(){
+                const el=au.currentTime-s.s,dur=s.e-s.s;if(el<0)return;
+                if(au.currentTime>=s.e){au.pause();playing=false;onEnd();return}
+                pf.style.width=Math.min(el/dur*100,100)+'%';
+                tm.textContent=fmt(el);upTx(el);
             };
         }
-        audio.play();isPlaying=true;
-        playBtn.classList.add('playing');
-        playIcon.innerHTML='<rect x="7" y="5" width="3.5" height="14" rx="1"/><rect x="13.5" y="5" width="3.5" height="14" rx="1"/>';
-        animWave();
+        au.play();playing=true;pl.classList.add('on');
+        pi.innerHTML='<rect x="7" y="5" width="3.5" height="14" rx="1"/><rect x="13.5" y="5" width="3.5" height="14" rx="1"/>';
+        animW();
     }
 
-    function pause(){if(audio)audio.pause();isPlaying=false;playBtn.classList.remove('playing');playIcon.innerHTML='<polygon points="8,4 20,12 8,20"/>';cancelAnimationFrame(waveFrame)}
-    function toggle(){isPlaying?pause():play()}
+    function stop(){if(au)au.pause();playing=false;pl.classList.remove('on');pi.innerHTML='<polygon points="8,4 20,12 8,20"/>';cancelAnimationFrame(wf)}
+    function tog(){playing?stop():go()}
 
     function onEnd(){
-        const s=scenarios[currentIdx];
-        playBtn.classList.remove('playing');playIcon.innerHTML='<polygon points="8,4 20,12 8,20"/>';cancelAnimationFrame(waveFrame);
-        transcriptEl.querySelectorAll('.t-line').forEach(l=>{l.classList.add('visible');l.classList.remove('dim')});
-        outcomeEl.className='outcome '+s.outcome.cls;
-        outcomeEl.innerHTML='<span style="font-size:16px">'+s.outcome.icon+'</span> '+s.outcome.text;
-        setTimeout(()=>outcomeEl.classList.add('visible'),80);progressFill.style.width='100%';
-        startAuto();
+        const s=S[ci];pl.classList.remove('on');pi.innerHTML='<polygon points="8,4 20,12 8,20"/>';cancelAnimationFrame(wf);
+        txn.querySelectorAll('.tl').forEach(l=>{l.classList.add('vis');l.classList.remove('dim')});
+        ot.className='out '+s.out.c;ot.innerHTML='<span>'+s.out.i+'</span> '+s.out.x;
+        setTimeout(()=>ot.classList.add('vis'),60);pf.style.width='100%';
+        startAp();
     }
 
-    const DELAY=3000;
-    function startAuto(){
-        autoplayBar.classList.add('visible');autoplayFillEl.style.transition='none';autoplayFillEl.style.width='0%';
-        requestAnimationFrame(()=>{autoplayFillEl.style.transition='width '+DELAY+'ms linear';autoplayFillEl.style.width='100%'});
-        autoplayTimer=setTimeout(()=>{autoplayBar.classList.remove('visible');loadScenario((currentIdx+1)%scenarios.length,true)},DELAY);
-    }
-    function clearAuto(){clearTimeout(autoplayTimer);autoplayBar.classList.remove('visible');autoplayFillEl.style.width='0%'}
+    const DLY=2500;
+    function startAp(){ap.classList.add('vis');af.style.transition='none';af.style.width='0%';
+        requestAnimationFrame(()=>{af.style.transition='width '+DLY+'ms linear';af.style.width='100%'});
+        atm=setTimeout(()=>{ap.classList.remove('vis');load((ci+1)%S.length,true)},DLY)}
+    function clrAp(){clearTimeout(atm);ap.classList.remove('vis');af.style.width='0%'}
 
-    progressBar.addEventListener('click',e=>{if(!audio)return;const s=scenarios[currentIdx],r=progressBar.getBoundingClientRect();audio.currentTime=s.startTime+Math.max(0,Math.min(1,(e.clientX-r.left)/r.width))*(s.endTime-s.startTime)});
-    waveformEl.addEventListener('click',e=>{if(!audio)play();const s=scenarios[currentIdx],r=waveformEl.getBoundingClientRect();audio.currentTime=s.startTime+Math.max(0,Math.min(1,(e.clientX-r.left)/r.width))*(s.endTime-s.startTime)});
+    prg.addEventListener('click',e=>{if(!au)return;const s=S[ci],r=prg.getBoundingClientRect();au.currentTime=s.s+Math.max(0,Math.min(1,(e.clientX-r.left)/r.width))*(s.e-s.s)});
+    wv.addEventListener('click',e=>{if(!au)go();const s=S[ci],r=wv.getBoundingClientRect();au.currentTime=s.s+Math.max(0,Math.min(1,(e.clientX-r.left)/r.width))*(s.e-s.s)});
 
-    playBtn.addEventListener('click',toggle);
-    pills.forEach(p=>p.addEventListener('click',()=>loadScenario(+p.dataset.idx,true)));
-    $('prevBtn').addEventListener('click',()=>loadScenario((currentIdx-1+scenarios.length)%scenarios.length,true));
-    $('nextBtn').addEventListener('click',()=>loadScenario((currentIdx+1)%scenarios.length,true));
-    document.addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();toggle()}if(e.code==='ArrowRight')$('nextBtn').click();if(e.code==='ArrowLeft')$('prevBtn').click()});
+    pl.addEventListener('click',tog);
+    pills.forEach(p=>p.addEventListener('click',()=>load(+p.dataset.i,true)));
+    $('prv').addEventListener('click',()=>load((ci-1+S.length)%S.length,true));
+    $('nxt').addEventListener('click',()=>load((ci+1)%S.length,true));
+    document.addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();tog()}if(e.code==='ArrowRight')$('nxt').click();if(e.code==='ArrowLeft')$('prv').click()});
 
-    buildWaveform();loadScenario(0,false);
+    // Click gate — browsers block autoplay without user gesture
+    const gate=$('gate');
+    gate.addEventListener('click',()=>{gate.classList.add('gone');go()});
+
+    mkWave();load(0,false);
+    // Show first line as preview
+    setTimeout(()=>{const fl=txn.querySelector('.tl');if(fl)fl.classList.add('vis')},800);
 })();
 </script>
 </body>
