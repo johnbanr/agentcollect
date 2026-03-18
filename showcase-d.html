@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgentCollect — Split-Screen Phone Call</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-snap-type: y mandatory;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+body {
+  background: #080808;
+  color: #fff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100%;
+}
+
+/* Noise texture */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ============ HERO SECTION ============ */
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  scroll-snap-align: start;
+  overflow: hidden;
+}
+
+/* ============ TOP BAR ============ */
+.top-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 28px;
+}
+
+.logo {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 900;
+  font-size: 18px;
+  color: #fff;
+  opacity: 0.2;
+  letter-spacing: -0.02em;
+  user-select: none;
+}
+
+.logo-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #4F46E5;
+  border-radius: 50%;
+  margin-left: 1px;
+  vertical-align: super;
+  position: relative;
+  top: -4px;
+}
+
+.pill-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 100px;
+  padding: 6px 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.02em;
+}
+
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  background: #10B981;
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(16,185,129,0.4); }
+  50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+}
+
+.play-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.04);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.play-btn:hover {
+  border-color: rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.08);
+}
+
+.play-btn svg {
+  width: 14px;
+  height: 14px;
+  fill: #fff;
+}
+
+/* ============ SPLIT SCREEN ============ */
+.split-container {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+}
+
+.half {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px 120px;
+  transition: opacity 0.3s ease;
+}
+
+.half.dimmed {
+  opacity: 0.3;
+}
+
+.half-debtor {
+  background: #080808;
+}
+
+.half-agent {
+  background: #0a0a14;
+}
+
+/* Ambient orbs */
+.half-debtor::before {
+  content: '';
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255,255,255,0.10) 0%, transparent 70%);
+  filter: blur(150px);
+  pointer-events: none;
+}
+
+.half-agent::before {
+  content: '';
+  position: absolute;
+  top: 40%;
+  right: 20%;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%);
+  filter: blur(150px);
+  pointer-events: none;
+}
+
+/* Divider line */
+.divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: rgba(255,255,255,0.06);
+  z-index: 50;
+}
+
+.divider::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  left: -6px;
+  width: 13px;
+  transition: background 0.3s ease;
+  pointer-events: none;
+}
+
+.divider.glow-left::before {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent);
+}
+
+.divider.glow-right::before {
+  background: linear-gradient(90deg, transparent, rgba(99,102,241,0.06), transparent);
+}
+
+/* Speaker labels */
+.speaker-label {
+  position: absolute;
+  top: 80px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+
+.speaker-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+.half-debtor .speaker-dot {
+  background: #fff;
+}
+
+.half-agent .speaker-dot {
+  background: #818cf8;
+}
+
+.half-agent .speaker-label {
+  color: rgba(129,140,248,0.5);
+}
+
+.robot-icon {
+  font-size: 13px;
+  opacity: 0.6;
+}
+
+/* Words display */
+.words-display {
+  text-align: center;
+  max-width: 90%;
+  position: relative;
+  z-index: 10;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.word {
+  display: inline-block;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 900;
+  font-size: clamp(28px, 5vw, 72px);
+  line-height: 1.15;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  margin-right: 0.25em;
+}
+
+.word.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.half-debtor .word {
+  color: #fff;
+}
+
+.half-agent .word {
+  color: #818cf8;
+}
+
+/* Outcome badge */
+.outcome-badge {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 200;
+  background: rgba(15,15,20,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 20px 36px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.outcome-badge.visible {
+  opacity: 1;
+}
+
+.outcome-badge .badge-icon {
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+
+.outcome-badge .badge-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #10B981;
+  letter-spacing: -0.01em;
+}
+
+.outcome-badge .badge-sub {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  margin-top: 4px;
+}
+
+/* ============ BOTTOM CONTROLS ============ */
+.bottom-bar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  gap: 8px;
+}
+
+.scene-tab {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 100px;
+  padding: 8px 18px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.35);
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.scene-tab:hover {
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.6);
+}
+
+.scene-tab.active {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.15);
+  color: #fff;
+}
+
+.scene-tab .tab-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  opacity: 0.5;
+  margin-right: 6px;
+}
+
+/* ============ BUILD YOURS SECTION ============ */
+.build-section {
+  scroll-snap-align: start;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+  background: #060608;
+  position: relative;
+}
+
+.build-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(79,70,229,0.06) 0%, transparent 70%);
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+.build-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 900;
+  font-size: clamp(40px, 8vw, 80px);
+  color: #fff;
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.build-title-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: #4F46E5;
+  border-radius: 50%;
+  margin-left: 2px;
+  vertical-align: super;
+  position: relative;
+  top: -8px;
+}
+
+.build-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 48px;
+  text-align: center;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 6px 6px 6px 24px;
+  width: min(560px, 90vw);
+  gap: 12px;
+  transition: border-color 0.2s;
+}
+
+.search-bar:focus-within {
+  border-color: rgba(79,70,229,0.4);
+}
+
+.search-input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: #fff;
+}
+
+.search-input::placeholder {
+  color: rgba(255,255,255,0.25);
+}
+
+.search-btn {
+  background: #4F46E5;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 24px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.search-btn:hover {
+  background: #4338CA;
+}
+
+/* Trust logos */
+.trust-logos {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-top: 64px;
+  opacity: 0.3;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.trust-logos img {
+  height: 24px;
+  filter: brightness(0) invert(1);
+  opacity: 0.6;
+}
+
+/* ============ AUDIO ============ */
+audio {
+  display: none;
+}
+
+/* ============ MOBILE ============ */
+@media (max-width: 768px) {
+  .split-container {
+    flex-direction: column;
+  }
+
+  .half {
+    padding: 60px 24px 60px;
+  }
+
+  .divider {
+    left: 0;
+    right: 0;
+    top: 50%;
+    bottom: auto;
+    width: 100%;
+    height: 1px;
+  }
+
+  .divider::before {
+    left: 0;
+    right: 0;
+    top: -6px;
+    bottom: auto;
+    width: 100%;
+    height: 13px;
+  }
+
+  .speaker-label {
+    top: 56px;
+  }
+
+  .word {
+    font-size: clamp(22px, 6vw, 40px);
+  }
+
+  .top-bar {
+    padding: 14px 16px;
+  }
+
+  .pill-badge {
+    font-size: 10px;
+    padding: 4px 12px;
+  }
+
+  .logo {
+    font-size: 15px;
+  }
+
+  .bottom-bar {
+    flex-wrap: wrap;
+    padding: 16px;
+    gap: 6px;
+  }
+
+  .scene-tab {
+    font-size: 12px;
+    padding: 6px 14px;
+  }
+
+  .outcome-badge {
+    white-space: normal;
+    max-width: 85vw;
+    padding: 16px 24px;
+  }
+
+  .trust-logos {
+    gap: 24px;
+  }
+
+  .trust-logos img {
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pill-badge span:not(.pulse-dot) {
+    display: none;
+  }
+
+  .pill-badge::after {
+    content: 'Live';
+    font-size: 10px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="logo">AgentCollect<span class="logo-dot"></span></div>
+    <div class="pill-badge">
+      <span class="pulse-dot"></span>
+      <span>Real AI call — live transcript</span>
+    </div>
+    <button class="play-btn" id="playBtn" aria-label="Play audio">
+      <svg viewBox="0 0 24 24" id="playIcon"><polygon points="8,5 19,12 8,19"/></svg>
+    </button>
+  </div>
+
+  <!-- Split Panels -->
+  <div class="split-container">
+    <div class="half half-debtor dimmed" id="debtorHalf">
+      <div class="speaker-label"><span class="speaker-dot"></span> DEBTOR</div>
+      <div class="words-display" id="debtorWords"></div>
+    </div>
+    <div class="divider" id="divider"></div>
+    <div class="half half-agent dimmed" id="agentHalf">
+      <div class="speaker-label"><span class="speaker-dot"></span> AI AGENT <span class="robot-icon">&#x1F916;</span></div>
+      <div class="words-display" id="agentWords"></div>
+    </div>
+  </div>
+
+  <!-- Outcome Badge -->
+  <div class="outcome-badge" id="outcomeBadge">
+    <div class="badge-icon" id="badgeIcon"></div>
+    <div class="badge-text" id="badgeText"></div>
+    <div class="badge-sub" id="badgeSub"></div>
+  </div>
+
+  <!-- Bottom Tabs -->
+  <div class="bottom-bar">
+    <button class="scene-tab active" data-scene="0"><span class="tab-num">1</span>Objection handled</button>
+    <button class="scene-tab" data-scene="1"><span class="tab-num">2</span>Contact collected</button>
+    <button class="scene-tab" data-scene="2"><span class="tab-num">3</span>Paid on call</button>
+  </div>
+
+</section>
+
+<!-- ============ BUILD YOURS ============ -->
+<section class="build-section" id="buildSection">
+  <h2 class="build-title">Build yours<span class="build-title-dot"></span></h2>
+  <p class="build-subtitle">Deploy an AI collection agent trained on your brand, in minutes.</p>
+  <div class="search-bar">
+    <input class="search-input" type="text" placeholder="yourcompany.com" />
+    <button class="search-btn">Build my agent</button>
+  </div>
+  <div class="trust-logos">
+    <img src="https://cdn.brandfetch.io/microsoft.com/w/512/h/80/logo" alt="Microsoft">
+    <img src="https://cdn.brandfetch.io/dell.com/w/512/h/80/logo" alt="Dell">
+    <img src="https://cdn.brandfetch.io/plaid.com/w/512/h/80/logo" alt="Plaid">
+    <img src="https://cdn.brandfetch.io/checkr.com/w/512/h/80/logo" alt="Checkr">
+    <img src="https://cdn.brandfetch.io/doordash.com/w/512/h/80/logo" alt="DoorDash">
+  </div>
+</section>
+
+<!-- ============ AUDIO ELEMENTS ============ -->
+<audio id="audio0" preload="none" src="https://dxc03zgurdly9.cloudfront.net/075961824e83d68a634b91afb75f59fba97b1b2951c58dc43ec9a5e3bc58b806/recording.wav"></audio>
+<audio id="audio1" preload="none" src="https://dxc03zgurdly9.cloudfront.net/00d79b2208aee99e88fb7a0033974bba3140f3b905b388429b22133e4694c670/recording.wav"></audio>
+<audio id="audio2" preload="none" src="https://dxc03zgurdly9.cloudfront.net/10b4ec959b4a004a6bf47dcfa2da0a213c7ce231590e295d9c60faffde486685/recording.wav"></audio>
+
+<script>
+(function() {
+  'use strict';
+
+  // ============ SCENE DATA ============
+  const scenes = [
+    {
+      audioId: 'audio0',
+      audioStart: 30,
+      beats: [
+        { delay: 500,   side: 'debtor', text: 'I guess I do have questions about it.' },
+        { delay: 2700,  side: 'debtor', text: 'What are we getting charged for exactly?' },
+        { delay: 5000,  side: 'clear' },
+        { delay: 5800,  side: 'agent',  text: 'Twenty-nine ninety-nine.' },
+        { delay: 7500,  side: 'agent',  text: 'Background check from Client.' },
+        { delay: 10000, side: 'outcome', icon: '\u2705', text: 'Objection handled.', sub: 'Directed to portal.' }
+      ]
+    },
+    {
+      audioId: 'audio1',
+      audioStart: 56,
+      beats: [
+        { delay: 200,   side: 'debtor', text: "I don\u2019t deal with that." },
+        { delay: 1800,  side: 'debtor', text: "You\u2019d wanna call accounts payable." },
+        { delay: 5000,  side: 'clear' },
+        { delay: 6000,  side: 'agent',  text: 'Could you provide the name or contact info for AP?' },
+        { delay: 9500,  side: 'outcome', icon: '\uD83D\uDCCB', text: 'AP contact collected.', sub: 'Phone + email.' }
+      ]
+    },
+    {
+      audioId: 'audio2',
+      audioStart: 50,
+      beats: [
+        { delay: 1800,  side: 'debtor', text: "I\u2019m paying it today. I have it coming in." },
+        { delay: 5700,  side: 'debtor', text: "I, again, am so sorry." },
+        { delay: 8500,  side: 'clear' },
+        { delay: 9000,  side: 'debtor', text: "It is being paid, honestly. I\u2019m in front of my computer putting it in right now." },
+        { delay: 13000, side: 'outcome', icon: '\uD83D\uDCB0', text: 'Paid during the call.', sub: '$0 manual work.' }
+      ]
+    }
+  ];
+
+  // ============ DOM REFS ============
+  const debtorHalf = document.getElementById('debtorHalf');
+  const agentHalf = document.getElementById('agentHalf');
+  const debtorWords = document.getElementById('debtorWords');
+  const agentWords = document.getElementById('agentWords');
+  const divider = document.getElementById('divider');
+  const outcomeBadge = document.getElementById('outcomeBadge');
+  const badgeIcon = document.getElementById('badgeIcon');
+  const badgeText = document.getElementById('badgeText');
+  const badgeSub = document.getElementById('badgeSub');
+  const playBtn = document.getElementById('playBtn');
+  const playIcon = document.getElementById('playIcon');
+  const sceneTabs = document.querySelectorAll('.scene-tab');
+
+  let currentScene = 0;
+  let beatTimers = [];
+  let audioPlaying = false;
+  let userWantsAudio = false;
+  let currentAudio = null;
+  let autoAdvanceTimer = null;
+
+  // ============ AUDIO CONTROL ============
+  playBtn.addEventListener('click', function() {
+    userWantsAudio = !userWantsAudio;
+    if (userWantsAudio) {
+      playIcon.innerHTML = '<rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/>';
+      startScene(currentScene);
+    } else {
+      playIcon.innerHTML = '<polygon points="8,5 19,12 8,19"/>';
+      if (currentAudio) {
+        currentAudio.pause();
+        audioPlaying = false;
+      }
+    }
+  });
+
+  // ============ SCENE TABS ============
+  sceneTabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      var idx = parseInt(this.dataset.scene);
+      startScene(idx);
+    });
+  });
+
+  // ============ WORD REVEAL ============
+  function revealWords(container, text, stagger) {
+    stagger = stagger || 80;
+    var words = text.split(' ');
+    // Don't clear — append to existing words
+    words.forEach(function(w, i) {
+      var span = document.createElement('span');
+      span.className = 'word';
+      span.textContent = w;
+      container.appendChild(span);
+      var t = setTimeout(function() {
+        span.classList.add('visible');
+      }, i * stagger);
+      beatTimers.push(t);
+    });
+  }
+
+  // ============ CLEAR SIDES ============
+  function clearSides() {
+    debtorWords.innerHTML = '';
+    agentWords.innerHTML = '';
+  }
+
+  // ============ SET ACTIVE SIDE ============
+  function setActiveSide(side) {
+    if (side === 'debtor') {
+      debtorHalf.classList.remove('dimmed');
+      agentHalf.classList.add('dimmed');
+      divider.className = 'divider glow-left';
+    } else if (side === 'agent') {
+      agentHalf.classList.remove('dimmed');
+      debtorHalf.classList.add('dimmed');
+      divider.className = 'divider glow-right';
+    } else {
+      debtorHalf.classList.add('dimmed');
+      agentHalf.classList.add('dimmed');
+      divider.className = 'divider';
+    }
+  }
+
+  // ============ SHOW OUTCOME ============
+  function showOutcome(icon, text, sub) {
+    setActiveSide('none');
+    clearSides();
+    badgeIcon.textContent = icon;
+    badgeText.textContent = text;
+    badgeSub.textContent = sub;
+    outcomeBadge.classList.add('visible');
+  }
+
+  // ============ HIDE OUTCOME ============
+  function hideOutcome() {
+    outcomeBadge.classList.remove('visible');
+  }
+
+  // ============ STOP CURRENT ============
+  function stopCurrent() {
+    beatTimers.forEach(clearTimeout);
+    beatTimers = [];
+    if (autoAdvanceTimer) {
+      clearTimeout(autoAdvanceTimer);
+      autoAdvanceTimer = null;
+    }
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+      audioPlaying = false;
+    }
+    clearSides();
+    hideOutcome();
+    setActiveSide('none');
+  }
+
+  // ============ START SCENE ============
+  function startScene(idx) {
+    stopCurrent();
+    currentScene = idx;
+
+    // Update tabs
+    sceneTabs.forEach(function(t, i) {
+      t.classList.toggle('active', i === idx);
+    });
+
+    var scene = scenes[idx];
+    var audioEl = document.getElementById(scene.audioId);
+    currentAudio = audioEl;
+
+    // Schedule beats
+    function scheduleBeats() {
+      scene.beats.forEach(function(beat) {
+        var t = setTimeout(function() {
+          if (beat.side === 'clear') {
+            clearSides();
+            setActiveSide('none');
+          } else if (beat.side === 'outcome') {
+            showOutcome(beat.icon, beat.text, beat.sub);
+            // Auto-advance after 3s
+            autoAdvanceTimer = setTimeout(function() {
+              var next = currentScene + 1;
+              if (next < scenes.length) {
+                startScene(next);
+              } else {
+                // Scroll to build section
+                document.getElementById('buildSection').scrollIntoView({ behavior: 'smooth' });
+              }
+            }, 3000);
+          } else {
+            // debtor or agent
+            var container = beat.side === 'debtor' ? debtorWords : agentWords;
+            setActiveSide(beat.side);
+            revealWords(container, beat.text);
+          }
+        }, beat.delay);
+        beatTimers.push(t);
+      });
+    }
+
+    if (userWantsAudio) {
+      audioEl.currentTime = scene.audioStart;
+      var playPromise = audioEl.play();
+      if (playPromise !== undefined) {
+        playPromise.then(function() {
+          audioPlaying = true;
+          scheduleBeats();
+        }).catch(function() {
+          audioPlaying = false;
+          scheduleBeats();
+        });
+      } else {
+        scheduleBeats();
+      }
+    } else {
+      scheduleBeats();
+    }
+  }
+
+  // ============ INIT ============
+  startScene(0);
+
+})();
+</script>
+</body>
+</html>
