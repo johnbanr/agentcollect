@@ -214,6 +214,7 @@ a.review-src:hover{color:var(--blue)}
   .proof-strip{flex-direction:column;align-items:center}
   .proof-card{width:100%;max-width:240px}
 }
+.logo-fallback{display:none;font-size:22px;font-weight:800;color:var(--text);letter-spacing:-0.5px}
 </style>
 </head>
 <body>
@@ -233,14 +234,14 @@ a.review-src:hover{color:var(--blue)}
 <section class="hero">
   <div class="rv">
     <div class="hero-label">THE PROBLEM</div>
-    <img src="https://cdn.brandfetch.io/konicaminolta.com/w/512/h/80/logo" alt="Konica Minolta" class="hero-km">
+    <img src="https://cdn.brandfetch.io/konicaminolta.com/w/512/h/80/logo" alt="Konica Minolta" class="hero-km" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='block')"><span class="logo-fallback" style="display:none;font-size:22px;font-weight:800;color:var(--text)">Konica Minolta</span>
     <h1>DLL Finance collects your past-due accounts under your name. With a <span class="red">2.1-star rating.</span></h1>
     <p class="hero-sub">Every call they make is branded as Konica Minolta. Every complaint is your brand risk. Here's what your customers say.</p>
   </div>
 
   <div class="proof-strip rv rv-d1">
     <a href="https://www.bbb.org/us/ia/johnston/profile/financing/dll-finance-llc-0664-32006959/customer-reviews" target="_blank" rel="noopener" class="proof-card">
-      <img src="https://cdn.brandfetch.io/bbb.org/w/200/h/40/logo" alt="BBB">
+      <img src="https://cdn.brandfetch.io/bbb.org/w/200/h/40/logo" alt="BBB" onerror="this.style.opacity='0.3';this.title=this.alt">
       <div class="proof-num">2.1</div>
       <div class="proof-label">Rating (20 reviews)</div>
     </a>
@@ -410,10 +411,10 @@ a.review-src:hover{color:var(--blue)}
     <p class="timeline-note">Both options: Reg F compliant. CEO relationships protected. Every call recorded.</p>
     <div class="trusted-bar">
       <span class="trusted-label">Trusted by</span>
-      <img src="https://cdn.brandfetch.io/microsoft.com/w/512/h/80/logo" alt="Microsoft" class="trusted-logo">
-      <img src="https://cdn.brandfetch.io/dell.com/w/512/h/80/logo" alt="Dell" class="trusted-logo">
-      <img src="https://cdn.brandfetch.io/plaid.com/w/512/h/80/logo" alt="Plaid" class="trusted-logo">
-      <img src="https://cdn.brandfetch.io/checkr.com/w/512/h/80/logo" alt="Checkr" class="trusted-logo">
+      <img src="https://cdn.brandfetch.io/microsoft.com/w/512/h/80/logo" alt="Microsoft" class="trusted-logo" onerror="this.style.opacity='0.3';this.title=this.alt">
+      <img src="https://cdn.brandfetch.io/dell.com/w/512/h/80/logo" alt="Dell" class="trusted-logo" onerror="this.style.opacity='0.3';this.title=this.alt">
+      <img src="https://cdn.brandfetch.io/plaid.com/w/512/h/80/logo" alt="Plaid" class="trusted-logo" onerror="this.style.opacity='0.3';this.title=this.alt">
+      <img src="https://cdn.brandfetch.io/checkr.com/w/512/h/80/logo" alt="Checkr" class="trusted-logo" onerror="this.style.opacity='0.3';this.title=this.alt">
     </div>
   </div>
 </section>

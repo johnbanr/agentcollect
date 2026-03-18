@@ -215,6 +215,7 @@ a.review-src:hover{color:var(--blue)}
   .proof-strip{flex-direction:column;align-items:center}
   .proof-card{width:100%;max-width:240px}
 }
+.logo-fallback{display:none;font-size:22px;font-weight:800;color:var(--text);letter-spacing:-0.5px}
 </style>
 </head>
 <body>
@@ -234,7 +235,7 @@ a.review-src:hover{color:var(--blue)}
 <section class="hero">
   <div class="rv">
     <div class="hero-label">THE PROBLEM</div>
-    <img src="https://cdn.brandfetch.io/remitly.com/w/512/h/80/logo" alt="Remitly" class="hero-km">
+    <img src="https://cdn.brandfetch.io/remitly.com/w/512/h/80/logo" alt="Remitly" class="hero-km" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='block')"><span class="logo-fallback" style="display:none;font-size:22px;font-weight:800;color:var(--text)">Remitly</span>
     <h1>Remitly has <span class="red">200+ CFPB complaints</span> in 12 months. Most are about frozen funds and zero recourse.</h1>
     <p class="hero-sub">Every unresolved chargeback is a lost customer and a lost transaction. Here's what users say when they can't get their money back.</p>
   </div>
@@ -245,7 +246,7 @@ a.review-src:hover{color:var(--blue)}
       <div class="proof-label">Rating on ComplaintsBoard</div>
     </a>
     <a href="https://www.bbb.org/us/wa/seattle/profile/money-transfers/remitly-1296-22713804/complaints" target="_blank" rel="noopener" class="proof-card">
-      <img src="https://cdn.brandfetch.io/bbb.org/w/200/h/40/logo" alt="BBB">
+      <img src="https://cdn.brandfetch.io/bbb.org/w/200/h/40/logo" alt="BBB" onerror="this.style.opacity='0.3';this.title=this.alt">
       <div class="proof-num proof-num-sm">200+</div>
       <div class="proof-label">CFPB complaints filed</div>
     </a>
@@ -406,10 +407,10 @@ a.review-src:hover{color:var(--blue)}
     <p class="timeline-note">Both options: Reg F compliant. CEO relationships protected. Every call recorded.</p>
     <div class="trusted-bar">
       <span class="trusted-label">Trusted by</span>
-      <img src="https://cdn.brandfetch.io/microsoft.com/w/512/h/80/logo" alt="Microsoft" class="trusted-logo">
-      <img src="https://cdn.brandfetch.io/dell.com/w/512/h/80/logo" alt="Dell" class="trusted-logo">
-      <img src="https://cdn.brandfetch.io/plaid.com/w/512/h/80/logo" alt="Plaid" class="trusted-logo">
-      <img src="https://cdn.brandfetch.io/checkr.com/w/512/h/80/logo" alt="Checkr" class="trusted-logo">
+      <img src="https://cdn.brandfetch.io/microsoft.com/w/512/h/80/logo" alt="Microsoft" class="trusted-logo" onerror="this.style.opacity='0.3';this.title=this.alt">
+      <img src="https://cdn.brandfetch.io/dell.com/w/512/h/80/logo" alt="Dell" class="trusted-logo" onerror="this.style.opacity='0.3';this.title=this.alt">
+      <img src="https://cdn.brandfetch.io/plaid.com/w/512/h/80/logo" alt="Plaid" class="trusted-logo" onerror="this.style.opacity='0.3';this.title=this.alt">
+      <img src="https://cdn.brandfetch.io/checkr.com/w/512/h/80/logo" alt="Checkr" class="trusted-logo" onerror="this.style.opacity='0.3';this.title=this.alt">
     </div>
   </div>
 </section>
