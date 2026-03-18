@@ -51,7 +51,7 @@
 
         /* TEXT LINE */
         .line{text-align:center;max-width:1100px;width:100%;opacity:0;transform:translateY(25px);
-            transition:all .6s cubic-bezier(.16,1,.3,1);margin:6px 0}
+            transition:all .5s cubic-bezier(.16,1,.3,1);margin:6px 0}
         .line.show{opacity:1;transform:translateY(0)}
 
         /* SPEAKER TAG */
@@ -77,8 +77,9 @@
         .words.lg{font-size:clamp(34px,5.5vw,80px)}
         .words.md{font-size:clamp(24px,4vw,56px)}
 
-        /* Word-by-word reveal */
-        .w{opacity:0;transform:translateY(12px) scale(.95);display:inline-block;transition:all .25s cubic-bezier(.16,1,.3,1)}
+        /* Word-by-word reveal — punchy */
+        .w{opacity:0;transform:translateY(18px) scale(.88);display:inline-block;
+            transition:all .18s cubic-bezier(.22,1,.36,1)}
         .w.in{opacity:1;transform:translateY(0) scale(1)}
 
         /* Human text — raw, white, bold */
@@ -111,19 +112,32 @@
             opacity:0;animation:hook-in .8s .8s forwards}
         @keyframes hook-in{to{opacity:1}}
 
-        /* DOTS */
-        .dots{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:100;display:flex;gap:5px}
-        .dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.1);transition:all .3s;cursor:pointer}
-        .dot.active{background:var(--ai);width:18px;border-radius:3px}
+        /* ═══ SCENE NAV — visible, labeled tabs ═══ */
+        .scene-nav{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);z-index:100;display:flex;gap:6px;
+            background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:4px;
+            backdrop-filter:blur(20px);opacity:0;animation:hook-in .6s 1s forwards}
+        .scene-tab{padding:8px 16px;border-radius:8px;font-size:12px;font-weight:600;color:rgba(255,255,255,.3);
+            cursor:pointer;transition:all .25s;font-family:var(--sans);white-space:nowrap;border:none;background:none}
+        .scene-tab:hover{color:rgba(255,255,255,.5);background:rgba(255,255,255,.04)}
+        .scene-tab.active{color:var(--ai);background:rgba(129,140,248,.08)}
+        .scene-tab .tab-num{font-family:var(--mono);font-size:10px;opacity:.4;margin-right:4px}
 
-        /* AUDIO BTN */
-        .audio-btn{position:fixed;bottom:24px;right:24px;z-index:100;padding:7px 16px;border-radius:100px;
-            border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);backdrop-filter:blur(20px);
-            color:rgba(255,255,255,.25);font-size:11px;font-weight:600;cursor:pointer;font-family:var(--sans);
-            transition:all .3s;display:flex;align-items:center;gap:5px}
-        .audio-btn:hover{border-color:rgba(255,255,255,.12);color:rgba(255,255,255,.4)}
-        .audio-btn.on{border-color:rgba(129,140,248,.2);color:var(--ai);background:rgba(129,140,248,.03)}
-        .audio-btn svg{width:12px;height:12px;fill:currentColor}
+        /* ═══ AUDIO — prominent, pulsing ═══ */
+        .audio-cta{position:fixed;top:24px;right:24px;z-index:100;padding:10px 20px;border-radius:100px;
+            border:1px solid rgba(129,140,248,.15);background:rgba(129,140,248,.05);backdrop-filter:blur(20px);
+            color:var(--ai);font-size:12px;font-weight:600;cursor:pointer;font-family:var(--sans);
+            transition:all .3s;display:flex;align-items:center;gap:8px;animation:audio-glow 3s ease-in-out infinite}
+        .audio-cta:hover{border-color:rgba(129,140,248,.3);background:rgba(129,140,248,.1);transform:scale(1.03)}
+        .audio-cta.on{border-color:rgba(52,211,153,.2);background:rgba(52,211,153,.06);color:var(--green);animation:none}
+        .audio-cta svg{width:16px;height:16px;fill:currentColor}
+        .audio-cta .eq{display:flex;align-items:flex-end;gap:2px;height:14px}
+        .audio-cta .eq-bar{width:3px;background:var(--green);border-radius:2px;animation:eq 1s ease-in-out infinite}
+        .audio-cta .eq-bar:nth-child(1){height:6px;animation-delay:0s}
+        .audio-cta .eq-bar:nth-child(2){height:10px;animation-delay:.15s}
+        .audio-cta .eq-bar:nth-child(3){height:4px;animation-delay:.3s}
+        .audio-cta .eq-bar:nth-child(4){height:8px;animation-delay:.1s}
+        @keyframes eq{0%,100%{height:4px}50%{height:14px}}
+        @keyframes audio-glow{0%,100%{box-shadow:0 0 0 0 rgba(129,140,248,0)}50%{box-shadow:0 0 20px 4px rgba(129,140,248,.08)}}
 
         /* ═══ SEARCH SECTION ═══ */
         .search-section{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 24px;
@@ -151,7 +165,7 @@
         .trust img:hover{opacity:.3}
 
         /* Scroll indicator */
-        .scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:10;
+        .scroll-hint{position:absolute;bottom:80px;left:50%;transform:translateX(-50%);z-index:10;
             display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0;animation:hook-in 1s 4s forwards}
         .scroll-hint span{font-size:9px;color:rgba(255,255,255,.15);font-weight:600;letter-spacing:.1em;text-transform:uppercase}
         .scroll-arrow{width:16px;height:16px;border-right:1.5px solid rgba(255,255,255,.12);border-bottom:1.5px solid rgba(255,255,255,.12);
@@ -161,13 +175,14 @@
         /* ═══ RESPONSIVE ═══ */
         @media(max-width:640px){
             .scene{padding:0 20px}
-            .audio-btn{bottom:auto;top:24px;right:14px;padding:5px 12px;font-size:10px}
+            .audio-cta{top:auto;bottom:70px;right:50%;transform:translateX(50%);padding:8px 16px;font-size:11px}
             .logo{top:26px;left:16px;transform:none}
-            .dots{bottom:16px}
+            .scene-nav{bottom:16px;gap:3px;padding:3px}
+            .scene-tab{padding:6px 10px;font-size:10px}
             .search-bar{flex-direction:column}
             .search-bar input{width:100%;text-align:center}
             .search-bar button{width:calc(100% - 10px);margin:0 5px 5px}
-            .scroll-hint{bottom:48px}
+            .scroll-hint{bottom:120px}
         }
     </style>
 </head>
@@ -175,12 +190,14 @@
 
 <a href="/" class="logo">AgentCollect<span class="d"></span></a>
 
-<button class="audio-btn" id="audioBtn">
+<!-- Audio — prominent, can't miss it -->
+<button class="audio-cta" id="audioBtn">
     <svg viewBox="0 0 24 24"><path d="M16.5 12A4.5 4.5 0 0014 8.5v7a4.49 4.49 0 002.5-3.5zM14 3.23v2.06a6.51 6.51 0 010 13.42v2.06A8.51 8.51 0 0014 3.23zM3 9v6h4l5 5V4L7 9H3z"/></svg>
-    <span id="audioLabel">Audio</span>
+    <span id="audioLabel">Listen to the real call</span>
 </button>
 
-<div class="dots" id="dots"></div>
+<!-- Scene navigation — labeled tabs -->
+<div class="scene-nav" id="sceneNav"></div>
 
 <!-- ═══ HERO ═══ -->
 <section class="hero" id="hero">
@@ -212,11 +229,11 @@
 <script>
 (function(){
     // ═══ SCENES ═══
-    // Hook scene (no audio) + 3 conversation scenes
     const scenes = [
         // HOOK — the intrigue
         {
             audio: null,
+            navLabel: 'Intro',
             beats: [
                 { delay: 0, html: '<div class="hook">One of them<br><em>isn\'t human.</em></div>' },
                 { delay: 1200, html: '<div class="hook-sub">Three real calls. Three real outcomes. Guess which voice is AI.</div>' },
@@ -227,6 +244,7 @@
         {
             audio: 'https://dxc03zgurdly9.cloudfront.net/075961824e83d68a634b91afb75f59fba97b1b2951c58dc43ec9a5e3bc58b806/recording.wav',
             audioStart: 8,
+            navLabel: 'Objection handled',
             beats: [
                 { delay: 0, speaker: 'human', name: 'Khalil', text: '"What are we getting', size: 'lg', style: 'human' },
                 { delay: 500, text: 'charged for exactly?"', size: 'xxl', style: 'human hot' },
@@ -248,6 +266,7 @@
         {
             audio: 'https://dxc03zgurdly9.cloudfront.net/00d79b2208aee99e88fb7a0033974bba3140f3b905b388429b22133e4694c670/recording.wav',
             audioStart: 56,
+            navLabel: 'Contact collected',
             beats: [
                 { delay: 0, speaker: 'human', name: 'Employee', text: '"I don\'t deal', size: 'xl', style: 'human' },
                 { delay: 400, text: 'with that."', size: 'xxl', style: 'human hot' },
@@ -269,6 +288,7 @@
         {
             audio: 'https://dxc03zgurdly9.cloudfront.net/10b4ec959b4a004a6bf47dcfa2da0a213c7ce231590e295d9c60faffde486685/recording.wav',
             audioStart: 35,
+            navLabel: 'Paid on call',
             beats: [
                 { delay: 0, speaker: 'human', name: 'Rachel', text: '"I\'m paying it', size: 'xl', style: 'human' },
                 { delay: 400, text: 'right now!"', size: 'xxl', style: 'human hot' },
@@ -288,25 +308,30 @@
 
     let ci = 0, timers = [], audioEl = null, audioOn = false;
     const stage = document.getElementById('stage');
-    const dotsEl = document.getElementById('dots');
+    const navEl = document.getElementById('sceneNav');
     const audioBtn = document.getElementById('audioBtn');
     const audioLabel = document.getElementById('audioLabel');
 
-    // Build dots (skip hook scene)
-    scenes.forEach((_, i) => {
-        const d = document.createElement('div');
-        d.className = 'dot' + (i === 0 ? ' active' : '');
-        d.addEventListener('click', () => playScene(i));
-        dotsEl.appendChild(d);
+    // Build scene navigation tabs
+    scenes.forEach((s, i) => {
+        const tab = document.createElement('button');
+        tab.className = 'scene-tab' + (i === 0 ? ' active' : '');
+        tab.innerHTML = '<span class="tab-num">' + (i + 1) + '</span>' + s.navLabel;
+        tab.addEventListener('click', () => playScene(i));
+        navEl.appendChild(tab);
     });
 
     // Audio toggle
     audioBtn.addEventListener('click', () => {
         audioOn = !audioOn;
         audioBtn.classList.toggle('on', audioOn);
-        audioLabel.textContent = audioOn ? 'On' : 'Audio';
-        if (audioOn) playScene(ci);
-        if (!audioOn && audioEl) { audioEl.pause(); audioEl = null; }
+        if (audioOn) {
+            audioLabel.innerHTML = '<span class="eq"><span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span></span> Playing';
+            playScene(ci);
+        } else {
+            audioLabel.textContent = 'Listen to the real call';
+            if (audioEl) { audioEl.pause(); audioEl = null; }
+        }
     });
 
     function makeTag(speaker, name) {
@@ -321,7 +346,7 @@
         if (audioEl) { audioEl.pause(); audioEl = null; }
         ci = idx;
         const scene = scenes[idx];
-        dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+        navEl.querySelectorAll('.scene-tab').forEach((t, i) => t.classList.toggle('active', i === idx));
 
         // Hide scroll hint after hook
         if (idx > 0) document.getElementById('scrollHint').style.display = 'none';
@@ -376,9 +401,9 @@
                 container.appendChild(line);
                 requestAnimationFrame(() => {
                     line.classList.add('show');
-                    // Stagger each word with 100ms delay
+                    // Stagger each word — 80ms between, punchy pop-in
                     line.querySelectorAll('.w').forEach((wEl, wi) => {
-                        const wt = setTimeout(() => wEl.classList.add('in'), wi * 100);
+                        const wt = setTimeout(() => wEl.classList.add('in'), wi * 80);
                         timers.push(wt);
                     });
                 });
