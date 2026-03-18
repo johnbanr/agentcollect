@@ -52,6 +52,7 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',syst
 /* ===== SECTION 1: THE PROBLEM ===== */
 .hero{padding:160px 32px 120px;text-align:center;max-width:1080px;margin:0 auto}
 .hero-km{height:28px;opacity:.6;margin-bottom:32px}
+.hero-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:20px}
 .hero h1{font-size:clamp(38px,5vw,60px);font-weight:900;letter-spacing:-.03em;line-height:1.08;max-width:800px;margin:0 auto}
 .hero h1 .red{color:var(--red)}
 .hero-sub{font-size:18px;color:var(--muted);margin-top:20px;line-height:1.65;max-width:560px;margin-left:auto;margin-right:auto}
@@ -232,29 +233,31 @@ a.review-src:hover{color:var(--blue)}
 <!-- SECTION 1: THE PROBLEM -->
 <section class="hero">
   <div class="rv">
+    <div class="hero-label">THE PROBLEM</div>
     <img src="https://cdn.brandfetch.io/remitly.com/w/512/h/80/logo" alt="Remitly" class="hero-km">
-    <h1>Your chargeback process is <span class="red">costing</span> you more than the disputed amount.</h1>
-    <p class="hero-sub">Every unresolved dispute is a lost customer AND a lost transaction.</p>
+    <h1>Remitly has <span class="red">200+ CFPB complaints</span> in 12 months. Most are about frozen funds and zero recourse.</h1>
+    <p class="hero-sub">Every unresolved chargeback is a lost customer and a lost transaction. Here's what users say when they can't get their money back.</p>
   </div>
 
   <div class="proof-strip rv rv-d1">
     <a href="https://www.complaintsboard.com/remitly-b355070.html" target="_blank" rel="noopener" class="proof-card">
       <div class="proof-num">2.2</div>
-      <div class="proof-label">Complaints on record</div>
+      <div class="proof-label">Rating on ComplaintsBoard</div>
     </a>
     <a href="https://www.bbb.org/us/wa/seattle/profile/money-transfers/remitly-1296-22713804/complaints" target="_blank" rel="noopener" class="proof-card">
-      <div class="proof-num proof-num-sm">CFPB</div>
-      <div class="proof-label">Active complaints filed</div>
+      <img src="https://cdn.brandfetch.io/bbb.org/w/200/h/40/logo" alt="BBB">
+      <div class="proof-num proof-num-sm">200+</div>
+      <div class="proof-label">CFPB complaints filed</div>
     </a>
   </div>
 
   <div class="reviews rv rv-d2">
     <div class="review">
-      <q>"They suspended my account and kept my money. No explanation, no appeal process."</q>
+      <q>They suspended my account and kept my money. No explanation, no appeal process.</q>
       <a href="https://www.bbb.org/us/wa/seattle/profile/money-transfers/remitly-1296-22713804/complaints" target="_blank" class="review-src">BBB &#8599;</a>
     </div>
     <div class="review">
-      <q>"Transfer failed but they refused to refund for weeks. Had to file a chargeback."</q>
+      <q>Transfer failed but they refused to refund for weeks. Had to file a chargeback.</q>
       <a href="https://www.complaintsboard.com/remitly-b355070.html" target="_blank" class="review-src">ComplaintsBoard &#8599;</a>
     </div>
   </div>
@@ -265,50 +268,46 @@ a.review-src:hover{color:var(--blue)}
 <section class="strategy-section">
   <div class="strategy-inner">
     <div class="rv">
-      <h2>RECOVERY SIMULATION: DISPUTED $500 TRANSFER</h2>
-      <p class="strategy-sub strategy-sub-lead">If a customer disputed a transfer, here's how we'd recover it.</p>
-      <p class="strategy-sub">Real recovery strategy. AI handles the entire process automatically.</p>
+      <div class="hero-label">RECOVERY SIMULATION — DISPUTED $500 TRANSFER</div>
+      <h2>If a customer disputed a transfer, here's exactly how we'd recover it.</h2>
+      <p class="strategy-sub">AI handles the entire process automatically — from first contact to resolution. Zero manual work.</p>
     </div>
     <div class="chain-grid rv rv-d1">
       <div class="contact-card">
-        <img class="contact-photo" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop" alt="Automated Outreach">
-        <div class="contact-name">Automated Outreach</div>
-        <div class="contact-role">AI Phone Call</div>
+        <div style="width:68px;height:68px;border-radius:50%;background:rgba(16,185,129,.10);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:28px">📞</div>
+        <div class="contact-name">AI Phone Call</div>
+        <div class="contact-role">Automated Outreach</div>
         <div class="contact-info">
-          <div class="contact-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>a...@remitly.com</div>
-          <div class="contact-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>(206) ...&#8722;4100</div>
+          <div class="contact-detail">Call under your brand. Identify the dispute. Offer resolution path.</div>
         </div>
-        <div class="contact-tag tag-green">DAY 1 — First Contact</div>
+        <div class="contact-tag tag-green">DAY 1</div>
       </div>
       <div class="contact-card">
-        <img class="contact-photo" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop" alt="Documentation">
-        <div class="contact-name">Documentation</div>
-        <div class="contact-role">Email Request</div>
+        <div style="width:68px;height:68px;border-radius:50%;background:rgba(217,119,6,.10);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:28px">✉️</div>
+        <div class="contact-name">Email Follow-up</div>
+        <div class="contact-role">Documentation Request</div>
         <div class="contact-info">
-          <div class="contact-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>d...@remitly.com</div>
-          <div class="contact-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>(206) ...&#8722;4200</div>
+          <div class="contact-detail">Send payment link, request proof of dispute, set deadline.</div>
         </div>
-        <div class="contact-tag tag-yellow">DAY 3 — Follow-up</div>
+        <div class="contact-tag tag-orange">DAY 3</div>
       </div>
       <div class="contact-card">
-        <img class="contact-photo" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop" alt="Attorney Letter">
+        <div style="width:68px;height:68px;border-radius:50%;background:rgba(79,70,229,.10);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:28px">⚖️</div>
         <div class="contact-name">Attorney Letter</div>
         <div class="contact-role">Legal Escalation</div>
         <div class="contact-info">
-          <div class="contact-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>l...@remitly.com</div>
-          <div class="contact-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>(206) ...&#8722;4300</div>
+          <div class="contact-detail">Licensed attorney sends demand. Legally binding. Triggers urgency.</div>
         </div>
-        <div class="contact-tag tag-orange">DAY 7 — Escalation</div>
+        <div class="contact-tag tag-blue">DAY 7</div>
       </div>
-      <div class="contact-card protected">
-        <img class="contact-photo" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop" alt="Settlement">
-        <div class="contact-name">Settlement</div>
-        <div class="contact-role">Resolution</div>
+      <div class="contact-card">
+        <div style="width:68px;height:68px;border-radius:50%;background:rgba(16,185,129,.10);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:28px">✅</div>
+        <div class="contact-name">Resolution</div>
+        <div class="contact-role">Payment or Settlement</div>
         <div class="contact-info">
-          <div class="contact-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>s...@remitly.com</div>
-          <div class="contact-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>(206) ...&#8722;4400</div>
+          <div class="contact-detail">Chargeback reversed. Customer relationship preserved. Zero manual work.</div>
         </div>
-        <div class="contact-tag tag-red">DAY 14 — Protected</div>
+        <div class="contact-tag tag-green">DAY 14</div>
       </div>
     </div>
   </div>
@@ -369,8 +368,7 @@ a.review-src:hover{color:var(--blue)}
     </div>
     <audio id="aud" preload="auto"></audio>
   </div>
-    <a href="https://showcase.respaid.com" target="_blank">Hear more real calls &#8594;</a>
-  </div>
+  <div style="text-align:center;margin-top:20px"><a href="https://showcase.respaid.com" target="_blank" style="font-size:15px;font-weight:600;color:var(--blue);text-decoration:none">Hear more real calls &#8594;</a></div>
 </section>
 
 <!-- SECTION 4: HOW IT WORKS -->
