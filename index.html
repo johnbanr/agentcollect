@@ -149,10 +149,10 @@
         .build-email-toolbar{display:flex;align-items:center;gap:6px;padding:10px 14px;border-bottom:1px solid var(--border);background:var(--bg)}
         .build-email-dot{width:8px;height:8px;border-radius:50%}
         .build-email-dot.r{background:#EF4444}.build-email-dot.y{background:#F59E0B}.build-email-dot.g{background:#10B981}
-        .build-email-header{padding:14px 20px;border-bottom:1px solid var(--border);font-size:12px;color:var(--text-muted);line-height:1.8}
+        .build-email-header{padding:14px 20px;border-bottom:1px solid var(--border);font-size:12px;color:var(--text-muted);line-height:1.8;text-align:left}
         .build-email-header strong{color:var(--text);font-weight:600}
-        .build-email-subject{padding:12px 20px;font-family:var(--display);font-size:16px;font-weight:700;color:var(--text);border-bottom:1px solid var(--border)}
-        .build-email-body{padding:20px;font-size:14px;color:var(--text-mid);line-height:1.7;min-height:160px;position:relative}
+        .build-email-subject{padding:12px 20px;font-family:var(--display);font-size:16px;font-weight:700;color:var(--text);border-bottom:1px solid var(--border);text-align:left}
+        .build-email-body{padding:20px;font-size:14px;color:var(--text-mid);line-height:1.7;min-height:160px;position:relative;text-align:left}
         .build-email-body .cursor{display:inline-block;width:2px;height:16px;background:var(--indigo);animation:blink 1s infinite;vertical-align:text-bottom;margin-left:1px}
         .build-email-blur{position:absolute;bottom:0;left:0;right:0;height:100px;background:linear-gradient(transparent,#fff);z-index:1}
 
@@ -456,7 +456,7 @@
         <div class="orb o6"></div>
     </div>
     <h1 style="position:relative;z-index:1">The end of manual collection.</h1>
-    <p style="font-size:18px;color:var(--text-muted);margin-bottom:0;letter-spacing:-.01em;white-space:nowrap;position:relative;z-index:1">Respectful AI that recovers your money &mdash; as you.</p>
+    <p style="font-size:18px;color:var(--text-muted);margin-bottom:0;letter-spacing:-.01em;white-space:nowrap;position:relative;z-index:1">They think they're talking to you.</p>
 
     <div class="hero-trust" style="position:relative;z-index:1">
         <span class="hero-trust-label">Trusted by</span>
@@ -466,7 +466,7 @@
     </div>
 
     <div class="hero-input-wrap" id="hero-input" style="position:relative;z-index:1">
-        <div style="font-size:13px;color:var(--text-muted);text-align:center;margin-bottom:10px;letter-spacing:-.01em">See what your AI agent looks like</div>
+        <div style="font-size:13px;color:var(--text-muted);text-align:center;margin-bottom:10px;letter-spacing:-.01em">50% recovered in 20 days &mdash; see your agent</div>
         <div class="input-box" style="max-width:520px;margin:0 auto">
             <input type="text" class="input-field" id="url-input" placeholder="uber.com" autocomplete="off" spellcheck="false" style="font-size:17px;padding:18px 20px">
             <button class="input-btn" id="go-btn" onclick="startAnalysis()" style="padding:18px 32px;font-size:16px;border-radius:12px">
@@ -1284,47 +1284,20 @@ async function startAnalysis() {
         call_preview: "Hi, this is " + dm.name + " from " + coName + "'s accounts team. I'm calling about your outstanding balance \u2014 I'd like to work out a simple payment arrangement."
     };
 
-    // Phase 1: Intel lines (2 sec)
-    async function addIntel(html) {
-        const line = document.createElement('div');
-        line.className = 'build-intel-line';
-        line.innerHTML = html;
-        intel.appendChild(line);
-        await sleep(60);
-        line.classList.add('visible');
-        await sleep(300);
-    }
-
-    await addIntel('<span class="green">\u2713</span> ' + coName + ' \u2014 ' + (data.company.industry || 'Analyzing') + ' \u2014 ' + (data.company.size || ''));
-    await addIntel('<span class="amber">\u26A0</span> #1 risk: ' + topRisk);
-    await addIntel('<span class="green">\u2713</span> ' + dm.name + ', ' + (dm.title || '') + ' \u2014 found');
+    // Show simple loader
+    intel.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;gap:8px;padding:20px 0"><div style="width:16px;height:16px;border:2px solid var(--border);border-radius:50%;border-top-color:var(--indigo);animation:spin .8s linear infinite"></div><span style="font-size:13px;color:var(--text-muted)">Building your agent for ' + domain + '...</span></div>';
     progressFill.style.width = '20%';
 
-    // Phase 2: Email mockup
+    await sleep(1500);
+    intel.innerHTML = ''; // Clear loader
+    progressFill.style.width = '60%';
+
+    // Show email mockup immediately with full visible text (no typewriter)
+    const fullVisible = emailData.body_visible;
     emailEl.style.display = '';
     emailHeader.innerHTML = '<strong>From:</strong> ' + emailData.from_name + ' &lt;' + emailData.from_email + '&gt;<br><strong>To:</strong> ' + emailData.to_email;
     emailSubject.textContent = emailData.subject;
-    progressFill.style.width = '30%';
-
-    // Typewriter effect on email body
-    const fullVisible = emailData.body_visible;
-    let typed = '';
-    const charsPerTick = 3;
-    for (let i = 0; i < fullVisible.length; i += charsPerTick) {
-        typed = fullVisible.substring(0, i + charsPerTick);
-        emailBody.innerHTML = typed.replace(/\n/g, '<br>') + '<span class="cursor"></span>';
-        await sleep(20);
-    }
-    emailBody.innerHTML = typed.replace(/\n/g, '<br>') + '<span class="cursor"></span>';
-    progressFill.style.width = '60%';
-
-    // Add blur to email
-    await sleep(300);
-    const blur = document.createElement('div');
-    blur.className = 'build-email-blur';
-    emailBody.appendChild(blur);
-    const cursorEl = emailBody.querySelector('.cursor');
-    if (cursorEl) cursorEl.remove();
+    emailBody.innerHTML = fullVisible.replace(/\n/g, '<br>') + '<div class="build-email-blur"></div>';
 
     // Phase 3: Call widget
     await sleep(200);
