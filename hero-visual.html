@@ -84,20 +84,19 @@
         .nav-mobile{display:none;background:none;border:none;cursor:pointer;padding:8px;min-width:44px;min-height:44px}
 
         /* HERO VISUAL — iridescent mesh */
-        @keyframes orb1{0%{transform:translate(0,0) scale(1)}33%{transform:translate(60px,-40px) scale(1.1)}66%{transform:translate(-30px,60px) scale(.95)}100%{transform:translate(0,0) scale(1)}}
-        @keyframes orb2{0%{transform:translate(0,0) scale(1)}33%{transform:translate(-80px,30px) scale(1.05)}66%{transform:translate(50px,-70px) scale(1.1)}100%{transform:translate(0,0) scale(1)}}
-        @keyframes orb3{0%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,50px) scale(1.15)}100%{transform:translate(0,0) scale(1)}}
-        @keyframes orb4{0%{transform:translate(0,0) rotate(0deg)}100%{transform:translate(0,0) rotate(360deg)}}
-        @keyframes shimmer{0%,100%{opacity:.6}50%{opacity:1}}
+        @keyframes orb1{0%{transform:translate(0,0) scale(1)}33%{transform:translate(120px,-80px) scale(1.15)}66%{transform:translate(-60px,100px) scale(.9)}100%{transform:translate(0,0) scale(1)}}
+        @keyframes orb2{0%{transform:translate(0,0) scale(1)}33%{transform:translate(-140px,60px) scale(1.1)}66%{transform:translate(100px,-120px) scale(1.15)}100%{transform:translate(0,0) scale(1)}}
+        @keyframes orb3{0%{transform:translate(0,0) scale(1)}25%{transform:translate(80px,90px) scale(1.2)}50%{transform:translate(-50px,40px) scale(.85)}75%{transform:translate(60px,-60px) scale(1.1)}100%{transform:translate(0,0) scale(1)}}
+        @keyframes pulse{0%,100%{transform:scale(1);opacity:.65}50%{transform:scale(1.25);opacity:.85}}
 
         .hero-canvas{position:absolute;bottom:-80px;left:50%;transform:translateX(-50%);width:1100px;height:580px;pointer-events:none;z-index:0}
         .hero-canvas .orb{position:absolute;border-radius:50%;filter:blur(48px);animation-timing-function:ease-in-out;animation-iteration-count:infinite;}
-        .hero-canvas .o1{width:460px;height:460px;bottom:-40px;left:50%;margin-left:-380px;background:radial-gradient(circle,rgba(79,70,229,.75) 0%,rgba(99,102,241,.35) 50%,transparent 75%);animation:orb1 9s infinite}
-        .hero-canvas .o2{width:400px;height:400px;bottom:0;left:50%;margin-left:80px;background:radial-gradient(circle,rgba(16,185,129,.7) 0%,rgba(5,150,105,.35) 50%,transparent 75%);animation:orb2 11s infinite}
-        .hero-canvas .o3{width:340px;height:340px;bottom:60px;left:50%;margin-left:-120px;background:radial-gradient(circle,rgba(139,92,246,.65) 0%,rgba(167,139,250,.3) 50%,transparent 75%);animation:orb3 7s infinite}
-        .hero-canvas .o4{width:260px;height:260px;bottom:10px;left:50%;margin-left:260px;background:radial-gradient(circle,rgba(79,70,229,.5) 0%,transparent 70%);animation:orb1 13s infinite reverse}
-        .hero-canvas .o5{width:240px;height:240px;bottom:40px;left:50%;margin-left:-340px;background:radial-gradient(circle,rgba(16,185,129,.55) 0%,transparent 70%);animation:orb2 8s infinite reverse}
-        .hero-canvas .o6{width:200px;height:200px;bottom:100px;left:50%;margin-left:0;background:radial-gradient(circle,rgba(245,158,11,.35) 0%,transparent 70%);animation:orb3 10s infinite 3s}
+        .hero-canvas .o1{width:460px;height:460px;bottom:-40px;left:50%;margin-left:-380px;background:radial-gradient(circle,rgba(79,70,229,.75) 0%,rgba(99,102,241,.35) 50%,transparent 75%);animation:orb1 5s ease-in-out infinite}
+        .hero-canvas .o2{width:400px;height:400px;bottom:0;left:50%;margin-left:80px;background:radial-gradient(circle,rgba(16,185,129,.7) 0%,rgba(5,150,105,.35) 50%,transparent 75%);animation:orb2 6s ease-in-out infinite}
+        .hero-canvas .o3{width:340px;height:340px;bottom:60px;left:50%;margin-left:-120px;background:radial-gradient(circle,rgba(139,92,246,.65) 0%,rgba(167,139,250,.3) 50%,transparent 75%);animation:pulse 4s ease-in-out infinite, orb3 5s ease-in-out infinite}
+        .hero-canvas .o4{width:260px;height:260px;bottom:10px;left:50%;margin-left:260px;background:radial-gradient(circle,rgba(79,70,229,.5) 0%,transparent 70%);animation:orb1 7s ease-in-out infinite reverse}
+        .hero-canvas .o5{width:240px;height:240px;bottom:40px;left:50%;margin-left:-340px;background:radial-gradient(circle,rgba(16,185,129,.55) 0%,transparent 70%);animation:orb2 5s ease-in-out infinite reverse}
+        .hero-canvas .o6{width:200px;height:200px;bottom:100px;left:50%;margin-left:0;background:radial-gradient(circle,rgba(245,158,11,.35) 0%,transparent 70%);animation:orb3 6s ease-in-out infinite 1s}
         /* fade to white at top */
         .hero-canvas::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,transparent 15%,#fff 60%);pointer-events:none}
 
@@ -443,7 +442,7 @@
         <div class="orb o6"></div>
     </div>
     <h1 style="position:relative;z-index:1">The end of manual collection.</h1>
-    <p style="font-size:18px;color:var(--text-muted);margin-bottom:0;letter-spacing:-.01em;white-space:nowrap;position:relative;z-index:1">Upload a spreadsheet. AI does the rest. First results in hours.</p>
+    <p style="font-size:18px;color:var(--text-muted);margin-bottom:0;letter-spacing:-.01em;white-space:nowrap;position:relative;z-index:1">AI agents collect under your brand. They never know it's AI.</p>
 
     <div class="hero-trust" style="position:relative;z-index:1">
         <span class="hero-trust-label">Trusted by</span>
@@ -453,7 +452,7 @@
     </div>
 
     <div class="hero-input-wrap" id="hero-input" style="position:relative;z-index:1">
-        <div style="font-size:13px;color:var(--text-muted);text-align:center;margin-bottom:10px;letter-spacing:-.01em">Enter your domain — see the agent we'd deploy for you</div>
+        <div style="font-size:13px;color:var(--text-muted);text-align:center;margin-bottom:10px;letter-spacing:-.01em">Enter your domain — see your collection plan in 10 seconds</div>
         <div class="input-box" style="max-width:520px;margin:0 auto">
             <input type="text" class="input-field" id="url-input" placeholder="yourcompany.com" autocomplete="off" spellcheck="false" style="font-size:17px;padding:18px 20px">
             <button class="input-btn" id="go-btn" onclick="startAnalysis()" style="padding:18px 32px;font-size:16px;border-radius:12px">
