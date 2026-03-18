@@ -121,64 +121,31 @@
             background:#fff;border:1px solid var(--border);border-radius:18px;padding:4px;
             box-shadow:0 4px 24px rgba(0,0,0,.04),0 1px 3px rgba(0,0,0,.02)}
 
-        /* DASHBOARD GRID — in hero */
-        .dashboard-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;border-radius:14px;overflow:hidden}
-        .dash-card{background:#fff;border-radius:14px;padding:20px;min-height:190px;position:relative;overflow:hidden;transition:all .3s}
-        .dash-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
-            background:linear-gradient(90deg,var(--indigo),var(--green));background-size:200% 200%;
-            transform:scaleX(0);transform-origin:left;transition:transform 1s cubic-bezier(.16,1,.3,1)}
-        .dash-card.loaded::before{transform:scaleX(1);animation:gradient-shift 3s ease infinite}
-
-        /* Card background tints */
-        .dash-card-company{background:#fff}
-        .dash-card-disputes{background:rgba(245,158,11,.02)}
-        .dash-card-contacts{background:rgba(79,70,229,.02)}
-        .dash-card-plan{background:rgba(16,185,129,.02)}
-
-        .dash-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--text-muted);margin-bottom:14px;display:flex;align-items:center;gap:6px}
-        .dash-label-icon{width:14px;height:14px;opacity:.5}
-        .dash-content{font-size:14px;color:var(--text);line-height:1.6;transition:opacity .3s}
+        /* SINGLE AGENT CARD */
         .dash-loading{display:flex;gap:4px;padding:8px 0}
         .typing-dot{width:5px;height:5px;border-radius:50%;background:var(--indigo);animation:typing-dot 1.4s infinite}
         .typing-dot:nth-child(2){animation-delay:.2s}
         .typing-dot:nth-child(3){animation-delay:.4s}
 
-        /* Company card — polished */
-        .dash-company-logo{height:36px;opacity:.75;margin-bottom:14px;transition:opacity .3s;object-fit:contain;max-width:140px}
-        .dash-card:hover .dash-company-logo{opacity:.9}
-        .dash-company-name{font-family:var(--display);font-size:26px;font-weight:900;color:var(--text);margin-bottom:6px;letter-spacing:-.04em;line-height:1.1}
-        .dash-company-industry{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);line-height:1.4;margin-bottom:6px}
-        .dash-company-size{font-size:12px;color:var(--text-muted);margin-top:0;font-family:var(--mono)}
+        .agent-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:28px 28px 24px;max-width:600px;margin:0 auto;position:relative;overflow:hidden;animation:pop-in .4s cubic-bezier(.16,1,.3,1)}
+        .agent-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--indigo),var(--green))}
 
-        /* Disputes card — polished */
-        .dash-dispute{display:flex;align-items:flex-start;gap:10px;padding:6px 0;font-size:14px;color:var(--text-mid);line-height:1.5;
-            border-left:3px solid rgba(245,158,11,.3);padding-left:12px;margin-bottom:4px;transition:border-color .2s}
-        .dash-dispute:hover{border-left-color:var(--amber)}
-        .dash-dispute-num{font-size:10px;font-weight:800;color:var(--amber);background:rgba(245,158,11,.08);
-            width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+        .agent-header{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+        .agent-logo{height:40px;object-fit:contain;max-width:160px}
+        .agent-name{font-family:var(--display);font-size:22px;font-weight:800;color:var(--text);letter-spacing:-.04em;line-height:1.1}
+        .agent-meta{font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:20px;margin-top:4px}
 
-        /* Contacts card — polished */
-        .dash-contacts-found{font-size:13px;color:var(--green);font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:6px}
-        .dash-contacts-found::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green)}
-        .dash-contact-flow{display:flex;flex-direction:column;gap:6px}
-        .dash-contact{display:flex;align-items:center;gap:10px;padding:6px 10px;border-radius:10px;transition:all .2s}
-        .dash-contact.active{background:rgba(79,70,229,.04);border:1px solid rgba(79,70,229,.12)}
-        .dash-contact:not(.active){opacity:.5;border:1px solid transparent}
-        .dash-contact-avatar{width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(79,70,229,.08)}
-        .dash-contact-name{font-family:var(--display);font-size:14px;font-weight:700;color:var(--text)}
-        .dash-contact-title{font-size:12px;color:var(--text-muted)}
-        .dash-contact-badge{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 8px;border-radius:6px;background:var(--indigo-light);color:var(--indigo);margin-left:auto;white-space:nowrap}
-        .dash-contact-badge.escalation{background:rgba(245,158,11,.08);color:var(--amber)}
-        .dash-contact-badge.dm{background:rgba(16,185,129,.08);color:var(--green)}
+        .agent-section-label{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--indigo);text-transform:uppercase;margin-bottom:12px;margin-top:20px}
+        .agent-divider{height:1px;background:var(--border);margin-bottom:14px}
 
-        /* Plan card — polished */
-        .dash-plan-step{display:flex;align-items:center;gap:10px;padding:4px 0}
-        .dash-plan-day{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:10px;font-weight:800;font-family:var(--display);color:#fff;flex-shrink:0;letter-spacing:-.02em}
-        .dash-plan-text{font-size:13px;color:var(--text-mid);line-height:1.4}
-        .dash-conf{margin-top:12px;display:flex;align-items:center;gap:8px}
-        .dash-conf-bar{flex:1;height:4px;background:rgba(0,0,0,.04);border-radius:2px;overflow:hidden}
-        .dash-conf-fill{height:100%;background:linear-gradient(90deg,var(--indigo),var(--green));border-radius:2px;width:0;transition:width 1.2s ease}
-        .dash-conf-label{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--green)}
+        .agent-plan-step{display:flex;align-items:flex-start;gap:12px;padding:5px 0}
+        .agent-plan-pill{display:inline-flex;align-items:center;justify-content:center;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:800;font-family:var(--display);color:#fff;flex-shrink:0;letter-spacing:-.01em;margin-top:1px}
+        .agent-plan-text{font-size:14px;color:var(--text-mid);line-height:1.5}
+
+        .agent-contacts-line{display:flex;align-items:center;gap:8px;margin-top:18px;padding-top:16px;border-top:1px solid var(--border);font-size:13px}
+        .agent-contacts-dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0}
+        .agent-contacts-text{color:var(--green);font-weight:600}
+        .agent-contacts-fallback{color:var(--text-muted);font-style:italic}
 
         /* CAROUSEL DOTS */
         .carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:16px;position:relative;z-index:1}
@@ -202,9 +169,7 @@
         .a-actions.show{display:flex;animation:fadeUp .4s ease forwards}
 
         @media(max-width:768px){
-            .dashboard-grid{grid-template-columns:1fr;gap:2px}
-            .dash-card{min-height:auto;padding:16px}
-            .dashboard-container{border-radius:14px;padding:3px}
+            .agent-card{padding:20px 18px 18px;border-radius:14px}
         }
 
         /* PROOF BAR */
@@ -470,43 +435,24 @@
             <span id="cycle-domain"></span>
         </div>
         <div id="carousel-dots" style="display:none"></div>
-        <div class="dashboard-container">
-            <div class="dashboard-grid">
-                <div class="dash-card dash-card-company" id="dash-company">
-                    <div class="dash-label">
-                        <svg class="dash-label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5"/></svg>
-                        Company
-                    </div>
-                    <div class="dash-content" id="dash-company-content">
-                        <div class="dash-loading"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>
-                    </div>
+        <div class="agent-card" id="dash-agent-card">
+            <!-- Loading state -->
+            <div id="dash-loading-state">
+                <div class="dash-loading"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>
+            </div>
+            <!-- Populated content (hidden until loaded) -->
+            <div id="dash-populated" style="display:none">
+                <div class="agent-header">
+                    <img id="dash-new-logo" src="" alt="" class="agent-logo" onerror="this.style.display='none'">
+                    <div id="dash-new-name" class="agent-name"></div>
                 </div>
-                <div class="dash-card dash-card-disputes" id="dash-disputes">
-                    <div class="dash-label">
-                        <svg class="dash-label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
-                        Open disputes
-                    </div>
-                    <div class="dash-content" id="dash-disputes-content">
-                        <div class="dash-loading"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>
-                    </div>
-                </div>
-                <div class="dash-card dash-card-contacts" id="dash-dm">
-                    <div class="dash-label">
-                        <svg class="dash-label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-                        Contacts found
-                    </div>
-                    <div class="dash-content" id="dash-dm-content">
-                        <div class="dash-loading"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>
-                    </div>
-                </div>
-                <div class="dash-card dash-card-plan" id="dash-plan">
-                    <div class="dash-label">
-                        <svg class="dash-label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-                        Collection plan
-                    </div>
-                    <div class="dash-content" id="dash-plan-content">
-                        <div class="dash-loading"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>
-                    </div>
+                <div id="dash-new-meta" class="agent-meta"></div>
+                <div class="agent-section-label">Your collection agent is ready</div>
+                <div class="agent-divider"></div>
+                <div id="dash-new-plan"></div>
+                <div class="agent-contacts-line">
+                    <div class="agent-contacts-dot"></div>
+                    <div id="dash-new-contacts"></div>
                 </div>
             </div>
         </div>
@@ -1180,13 +1126,9 @@ async function startAnalysis() {
     document.getElementById('hero-input').style.display = 'none';
     document.getElementById('hero-dashboard').style.display = 'block';
 
-    // Reset cards to loading state
-    const loadingDots = '<div class="dash-loading"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
-    ['dash-company','dash-disputes','dash-dm','dash-plan'].forEach(id => {
-        document.getElementById(id).classList.remove('loaded');
-        document.getElementById(id + '-content').innerHTML = loadingDots;
-        document.getElementById(id + '-content').style.opacity = '1';
-    });
+    // Reset single card to loading state
+    document.getElementById('dash-loading-state').style.display = '';
+    document.getElementById('dash-populated').style.display = 'none';
 
     let data = company ? {
         company: { name: company.name, domain, industry: company.industry, products: company.products, size: company.size, logo_url: 'https://cdn.brandfetch.io/'+domain+'/w/512/h/80/logo' },
@@ -1218,78 +1160,40 @@ async function startAnalysis() {
 
     const logoUrl = 'https://cdn.brandfetch.io/'+domain+'/w/512/h/80/logo';
 
-    // CARD 1: COMPANY
-    const companyEl = document.getElementById('dash-company-content');
-    companyEl.innerHTML = `
-        <img src="${logoUrl}" alt="${data.company.name}" class="dash-company-logo" onerror="this.style.display='none'">
-        <div class="dash-company-name">${data.company.name}</div>
-        <div class="dash-company-industry">${data.company.industry}</div>
-        ${data.company.size ? '<div class="dash-company-size">'+data.company.size+'</div>' : ''}
-    `;
-    document.getElementById('dash-company').classList.add('loaded');
-
-    // CARD 2: DISPUTES
-    await sleep(700);
-    const disputesEl = document.getElementById('dash-disputes-content');
-    const topDisputes = (data.disputes || []).slice(0, 3);
-    disputesEl.innerHTML = topDisputes.map((d, i) =>
-        `<div class="dash-dispute"><span class="dash-dispute-num">#${i+1}</span><span>${d}</span></div>`
-    ).join('');
-    document.getElementById('dash-disputes').classList.add('loaded');
-
-    // CARD 3: CONTACTS
-    await sleep(700);
-    const contacts = data.contacts || [];
-    const dmEl = document.getElementById('dash-dm-content');
-    const firstContact = contacts[0] || {};
-    let contactsHtml = contacts.map((c, i) => {
-        const isActive = i === 0;
-        const avatarSrc = c.photo || `https://ui-avatars.com/api/?name=${encodeURIComponent(c.name)}&size=200&background=4F46E5&color=fff&bold=true`;
-        const badgeClass = c.role === 'Escalation' ? ' escalation' : (c.role === 'Decision maker' ? ' dm' : '');
-        return `<div class="dash-contact${isActive ? ' active' : ''}">
-            <img src="${avatarSrc}" alt="${c.name}" class="dash-contact-avatar" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(c.name)}&size=200&background=4F46E5&color=fff&bold=true'">
-            <div>
-                <div class="dash-contact-name">${c.name}</div>
-                <div class="dash-contact-title">${c.title}</div>
-            </div>
-            <span class="dash-contact-badge${badgeClass}">${c.role}</span>
-        </div>`;
-    }).join('');
-    let maskedInfoHtml = '';
-    if (firstContact.phone_masked || firstContact.email_masked) {
-        const parts = [];
-        if (firstContact.phone_masked) parts.push('<span style="font-family:var(--mono);color:var(--indigo)">'+firstContact.phone_masked+'</span>');
-        if (firstContact.email_masked) parts.push('<span style="font-family:var(--mono);color:var(--indigo)">'+firstContact.email_masked+'</span>');
-        maskedInfoHtml = '<div style="margin-top:8px;font-size:12px;color:var(--text-muted)">'+parts.join(' &middot; ')+'</div>';
-    }
-    dmEl.innerHTML = `
-        <div class="dash-contacts-found">${contacts.length} contact${contacts.length !== 1 ? 's' : ''} found</div>
-        <div class="dash-contact-flow">${contactsHtml}</div>
-        ${maskedInfoHtml}
-    `;
-    document.getElementById('dash-dm').classList.add('loaded');
-
-    // CARD 4: PLAN
-    await sleep(800);
-    const planEl = document.getElementById('dash-plan-content');
+    // Build plan steps
     const planData = data.plan || {};
     const steps = [
-        {day: 'D1', text: planData.day_1 || planData.d1 || '', color: 'var(--indigo)'},
-        {day: 'D3', text: planData.day_3 || planData.d3 || '', color: '#6366F1'},
-        {day: 'D7', text: planData.day_7 || planData.d7 || '', color: 'var(--amber)'},
-        {day: 'D14', text: planData.day_14 || planData.d14 || '', color: 'var(--green)'}
+        {day: 'D1',  text: planData.day_1  || planData.d1  || 'AI email under your brand', color: 'var(--indigo)'},
+        {day: 'D3',  text: planData.day_3  || planData.d3  || 'AI call with invoice documentation', color: '#6366F1'},
+        {day: 'D7',  text: planData.day_7  || planData.d7  || 'Attorney escalation if needed', color: 'var(--amber)'},
+        {day: 'D14', text: planData.day_14 || planData.d14 || 'Payment portal — debtors pay you directly', color: 'var(--green)'}
     ];
-    planEl.innerHTML = steps.map(s =>
-        `<div class="dash-plan-step"><span class="dash-plan-day" style="background:${s.color}">${s.day}</span><span class="dash-plan-text">${s.text}</span></div>`
-    ).join('') + `
-        <div class="dash-conf">
-            <div class="dash-conf-bar"><div class="dash-conf-fill" id="conf-bar"></div></div>
-            <div class="dash-conf-label">94%</div>
-        </div>
-    `;
-    document.getElementById('dash-plan').classList.add('loaded');
-    await sleep(100);
-    document.getElementById('conf-bar').style.width = '94%';
+
+    // Build contacts line
+    const contacts = data.contacts || [];
+    let contactsLineHtml;
+    if (contacts.length > 0) {
+        contactsLineHtml = `<span class="agent-contacts-text">We found ${contacts.length} AR contact${contacts.length !== 1 ? 's' : ''} at ${data.company.name}</span>`;
+    } else {
+        contactsLineHtml = `<span class="agent-contacts-fallback">We'd identify your AR contacts during onboarding</span>`;
+    }
+
+    // Populate single card
+    await sleep(800);
+    document.getElementById('dash-new-logo').src = logoUrl;
+    document.getElementById('dash-new-logo').alt = data.company.name;
+    document.getElementById('dash-new-name').textContent = data.company.name;
+    const metaParts = [data.company.industry];
+    if (data.company.size) metaParts.push(data.company.size);
+    document.getElementById('dash-new-meta').textContent = metaParts.join(' · ');
+    document.getElementById('dash-new-plan').innerHTML = steps.map(s =>
+        `<div class="agent-plan-step"><span class="agent-plan-pill" style="background:${s.color}">${s.day}</span><span class="agent-plan-text">${s.text}</span></div>`
+    ).join('');
+    document.getElementById('dash-new-contacts').innerHTML = contactsLineHtml;
+
+    // Show populated card
+    document.getElementById('dash-loading-state').style.display = 'none';
+    document.getElementById('dash-populated').style.display = '';
 
     // SHOW CTA
     await sleep(500);

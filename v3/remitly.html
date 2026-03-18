@@ -79,7 +79,7 @@ a.review-src:hover{color:var(--blue)}
 .audio-sub{text-align:center;font-size:16px;color:var(--muted);margin-top:0;margin-bottom:40px}
 
 /* ===== DARK PLAYER ===== */
-.dark-player{background:#0a0a14;border-radius:24px;overflow:hidden;max-width:920px;margin:0 auto;box-shadow:0 25px 50px -12px rgba(0,0,0,.25);text-align:left;height:340px;display:flex;flex-direction:column}
+.dark-player{background:#0a0a14;border-radius:24px;overflow:hidden;max-width:920px;margin:0 auto;box-shadow:0 25px 50px -12px rgba(0,0,0,.25);text-align:left;height:340px;max-height:420px;display:flex;flex-direction:column}
 .dark-header{padding:16px 28px 0;display:flex;align-items:center}
 .dark-header-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.4)}
 /* Pre-play state */
@@ -141,6 +141,7 @@ a.review-src:hover{color:var(--blue)}
 .strategy-inner{max-width:1080px;margin:0 auto;text-align:center}
 .strategy-inner h2{font-size:clamp(30px,4vw,44px);font-weight:800;letter-spacing:-.02em;line-height:1.1;max-width:600px;margin:0 auto}
 .strategy-sub{font-size:16px;color:var(--muted);margin-top:16px;max-width:500px;margin-left:auto;margin-right:auto}
+.strategy-sub-lead{font-size:18px;margin-top:16px}
 .chain-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px;max-width:920px;margin-left:auto;margin-right:auto}
 .contact-card{background:#fff;border-radius:18px;padding:28px 20px;text-align:center;box-shadow:var(--shadow-lg);border:1px solid rgba(0,0,0,.04);transition:transform .2s}
 .contact-card:hover{transform:translateY(-3px)}
@@ -268,7 +269,7 @@ a.review-src:hover{color:var(--blue)}
   <div class="strategy-inner">
     <div class="rv">
       <h2>RECOVERY SIMULATION: DISPUTED $500 TRANSFER</h2>
-      <p class="strategy-sub" style="font-size:18px;margin-top:16px">If a customer disputed a transfer, here's how we'd recover it.</p>
+      <p class="strategy-sub strategy-sub-lead">If a customer disputed a transfer, here's how we'd recover it.</p>
       <p class="strategy-sub">Real recovery strategy. AI handles the entire process automatically.</p>
     </div>
     <div class="chain-grid rv rv-d1">
@@ -319,6 +320,7 @@ a.review-src:hover{color:var(--blue)}
 <!-- SECTION 3: THE PROOF (AUDIO) -->
 <section class="audio-section">
   <div class="rv">
+    <div class="hero-label">REAL AI CALL RECORDING</div>
     <h2>This is what it sounds like when we collect.</h2>
     <p class="audio-sub">Real AI calls. Real debtors. Real results.</p>
   </div>
@@ -377,7 +379,7 @@ a.review-src:hover{color:var(--blue)}
 
 <!-- SECTION 4: HOW IT WORKS -->
 <section class="how-section">
-  <div class="rv" style="text-align:center">
+  <div class="rv">
     <div class="hero-label">HOW IT WORKS</div>
     <h2>From first call to resolution. Automatically.</h2>
     <div class="timeline">
