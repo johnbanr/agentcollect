@@ -55,7 +55,11 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',syst
 .hero-label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--blue);margin-bottom:20px}
 .hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;letter-spacing:-.03em;line-height:1.08;max-width:800px;margin:0 auto}
 .hero h1 .red{color:var(--red)}
+.hero h1 .green{color:var(--green-dark)}
 .hero-sub{font-size:18px;color:var(--muted);margin-top:20px;line-height:1.65;max-width:560px;margin-left:auto;margin-right:auto}
+.hero-cta{display:inline-block;margin-top:36px;background:var(--blue);color:#fff;padding:16px 40px;border-radius:12px;font-weight:700;font-size:17px;text-decoration:none;transition:transform .15s,box-shadow .15s}
+.hero-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(79,70,229,.35)}
+.proof-context{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-top:64px;margin-bottom:16px}
 
 .proof-strip{display:flex;justify-content:center;gap:32px;margin-top:48px;flex-wrap:wrap;align-items:stretch}
 .proof-card{background:#fff;border-radius:16px;padding:28px 36px;box-shadow:var(--shadow-lg);border:1px solid rgba(0,0,0,.04);text-decoration:none;color:inherit;text-align:center;transition:transform .2s;min-width:180px;display:flex;flex-direction:column;align-items:center;justify-content:center}
@@ -146,7 +150,7 @@ a.review-src:hover{color:var(--blue)}
 .contact-card.protected{position:relative;overflow:hidden}
 .contact-photo{width:68px;height:68px;border-radius:50%;object-fit:cover;margin:0 auto 14px;display:block;box-shadow:0 2px 8px rgba(0,0,0,.1)}
 .contact-card.protected .contact-photo{filter:grayscale(.3)}
-.contact-name{font-weight:700;font-size:16px;color:var(--text)}
+.contact-name{font-weight:700;font-size:15px;color:var(--text);word-break:break-word}
 .contact-role{font-size:14px;color:var(--muted);margin-top:3px}
 .contact-info{margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
 .contact-detail{font-size:14px;color:var(--muted);margin-top:5px;font-family:monospace;letter-spacing:.3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
@@ -239,12 +243,14 @@ a.review-src:hover{color:var(--blue)}
 <!-- SECTION 1: THE PROBLEM -->
 <section class="hero">
   <div class="rv">
-    <div class="hero-label">THE PROBLEM</div>
+    <div class="hero-label">KONA AI AGENT — LIVE DEMO</div>
     <img src="https://cdn.brandfetch.io/konicaminolta.com/w/512/h/80/logo" alt="Konica Minolta" class="hero-km" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='block')"><span class="logo-fallback" style="display:none;font-size:22px;font-weight:800;color:var(--text)">Konica Minolta</span>
-    <h1>DLL Finance collects your past-due accounts under your name. With a <span class="red">2.1-star rating.</span></h1>
-    <p class="hero-sub">Every call they make is branded as Konica Minolta. Every complaint is your brand risk. Here's what your customers say.</p>
+    <h1>Book the meeting. We'll have the KONA AI Agent ready — and <span class="green">recover cash live in the room.</span></h1>
+    <p class="hero-sub">We build your branded Konica Minolta AI agent before you arrive. During the demo, it calls your past-due accounts. You watch the cash collected in real time. No integration. No setup fee.</p>
+    <a href="https://cal.com/johnb/30" target="_blank" class="hero-cta" onclick="gtag('event','hero_cta',{})">Book a live demo →</a>
   </div>
 
+  <div class="proof-context rv">What we're replacing:</div>
   <div class="proof-strip rv rv-d1">
     <a href="https://www.bbb.org/us/ia/johnston/profile/financing/dll-finance-llc-0664-32006959/customer-reviews" target="_blank" rel="noopener" class="proof-card">
       <img src="https://cdn.brandfetch.io/bbb.org/w/200/h/40/logo" alt="BBB" onerror="this.style.opacity='0.3';this.title=this.alt">
@@ -318,7 +324,7 @@ a.review-src:hover{color:var(--blue)}
       </div>
       <div class="contact-card protected">
         <img class="contact-photo" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" alt="Steven Mendelsohn">
-        <div class="contact-name">Steven M., MD</div>
+        <div class="contact-name">Steven Mendelsohn, MD</div>
         <div class="contact-role">CEO</div>
         <div class="contact-info">
           <div class="contact-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>s...@zprad.com</div>
@@ -385,7 +391,6 @@ a.review-src:hover{color:var(--blue)}
     </div>
     <audio id="aud" preload="auto"></audio>
   </div>
-  <div style="text-align:center;margin-top:20px"><a href="https://showcase.respaid.com" target="_blank" style="font-size:15px;font-weight:600;color:var(--blue);text-decoration:none">Hear more real calls &#8594;</a></div>
 </section>
 
 <!-- SECTION 4: HOW IT WORKS -->
