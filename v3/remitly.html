@@ -366,7 +366,7 @@ a.review-src:hover{color:var(--blue)}
       </div>
       <span class="dark-time" id="timeDisplay">0:00 / 0:00</span>
     </div>
-    <audio id="aud" preload="none"></audio>
+    <audio id="aud" preload="auto"></audio>
   </div>
   <div class="rv rv-d2 more-calls">
     <a href="https://showcase.respaid.com" target="_blank">Hear more real calls &#8594;</a>
@@ -669,6 +669,17 @@ function switchScenario(idx){
   document.getElementById('timeDisplay').textContent='0:00 / 0:00';
   setPlayIcon();
 }
+
+// Preload all 3 audio files on page load for instant playback
+document.addEventListener('DOMContentLoaded', function() {
+  ['https://showcase.respaid.com/call-wrong-contact.mp3',
+   'https://showcase.respaid.com/call-gatekeeper.mp3',
+   'https://showcase.respaid.com/call-dispute.mp3'].forEach(function(src) {
+    var a = new Audio();
+    a.preload = 'auto';
+    a.src = src;
+  });
+});
 </script>
 </body>
 </html>
