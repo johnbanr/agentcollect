@@ -837,7 +837,7 @@ const COMPANIES = {
             {name: 'Robert Tanaka', title: 'Director of Credit', photo: 'https://ui-avatars.com/api/?name=Robert+Tanaka&background=10B981&color=fff&size=200', email_masked: 'r***a@konicaminolta.com', role: 'Escalation'},
             {name: 'Patricia Vance', title: 'VP Collections', photo: 'https://ui-avatars.com/api/?name=Patricia+Vance&background=F59E0B&color=fff&size=200', role: 'Decision maker'}
         ],
-        plan: {d1: 'AI email from your brand referencing specific lease agreement', d3: 'AI phone call to AP contact with invoice details', d7: 'Attorney-supervised escalation — formal legal pressure applied', d14: 'Payment portal live — debtor pays you directly'}
+        plan: {d1: 'AI email from your brand referencing specific lease agreement', d3: 'AI phone call to AP contact with invoice details', d7: 'Escalation to senior finance with compliance notice and contract terms', d14: 'Payment portal live — debtor pays you directly'}
     },
     'pitneyBowes.com': {
         name: 'Pitney Bowes', industry: 'Shipping & Mailing Technology',
@@ -849,7 +849,7 @@ const COMPANIES = {
             {name: 'James Whitfield', title: 'Controller', photo: 'https://ui-avatars.com/api/?name=James+Whitfield&background=EC4899&color=fff&size=200', email_masked: 'j***d@pb.com', role: 'Escalation'},
             {name: 'Karen Obrien', title: 'VP Finance & Treasury', photo: 'https://ui-avatars.com/api/?name=Karen+Obrien&background=F59E0B&color=fff&size=200', role: 'Decision maker'}
         ],
-        plan: {d1: 'AI email referencing specific meter lease or shipping contract', d3: 'AI call to accounts receivable with documentation', d7: 'Attorney-supervised escalation — formal legal pressure applied', d14: 'Payment portal live with installment options'}
+        plan: {d1: 'AI email referencing specific meter lease or shipping contract', d3: 'AI call to accounts receivable with documentation', d7: 'Escalation to senior finance with compliance notice and contract terms', d14: 'Payment portal live with installment options'}
     },
     'ironmountain.com': {
         name: 'Iron Mountain', industry: 'Information Management / Storage',
@@ -861,7 +861,7 @@ const COMPANIES = {
             {name: 'Scott Brewster', title: 'Director AR', photo: 'https://ui-avatars.com/api/?name=Scott+Brewster&background=10B981&color=fff&size=200', email_masked: 's***r@ironmountain.com', role: 'Escalation'},
             {name: 'Linda Chen', title: 'SVP Finance', photo: 'https://ui-avatars.com/api/?name=Linda+Chen&background=EF4444&color=fff&size=200', role: 'Decision maker'}
         ],
-        plan: {d1: 'AI email referencing storage contract and outstanding balance', d3: 'AI call to AP with full documentation trail', d7: 'Attorney demand with contract terms cited', d14: 'Direct payment portal — no middleman'}
+        plan: {d1: 'AI email referencing storage contract and outstanding balance', d3: 'AI call to AP with full documentation trail', d7: 'Formal escalation with contract terms and payment deadline', d14: 'Direct payment portal — no middleman'}
     },
     'brinks.com': {
         name: "Brink's", industry: 'Cash Management / Security Services',
@@ -873,7 +873,7 @@ const COMPANIES = {
             {name: 'Thomas Garrett', title: 'Controller', photo: 'https://ui-avatars.com/api/?name=Thomas+Garrett&background=F59E0B&color=fff&size=200', email_masked: 't***t@brinks.com', role: 'Escalation'},
             {name: 'Daniel Reeves', title: 'SVP Finance', photo: 'https://ui-avatars.com/api/?name=Daniel+Reeves&background=10B981&color=fff&size=200', role: 'Decision maker'}
         ],
-        plan: {d1: 'AI email with specific contract and service references', d3: 'AI call to finance team with invoice documentation', d7: 'Attorney-supervised escalation — legal standing applied', d14: 'Payment portal with direct settlement options'}
+        plan: {d1: 'AI email with specific contract and service references', d3: 'AI call to finance team with invoice documentation', d7: 'Formal escalation with contract terms and compliance notice', d14: 'Payment portal with direct settlement options'}
     },
     'ricoh.com': {
         name: 'Ricoh', industry: 'Office Equipment / Digital Services',
@@ -885,7 +885,7 @@ const COMPANIES = {
             {name: 'Brian Walsh', title: 'Director Credit & Collections', photo: 'https://ui-avatars.com/api/?name=Brian+Walsh&background=EC4899&color=fff&size=200', email_masked: 'b***h@ricoh.com', role: 'Escalation'},
             {name: 'Margaret Hoffman', title: 'VP Finance', photo: 'https://ui-avatars.com/api/?name=Margaret+Hoffman&background=F59E0B&color=fff&size=200', role: 'Decision maker'}
         ],
-        plan: {d1: 'AI email referencing fleet contract and outstanding balance', d3: 'AI call with complete documentation', d7: 'Attorney-supervised escalation — formal legal weight applied', d14: 'Self-service payment portal live'}
+        plan: {d1: 'AI email referencing fleet contract and outstanding balance', d3: 'AI call with complete documentation', d7: 'Escalation to VP Finance with formal compliance notice', d14: 'Self-service payment portal live'}
     },
     'microsoft.com': {
         name: 'Microsoft', industry: 'Technology / Enterprise Software',
@@ -897,7 +897,7 @@ const COMPANIES = {
             {name: 'Priya Sharma', title: 'Senior Finance Manager', photo: 'https://ui-avatars.com/api/?name=Priya+Sharma&background=10B981&color=fff&size=200', email_masked: 'p***a@microsoft.com', role: 'Escalation'},
             {name: 'Kevin Torres', title: 'VP Finance Operations', photo: 'https://ui-avatars.com/api/?name=Kevin+Torres&background=F59E0B&color=fff&size=200', role: 'Decision maker'}
         ],
-        plan: {d1: 'AI email under your brand to AP department', d3: 'AI call to procurement with PO reference', d7: 'Escalation to VP Finance via attorney notice', d14: 'Direct payment through branded portal'}
+        plan: {d1: 'AI email under your brand to AP department', d3: 'AI call to procurement with PO reference', d7: 'Escalation to VP Finance with formal compliance notice', d14: 'Direct payment through branded portal'}
     },
     'dell.com': {
         name: 'Dell Technologies', industry: 'Technology / Hardware',
@@ -909,7 +909,7 @@ const COMPANIES = {
             {name: 'Mark Henderson', title: 'Director Credit Operations', photo: 'https://ui-avatars.com/api/?name=Mark+Henderson&background=10B981&color=fff&size=200', email_masked: 'm***n@dell.com', role: 'Escalation'},
             {name: 'Susan Blackwell', title: 'VP Credit & Collections', photo: 'https://ui-avatars.com/api/?name=Susan+Blackwell&background=EF4444&color=fff&size=200', role: 'Decision maker'}
         ],
-        plan: {d1: 'AI email per business unit with specific PO references', d3: 'AI call to each division independently', d7: 'Attorney letter referencing master service agreement', d14: 'Centralized payment portal — all units, one view'}
+        plan: {d1: 'AI email per business unit with specific PO references', d3: 'AI call to each division independently', d7: 'Formal escalation referencing master service agreement', d14: 'Centralized payment portal — all units, one view'}
     },
     'checkr.com': {
         name: 'Checkr', industry: 'Background Check / HR Tech',
@@ -921,7 +921,7 @@ const COMPANIES = {
             {name: 'David Park', title: 'Controller', photo: 'https://ui-avatars.com/api/?name=David+Park&background=10B981&color=fff&size=200', email_masked: 'd***k@checkr.com', role: 'Escalation'},
             {name: 'Jennifer Wu', title: 'VP Finance', photo: 'https://ui-avatars.com/api/?name=Jennifer+Wu&background=F59E0B&color=fff&size=200', role: 'Decision maker'}
         ],
-        plan: {d1: 'AI email to finance referencing contract terms', d3: 'AI call with usage data and invoice detail', d7: 'Attorney notice with contract citation', d14: 'Payment portal with flexible resolution options'}
+        plan: {d1: 'AI email to finance referencing contract terms', d3: 'AI call with usage data and invoice detail', d7: 'Formal compliance notice with contract citation', d14: 'Payment portal with flexible resolution options'}
     },
     'doordash.com': {
         name: 'DoorDash', industry: 'Food Delivery / Marketplace',
@@ -933,7 +933,7 @@ const COMPANIES = {
             {name: 'Jason Reilly', title: 'Director Partner Finance', photo: 'https://ui-avatars.com/api/?name=Jason+Reilly&background=F59E0B&color=fff&size=200', email_masked: 'j***y@doordash.com', role: 'Escalation'},
             {name: 'Angela Price', title: 'VP Finance', photo: 'https://ui-avatars.com/api/?name=Angela+Price&background=10B981&color=fff&size=200', role: 'Decision maker'}
         ],
-        plan: {d1: 'AI email referencing specific partner agreement', d3: 'AI call with delivery data and commission detail', d7: 'Attorney letter — preserves partnership while collecting', d14: 'Partner payment portal — settle while staying active'}
+        plan: {d1: 'AI email referencing specific partner agreement', d3: 'AI call with delivery data and commission detail', d7: 'Formal escalation — preserves partnership while collecting', d14: 'Partner payment portal — settle while staying active'}
     },
     'plaid.com': {
         name: 'Plaid', industry: 'Fintech / Financial Infrastructure',
@@ -945,7 +945,7 @@ const COMPANIES = {
             {name: 'Ryan Okafor', title: 'Finance Manager', photo: 'https://ui-avatars.com/api/?name=Ryan+Okafor&background=EC4899&color=fff&size=200', email_masked: 'r***r@plaid.com', role: 'Escalation'},
             {name: 'Lisa Bergman', title: 'Director Finance Ops', photo: 'https://ui-avatars.com/api/?name=Lisa+Bergman&background=F59E0B&color=fff&size=200', role: 'Decision maker'}
         ],
-        plan: {d1: 'AI email with API usage data and contract reference', d3: 'AI call to finance with detailed breakdown', d7: 'Attorney notice citing SaaS agreement terms', d14: 'Self-service resolution portal'}
+        plan: {d1: 'AI email with API usage data and contract reference', d3: 'AI call to finance with detailed breakdown', d7: 'Formal notice citing SaaS agreement terms', d14: 'Self-service resolution portal'}
     },
     'uber.com': {
         name: 'Uber', industry: 'Ride-sharing & Delivery Platform',
@@ -956,7 +956,7 @@ const COMPANIES = {
             {name: 'David Majors', title: 'Head of Order to Cash', photo: 'https://ui-avatars.com/api/?name=David+Majors&background=4F46E5&color=fff&size=200', email_masked: 'd***s@uber.com', role: 'Decision maker'},
             {name: 'Shane Hood', title: 'Collections Manager', photo: 'https://ui-avatars.com/api/?name=Shane+Hood&background=10B981&color=fff&size=200', email_masked: 's***d@uber.com', role: 'First contact'}
         ],
-        plan: {d1: 'AI email under Uber brand referencing specific delivery contract', d3: 'AI call to AP referencing ride/delivery data', d7: 'Attorney-supervised escalation — formal legal pressure', d14: 'Payment portal — they pay Uber directly'}
+        plan: {d1: 'AI email to restaurant partner as Uber — referencing Eats payout breakdown and outstanding commission', d3: 'AI call to restaurant owner with delivery reconciliation and payment plan offer', d7: 'Escalation to enterprise AP with contract terms and compliance notice', d14: 'Self-service payment portal — pay Uber directly, stay active on the platform'}
     },
     'fedex.com': {
         name: 'FedEx', industry: 'Logistics & Shipping',
@@ -967,7 +967,7 @@ const COMPANIES = {
             {name: 'Ryan Patterson', title: 'Director of Credit', photo: 'https://ui-avatars.com/api/?name=Ryan+Patterson&background=6366F1&color=fff&size=200', email_masked: 'r***n@fedex.com', role: 'Decision maker'},
             {name: 'Kevin Johnson', title: 'Collections Lead', photo: 'https://ui-avatars.com/api/?name=Kevin+Johnson&background=10B981&color=fff&size=200', email_masked: 'k***n@fedex.com', role: 'First contact'}
         ],
-        plan: {d1: 'AI email under FedEx brand referencing shipping contract', d3: 'AI call to AP with tracking and invoice data', d7: 'Attorney-supervised escalation — formal legal pressure', d14: 'Payment portal — debtor pays FedEx directly'}
+        plan: {d1: 'AI email under FedEx brand referencing shipping contract', d3: 'AI call to AP with tracking and invoice data', d7: 'Escalation to senior finance with compliance notice and contract terms', d14: 'Payment portal — debtor pays FedEx directly'}
     },
     'respaid.com': {
         name: 'Respaid', industry: 'Fintech / AR Automation',
@@ -983,7 +983,7 @@ const COMPANIES = {
             {name: 'Igor Kolomiets', title: 'CTO', photo: 'https://ui-avatars.com/api/?name=Igor+Kolomiets&background=10B981&color=fff&size=200', role: 'Technical lead'},
             {name: 'Andrew Helmi', title: 'Head of Product', photo: 'https://ui-avatars.com/api/?name=Andrew+Helmi&background=6366F1&color=fff&size=200', role: 'Product'}
         ],
-        plan: {d1: 'AI email under your brand to finance contacts', d3: 'AI call to AP with invoice and contract reference', d7: 'Attorney-supervised escalation — formal legal pressure', d14: 'Payment portal live — debtor pays you directly'}
+        plan: {d1: 'AI email under your brand to finance contacts', d3: 'AI call to AP with invoice and contract reference', d7: 'Escalation to senior finance with compliance notice and contract terms', d14: 'Payment portal live — debtor pays you directly'}
     },
     'widr.app': {
         name: 'Respaid', industry: 'Fintech / AR Automation',
@@ -997,7 +997,7 @@ const COMPANIES = {
             {name: 'John Banner', title: 'CEO & Founder', photo: 'https://ui-avatars.com/api/?name=John+Banner&background=4F46E5&color=fff&size=200', role: 'Decision maker'},
             {name: 'Igor Kolomiets', title: 'CTO', photo: 'https://ui-avatars.com/api/?name=Igor+Kolomiets&background=10B981&color=fff&size=200', role: 'Technical lead'}
         ],
-        plan: {d1: 'AI email under your brand to finance contacts', d3: 'AI call to AP with invoice and contract reference', d7: 'Attorney-supervised escalation — formal legal pressure', d14: 'Payment portal live — debtor pays you directly'}
+        plan: {d1: 'AI email under your brand to finance contacts', d3: 'AI call to AP with invoice and contract reference', d7: 'Escalation to senior finance with compliance notice and contract terms', d14: 'Payment portal live — debtor pays you directly'}
     }
 };
 
@@ -1229,7 +1229,7 @@ async function startAnalysis() {
     const steps = [
         {day: 'D1',  text: planData.day_1  || planData.d1  || 'AI email under your brand', color: 'var(--indigo)'},
         {day: 'D3',  text: planData.day_3  || planData.d3  || 'AI call with invoice documentation', color: '#6366F1'},
-        {day: 'D7',  text: planData.day_7  || planData.d7  || 'Attorney escalation if needed', color: 'var(--amber)'},
+        {day: 'D7',  text: planData.day_7  || planData.d7  || 'Formal escalation with compliance notice', color: 'var(--amber)'},
         {day: 'D14', text: planData.day_14 || planData.d14 || 'Payment portal — debtors pay you directly', color: 'var(--green)'}
     ];
 
