@@ -509,6 +509,57 @@
         .footer-badges{display:flex;gap:8px}
         .footer-badge{padding:4px 10px;border:1px solid var(--border);border-radius:4px;font-size:10px;color:var(--text-dim);font-weight:600;letter-spacing:.02em}
 
+        /* ========== UNIFIED WIDGET (ElevenLabs style) ========== */
+        .uw{background:#0f0f1a;border-radius:20px;overflow:hidden;margin-top:20px;max-width:420px;width:100%;transition:all .4s cubic-bezier(.4,0,.2,1)}
+        .uw-tabs{display:flex;padding:4px;gap:4px;background:rgba(255,255,255,.05);border-radius:14px;margin:12px 12px 0}
+        .uw-tab{flex:1;padding:10px 16px;border:none;background:none;color:rgba(255,255,255,.4);font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;border-radius:10px;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:6px}
+        .uw-tab.active{background:rgba(255,255,255,.1);color:#fff}
+        .uw-tab:hover:not(.active){color:rgba(255,255,255,.6)}
+        .uw-tab svg{width:16px;height:16px}
+        .uw-voice-idle{display:flex;flex-direction:column;align-items:center;padding:28px 20px 24px;gap:14px}
+        .uw-mic-btn{width:64px;height:64px;border-radius:50%;background:var(--indigo);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;box-shadow:0 0 24px rgba(79,70,229,.4)}
+        .uw-mic-btn:hover{transform:scale(1.08);box-shadow:0 0 40px rgba(79,70,229,.6)}
+        .uw-mic-btn svg{width:28px;height:28px;color:#fff;stroke:currentColor}
+        .uw-mic-label{color:rgba(255,255,255,.6);font-size:14px;font-weight:500}
+        .uw-voice-active{display:none;flex-direction:column;align-items:center;padding:20px;gap:12px}
+        .uw-voice-active.visible{display:flex}
+        .uw-status-text{color:rgba(255,255,255,.5);font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+        .uw-waveform{display:flex;align-items:center;justify-content:center;gap:3px;height:48px;padding:4px 0}
+        .uw-waveform span{width:3.5px;border-radius:3px;background:var(--indigo);min-height:4px;will-change:height;transition:height .08s linear}
+        .uw-mini-transcript{width:100%;max-height:100px;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
+        .uw-mini-transcript::-webkit-scrollbar{display:none}
+        .uw-mini-msg{padding:8px 12px;border-radius:12px;font-size:13px;line-height:1.5;margin-bottom:6px;animation:fadeInUp .3s ease}
+        .uw-mini-msg.agent{background:rgba(79,70,229,.15);color:rgba(255,255,255,.9)}
+        .uw-mini-msg.user{background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);text-align:right}
+        .uw-end-btn{padding:10px 24px;background:rgba(239,68,68,.12);color:#ef4444;border:1px solid rgba(239,68,68,.25);border-radius:12px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px}
+        .uw-end-btn:hover{background:rgba(239,68,68,.22)}
+        .uw-connecting{display:flex;flex-direction:column;align-items:center;padding:28px 20px;gap:12px}
+        .uw-connecting .co-spinner{width:32px;height:32px;border:3px solid rgba(255,255,255,.1);border-top-color:var(--indigo);border-radius:50%;animation:spin .8s linear infinite}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .uw-connecting-text{color:rgba(255,255,255,.6);font-size:13px}
+        .uw-chat{display:none;flex-direction:column;height:300px}
+        .uw-chat.visible{display:flex}
+        .uw-messages{flex:1;overflow-y:auto;padding:14px;scrollbar-width:none;-ms-overflow-style:none}
+        .uw-messages::-webkit-scrollbar{display:none}
+        .uw-chat-msg{margin-bottom:10px;animation:fadeInUp .3s ease}
+        .uw-chat-msg-bubble{padding:10px 14px;border-radius:14px;font-size:13px;line-height:1.55;max-width:85%;display:inline-block}
+        .uw-chat-msg.agent .uw-chat-msg-bubble{background:rgba(79,70,229,.15);color:rgba(255,255,255,.9)}
+        .uw-chat-msg.user{text-align:right}
+        .uw-chat-msg.user .uw-chat-msg-bubble{background:rgba(255,255,255,.12);color:rgba(255,255,255,.85)}
+        .uw-chat-msg-name{font-size:10px;color:rgba(255,255,255,.3);margin-bottom:3px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+        .uw-typing{display:flex;gap:4px;padding:10px 14px}
+        .uw-typing span{width:6px;height:6px;border-radius:50%;background:rgba(79,70,229,.5);animation:typingDot 1.4s ease-in-out infinite}
+        .uw-typing span:nth-child(2){animation-delay:.2s}
+        .uw-typing span:nth-child(3){animation-delay:.4s}
+        @keyframes typingDot{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-4px)}}
+        .uw-chat-input-wrap{display:flex;gap:8px;padding:12px;border-top:1px solid rgba(255,255,255,.06)}
+        .uw-chat-input{flex:1;padding:10px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;color:#fff;font-family:var(--sans);font-size:13px;outline:none;transition:border-color .2s}
+        .uw-chat-input::placeholder{color:rgba(255,255,255,.25)}
+        .uw-chat-input:focus{border-color:rgba(79,70,229,.5)}
+        .uw-chat-send{padding:10px 14px;background:var(--indigo);color:#fff;border:none;border-radius:10px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center}
+        .uw-chat-send:hover{background:#4338CA}
+        .uw-powered{text-align:center;padding:8px 12px 12px;font-size:11px;color:rgba(255,255,255,.2)}
+
         /* ========== RESPONSIVE ========== */
         @media(max-width:1024px){
             .stats-grid{grid-template-columns:repeat(2,1fr)}
@@ -545,6 +596,8 @@
             .footer-top{grid-template-columns:1fr 1fr;gap:24px}
             .footer-bottom{flex-direction:column;text-align:center}
             .footer-badges{justify-content:center}
+            .uw{max-width:100%;border-radius:16px}
+            .uw-chat{height:260px}
             .call-overlay-nav{padding:0 16px}
             .call-overlay-agent-name{display:none}
             .call-overlay-body{padding:0 16px}
@@ -654,17 +707,54 @@
                     </div>
                     <div class="orb-bubble" id="orb-bubble">Hi, I'm Sarah...</div>
                 </div>
-                <div class="orb-btns">
-                    <button class="orb-btn-voice" id="orb-voice-btn">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
-                        Talk to Sarah
-                    </button>
-                    <button class="orb-btn-chat" id="orb-chat-btn">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-                        Try a scenario
-                    </button>
+                <!-- Unified voice/chat widget -->
+                <div class="uw" id="unified-widget">
+                    <div class="uw-tabs">
+                        <button class="uw-tab active" id="uw-tab-voice" data-mode="voice">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/></svg>
+                            Voice
+                        </button>
+                        <button class="uw-tab" id="uw-tab-chat" data-mode="chat">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                            Chat
+                        </button>
+                    </div>
+                    <!-- Voice: idle state -->
+                    <div class="uw-voice-idle" id="uw-voice-idle">
+                        <button class="uw-mic-btn" id="uw-mic-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
+                        </button>
+                        <div class="uw-mic-label">Talk to Sarah</div>
+                    </div>
+                    <!-- Voice: connecting -->
+                    <div class="uw-connecting" id="uw-connecting" style="display:none">
+                        <div class="co-spinner"></div>
+                        <div class="uw-connecting-text" id="uw-connecting-text">Preparing your agent...</div>
+                    </div>
+                    <!-- Voice: active call -->
+                    <div class="uw-voice-active" id="uw-voice-active">
+                        <div class="uw-status-text" id="uw-status">Listening...</div>
+                        <div class="uw-waveform" id="uw-waveform">
+                            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                        <div class="uw-mini-transcript" id="uw-transcript"></div>
+                        <button class="uw-end-btn" id="uw-end-btn">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                            End call
+                        </button>
+                    </div>
+                    <!-- Chat mode -->
+                    <div class="uw-chat" id="uw-chat">
+                        <div class="uw-messages" id="uw-messages"></div>
+                        <div class="uw-chat-input-wrap">
+                            <input type="text" class="uw-chat-input" id="uw-chat-input" placeholder="Try: &quot;I already paid this&quot;" autocomplete="off">
+                            <button class="uw-chat-send" id="uw-chat-send">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="uw-powered">Powered by AgentCollect</div>
                 </div>
-                <div class="orb-powered">Uses your microphone · Powered by AgentCollect</div>
             </div>
 
             <!-- Analysis banner: why they don't pay -->
@@ -2587,35 +2677,283 @@
         startVoiceCall();
     });
 
-    // Orb voice button
-    document.getElementById('orb-voice-btn').addEventListener('click', function(e) {
-        e.stopPropagation();
+    // ===== UNIFIED WIDGET =====
+    var uwTabVoice = document.getElementById('uw-tab-voice');
+    var uwTabChat = document.getElementById('uw-tab-chat');
+    var uwVoiceIdle = document.getElementById('uw-voice-idle');
+    var uwConnecting = document.getElementById('uw-connecting');
+    var uwVoiceActive = document.getElementById('uw-voice-active');
+    var uwChat = document.getElementById('uw-chat');
+    var uwMicBtn = document.getElementById('uw-mic-btn');
+    var uwEndBtn = document.getElementById('uw-end-btn');
+    var uwStatus = document.getElementById('uw-status');
+    var uwTranscript = document.getElementById('uw-transcript');
+    var uwWaveformEl = document.getElementById('uw-waveform');
+    var uwMessages = document.getElementById('uw-messages');
+    var uwChatInput = document.getElementById('uw-chat-input');
+    var uwChatSend = document.getElementById('uw-chat-send');
+    var uwWaveformBars = uwWaveformEl ? uwWaveformEl.querySelectorAll('span') : [];
+    var waveformAnimId = null;
+    var waveformMode = 'idle';
+    var chatDisputeIdx = 0;
+    var chatTranscriptIdx = 0;
+
+    // Tab switching
+    function uwSwitchMode(mode) {
+        uwTabVoice.classList.toggle('active', mode === 'voice');
+        uwTabChat.classList.toggle('active', mode === 'chat');
+        uwChat.classList.toggle('visible', mode === 'chat');
+        if (mode === 'voice') {
+            uwChat.classList.remove('visible');
+            if (callActive) {
+                uwVoiceIdle.style.display = 'none';
+                uwConnecting.style.display = 'none';
+                uwVoiceActive.classList.add('visible');
+            } else {
+                uwVoiceIdle.style.display = '';
+                uwConnecting.style.display = 'none';
+                uwVoiceActive.classList.remove('visible');
+            }
+        } else {
+            uwVoiceIdle.style.display = 'none';
+            uwConnecting.style.display = 'none';
+            uwVoiceActive.classList.remove('visible');
+            uwChat.classList.add('visible');
+            initChat();
+        }
+    }
+
+    if (uwTabVoice) uwTabVoice.addEventListener('click', function() { uwSwitchMode('voice'); });
+    if (uwTabChat) uwTabChat.addEventListener('click', function() { uwSwitchMode('chat'); });
+
+    // Dynamic waveform animation
+    function animateWaveform() {
+        var now = Date.now();
+        for (var i = 0; i < uwWaveformBars.length; i++) {
+            var bar = uwWaveformBars[i];
+            var h;
+            if (waveformMode === 'agent') {
+                h = 10 + Math.random() * 34;
+            } else if (waveformMode === 'user') {
+                h = 6 + Math.random() * 18;
+            } else {
+                h = 4 + Math.sin(now / 500 + i * 0.6) * 3;
+            }
+            bar.style.height = h + 'px';
+        }
+        waveformAnimId = requestAnimationFrame(animateWaveform);
+    }
+
+    function startWaveformAnim(mode) {
+        waveformMode = mode || 'idle';
+        if (!waveformAnimId) animateWaveform();
+    }
+
+    function stopWaveformAnim() {
+        waveformMode = 'idle';
+        if (waveformAnimId) { cancelAnimationFrame(waveformAnimId); waveformAnimId = null; }
+        for (var i = 0; i < uwWaveformBars.length; i++) uwWaveformBars[i].style.height = '4px';
+    }
+
+    // Inline voice call (replaces full-screen overlay for initial experience)
+    function startInlineVoiceCall() {
         if (callActive) return;
+        callActive = true;
+        var data = currentCompany;
+
+        // Show connecting state
+        uwVoiceIdle.style.display = 'none';
+        uwConnecting.style.display = 'flex';
+        uwVoiceActive.classList.remove('visible');
+        document.getElementById('uw-connecting-text').textContent = 'Connecting to ' + (data ? data.name : 'your') + ' agent...';
+
         // Pulse the orb
         var orb = document.getElementById('orb-main');
-        orb.classList.add('speaking');
-        startVoiceCall();
+        if (orb) orb.classList.add('speaking');
+
+        (async function() {
+            try {
+                var response = await fetch('https://backend.widr.app/api/v1/demo/web-call', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        company_name: data ? data.name : 'Unknown',
+                        product: data ? (data.product || data.industry) : 'services',
+                        amount: data ? (data.amount || '$3,200') : '$3,200'
+                    })
+                });
+
+                if (!response.ok) throw new Error('API returned ' + response.status);
+                var result = await response.json();
+                if (!result.success || !result.access_token) throw new Error('No access token');
+
+                var module = await import('https://cdn.jsdelivr.net/npm/retell-client-js-sdk@2.0.7/+esm');
+                var RetellWebClient = module.RetellWebClient;
+                retellClient = new RetellWebClient();
+
+                retellClient.on('call_started', function() {
+                    uwConnecting.style.display = 'none';
+                    uwVoiceActive.classList.add('visible');
+                    uwStatus.textContent = 'Your turn — speak now';
+                    startWaveformAnim('idle');
+                    try { gtag('event', 'call_started', { domain: currentDomain, company: data.name }); } catch(e) {}
+                    trackEvent('call_started');
+                });
+
+                retellClient.on('call_ended', function() {
+                    trackEvent('call_completed');
+                    endInlineCall('Call ended');
+                });
+
+                retellClient.on('agent_start_talking', function() {
+                    startWaveformAnim('agent');
+                    uwStatus.textContent = (data ? data.name : '') + ' Agent speaking...';
+                });
+
+                retellClient.on('agent_stop_talking', function() {
+                    startWaveformAnim('user');
+                    uwStatus.textContent = 'Your turn — speak now';
+                });
+
+                retellClient.on('update', function(update) {
+                    if (update && update.transcript) {
+                        renderInlineTranscript(update.transcript);
+                    }
+                });
+
+                retellClient.on('error', function(err) {
+                    console.error('RetellAI error:', err);
+                    endInlineCall('Connection error');
+                });
+
+                await retellClient.startCall({ accessToken: result.access_token });
+
+            } catch (err) {
+                console.error('Voice call error:', err);
+                callActive = false;
+                uwConnecting.style.display = 'none';
+                uwVoiceIdle.style.display = '';
+                uwVoiceActive.classList.remove('visible');
+                if (orb) orb.classList.remove('speaking');
+                // Show error inline
+                var label = document.querySelector('.uw-mic-label');
+                if (label) { label.textContent = 'Connection failed — try again'; label.style.color = '#ef4444'; }
+                setTimeout(function() { if (label) { label.textContent = 'Talk to Sarah'; label.style.color = ''; } }, 3000);
+            }
+        })();
+    }
+
+    function renderInlineTranscript(transcript) {
+        if (!transcript || !transcript.length) return;
+        var agentName = currentCompany ? (currentCompany.name + ' Agent') : 'Agent';
+        // Show last message only for compact view
+        var last = null;
+        for (var i = transcript.length - 1; i >= 0; i--) {
+            if ((transcript[i].content || '').trim()) { last = transcript[i]; break; }
+        }
+        if (!last) return;
+        var role = last.role === 'agent' ? 'agent' : 'user';
+        uwTranscript.innerHTML = '<div class="uw-mini-msg ' + role + '">' + last.content + '</div>';
+        uwTranscript.scrollTop = uwTranscript.scrollHeight;
+    }
+
+    function endInlineCall(msg) {
+        callActive = false;
+        if (retellClient) { try { retellClient.stopCall(); } catch(e) {} retellClient = null; }
+        stopWaveformAnim();
+        var orb = document.getElementById('orb-main');
+        if (orb) orb.classList.remove('speaking');
+
+        // Show ended state briefly, then reset
+        uwStatus.textContent = msg || 'Call ended';
+        setTimeout(function() {
+            uwVoiceActive.classList.remove('visible');
+            uwVoiceIdle.style.display = '';
+            uwTranscript.innerHTML = '';
+        }, 2000);
+    }
+
+    // Wire up mic button
+    if (uwMicBtn) uwMicBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        startInlineVoiceCall();
     });
 
-    // Orb chat/dispute button
-    document.getElementById('orb-chat-btn').addEventListener('click', function(e) {
+    if (uwEndBtn) uwEndBtn.addEventListener('click', function(e) {
         e.stopPropagation();
-        var panelL = document.getElementById('panel-left');
-        if (panelL.style.display === 'none') {
-            panelL.style.display = '';
-            panelL.style.animation = 'fadeInUp .4s ease';
-            // Scroll to dispute panel
-            setTimeout(function() { panelL.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 100);
-        }
+        endInlineCall('Call ended');
     });
 
     // Orb click = voice call
     document.getElementById('orb-wrap').addEventListener('click', function() {
         if (callActive) return;
-        var orb = document.getElementById('orb-main');
-        orb.classList.add('speaking');
-        startVoiceCall();
+        startInlineVoiceCall();
     });
+
+    // ===== CHAT MODE =====
+    var chatInitialized = false;
+
+    function initChat() {
+        if (chatInitialized) return;
+        chatInitialized = true;
+        var agentName = currentCompany ? currentCompany.name : 'Your';
+        addChatMsg('agent', "Hi! I'm Sarah from " + agentName + ". I handle collection conversations — disputes, payment plans, everything. Try telling me something like \"I already paid\" or \"the invoice is wrong.\"");
+    }
+
+    function addChatMsg(role, text) {
+        var div = document.createElement('div');
+        div.className = 'uw-chat-msg ' + role;
+        var nameLabel = role === 'agent' ? 'Sarah · Agent' : 'You';
+        div.innerHTML = '<div class="uw-chat-msg-name">' + nameLabel + '</div><div class="uw-chat-msg-bubble">' + text + '</div>';
+        uwMessages.appendChild(div);
+        uwMessages.scrollTop = uwMessages.scrollHeight;
+    }
+
+    function showTyping() {
+        var div = document.createElement('div');
+        div.className = 'uw-chat-msg agent';
+        div.id = 'uw-typing';
+        div.innerHTML = '<div class="uw-chat-msg-name">Sarah · Agent</div><div class="uw-typing"><span></span><span></span><span></span></div>';
+        uwMessages.appendChild(div);
+        uwMessages.scrollTop = uwMessages.scrollHeight;
+    }
+
+    function removeTyping() {
+        var t = document.getElementById('uw-typing');
+        if (t) t.remove();
+    }
+
+    function handleChatSend() {
+        var text = uwChatInput.value.trim();
+        if (!text) return;
+        uwChatInput.value = '';
+        addChatMsg('user', text);
+
+        // Find a matching dispute response or use default
+        var data = currentCompany;
+        if (!data || !data.disputes || !data.disputes.length) return;
+
+        var dispute = data.disputes[chatDisputeIdx % data.disputes.length];
+        // Get the agent response (next agent line in transcript)
+        var agentLines = dispute.transcript.filter(function(l) { return l.speaker === 'agent'; });
+        var responseLine = agentLines[chatTranscriptIdx % agentLines.length];
+        chatTranscriptIdx++;
+        if (chatTranscriptIdx >= agentLines.length) {
+            chatTranscriptIdx = 0;
+            chatDisputeIdx++;
+        }
+
+        // Show typing, then response
+        showTyping();
+        var delay = 800 + Math.min(responseLine.text.length * 15, 2500);
+        setTimeout(function() {
+            removeTyping();
+            addChatMsg('agent', responseLine.text);
+        }, delay);
+    }
+
+    if (uwChatSend) uwChatSend.addEventListener('click', handleChatSend);
+    if (uwChatInput) uwChatInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') handleChatSend(); });
 
     coEndBtn.addEventListener('click', function() {
         endCallUI('Call ended');
