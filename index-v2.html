@@ -717,9 +717,9 @@
 <!-- FULL-SCREEN CALL OVERLAY -->
 <div class="call-overlay" id="call-overlay">
     <div class="call-overlay-nav">
-        <div style="display:flex;align-items:baseline">
-            <span class="call-overlay-brand">Agent<span>Collect</span><span class="dot-circle"></span></span>
-            <span class="call-overlay-agent-name" id="co-agent-name"></span>
+        <div style="display:flex;align-items:center;gap:12px">
+            <img id="co-company-logo" src="" alt="" style="width:32px;height:32px;border-radius:8px;object-fit:contain;border:1px solid var(--border);display:none">
+            <span class="call-overlay-agent-name" id="co-agent-name" style="margin-left:0;padding-left:0;border-left:none"></span>
         </div>
         <button class="call-overlay-end" id="co-end-btn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
@@ -1012,9 +1012,15 @@
         // Show build section
         setTimeout(function() {
             buildSection.classList.add('active');
-            buildLogo.src = 'https://logo.clearbit.com/' + domain;
-            buildLogo.onerror = function() { this.src = 'https://unavatar.io/' + domain; };
             buildLogo.alt = data.name;
+            buildLogo.onerror = function() {
+                if (this.src.indexOf('clearbit') > -1) {
+                    this.src = 'https://www.google.com/s2/favicons?domain=' + domain + '&sz=128';
+                } else if (this.src.indexOf('google.com') > -1) {
+                    this.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(data.name) + '&background=4F46E5&color=fff&size=128&bold=true';
+                }
+            };
+            buildLogo.src = 'https://logo.clearbit.com/' + domain;
             buildTitle.textContent = 'Building your ' + data.name + ' collection agent...';
             buildPhases.innerHTML = '';
 
@@ -1230,8 +1236,20 @@
         coReasoningPills = [];
         if (coReasoningTimer) { clearInterval(coReasoningTimer); coReasoningTimer = null; }
 
-        // Set agent name
+        // Set agent name + logo
         coAgentName.textContent = data.name + ' Agent';
+        var coLogo = document.getElementById('co-company-logo');
+        if (currentDomain) {
+            coLogo.src = 'https://logo.clearbit.com/' + currentDomain;
+            coLogo.onerror = function() {
+                if (this.src.indexOf('clearbit') > -1) {
+                    this.src = 'https://www.google.com/s2/favicons?domain=' + currentDomain + '&sz=128';
+                } else {
+                    this.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(data.name) + '&background=4F46E5&color=fff&size=128&bold=true';
+                }
+            };
+            coLogo.style.display = 'block';
+        }
 
         // Show connecting state
         coConnecting.style.display = 'flex';
