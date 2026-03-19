@@ -554,6 +554,7 @@ a.review-src:hover{color:var(--blue)}
 // Reveal
 var ro=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('v')})},{threshold:.12});
 document.querySelectorAll('.rv').forEach(function(el){ro.observe(el)});
+setTimeout(function(){document.querySelectorAll('.rv').forEach(function(el){el.classList.add('v')})},800);
 
 // Personalization — ?to=Prenom
 (function(){
