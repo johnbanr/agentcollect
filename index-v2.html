@@ -108,7 +108,7 @@
         .hero-logos img:hover{filter:grayscale(0%);opacity:1}
 
         /* ========== BUILD / DEMO CARD (unified) ========== */
-        .build-section{display:none;padding:0 32px 40px;max-width:760px;margin:0 auto;position:relative;z-index:1}
+        .build-section{display:none;padding:0 32px 40px;max-width:960px;margin:0 auto;position:relative;z-index:1}
         .build-section.active{display:block}
         .build-card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:48px;box-shadow:var(--shadow-lg);transition:all .5s ease}
         .build-header{display:flex;align-items:center;gap:16px;margin-bottom:32px}
@@ -132,54 +132,79 @@
         .demo-area.visible{display:block;animation:fadeInUp .5s ease}
         @keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 
-        /* Dispute cards */
-        .dispute-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
-        .dispute-card{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:20px;cursor:pointer;transition:all .25s;position:relative}
-        .dispute-card:hover{border-color:var(--indigo);background:rgba(79,70,229,.02);transform:translateY(-2px);box-shadow:var(--shadow-md)}
-        .dispute-card.active{border-color:var(--indigo);background:rgba(79,70,229,.03)}
-        .dispute-card-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--indigo);margin-bottom:8px}
-        .dispute-card-text{font-size:14px;color:var(--text-mid);line-height:1.55;font-style:italic;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-        .dispute-card-cta{display:flex;align-items:center;gap:4px;margin-top:12px;font-size:13px;font-weight:600;color:var(--indigo);transition:gap .2s}
-        .dispute-card:hover .dispute-card-cta{gap:8px}
+        /* Analysis banner */
+        .analysis-banner{background:linear-gradient(135deg,rgba(245,158,11,.04),rgba(245,158,11,.08));border:1px solid rgba(245,158,11,.15);border-radius:12px;padding:16px 20px;margin-bottom:20px}
+        .analysis-banner-title{font-family:var(--display);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#B45309;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+        .analysis-banner-items{display:flex;flex-direction:column;gap:4px}
+        .analysis-banner-item{font-size:14px;color:var(--text-mid);line-height:1.5;display:flex;align-items:flex-start;gap:8px}
+        .analysis-banner-item::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:#F59E0B;margin-top:7px;flex-shrink:0}
 
-        /* Response area */
-        .response-area{display:none;border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:24px;background:#fff}
+        /* Split screen demo */
+        .demo-split{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+
+        /* Demo panel (left + right cards) */
+        .demo-panel{border:1.5px solid var(--border);border-radius:16px;padding:28px;cursor:pointer;transition:all .3s ease;position:relative;overflow:hidden;display:flex;flex-direction:column;min-height:300px}
+        .demo-panel:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.08)}
+
+        /* Left panel - email/text vibe */
+        .demo-panel-left{background:linear-gradient(160deg,#FFFBF5,#FFF8EE);border-color:rgba(245,158,11,.2)}
+        .demo-panel-left:hover{border-color:rgba(245,158,11,.4);box-shadow:0 8px 28px rgba(245,158,11,.12)}
+
+        /* Right panel - voice/tech vibe */
+        .demo-panel-right{background:linear-gradient(160deg,#F5F3FF,#EEF0FF);border-color:rgba(79,70,229,.2)}
+        .demo-panel-right:hover{border-color:rgba(79,70,229,.4);box-shadow:0 8px 28px rgba(79,70,229,.12)}
+
+        .demo-panel-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+        .demo-panel-left .demo-panel-icon{background:rgba(245,158,11,.1);color:#B45309}
+        .demo-panel-right .demo-panel-icon{background:rgba(79,70,229,.1);color:var(--indigo)}
+        .demo-panel-heading{font-family:var(--display);font-size:20px;font-weight:800;color:var(--text);margin-bottom:8px;letter-spacing:-.03em}
+        .demo-panel-desc{font-size:15px;color:var(--text-mid);line-height:1.6;margin-bottom:16px;flex:1}
+        .demo-panel-teaser{font-size:14px;color:var(--text-muted);font-style:italic;line-height:1.55;padding:12px 16px;background:rgba(0,0,0,.03);border-radius:10px;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+        .demo-panel-cta{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px 20px;border-radius:12px;font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;transition:all .2s;border:none;letter-spacing:-.01em}
+        .demo-panel-left .demo-panel-cta{background:#B45309;color:#fff}
+        .demo-panel-left .demo-panel-cta:hover{background:#92400E;transform:translateY(-1px);box-shadow:0 4px 12px rgba(180,83,9,.25)}
+        .demo-panel-right .demo-panel-cta{background:var(--indigo);color:#fff}
+        .demo-panel-right .demo-panel-cta:hover{background:var(--indigo-dark);transform:translateY(-1px);box-shadow:0 4px 12px rgba(79,70,229,.25)}
+        .demo-panel-sub{font-size:12px;color:var(--text-dim);text-align:center;margin-top:8px}
+
+        /* Dispute inline view (replaces teaser in left panel) */
+        .dispute-inline{display:none}
+        .dispute-inline.visible{display:block;animation:fadeInUp .4s ease}
+        .dispute-inline-back{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:600;color:#B45309;cursor:pointer;margin-bottom:12px;transition:gap .2s;background:none;border:none;font-family:var(--sans)}
+        .dispute-inline-back:hover{gap:8px}
+
+        /* Response area (inline in left card) */
+        .response-area{display:none;border:1px solid rgba(245,158,11,.15);border-radius:12px;overflow:hidden;background:#fff;margin-bottom:12px}
         .response-area.visible{display:grid;grid-template-columns:3fr 2fr;animation:fadeInUp .4s ease}
-        .response-transcript{padding:24px;display:flex;flex-direction:column;gap:10px;overflow-y:auto;max-height:340px;position:relative}
-        .response-transcript::before{content:'';position:absolute;top:0;left:0;right:0;height:20px;background:linear-gradient(to bottom,#fff,transparent);z-index:2;pointer-events:none}
+        .response-transcript{padding:20px;display:flex;flex-direction:column;gap:8px;overflow-y:auto;max-height:280px;position:relative}
+        .response-transcript::before{content:'';position:absolute;top:0;left:0;right:0;height:16px;background:linear-gradient(to bottom,#fff,transparent);z-index:2;pointer-events:none}
         .transcript-line{opacity:0;transform:translateY(8px);transition:opacity .4s ease,transform .4s ease}
         .transcript-line.shown{opacity:1;transform:none}
-        .transcript-speaker{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+        .transcript-speaker{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:1px}
         .transcript-speaker.debtor{color:var(--text-dim)}
         .transcript-speaker.agent{color:var(--indigo)}
-        .transcript-text{font-size:15px;line-height:1.6;color:var(--text-mid)}
+        .transcript-text{font-size:14px;line-height:1.55;color:var(--text-mid)}
         .transcript-text.debtor{color:var(--text-dim)}
 
         /* Reasoning panel */
-        .response-reasoning{padding:24px 20px;border-left:1px solid var(--border);display:flex;flex-direction:column;gap:8px;justify-content:center;background:var(--bg)}
-        .reasoning-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim);margin-bottom:4px}
-        .reason-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:10px;font-size:13px;font-weight:600;opacity:0;transform:translateX(16px);transition:opacity .4s ease,transform .4s ease;width:fit-content}
+        .response-reasoning{padding:20px 16px;border-left:1px solid var(--border);display:flex;flex-direction:column;gap:6px;justify-content:center;background:var(--bg)}
+        .reasoning-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim);margin-bottom:4px}
+        .reason-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:8px;font-size:12px;font-weight:600;opacity:0;transform:translateX(16px);transition:opacity .4s ease,transform .4s ease;width:fit-content}
         .reason-pill.shown{opacity:1;transform:none}
         .reason-pill.green{background:rgba(16,185,129,.08);color:var(--green-dark)}
         .reason-pill.indigo{background:rgba(79,70,229,.08);color:var(--indigo)}
         .reason-pill.amber{background:rgba(245,158,11,.08);color:#B45309}
 
-        /* Talk to agent button */
-        .talk-agent-btn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;padding:18px 24px;background:var(--indigo);color:#fff;border:none;border-radius:14px;font-family:var(--sans);font-size:16px;font-weight:600;cursor:pointer;transition:all .2s;letter-spacing:-.01em;position:relative}
-        .talk-agent-btn:hover{background:var(--indigo-dark);transform:translateY(-1px);box-shadow:0 4px 16px rgba(79,70,229,.3)}
-        .talk-agent-btn:active{transform:translateY(0)}
-        .talk-agent-btn .btn-sub{font-size:12px;font-weight:400;opacity:.7;margin-left:4px}
-        .talk-agent-btn svg{flex-shrink:0}
-        .talk-agent-btn.connecting{background:var(--indigo);opacity:.8;pointer-events:none}
-        .talk-agent-btn.active-call{background:var(--green-dark)}
-        .talk-agent-btn.ending{background:var(--text-dim);pointer-events:none}
+        .dispute-try-another{display:none;font-size:13px;font-weight:600;color:#B45309;cursor:pointer;background:none;border:none;font-family:var(--sans);padding:0;transition:gap .2s}
+        .dispute-try-another.visible{display:inline-flex;align-items:center;gap:4px}
+        .dispute-try-another:hover{gap:8px}
 
-        /* Call UI */
-        .call-ui{display:none;border:1px solid var(--border);border-radius:14px;padding:32px;text-align:center;margin-bottom:24px;background:var(--bg);position:relative;overflow:hidden}
+        /* Call UI (inside right panel) */
+        .call-ui{display:none;text-align:center;position:relative;overflow:hidden}
         .call-ui.visible{display:block;animation:fadeInUp .4s ease}
-        .call-status{font-family:var(--display);font-size:18px;font-weight:700;color:var(--text);margin-bottom:8px}
-        .call-sub{font-size:14px;color:var(--text-muted);margin-bottom:20px}
-        .call-waveform{display:flex;align-items:center;justify-content:center;gap:4px;height:48px;margin-bottom:20px}
+        .call-status{font-family:var(--display);font-size:16px;font-weight:700;color:var(--text);margin-bottom:6px}
+        .call-sub{font-size:13px;color:var(--text-muted);margin-bottom:16px}
+        .call-waveform{display:flex;align-items:center;justify-content:center;gap:4px;height:48px;margin-bottom:16px}
         .call-waveform span{display:block;width:4px;border-radius:3px;background:var(--green);animation:call-wave 1s ease-in-out infinite}
         .call-waveform span:nth-child(1){height:16px;animation-delay:0s}
         .call-waveform span:nth-child(2){height:28px;animation-delay:.1s}
@@ -193,10 +218,10 @@
         @keyframes call-wave{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.3)}}
         .call-end-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 32px;background:var(--red);color:#fff;border:none;border-radius:12px;font-family:var(--sans);font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
         .call-end-btn:hover{background:#DC2626;transform:translateY(-1px)}
-        .call-transcript{margin-top:20px;text-align:left;max-height:200px;overflow-y:auto;padding:16px;background:#fff;border-radius:10px;border:1px solid var(--border);font-size:14px;color:var(--text-mid);line-height:1.6;display:none}
+        .call-transcript{margin-top:16px;text-align:left;max-height:160px;overflow-y:auto;padding:12px;background:#fff;border-radius:10px;border:1px solid var(--border);font-size:13px;color:var(--text-mid);line-height:1.5;display:none}
         .call-transcript.has-content{display:block}
-        .call-transcript .ct-line{margin-bottom:8px}
-        .call-transcript .ct-speaker{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+        .call-transcript .ct-line{margin-bottom:6px}
+        .call-transcript .ct-speaker{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:1px}
         .call-transcript .ct-speaker.agent{color:var(--indigo)}
         .call-transcript .ct-speaker.user{color:var(--green-dark)}
         .call-ended-msg{text-align:center;padding:20px;color:var(--text-muted);font-size:15px}
@@ -299,8 +324,9 @@
             .hero-logos{gap:24px}
             .hero-logos img{height:18px}
             .build-section{padding:0 20px 48px}
-            .build-card{padding:32px 24px}
-            .dispute-cards{grid-template-columns:1fr}
+            .build-card{padding:28px 20px}
+            .demo-split{grid-template-columns:1fr;gap:16px}
+            .demo-panel{min-height:auto}
             .response-area.visible{grid-template-columns:1fr}
             .response-reasoning{border-left:none;border-top:1px solid var(--border)}
             .trust-section{padding:72px 20px}
@@ -379,37 +405,81 @@
 
         <!-- Demo area (appears after build animation completes) -->
         <div class="demo-area" id="demo-area">
-            <!-- Dispute cards -->
-            <div class="dispute-cards" id="dispute-cards"></div>
-
-            <!-- Response area (appears after clicking a dispute) -->
-            <div class="response-area" id="response-area">
-                <div class="response-transcript" id="response-transcript"></div>
-                <div class="response-reasoning" id="response-reasoning">
-                    <div class="reasoning-label">Agent reasoning</div>
+            <!-- Analysis banner: why they don't pay -->
+            <div class="analysis-banner" id="analysis-banner">
+                <div class="analysis-banner-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    Why your clients don't pay
                 </div>
+                <div class="analysis-banner-items" id="analysis-items"></div>
             </div>
 
-            <!-- Call UI (appears when calling) -->
-            <div class="call-ui" id="call-ui">
-                <div class="call-status" id="call-status">Connecting...</div>
-                <div class="call-sub" id="call-sub">Setting up your call</div>
-                <div class="call-waveform" id="call-waveform" style="display:none">
-                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <!-- Split screen: two big cards -->
+            <div class="demo-split">
+                <!-- LEFT: Test a dispute (text/email) -->
+                <div class="demo-panel demo-panel-left" id="panel-left">
+                    <div class="demo-panel-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    </div>
+                    <!-- Default teaser view -->
+                    <div id="panel-left-teaser">
+                        <div class="demo-panel-heading">Test a dispute</div>
+                        <div class="demo-panel-desc" id="panel-left-desc">See how your agent handles a real dispute with evidence and reasoning.</div>
+                        <div class="demo-panel-teaser" id="panel-left-teaser-text"></div>
+                        <button class="demo-panel-cta" id="panel-left-cta">
+                            See how your agent handles this
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </button>
+                    </div>
+                    <!-- Inline dispute response view (replaces teaser) -->
+                    <div class="dispute-inline" id="dispute-inline">
+                        <button class="dispute-inline-back" id="dispute-back">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                            Back to disputes
+                        </button>
+                        <div class="response-area" id="response-area">
+                            <div class="response-transcript" id="response-transcript"></div>
+                            <div class="response-reasoning" id="response-reasoning">
+                                <div class="reasoning-label">Agent reasoning</div>
+                            </div>
+                        </div>
+                        <button class="dispute-try-another" id="dispute-try-another">
+                            Try another dispute
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </button>
+                    </div>
                 </div>
-                <button class="call-end-btn" id="call-end-btn" style="display:none">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-                    End call
-                </button>
-                <div class="call-transcript" id="call-live-transcript"></div>
-            </div>
 
-            <!-- Talk to agent button -->
-            <button class="talk-agent-btn" id="talk-agent-btn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
-                <span>Talk to your agent — test it live</span>
-                <span class="btn-sub">(uses your microphone)</span>
-            </button>
+                <!-- RIGHT: Talk to your agent (voice/call) -->
+                <div class="demo-panel demo-panel-right" id="panel-right">
+                    <div class="demo-panel-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                    </div>
+                    <!-- Default view -->
+                    <div id="panel-right-default">
+                        <div class="demo-panel-heading">Talk to your agent</div>
+                        <div class="demo-panel-desc" id="panel-right-desc">Speak to your collection agent live. Real-time conversation using your microphone.</div>
+                        <button class="demo-panel-cta" id="panel-right-cta">
+                            Start conversation
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </button>
+                        <div class="demo-panel-sub">Uses your browser microphone</div>
+                    </div>
+                    <!-- Call UI (replaces default when calling) -->
+                    <div class="call-ui" id="call-ui">
+                        <div class="call-status" id="call-status">Connecting...</div>
+                        <div class="call-sub" id="call-sub">Setting up your call</div>
+                        <div class="call-waveform" id="call-waveform" style="display:none">
+                            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                        <button class="call-end-btn" id="call-end-btn" style="display:none">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                            End call
+                        </button>
+                        <div class="call-transcript" id="call-live-transcript"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -602,6 +672,11 @@
             industry: 'Transportation & delivery platform',
             clients: 'Restaurant partners, delivery drivers, freight carriers',
             whyDontPay: 'Service disputes, partnership cancellations, chargebacks on promotional credits',
+            analysis: [
+                'Restaurants: churn risk — 1 in 4 close within first year',
+                'Drivers: small balances — cash flow timing issues',
+                'Merchants: PO mismatch — process and contract disputes'
+            ],
             disputes: [
                 {
                     label: 'Partnership cancellation',
@@ -658,6 +733,11 @@
         industry: 'Business services',
         clients: 'Enterprise and mid-market companies',
         whyDontPay: 'Invoice disputes, cash flow constraints, process delays, contact changes',
+        analysis: [
+            'Invoice disputes: deliverable or scope disagreements',
+            'Cash flow delays: clients waiting on their own receivables',
+            'Contact turnover: AP contacts change, invoices get lost'
+        ],
         disputes: [
             {
                 label: 'Invoice dispute',
@@ -715,17 +795,29 @@
     var buildTitle = document.getElementById('build-title');
     var buildPhases = document.getElementById('build-phases');
     var demoArea = document.getElementById('demo-area');
-    var disputeCardsContainer = document.getElementById('dispute-cards');
+    var analysisBanner = document.getElementById('analysis-banner');
+    var analysisItems = document.getElementById('analysis-items');
+    var panelLeft = document.getElementById('panel-left');
+    var panelLeftTeaser = document.getElementById('panel-left-teaser');
+    var panelLeftTeaserText = document.getElementById('panel-left-teaser-text');
+    var panelLeftDesc = document.getElementById('panel-left-desc');
+    var panelLeftCta = document.getElementById('panel-left-cta');
+    var disputeInline = document.getElementById('dispute-inline');
+    var disputeBack = document.getElementById('dispute-back');
+    var disputeTryAnother = document.getElementById('dispute-try-another');
     var responseArea = document.getElementById('response-area');
     var responseTranscript = document.getElementById('response-transcript');
     var responseReasoning = document.getElementById('response-reasoning');
+    var panelRight = document.getElementById('panel-right');
+    var panelRightDefault = document.getElementById('panel-right-default');
+    var panelRightDesc = document.getElementById('panel-right-desc');
+    var panelRightCta = document.getElementById('panel-right-cta');
     var callUI = document.getElementById('call-ui');
     var callStatus = document.getElementById('call-status');
     var callSub = document.getElementById('call-sub');
     var callWaveform = document.getElementById('call-waveform');
     var callEndBtn = document.getElementById('call-end-btn');
     var callLiveTranscript = document.getElementById('call-live-transcript');
-    var talkAgentBtn = document.getElementById('talk-agent-btn');
 
     var currentCompany = null;
     var currentDomain = '';
@@ -772,13 +864,13 @@
         currentDomain = domain;
         currentDisputeIndex = 0;
 
-        // Hide hero content and collapse hero section
+        // Hide hero content and fully collapse hero section
         heroContent.style.opacity = '0';
         heroContent.style.transform = 'translateY(-20px)';
 
         setTimeout(function() {
             heroContent.style.display = 'none';
-            heroSection.style.padding = '76px 0 0';
+            heroSection.style.padding = '72px 0 8px';
             heroSection.style.minHeight = '0';
         }, 400);
 
@@ -863,24 +955,28 @@
 
     // ===== DEMO (inside build card) =====
     function showDemo(data) {
-        // Render dispute cards
-        disputeCardsContainer.innerHTML = '';
-        data.disputes.forEach(function(dispute, i) {
-            var card = document.createElement('div');
-            card.className = 'dispute-card';
-            card.setAttribute('data-dispute', i);
-            card.innerHTML =
-                '<div class="dispute-card-label">' + dispute.label + '</div>' +
-                '<div class="dispute-card-text">"' + dispute.teaser + '"</div>' +
-                '<div class="dispute-card-cta">See response <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>';
-            card.addEventListener('click', function() {
-                playDispute(i);
-            });
-            disputeCardsContainer.appendChild(card);
+        // Render analysis banner items
+        analysisItems.innerHTML = '';
+        (data.analysis || []).forEach(function(item) {
+            var div = document.createElement('div');
+            div.className = 'analysis-banner-item';
+            div.textContent = item;
+            analysisItems.appendChild(div);
         });
 
-        // Update talk button text
-        talkAgentBtn.querySelector('span').textContent = 'Talk to your ' + data.name + ' agent — test it live';
+        // Set left panel teaser
+        var firstDispute = data.disputes[0];
+        panelLeftTeaserText.textContent = '"' + firstDispute.teaser + '"';
+        panelLeftDesc.textContent = 'See how your ' + data.name + ' agent handles a real dispute with evidence and reasoning.';
+
+        // Set right panel text
+        panelRightDesc.textContent = 'Speak to your ' + data.name + ' collection agent live. Real-time conversation using your microphone.';
+
+        // Reset to teaser view
+        panelLeftTeaser.style.display = '';
+        disputeInline.classList.remove('visible');
+        disputeTryAnother.classList.remove('visible');
+        responseArea.classList.remove('visible');
 
         // Show demo area with animation
         demoArea.classList.add('visible');
@@ -900,13 +996,10 @@
         var dispute = data.disputes[disputeIndex];
         currentDisputeIndex = disputeIndex;
 
-        // Highlight active dispute card
-        document.querySelectorAll('.dispute-card').forEach(function(card, i) {
-            card.classList.toggle('active', i === disputeIndex);
-        });
-
-        // Hide call UI if visible
-        callUI.classList.remove('visible');
+        // Switch to inline view: hide teaser, show dispute response
+        panelLeftTeaser.style.display = 'none';
+        disputeInline.classList.add('visible');
+        disputeTryAnother.classList.remove('visible');
 
         // Show response area
         responseArea.classList.add('visible');
@@ -949,9 +1042,14 @@
             playTimeouts.push(t);
         });
 
-        // Mark done after all lines
+        // Mark done after all lines, show "try another" if more disputes
         var totalTime = dispute.transcript.length * 2500 + 1000;
-        var doneT = setTimeout(function() { isPlaying = false; }, totalTime);
+        var doneT = setTimeout(function() {
+            isPlaying = false;
+            if (data.disputes.length > 1) {
+                disputeTryAnother.classList.add('visible');
+            }
+        }, totalTime);
         playTimeouts.push(doneT);
     }
 
@@ -960,13 +1058,12 @@
         if (callActive) return;
 
         var data = currentCompany;
-        var domain = currentDomain;
 
         // Switch UI to call mode
         callActive = true;
-        responseArea.classList.remove('visible');
 
-        // Reset call UI
+        // Hide default right panel content, show call UI
+        panelRightDefault.style.display = 'none';
         callStatus.textContent = 'Connecting to your ' + data.name + ' agent...';
         callSub.textContent = 'Setting up WebRTC connection';
         callWaveform.style.display = 'none';
@@ -975,13 +1072,9 @@
         callLiveTranscript.classList.remove('has-content');
         callUI.classList.add('visible');
 
-        // Update button state
-        talkAgentBtn.classList.add('connecting');
-        talkAgentBtn.querySelector('span').textContent = 'Connecting...';
-
         try {
-            // Request access token from backend
-            var response = await fetch('https://backend.devwidr.app/api/v1/demo/web-call', {
+            // Request access token from backend (PROD)
+            var response = await fetch('https://backend.widr.app/api/v1/demo/web-call', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -1007,9 +1100,6 @@
                 callSub.textContent = 'Speaking with your ' + data.name + ' agent';
                 callWaveform.style.display = 'flex';
                 callEndBtn.style.display = 'inline-flex';
-                talkAgentBtn.classList.remove('connecting');
-                talkAgentBtn.classList.add('active-call');
-                talkAgentBtn.querySelector('span').textContent = 'Call in progress...';
             });
 
             retellClient.on('call_ended', function() {
@@ -1040,14 +1130,12 @@
 
         } catch (err) {
             console.error('Voice call error:', err);
-            // Show friendly error
+            // Show friendly error with booking link
             callStatus.textContent = 'Voice demo coming soon';
-            callSub.innerHTML = 'Book a 30-minute call and we\'ll set up a live agent for your company.<br><br>' +
+            callSub.innerHTML = 'Book a demo to try it live with your company data.<br><br>' +
                 '<a href="https://cal.com/johnb/30" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:var(--indigo);color:#fff;border-radius:12px;font-size:14px;font-weight:600;text-decoration:none">Book a demo</a>';
             callWaveform.style.display = 'none';
             callEndBtn.style.display = 'none';
-            talkAgentBtn.classList.remove('connecting');
-            talkAgentBtn.querySelector('span').textContent = 'Talk to your ' + data.name + ' agent — test it live';
             callActive = false;
         }
     }
@@ -1079,15 +1167,14 @@
         callStatus.textContent = message || 'Call ended';
         callSub.innerHTML = '<div class="call-ended-msg">' +
             '<div>' + (message || 'Call ended') + '</div>' +
-            '<div class="back-link" id="back-to-disputes">Back to dispute examples</div>' +
+            '<div class="back-link" id="back-to-call-start">Start another call</div>' +
             '</div>';
-        talkAgentBtn.classList.remove('connecting', 'active-call');
-        talkAgentBtn.querySelector('span').textContent = 'Talk to your ' + currentCompany.name + ' agent — test it live';
 
-        var backLink = document.getElementById('back-to-disputes');
+        var backLink = document.getElementById('back-to-call-start');
         if (backLink) {
             backLink.addEventListener('click', function() {
                 callUI.classList.remove('visible');
+                panelRightDefault.style.display = '';
             });
         }
     }
@@ -1105,7 +1192,41 @@
         if (e.key === 'Enter') handleSubmit();
     });
 
-    talkAgentBtn.addEventListener('click', function() {
+    // Left panel: play dispute on CTA click
+    panelLeftCta.addEventListener('click', function(e) {
+        e.stopPropagation();
+        playDispute(currentDisputeIndex);
+    });
+
+    // Left panel: back to teaser
+    disputeBack.addEventListener('click', function() {
+        clearTimeouts();
+        isPlaying = false;
+        disputeInline.classList.remove('visible');
+        responseArea.classList.remove('visible');
+        disputeTryAnother.classList.remove('visible');
+        panelLeftTeaser.style.display = '';
+    });
+
+    // Left panel: try another dispute
+    disputeTryAnother.addEventListener('click', function() {
+        clearTimeouts();
+        isPlaying = false;
+        responseArea.classList.remove('visible');
+        disputeInline.classList.remove('visible');
+        disputeTryAnother.classList.remove('visible');
+
+        // Cycle to next dispute
+        var nextIndex = (currentDisputeIndex + 1) % currentCompany.disputes.length;
+        currentDisputeIndex = nextIndex;
+        var dispute = currentCompany.disputes[nextIndex];
+        panelLeftTeaserText.textContent = '"' + dispute.teaser + '"';
+        panelLeftTeaser.style.display = '';
+    });
+
+    // Right panel: start voice call
+    panelRightCta.addEventListener('click', function(e) {
+        e.stopPropagation();
         if (callActive) return;
         startVoiceCall();
     });
