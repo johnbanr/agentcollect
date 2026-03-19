@@ -162,7 +162,7 @@
         /* Contacts card */
         .bci-contact-row{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid rgba(0,0,0,.03)}
         .bci-contact-row:last-child{border-bottom:none;padding-bottom:0}
-        .bci-avatar{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:10px;font-weight:800;flex-shrink:0;color:#fff}
+        .bci-avatar{width:30px;height:30px;border-radius:50%;flex-shrink:0;object-fit:cover}
         .bci-contact-info{flex:1;min-width:0}
         .bci-contact-name{font-size:12px;font-weight:600;color:var(--text);letter-spacing:-.01em}
         .bci-contact-title{font-size:10px;color:var(--text-muted)}
@@ -1649,8 +1649,11 @@
         var avatarColors = ['#4F46E5', '#10B981', '#F59E0B'];
         var rowsHtml = contacts.map(function(c, i) {
             var initials = c.name.split(' ').map(function(w) { return w[0]; }).join('').toUpperCase().slice(0, 2);
+            var avatarHtml = c.photo
+                ? '<img class="bci-avatar" src="' + c.photo + '" alt="' + c.name + '" onerror="this.outerHTML=\'<div class=\\\'bci-avatar\\\' style=\\\'background:' + avatarColors[i % 3] + ';display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:10px;font-weight:800;color:#fff\\\'>' + initials + '</div>\'">'
+                : '<div class="bci-avatar" style="background:' + avatarColors[i % 3] + ';display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:10px;font-weight:800;color:#fff">' + initials + '</div>';
             return '<div class="bci-contact-row">' +
-                '<div class="bci-avatar" style="background:' + avatarColors[i % 3] + '">' + initials + '</div>' +
+                avatarHtml +
                 '<div class="bci-contact-info"><div class="bci-contact-name">' + c.name + '</div><div class="bci-contact-title">' + c.title + '</div></div>' +
                 '<span class="bci-contact-badge">In queue</span>' +
                 '</div>';
@@ -1670,31 +1673,31 @@
     function getContactsForDomain(data, domain) {
         var known = {
             'microsoft.com': [
-                { name: 'Neil Doyle', title: 'VP Finance — Microsoft' },
-                { name: 'Shane Hood', title: 'Head of AR Operations' },
-                { name: 'David Chen', title: 'Controller, Enterprise' }
+                { name: 'Neil Doyle', title: 'VP Finance — Microsoft', photo: 'https://randomuser.me/api/portraits/men/32.jpg' },
+                { name: 'Shane Hood', title: 'Head of AR Operations', photo: 'https://randomuser.me/api/portraits/men/45.jpg' },
+                { name: 'David Chen', title: 'Controller, Enterprise', photo: 'https://randomuser.me/api/portraits/men/67.jpg' }
             ],
             'dell.com': [
-                { name: 'M. Rodriguez', title: 'AP Director — Dell' },
-                { name: 'Ryan Patterson', title: 'Head of Collections' },
-                { name: 'Sarah Williams', title: 'Finance Manager' }
+                { name: 'M. Rodriguez', title: 'AP Director — Dell', photo: 'https://randomuser.me/api/portraits/men/22.jpg' },
+                { name: 'Ryan Patterson', title: 'Head of Collections', photo: 'https://randomuser.me/api/portraits/men/36.jpg' },
+                { name: 'Sarah Williams', title: 'Finance Manager', photo: 'https://randomuser.me/api/portraits/women/28.jpg' }
             ],
             'uber.com': [
-                { name: 'David Majors', title: 'Head of Order to Cash' },
-                { name: 'Shane Hood', title: 'Head of AR Operations' },
-                { name: 'Kim Torres', title: 'Senior AR Analyst' }
+                { name: 'David Majors', title: 'Head of Order to Cash', photo: 'https://randomuser.me/api/portraits/men/55.jpg' },
+                { name: 'Shane Hood', title: 'Head of AR Operations', photo: 'https://randomuser.me/api/portraits/men/45.jpg' },
+                { name: 'Kim Torres', title: 'Senior AR Analyst', photo: 'https://randomuser.me/api/portraits/women/63.jpg' }
             ],
             'fedex.com': [
-                { name: 'Kevin Johnson', title: 'VP Revenue Operations' },
-                { name: 'Ryan Patterson', title: 'Head of Collections' },
-                { name: 'Lisa Chen', title: 'AR Manager' }
+                { name: 'Kevin Johnson', title: 'VP Revenue Operations', photo: 'https://randomuser.me/api/portraits/men/41.jpg' },
+                { name: 'Ryan Patterson', title: 'Head of Collections', photo: 'https://randomuser.me/api/portraits/men/36.jpg' },
+                { name: 'Lisa Chen', title: 'AR Manager', photo: 'https://randomuser.me/api/portraits/women/51.jpg' }
             ]
         };
         if (known[domain]) return known[domain];
         return [
-            { name: 'John Mitchell', title: 'VP Finance — ' + data.name },
-            { name: 'Sarah Thompson', title: 'Head of Accounts Receivable' },
-            { name: 'Michael Chen', title: 'Controller' }
+            { name: 'John Mitchell', title: 'VP Finance — ' + data.name, photo: 'https://randomuser.me/api/portraits/men/75.jpg' },
+            { name: 'Sarah Thompson', title: 'Head of Accounts Receivable', photo: 'https://randomuser.me/api/portraits/women/44.jpg' },
+            { name: 'Michael Chen', title: 'Controller', photo: 'https://randomuser.me/api/portraits/men/18.jpg' }
         ];
     }
 
