@@ -108,7 +108,7 @@
         .hero-logos img:hover{filter:grayscale(0%);opacity:1}
 
         /* ========== BUILD / DEMO CARD (unified) ========== */
-        .build-section{display:none;padding:0 32px 60px;max-width:760px;margin:0 auto;position:relative;z-index:1}
+        .build-section{display:none;padding:0 32px 40px;max-width:760px;margin:0 auto;position:relative;z-index:1}
         .build-section.active{display:block}
         .build-card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:48px;box-shadow:var(--shadow-lg);transition:all .5s ease}
         .build-header{display:flex;align-items:center;gap:16px;margin-bottom:32px}
@@ -772,14 +772,15 @@
         currentDomain = domain;
         currentDisputeIndex = 0;
 
-        // Hide hero content
+        // Hide hero content and collapse hero section
         heroContent.style.opacity = '0';
         heroContent.style.transform = 'translateY(-20px)';
 
         setTimeout(function() {
-            heroSection.style.padding = '96px 32px 0';
+            heroContent.style.display = 'none';
+            heroSection.style.padding = '76px 0 0';
             heroSection.style.minHeight = '0';
-        }, 300);
+        }, 400);
 
         // Show build section
         setTimeout(function() {
