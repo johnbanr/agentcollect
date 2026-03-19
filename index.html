@@ -986,9 +986,9 @@
             clients: 'Restaurant partners, delivery drivers, freight carriers',
             whyDontPay: 'Service disputes, partnership cancellations, chargebacks on promotional credits',
             analysis: [
-                'Restaurants: churn risk — 1 in 4 close within first year',
-                'Drivers: small balances — cash flow timing issues',
-                'Merchants: PO mismatch — process and contract disputes'
+                'Restaurant churn risk (1 in 4)',
+                'Driver cash flow timing',
+                'Merchant PO mismatches'
             ],
             disputes: [
                 {
@@ -1044,9 +1044,9 @@
             clients: 'Enterprise IT departments, SMB resellers, government agencies',
             whyDontPay: 'License true-up disputes, usage overages on Azure, contract renewal disagreements',
             analysis: [
-                'Enterprise: license true-up audits reveal undercounted seats — clients dispute retroactive charges',
-                'SMB resellers: margin compression leads to delayed payments on volume commitments',
-                'Government: procurement cycles create 90-120 day payment gaps on approved invoices'
+                'License true-up disputes',
+                'SMB margin compression delays',
+                'Government 90-120 day cycles'
             ],
             disputes: [
                 {
@@ -1101,9 +1101,9 @@
             clients: 'IT departments, data center operators, managed service providers',
             whyDontPay: 'Warranty claim disputes, hardware defect returns, delayed PO processing',
             analysis: [
-                'IT departments: budget approval bottlenecks on large hardware orders',
-                'Data centers: disputes over DOA units and replacement timelines',
-                'MSPs: volume discount disagreements on Dell Partner Direct orders'
+                'IT budget approval delays',
+                'DOA hardware disputes',
+                'Volume discount disagreements'
             ],
             disputes: [
                 {
@@ -1158,9 +1158,9 @@
             clients: 'E-commerce businesses, manufacturers, healthcare distributors',
             whyDontPay: 'Shipping damage claims, late delivery refund disputes, surcharge disagreements',
             analysis: [
-                'E-commerce: high volume of damage claims — 1 in 50 packages has issues',
-                'Manufacturers: freight surcharge disputes on oversized/overweight shipments',
-                'Healthcare: temperature-sensitive shipment failures lead to payment holds'
+                'Damage claims (1 in 50)',
+                'Freight surcharge disputes',
+                'Temperature-sensitive holds'
             ],
             disputes: [
                 {
@@ -1218,9 +1218,9 @@
         clients: 'Enterprise and mid-market companies',
         whyDontPay: 'Invoice disputes, cash flow constraints, process delays, contact changes',
         analysis: [
-            'Invoice disputes: deliverable or scope disagreements',
-            'Cash flow delays: clients waiting on their own receivables',
-            'Contact turnover: AP contacts change, invoices get lost'
+            'Invoice scope disagreements',
+            'Client cash flow delays',
+            'AP contact turnover'
         ],
         disputes: [
             {
@@ -1587,22 +1587,16 @@
                             animateProgressTo(73, 1800, 'Finding who to call...', function() {
                                 addContactsCard(data, domain);
 
-                                // Skip gate — go straight to 100%
+                                // Skip gate — go straight to 100% and demo
                                 setTimeout(function() {
-                                    animateProgressTo(100, 1500, data.name + ' agent ready.', function() {
+                                    animateProgressTo(100, 1200, data.name + ' agent ready.', function() {
                                         buildTitle.textContent = data.name + ' collection agent';
-                                        addBuildCard('bci-ready',
-                                            '<div class="bci-inner" style="background:rgba(16,185,129,.02);border-color:rgba(16,185,129,.25)">' +
-                                            '<div class="bci-header" style="margin-bottom:0">' +
-                                            '<div class="bci-icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>' +
-                                            '<div class="bci-title" style="color:var(--green-dark)">Your ' + data.name + ' agent is ready.</div>' +
-                                            '</div></div>'
-                                        );
                                         // Track funnel event
                                         try { gtag('event', 'demo_ready', { domain: currentDomain, company: data.name }); } catch(e) {}
-                                        setTimeout(function() { showDemo(data); }, 600);
+                                        // Go straight to demo — no "ready" card needed
+                                        setTimeout(function() { showDemo(data); }, 300);
                                     });
-                                }, 700);
+                                }, 500);
                             });
                         }, 600);
                     });
@@ -1797,22 +1791,17 @@
     function showDemo(data) {
         // Funnel event: demo section visible
         try { gtag('event', 'demo_seen', { domain: currentDomain, company: data.name }); } catch(e) {}
-        // Render analysis banner items
-        analysisItems.innerHTML = '';
-        (data.analysis || []).forEach(function(item) {
-            var div = document.createElement('div');
-            div.className = 'analysis-banner-item';
-            div.textContent = item;
-            analysisItems.appendChild(div);
-        });
+        // Hide analysis banner — info already in the intelligence card
+        var analysisBanner = document.getElementById('analysis-banner');
+        if (analysisBanner) analysisBanner.style.display = 'none';
 
         // Set left panel teaser
         var firstDispute = data.disputes[0];
         panelLeftTeaserText.textContent = '"' + firstDispute.teaser + '"';
-        panelLeftDesc.textContent = 'See how your ' + data.name + ' agent handles a real dispute with evidence and reasoning.';
+        panelLeftDesc.textContent = 'See how your agent handles this.';
 
         // Set right panel text
-        panelRightDesc.textContent = 'Speak to your ' + data.name + ' collection agent live. Real-time conversation using your microphone.';
+        panelRightDesc.textContent = 'Talk to your agent live.';
 
         // Reset to teaser view
         panelLeftTeaser.style.display = '';
