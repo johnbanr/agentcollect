@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgentCollect — Orb Multi-Logo Test</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --indigo: #4F46E5;
+    --green: #10B981;
+    --dark: #0B1B3D;
+    --bg: #FAFBFF;
+    --display: 'Plus Jakarta Sans', sans-serif;
+    --body: 'Inter', sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--body); background: var(--bg); color: var(--dark); }
+
+/* ===== GRADIENT TRANSITION SECTION ===== */
+.demo-zone {
+    background: linear-gradient(180deg, var(--bg) 0%, #e8e6f0 15%, #1a1a2e 40%, #0a0a1a 60%, #1a1a2e 85%, #e8e6f0 95%, var(--bg) 100%);
+    padding: 80px 20px 80px;
+}
+
+.page-header {
+    text-align: center;
+    padding: 24px 20px 0;
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #9CA3AF;
+}
+.reco-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ECFDF5;
+    border: 1px solid #10B981;
+    color: #059669;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 12px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin: 8px auto 24px;
+}
+
+/* ===== DEMO CONTAINER ===== */
+.demo-section {
+    max-width: 520px;
+    margin: 0 auto;
+    text-align: center;
+}
+.demo-label {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 32px;
+}
+
+/* ===== AGENT TITLE ===== */
+.agent-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 6px;
+}
+.agent-title img {
+    height: 28px;
+    width: auto;
+    max-width: 120px;
+    object-fit: contain;
+}
+.agent-title span {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 22px;
+    color: white;
+}
+.agent-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 48px;
+}
+
+/* ===== THE ORB ===== */
+.orb-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 40px;
+    cursor: pointer;
+}
+.orb-glow {
+    position: absolute;
+    inset: -40px;
+    border-radius: 50%;
+    animation: glowPulse 4s ease-in-out infinite;
+}
+.orb {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    animation: orbFloat 6s ease-in-out infinite;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.orb:hover {
+    transform: scale(1.06);
+}
+.orb:active {
+    transform: scale(0.95);
+}
+.orb-layer {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+}
+.orb-layer-1 { animation: orbRotate 8s linear infinite; }
+.orb-layer-2 { animation: orbRotate 12s linear infinite reverse; mix-blend-mode: soft-light; }
+.orb-layer-3 {
+    background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.25) 0%, transparent 50%);
+}
+.orb-layer-4 {
+    background: radial-gradient(circle at 50% 110%, rgba(0,0,0,0.4) 0%, transparent 60%);
+}
+.orb-logo {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+.orb-logo img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.9);
+    padding: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.orb:hover .orb-logo img { transform: scale(1.05); box-shadow: 0 6px 24px rgba(0,0,0,0.3); }
+
+/* Particles */
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    animation: particleFloat 4s ease-in-out infinite;
+}
+.particle:nth-child(1) { top: -20px; left: 30%; animation-delay: 0s; }
+.particle:nth-child(2) { top: 20%; right: -15px; animation-delay: 1s; }
+.particle:nth-child(3) { bottom: -15px; left: 40%; animation-delay: 2s; }
+.particle:nth-child(4) { top: 40%; left: -20px; animation-delay: 0.5s; }
+.particle:nth-child(5) { top: 10%; left: 10%; animation-delay: 1.5s; width: 3px; height: 3px; }
+
+/* Speech bubble */
+.speech-bubble {
+    position: absolute;
+    top: 20px;
+    right: -50px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 16px;
+    padding: 8px 14px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.8);
+    white-space: nowrap;
+    animation: bubbleFade 3s ease-in-out infinite;
+}
+
+/* ===== BUTTONS ===== */
+.btn-row {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+.btn-voice {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    border-radius: 14px;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+    background: white;
+    color: var(--dark);
+    transition: all 0.2s;
+    box-shadow: 0 4px 24px rgba(255,255,255,0.1);
+}
+.btn-voice:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(255,255,255,0.15); }
+.btn-voice svg { width: 20px; height: 20px; }
+.btn-chat {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 24px;
+    border-radius: 14px;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.7);
+    transition: all 0.2s;
+}
+.btn-chat:hover { border-color: rgba(255,255,255,0.3); color: white; }
+.btn-chat svg { width: 20px; height: 20px; }
+.powered-by {
+    font-size: 12px;
+    color: rgba(255,255,255,0.2);
+}
+
+/* ===== MULTI-LOGO GRID ===== */
+.logo-grid-header {
+    text-align: center;
+    padding: 48px 20px 24px;
+}
+.logo-grid-header h2 {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 20px;
+    color: var(--dark);
+    margin-bottom: 6px;
+}
+.logo-grid-header p {
+    font-size: 14px;
+    color: #6B7280;
+}
+.logo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+}
+.logo-test {
+    text-align: center;
+    padding: 32px 16px;
+    background: #0a0a1a;
+    border-radius: 20px;
+    border: 1px solid #E5E7EB;
+}
+.logo-test .mini-orb-wrap {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 16px;
+}
+.logo-test .mini-orb {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    animation: orbFloat 6s ease-in-out infinite;
+}
+.logo-test .mini-orb .orb-layer { position: absolute; inset: 0; border-radius: 50%; }
+.logo-test .mini-orb .orb-layer-1 { animation: orbRotate 8s linear infinite; }
+.logo-test .mini-orb .orb-layer-2 { animation: orbRotate 12s linear infinite reverse; mix-blend-mode: soft-light; }
+.logo-test .mini-orb .orb-layer-3 { background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.25) 0%, transparent 50%); }
+.logo-test .mini-orb .orb-layer-4 { background: radial-gradient(circle at 50% 110%, rgba(0,0,0,0.4) 0%, transparent 60%); }
+.logo-test .mini-orb .orb-logo {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center; z-index: 10;
+}
+.logo-test .mini-orb .orb-logo img {
+    width: 40px; height: 40px; object-fit: contain;
+    border-radius: 10px; background: rgba(255,255,255,0.9);
+    padding: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+.logo-test .mini-glow {
+    position: absolute;
+    inset: -20px;
+    border-radius: 50%;
+    animation: glowPulse 4s ease-in-out infinite;
+}
+.logo-test-name {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 14px;
+    color: white;
+    margin-bottom: 2px;
+}
+.logo-test-status {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+}
+.logo-test-check {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 6px;
+}
+.logo-test-check.pass { background: rgba(16,185,129,0.15); color: #34D399; }
+.logo-test-check.warn { background: rgba(245,158,11,0.15); color: #FBBF24; }
+
+/* ===== ANIMATIONS ===== */
+@keyframes orbRotate {
+    0% { transform: rotate(0deg) scale(1.2); }
+    100% { transform: rotate(360deg) scale(1.2); }
+}
+@keyframes orbFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+@keyframes glowPulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+@keyframes bubbleFade {
+    0%, 100% { opacity: 0.7; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(-3px); }
+}
+@keyframes particleFloat {
+    0%, 100% { opacity: 0; transform: translateY(0) scale(1); }
+    25% { opacity: 1; }
+    50% { opacity: 0.8; transform: translateY(-20px) scale(1.5); }
+    75% { opacity: 0.3; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-header">AgentCollect · Orb Design — Multi-Logo Test</div>
+<div style="text-align:center;">
+    <span class="reco-pill">✅ Gradient light→dark + logo blanc + test 4 marques</span>
+</div>
+
+<!-- ===== MAIN DEMO (Microsoft) — with gradient background transition ===== -->
+<div class="demo-zone">
+    <div class="demo-section">
+        <div class="demo-label">Live preview — gradient transition</div>
+
+        <div class="agent-title">
+            <img src="https://cdn.brandfetch.io/microsoft.com/w/512/h/80/logo" alt="Microsoft"
+                 style="filter: brightness(0) invert(1);"
+                 onerror="this.style.display='none'">
+            <span>Collection Agent</span>
+        </div>
+        <div class="agent-sub">Sarah is ready to engage your debtors.</div>
+
+        <div class="orb-container">
+            <div class="orb-glow" style="background: radial-gradient(circle, rgba(0,120,212,0.2) 0%, transparent 70%);"></div>
+            <div class="particle" style="background:rgba(0,164,239,0.5);"></div>
+            <div class="particle" style="background:rgba(127,186,0,0.5);"></div>
+            <div class="particle" style="background:rgba(242,80,34,0.5);"></div>
+            <div class="particle" style="background:rgba(255,185,0,0.5);"></div>
+            <div class="particle" style="background:rgba(0,164,239,0.3);"></div>
+            <div class="orb" style="box-shadow: 0 0 80px rgba(0,120,212,0.3), 0 0 160px rgba(0,120,212,0.1), inset 0 0 60px rgba(0,0,0,0.3);">
+                <div class="orb-layer orb-layer-1" style="background: conic-gradient(from 0deg, #00a4ef, #7fba00, #f25022, #ffb900, #00a4ef);"></div>
+                <div class="orb-layer orb-layer-2" style="background: conic-gradient(from 180deg, rgba(0,164,239,0.8), rgba(127,186,0,0.4), rgba(242,80,34,0.6), rgba(255,185,0,0.4), rgba(0,164,239,0.8));"></div>
+                <div class="orb-layer orb-layer-3"></div>
+                <div class="orb-layer orb-layer-4"></div>
+                <div class="orb-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/200px-Microsoft_logo.svg.png" alt="Microsoft">
+                </div>
+            </div>
+            <div class="speech-bubble">Hi, I'm Sarah...</div>
+        </div>
+
+        <div class="btn-row">
+            <button class="btn-voice">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
+                Talk to Sarah
+            </button>
+            <button class="btn-chat">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                Chat instead
+            </button>
+        </div>
+        <div class="powered-by">Uses your microphone · Powered by AgentCollect</div>
+    </div>
+</div>
+
+<!-- ===== MULTI-LOGO TEST GRID ===== -->
+<div class="logo-grid-header">
+    <h2>Multi-Logo Compatibility Test</h2>
+    <p>Chaque orbe utilise les couleurs de la marque + logo blanc au centre</p>
+</div>
+
+<div class="logo-grid">
+    <!-- Dell -->
+    <div class="logo-test">
+        <div class="mini-orb-wrap">
+            <div class="mini-glow" style="background: radial-gradient(circle, rgba(0,115,207,0.2) 0%, transparent 70%);"></div>
+            <div class="mini-orb" style="box-shadow: 0 0 40px rgba(0,115,207,0.3);">
+                <div class="orb-layer orb-layer-1" style="background: conic-gradient(from 0deg, #0073CF, #1E90FF, #0056A0, #00BFFF, #0073CF);"></div>
+                <div class="orb-layer orb-layer-2" style="background: conic-gradient(from 180deg, rgba(0,115,207,0.8), rgba(30,144,255,0.5), rgba(0,86,160,0.6), rgba(0,191,255,0.4), rgba(0,115,207,0.8));"></div>
+                <div class="orb-layer orb-layer-3"></div>
+                <div class="orb-layer orb-layer-4"></div>
+                <div class="orb-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Dell_Logo.png/200px-Dell_Logo.png" alt="Dell">
+                </div>
+            </div>
+        </div>
+        <div class="logo-test-name">Dell</div>
+        <div class="logo-test-status">Blue monochrome</div>
+        <span class="logo-test-check pass">✓ Works</span>
+    </div>
+
+    <!-- FedEx -->
+    <div class="logo-test">
+        <div class="mini-orb-wrap">
+            <div class="mini-glow" style="background: radial-gradient(circle, rgba(75,0,130,0.2) 0%, transparent 70%);"></div>
+            <div class="mini-orb" style="box-shadow: 0 0 40px rgba(75,0,130,0.3);">
+                <div class="orb-layer orb-layer-1" style="background: conic-gradient(from 0deg, #4D148C, #FF6600, #4D148C, #FF6600, #4D148C);"></div>
+                <div class="orb-layer orb-layer-2" style="background: conic-gradient(from 180deg, rgba(77,20,140,0.8), rgba(255,102,0,0.5), rgba(77,20,140,0.6), rgba(255,102,0,0.4), rgba(77,20,140,0.8));"></div>
+                <div class="orb-layer orb-layer-3"></div>
+                <div class="orb-layer orb-layer-4"></div>
+                <div class="orb-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/FedEx_Corporation_-_2000.svg/200px-FedEx_Corporation_-_2000.svg.png" alt="FedEx">
+                </div>
+            </div>
+        </div>
+        <div class="logo-test-name">FedEx</div>
+        <div class="logo-test-status">Purple + Orange</div>
+        <span class="logo-test-check pass">✓ Works</span>
+    </div>
+
+    <!-- Uber -->
+    <div class="logo-test">
+        <div class="mini-orb-wrap">
+            <div class="mini-glow" style="background: radial-gradient(circle, rgba(0,0,0,0.15) 0%, transparent 70%);"></div>
+            <div class="mini-orb" style="box-shadow: 0 0 40px rgba(0,0,0,0.3);">
+                <div class="orb-layer orb-layer-1" style="background: conic-gradient(from 0deg, #000000, #276EF1, #06C167, #000000, #276EF1);"></div>
+                <div class="orb-layer orb-layer-2" style="background: conic-gradient(from 180deg, rgba(0,0,0,0.8), rgba(39,110,241,0.5), rgba(6,193,103,0.6), rgba(0,0,0,0.4), rgba(39,110,241,0.8));"></div>
+                <div class="orb-layer orb-layer-3"></div>
+                <div class="orb-layer orb-layer-4"></div>
+                <div class="orb-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Uber_logo_2018.svg/200px-Uber_logo_2018.svg.png" alt="Uber">
+                </div>
+            </div>
+        </div>
+        <div class="logo-test-name">Uber</div>
+        <div class="logo-test-status">Black + Blue + Green</div>
+        <span class="logo-test-check pass">✓ Works</span>
+    </div>
+
+    <!-- Salesforce -->
+    <div class="logo-test">
+        <div class="mini-orb-wrap">
+            <div class="mini-glow" style="background: radial-gradient(circle, rgba(0,161,224,0.2) 0%, transparent 70%);"></div>
+            <div class="mini-orb" style="box-shadow: 0 0 40px rgba(0,161,224,0.3);">
+                <div class="orb-layer orb-layer-1" style="background: conic-gradient(from 0deg, #00A1E0, #1798C1, #032D60, #16325c, #00A1E0);"></div>
+                <div class="orb-layer orb-layer-2" style="background: conic-gradient(from 180deg, rgba(0,161,224,0.8), rgba(23,152,193,0.5), rgba(3,45,96,0.6), rgba(22,50,92,0.4), rgba(0,161,224,0.8));"></div>
+                <div class="orb-layer orb-layer-3"></div>
+                <div class="orb-layer orb-layer-4"></div>
+                <div class="orb-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Salesforce.com_logo.svg/200px-Salesforce.com_logo.svg.png" alt="Salesforce">
+                </div>
+            </div>
+        </div>
+        <div class="logo-test-name">Salesforce</div>
+        <div class="logo-test-status">Blue monochrome</div>
+        <span class="logo-test-check pass">✓ Works</span>
+    </div>
+
+    <!-- Coca-Cola (red brand — important to test) -->
+    <div class="logo-test">
+        <div class="mini-orb-wrap">
+            <div class="mini-glow" style="background: radial-gradient(circle, rgba(244,0,0,0.2) 0%, transparent 70%);"></div>
+            <div class="mini-orb" style="box-shadow: 0 0 40px rgba(244,0,0,0.3);">
+                <div class="orb-layer orb-layer-1" style="background: conic-gradient(from 0deg, #F40000, #8B0000, #FF2800, #CC0000, #F40000);"></div>
+                <div class="orb-layer orb-layer-2" style="background: conic-gradient(from 180deg, rgba(244,0,0,0.8), rgba(139,0,0,0.5), rgba(255,40,0,0.6), rgba(204,0,0,0.4), rgba(244,0,0,0.8));"></div>
+                <div class="orb-layer orb-layer-3"></div>
+                <div class="orb-layer orb-layer-4"></div>
+                <div class="orb-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Coca-Cola_logo.svg/200px-Coca-Cola_logo.svg.png" alt="Coca-Cola">
+                </div>
+            </div>
+        </div>
+        <div class="logo-test-name">Coca-Cola</div>
+        <div class="logo-test-status">Red monochrome</div>
+        <span class="logo-test-check pass">✓ Works</span>
+    </div>
+
+    <!-- Unknown / Fallback (no brandfetch) -->
+    <div class="logo-test">
+        <div class="mini-orb-wrap">
+            <div class="mini-glow" style="background: radial-gradient(circle, rgba(79,70,229,0.2) 0%, transparent 70%);"></div>
+            <div class="mini-orb" style="box-shadow: 0 0 40px rgba(79,70,229,0.3);">
+                <div class="orb-layer orb-layer-1" style="background: conic-gradient(from 0deg, #4F46E5, #7C3AED, #3730A3, #818CF8, #4F46E5);"></div>
+                <div class="orb-layer orb-layer-2" style="background: conic-gradient(from 180deg, rgba(79,70,229,0.8), rgba(124,58,237,0.5), rgba(55,48,163,0.6), rgba(129,140,248,0.4), rgba(79,70,229,0.8));"></div>
+                <div class="orb-layer orb-layer-3"></div>
+                <div class="orb-layer orb-layer-4"></div>
+                <div class="orb-logo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" style="width:40px;height:40px;opacity:0.85;"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+            </div>
+        </div>
+        <div class="logo-test-name">Fallback (no logo)</div>
+        <div class="logo-test-status">AgentCollect indigo default</div>
+        <span class="logo-test-check pass">✓ Generic icon</span>
+    </div>
+</div>
+
+<div style="text-align:center; padding: 0 20px 48px;">
+    <p style="font-size:13px; color:#6B7280; max-width:500px; margin:0 auto; line-height:1.6;">
+        <strong>Comment ça marche en prod :</strong> L'API renvoie les couleurs de la marque via brandfetch.
+        Le front génère le <code>conic-gradient</code> dynamiquement.
+        Si pas de couleurs dispo → fallback indigo AgentCollect.
+        Si pas de logo → icône personne générique.
+    </p>
+</div>
+
+</body>
+</html>

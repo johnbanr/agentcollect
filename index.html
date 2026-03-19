@@ -102,9 +102,9 @@
         .hero-btn svg{color:#fff}
 
         /* LOGOS */
-        .hero-logos{display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;opacity:.45;transition:opacity .3s}
-        .hero-logos:hover{opacity:.6}
-        .hero-logos img{height:22px;filter:grayscale(100%);object-fit:contain;transition:all .3s}
+        .hero-logos{display:flex;align-items:center;justify-content:center;gap:36px;flex-wrap:wrap;opacity:.55;transition:opacity .3s}
+        .hero-logos:hover{opacity:.75}
+        .hero-logos img{height:28px;filter:grayscale(100%) brightness(.4);object-fit:contain;transition:all .3s}
         .hero-logos img:hover{filter:grayscale(0%);opacity:1}
 
         /* ========== BUILD / DEMO CARD (unified) ========== */
@@ -206,8 +206,8 @@
         .orb-layer-3{background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.25) 0%,transparent 50%)}
         .orb-layer-4{background:radial-gradient(circle at 50% 110%,rgba(0,0,0,.4) 0%,transparent 60%)}
         .orb-logo-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:10}
-        .orb-logo-center img{width:52px;height:52px;object-fit:contain;border-radius:12px;background:rgba(255,255,255,.9);padding:7px;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:transform .3s}
-        .orb-wrap:hover .orb-logo-center img{transform:scale(1.05)}
+        .orb-logo-center img{width:48px;height:48px;object-fit:contain;border-radius:50%;background:rgba(255,255,255,.95);padding:8px;box-shadow:0 4px 20px rgba(0,0,0,.3),0 0 0 2px rgba(255,255,255,.15);transition:transform .3s}
+        .orb-wrap:hover .orb-logo-center img{transform:scale(1.08)}
         .orb-particle{position:absolute;width:4px;height:4px;border-radius:50%;animation:orbParticle 4s ease-in-out infinite}
         .orb-particle:nth-child(1){top:-16px;left:30%;animation-delay:0s}
         .orb-particle:nth-child(2){top:20%;right:-12px;animation-delay:1s}
@@ -221,11 +221,11 @@
         .orb-btn-chat{display:flex;align-items:center;gap:8px;padding:14px 20px;border-radius:12px;font-family:var(--display);font-weight:700;font-size:14px;cursor:pointer;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.05);color:rgba(255,255,255,.7);transition:all .2s}
         .orb-btn-chat:hover{border-color:rgba(255,255,255,.3);color:#fff}
         .orb-btn-chat svg{width:18px;height:18px}
-        .orb-powered{font-size:11px;color:rgba(255,255,255,.2)}
-        @keyframes orbSpin{0%{transform:rotate(0deg) scale(1.2)}100%{transform:rotate(360deg) scale(1.2)}}
-        @keyframes orbDrift{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-        @keyframes orbPulseSpeak{0%,100%{transform:scale(1) translateY(0)}25%{transform:scale(1.03) translateY(-6px)}75%{transform:scale(.98) translateY(-6px)}}
-        @keyframes orbGlowPulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
+        .orb-powered{font-size:12px;color:rgba(255,255,255,.4);letter-spacing:.02em}
+        @keyframes orbSpin{0%{transform:rotate(0deg) scale(1.15)}100%{transform:rotate(360deg) scale(1.15)}}
+        @keyframes orbDrift{0%,100%{transform:translateY(0) scale(1)}33%{transform:translateY(-4px) scale(1.01)}66%{transform:translateY(-2px) scale(.995)}}
+        @keyframes orbPulseSpeak{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+        @keyframes orbGlowPulse{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:.8;transform:scale(1.08)}}
         @keyframes orbBubble{0%,100%{opacity:.7;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
         @keyframes orbParticle{0%,100%{opacity:0;transform:translateY(0) scale(1)}25%{opacity:1}50%{opacity:.8;transform:translateY(-18px) scale(1.4)}75%{opacity:.3}}
         @media(max-width:480px){.orb-bubble{display:none}.orb-zone{padding:36px 16px 32px}.orb-title{flex-direction:column;gap:4px}.orb-title img{height:20px}.orb-title span{font-size:18px;line-height:1.2}.orb-btns{flex-direction:column;align-items:center}.orb-btn-voice,.orb-btn-chat{width:100%;max-width:260px;justify-content:center}}
@@ -524,7 +524,7 @@
             .hero h1{font-size:clamp(36px,10vw,56px)}
             .hero-input-wrap{flex-direction:row}
             .hero-logos{gap:24px}
-            .hero-logos img{height:18px}
+            .hero-logos img{height:22px}
             .build-section{padding:0 20px 48px}
             .build-card{padding:20px 16px}
             .build-card-list{grid-template-columns:1fr;gap:8px}
@@ -558,7 +558,7 @@
         @media(max-width:480px){
             .stats-grid{grid-template-columns:1fr 1fr}
             .hero-logos{gap:16px}
-            .hero-logos img{height:16px}
+            .hero-logos img{height:18px}
         }
     </style>
 </head>
@@ -588,7 +588,7 @@
 <!-- 1. HERO -->
 <section class="hero" id="hero-section">
     <div class="hero-content" id="hero-content">
-        <h1>Your collection agent.</h1>
+        <h1>The end of manual collection.</h1>
         <p class="sub">Pre-trained on 1 billion conversations.</p>
         <div class="hero-input-wrap" id="hero-input-wrap">
             <input type="text" class="hero-input" id="domain-input" placeholder="Enter your company website..." autocomplete="off" spellcheck="false">
@@ -597,11 +597,12 @@
             </button>
         </div>
         <div class="hero-logos">
-            <img src="https://cdn.brandfetch.io/microsoft.com" alt="Microsoft" loading="lazy" onerror="this.style.display='none'">
-            <img src="https://cdn.brandfetch.io/dell.com" alt="Dell" loading="lazy" onerror="this.style.display='none'">
-            <img src="https://cdn.brandfetch.io/fedex.com" alt="FedEx" loading="lazy" onerror="this.style.display='none'">
-            <img src="https://cdn.brandfetch.io/uber.com" alt="Uber" loading="lazy" onerror="this.style.display='none'">
-            <img src="https://cdn.brandfetch.io/cgm.com" alt="CGM" loading="lazy" onerror="this.style.display='none'">
+            <img src="https://cdn.brandfetch.io/microsoft.com/w/512/h/80/logo" alt="Microsoft" loading="lazy" onerror="this.style.display='none'">
+            <img src="https://cdn.brandfetch.io/doordash.com/w/512/h/80/logo" alt="DoorDash" loading="lazy" onerror="this.style.display='none'">
+            <img src="https://cdn.brandfetch.io/uberfreight.com/w/512/h/80/logo" alt="Uber Freight" loading="lazy" onerror="this.style.display='none'">
+            <img src="https://cdn.brandfetch.io/checkr.com/w/512/h/80/logo" alt="Checkr" loading="lazy" onerror="this.style.display='none'">
+            <img src="https://cdn.brandfetch.io/plaid.com/w/512/h/80/logo" alt="Plaid" loading="lazy" onerror="this.style.display='none'">
+            <img src="https://cdn.brandfetch.io/redis.io/w/512/h/80/logo" alt="Redis" loading="lazy" onerror="this.style.display='none'">
         </div>
     </div>
 </section>
@@ -660,7 +661,7 @@
                     </button>
                     <button class="orb-btn-chat" id="orb-chat-btn">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-                        Test a dispute
+                        Try a scenario
                     </button>
                 </div>
                 <div class="orb-powered">Uses your microphone · Powered by AgentCollect</div>
@@ -822,7 +823,7 @@
         <div class="call-overlay-connecting" id="co-connecting">
             <div class="co-spinner"></div>
             <div class="co-connect-text" id="co-connect-text">Connecting...</div>
-            <div class="co-connect-sub" id="co-connect-sub">Setting up WebRTC connection</div>
+            <div class="co-connect-sub" id="co-connect-sub">Preparing your agent</div>
         </div>
         <!-- Transcript (hidden until connected) -->
         <div class="call-overlay-transcript" id="co-transcript" style="display:none;position:relative">
@@ -1831,6 +1832,25 @@
         }
         // Skeleton placeholders with dynamic "thinking" text
         setTimeout(startContactThinking, 100);
+        // Timeout: after 25s, if still skeleton, show "enrichment in progress" fallback
+        setTimeout(function() {
+            var contactsCard = document.getElementById('bci-contacts');
+            if (contactsCard && contactsCard.querySelector('.bci-skeleton-bar')) {
+                stopContactThinking();
+                var companyName = currentCompany ? currentCompany.name : 'your company';
+                contactsCard.querySelector('.bci-inner').innerHTML =
+                    '<div class="bci-header">' +
+                    '<div class="bci-icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>' +
+                    '<div class="bci-title">Your ' + companyName + ' team</div>' +
+                    '<span class="bci-badge live">Enriching</span>' +
+                    '</div>' +
+                    '<div style="text-align:center;padding:20px 16px;color:var(--text-mid);font-size:13px;line-height:1.6">' +
+                    '<div style="font-size:24px;margin-bottom:8px">🔍</div>' +
+                    'Finding the right AP & finance contacts at ' + companyName + '.<br>' +
+                    'Your real agent does this in the background — contacts appear as they\'re verified.' +
+                    '</div>';
+            }
+        }, 25000);
         return [
             { name: '__skeleton__', title: contactThinkingPhrases[0], photo: null },
             { name: '__skeleton__', title: contactThinkingPhrases[4], photo: null },
@@ -2023,15 +2043,22 @@
         var orbBubble = document.getElementById('orb-bubble');
 
         if (data && data.name) {
-            orbBrandName.textContent = data.name + ' Collection Agent';
+            orbBrandName.textContent = 'Collection Agent';
             orbBubble.textContent = "Hi, I'm Sarah from " + data.name + "...";
         }
 
-        // Set brand logo (top title area)
+        // Set brand logo (top title area) — logo shows company name as wordmark
         if (domain) {
             var logoUrl = 'https://cdn.brandfetch.io/' + domain + '/w/512/h/80/logo';
+            orbBrandLogo.onload = function() {
+                orbBrandLogo.style.display = '';
+            };
+            orbBrandLogo.onerror = function() {
+                orbBrandLogo.style.display = 'none';
+                // If logo fails, put company name back in text
+                if (data && data.name) orbBrandName.textContent = data.name + ' Collection Agent';
+            };
             orbBrandLogo.src = logoUrl;
-            orbBrandLogo.style.display = '';
 
             // Set orb center icon — load into img, show on success, keep fallback SVG on failure
             if (orbLogoImg) {
@@ -2206,7 +2233,7 @@
         coTranscript.style.display = 'none';
         coBottom.style.display = 'none';
         coConnectText.textContent = 'Connecting to your ' + data.name + ' agent...';
-        coConnectSub.textContent = 'Setting up WebRTC connection';
+        coConnectSub.textContent = 'Preparing your agent';
         coTranscriptScroll.innerHTML = '';
         coReasoning.innerHTML = '';
         coStatus.textContent = 'Connecting...';
