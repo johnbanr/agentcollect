@@ -1282,6 +1282,59 @@
         return brands[name] || capitalize(name);
     }
 
+    // Industry-specific payment risk reasons (the "ouch" moment)
+    var INDUSTRY_RISKS = {
+        'technology': ['Recurring license disputes on auto-renewed contracts', 'Usage-based billing overages contested by end users', 'Procurement approval bottlenecks delaying PO release'],
+        'saas': ['Seat count disputes on annual true-ups', 'Auto-renewal charges contested after churn', 'Multi-year contract exit clauses triggered without payment'],
+        'software': ['License compliance disputes during audits', 'Implementation milestone disagreements blocking payment', 'Support tier downgrades used to justify non-payment'],
+        'consulting': ['Scope creep disputes — "that wasn\'t in the SOW"', 'Deliverable acceptance delays stretching to 90+ days', 'Key sponsor leaves mid-project, successor blocks payment'],
+        'services': ['Service quality disputes delaying final payment', 'Change order disagreements on hourly vs fixed billing', 'Client mergers freezing all vendor payments for months'],
+        'healthcare': ['Insurance reimbursement delays cascading to vendor payments', 'Compliance review holds on new vendor invoices', 'Budget reallocation after fiscal year change'],
+        'finance': ['Regulatory review holds on outgoing payments', 'Intercompany transfer delays across entities', 'Audit-driven payment freezes on disputed amounts'],
+        'manufacturing': ['Defective goods claims offsetting invoices', 'Raw material price disputes on variable contracts', 'Shipping damage deductions applied without documentation'],
+        'retail': ['Return rate chargebacks exceeding agreed thresholds', 'Promotional allowance disputes on co-op marketing', 'Seasonal cash flow gaps delaying vendor payments'],
+        'logistics': ['Damage claims used to offset freight invoices', 'Fuel surcharge disputes on rate agreements', 'Delivery performance penalties applied retroactively'],
+        'real estate': ['Tenant improvement cost disputes', 'Maintenance reserve holdbacks stretching indefinitely', 'Commission payment disputes on lease renewals'],
+        'construction': ['Retainage holdbacks extending past project completion', 'Change order disputes blocking progress payments', 'Lien waiver requirements delaying disbursement'],
+        'education': ['Budget cycle mismatches — funding approved but not released', 'Purchase order bureaucracy adding 60+ days', 'Grant funding contingencies delaying vendor payments'],
+        'legal': ['Contingency fee disputes on case outcomes', 'Client billing disputes on hourly charges', 'Trust account release delays'],
+        'marketing': ['Campaign performance disputes tied to payment', 'Media buy reconciliation delays', 'Creative revision scope disputes'],
+        'default': ['60-90 day payment cycles stretching to 120+', 'Disputed invoices going unanswered for weeks', 'Key AP contacts leaving without handoff']
+    };
+
+    function getSmartAnalysis(industry, products, size) {
+        // Try to match industry keywords
+        var ind = (industry || '').toLowerCase();
+        var prod = (products || '').toLowerCase();
+        var combined = ind + ' ' + prod;
+
+        var match = null;
+        var keywords = Object.keys(INDUSTRY_RISKS);
+        for (var i = 0; i < keywords.length; i++) {
+            if (keywords[i] !== 'default' && combined.indexOf(keywords[i]) > -1) {
+                match = keywords[i];
+                break;
+            }
+        }
+        // Second pass: looser matching
+        if (!match) {
+            if (combined.match(/tech|software|app|platform|cloud|digital/)) match = 'technology';
+            else if (combined.match(/consult|advisory|professional/)) match = 'consulting';
+            else if (combined.match(/health|medical|pharma|clinic/)) match = 'healthcare';
+            else if (combined.match(/bank|insur|financ|invest|payment/)) match = 'finance';
+            else if (combined.match(/ship|freight|transport|deliver|logist/)) match = 'logistics';
+            else if (combined.match(/construct|build|architect|engineer/)) match = 'construction';
+            else if (combined.match(/retail|store|shop|ecommerce|e-commerce/)) match = 'retail';
+            else if (combined.match(/manufactur|factory|industrial|produc/)) match = 'manufacturing';
+            else if (combined.match(/market|advertis|agency|media|creative/)) match = 'marketing';
+            else if (combined.match(/legal|law|attorney|avocat/)) match = 'legal';
+            else if (combined.match(/real estate|property|immobilier|domicil/)) match = 'real estate';
+            else if (combined.match(/school|university|education|formation/)) match = 'education';
+        }
+
+        return INDUSTRY_RISKS[match] || INDUSTRY_RISKS['default'];
+    }
+
     function getCompanyData(domain) {
         if (COMPANY_DATA[domain]) return COMPANY_DATA[domain];
         var data = JSON.parse(JSON.stringify(DEFAULT_DATA));
@@ -1352,9 +1405,14 @@
                 buildLogo.src = company.logo_url;
             }
 
-            // Update analysis from API if available
+            // Update analysis: use smart industry-based reasons when API provides context
+            var hasHardcodedData = !!COMPANY_DATA[domain];
+            if (!hasHardcodedData && (company.industry || company.products)) {
+                updated.analysis = getSmartAnalysis(company.industry, company.products, company.size);
+            }
+
             if (apiData.disputes && apiData.disputes.length > 0) {
-                // Build analysis from dispute reasoning
+                // Build analysis from dispute reasoning (only if real data, not "Unable to determine")
                 var newAnalysis = [];
                 apiData.disputes.forEach(function(d) {
                     if (d.reasoning_tags && d.reasoning_tags.length > 0) {
@@ -1363,9 +1421,13 @@
                 });
                 if (newAnalysis.length > 0) updated.analysis = newAnalysis;
 
-                // Convert API disputes to our format
+                // Convert API disputes to our format (skip garbage responses)
                 var newDisputes = [];
                 apiData.disputes.forEach(function(d, idx) {
+                    // Skip useless API responses
+                    if (typeof d === 'string') return;
+                    if (!d.debtor_says || d.debtor_says.toLowerCase().indexOf('unable to determine') > -1) return;
+                    if (!d.agent_responds || d.agent_responds.toLowerCase().indexOf('insufficient') > -1) return;
                     var teaserText = d.debtor_says || '';
                     if (teaserText.length > 120) teaserText = teaserText.substring(0, 120) + '...';
                     newDisputes.push({
@@ -1382,7 +1444,6 @@
                     });
                 });
                 // Only replace disputes if domain has no hardcoded rich data (API disputes are simpler)
-                var hasHardcodedData = !!COMPANY_DATA[domain];
                 if (newDisputes.length > 0 && !hasHardcodedData) updated.disputes = newDisputes;
             }
 
