@@ -857,6 +857,177 @@
                     ]
                 }
             ]
+        },
+        'microsoft.com': {
+            name: 'Microsoft',
+            product: 'Microsoft 365 and Azure cloud services',
+            amount: '$47,500',
+            industry: 'Enterprise software & cloud computing',
+            clients: 'Enterprise IT departments, SMB resellers, government agencies',
+            whyDontPay: 'License true-up disputes, usage overages on Azure, contract renewal disagreements',
+            analysis: [
+                'Enterprise: license true-up audits reveal undercounted seats — clients dispute retroactive charges',
+                'SMB resellers: margin compression leads to delayed payments on volume commitments',
+                'Government: procurement cycles create 90-120 day payment gaps on approved invoices'
+            ],
+            disputes: [
+                {
+                    label: 'License true-up dispute',
+                    teaser: 'We\'re not paying the true-up invoice. Your audit counted 340 seats but we only have 280 active users...',
+                    transcript: [
+                        { speaker: 'debtor', text: 'We\'re not paying the true-up invoice. Your audit counted 340 seats but we only have 280 active users. The rest are shared mailboxes and service accounts that shouldn\'t count.' },
+                        { speaker: 'agent', text: 'I understand your concern about the seat count. Let me review the audit details. According to the Microsoft 365 admin center data, there are 340 accounts with E3 licenses assigned. However, I can see that 42 of those are indeed shared mailboxes and 18 are service accounts.' },
+                        { speaker: 'debtor', text: 'Exactly. So why are we being charged for those?' },
+                        { speaker: 'agent', text: 'You raise a valid point. Under your Enterprise Agreement, shared mailboxes using Exchange Online Plan 2 features do require a license, but basic shared mailboxes do not. I\'ve identified 28 that qualify for exemption. That brings the true-up to 312 seats \u2014 reducing the balance from $47,500 to $38,200. I can issue a revised invoice today.' },
+                        { speaker: 'debtor', text: 'That\'s more reasonable. Can we do quarterly payments on the revised amount?' },
+                        { speaker: 'agent', text: 'Absolutely. I\'ll set up four payments of $9,550 starting this month. You\'ll receive the revised invoice and payment schedule within the hour.' }
+                    ],
+                    reasoning: [
+                        { text: 'License dispute', color: 'amber', time: 1500 },
+                        { text: 'Checking admin center', color: 'indigo', time: 3000 },
+                        { text: 'Seat count validated', color: 'green', time: 5000 },
+                        { text: 'Exemptions identified', color: 'green', time: 7000 },
+                        { text: 'Revised calculation', color: 'indigo', time: 9000 },
+                        { text: 'Offering plan', color: 'indigo', time: 11000 },
+                        { text: 'Payment accepted', color: 'green', time: 13000 }
+                    ]
+                },
+                {
+                    label: 'Azure usage overage',
+                    teaser: 'Our Azure bill jumped from $12K to $31K last month. Someone spun up resources without approval...',
+                    transcript: [
+                        { speaker: 'debtor', text: 'Our Azure bill jumped from $12K to $31K last month. Someone on our team spun up GPU instances without approval. We\'re not paying for a misconfiguration that Microsoft\'s cost alerts should have caught.' },
+                        { speaker: 'agent', text: 'I understand the frustration with unexpected charges. Let me pull up your Azure Cost Management data. I can see the spike was caused by 8 NC-series GPU VMs running in East US 2 from March 3rd to March 28th, consuming $18,400 in compute.' },
+                        { speaker: 'debtor', text: 'Those were test instances that should have been auto-deleted. Your platform should prevent this.' },
+                        { speaker: 'agent', text: 'I see that budget alerts were configured at $15K but the notification email went to a distribution list that was decommissioned in January. The resources did have auto-shutdown policies but they were set to "notify only," not "shutdown." The charges are valid, but I can apply a one-time $5,000 courtesy credit for the alert gap. That brings the overage to $13,400.' },
+                        { speaker: 'debtor', text: 'Apply the credit. We\'ll pay the rest if we can split it over two months.' },
+                        { speaker: 'agent', text: 'Done. Two payments of $6,700 starting next billing cycle. I\'ll also help you reconfigure the budget alerts to an active email and set the auto-shutdown to "deallocate" to prevent this going forward.' }
+                    ],
+                    reasoning: [
+                        { text: 'Usage spike detected', color: 'amber', time: 1500 },
+                        { text: 'Analyzing resources', color: 'indigo', time: 3000 },
+                        { text: 'Root cause found', color: 'green', time: 5000 },
+                        { text: 'Alert gap identified', color: 'amber', time: 7000 },
+                        { text: 'Courtesy credit', color: 'green', time: 9000 },
+                        { text: 'Payment plan', color: 'indigo', time: 11000 },
+                        { text: 'Prevention measures', color: 'green', time: 13000 }
+                    ]
+                }
+            ]
+        },
+        'dell.com': {
+            name: 'Dell',
+            product: 'Dell enterprise hardware and IT infrastructure',
+            amount: '$28,900',
+            industry: 'Enterprise hardware & IT solutions',
+            clients: 'IT departments, data center operators, managed service providers',
+            whyDontPay: 'Warranty claim disputes, hardware defect returns, delayed PO processing',
+            analysis: [
+                'IT departments: budget approval bottlenecks on large hardware orders',
+                'Data centers: disputes over DOA units and replacement timelines',
+                'MSPs: volume discount disagreements on Dell Partner Direct orders'
+            ],
+            disputes: [
+                {
+                    label: 'Hardware warranty dispute',
+                    teaser: 'Three of the PowerEdge servers arrived with defective RAID controllers. We sent them back two months ago...',
+                    transcript: [
+                        { speaker: 'debtor', text: 'Three of the PowerEdge servers arrived with defective RAID controllers. We sent them back two months ago and still haven\'t received replacements or a credit. We\'re not paying for the rest of the order until this is resolved.' },
+                        { speaker: 'agent', text: 'I\'m sorry about the delay with the RAID controller replacements. Let me check the RMA status. I can see RMA #DL-2024-78432 was received at the Nashville depot on January 18th. The replacement units shipped on February 2nd via FedEx tracking 7891-2345-6789.' },
+                        { speaker: 'debtor', text: 'We never received them. The tracking shows delivered but we checked every loading dock.' },
+                        { speaker: 'agent', text: 'I see the delivery was signed for by "M. Rodriguez" at your secondary facility on Commerce Drive, not your main IT office. It appears they were routed to the wrong location. For the remaining balance of $28,900, I\'d like to offer a 5% goodwill discount for the inconvenience \u2014 bringing it to $27,455.' },
+                        { speaker: 'debtor', text: 'Let me verify with Commerce Drive. If they\'re there, we\'ll process payment with the discount. Deal.' },
+                        { speaker: 'agent', text: 'I\'ll send the revised invoice now with the 5% adjustment. Once you confirm receipt of the servers, I\'ll generate a secure payment link.' }
+                    ],
+                    reasoning: [
+                        { text: 'RMA lookup', color: 'indigo', time: 1500 },
+                        { text: 'Shipment tracked', color: 'green', time: 3000 },
+                        { text: 'Delivery mismatch', color: 'amber', time: 5000 },
+                        { text: 'Wrong facility found', color: 'green', time: 7000 },
+                        { text: 'Goodwill discount', color: 'indigo', time: 9000 },
+                        { text: 'Resolution accepted', color: 'green', time: 11000 },
+                        { text: 'Payment path clear', color: 'green', time: 13000 }
+                    ]
+                },
+                {
+                    label: 'Volume discount dispute',
+                    teaser: 'Our Partner Direct agreement guarantees 18% off list price. This invoice only shows 12%...',
+                    transcript: [
+                        { speaker: 'debtor', text: 'Our Partner Direct agreement guarantees 18% off list price on all Latitude orders over 50 units. This invoice for 75 laptops only shows 12% discount. We\'re not paying until you honor the agreed pricing.' },
+                        { speaker: 'agent', text: 'Let me review your Partner Direct agreement. I can see your tier was updated to Gold in Q3 last year, which does include the 18% discount on Latitude and OptiPlex lines. However, this order includes 20 Precision workstations which fall under a different discount tier at 12%.' },
+                        { speaker: 'debtor', text: 'The Precisions were supposed to be Latitudes. Our sales rep changed the spec without updating the pricing.' },
+                        { speaker: 'agent', text: 'I\'ve confirmed with the order history that the original quote was for 75 Latitude 5550s at 18%. The spec change to 20 Precision 3580s was made on January 9th. Since the pricing wasn\'t updated, I\'ll apply corrected discounts: 55 Latitudes at 18% and 20 Precisions at 15%. This reduces the invoice by $4,200.' },
+                        { speaker: 'debtor', text: 'That works. Send the corrected invoice and we\'ll process it this week.' },
+                        { speaker: 'agent', text: 'Corrected invoice is being generated now. You\'ll have it within the hour with a payment link included.' }
+                    ],
+                    reasoning: [
+                        { text: 'Pricing dispute', color: 'amber', time: 1500 },
+                        { text: 'Agreement verified', color: 'green', time: 3000 },
+                        { text: 'Spec change found', color: 'indigo', time: 5000 },
+                        { text: 'Rep error confirmed', color: 'amber', time: 7000 },
+                        { text: 'Corrected pricing', color: 'green', time: 9000 },
+                        { text: 'Invoice adjusted', color: 'indigo', time: 11000 },
+                        { text: 'Payment this week', color: 'green', time: 13000 }
+                    ]
+                }
+            ]
+        },
+        'fedex.com': {
+            name: 'FedEx',
+            product: 'FedEx shipping and logistics services',
+            amount: '$15,800',
+            industry: 'Shipping & logistics',
+            clients: 'E-commerce businesses, manufacturers, healthcare distributors',
+            whyDontPay: 'Shipping damage claims, late delivery refund disputes, surcharge disagreements',
+            analysis: [
+                'E-commerce: high volume of damage claims — 1 in 50 packages has issues',
+                'Manufacturers: freight surcharge disputes on oversized/overweight shipments',
+                'Healthcare: temperature-sensitive shipment failures lead to payment holds'
+            ],
+            disputes: [
+                {
+                    label: 'Shipping damage claim',
+                    teaser: 'We shipped 200 units of medical equipment via FedEx Freight. 14 arrived damaged and you denied our claim...',
+                    transcript: [
+                        { speaker: 'debtor', text: 'We shipped 200 units of medical equipment via FedEx Freight. 14 arrived damaged and you denied our claim saying packaging was insufficient. We used your recommended packaging and we\'re withholding payment until the claim is resolved.' },
+                        { speaker: 'agent', text: 'I understand your frustration with the claim denial. Let me review the inspection report. The denial cited "inadequate interior cushioning" for units on pallets 3 and 7. However, I can see from the pickup photos that your packaging matched the FedEx Freight Packaging Guidelines spec FX-2024-MED.' },
+                        { speaker: 'debtor', text: 'Exactly. We followed your own guidelines. The driver even signed off on the condition at pickup.' },
+                        { speaker: 'agent', text: 'You\'re correct \u2014 the driver\'s inspection noted "good condition, properly palletized." The damage appears to have occurred during the cross-dock transfer in Memphis. I\'m reopening the claim and approving it for the 14 damaged units at $890 each \u2014 $12,460 in credits. The remaining balance would be $3,340.' },
+                        { speaker: 'debtor', text: 'Now we\'re getting somewhere. Process the credit and we\'ll pay the $3,340 today.' },
+                        { speaker: 'agent', text: 'Credit applied. I\'m sending a payment link for $3,340 now. I\'ve also flagged your account for priority handling on future freight shipments.' }
+                    ],
+                    reasoning: [
+                        { text: 'Damage claim review', color: 'amber', time: 1500 },
+                        { text: 'Inspecting packaging', color: 'indigo', time: 3000 },
+                        { text: 'Guidelines matched', color: 'green', time: 5000 },
+                        { text: 'Driver report confirms', color: 'green', time: 7000 },
+                        { text: 'Hub damage identified', color: 'indigo', time: 9000 },
+                        { text: 'Claim approved', color: 'green', time: 11000 },
+                        { text: 'Payment today', color: 'green', time: 13000 }
+                    ]
+                },
+                {
+                    label: 'Late delivery surcharge dispute',
+                    teaser: 'You charged us peak season surcharges in February. Peak season ended January 14th and 30% of our shipments arrived late...',
+                    transcript: [
+                        { speaker: 'debtor', text: 'You charged us peak season surcharges on February shipments. Peak season ended January 14th. Plus, 30% of our packages arrived late and we\'re owed service guarantees. We\'re not paying $15,800 in surcharges we don\'t owe.' },
+                        { speaker: 'agent', text: 'Let me check your account. You\'re right that the standard peak surcharge period ended January 14th. However, your account was on the Extended Peak program which runs through February 7th \u2014 this was in the rate addendum signed last October. Charges after February 7th would not apply.' },
+                        { speaker: 'debtor', text: 'I don\'t remember signing an Extended Peak addendum. And what about the late deliveries?' },
+                        { speaker: 'agent', text: 'The addendum was signed by your logistics coordinator on October 3rd. I\'ll send you a copy. Regarding late deliveries: I\'ve audited your February shipments and found 47 out of 312 packages missed the guaranteed window. That qualifies for $3,200 in money-back guarantee credits. Combined with removing $2,100 in post-February-7th surcharges, your adjusted balance is $10,500.' },
+                        { speaker: 'debtor', text: 'Send me the addendum and the adjusted invoice. If it checks out, we\'ll pay the $10,500.' },
+                        { speaker: 'agent', text: 'Both documents are being sent now. I\'ll include a line-by-line breakdown of the credits. Payment link will be in the same email.' }
+                    ],
+                    reasoning: [
+                        { text: 'Surcharge dispute', color: 'amber', time: 1500 },
+                        { text: 'Checking rate addendum', color: 'indigo', time: 3000 },
+                        { text: 'Extended peak confirmed', color: 'green', time: 5000 },
+                        { text: 'Late delivery audit', color: 'indigo', time: 7000 },
+                        { text: 'MBG credits applied', color: 'green', time: 9000 },
+                        { text: 'Balance adjusted', color: 'indigo', time: 11000 },
+                        { text: 'Payment commitment', color: 'green', time: 13000 }
+                    ]
+                }
+            ]
         }
     };
 
@@ -992,12 +1163,133 @@
         playTimeouts = [];
     }
 
+    // ===== BACKEND API INTEGRATION =====
+    var apiPending = false;
+
+    function fetchCompanyFromAPI(domain) {
+        apiPending = true;
+        var controller = new AbortController();
+        var timeoutId = setTimeout(function() { controller.abort(); }, 30000);
+
+        fetch('https://backend.widr.app/api/v1/demo/analyze-company', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ domain: domain }),
+            signal: controller.signal
+        })
+        .then(function(response) {
+            clearTimeout(timeoutId);
+            if (!response.ok) throw new Error('API error ' + response.status);
+            return response.json();
+        })
+        .then(function(result) {
+            apiPending = false;
+            if (!result.success || !result.data) return;
+            if (currentDomain !== domain) return; // user changed domain
+
+            var apiData = result.data;
+            var company = apiData.company || {};
+
+            // Build updated company object
+            var updated = JSON.parse(JSON.stringify(currentCompany));
+            if (company.name) updated.name = company.name;
+            if (company.industry) updated.industry = company.industry;
+            if (company.products) updated.product = company.products;
+            if (company.size) updated.clients = (updated.clients || '') + ' (' + company.size + ')';
+            if (company.logo_url) {
+                buildLogo.src = company.logo_url;
+            }
+
+            // Update analysis from API if available
+            if (apiData.disputes && apiData.disputes.length > 0) {
+                // Build analysis from dispute reasoning
+                var newAnalysis = [];
+                apiData.disputes.forEach(function(d) {
+                    if (d.reasoning_tags && d.reasoning_tags.length > 0) {
+                        newAnalysis.push(d.reasoning_tags.join(', '));
+                    }
+                });
+                if (newAnalysis.length > 0) updated.analysis = newAnalysis;
+
+                // Convert API disputes to our format
+                var newDisputes = [];
+                apiData.disputes.forEach(function(d, idx) {
+                    var teaserText = d.debtor_says || '';
+                    if (teaserText.length > 120) teaserText = teaserText.substring(0, 120) + '...';
+                    newDisputes.push({
+                        label: 'Dispute ' + (idx + 1),
+                        teaser: teaserText,
+                        transcript: [
+                            { speaker: 'debtor', text: d.debtor_says },
+                            { speaker: 'agent', text: d.agent_responds }
+                        ],
+                        reasoning: (d.reasoning_tags || []).map(function(tag, i) {
+                            var colors = ['amber', 'indigo', 'green'];
+                            return { text: tag, color: colors[i % 3], time: 1500 + (i * 2000) };
+                        })
+                    });
+                });
+                if (newDisputes.length > 0) updated.disputes = newDisputes;
+            }
+
+            // Update the current company data
+            currentCompany = updated;
+
+            // Smoothly update visible elements if demo is already showing
+            if (demoArea.classList.contains('visible')) {
+                updateDemoWithAPIData(updated);
+            }
+
+            // Update build title
+            buildTitle.textContent = updated.name + ' collection agent';
+            var readyText = document.querySelector('.build-ready-text');
+            if (readyText) readyText.textContent = 'Your ' + updated.name + ' collection agent is ready.';
+        })
+        .catch(function(err) {
+            apiPending = false;
+            console.log('API call failed (using cached/default data):', err.message);
+        });
+    }
+
+    function updateDemoWithAPIData(data) {
+        // Add shimmer effect during update
+        analysisBanner.classList.add('api-updating');
+
+        setTimeout(function() {
+            // Update analysis banner
+            analysisItems.innerHTML = '';
+            (data.analysis || []).forEach(function(item) {
+                var div = document.createElement('div');
+                div.className = 'analysis-banner-item';
+                div.textContent = item;
+                analysisItems.appendChild(div);
+            });
+
+            // Update left panel teaser if not currently playing a dispute
+            if (!isPlaying && panelLeftTeaser.style.display !== 'none') {
+                var firstDispute = data.disputes[0];
+                panelLeftTeaserText.textContent = '"' + firstDispute.teaser + '"';
+                panelLeftDesc.textContent = 'See how your ' + data.name + ' agent handles a real dispute with evidence and reasoning.';
+                currentDisputeIndex = 0;
+            }
+
+            // Update right panel
+            panelRightDesc.textContent = 'Speak to your ' + data.name + ' collection agent live. Real-time conversation using your microphone.';
+
+            // Remove shimmer
+            analysisBanner.classList.remove('api-updating');
+        }, 300);
+    }
+
     // ===== BUILD ANIMATION =====
     function startBuild(domain) {
         var data = getCompanyData(domain);
         currentCompany = data;
         currentDomain = domain;
         currentDisputeIndex = 0;
+
+        // Fire API call in parallel (will update data when it returns)
+        fetchCompanyFromAPI(domain);
 
         // Hide hero content and fully collapse hero section
         heroContent.style.opacity = '0';
@@ -1042,6 +1334,9 @@
             setTimeout(function() {
                 buildTitle.textContent = data.name + ' collection agent';
 
+                // Pre-render analysis banner so it appears while build phases fade
+                showDemo(data);
+
                 // Fade out build phases
                 var phases = buildPhases.querySelectorAll('.build-phase');
                 phases.forEach(function(p) {
@@ -1051,10 +1346,8 @@
                 });
 
                 setTimeout(function() {
-                    // Clear build phases
+                    // Clear build phases and add ready indicator
                     buildPhases.innerHTML = '';
-
-                    // Add ready indicator
                     var readyHtml = '<div class="build-phase" id="build-ready-phase">' +
                         '<div class="build-ready">' +
                         '<div class="build-ready-dot"></div>' +
@@ -1064,11 +1357,6 @@
                     setTimeout(function() {
                         document.getElementById('build-ready-phase').classList.add('visible');
                     }, 50);
-
-                    // Show demo area inside the same card
-                    setTimeout(function() {
-                        showDemo(data);
-                    }, 600);
                 }, 500);
             }, 5000);
         }, 500);
@@ -1459,15 +1747,46 @@
         }
         if (coReasoningTimer) { clearInterval(coReasoningTimer); coReasoningTimer = null; }
 
-        // Show ended state in overlay
+        // Hide call UI elements
         coWaveform.className = 'call-overlay-waveform idle';
-        coStatus.textContent = message || 'Call ended';
         coReasoning.innerHTML = '';
+        coBottom.style.display = 'none';
+        coTranscript.style.display = 'none';
+        coConnecting.style.display = 'none';
 
-        // After a moment, close overlay
-        setTimeout(function() {
+        // Show call summary inside the overlay
+        var companyName = currentCompany ? currentCompany.name : 'your';
+        var summaryHtml = '<div class="call-summary visible" id="call-summary">' +
+            '<div class="call-summary-title">Call complete.</div>' +
+            '<div class="call-summary-items">' +
+            '<div class="call-summary-item"><span class="cs-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span>Identity verification</div>' +
+            '<div class="call-summary-item"><span class="cs-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span>Invoice dispute</div>' +
+            '<div class="call-summary-item"><span class="cs-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span>Payment plan offered</div>' +
+            '</div>' +
+            '<div class="call-summary-cta-wrap">' +
+            '<div class="call-summary-label">Ready to deploy this for your company?</div>' +
+            '<a href="https://cal.com/johnb/30" target="_blank" class="call-summary-cta">Book a 30-min setup call <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>' +
+            '<button class="call-summary-back" id="call-summary-back-btn">&larr; Back to demo</button>' +
+            '</div>' +
+            '</div>';
+
+        coBody.insertAdjacentHTML('beforeend', summaryHtml);
+
+        // Wire up back button
+        document.getElementById('call-summary-back-btn').addEventListener('click', function() {
             hideCallOverlay();
-        }, 2000);
+            var el = document.getElementById('call-summary');
+            if (el) el.remove();
+        });
+
+        // Auto-close after 8 seconds
+        setTimeout(function() {
+            if (callOverlay.classList.contains('active') && !callActive) {
+                hideCallOverlay();
+                var el = document.getElementById('call-summary');
+                if (el) el.remove();
+            }
+        }, 8000);
     }
 
     // ===== EVENT HANDLERS =====
