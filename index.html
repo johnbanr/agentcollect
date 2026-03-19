@@ -1532,6 +1532,7 @@
         currentDomain = domain;
         currentDisputeIndex = 0;
         buildEmailGatePassed = false;
+        chatHistory = [];
         // Funnel event: domain entered
         try { gtag('event', 'domain_entered', { domain: domain, company: data.name }); } catch(e) {}
 
