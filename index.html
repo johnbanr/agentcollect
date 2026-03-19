@@ -189,11 +189,11 @@
         .demo-area.visible{display:block;animation:fadeInUp .5s ease}
 
         /* ========== ORB ========== */
-        .orb-zone{background:linear-gradient(180deg,var(--bg) 0%,#e8e6f0 20%,#1a1a2e 45%,#0a0a1a 55%,#1a1a2e 80%,#e8e6f0 95%,var(--bg) 100%);border-radius:24px;padding:48px 20px 40px;margin-bottom:20px;text-align:center}
+        .orb-zone{background:linear-gradient(180deg,#1e1b3a 0%,#12102a 15%,#0a0a1a 40%,#0a0a1a 60%,#12102a 85%,#1e1b3a 100%);border-radius:24px;padding:48px 20px 40px;margin-bottom:20px;text-align:center;overflow:hidden}
         .orb-title{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:4px}
         .orb-title img{height:24px;width:auto;max-width:100px;object-fit:contain;filter:brightness(0) invert(1)}
-        .orb-title span{font-family:var(--display);font-weight:900;font-size:20px;color:#fff}
-        .orb-sub{font-size:14px;color:rgba(255,255,255,.5);margin-bottom:36px}
+        .orb-title span{font-family:var(--display);font-weight:900;font-size:20px;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+        .orb-sub{font-size:14px;color:rgba(255,255,255,.55);margin-bottom:36px;text-shadow:0 1px 8px rgba(0,0,0,.3)}
         .orb-wrap{position:relative;width:180px;height:180px;margin:0 auto 32px;cursor:pointer}
         .orb-glow{position:absolute;inset:-30px;border-radius:50%;animation:orbGlowPulse 4s ease-in-out infinite}
         .orb-main{position:relative;width:180px;height:180px;border-radius:50%;overflow:hidden;animation:orbDrift 6s ease-in-out infinite;transition:transform .3s,box-shadow .3s}
