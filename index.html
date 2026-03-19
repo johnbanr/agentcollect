@@ -1425,6 +1425,8 @@
         currentDomain = domain;
         currentDisputeIndex = 0;
         buildEmailGatePassed = false;
+        // Funnel event: domain entered
+        try { gtag('event', 'domain_entered', { domain: domain, company: data.name }); } catch(e) {}
 
         if (!buildProgressFill) initBuildRefs();
 
@@ -1480,10 +1482,20 @@
                             animateProgressTo(73, 1800, 'Finding who to call...', function() {
                                 addContactsCard(data, domain);
 
-                                // Gate at 75%
+                                // Skip gate — go straight to 100%
                                 setTimeout(function() {
-                                    animateProgressTo(75, 500, 'Almost there...', function() {
-                                        addEmailGateCard(data);
+                                    animateProgressTo(100, 1500, data.name + ' agent ready.', function() {
+                                        buildTitle.textContent = data.name + ' collection agent';
+                                        addBuildCard('bci-ready',
+                                            '<div class="bci-inner" style="background:rgba(16,185,129,.02);border-color:rgba(16,185,129,.25)">' +
+                                            '<div class="bci-header" style="margin-bottom:0">' +
+                                            '<div class="bci-icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>' +
+                                            '<div class="bci-title" style="color:var(--green-dark)">Your ' + data.name + ' agent is ready.</div>' +
+                                            '</div></div>'
+                                        );
+                                        // Track funnel event
+                                        try { gtag('event', 'demo_ready', { domain: currentDomain, company: data.name }); } catch(e) {}
+                                        setTimeout(function() { showDemo(data); }, 600);
                                     });
                                 }, 700);
                             });
@@ -1678,6 +1690,8 @@
 
     // ===== DEMO (inside build card) =====
     function showDemo(data) {
+        // Funnel event: demo section visible
+        try { gtag('event', 'demo_seen', { domain: currentDomain, company: data.name }); } catch(e) {}
         // Render analysis banner items
         analysisItems.innerHTML = '';
         (data.analysis || []).forEach(function(item) {
@@ -2003,6 +2017,15 @@
             // Set up event listeners
             retellClient.on('call_started', function() {
                 showCallConnected(data);
+                // Track funnel event + notify Slack (domain only, no email needed)
+                try { gtag('event', 'call_started', { domain: currentDomain, company: data.name }); } catch(e) {}
+                try {
+                    fetch('https://backend.widr.app/api/v1/demo/capture-lead', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ domain: currentDomain, company: data.name, event: 'call_started' })
+                    }).catch(function() {});
+                } catch(e) {}
             });
 
             retellClient.on('call_ended', function() {
@@ -2062,8 +2085,20 @@
         coTranscript.style.display = 'none';
         coConnecting.style.display = 'none';
 
-        // Show call summary inside the overlay
+        // Show call summary + email capture inside the overlay
         var companyName = currentCompany ? currentCompany.name : 'your';
+        var alreadyCaptured = false;
+        try { alreadyCaptured = !!localStorage.getItem('ac_lead_email'); } catch(e) {}
+
+        var emailCaptureHtml = alreadyCaptured ? '' :
+            '<div class="call-summary-email-capture" id="cs-email-capture">' +
+            '<div style="font-size:14px;color:var(--text-mid);margin-bottom:10px">This was a 2-minute demo. Your real agent runs 24/7.</div>' +
+            '<div style="display:flex;gap:8px;max-width:400px;margin:0 auto">' +
+            '<input type="email" id="cs-email-input" placeholder="you@company.com" style="flex:1;padding:12px 16px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:var(--sans);outline:none;transition:border-color .2s" autocomplete="email">' +
+            '<button id="cs-email-btn" style="padding:12px 20px;background:var(--indigo);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:var(--sans);transition:background .2s">Get started</button>' +
+            '</div>' +
+            '</div>';
+
         var summaryHtml = '<div class="call-summary visible" id="call-summary">' +
             '<div class="call-summary-title">Call complete.</div>' +
             '<div class="call-summary-items">' +
@@ -2071,6 +2106,7 @@
             '<div class="call-summary-item"><span class="cs-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span>Invoice dispute</div>' +
             '<div class="call-summary-item"><span class="cs-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span>Payment plan offered</div>' +
             '</div>' +
+            emailCaptureHtml +
             '<div class="call-summary-cta-wrap">' +
             '<div class="call-summary-label">Ready to deploy this for your company?</div>' +
             '<a href="https://cal.com/johnb/30" target="_blank" class="call-summary-cta">Book a 30-min setup call <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>' +
@@ -2079,6 +2115,35 @@
             '</div>';
 
         coBody.insertAdjacentHTML('beforeend', summaryHtml);
+
+        // Wire up post-call email capture
+        var csEmailBtn = document.getElementById('cs-email-btn');
+        var csEmailInput = document.getElementById('cs-email-input');
+        if (csEmailBtn && csEmailInput) {
+            function submitPostCallEmail() {
+                var email = csEmailInput.value.trim();
+                if (!email || email.indexOf('@') < 1 || email.indexOf('.') <= email.indexOf('@')) {
+                    csEmailInput.style.borderColor = 'var(--red)';
+                    setTimeout(function() { csEmailInput.style.borderColor = ''; }, 1800);
+                    return;
+                }
+                try { localStorage.setItem('ac_lead_email', email); localStorage.setItem('ac_lead_domain', currentDomain); } catch(e) {}
+                try {
+                    fetch('https://backend.widr.app/api/v1/demo/capture-lead', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: email, domain: currentDomain, company: companyName })
+                    }).catch(function() {});
+                } catch(e) {}
+                try { gtag('event', 'email_captured', { domain: currentDomain, method: 'post_call' }); } catch(e) {}
+                var capture = document.getElementById('cs-email-capture');
+                if (capture) {
+                    capture.innerHTML = '<div style="display:flex;align-items:center;gap:8px;justify-content:center;padding:8px 0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span style="color:var(--green-dark);font-weight:600;font-size:14px">We\'ll reach out shortly.</span></div>';
+                }
+            }
+            csEmailBtn.addEventListener('click', submitPostCallEmail);
+            csEmailInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') submitPostCallEmail(); });
+        }
 
         // Wire up back button
         document.getElementById('call-summary-back-btn').addEventListener('click', function() {
