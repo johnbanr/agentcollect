@@ -1283,40 +1283,57 @@
     function renderOverlayTranscript(transcript) {
         if (!transcript || transcript.length === 0) return;
 
-        // Only render new entries
-        for (var i = coLastTranscriptLen; i < transcript.length; i++) {
+        var agentLabel = currentCompany ? (currentCompany.name + ' Agent') : 'Agent';
+
+        // Merge consecutive same-speaker entries into single messages
+        var merged = [];
+        for (var i = 0; i < transcript.length; i++) {
             var entry = transcript[i];
             var role = entry.role === 'agent' ? 'agent' : 'user';
-            var label = entry.role === 'agent' ? (currentCompany.name + ' Agent') : 'You';
+            var content = (entry.content || '').trim();
+            if (!content) continue;
 
-            // Check if we should update the last message (same speaker, content grew)
-            var lastMsg = coTranscriptScroll.lastElementChild;
-            if (lastMsg && lastMsg.dataset.role === role && i === transcript.length - 1) {
-                lastMsg.querySelector('.call-msg-text').textContent = entry.content;
-                coTranscriptScroll.scrollTop = coTranscriptScroll.scrollHeight;
-                continue;
+            var last = merged.length > 0 ? merged[merged.length - 1] : null;
+            if (last && last.role === role) {
+                // Same speaker — append to existing message
+                last.content += ' ' + content;
+            } else {
+                merged.push({ role: role, content: content });
             }
-
-            var div = document.createElement('div');
-            div.className = 'call-msg ' + role;
-            div.dataset.role = role;
-            div.innerHTML = '<div class="call-msg-text">' + entry.content + '</div>' +
-                '<div class="call-msg-speaker">' + (role === 'agent' ? '— ' + label : '— You') + '</div>';
-            coTranscriptScroll.appendChild(div);
-
-            // Keep only last 6 messages visible, fade older ones
-            var msgs = coTranscriptScroll.querySelectorAll('.call-msg');
-            if (msgs.length > 6) {
-                var oldest = msgs[0];
-                oldest.style.opacity = '0';
-                oldest.style.transform = 'translateY(-10px)';
-                oldest.style.transition = 'all .4s ease';
-                setTimeout(function() { if (oldest.parentNode) oldest.parentNode.removeChild(oldest); }, 400);
-            }
-
-            coTranscriptScroll.scrollTop = coTranscriptScroll.scrollHeight;
         }
-        coLastTranscriptLen = transcript.length;
+
+        // Only show last 4 merged messages
+        var visible = merged.slice(-4);
+
+        // Rebuild transcript (simple approach — avoids complex diffing)
+        var existingDivs = coTranscriptScroll.querySelectorAll('.call-msg');
+        var needsRebuild = existingDivs.length !== visible.length;
+        if (!needsRebuild) {
+            // Check if we can just update text in place
+            for (var j = 0; j < visible.length; j++) {
+                if (existingDivs[j].dataset.role !== visible[j].role) { needsRebuild = true; break; }
+            }
+        }
+
+        if (needsRebuild) {
+            coTranscriptScroll.innerHTML = '';
+            for (var k = 0; k < visible.length; k++) {
+                var m = visible[k];
+                var div = document.createElement('div');
+                div.className = 'call-msg ' + m.role;
+                div.dataset.role = m.role;
+                div.innerHTML = '<div class="call-msg-text">' + m.content + '</div>' +
+                    '<div class="call-msg-speaker">— ' + (m.role === 'agent' ? agentLabel : 'You') + '</div>';
+                coTranscriptScroll.appendChild(div);
+            }
+        } else {
+            // Update text in place (no flicker)
+            for (var l = 0; l < visible.length; l++) {
+                existingDivs[l].querySelector('.call-msg-text').textContent = visible[l].content;
+            }
+        }
+
+        coTranscriptScroll.scrollTop = coTranscriptScroll.scrollHeight;
     }
 
     // ===== VOICE CALL (RetellAI WebRTC) =====
