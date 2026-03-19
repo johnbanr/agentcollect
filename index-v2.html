@@ -228,6 +228,81 @@
         .call-ended-msg .back-link{color:var(--indigo);cursor:pointer;font-weight:600;margin-top:8px;display:inline-block}
         .call-ended-msg .back-link:hover{text-decoration:underline}
 
+        /* ========== FULL-SCREEN CALL OVERLAY ========== */
+        .call-overlay{position:fixed;inset:0;z-index:9999;background:#FAFBFF;display:none;flex-direction:column;opacity:0;transition:opacity .5s ease}
+        .call-overlay.active{display:flex;opacity:1}
+        .call-overlay::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+            background-image:
+                linear-gradient(rgba(79,70,229,.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(79,70,229,.03) 1px, transparent 1px);
+            background-size:64px 64px}
+
+        .call-overlay-nav{display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:64px;position:relative;z-index:2;flex-shrink:0;border-bottom:1px solid var(--border);background:rgba(250,251,255,.95);backdrop-filter:blur(16px)}
+        .call-overlay-brand{font-family:var(--display);font-size:18px;font-weight:900;letter-spacing:-.04em;color:var(--text);display:inline-flex;align-items:baseline}
+        .call-overlay-agent-name{font-size:14px;color:var(--text-muted);font-weight:500;margin-left:16px;padding-left:16px;border-left:1px solid var(--border)}
+        .call-overlay-end{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;background:var(--red);color:#fff;border:none;border-radius:10px;font-family:var(--sans);font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
+        .call-overlay-end:hover{background:#DC2626;transform:translateY(-1px);box-shadow:0 4px 14px rgba(239,68,68,.3)}
+
+        .call-overlay-body{flex:1;display:flex;flex-direction:column;position:relative;z-index:1;overflow-y:auto;padding:0 32px}
+
+        .call-overlay-transcript{flex:1;display:flex;flex-direction:column;justify-content:flex-end;max-width:720px;width:100%;margin:0 auto;padding:40px 0 24px;gap:20px;min-height:0}
+        .call-overlay-transcript-scroll{display:flex;flex-direction:column;gap:20px;overflow-y:auto;padding-bottom:16px;mask-image:linear-gradient(to bottom, transparent 0%, black 60px, black 100%);-webkit-mask-image:linear-gradient(to bottom, transparent 0%, black 60px, black 100%)}
+
+        .call-msg{padding:24px 28px;border-radius:16px;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.04);border:1.5px solid var(--border);opacity:0;transform:translateY(20px);animation:callMsgIn .5s cubic-bezier(.16,1,.3,1) forwards;max-width:85%}
+        .call-msg.user{align-self:flex-start;border-color:rgba(100,116,139,.2)}
+        .call-msg.agent{align-self:flex-end;border-color:rgba(79,70,229,.2);background:linear-gradient(135deg,#FAFAFF,#F5F3FF)}
+        .call-msg-text{font-size:clamp(18px,2.5vw,24px);font-weight:600;font-family:var(--display);color:var(--text);line-height:1.45;letter-spacing:-.02em}
+        .call-msg-speaker{font-size:13px;font-weight:600;color:var(--text-dim);margin-top:10px;letter-spacing:-.01em}
+        .call-msg.agent .call-msg-speaker{color:var(--indigo)}
+        @keyframes callMsgIn{to{opacity:1;transform:translateY(0)}}
+
+        .call-overlay-bottom{flex-shrink:0;position:relative;z-index:2;border-top:1px solid var(--border);background:rgba(250,251,255,.95);backdrop-filter:blur(16px);padding:16px 32px 24px}
+
+        .call-overlay-reasoning{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:16px;min-height:32px}
+        .call-overlay-reasoning .co-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;opacity:0;transform:scale(.9);animation:coPillIn .3s ease forwards}
+        .call-overlay-reasoning .co-pill.green{background:rgba(16,185,129,.1);color:var(--green-dark)}
+        .call-overlay-reasoning .co-pill.indigo{background:rgba(79,70,229,.1);color:var(--indigo)}
+        .call-overlay-reasoning .co-pill.amber{background:rgba(245,158,11,.1);color:#B45309}
+        .call-overlay-reasoning .co-pill::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0}
+        .call-overlay-reasoning .co-pill.green::before{background:var(--green)}
+        .call-overlay-reasoning .co-pill.indigo::before{background:var(--indigo)}
+        .call-overlay-reasoning .co-pill.amber::before{background:#F59E0B}
+        @keyframes coPillIn{to{opacity:1;transform:scale(1)}}
+
+        .call-overlay-waveform{display:flex;align-items:center;justify-content:center;gap:3px;height:48px;margin-bottom:8px}
+        .call-overlay-waveform span{display:block;width:4px;border-radius:4px;transition:background .3s}
+        .call-overlay-waveform.agent-speaking span{background:var(--green);animation:coWave 1s ease-in-out infinite}
+        .call-overlay-waveform.user-speaking span{background:var(--indigo);animation:coWave .8s ease-in-out infinite}
+        .call-overlay-waveform.idle span{background:var(--border);animation:coWaveIdle 2s ease-in-out infinite}
+        .call-overlay-waveform span:nth-child(1){height:14px;animation-delay:0s}
+        .call-overlay-waveform span:nth-child(2){height:24px;animation-delay:.08s}
+        .call-overlay-waveform span:nth-child(3){height:18px;animation-delay:.16s}
+        .call-overlay-waveform span:nth-child(4){height:32px;animation-delay:.24s}
+        .call-overlay-waveform span:nth-child(5){height:20px;animation-delay:.32s}
+        .call-overlay-waveform span:nth-child(6){height:36px;animation-delay:.4s}
+        .call-overlay-waveform span:nth-child(7){height:16px;animation-delay:.48s}
+        .call-overlay-waveform span:nth-child(8){height:28px;animation-delay:.56s}
+        .call-overlay-waveform span:nth-child(9){height:12px;animation-delay:.64s}
+        .call-overlay-waveform span:nth-child(10){height:22px;animation-delay:.72s}
+        .call-overlay-waveform span:nth-child(11){height:30px;animation-delay:.8s}
+        .call-overlay-waveform span:nth-child(12){height:16px;animation-delay:.88s}
+        @keyframes coWave{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.3)}}
+        @keyframes coWaveIdle{0%,100%{transform:scaleY(.5);opacity:.4}50%{transform:scaleY(.2);opacity:.2}}
+
+        .call-overlay-status{text-align:center;font-size:14px;font-weight:600;color:var(--text-muted);letter-spacing:-.01em}
+
+        .call-overlay-connecting{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;gap:20px;padding:40px}
+        .call-overlay-connecting .co-spinner{width:48px;height:48px;border:3px solid rgba(79,70,229,.12);border-top-color:var(--indigo);border-radius:50%;animation:spin 1s linear infinite}
+        .call-overlay-connecting .co-connect-text{font-family:var(--display);font-size:20px;font-weight:700;color:var(--text)}
+        .call-overlay-connecting .co-connect-sub{font-size:15px;color:var(--text-muted)}
+
+        /* ========== ENHANCED DISPUTE STYLES ========== */
+        .response-area.visible .response-transcript{max-height:360px}
+        .response-area.visible .transcript-text{font-size:16px;line-height:1.6}
+        .response-area.visible .transcript-speaker{font-size:11px;margin-bottom:2px}
+        .response-area.visible .reason-pill{padding:8px 14px;font-size:13px;border-radius:10px}
+        .response-area.visible .reasoning-label{font-size:11px;margin-bottom:6px}
+
         /* ========== TRUST SECTION ========== */
         .trust-section{padding:100px 32px;background:#fff;text-align:center}
         .trust-inner{max-width:var(--max-w);margin:0 auto}
@@ -342,6 +417,14 @@
             .footer-top{grid-template-columns:1fr 1fr;gap:24px}
             .footer-bottom{flex-direction:column;text-align:center}
             .footer-badges{justify-content:center}
+            .call-overlay-nav{padding:0 16px}
+            .call-overlay-agent-name{display:none}
+            .call-overlay-body{padding:0 16px}
+            .call-overlay-bottom{padding:12px 16px 20px}
+            .call-msg{padding:18px 20px;max-width:95%}
+            .call-msg-text{font-size:clamp(16px,4vw,20px)}
+            .call-overlay-reasoning{gap:6px}
+            .call-overlay-reasoning .co-pill{padding:5px 10px;font-size:11px}
         }
         @media(max-width:480px){
             .stats-grid{grid-template-columns:1fr 1fr}
@@ -611,6 +694,39 @@
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
 </section>
+
+<!-- FULL-SCREEN CALL OVERLAY -->
+<div class="call-overlay" id="call-overlay">
+    <div class="call-overlay-nav">
+        <div style="display:flex;align-items:baseline">
+            <span class="call-overlay-brand">Agent<span>Collect</span><span class="dot-circle"></span></span>
+            <span class="call-overlay-agent-name" id="co-agent-name"></span>
+        </div>
+        <button class="call-overlay-end" id="co-end-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            End call
+        </button>
+    </div>
+    <div class="call-overlay-body" id="co-body">
+        <!-- Connecting state -->
+        <div class="call-overlay-connecting" id="co-connecting">
+            <div class="co-spinner"></div>
+            <div class="co-connect-text" id="co-connect-text">Connecting...</div>
+            <div class="co-connect-sub" id="co-connect-sub">Setting up WebRTC connection</div>
+        </div>
+        <!-- Transcript (hidden until connected) -->
+        <div class="call-overlay-transcript" id="co-transcript" style="display:none">
+            <div class="call-overlay-transcript-scroll" id="co-transcript-scroll"></div>
+        </div>
+    </div>
+    <div class="call-overlay-bottom" id="co-bottom" style="display:none">
+        <div class="call-overlay-reasoning" id="co-reasoning"></div>
+        <div class="call-overlay-waveform idle" id="co-waveform">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="call-overlay-status" id="co-status">Connecting...</div>
+    </div>
+</div>
 
 <!-- 10. FOOTER -->
 <footer>
@@ -1053,24 +1169,165 @@
         playTimeouts.push(doneT);
     }
 
+    // ===== FULL-SCREEN CALL OVERLAY =====
+    var callOverlay = document.getElementById('call-overlay');
+    var coAgentName = document.getElementById('co-agent-name');
+    var coEndBtn = document.getElementById('co-end-btn');
+    var coBody = document.getElementById('co-body');
+    var coConnecting = document.getElementById('co-connecting');
+    var coConnectText = document.getElementById('co-connect-text');
+    var coConnectSub = document.getElementById('co-connect-sub');
+    var coTranscript = document.getElementById('co-transcript');
+    var coTranscriptScroll = document.getElementById('co-transcript-scroll');
+    var coBottom = document.getElementById('co-bottom');
+    var coReasoning = document.getElementById('co-reasoning');
+    var coWaveform = document.getElementById('co-waveform');
+    var coStatus = document.getElementById('co-status');
+    var coLastTranscriptLen = 0;
+    var coReasoningPills = [];
+    var coReasoningTimer = null;
+
+    // Simulated reasoning tags that appear during the call
+    var CALL_REASONING = [
+        { text: 'Listening', color: 'indigo' },
+        { text: 'Identity check', color: 'green' },
+        { text: 'Checking records', color: 'indigo' },
+        { text: 'Empathy applied', color: 'green' },
+        { text: 'Dispute detected', color: 'amber' },
+        { text: 'Proof ready', color: 'green' },
+        { text: 'De-escalating', color: 'green' },
+        { text: 'Offering plan', color: 'indigo' },
+        { text: 'Payment intent', color: 'green' },
+        { text: 'Resolution path', color: 'green' },
+        { text: 'Generating link', color: 'indigo' },
+        { text: 'Compliance check', color: 'indigo' },
+        { text: 'Tone calibrated', color: 'green' },
+        { text: 'Objection noted', color: 'amber' }
+    ];
+
+    function showCallOverlay(data) {
+        // Reset state
+        coLastTranscriptLen = 0;
+        coReasoningPills = [];
+        if (coReasoningTimer) { clearInterval(coReasoningTimer); coReasoningTimer = null; }
+
+        // Set agent name
+        coAgentName.textContent = data.name + ' Agent';
+
+        // Show connecting state
+        coConnecting.style.display = 'flex';
+        coTranscript.style.display = 'none';
+        coBottom.style.display = 'none';
+        coConnectText.textContent = 'Connecting to your ' + data.name + ' agent...';
+        coConnectSub.textContent = 'Setting up WebRTC connection';
+        coTranscriptScroll.innerHTML = '';
+        coReasoning.innerHTML = '';
+        coStatus.textContent = 'Connecting...';
+        coWaveform.className = 'call-overlay-waveform idle';
+
+        // Show overlay with animation
+        callOverlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        requestAnimationFrame(function() {
+            callOverlay.classList.add('active');
+        });
+    }
+
+    function hideCallOverlay() {
+        callOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+        if (coReasoningTimer) { clearInterval(coReasoningTimer); coReasoningTimer = null; }
+        setTimeout(function() {
+            callOverlay.style.display = 'none';
+        }, 500);
+    }
+
+    function showCallConnected(data) {
+        coConnecting.style.display = 'none';
+        coTranscript.style.display = 'flex';
+        coBottom.style.display = 'block';
+        coStatus.textContent = 'Your turn — speak now';
+        coWaveform.className = 'call-overlay-waveform idle';
+
+        // Start reasoning pill rotation
+        var reasonIdx = 0;
+        coReasoningTimer = setInterval(function() {
+            if (!callActive) { clearInterval(coReasoningTimer); return; }
+            var r = CALL_REASONING[reasonIdx % CALL_REASONING.length];
+            addReasoningPill(r.text, r.color);
+            reasonIdx++;
+        }, 4000);
+        // Show first pill quickly
+        setTimeout(function() {
+            addReasoningPill('Listening', 'indigo');
+        }, 500);
+    }
+
+    function addReasoningPill(text, color) {
+        var pill = document.createElement('div');
+        pill.className = 'co-pill ' + color;
+        pill.textContent = text;
+        coReasoning.appendChild(pill);
+
+        // Remove excess pills (keep max 4)
+        var pills = coReasoning.querySelectorAll('.co-pill');
+        if (pills.length > 4) {
+            var old = pills[0];
+            old.style.opacity = '0';
+            old.style.transform = 'scale(.7)';
+            old.style.transition = 'all .3s ease';
+            setTimeout(function() { if (old.parentNode) old.parentNode.removeChild(old); }, 300);
+        }
+    }
+
+    function renderOverlayTranscript(transcript) {
+        if (!transcript || transcript.length === 0) return;
+
+        // Only render new entries
+        for (var i = coLastTranscriptLen; i < transcript.length; i++) {
+            var entry = transcript[i];
+            var role = entry.role === 'agent' ? 'agent' : 'user';
+            var label = entry.role === 'agent' ? (currentCompany.name + ' Agent') : 'You';
+
+            // Check if we should update the last message (same speaker, content grew)
+            var lastMsg = coTranscriptScroll.lastElementChild;
+            if (lastMsg && lastMsg.dataset.role === role && i === transcript.length - 1) {
+                lastMsg.querySelector('.call-msg-text').textContent = entry.content;
+                coTranscriptScroll.scrollTop = coTranscriptScroll.scrollHeight;
+                continue;
+            }
+
+            var div = document.createElement('div');
+            div.className = 'call-msg ' + role;
+            div.dataset.role = role;
+            div.innerHTML = '<div class="call-msg-text">' + entry.content + '</div>' +
+                '<div class="call-msg-speaker">' + (role === 'agent' ? '— ' + label : '— You') + '</div>';
+            coTranscriptScroll.appendChild(div);
+
+            // Keep only last 6 messages visible, fade older ones
+            var msgs = coTranscriptScroll.querySelectorAll('.call-msg');
+            if (msgs.length > 6) {
+                var oldest = msgs[0];
+                oldest.style.opacity = '0';
+                oldest.style.transform = 'translateY(-10px)';
+                oldest.style.transition = 'all .4s ease';
+                setTimeout(function() { if (oldest.parentNode) oldest.parentNode.removeChild(oldest); }, 400);
+            }
+
+            coTranscriptScroll.scrollTop = coTranscriptScroll.scrollHeight;
+        }
+        coLastTranscriptLen = transcript.length;
+    }
+
     // ===== VOICE CALL (RetellAI WebRTC) =====
     async function startVoiceCall() {
         if (callActive) return;
 
         var data = currentCompany;
-
-        // Switch UI to call mode
         callActive = true;
 
-        // Hide default right panel content, show call UI
-        panelRightDefault.style.display = 'none';
-        callStatus.textContent = 'Connecting to your ' + data.name + ' agent...';
-        callSub.textContent = 'Setting up WebRTC connection';
-        callWaveform.style.display = 'none';
-        callEndBtn.style.display = 'none';
-        callLiveTranscript.innerHTML = '';
-        callLiveTranscript.classList.remove('has-content');
-        callUI.classList.add('visible');
+        // Show full-screen overlay
+        showCallOverlay(data);
 
         try {
             // Request access token from backend (PROD)
@@ -1096,10 +1353,7 @@
 
             // Set up event listeners
             retellClient.on('call_started', function() {
-                callStatus.textContent = 'Connected — speak now';
-                callSub.textContent = 'Speaking with your ' + data.name + ' agent';
-                callWaveform.style.display = 'flex';
-                callEndBtn.style.display = 'inline-flex';
+                showCallConnected(data);
             });
 
             retellClient.on('call_ended', function() {
@@ -1107,16 +1361,21 @@
             });
 
             retellClient.on('agent_start_talking', function() {
-                callStatus.textContent = 'Agent is speaking...';
+                coWaveform.className = 'call-overlay-waveform agent-speaking';
+                coStatus.textContent = data.name + ' Agent is speaking...';
+                // Add a contextual reasoning pill
+                var contextPills = ['Responding', 'Explaining', 'Clarifying', 'Verifying'];
+                addReasoningPill(contextPills[Math.floor(Math.random() * contextPills.length)], 'green');
             });
 
             retellClient.on('agent_stop_talking', function() {
-                callStatus.textContent = 'Your turn — speak now';
+                coWaveform.className = 'call-overlay-waveform user-speaking';
+                coStatus.textContent = 'Your turn — speak now';
             });
 
             retellClient.on('update', function(update) {
                 if (update && update.transcript) {
-                    renderLiveTranscript(update.transcript);
+                    renderOverlayTranscript(update.transcript);
                 }
             });
 
@@ -1130,30 +1389,12 @@
 
         } catch (err) {
             console.error('Voice call error:', err);
-            // Show friendly error with booking link
-            callStatus.textContent = 'Voice demo coming soon';
-            callSub.innerHTML = 'Book a demo to try it live with your company data.<br><br>' +
+            // Show error in overlay
+            coConnectText.textContent = 'Voice demo coming soon';
+            coConnectSub.innerHTML = 'Book a demo to try it live with your company data.<br><br>' +
                 '<a href="https://cal.com/johnb/30" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:var(--indigo);color:#fff;border-radius:12px;font-size:14px;font-weight:600;text-decoration:none">Book a demo</a>';
-            callWaveform.style.display = 'none';
-            callEndBtn.style.display = 'none';
             callActive = false;
         }
-    }
-
-    function renderLiveTranscript(transcript) {
-        if (!transcript || transcript.length === 0) return;
-        callLiveTranscript.classList.add('has-content');
-        callLiveTranscript.innerHTML = '';
-        transcript.forEach(function(entry) {
-            var div = document.createElement('div');
-            div.className = 'ct-line';
-            var role = entry.role === 'agent' ? 'agent' : 'user';
-            var label = entry.role === 'agent' ? (currentCompany.name + ' Agent') : 'You';
-            div.innerHTML = '<div class="ct-speaker ' + role + '">' + label + '</div>' +
-                '<div>' + entry.content + '</div>';
-            callLiveTranscript.appendChild(div);
-        });
-        callLiveTranscript.scrollTop = callLiveTranscript.scrollHeight;
     }
 
     function endCallUI(message) {
@@ -1162,21 +1403,17 @@
             try { retellClient.stopCall(); } catch(e) {}
             retellClient = null;
         }
-        callWaveform.style.display = 'none';
-        callEndBtn.style.display = 'none';
-        callStatus.textContent = message || 'Call ended';
-        callSub.innerHTML = '<div class="call-ended-msg">' +
-            '<div>' + (message || 'Call ended') + '</div>' +
-            '<div class="back-link" id="back-to-call-start">Start another call</div>' +
-            '</div>';
+        if (coReasoningTimer) { clearInterval(coReasoningTimer); coReasoningTimer = null; }
 
-        var backLink = document.getElementById('back-to-call-start');
-        if (backLink) {
-            backLink.addEventListener('click', function() {
-                callUI.classList.remove('visible');
-                panelRightDefault.style.display = '';
-            });
-        }
+        // Show ended state in overlay
+        coWaveform.className = 'call-overlay-waveform idle';
+        coStatus.textContent = message || 'Call ended';
+        coReasoning.innerHTML = '';
+
+        // After a moment, close overlay
+        setTimeout(function() {
+            hideCallOverlay();
+        }, 2000);
     }
 
     // ===== EVENT HANDLERS =====
@@ -1231,7 +1468,7 @@
         startVoiceCall();
     });
 
-    callEndBtn.addEventListener('click', function() {
+    coEndBtn.addEventListener('click', function() {
         endCallUI('Call ended');
     });
 
