@@ -82,12 +82,12 @@
         .section-sub{font-size:17px;color:var(--text-mid);max-width:480px;line-height:1.65;letter-spacing:-.01em}
 
         /* ========== HERO ========== */
-        .hero{padding:140px 32px 80px;text-align:center;background:#fff;position:relative;overflow:hidden}
+        .hero{padding:140px 32px 80px;text-align:center;background:#fff;position:relative;overflow:hidden;transition:padding .5s ease,min-height .5s ease}
         .hero::after{content:'';position:absolute;inset:0;pointer-events:none;
             background:
                 radial-gradient(ellipse 700px 400px at 50% 0%, rgba(79,70,229,.05), transparent),
                 radial-gradient(ellipse 400px 400px at 80% 100%, rgba(16,185,129,.03), transparent)}
-        .hero-content{position:relative;z-index:1;max-width:720px;margin:0 auto}
+        .hero-content{position:relative;z-index:1;max-width:720px;margin:0 auto;transition:opacity .4s ease,transform .4s ease}
         .hero h1{font-size:clamp(44px,6.5vw,80px);font-weight:900;letter-spacing:-.05em;line-height:1.0;margin-bottom:16px;color:var(--text)}
         .hero .sub{font-size:19px;color:var(--text-muted);margin-bottom:40px;letter-spacing:-.01em}
 
@@ -107,10 +107,10 @@
         .hero-logos img{height:22px;filter:grayscale(100%);object-fit:contain;transition:all .3s}
         .hero-logos img:hover{filter:grayscale(0%);opacity:1}
 
-        /* ========== BUILD ANIMATION ========== */
-        .build-section{display:none;padding:0 32px 60px;max-width:760px;margin:0 auto}
+        /* ========== BUILD / DEMO CARD (unified) ========== */
+        .build-section{display:none;padding:0 32px 60px;max-width:760px;margin:0 auto;position:relative;z-index:1}
         .build-section.active{display:block}
-        .build-card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:48px;box-shadow:var(--shadow-lg)}
+        .build-card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:48px;box-shadow:var(--shadow-lg);transition:all .5s ease}
         .build-header{display:flex;align-items:center;gap:16px;margin-bottom:32px}
         .build-logo{width:48px;height:48px;border-radius:12px;object-fit:contain;background:var(--bg);border:1px solid var(--border)}
         .build-title{font-family:var(--display);font-size:20px;font-weight:700;color:var(--text)}
@@ -124,45 +124,29 @@
         .build-ready-dot{width:10px;height:10px;border-radius:50%;background:var(--green);animation:pulse-dot 2s ease-in-out infinite}
         @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
         .build-ready-text{font-family:var(--display);font-size:16px;font-weight:700;color:var(--green-dark)}
-        /* Spinner */
         .build-spinner{display:inline-block;width:18px;height:18px;border:2px solid rgba(79,70,229,.15);border-top-color:var(--indigo);border-radius:50%;animation:spin .7s linear infinite;margin-right:8px;vertical-align:middle}
         @keyframes spin{to{transform:rotate(360deg)}}
 
-        /* ========== LIGHT PLAYER ========== */
-        .player-section{display:none;padding:0 32px 80px}
-        .player-section.active{display:block}
-        .player-wrap{max-width:920px;margin:0 auto}
-        .player{background:#fff;border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-lg);transition:box-shadow .3s}
-        .player:hover{box-shadow:0 12px 40px rgba(0,0,0,.08)}
+        /* ========== DEMO AREA (inside build card after animation) ========== */
+        .demo-area{display:none;margin-top:24px}
+        .demo-area.visible{display:block;animation:fadeInUp .5s ease}
+        @keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 
-        /* TEASER */
-        .player-teaser{padding:48px;cursor:pointer;display:flex;align-items:center;gap:40px;min-height:200px}
-        .player-teaser.hidden{display:none}
-        .teaser-left{flex:1}
-        .teaser-dispute{font-size:17px;color:var(--text-mid);line-height:1.7;font-style:italic;position:relative}
-        .teaser-dispute::before{content:'"';font-family:var(--display);font-size:48px;color:rgba(79,70,229,.15);position:absolute;top:-20px;left:-8px;line-height:1}
-        .teaser-label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim);margin-bottom:12px}
-        .teaser-right{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:16px}
-        .teaser-play{width:72px;height:72px;border-radius:50%;background:var(--indigo);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s}
-        .teaser-play:hover{transform:scale(1.06);box-shadow:0 0 0 12px rgba(79,70,229,.1)}
-        .teaser-play-label{font-size:13px;color:var(--text-muted);font-weight:500;text-align:center;max-width:140px}
-        /* Waveform */
-        .teaser-wave{display:flex;align-items:center;gap:3px;height:32px;margin-top:8px}
-        .teaser-wave span{display:block;width:3px;border-radius:2px;background:var(--indigo);opacity:.3;animation:wave-bar 1.2s ease-in-out infinite}
-        .teaser-wave span:nth-child(1){height:12px;animation-delay:0s}
-        .teaser-wave span:nth-child(2){height:20px;animation-delay:.1s}
-        .teaser-wave span:nth-child(3){height:16px;animation-delay:.2s}
-        .teaser-wave span:nth-child(4){height:24px;animation-delay:.3s}
-        .teaser-wave span:nth-child(5){height:14px;animation-delay:.4s}
-        .teaser-wave span:nth-child(6){height:20px;animation-delay:.5s}
-        .teaser-wave span:nth-child(7){height:10px;animation-delay:.6s}
-        @keyframes wave-bar{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.4)}}
+        /* Dispute cards */
+        .dispute-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+        .dispute-card{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:20px;cursor:pointer;transition:all .25s;position:relative}
+        .dispute-card:hover{border-color:var(--indigo);background:rgba(79,70,229,.02);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+        .dispute-card.active{border-color:var(--indigo);background:rgba(79,70,229,.03)}
+        .dispute-card-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--indigo);margin-bottom:8px}
+        .dispute-card-text{font-size:14px;color:var(--text-mid);line-height:1.55;font-style:italic;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+        .dispute-card-cta{display:flex;align-items:center;gap:4px;margin-top:12px;font-size:13px;font-weight:600;color:var(--indigo);transition:gap .2s}
+        .dispute-card:hover .dispute-card-cta{gap:8px}
 
-        /* PLAY STATE */
-        .player-active{display:none;min-height:320px}
-        .player-active.visible{display:grid;grid-template-columns:3fr 2fr}
-        .player-transcript{padding:28px 32px;display:flex;flex-direction:column;gap:12px;overflow-y:auto;max-height:400px;position:relative}
-        .player-transcript::before{content:'';position:absolute;top:0;left:0;right:0;height:24px;background:linear-gradient(to bottom,#fff,transparent);z-index:2;pointer-events:none}
+        /* Response area */
+        .response-area{display:none;border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:24px;background:#fff}
+        .response-area.visible{display:grid;grid-template-columns:3fr 2fr;animation:fadeInUp .4s ease}
+        .response-transcript{padding:24px;display:flex;flex-direction:column;gap:10px;overflow-y:auto;max-height:340px;position:relative}
+        .response-transcript::before{content:'';position:absolute;top:0;left:0;right:0;height:20px;background:linear-gradient(to bottom,#fff,transparent);z-index:2;pointer-events:none}
         .transcript-line{opacity:0;transform:translateY(8px);transition:opacity .4s ease,transform .4s ease}
         .transcript-line.shown{opacity:1;transform:none}
         .transcript-speaker{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
@@ -170,11 +154,9 @@
         .transcript-speaker.agent{color:var(--indigo)}
         .transcript-text{font-size:15px;line-height:1.6;color:var(--text-mid)}
         .transcript-text.debtor{color:var(--text-dim)}
-        @keyframes blink-cursor{0%,100%{opacity:1}50%{opacity:0}}
-        .typing-cursor{display:inline-block;width:2px;height:1em;background:var(--indigo);vertical-align:text-bottom;margin-left:2px;animation:blink-cursor .7s step-end infinite}
 
         /* Reasoning panel */
-        .player-reasoning{padding:28px 24px;border-left:1px solid var(--border);display:flex;flex-direction:column;gap:10px;justify-content:center;background:var(--bg)}
+        .response-reasoning{padding:24px 20px;border-left:1px solid var(--border);display:flex;flex-direction:column;gap:8px;justify-content:center;background:var(--bg)}
         .reasoning-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim);margin-bottom:4px}
         .reason-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:10px;font-size:13px;font-weight:600;opacity:0;transform:translateX(16px);transition:opacity .4s ease,transform .4s ease;width:fit-content}
         .reason-pill.shown{opacity:1;transform:none}
@@ -182,14 +164,44 @@
         .reason-pill.indigo{background:rgba(79,70,229,.08);color:var(--indigo)}
         .reason-pill.amber{background:rgba(245,158,11,.08);color:#B45309}
 
-        /* CONTROLS */
-        .player-controls{padding:16px 32px;border-top:1px solid var(--border);display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-        .player-controls.hidden{display:none}
-        .dispute-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border:1px solid var(--border);border-radius:12px;background:#fff;font-family:var(--sans);font-size:13px;font-weight:500;color:var(--text-mid);cursor:pointer;transition:all .2s;white-space:nowrap}
-        .dispute-btn:hover{border-color:var(--indigo);color:var(--indigo);background:rgba(79,70,229,.02)}
-        .dispute-btn.active{border-color:var(--indigo);color:var(--indigo);background:rgba(79,70,229,.04)}
-        .talk-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border:none;border-radius:12px;background:var(--indigo);font-family:var(--sans);font-size:13px;font-weight:600;color:#fff;cursor:pointer;transition:all .2s;margin-left:auto}
-        .talk-btn:hover{background:var(--indigo-dark)}
+        /* Talk to agent button */
+        .talk-agent-btn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;padding:18px 24px;background:var(--indigo);color:#fff;border:none;border-radius:14px;font-family:var(--sans);font-size:16px;font-weight:600;cursor:pointer;transition:all .2s;letter-spacing:-.01em;position:relative}
+        .talk-agent-btn:hover{background:var(--indigo-dark);transform:translateY(-1px);box-shadow:0 4px 16px rgba(79,70,229,.3)}
+        .talk-agent-btn:active{transform:translateY(0)}
+        .talk-agent-btn .btn-sub{font-size:12px;font-weight:400;opacity:.7;margin-left:4px}
+        .talk-agent-btn svg{flex-shrink:0}
+        .talk-agent-btn.connecting{background:var(--indigo);opacity:.8;pointer-events:none}
+        .talk-agent-btn.active-call{background:var(--green-dark)}
+        .talk-agent-btn.ending{background:var(--text-dim);pointer-events:none}
+
+        /* Call UI */
+        .call-ui{display:none;border:1px solid var(--border);border-radius:14px;padding:32px;text-align:center;margin-bottom:24px;background:var(--bg);position:relative;overflow:hidden}
+        .call-ui.visible{display:block;animation:fadeInUp .4s ease}
+        .call-status{font-family:var(--display);font-size:18px;font-weight:700;color:var(--text);margin-bottom:8px}
+        .call-sub{font-size:14px;color:var(--text-muted);margin-bottom:20px}
+        .call-waveform{display:flex;align-items:center;justify-content:center;gap:4px;height:48px;margin-bottom:20px}
+        .call-waveform span{display:block;width:4px;border-radius:3px;background:var(--green);animation:call-wave 1s ease-in-out infinite}
+        .call-waveform span:nth-child(1){height:16px;animation-delay:0s}
+        .call-waveform span:nth-child(2){height:28px;animation-delay:.1s}
+        .call-waveform span:nth-child(3){height:20px;animation-delay:.2s}
+        .call-waveform span:nth-child(4){height:36px;animation-delay:.3s}
+        .call-waveform span:nth-child(5){height:24px;animation-delay:.4s}
+        .call-waveform span:nth-child(6){height:32px;animation-delay:.5s}
+        .call-waveform span:nth-child(7){height:18px;animation-delay:.6s}
+        .call-waveform span:nth-child(8){height:28px;animation-delay:.7s}
+        .call-waveform span:nth-child(9){height:14px;animation-delay:.8s}
+        @keyframes call-wave{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.3)}}
+        .call-end-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 32px;background:var(--red);color:#fff;border:none;border-radius:12px;font-family:var(--sans);font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
+        .call-end-btn:hover{background:#DC2626;transform:translateY(-1px)}
+        .call-transcript{margin-top:20px;text-align:left;max-height:200px;overflow-y:auto;padding:16px;background:#fff;border-radius:10px;border:1px solid var(--border);font-size:14px;color:var(--text-mid);line-height:1.6;display:none}
+        .call-transcript.has-content{display:block}
+        .call-transcript .ct-line{margin-bottom:8px}
+        .call-transcript .ct-speaker{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+        .call-transcript .ct-speaker.agent{color:var(--indigo)}
+        .call-transcript .ct-speaker.user{color:var(--green-dark)}
+        .call-ended-msg{text-align:center;padding:20px;color:var(--text-muted);font-size:15px}
+        .call-ended-msg .back-link{color:var(--indigo);cursor:pointer;font-weight:600;margin-top:8px;display:inline-block}
+        .call-ended-msg .back-link:hover{text-decoration:underline}
 
         /* ========== TRUST SECTION ========== */
         .trust-section{padding:100px 32px;background:#fff;text-align:center}
@@ -270,16 +282,6 @@
         .footer-badges{display:flex;gap:8px}
         .footer-badge{padding:4px 10px;border:1px solid var(--border);border-radius:4px;font-size:10px;color:var(--text-dim);font-weight:600;letter-spacing:.02em}
 
-        /* ========== MODAL ========== */
-        .modal-overlay{display:none;position:fixed;inset:0;background:rgba(11,27,61,.5);backdrop-filter:blur(8px);z-index:2000;align-items:center;justify-content:center}
-        .modal-overlay.active{display:flex}
-        .modal{background:#fff;border-radius:20px;padding:48px;max-width:440px;width:90%;text-align:center;box-shadow:0 25px 50px rgba(0,0,0,.15)}
-        .modal h3{font-family:var(--display);font-size:24px;font-weight:800;margin-bottom:12px}
-        .modal p{font-size:15px;color:var(--text-muted);margin-bottom:28px;line-height:1.6}
-        .modal-cta{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:var(--indigo);color:#fff;border:none;border-radius:12px;font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s}
-        .modal-cta:hover{background:var(--indigo-dark)}
-        .modal-close{position:absolute;top:16px;right:16px;background:none;border:none;cursor:pointer;color:var(--text-dim);font-size:20px;padding:8px}
-
         /* ========== RESPONSIVE ========== */
         @media(max-width:1024px){
             .stats-grid{grid-template-columns:repeat(2,1fr)}
@@ -298,13 +300,9 @@
             .hero-logos img{height:18px}
             .build-section{padding:0 20px 48px}
             .build-card{padding:32px 24px}
-            .player-section{padding:0 20px 60px}
-            .player-teaser{flex-direction:column;padding:32px 24px;gap:24px;text-align:center}
-            .teaser-dispute::before{left:50%;transform:translateX(-50%)}
-            .player-active.visible{grid-template-columns:1fr;max-height:none}
-            .player-reasoning{border-left:none;border-top:1px solid var(--border)}
-            .player-controls{justify-content:center}
-            .talk-btn{margin-left:0}
+            .dispute-cards{grid-template-columns:1fr}
+            .response-area.visible{grid-template-columns:1fr}
+            .response-reasoning{border-left:none;border-top:1px solid var(--border)}
             .trust-section{padding:72px 20px}
             .stats-grid{grid-template-columns:repeat(2,1fr);gap:12px}
             .how-section{padding:72px 20px}
@@ -351,7 +349,7 @@
 
 <!-- 1. HERO -->
 <section class="hero" id="hero-section">
-    <div class="hero-content">
+    <div class="hero-content" id="hero-content">
         <h1>Your collection agent.</h1>
         <p class="sub">Pre-trained on 1 billion conversations.</p>
         <div class="hero-input-wrap" id="hero-input-wrap">
@@ -370,61 +368,48 @@
     </div>
 </section>
 
-<!-- 2. BUILD ANIMATION -->
+<!-- 2. BUILD / DEMO (unified card) -->
 <section class="build-section" id="build-section">
-    <div class="build-card">
-        <div class="build-header">
+    <div class="build-card" id="build-card">
+        <div class="build-header" id="build-header">
             <img class="build-logo" id="build-logo" src="" alt="">
             <div class="build-title" id="build-title">Building your agent...</div>
         </div>
         <div id="build-phases"></div>
-    </div>
-</section>
 
-<!-- 3. LIGHT PLAYER -->
-<section class="player-section" id="player-section">
-    <div class="player-wrap">
-        <div class="player">
-            <!-- TEASER STATE -->
-            <div class="player-teaser" id="player-teaser">
-                <div class="teaser-left">
-                    <div class="teaser-label">Incoming dispute</div>
-                    <div class="teaser-dispute" id="teaser-dispute-text"></div>
-                    <div class="teaser-wave">
-                        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-                    </div>
-                </div>
-                <div class="teaser-right">
-                    <button class="teaser-play" id="teaser-play-btn" aria-label="Play">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><polygon points="8,5 20,12 8,19"/></svg>
-                    </button>
-                    <div class="teaser-play-label">See how your agent responds</div>
-                </div>
-            </div>
+        <!-- Demo area (appears after build animation completes) -->
+        <div class="demo-area" id="demo-area">
+            <!-- Dispute cards -->
+            <div class="dispute-cards" id="dispute-cards"></div>
 
-            <!-- PLAY STATE -->
-            <div class="player-active" id="player-active">
-                <div class="player-transcript" id="player-transcript"></div>
-                <div class="player-reasoning" id="player-reasoning">
+            <!-- Response area (appears after clicking a dispute) -->
+            <div class="response-area" id="response-area">
+                <div class="response-transcript" id="response-transcript"></div>
+                <div class="response-reasoning" id="response-reasoning">
                     <div class="reasoning-label">Agent reasoning</div>
                 </div>
             </div>
 
-            <!-- CONTROLS -->
-            <div class="player-controls hidden" id="player-controls">
-                <button class="dispute-btn active" data-dispute="0">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
-                    <span id="dispute-btn-0-text"></span>
+            <!-- Call UI (appears when calling) -->
+            <div class="call-ui" id="call-ui">
+                <div class="call-status" id="call-status">Connecting...</div>
+                <div class="call-sub" id="call-sub">Setting up your call</div>
+                <div class="call-waveform" id="call-waveform" style="display:none">
+                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <button class="call-end-btn" id="call-end-btn" style="display:none">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                    End call
                 </button>
-                <button class="dispute-btn" data-dispute="1">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
-                    <span id="dispute-btn-1-text"></span>
-                </button>
-                <button class="talk-btn" id="talk-btn">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
-                    Talk to your agent
-                </button>
+                <div class="call-transcript" id="call-live-transcript"></div>
             </div>
+
+            <!-- Talk to agent button -->
+            <button class="talk-agent-btn" id="talk-agent-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                <span>Talk to your agent — test it live</span>
+                <span class="btn-sub">(uses your microphone)</span>
+            </button>
         </div>
     </div>
 </section>
@@ -604,19 +589,6 @@
     </div>
 </footer>
 
-<!-- MODAL -->
-<div class="modal-overlay" id="talk-modal">
-    <div class="modal" style="position:relative">
-        <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
-        <h3>Talk to your agent</h3>
-        <p>Voice demo is coming soon. Book a 30-minute call and we'll set up a live agent for your company.</p>
-        <a href="https://cal.com/johnb/30" target="_blank" class="modal-cta">
-            Book a demo
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-    </div>
-</div>
-
 <script>
 (function(){
     'use strict';
@@ -625,13 +597,15 @@
     var COMPANY_DATA = {
         'uber.com': {
             name: 'Uber',
+            product: 'Uber Eats delivery services',
+            amount: '$3,200',
             industry: 'Transportation & delivery platform',
             clients: 'Restaurant partners, delivery drivers, freight carriers',
             whyDontPay: 'Service disputes, partnership cancellations, chargebacks on promotional credits',
             disputes: [
                 {
                     label: 'Partnership cancellation',
-                    teaser: 'I cancelled my Uber Eats partnership three months ago. I\'m not paying for the thermal bags and the tablet rental\u2014',
+                    teaser: 'I cancelled my Uber Eats partnership three months ago. I\'m not paying for the thermal bags and the tablet rental...',
                     transcript: [
                         { speaker: 'debtor', text: 'I cancelled my Uber Eats partnership three months ago. I\'m not paying for the thermal bags and the tablet rental. We returned everything already.' },
                         { speaker: 'agent', text: 'I understand you cancelled your partnership. Let me pull up your account. I can see the cancellation was processed on January 15th. However, our records show the tablet was returned but the thermal bag kit was not received at our warehouse.' },
@@ -653,7 +627,7 @@
                 },
                 {
                     label: 'Freight carrier dispute',
-                    teaser: 'We completed every delivery on time. The fuel surcharge adjustment you applied retroactively is not in our contract\u2014',
+                    teaser: 'We completed every delivery on time. The fuel surcharge adjustment you applied retroactively is not in our contract...',
                     transcript: [
                         { speaker: 'debtor', text: 'We completed every delivery on time. The fuel surcharge adjustment you applied retroactively is not in our contract and we\'re not paying it.' },
                         { speaker: 'agent', text: 'Thank you for raising this. I\'m pulling up your carrier agreement now. You\'re right that the original contract from March didn\'t include the fuel surcharge clause. However, the amendment signed on August 12th by your dispatch manager does include it \u2014 Section 4.3, effective for all loads after September 1st.' },
@@ -679,13 +653,15 @@
     // Default/fallback data for unknown domains
     var DEFAULT_DATA = {
         name: '',
+        product: 'professional services',
+        amount: '$8,400',
         industry: 'Business services',
         clients: 'Enterprise and mid-market companies',
         whyDontPay: 'Invoice disputes, cash flow constraints, process delays, contact changes',
         disputes: [
             {
                 label: 'Invoice dispute',
-                teaser: 'We never received the final deliverable. The project was incomplete and I\'m not paying the remaining balance until\u2014',
+                teaser: 'We never received the final deliverable. The project was incomplete and I\'m not paying the remaining balance until...',
                 transcript: [
                     { speaker: 'debtor', text: 'We never received the final deliverable. The project was incomplete and I\'m not paying the remaining balance until everything is delivered.' },
                     { speaker: 'agent', text: 'I understand your concern. Let me check the project records. According to our system, the final deliverable was sent on February 3rd to your project manager, Sarah Williams, at s.williams@company.com. I have the delivery confirmation and her acknowledgment email.' },
@@ -706,7 +682,7 @@
             },
             {
                 label: 'Cash flow delay',
-                teaser: 'Look, we know we owe you. But our biggest client hasn\'t paid us yet and we can\'t release funds until\u2014',
+                teaser: 'Look, we know we owe you. But our biggest client hasn\'t paid us yet and we can\'t release funds until...',
                 transcript: [
                     { speaker: 'debtor', text: 'Look, we know we owe you. But our biggest client hasn\'t paid us yet and we can\'t release funds until that comes through. It could be another month.' },
                     { speaker: 'agent', text: 'I appreciate your transparency. Cash flow timing is a real challenge. The current balance is $12,600 and it\'s 47 days past due. Rather than waiting another month, could we set up a partial payment now and the remainder when your receivable clears?' },
@@ -732,26 +708,32 @@
     var domainInput = document.getElementById('domain-input');
     var heroBtn = document.getElementById('hero-btn');
     var heroSection = document.getElementById('hero-section');
+    var heroContent = document.getElementById('hero-content');
     var buildSection = document.getElementById('build-section');
+    var buildCard = document.getElementById('build-card');
     var buildLogo = document.getElementById('build-logo');
     var buildTitle = document.getElementById('build-title');
     var buildPhases = document.getElementById('build-phases');
-    var playerSection = document.getElementById('player-section');
-    var playerTeaser = document.getElementById('player-teaser');
-    var teaserDisputeText = document.getElementById('teaser-dispute-text');
-    var teaserPlayBtn = document.getElementById('teaser-play-btn');
-    var playerActive = document.getElementById('player-active');
-    var playerTranscript = document.getElementById('player-transcript');
-    var playerReasoning = document.getElementById('player-reasoning');
-    var playerControls = document.getElementById('player-controls');
-    var talkBtn = document.getElementById('talk-btn');
-    var talkModal = document.getElementById('talk-modal');
-    var modalClose = document.getElementById('modal-close');
+    var demoArea = document.getElementById('demo-area');
+    var disputeCardsContainer = document.getElementById('dispute-cards');
+    var responseArea = document.getElementById('response-area');
+    var responseTranscript = document.getElementById('response-transcript');
+    var responseReasoning = document.getElementById('response-reasoning');
+    var callUI = document.getElementById('call-ui');
+    var callStatus = document.getElementById('call-status');
+    var callSub = document.getElementById('call-sub');
+    var callWaveform = document.getElementById('call-waveform');
+    var callEndBtn = document.getElementById('call-end-btn');
+    var callLiveTranscript = document.getElementById('call-live-transcript');
+    var talkAgentBtn = document.getElementById('talk-agent-btn');
 
     var currentCompany = null;
+    var currentDomain = '';
     var currentDisputeIndex = 0;
     var isPlaying = false;
     var playTimeouts = [];
+    var retellClient = null;
+    var callActive = false;
 
     // ===== HELPERS =====
     function cleanDomain(input) {
@@ -767,7 +749,6 @@
 
     function getCompanyName(domain) {
         var name = domain.split('.')[0];
-        // Common brand capitalizations
         var brands = { uber:'Uber', dell:'Dell', microsoft:'Microsoft', fedex:'FedEx', amazon:'Amazon', google:'Google', apple:'Apple', meta:'Meta', stripe:'Stripe', plaid:'Plaid', checkr:'Checkr' };
         return brands[name] || capitalize(name);
     }
@@ -788,18 +769,16 @@
     function startBuild(domain) {
         var data = getCompanyData(domain);
         currentCompany = data;
+        currentDomain = domain;
         currentDisputeIndex = 0;
 
-        // Hide hero input area (keep hero heading visible briefly)
-        var heroContent = document.querySelector('.hero-content');
-        heroContent.style.transition = 'opacity .4s ease, transform .4s ease';
+        // Hide hero content
         heroContent.style.opacity = '0';
         heroContent.style.transform = 'translateY(-20px)';
 
         setTimeout(function() {
             heroSection.style.padding = '96px 32px 0';
             heroSection.style.minHeight = '0';
-            heroSection.style.transition = 'padding .5s ease, min-height .5s ease';
         }, 300);
 
         // Show build section
@@ -825,23 +804,38 @@
                 }, 1200);
             }, 2000);
 
-            // Phase 3: 5s — agent ready
+            // Phase 3: 5s — agent ready + morph into demo
             setTimeout(function() {
                 buildTitle.textContent = data.name + ' collection agent';
-                var readyHtml = '<div class="build-phase" id="build-ready-phase">' +
-                    '<div class="build-ready">' +
-                    '<div class="build-ready-dot"></div>' +
-                    '<div class="build-ready-text">Your ' + data.name + ' collection agent is ready.</div>' +
-                    '</div></div>';
-                buildPhases.insertAdjacentHTML('beforeend', readyHtml);
-                setTimeout(function() {
-                    document.getElementById('build-ready-phase').classList.add('visible');
-                }, 50);
 
-                // Show player
+                // Fade out build phases
+                var phases = buildPhases.querySelectorAll('.build-phase');
+                phases.forEach(function(p) {
+                    p.style.transition = 'opacity .4s ease, transform .4s ease';
+                    p.style.opacity = '0';
+                    p.style.transform = 'translateY(-8px)';
+                });
+
                 setTimeout(function() {
-                    showPlayer(data, 0);
-                }, 800);
+                    // Clear build phases
+                    buildPhases.innerHTML = '';
+
+                    // Add ready indicator
+                    var readyHtml = '<div class="build-phase" id="build-ready-phase">' +
+                        '<div class="build-ready">' +
+                        '<div class="build-ready-dot"></div>' +
+                        '<div class="build-ready-text">Your ' + data.name + ' collection agent is ready.</div>' +
+                        '</div></div>';
+                    buildPhases.insertAdjacentHTML('beforeend', readyHtml);
+                    setTimeout(function() {
+                        document.getElementById('build-ready-phase').classList.add('visible');
+                    }, 50);
+
+                    // Show demo area inside the same card
+                    setTimeout(function() {
+                        showDemo(data);
+                    }, 600);
+                }, 500);
             }, 5000);
         }, 500);
     }
@@ -866,41 +860,34 @@
         setTimeout(function() { div.classList.add('visible'); }, 50);
     }
 
-    // ===== PLAYER =====
-    function showPlayer(data, disputeIndex) {
-        playerSection.classList.add('active');
-        currentDisputeIndex = disputeIndex;
-        var dispute = data.disputes[disputeIndex];
-
-        // Set teaser text with typing effect
-        teaserDisputeText.textContent = '';
-        playerTeaser.classList.remove('hidden');
-        playerActive.classList.remove('visible');
-        playerControls.classList.remove('hidden');
-        playerControls.classList.add('hidden');
-        isPlaying = false;
-        clearTimeouts();
-
-        typeText(teaserDisputeText, dispute.teaser, 0, 20);
-
-        // Set dispute button labels
-        data.disputes.forEach(function(d, i) {
-            var btnText = document.getElementById('dispute-btn-' + i + '-text');
-            if (btnText) btnText.textContent = d.label;
+    // ===== DEMO (inside build card) =====
+    function showDemo(data) {
+        // Render dispute cards
+        disputeCardsContainer.innerHTML = '';
+        data.disputes.forEach(function(dispute, i) {
+            var card = document.createElement('div');
+            card.className = 'dispute-card';
+            card.setAttribute('data-dispute', i);
+            card.innerHTML =
+                '<div class="dispute-card-label">' + dispute.label + '</div>' +
+                '<div class="dispute-card-text">"' + dispute.teaser + '"</div>' +
+                '<div class="dispute-card-cta">See response <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>';
+            card.addEventListener('click', function() {
+                playDispute(i);
+            });
+            disputeCardsContainer.appendChild(card);
         });
 
-        // Scroll to player
-        setTimeout(function() {
-            playerSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 200);
-    }
+        // Update talk button text
+        talkAgentBtn.querySelector('span').textContent = 'Talk to your ' + data.name + ' agent — test it live';
 
-    function typeText(el, text, index, speed) {
-        if (index < text.length) {
-            el.textContent = text.substring(0, index + 1);
-            var t = setTimeout(function() { typeText(el, text, index + 1, speed); }, speed);
-            playTimeouts.push(t);
-        }
+        // Show demo area with animation
+        demoArea.classList.add('visible');
+
+        // Scroll build card into good view
+        setTimeout(function() {
+            buildSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 200);
     }
 
     function playDispute(disputeIndex) {
@@ -912,18 +899,18 @@
         var dispute = data.disputes[disputeIndex];
         currentDisputeIndex = disputeIndex;
 
-        // Switch to play state
-        playerTeaser.classList.add('hidden');
-        playerActive.classList.add('visible');
-        playerControls.classList.remove('hidden');
-        playerTranscript.innerHTML = '';
-        // Reset reasoning — keep label
-        playerReasoning.innerHTML = '<div class="reasoning-label">Agent reasoning</div>';
-
-        // Update active dispute button
-        document.querySelectorAll('.dispute-btn').forEach(function(btn, i) {
-            btn.classList.toggle('active', i === disputeIndex);
+        // Highlight active dispute card
+        document.querySelectorAll('.dispute-card').forEach(function(card, i) {
+            card.classList.toggle('active', i === disputeIndex);
         });
+
+        // Hide call UI if visible
+        callUI.classList.remove('visible');
+
+        // Show response area
+        responseArea.classList.add('visible');
+        responseTranscript.innerHTML = '';
+        responseReasoning.innerHTML = '<div class="reasoning-label">Agent reasoning</div>';
 
         // Animate transcript lines
         var lineDelay = 0;
@@ -934,9 +921,9 @@
                 div.innerHTML = '<div class="transcript-speaker ' + line.speaker + '">' +
                     (line.speaker === 'agent' ? (data.name + ' Agent') : 'Debtor') + '</div>' +
                     '<div class="transcript-text ' + (line.speaker === 'debtor' ? 'debtor' : '') + '">' + line.text + '</div>';
-                playerTranscript.appendChild(div);
+                responseTranscript.appendChild(div);
                 setTimeout(function() { div.classList.add('shown'); }, 50);
-                playerTranscript.scrollTop = playerTranscript.scrollHeight;
+                responseTranscript.scrollTop = responseTranscript.scrollHeight;
             }, lineDelay);
             playTimeouts.push(t);
             lineDelay += 2500;
@@ -948,11 +935,10 @@
                 var pill = document.createElement('div');
                 pill.className = 'reason-pill ' + r.color;
                 pill.textContent = r.text;
-                playerReasoning.appendChild(pill);
+                responseReasoning.appendChild(pill);
                 setTimeout(function() { pill.classList.add('shown'); }, 50);
 
-                // Fade old pills if too many
-                var pills = playerReasoning.querySelectorAll('.reason-pill');
+                var pills = responseReasoning.querySelectorAll('.reason-pill');
                 if (pills.length > 5) {
                     pills[0].style.opacity = '0';
                     pills[0].style.transform = 'translateX(-16px)';
@@ -968,6 +954,143 @@
         playTimeouts.push(doneT);
     }
 
+    // ===== VOICE CALL (RetellAI WebRTC) =====
+    async function startVoiceCall() {
+        if (callActive) return;
+
+        var data = currentCompany;
+        var domain = currentDomain;
+
+        // Switch UI to call mode
+        callActive = true;
+        responseArea.classList.remove('visible');
+
+        // Reset call UI
+        callStatus.textContent = 'Connecting to your ' + data.name + ' agent...';
+        callSub.textContent = 'Setting up WebRTC connection';
+        callWaveform.style.display = 'none';
+        callEndBtn.style.display = 'none';
+        callLiveTranscript.innerHTML = '';
+        callLiveTranscript.classList.remove('has-content');
+        callUI.classList.add('visible');
+
+        // Update button state
+        talkAgentBtn.classList.add('connecting');
+        talkAgentBtn.querySelector('span').textContent = 'Connecting...';
+
+        try {
+            // Request access token from backend
+            var response = await fetch('https://backend.devwidr.app/api/v1/demo/web-call', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    company_name: data.name,
+                    product: data.product || data.industry,
+                    amount: data.amount || '$3,200'
+                })
+            });
+
+            if (!response.ok) throw new Error('API returned ' + response.status);
+
+            var result = await response.json();
+            if (!result.success || !result.access_token) throw new Error('No access token received');
+
+            // Load RetellAI SDK and start call
+            var module = await import('https://cdn.jsdelivr.net/npm/retell-client-js-sdk@2.0.7/+esm');
+            var RetellWebClient = module.RetellWebClient;
+            retellClient = new RetellWebClient();
+
+            // Set up event listeners
+            retellClient.on('call_started', function() {
+                callStatus.textContent = 'Connected — speak now';
+                callSub.textContent = 'Speaking with your ' + data.name + ' agent';
+                callWaveform.style.display = 'flex';
+                callEndBtn.style.display = 'inline-flex';
+                talkAgentBtn.classList.remove('connecting');
+                talkAgentBtn.classList.add('active-call');
+                talkAgentBtn.querySelector('span').textContent = 'Call in progress...';
+            });
+
+            retellClient.on('call_ended', function() {
+                endCallUI('Call ended');
+            });
+
+            retellClient.on('agent_start_talking', function() {
+                callStatus.textContent = 'Agent is speaking...';
+            });
+
+            retellClient.on('agent_stop_talking', function() {
+                callStatus.textContent = 'Your turn — speak now';
+            });
+
+            retellClient.on('update', function(update) {
+                if (update && update.transcript) {
+                    renderLiveTranscript(update.transcript);
+                }
+            });
+
+            retellClient.on('error', function(err) {
+                console.error('RetellAI error:', err);
+                endCallUI('Call error — please try again');
+            });
+
+            // Start the call
+            await retellClient.startCall({ accessToken: result.access_token });
+
+        } catch (err) {
+            console.error('Voice call error:', err);
+            // Show friendly error
+            callStatus.textContent = 'Voice demo coming soon';
+            callSub.innerHTML = 'Book a 30-minute call and we\'ll set up a live agent for your company.<br><br>' +
+                '<a href="https://cal.com/johnb/30" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:var(--indigo);color:#fff;border-radius:12px;font-size:14px;font-weight:600;text-decoration:none">Book a demo</a>';
+            callWaveform.style.display = 'none';
+            callEndBtn.style.display = 'none';
+            talkAgentBtn.classList.remove('connecting');
+            talkAgentBtn.querySelector('span').textContent = 'Talk to your ' + data.name + ' agent — test it live';
+            callActive = false;
+        }
+    }
+
+    function renderLiveTranscript(transcript) {
+        if (!transcript || transcript.length === 0) return;
+        callLiveTranscript.classList.add('has-content');
+        callLiveTranscript.innerHTML = '';
+        transcript.forEach(function(entry) {
+            var div = document.createElement('div');
+            div.className = 'ct-line';
+            var role = entry.role === 'agent' ? 'agent' : 'user';
+            var label = entry.role === 'agent' ? (currentCompany.name + ' Agent') : 'You';
+            div.innerHTML = '<div class="ct-speaker ' + role + '">' + label + '</div>' +
+                '<div>' + entry.content + '</div>';
+            callLiveTranscript.appendChild(div);
+        });
+        callLiveTranscript.scrollTop = callLiveTranscript.scrollHeight;
+    }
+
+    function endCallUI(message) {
+        callActive = false;
+        if (retellClient) {
+            try { retellClient.stopCall(); } catch(e) {}
+            retellClient = null;
+        }
+        callWaveform.style.display = 'none';
+        callEndBtn.style.display = 'none';
+        callStatus.textContent = message || 'Call ended';
+        callSub.innerHTML = '<div class="call-ended-msg">' +
+            '<div>' + (message || 'Call ended') + '</div>' +
+            '<div class="back-link" id="back-to-disputes">Back to dispute examples</div>' +
+            '</div>';
+        talkAgentBtn.classList.remove('connecting', 'active-call');
+        talkAgentBtn.querySelector('span').textContent = 'Talk to your ' + currentCompany.name + ' agent — test it live';
+
+        var backLink = document.getElementById('back-to-disputes');
+        if (backLink) {
+            backLink.addEventListener('click', function() {
+                callUI.classList.remove('visible');
+            });
+        }
+    }
+
     // ===== EVENT HANDLERS =====
     function handleSubmit() {
         var domain = cleanDomain(domainInput.value);
@@ -981,36 +1104,13 @@
         if (e.key === 'Enter') handleSubmit();
     });
 
-    teaserPlayBtn.addEventListener('click', function() {
-        playDispute(currentDisputeIndex);
-    });
-    playerTeaser.addEventListener('click', function(e) {
-        if (e.target !== teaserPlayBtn && !teaserPlayBtn.contains(e.target)) {
-            playDispute(currentDisputeIndex);
-        }
+    talkAgentBtn.addEventListener('click', function() {
+        if (callActive) return;
+        startVoiceCall();
     });
 
-    document.querySelectorAll('.dispute-btn').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            var idx = parseInt(this.getAttribute('data-dispute'));
-            if (idx === currentDisputeIndex && isPlaying) return;
-            isPlaying = false;
-            clearTimeouts();
-            // Reset to teaser with new dispute
-            showPlayer(currentCompany, idx);
-            // Auto-play after brief teaser
-            setTimeout(function() { playDispute(idx); }, 1500);
-        });
-    });
-
-    talkBtn.addEventListener('click', function() {
-        talkModal.classList.add('active');
-    });
-    modalClose.addEventListener('click', function() {
-        talkModal.classList.remove('active');
-    });
-    talkModal.addEventListener('click', function(e) {
-        if (e.target === talkModal) talkModal.classList.remove('active');
+    callEndBtn.addEventListener('click', function() {
+        endCallUI('Call ended');
     });
 
     // ===== NAV SCROLL =====
