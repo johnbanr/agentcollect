@@ -797,8 +797,9 @@
         heroContent.style.transform = 'translateY(-20px)';
 
         setTimeout(function() {
-            heroSection.style.padding = '100px 32px 20px';
-            heroSection.style.transition = 'padding .5s ease';
+            heroSection.style.padding = '96px 32px 0';
+            heroSection.style.minHeight = '0';
+            heroSection.style.transition = 'padding .5s ease, min-height .5s ease';
         }, 300);
 
         // Show build section
