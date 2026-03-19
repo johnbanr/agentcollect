@@ -53,8 +53,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 
 /* LEFT HALF */
 .hero-left{display:flex;flex-direction:column;justify-content:center;padding:120px 48px 120px 80px;max-width:640px;margin-left:auto}
-.hero-km-logo{height:28px;margin-bottom:28px;opacity:.85}
-.hero-label{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--blue);background:rgba(79,70,229,.06);padding:6px 16px;border-radius:100px;margin-bottom:28px;border:1px solid rgba(79,70,229,.08)}
+.hero-km-logo{height:40px;margin-bottom:28px;opacity:1}
+.hero-label{display:inline-flex;align-items:center;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--blue);background:rgba(79,70,229,.06);padding:6px 16px;border-radius:100px;margin-bottom:28px;border:1px solid rgba(79,70,229,.08);width:fit-content}
 .hero-h1{font-size:clamp(34px,3.6vw,50px);font-weight:900;letter-spacing:-.045em;line-height:1.06;color:var(--text);margin-bottom:20px}
 .hero-h1 .rating-red{color:var(--red)}
 .hero-subtitle{font-size:18px;color:var(--muted);line-height:1.55;margin-bottom:28px;letter-spacing:-.01em;max-width:440px}
@@ -64,11 +64,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 .proof-badge:hover{background:rgba(220,38,38,.08);border-color:rgba(220,38,38,.2)}
 .proof-badge svg{width:14px;height:14px;flex-shrink:0}
 
-.hero-cta{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;background:var(--blue);color:#fff;border:none;border-radius:14px;font-size:17px;font-weight:700;cursor:pointer;transition:all .2s;font-family:var(--sans);box-shadow:0 4px 24px rgba(79,70,229,.25),0 0 0 1px rgba(79,70,229,.1);letter-spacing:-.01em}
-.hero-cta:hover{background:var(--blue-dark);transform:translateY(-2px);box-shadow:0 8px 40px rgba(79,70,229,.35)}
-.hero-cta:active{transform:translateY(0)}
-.hero-cta svg{width:18px;height:18px;transition:transform .2s}
-.hero-cta:hover svg{transform:translateX(3px)}
 
 /* RIGHT HALF */
 .hero-right{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:120px 80px 120px 48px;position:relative}
@@ -226,10 +221,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 
   <!-- LEFT HALF -->
   <div class="hero-left">
-    <img src="https://cdn.brandfetch.io/konicaminolta.com/w/512/h/80/logo" alt="Konica Minolta" class="hero-km-logo" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain=konicaminolta.com&sz=128';this.style.height='48px';this.style.borderRadius='8px'" crossorigin="anonymous">
+    <img src="https://cdn.brandfetch.io/konicaminolta.com/w/800/h/200/logo" alt="Konica Minolta" class="hero-km-logo" onerror="this.onerror=null;this.src='https://logo.clearbit.com/konicaminolta.com';this.style.height='48px'" crossorigin="anonymous">
     <div class="hero-label">YOUR AI COLLECTION AGENT</div>
     <h1 class="hero-h1">Your collection agency has a <span class="rating-red">1.1&#9733;</span> rating.</h1>
-    <p class="hero-subtitle">DLL Finance collects under your brand. We built an alternative.</p>
+    <p class="hero-subtitle">DLL Finance collects your receivables with a 1.1★ BBB rating — under your brand. Press play to hear what your customers hear.</p>
     <div class="proof-badges">
       <a href="https://www.bbb.org/us/pa/wayne/profile/leasing-services/dll-finance-llc-0241-236074953/customer-reviews" target="_blank" rel="noopener" class="proof-badge">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -240,10 +235,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
         CFPB: Active complaints
       </a>
     </div>
-    <button class="hero-cta" id="hero-cta-btn">
-      Talk to your agent
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </button>
   </div>
 
   <!-- RIGHT HALF -->
@@ -274,7 +265,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
         <button class="uw-mic-btn" id="uw-mic-btn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
         </button>
-        <div class="uw-mic-label">Talk to Sarah</div>
+        <div class="uw-mic-label">Call your Konica Minolta agent</div>
       </div>
       <div class="uw-connecting" id="uw-connecting" style="display:none">
         <div class="co-spinner"></div>
@@ -387,24 +378,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
     var el = document.getElementById('close-title');
     if(el) el.textContent = name + ' owns this.';
   }
-})();
-
-// ===== Hero CTA triggers call =====
-(function(){
-  var ctaBtn = document.getElementById('hero-cta-btn');
-  if(!ctaBtn) return;
-  ctaBtn.addEventListener('click', function(){
-    var micBtn = document.getElementById('uw-mic-btn');
-    if(micBtn){
-      if(window.innerWidth <= 960){
-        var heroRight = document.getElementById('hero-right');
-        if(heroRight) heroRight.scrollIntoView({behavior:'smooth', block:'center'});
-        setTimeout(function(){ micBtn.click(); }, 500);
-      } else {
-        micBtn.click();
-      }
-    }
-  });
 })();
 
 // ===== Floating Voice FAB =====
@@ -564,7 +537,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
         if(orb) orb.classList.remove('speaking');
         var label = document.querySelector('.uw-mic-label');
         if(label){ label.textContent = 'Connection failed — try again'; label.style.color = '#ef4444'; }
-        setTimeout(function(){ if(label){ label.textContent = 'Talk to Sarah'; label.style.color = ''; } }, 3000);
+        setTimeout(function(){ if(label){ label.textContent = 'Call your Konica Minolta agent'; label.style.color = ''; } }, 3000);
       }
     })();
   }
