@@ -188,16 +188,23 @@
 
         /* ========== READINESS CHECKLIST ========== */
         .bci-readiness{grid-column:1/-1}
-        .bci-readiness .bci-inner{border-color:rgba(16,185,129,.25);background:rgba(16,185,129,.02)}
-        .bci-readiness-title{font-family:var(--display);font-size:18px;font-weight:800;color:var(--text);letter-spacing:-.03em;margin-bottom:14px}
-        .bci-checklist{list-style:none;padding:0;margin:0 0 16px}
-        .bci-checklist li{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:13px;color:var(--text-mid);line-height:1.4}
-        .bci-check-done{color:var(--green);font-size:15px;flex-shrink:0;width:18px;text-align:center}
-        .bci-check-pending{color:var(--text-dim);font-size:14px;flex-shrink:0;width:18px;text-align:center}
-        .bci-readiness-cta-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-        .bci-readiness-sub{font-size:12px;color:var(--text-muted);line-height:1.5}
-        .bci-readiness-cta{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:var(--indigo);color:#fff;border:none;border-radius:10px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s}
-        .bci-readiness-cta:hover{background:var(--indigo-dark);transform:translateY(-1px)}
+        .bci-readiness .bci-inner{border-color:rgba(16,185,129,.2);background:linear-gradient(135deg,rgba(16,185,129,.03) 0%,rgba(79,70,229,.02) 100%);padding:20px 24px}
+        .bci-readiness-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+        .bci-readiness-icon{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--green),#059669);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .bci-readiness-title{font-family:var(--display);font-size:16px;font-weight:800;color:var(--text);letter-spacing:-.03em}
+        .bci-readiness-pct{font-family:var(--display);font-size:13px;font-weight:800;color:var(--green);margin-left:auto}
+        .bci-checklist{list-style:none;padding:0;margin:0 0 16px;display:grid;grid-template-columns:1fr 1fr;gap:4px 24px}
+        @media(max-width:600px){.bci-checklist{grid-template-columns:1fr}}
+        .bci-checklist li{display:flex;align-items:center;gap:6px;padding:4px 0;font-size:12px;color:var(--text-mid);line-height:1.4}
+        .bci-check-done{color:var(--green);font-size:13px;flex-shrink:0;width:16px;text-align:center}
+        .bci-check-pending{color:var(--text-dim);font-size:12px;flex-shrink:0;width:16px;text-align:center;opacity:.5}
+        .bci-checklist li.pending{opacity:.55}
+        .bci-readiness-footer{display:flex;align-items:center;gap:16px;padding-top:14px;border-top:1px solid rgba(0,0,0,.04);flex-wrap:wrap}
+        .bci-readiness-sub{font-size:11px;color:var(--text-muted);line-height:1.5}
+        .bci-readiness-cta{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;background:var(--indigo);color:#fff;border:none;border-radius:8px;font-family:var(--sans);font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;box-shadow:0 2px 8px rgba(79,70,229,.2)}
+        .bci-readiness-cta:hover{background:var(--indigo-dark);transform:translateY(-1px);box-shadow:0 4px 12px rgba(79,70,229,.3)}
+        .finalize-cta-bar{display:flex;align-items:center;justify-content:center;gap:16px;padding:16px 0;margin-top:8px;animation:fadeInUp .5s ease;flex-wrap:wrap}
+        @media(max-width:480px){.finalize-cta-bar{flex-direction:column;gap:8px}}
 
         /* ========== DEMO AREA (inside build card after animation) ========== */
         .demo-area{display:none;margin-top:14px}
@@ -228,7 +235,7 @@
         .orb-particle:nth-child(2){top:20%;right:-12px;animation-delay:1s}
         .orb-particle:nth-child(3){bottom:-12px;left:40%;animation-delay:2s}
         .orb-particle:nth-child(4){top:40%;left:-16px;animation-delay:.5s}
-        .orb-bubble{position:absolute;top:16px;right:-40px;background:rgba(255,255,255,.1);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:7px 13px;font-size:12px;color:rgba(255,255,255,.75);white-space:nowrap;animation:orbBubble 3s ease-in-out infinite}
+        .orb-bubble{position:absolute;top:16px;right:-40px;background:rgba(255,255,255,.2);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:8px 16px;font-size:13px;font-weight:600;color:rgba(255,255,255,.95);white-space:nowrap;animation:orbBubble 3s ease-in-out infinite;text-shadow:0 1px 3px rgba(0,0,0,.3)}
         .orb-btns{display:flex;gap:12px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
         .orb-btn-voice{display:flex;align-items:center;gap:8px;padding:14px 28px;border-radius:12px;font-family:var(--display);font-weight:700;font-size:14px;cursor:pointer;border:none;background:#fff;color:var(--text);transition:all .2s;box-shadow:0 4px 20px rgba(255,255,255,.1)}
         .orb-btn-voice:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(255,255,255,.15)}
@@ -626,6 +633,15 @@
                     </div>
                     <div class="uw-powered">Powered by AgentCollect</div>
                 </div>
+            </div>
+
+            <!-- Finalize CTA — below demo player -->
+            <div class="finalize-cta-bar" id="finalize-cta-bar" style="display:none">
+                <a href="https://cal.com/johnb/30" target="_blank" class="bci-readiness-cta" id="finalize-cta-btn">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    Finalize my agent
+                </a>
+                <span class="bci-readiness-sub">15-min call to go live &middot; Zero commitment</span>
             </div>
 
             <!-- Analysis banner: why they don't pay -->
@@ -1412,7 +1428,14 @@
 
             // Build updated company object
             var updated = JSON.parse(JSON.stringify(currentCompany));
-            if (company.name) updated.name = company.name;
+            // Use API company name unless it's a sub-entity (e.g., "Xerox Financial Services" instead of "Xerox")
+            if (company.name) {
+                var apiName = company.name.trim();
+                var isSubEntity = /\b(financial services|capital|holdings|solutions|group|international|corporation)\b/i.test(apiName) && apiName.split(/\s+/).length > 2;
+                if (!isSubEntity) {
+                    updated.name = apiName;
+                }
+            }
             if (company.industry) updated.industry = company.industry;
             if (company.products) updated.product = company.products;
             if (company.size) updated.clients = (updated.clients || '') + ' (' + company.size + ')';
@@ -1462,16 +1485,26 @@
                 if (newDisputes.length > 0 && !hasHardcodedData) updated.disputes = newDisputes;
             }
 
-            // Update contacts from API (real enriched data replaces hardcoded)
+            // Update contacts from API — decision_maker (singular) or contacts (array)
+            var apiContacts = [];
+            if (apiData.decision_maker && apiData.decision_maker.name) {
+                var dm = apiData.decision_maker;
+                // Filter out sub-entity names (e.g., "Xerox Financial Services" is not a person)
+                var nameWords = dm.name.trim().split(/\s+/);
+                var looksLikePerson = nameWords.length >= 2 && nameWords.length <= 4 && !/\b(inc|llc|corp|ltd|services|financial|group|solutions|company)\b/i.test(dm.name);
+                if (looksLikePerson) {
+                    apiContacts.push({ name: dm.name, title: dm.title || 'Finance', photo: dm.photo_url || null });
+                }
+            }
             if (apiData.contacts && apiData.contacts.length > 0) {
-                updated._apiContacts = apiData.contacts.map(function(c) {
-                    return {
-                        name: c.name,
-                        title: c.title || 'Finance',
-                        photo: c.photo_url || null
-                    };
+                apiData.contacts.forEach(function(c) {
+                    if (c.name && !/\b(inc|llc|corp|ltd|services|financial|group|solutions|company)\b/i.test(c.name)) {
+                        apiContacts.push({ name: c.name, title: c.title || 'Finance', photo: c.photo_url || null });
+                    }
                 });
-                // Update the contacts card if already visible
+            }
+            if (apiContacts.length > 0) {
+                updated._apiContacts = apiContacts.slice(0, 3);
                 var contactsCard = document.getElementById('bci-contacts');
                 if (contactsCard) {
                     updateContactsCardWithRealData(updated._apiContacts, updated.name);
@@ -1930,23 +1963,21 @@
     // ===== READINESS CHECKLIST (90% ready) =====
     function addReadinessCard(data) {
         addBuildCard('bci-readiness',
-            '<div class="bci-inner" style="border-color:rgba(16,185,129,.25);background:rgba(16,185,129,.02)">' +
-            '<div class="bci-readiness-title">Your ' + data.name + ' agent is 90% ready.</div>' +
+            '<div class="bci-inner">' +
+            '<div class="bci-readiness-header">' +
+            '<div class="bci-readiness-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>' +
+            '<div class="bci-readiness-title">' + data.name + ' agent</div>' +
+            '<div class="bci-readiness-pct">90% ready</div>' +
+            '</div>' +
             '<ul class="bci-checklist">' +
             '<li><span class="bci-check-done">&#10003;</span> Company profile analyzed</li>' +
-            '<li><span class="bci-check-done">&#10003;</span> Industry-specific intelligence loaded</li>' +
-            '<li><span class="bci-check-done">&#10003;</span> Decision makers identified</li>' +
-            '<li><span class="bci-check-done">&#10003;</span> Voice agent trained on your products</li>' +
-            '<li><span class="bci-check-pending">&#9744;</span> Your payment terms & CGV reviewed</li>' +
-            '<li><span class="bci-check-pending">&#9744;</span> Custom dispute playbook finalized</li>' +
-            '<li><span class="bci-check-pending">&#9744;</span> Email channel configured</li>' +
+            '<li><span class="bci-check-done">&#10003;</span> Voice agent trained</li>' +
+            '<li><span class="bci-check-done">&#10003;</span> Decision makers found</li>' +
+            '<li><span class="bci-check-done">&#10003;</span> Industry intelligence loaded</li>' +
+            '<li class="pending"><span class="bci-check-pending">&#9744;</span> Payment terms reviewed</li>' +
+            '<li class="pending"><span class="bci-check-pending">&#9744;</span> Dispute playbook finalized</li>' +
+            '<li class="pending"><span class="bci-check-pending">&#9744;</span> Email channel configured</li>' +
             '</ul>' +
-            '<div class="bci-readiness-cta-row">' +
-            '<a href="https://cal.com/johnb/30" target="_blank" class="bci-readiness-cta">' +
-            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>' +
-            'Finalize my agent</a>' +
-            '<span class="bci-readiness-sub">15-min call to go live. Zero commitment.</span>' +
-            '</div>' +
             '</div>'
         ).classList.add('bci-readiness');
 
@@ -1973,6 +2004,17 @@
         // Hide analysis banner — info already in the intelligence card
         var analysisBanner = document.getElementById('analysis-banner');
         if (analysisBanner) analysisBanner.style.display = 'none';
+        // Show finalize CTA bar below the demo player
+        var finalizeCta = document.getElementById('finalize-cta-bar');
+        if (finalizeCta) {
+            finalizeCta.style.display = 'flex';
+            // Track click on this CTA too
+            var btn = document.getElementById('finalize-cta-btn');
+            if (btn) btn.addEventListener('click', function() {
+                try { gtag('event', 'finalize_cta_click', { domain: currentDomain, company: data.name, location: 'below_player' }); } catch(e) {}
+                trackEvent('finalize_cta_click');
+            });
+        }
 
         // Set left panel teaser
         var firstDispute = data.disputes[0];
@@ -2018,7 +2060,12 @@
         'stripe.com': ['#635BFF','#7A73FF','#0A2540','#635BFF'],
         'shopify.com': ['#96BF48','#5E8E3E','#222222','#96BF48'],
         'zoom.us': ['#2D8CFF','#0B5CFF','#2D8CFF','#0E71EB'],
-        'slack.com': ['#4A154B','#36C5F0','#2EB67D','#ECB22E']
+        'slack.com': ['#4A154B','#36C5F0','#2EB67D','#ECB22E'],
+        'xerox.com': ['#D71920','#E31B23','#B50E14','#FF2D37'],
+        'hp.com': ['#0096D6','#0073A8','#00B0F0','#004D80'],
+        'intel.com': ['#0071C5','#0068B5','#00AEEF','#003B71'],
+        'paypal.com': ['#003087','#009CDE','#012169','#009CDE'],
+        'tesla.com': ['#CC0000','#E82127','#393C41','#CC0000']
     };
 
     function initOrb(data, domain) {
