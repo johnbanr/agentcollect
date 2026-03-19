@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgentCollect × Konica Minolta</title>
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="AgentCollect × Konica Minolta">
+<meta property="og:description" content="Your AI collection agent is ready. Click and talk.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://www.agentcollect.com/og.png?v=3">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GRZZT9K05B"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-GRZZT9K05B');</script>
+<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","vr6uvxdalw");</script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --blue:#4F46E5;--blue-dark:#4338CA;--text:#0B1B3D;--muted:#6b7280;--border:#e5e7eb;--bg:#FAFBFF;
+  --green:#10B981;--green-dark:#059669;--red:#dc2626;--amber:#F59E0B;
+  --mono:'JetBrains Mono',monospace;--sans:'Plus Jakarta Sans',system-ui,sans-serif;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.05);
+  --shadow:0 1px 3px rgba(0,0,0,.1),0 1px 2px rgba(0,0,0,.06);
+  --shadow-lg:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-size:16px;line-height:1.6;position:relative}
+::selection{background:rgba(79,70,229,.1)}
+
+/* Reveal */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.v{opacity:1;transform:none}
+.rv-d1{transition-delay:.12s}
+.rv-d2{transition-delay:.24s}
+
+/* ===== NAV ===== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(250,251,255,.88);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(0,0,0,.04)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:16px 48px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{text-decoration:none;font-weight:900;font-size:17px;color:var(--text);letter-spacing:-.4px;display:inline-flex;align-items:baseline}
+.nav-logo .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--blue);margin-left:1px;vertical-align:baseline}
+.nav-expiry{font-size:14px;color:var(--muted);font-weight:500}
+.nav-expiry strong{color:var(--text);font-weight:700}
+
+/* ===== HERO — SPLIT LAYOUT ===== */
+.hero{min-height:100vh;min-height:100dvh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:0 0 0 0;position:relative;overflow:hidden;background:linear-gradient(160deg,#FAFBFF 0%,#f3f1ff 40%,#eef0ff 60%,#FAFBFF 100%)}
+.hero::before{content:'';position:absolute;inset:0;background-image:
+  linear-gradient(rgba(79,70,229,.018) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(79,70,229,.018) 1px, transparent 1px);
+  background-size:72px 72px;pointer-events:none}
+
+/* LEFT HALF */
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:120px 48px 120px 80px;max-width:640px;margin-left:auto}
+.hero-km-logo{height:28px;margin-bottom:28px;opacity:.85}
+.hero-label{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--blue);background:rgba(79,70,229,.06);padding:6px 16px;border-radius:100px;margin-bottom:28px;border:1px solid rgba(79,70,229,.08)}
+.hero-h1{font-size:clamp(34px,3.6vw,50px);font-weight:900;letter-spacing:-.045em;line-height:1.06;color:var(--text);margin-bottom:20px}
+.hero-h1 .rating-red{color:var(--red)}
+.hero-subtitle{font-size:18px;color:var(--muted);line-height:1.55;margin-bottom:28px;letter-spacing:-.01em;max-width:440px}
+
+.proof-badges{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px}
+.proof-badge{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:100px;font-size:13px;font-weight:600;background:rgba(220,38,38,.04);border:1px solid rgba(220,38,38,.1);color:var(--red);text-decoration:none;transition:all .15s}
+.proof-badge:hover{background:rgba(220,38,38,.08);border-color:rgba(220,38,38,.2)}
+.proof-badge svg{width:14px;height:14px;flex-shrink:0}
+
+.hero-cta{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;background:var(--blue);color:#fff;border:none;border-radius:14px;font-size:17px;font-weight:700;cursor:pointer;transition:all .2s;font-family:var(--sans);box-shadow:0 4px 24px rgba(79,70,229,.25),0 0 0 1px rgba(79,70,229,.1);letter-spacing:-.01em}
+.hero-cta:hover{background:var(--blue-dark);transform:translateY(-2px);box-shadow:0 8px 40px rgba(79,70,229,.35)}
+.hero-cta:active{transform:translateY(0)}
+.hero-cta svg{width:18px;height:18px;transition:transform .2s}
+.hero-cta:hover svg{transform:translateX(3px)}
+
+/* RIGHT HALF */
+.hero-right{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:120px 80px 120px 48px;position:relative}
+.hero-right::before{content:'';position:absolute;width:500px;height:500px;top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(79,70,229,.08) 0%,rgba(124,58,237,.03) 40%,transparent 70%);border-radius:50%;pointer-events:none;animation:heroGlow 5s ease-in-out infinite}
+@keyframes heroGlow{0%,100%{opacity:.5;transform:translate(-50%,-50%) scale(1)}50%{opacity:.8;transform:translate(-50%,-50%) scale(1.08)}}
+
+/* ===== ORB ===== */
+.orb-wrap{position:relative;width:260px;height:260px;margin:0 auto 32px;cursor:pointer}
+.orb-glow{position:absolute;inset:-60px;border-radius:50%;background:radial-gradient(circle,rgba(79,70,229,.18) 0%,rgba(124,58,237,.06) 40%,transparent 70%);animation:orbGlowPulse 4s ease-in-out infinite}
+.orb-main{position:relative;width:260px;height:260px;border-radius:50%;overflow:hidden;animation:orbDrift 6s ease-in-out infinite;transition:transform .3s,box-shadow .3s;box-shadow:0 0 80px rgba(79,70,229,.25),0 0 160px rgba(79,70,229,.08),inset 0 0 60px rgba(0,0,0,.3)}
+.orb-wrap:hover .orb-main{transform:scale(1.06)}
+.orb-wrap:active .orb-main{transform:scale(.95)}
+.orb-main.speaking{animation:orbDrift 6s ease-in-out infinite,orbPulseSpeak .8s ease-in-out infinite}
+.orb-layer{position:absolute;inset:0;border-radius:50%}
+.orb-layer-1{background:conic-gradient(from 0deg,#4F46E5,#7C3AED,#3730A3,#818CF8,#4F46E5);animation:orbSpin 8s linear infinite}
+.orb-layer-2{background:conic-gradient(from 180deg,rgba(79,70,229,.8),rgba(124,58,237,.5),rgba(55,48,163,.6),rgba(129,140,248,.4),rgba(79,70,229,.8));animation:orbSpin 12s linear infinite reverse;mix-blend-mode:soft-light}
+.orb-layer-3{background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.25) 0%,transparent 50%)}
+.orb-layer-4{background:radial-gradient(circle at 50% 110%,rgba(0,0,0,.4) 0%,transparent 60%)}
+.orb-logo-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:10}
+.orb-logo-center img{width:64px;height:64px;object-fit:contain;border-radius:50%;background:rgba(255,255,255,.95);padding:12px;box-shadow:0 4px 24px rgba(0,0,0,.25),0 0 0 2px rgba(255,255,255,.2);transition:transform .3s}
+.orb-wrap:hover .orb-logo-center img{transform:scale(1.08)}
+.orb-particle{position:absolute;width:4px;height:4px;border-radius:50%;animation:orbParticle 4s ease-in-out infinite}
+.orb-particle:nth-child(1){top:-16px;left:30%;animation-delay:0s}
+.orb-particle:nth-child(2){top:20%;right:-12px;animation-delay:1s}
+.orb-particle:nth-child(3){bottom:-12px;left:40%;animation-delay:2s}
+.orb-particle:nth-child(4){top:40%;left:-16px;animation-delay:.5s}
+.orb-particle:nth-child(5){top:-10px;right:25%;animation-delay:1.5s}
+.orb-particle:nth-child(6){bottom:-8px;right:30%;animation-delay:2.5s}
+
+@keyframes orbSpin{0%{transform:rotate(0deg) scale(1.15)}100%{transform:rotate(360deg) scale(1.15)}}
+@keyframes orbDrift{0%,100%{transform:translateY(0) scale(1)}33%{transform:translateY(-4px) scale(1.01)}66%{transform:translateY(-2px) scale(.995)}}
+@keyframes orbPulseSpeak{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+@keyframes orbGlowPulse{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:.8;transform:scale(1.08)}}
+@keyframes orbParticle{0%,100%{opacity:0;transform:translateY(0) scale(1)}25%{opacity:1}50%{opacity:.8;transform:translateY(-18px) scale(1.4)}75%{opacity:.3}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ===== UNIFIED WIDGET ===== */
+.uw{background:#0f0f1a;border-radius:20px;overflow:hidden;max-width:420px;width:100%;transition:all .4s cubic-bezier(.4,0,.2,1);position:relative;z-index:2}
+.uw-voice-idle{display:flex;flex-direction:column;align-items:center;padding:28px 20px 24px;gap:14px}
+.uw-mic-btn{width:64px;height:64px;border-radius:50%;background:var(--blue);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;box-shadow:0 0 24px rgba(79,70,229,.4)}
+.uw-mic-btn:hover{transform:scale(1.08);box-shadow:0 0 40px rgba(79,70,229,.6)}
+.uw-mic-btn svg{width:28px;height:28px;color:#fff;stroke:currentColor}
+.uw-mic-label{color:rgba(255,255,255,.6);font-size:14px;font-weight:500;max-width:320px;line-height:1.4;text-align:center}
+.uw-voice-active{display:none;flex-direction:column;align-items:center;padding:20px;gap:12px}
+.uw-voice-active.visible{display:flex}
+.uw-status-text{color:rgba(255,255,255,.5);font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.uw-waveform{display:flex;align-items:center;justify-content:center;gap:3px;height:48px;padding:4px 0}
+.uw-waveform span{width:3.5px;border-radius:3px;background:var(--blue);min-height:4px;will-change:height;transition:height .08s linear}
+.uw-mini-transcript{width:100%;max-height:100px;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
+.uw-mini-transcript::-webkit-scrollbar{display:none}
+.uw-mini-msg{padding:8px 12px;border-radius:12px;font-size:13px;line-height:1.5;margin-bottom:6px;animation:fadeInUp .3s ease}
+.uw-mini-msg.agent{background:rgba(79,70,229,.15);color:rgba(255,255,255,.9)}
+.uw-mini-msg.user{background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);text-align:right}
+.uw-end-btn{padding:10px 24px;background:rgba(239,68,68,.12);color:#ef4444;border:1px solid rgba(239,68,68,.25);border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px;font-family:var(--sans)}
+.uw-end-btn:hover{background:rgba(239,68,68,.22)}
+.uw-connecting{display:flex;flex-direction:column;align-items:center;padding:28px 20px;gap:12px}
+.uw-connecting .co-spinner{width:32px;height:32px;border:3px solid rgba(255,255,255,.1);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite}
+.uw-connecting-text{color:rgba(255,255,255,.6);font-size:13px}
+.uw-post-call{display:flex;flex-direction:column;align-items:center;padding:24px 20px;gap:10px;animation:fadeInUp .4s ease}
+.uw-post-check{margin-bottom:4px}
+.uw-post-title{color:#fff;font-size:18px;font-weight:700}
+.uw-post-sub{color:rgba(255,255,255,.5);font-size:13px;text-align:center;line-height:1.5;max-width:300px}
+.uw-post-cta{display:flex;align-items:center;gap:8px;padding:14px 28px;background:var(--blue);color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;text-decoration:none;margin-top:6px;box-shadow:0 0 20px rgba(79,70,229,.3);font-family:var(--sans)}
+.uw-post-cta:hover{background:var(--blue-dark);transform:translateY(-1px);box-shadow:0 4px 24px rgba(79,70,229,.4)}
+.uw-post-retry{background:none;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.5);padding:8px 16px;border-radius:8px;font-size:12px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px;margin-top:2px;font-family:var(--sans)}
+.uw-post-retry:hover{border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.7)}
+.uw-powered{text-align:center;padding:8px 12px 12px;font-size:11px;color:rgba(255,255,255,.2)}
+
+/* ===== SECTION 2: THE PROOF ===== */
+.proof-section{padding:120px 48px 100px;max-width:920px;margin:0 auto;text-align:center;position:relative}
+.proof-section::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:120px;height:1px;background:linear-gradient(90deg,transparent,var(--blue),transparent);opacity:.3}
+.proof-sec-title{font-size:clamp(26px,3.2vw,38px);font-weight:900;letter-spacing:-.03em;line-height:1.1;margin-bottom:52px;color:var(--text)}
+
+.proof-cards{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:52px}
+.proof-card{background:#fff;border-radius:18px;padding:36px 28px;box-shadow:var(--shadow-lg);border:1px solid rgba(0,0,0,.04);text-decoration:none;color:inherit;text-align:center;transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.proof-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px -8px rgba(0,0,0,.12)}
+.proof-agency{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--red);margin-bottom:10px}
+.proof-num{font-size:56px;font-weight:900;color:var(--red);line-height:1;letter-spacing:-1px}
+.proof-num-sm{font-size:40px}
+.proof-sub{font-size:14px;color:var(--muted);margin-top:8px;font-weight:500}
+.proof-context{font-size:13px;color:var(--text);margin-top:12px;line-height:1.5;max-width:240px;opacity:.65}
+
+.info-strip{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:520px;margin:0 auto}
+.info-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:22px 24px;text-align:left;transition:box-shadow .2s}
+.info-card:hover{box-shadow:var(--shadow)}
+.info-card-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:6px}
+.info-card-value{font-size:16px;font-weight:800;color:var(--text);letter-spacing:-.02em}
+.info-card-sub{font-size:12px;color:var(--muted);margin-top:3px}
+
+/* ===== SECTION 3: THE CLOSE ===== */
+.close-section{background:var(--text);padding:100px 48px 72px;text-align:center}
+.close-section h2{font-size:clamp(28px,3.5vw,44px);font-weight:900;color:#fff;letter-spacing:-.03em;line-height:1.08;margin-bottom:14px}
+.close-sub{font-size:17px;color:rgba(255,255,255,.45);margin-bottom:40px;line-height:1.5}
+.close-cta{display:inline-block;background:#fff;color:var(--text);padding:18px 44px;border-radius:14px;font-weight:700;font-size:17px;text-decoration:none;transition:transform .15s,box-shadow .15s;font-family:var(--sans);letter-spacing:-.01em}
+.close-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.close-guarantee{font-size:14px;color:rgba(255,255,255,.3);margin-top:24px;font-style:italic}
+.close-footer{font-size:12px;color:rgba(255,255,255,.18);margin-top:56px;line-height:1.5}
+
+/* ===== FLOATING VOICE FAB ===== */
+.voice-fab{position:fixed;bottom:28px;right:28px;z-index:9000;display:flex;align-items:center;gap:10px;background:#0f0f1a;border:1px solid rgba(79,70,229,.3);border-radius:50px;padding:12px 20px 12px 14px;cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);box-shadow:0 8px 32px rgba(0,0,0,.4);opacity:0;pointer-events:none;transform:translateY(20px)}
+.voice-fab.visible{opacity:1;pointer-events:auto;transform:translateY(0)}
+.voice-fab:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(79,70,229,.3);border-color:rgba(79,70,229,.5)}
+.voice-fab-icon{width:40px;height:40px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 0 16px rgba(79,70,229,.4)}
+.voice-fab-icon svg{width:20px;height:20px;color:#fff}
+.voice-fab-text{color:rgba(255,255,255,.9);font-size:13px;font-weight:600;white-space:nowrap}
+
+/* ===== MOBILE ===== */
+@media(max-width:960px){
+  .hero{grid-template-columns:1fr;text-align:center;padding:0}
+  .hero-left{max-width:100%;padding:120px 32px 40px;margin:0 auto;align-items:center}
+  .hero-subtitle{margin-left:auto;margin-right:auto}
+  .proof-badges{justify-content:center}
+  .hero-right{padding:0 32px 60px}
+  .nav-inner{padding:14px 24px}
+}
+@media(max-width:768px){
+  .nav-expiry{font-size:12px}
+  .hero-left{padding:100px 24px 32px}
+  .hero-right{padding:0 24px 48px}
+  .orb-wrap{width:200px;height:200px}
+  .orb-main{width:200px;height:200px}
+  .orb-logo-center img{width:52px;height:52px;padding:10px}
+  .uw{max-width:100%;border-radius:16px}
+  .proof-section{padding:80px 24px 64px}
+  .proof-cards{grid-template-columns:1fr;gap:12px}
+  .info-strip{grid-template-columns:1fr;gap:10px}
+  .close-section{padding:64px 24px 48px}
+  .voice-fab{bottom:16px;right:16px;padding:10px 16px 10px 10px}
+  .voice-fab-text{font-size:12px}
+}
+@media(max-width:480px){
+  .nav-expiry{display:none}
+  .hero-left{padding:92px 20px 28px}
+  .hero-right{padding:0 20px 40px}
+  .orb-wrap{width:160px;height:160px}
+  .orb-main{width:160px;height:160px}
+  .orb-logo-center img{width:44px;height:44px;padding:8px}
+  .hero-h1{font-size:28px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="https://agentcollect.com" class="nav-logo">AgentCollect<span class="dot"></span></a>
+    <span class="nav-expiry">Konica Minolta, <strong id="days-left"></strong></span>
+  </div>
+</nav>
+
+<!-- SECTION 1: HERO — SPLIT LAYOUT -->
+<section class="hero" id="hero">
+
+  <!-- LEFT HALF -->
+  <div class="hero-left">
+    <img src="https://cdn.brandfetch.io/konicaminolta.com/w/512/h/80/logo" alt="Konica Minolta" class="hero-km-logo" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain=konicaminolta.com&sz=128';this.style.height='48px';this.style.borderRadius='8px'" crossorigin="anonymous">
+    <div class="hero-label">YOUR AI COLLECTION AGENT</div>
+    <h1 class="hero-h1">Your collection agency has a <span class="rating-red">1.1&#9733;</span> rating.</h1>
+    <p class="hero-subtitle">DLL Finance collects under your brand. We built an alternative.</p>
+    <div class="proof-badges">
+      <a href="https://www.bbb.org/us/pa/wayne/profile/leasing-services/dll-finance-llc-0241-236074953/customer-reviews" target="_blank" rel="noopener" class="proof-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        BBB: 1.1/5 &#9733;
+      </a>
+      <a href="https://www.consumerfinance.gov/data-research/consumer-complaints/search/?company=DLL+FINANCE+LLC" target="_blank" rel="noopener" class="proof-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        CFPB: Active complaints
+      </a>
+    </div>
+    <button class="hero-cta" id="hero-cta-btn">
+      Talk to your agent
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+
+  <!-- RIGHT HALF -->
+  <div class="hero-right" id="hero-right">
+    <!-- ORB -->
+    <div class="orb-wrap" id="orb-wrap">
+      <div class="orb-glow"></div>
+      <div class="orb-particle" style="background:rgba(79,70,229,.5)"></div>
+      <div class="orb-particle" style="background:rgba(16,185,129,.5)"></div>
+      <div class="orb-particle" style="background:rgba(79,70,229,.3)"></div>
+      <div class="orb-particle" style="background:rgba(16,185,129,.3)"></div>
+      <div class="orb-particle" style="background:rgba(124,58,237,.4)"></div>
+      <div class="orb-particle" style="background:rgba(129,140,248,.3)"></div>
+      <div class="orb-main" id="orb-main">
+        <div class="orb-layer orb-layer-1"></div>
+        <div class="orb-layer orb-layer-2"></div>
+        <div class="orb-layer orb-layer-3"></div>
+        <div class="orb-layer orb-layer-4"></div>
+        <div class="orb-logo-center">
+          <img src="https://www.google.com/s2/favicons?domain=konicaminolta.com&sz=128" alt="KM" onerror="this.style.display='none'">
+        </div>
+      </div>
+    </div>
+
+    <!-- Unified Voice Widget -->
+    <div class="uw" id="unified-widget">
+      <div class="uw-voice-idle" id="uw-voice-idle">
+        <button class="uw-mic-btn" id="uw-mic-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
+        </button>
+        <div class="uw-mic-label">Talk to Sarah</div>
+      </div>
+      <div class="uw-connecting" id="uw-connecting" style="display:none">
+        <div class="co-spinner"></div>
+        <div class="uw-connecting-text" id="uw-connecting-text">Connecting to Konica Minolta agent...</div>
+      </div>
+      <div class="uw-voice-active" id="uw-voice-active">
+        <div class="uw-status-text" id="uw-status">Listening...</div>
+        <div class="uw-waveform" id="uw-waveform">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="uw-mini-transcript" id="uw-transcript"></div>
+        <button class="uw-end-btn" id="uw-end-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          End call
+        </button>
+      </div>
+      <div class="uw-post-call" id="uw-post-call" style="display:none">
+        <div class="uw-post-check">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="uw-post-title">That was 30 seconds.</div>
+        <div class="uw-post-sub">Now imagine 10,000 accounts with your real data.</div>
+        <a href="https://cal.com/johnb/30" target="_blank" class="uw-post-cta" id="uw-post-cta">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Run this on your portfolio
+        </a>
+        <button class="uw-post-retry" id="uw-post-retry">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+          Try another call
+        </button>
+      </div>
+      <div class="uw-powered">Powered by AgentCollect</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: THE PROOF -->
+<section class="proof-section">
+  <div class="rv">
+    <h2 class="proof-sec-title">DLL Finance is collecting under your name.</h2>
+  </div>
+
+  <div class="proof-cards rv rv-d1">
+    <a href="https://www.bbb.org/us/pa/wayne/profile/leasing-services/dll-finance-llc-0241-236074953/customer-reviews" target="_blank" rel="noopener" class="proof-card">
+      <div class="proof-agency">DLL FINANCE — BBB</div>
+      <div class="proof-num">1.1</div>
+      <div class="proof-sub">/ 5 stars on BBB</div>
+      <div class="proof-context">Your customers see "Konica Minolta" when they complain.</div>
+    </a>
+    <a href="https://www.consumerfinance.gov/data-research/consumer-complaints/search/?company=DLL+FINANCE+LLC" target="_blank" rel="noopener" class="proof-card">
+      <div class="proof-agency">DLL FINANCE — CFPB</div>
+      <div class="proof-num proof-num-sm">FDCPA</div>
+      <div class="proof-sub">CFPB enforcement actions</div>
+      <div class="proof-context">Federal consumer protection law. Under your brand.</div>
+    </a>
+  </div>
+
+  <div class="info-strip rv rv-d2">
+    <div class="info-card">
+      <div class="info-card-label">Company</div>
+      <div class="info-card-value">Konica Minolta</div>
+      <div class="info-card-sub">Office equipment & imaging</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-label">Decision Maker</div>
+      <div class="info-card-value">Holly DeSantis</div>
+      <div class="info-card-sub">EVP & CFO</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: THE CLOSE -->
+<section class="close-section">
+  <div class="rv">
+    <h2 id="close-title">Holly DeSantis owns this.</h2>
+    <p class="close-sub">EVP & CFO — she manages the DLL Finance relationship.</p>
+    <a href="https://cal.com/johnb/30" target="_blank" class="close-cta" onclick="try{gtag('event','book_cta',{page:'konica-v11b'})}catch(e){}">Book a live demo</a>
+    <p class="close-guarantee">If we don't collect, you pay nothing.</p>
+    <p class="close-footer">Konica Minolta used as example. All contacts from public sources. Powered by AgentCollect.</p>
+  </div>
+</section>
+
+<!-- Floating Voice FAB -->
+<div class="voice-fab" id="voice-fab">
+  <div class="voice-fab-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/></svg></div>
+  <div class="voice-fab-text">Call your agent</div>
+</div>
+
+<script>
+// ===== Expiry Countdown =====
+(function(){
+  var expiry = new Date('2026-04-18');
+  var diff = Math.ceil((expiry - new Date()) / 864e5);
+  var el = document.getElementById('days-left');
+  if(el) el.textContent = diff > 0 ? 'expires in ' + diff + ' day' + (diff !== 1 ? 's' : '') : 'expired';
+})();
+
+// ===== Scroll Reveal =====
+(function(){
+  var ro = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('v'); });
+  }, {threshold:.12});
+  document.querySelectorAll('.rv').forEach(function(el){ ro.observe(el); });
+})();
+
+// ===== Personalization — ?to=Name =====
+(function(){
+  var name = (new URLSearchParams(window.location.search)).get('to');
+  if(name){
+    var el = document.getElementById('close-title');
+    if(el) el.textContent = name + ' owns this.';
+  }
+})();
+
+// ===== Hero CTA triggers call =====
+(function(){
+  var ctaBtn = document.getElementById('hero-cta-btn');
+  if(!ctaBtn) return;
+  ctaBtn.addEventListener('click', function(){
+    var micBtn = document.getElementById('uw-mic-btn');
+    if(micBtn){
+      if(window.innerWidth <= 960){
+        var heroRight = document.getElementById('hero-right');
+        if(heroRight) heroRight.scrollIntoView({behavior:'smooth', block:'center'});
+        setTimeout(function(){ micBtn.click(); }, 500);
+      } else {
+        micBtn.click();
+      }
+    }
+  });
+})();
+
+// ===== Floating Voice FAB =====
+(function(){
+  var fab = document.getElementById('voice-fab');
+  var hero = document.getElementById('hero');
+  var fabHidden = false;
+  if(!fab || !hero) return;
+
+  fab.addEventListener('click', function(){
+    hero.scrollIntoView({behavior:'smooth', block:'start'});
+    setTimeout(function(){
+      var btn = document.getElementById('uw-mic-btn');
+      if(btn) btn.click();
+    }, 600);
+  });
+
+  window.addEventListener('scroll', function(){
+    if(fabHidden) return;
+    var heroBottom = hero.getBoundingClientRect().bottom;
+    if(heroBottom < 0){
+      fab.classList.add('visible');
+    } else {
+      fab.classList.remove('visible');
+    }
+  });
+
+  // Hide FAB once call starts
+  var widget = document.getElementById('unified-widget');
+  if(widget){
+    var observer = new MutationObserver(function(){
+      var active = document.getElementById('uw-voice-active');
+      if(active && active.classList.contains('visible')){
+        fab.classList.remove('visible');
+        fabHidden = true;
+      }
+    });
+    observer.observe(widget, {subtree:true, attributes:true, attributeFilter:['class']});
+  }
+})();
+
+// ===== WebRTC Voice Call =====
+(function(){
+  var uwVoiceIdle = document.getElementById('uw-voice-idle');
+  var uwConnecting = document.getElementById('uw-connecting');
+  var uwVoiceActive = document.getElementById('uw-voice-active');
+  var uwMicBtn = document.getElementById('uw-mic-btn');
+  var uwEndBtn = document.getElementById('uw-end-btn');
+  var uwStatus = document.getElementById('uw-status');
+  var uwTranscript = document.getElementById('uw-transcript');
+  var uwWaveformEl = document.getElementById('uw-waveform');
+  var uwWaveformBars = uwWaveformEl ? uwWaveformEl.querySelectorAll('span') : [];
+  var waveformAnimId = null;
+  var waveformMode = 'idle';
+  var callActive = false;
+  var retellClient = null;
+  var callStartTime = null;
+
+  function animateWaveform(){
+    for(var i = 0; i < uwWaveformBars.length; i++){
+      var bar = uwWaveformBars[i];
+      var h;
+      if(waveformMode === 'agent') h = 10 + Math.random() * 34;
+      else if(waveformMode === 'user') h = 6 + Math.random() * 18;
+      else h = 4 + Math.sin(Date.now() / 500 + i * 0.6) * 3;
+      bar.style.height = h + 'px';
+    }
+    waveformAnimId = requestAnimationFrame(animateWaveform);
+  }
+
+  function startWaveformAnim(mode){
+    waveformMode = mode || 'idle';
+    if(!waveformAnimId) animateWaveform();
+  }
+
+  function stopWaveformAnim(){
+    waveformMode = 'idle';
+    if(waveformAnimId){ cancelAnimationFrame(waveformAnimId); waveformAnimId = null; }
+    for(var i = 0; i < uwWaveformBars.length; i++) uwWaveformBars[i].style.height = '4px';
+  }
+
+  function startVoiceCall(){
+    if(callActive) return;
+    callActive = true;
+    callStartTime = Date.now();
+
+    uwVoiceIdle.style.display = 'none';
+    uwConnecting.style.display = 'flex';
+    uwVoiceActive.classList.remove('visible');
+    document.getElementById('uw-connecting-text').textContent = 'Connecting to Konica Minolta agent...';
+
+    var orb = document.getElementById('orb-main');
+    if(orb) orb.classList.add('speaking');
+
+    (async function(){
+      try {
+        var response = await fetch('https://backend.widr.app/api/v1/demo/web-call', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            company_name: 'Konica Minolta',
+            product: 'Konica Minolta bizhub C360i copier lease',
+            amount: '$1,461'
+          })
+        });
+
+        if(!response.ok) throw new Error('API returned ' + response.status);
+        var result = await response.json();
+        if(!result.success || !result.access_token) throw new Error('No access token');
+
+        var module = await import('https://cdn.jsdelivr.net/npm/retell-client-js-sdk@2.0.7/+esm');
+        var RetellWebClient = module.RetellWebClient;
+        retellClient = new RetellWebClient();
+
+        retellClient.on('call_started', function(){
+          callStartTime = Date.now();
+          uwConnecting.style.display = 'none';
+          uwVoiceActive.classList.add('visible');
+          uwStatus.textContent = 'Your turn — speak now';
+          startWaveformAnim('idle');
+          try { gtag('event', 'call_started', { company: 'Konica Minolta', page: 'konica-v11b' }); } catch(e){}
+        });
+
+        retellClient.on('call_ended', function(){
+          try { gtag('event', 'call_completed', { company: 'Konica Minolta', page: 'konica-v11b' }); } catch(e){}
+          var duration = callStartTime ? Math.round((Date.now() - callStartTime) / 1000) : 30;
+          endCall(duration);
+        });
+
+        retellClient.on('agent_start_talking', function(){
+          startWaveformAnim('agent');
+          uwStatus.textContent = 'Konica Minolta Agent speaking...';
+        });
+
+        retellClient.on('agent_stop_talking', function(){
+          startWaveformAnim('user');
+          uwStatus.textContent = 'Your turn — speak now';
+        });
+
+        retellClient.on('update', function(update){
+          if(update && update.transcript) renderTranscript(update.transcript);
+        });
+
+        retellClient.on('error', function(err){
+          console.error('RetellAI error:', err);
+          endCall(0);
+        });
+
+        await retellClient.startCall({ accessToken: result.access_token });
+
+      } catch(err){
+        console.error('Voice call error:', err);
+        callActive = false;
+        uwConnecting.style.display = 'none';
+        uwVoiceIdle.style.display = '';
+        uwVoiceActive.classList.remove('visible');
+        if(orb) orb.classList.remove('speaking');
+        var label = document.querySelector('.uw-mic-label');
+        if(label){ label.textContent = 'Connection failed — try again'; label.style.color = '#ef4444'; }
+        setTimeout(function(){ if(label){ label.textContent = 'Talk to Sarah'; label.style.color = ''; } }, 3000);
+      }
+    })();
+  }
+
+  function renderTranscript(transcript){
+    if(!transcript || !transcript.length) return;
+    var last = null;
+    for(var i = transcript.length - 1; i >= 0; i--){
+      if((transcript[i].content || '').trim()){ last = transcript[i]; break; }
+    }
+    if(!last) return;
+    var role = last.role === 'agent' ? 'agent' : 'user';
+    uwTranscript.innerHTML = '<div class="uw-mini-msg ' + role + '">' + last.content + '</div>';
+    uwTranscript.scrollTop = uwTranscript.scrollHeight;
+  }
+
+  function endCall(duration){
+    callActive = false;
+    if(retellClient){ try { retellClient.stopCall(); } catch(e){} retellClient = null; }
+    stopWaveformAnim();
+    var orb = document.getElementById('orb-main');
+    if(orb) orb.classList.remove('speaking');
+
+    uwStatus.textContent = 'Call ended';
+    var postCall = document.getElementById('uw-post-call');
+    var postTitle = document.querySelector('.uw-post-title');
+    if(postTitle && duration > 0){
+      postTitle.textContent = 'That was ' + duration + ' second' + (duration !== 1 ? 's' : '') + '.';
+    }
+    setTimeout(function(){
+      uwVoiceActive.classList.remove('visible');
+      uwVoiceIdle.style.display = 'none';
+      uwTranscript.innerHTML = '';
+      if(postCall) postCall.style.display = 'flex';
+    }, 1500);
+  }
+
+  var postRetry = document.getElementById('uw-post-retry');
+  if(postRetry) postRetry.addEventListener('click', function(){
+    var postCall = document.getElementById('uw-post-call');
+    if(postCall) postCall.style.display = 'none';
+    uwVoiceIdle.style.display = '';
+  });
+
+  var postCta = document.getElementById('uw-post-cta');
+  if(postCta) postCta.addEventListener('click', function(){
+    try { gtag('event', 'post_call_book_demo', { company: 'Konica Minolta', page: 'konica-v11b' }); } catch(e){}
+  });
+
+  if(uwMicBtn) uwMicBtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    startVoiceCall();
+  });
+
+  if(uwEndBtn) uwEndBtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    endCall(callStartTime ? Math.round((Date.now() - callStartTime) / 1000) : 0);
+  });
+
+  var orbWrap = document.getElementById('orb-wrap');
+  if(orbWrap) orbWrap.addEventListener('click', function(){
+    if(callActive) return;
+    startVoiceCall();
+  });
+})();
+</script>
+</body>
+</html>
