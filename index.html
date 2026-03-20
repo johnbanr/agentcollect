@@ -1468,33 +1468,31 @@
             if (company.industry) updated.industry = company.industry;
             if (company.products) updated.product = company.products;
             if (company.size) updated.clients = (updated.clients || '') + ' (' + company.size + ')';
+            // Rich company intel from Claude analysis
+            if (company.flagship_product) updated.flagshipProduct = company.flagship_product;
+            if (company.client_segments) updated.clientSegments = company.client_segments;
+            if (company.client_count) updated.clientCount = company.client_count;
+            if (company.avg_invoice_amount) updated.avgInvoiceAmount = company.avg_invoice_amount;
+            if (company.voice_invoice_description) updated.voiceInvoiceDescription = company.voice_invoice_description;
             if (company.logo_url) {
                 buildLogo.src = company.logo_url;
             }
 
-            // Update analysis: use smart industry-based reasons when API provides context
-            var hasHardcodedData = !!COMPANY_DATA[domain];
-            if (!hasHardcodedData && (company.industry || company.products)) {
-                updated.analysis = getSmartAnalysis(company.industry, company.products, company.size);
-            }
-
+            // Always use API disputes/analysis — they're now company-specific from Claude
             if (apiData.disputes && apiData.disputes.length > 0) {
-                // Build analysis from dispute reasoning (only if real data, not "Unable to determine")
+                // Disputes can be strings (payment_risks) or objects (rich disputes)
                 var newAnalysis = [];
-                apiData.disputes.forEach(function(d) {
-                    if (d.reasoning_tags && d.reasoning_tags.length > 0) {
-                        newAnalysis.push(d.reasoning_tags.join(', '));
-                    }
-                });
-                if (newAnalysis.length > 0) updated.analysis = newAnalysis;
-
-                // Convert API disputes to our format (skip garbage responses)
                 var newDisputes = [];
                 apiData.disputes.forEach(function(d, idx) {
-                    // Skip useless API responses
-                    if (typeof d === 'string') return;
+                    // String format = payment risk reason (from new generateDisputes)
+                    if (typeof d === 'string') {
+                        newAnalysis.push(d);
+                        return;
+                    }
+                    // Object format = rich dispute with debtor_says/agent_responds
                     if (!d.debtor_says || d.debtor_says.toLowerCase().indexOf('unable to determine') > -1) return;
                     if (!d.agent_responds || d.agent_responds.toLowerCase().indexOf('insufficient') > -1) return;
+                    newAnalysis.push(d.reasoning_tags ? d.reasoning_tags.join(', ') : d.debtor_says.substring(0, 60));
                     var teaserText = d.debtor_says || '';
                     if (teaserText.length > 120) teaserText = teaserText.substring(0, 120) + '...';
                     newDisputes.push({
@@ -1510,8 +1508,12 @@
                         })
                     });
                 });
-                // Only replace disputes if domain has no hardcoded rich data (API disputes are simpler)
+                if (newAnalysis.length > 0) updated.analysis = newAnalysis;
+                // Keep hardcoded disputes for known companies (they have rich 6-line transcripts)
+                var hasHardcodedData = !!COMPANY_DATA[domain];
                 if (newDisputes.length > 0 && !hasHardcodedData) updated.disputes = newDisputes;
+            } else if (company.industry || company.products) {
+                updated.analysis = getSmartAnalysis(company.industry, company.products, company.size);
             }
 
             // Update contacts from API — decision_maker (singular) or contacts (array)
@@ -1583,16 +1585,29 @@
             });
         }
 
-        // Update dossier products if visible
+        // Update dossier products if visible — use rich intel when available
         var productsEl = document.getElementById('dossier-products');
-        if (productsEl && data.product) {
+        if (productsEl) {
             productsEl.innerHTML = '';
-            var productLines = data.product.split(/,\s*/);
-            productLines.slice(0, 3).forEach(function(p) {
-                addDossierLine(productsEl, p.trim(), 'green');
-            });
-            if (data.clients) {
+            // Rich data: flagship product + client segments + client count
+            if (data.flagshipProduct) {
+                addDossierKVLine(productsEl, 'Flagship', data.flagshipProduct);
+            } else if (data.product) {
+                var productLines = data.product.split(/,\s*/);
+                productLines.slice(0, 3).forEach(function(p) {
+                    addDossierLine(productsEl, p.trim(), 'green');
+                });
+            }
+            if (data.clientSegments) {
+                addDossierKVLine(productsEl, 'Clients', data.clientSegments);
+            } else if (data.clients) {
                 addDossierKVLine(productsEl, 'Clients', data.clients.length > 80 ? data.clients.substring(0, 77) + '...' : data.clients);
+            }
+            if (data.clientCount) {
+                addDossierKVLine(productsEl, 'Scale', data.clientCount);
+            }
+            if (data.avgInvoiceAmount) {
+                addDossierKVLine(productsEl, 'Avg. invoice', data.avgInvoiceAmount);
             }
         }
 
@@ -2573,8 +2588,8 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         company_name: data ? data.name : 'Unknown',
-                        product: data ? (data.product || data.industry) : 'services',
-                        amount: data ? (data.amount || '$3,200') : '$3,200',
+                        product: data ? (data.voiceInvoiceDescription || data.flagshipProduct || data.product || data.industry) : 'services',
+                        amount: data ? (data.avgInvoiceAmount || data.amount || '$3,200') : '$3,200',
                         company_context: data ? (data._voiceAgentContext || '') : '',
                         dispute_playbook: data ? (data._disputePlaybook || '') : ''
                     })
