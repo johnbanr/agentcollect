@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgentCollect NOIR V2 — Voice Intelligence Player</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --indigo: #4F46E5;
+  --indigo-glow: rgba(79, 70, 229, 0.35);
+  --green: #10B981;
+  --green-glow: rgba(16, 185, 129, 0.25);
+  --amber: #F59E0B;
+  --amber-bg: rgba(245, 158, 11, 0.18);
+  --red: #EF4444;
+  --bg: #07070D;
+  --text: #FAFBFF;
+  --text-human: #E8E4DF;
+  --glass: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.10);
+}
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background:
+    radial-gradient(ellipse 90% 50% at 50% 20%, rgba(79, 70, 229, 0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 80% 80%, rgba(16, 185, 129, 0.03) 0%, transparent 60%),
+    var(--bg);
+}
+
+/* ═══ WATERMARK ═══ */
+.watermark {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) rotate(-15deg);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 12px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.025);
+  z-index: 0;
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* ═══ LOGO ═══ */
+.logo {
+  position: fixed;
+  top: 28px; left: 32px;
+  z-index: 10;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 900;
+  font-size: 17px;
+  letter-spacing: -0.3px;
+  color: rgba(255, 255, 255, 0.4);
+  transition: color 0.4s;
+}
+.logo:hover { color: rgba(255, 255, 255, 0.7); }
+.logo .dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  background: var(--indigo);
+  border-radius: 50%;
+  margin-left: 1px;
+  vertical-align: super;
+  position: relative;
+  top: -2px;
+}
+
+/* ═══ GEO CARD ═══ */
+.geo-card {
+  position: fixed;
+  top: 24px; right: 32px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.2px;
+}
+.geo-card .geo-dot {
+  width: 6px; height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--green-glow);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* ═══ ORB ═══ */
+.orb-container {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.orb {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, rgba(79, 70, 229, 0.5), rgba(79, 70, 229, 0.15) 60%, transparent 80%);
+  box-shadow:
+    0 0 60px rgba(79, 70, 229, 0.2),
+    0 0 120px rgba(79, 70, 229, 0.08),
+    inset 0 0 40px rgba(79, 70, 229, 0.1);
+  animation: orb-breathe 4s ease-in-out infinite;
+  transition: box-shadow 0.4s, transform 0.4s;
+}
+.orb.speaking-agent {
+  box-shadow:
+    0 0 80px rgba(79, 70, 229, 0.4),
+    0 0 160px rgba(79, 70, 229, 0.15),
+    inset 0 0 50px rgba(79, 70, 229, 0.2);
+  animation: orb-pulse-agent 1.5s ease-in-out infinite;
+}
+.orb.speaking-human {
+  box-shadow:
+    0 0 80px rgba(16, 185, 129, 0.3),
+    0 0 160px rgba(16, 185, 129, 0.1),
+    inset 0 0 50px rgba(16, 185, 129, 0.15);
+  background: radial-gradient(circle at 40% 35%, rgba(16, 185, 129, 0.4), rgba(79, 70, 229, 0.15) 60%, transparent 80%);
+  animation: orb-pulse-human 1.2s ease-in-out infinite;
+}
+.orb-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+@keyframes orb-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+@keyframes orb-pulse-agent {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+@keyframes orb-pulse-human {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ═══ CONVERSATION AREA ═══ */
+.conversation {
+  position: fixed;
+  top: 230px;
+  left: 260px;
+  right: 270px;
+  bottom: 120px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.message {
+  position: absolute;
+  left: 0; right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.message.active {
+  opacity: 1;
+  transform: translateY(-50%);
+}
+.message.fading {
+  opacity: 0.06;
+  transform: translateY(calc(-50% - 40px)) scale(0.9);
+  pointer-events: none;
+}
+.message.hidden {
+  opacity: 0;
+  transform: translateY(calc(-50% + 40px));
+  pointer-events: none;
+}
+
+.message-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+.message-label.agent { color: var(--indigo); text-align: left; }
+.message-label.human { color: var(--green); text-align: right; }
+
+.message-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  line-height: 1.2;
+  position: relative;
+}
+.message-text.agent-text {
+  font-size: clamp(36px, 5.5vw, 64px);
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.95);
+  text-align: left;
+  max-width: 90%;
+  line-height: 1.15;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.message-text.human-text {
+  font-size: clamp(28px, 4.5vw, 52px);
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: right;
+  margin-left: auto;
+  max-width: 90%;
+  line-height: 1.2;
+  padding-bottom: 40px;
+  overflow: visible;
+  white-space: normal;
+}
+
+/* Pulse line under agent text */
+.agent-pulse {
+  height: 2px;
+  margin-top: 16px;
+  background: linear-gradient(90deg, var(--indigo), transparent);
+  border-radius: 1px;
+  max-width: 200px;
+  animation: pulse-line 2s ease-in-out infinite;
+}
+@keyframes pulse-line {
+  0%, 100% { opacity: 0.4; width: 120px; }
+  50% { opacity: 1; width: 200px; }
+}
+
+/* ═══ WORD ANIMATION ═══ */
+.word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  margin-right: 0.28em;
+}
+.word.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══ ANNOTATION SYSTEM ═══ */
+.annotated-phrase {
+  position: relative;
+  display: inline;
+  border-bottom: 2.5px solid var(--green);
+  background: rgba(16, 185, 129, 0.12);
+  padding: 3px 6px;
+  border-radius: 4px;
+  transition: background 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 2px 16px rgba(16, 185, 129, 0.12);
+}
+.annotated-phrase .word {
+  margin-right: 0;
+}
+.annotated-phrase .word + .word {
+  margin-left: 0.28em;
+}
+
+.annotation {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 10px);
+  white-space: nowrap;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--green);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+  z-index: 20;
+  text-shadow: 0 0 24px rgba(16, 185, 129, 0.4);
+  letter-spacing: 0.3px;
+}
+.human-text .annotation {
+  left: auto;
+  right: 0;
+}
+.annotation.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.annotation.green { color: var(--green); text-shadow: 0 0 24px rgba(16, 185, 129, 0.4); }
+.annotation.amber { color: var(--amber); text-shadow: 0 0 24px rgba(245, 158, 11, 0.4); }
+.annotation.red { color: #F87171; text-shadow: 0 0 24px rgba(248, 113, 113, 0.4); }
+
+/* ═══ STAGE CARDS (LEFT) ═══ */
+.stage-cards {
+  position: fixed;
+  left: 32px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.stage-card {
+  width: 190px;
+  padding: 14px 16px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-left: 3px solid transparent;
+  border-radius: 10px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.2);
+  transition: all 0.5s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: 0.2px;
+}
+.stage-card .stage-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  flex-shrink: 0;
+  transition: all 0.5s ease;
+}
+.stage-card.active {
+  color: rgba(255, 255, 255, 0.95);
+  border-left-color: var(--indigo);
+  background: rgba(79, 70, 229, 0.08);
+  border-color: rgba(79, 70, 229, 0.25);
+  border-left-color: var(--indigo);
+}
+.stage-card.active .stage-dot {
+  background: var(--indigo);
+  box-shadow: 0 0 10px var(--indigo-glow);
+}
+.stage-card.completed {
+  color: rgba(16, 185, 129, 0.6);
+}
+.stage-card.completed .stage-dot {
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green-glow);
+}
+
+/* ═══ INSIGHT CARDS (RIGHT) ═══ */
+.insight-cards {
+  position: fixed;
+  right: 32px;
+  top: 76px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: calc(100vh - 180px);
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.insight-cards::-webkit-scrollbar { display: none; }
+.insight-card {
+  width: 210px;
+  padding: 10px 14px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.insight-card.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.insight-card .insight-icon {
+  font-size: 14px;
+}
+.insight-card .insight-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.insight-card .insight-detail {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+.insight-card .insight-time {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.25);
+  margin-top: 2px;
+}
+.insight-card.green {
+  border-color: rgba(16, 185, 129, 0.2);
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.08);
+}
+.insight-card.green .insight-detail { color: var(--green); }
+.insight-card.neutral .insight-detail { color: rgba(255, 255, 255, 0.7); }
+
+/* ═══ WEATHER CARD ═══ */
+.weather-card {
+  width: 210px;
+  padding: 14px 16px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  cursor: default;
+  position: relative;
+}
+.weather-card.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.weather-main {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+}
+.weather-sub {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.35);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+.weather-tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 0;
+  width: 240px;
+  padding: 12px 14px;
+  background: rgba(15, 15, 25, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.5;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.3s, transform 0.3s;
+  pointer-events: none;
+  z-index: 100;
+}
+.weather-card:hover .weather-tooltip {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══ END CALL BUTTON ═══ */
+.end-call {
+  position: fixed;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 36px;
+  background: var(--red);
+  border: none;
+  border-radius: 32px;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 4px 24px rgba(239, 68, 68, 0.3);
+  letter-spacing: 0.3px;
+}
+.end-call:hover {
+  transform: translateX(-50%) scale(1.04);
+  box-shadow: 0 6px 32px rgba(239, 68, 68, 0.45);
+  background: #DC2626;
+}
+.end-call svg {
+  width: 18px; height: 18px;
+}
+.powered-by {
+  position: fixed;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.15);
+  letter-spacing: 1px;
+  z-index: 20;
+}
+
+/* ═══ TIMER + WAVEFORM ═══ */
+.timer-area {
+  position: fixed;
+  bottom: 42px;
+  left: 32px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.timer {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 1px;
+}
+.waveform {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 20px;
+}
+.waveform .bar {
+  width: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 1px;
+  transition: height 0.1s ease, background 0.3s ease;
+}
+.waveform.active-agent .bar { background: var(--indigo); }
+.waveform.active-human .bar { background: var(--green); }
+
+/* ═══ SUMMARY CARD ═══ */
+.summary-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(7, 7, 13, 0.85);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+}
+.summary-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.summary-card {
+  text-align: center;
+  max-width: 480px;
+  padding: 48px 56px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  transform: scale(0.9);
+  transition: transform 0.6s ease;
+}
+.summary-overlay.visible .summary-card {
+  transform: scale(1);
+}
+.summary-icon {
+  width: 64px; height: 64px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+.summary-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.summary-detail {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+.summary-stats {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin: 24px 0;
+  padding: 20px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.summary-stat {
+  text-align: center;
+}
+.summary-stat .stat-value {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--green);
+}
+.summary-stat .stat-label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+.secondary-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 10px 24px;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.secondary-cta:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ═══ CTA BUTTON ═══ */
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 16px 40px;
+  background: var(--green);
+  border: none;
+  border-radius: 28px;
+  color: white;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 4px 24px rgba(16, 185, 129, 0.35);
+  text-decoration: none;
+  letter-spacing: 0.2px;
+}
+.cta-btn:hover {
+  transform: scale(1.04);
+  box-shadow: 0 8px 36px rgba(16, 185, 129, 0.5);
+  background: #059669;
+}
+
+/* ═══ LAPTOP 1024px ═══ */
+@media (max-width: 1100px) {
+  .message-text.agent-text { font-size: 48px; }
+  .message-text.human-text { font-size: 40px; }
+  .conversation { left: 220px; right: 230px; }
+  .stage-card { width: 160px; padding: 11px 14px; font-size: 11px; }
+  .insight-card { width: 190px; }
+  .weather-card { width: 190px; }
+  .annotation { font-size: 14px; }
+}
+
+/* ═══ MOBILE ═══ */
+@media (max-width: 768px) {
+  .stage-cards {
+    position: fixed;
+    top: 60px; left: 0; right: 0;
+    transform: none;
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 0 16px;
+    gap: 8px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .stage-cards::-webkit-scrollbar { display: none; }
+  .stage-card { width: auto; min-width: 140px; flex-shrink: 0; padding: 10px 14px; font-size: 11px; }
+
+  .insight-cards {
+    position: fixed;
+    top: auto;
+    bottom: 108px;
+    right: 16px;
+    left: 16px;
+    flex-direction: row;
+    overflow-x: auto;
+    max-height: 70px;
+    gap: 8px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .insight-cards::-webkit-scrollbar { display: none; }
+  .insight-card { width: auto; min-width: 140px; flex-shrink: 0; padding: 8px 12px; }
+  .insight-card .insight-detail { font-size: 13px; }
+  .weather-card { min-width: 160px; flex-shrink: 0; padding: 8px 12px; }
+  .timer-area { bottom: 82px; }
+
+  .conversation {
+    left: 16px;
+    right: 16px;
+    top: 210px;
+    bottom: 160px;
+  }
+  .message-text.agent-text { font-size: 36px; max-width: 100%; }
+  .message-text.human-text { font-size: 28px; max-width: 100%; }
+  .orb-container { top: 110px; }
+  .orb { width: 80px; height: 80px; }
+  .geo-card { font-size: 11px; padding: 8px 12px; top: 16px; right: 16px; }
+  .logo { top: 20px; left: 16px; font-size: 15px; }
+  .timer-area { left: 16px; bottom: 110px; }
+  .annotation { font-size: 11px; }
+}
+</style>
+</head>
+<body>
+
+<div class="watermark">PROTOTYPE</div>
+
+<!-- Logo -->
+<div class="logo">AgentCollect<span class="dot"></span></div>
+
+<!-- Geo Card -->
+<div class="geo-card">
+  <span class="geo-dot"></span>
+  San Francisco &middot; 2:47 PM PST &middot; &#9728;&#65039; 72&deg;F
+</div>
+
+<!-- Orb -->
+<div class="orb-container">
+  <div class="orb" id="orb"></div>
+  <div class="orb-label" id="orbLabel">LISTENING</div>
+</div>
+
+<!-- Conversation -->
+<div class="conversation" id="conversation"></div>
+
+<!-- Stage Cards -->
+<div class="stage-cards" id="stageCards">
+  <div class="stage-card" data-stage="Introduction">
+    <span class="stage-dot"></span>Introduction
+  </div>
+  <div class="stage-card" data-stage="Identity Verification">
+    <span class="stage-dot"></span>Identity Verification
+  </div>
+  <div class="stage-card" data-stage="Balance Discussion">
+    <span class="stage-dot"></span>Balance Discussion
+  </div>
+  <div class="stage-card" data-stage="Payment Resolution">
+    <span class="stage-dot"></span>Payment Resolution
+  </div>
+  <div class="stage-card" data-stage="Confirmation">
+    <span class="stage-dot"></span>Confirmation
+  </div>
+</div>
+
+<!-- Insight Cards -->
+<div class="insight-cards" id="insightCards"></div>
+
+<!-- Timer -->
+<div class="timer-area">
+  <div class="timer" id="timer">00:00</div>
+  <div class="waveform" id="waveform"></div>
+</div>
+
+<!-- End Call -->
+<button class="end-call" id="endCallBtn">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91"></path>
+    <line x1="1" y1="1" x2="23" y2="23"></line>
+  </svg>
+  End Call
+</button>
+<div class="powered-by">Powered by AgentCollect</div>
+
+<!-- Summary Overlay -->
+<div class="summary-overlay" id="summaryOverlay">
+  <div class="summary-card">
+    <div class="summary-icon">&#10003;</div>
+    <div class="summary-title">That was your agent.</div>
+    <div class="summary-detail">Calls. Emails. SMS. Every channel &mdash; one AI.</div>
+    <div class="summary-stats">
+      <div class="summary-stat">
+        <div class="stat-value">0:51</div>
+        <div class="stat-label">Duration</div>
+      </div>
+      <div class="summary-stat">
+        <div class="stat-value">$3,200</div>
+        <div class="stat-label">Recovered</div>
+      </div>
+      <div class="summary-stat">
+        <div class="stat-value">3-mo</div>
+        <div class="stat-label">Plan</div>
+      </div>
+    </div>
+    <a href="https://cal.com/johnb/30" target="_blank" class="cta-btn" id="ctaBtn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      15 min to go live
+    </a>
+    <a href="https://cal.com/johnb/30" target="_blank" class="secondary-cta" id="secondaryCta">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      Start risk-free &mdash; bad debt only
+    </a>
+  </div>
+</div>
+
+<script>
+// ═══ WAVEFORM BARS ═══
+const waveformEl = document.getElementById('waveform');
+for (let i = 0; i < 12; i++) {
+  const bar = document.createElement('div');
+  bar.className = 'bar';
+  bar.style.height = '4px';
+  waveformEl.appendChild(bar);
+}
+const bars = waveformEl.querySelectorAll('.bar');
+
+let waveformActive = false;
+let waveformSpeaker = null;
+
+function animateWaveform() {
+  bars.forEach((bar, i) => {
+    if (waveformActive) {
+      const h = 4 + Math.random() * 16;
+      bar.style.height = h + 'px';
+    } else {
+      bar.style.height = '4px';
+    }
+  });
+  requestAnimationFrame(animateWaveform);
+}
+animateWaveform();
+
+function setWaveform(active, speaker) {
+  waveformActive = active;
+  waveformSpeaker = speaker;
+  waveformEl.className = 'waveform' + (active ? (speaker === 'agent' ? ' active-agent' : ' active-human') : '');
+}
+
+// ═══ TIMER ═══
+const timerEl = document.getElementById('timer');
+let startTime = null;
+let timerInterval = null;
+function startTimer() {
+  startTime = Date.now();
+  timerInterval = setInterval(() => {
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    const m = String(Math.floor(elapsed / 60)).padStart(2, '0');
+    const s = String(elapsed % 60).padStart(2, '0');
+    timerEl.textContent = m + ':' + s;
+  }, 200);
+}
+function stopTimer() {
+  if (timerInterval) clearInterval(timerInterval);
+}
+
+// ═══ ORB ═══
+const orb = document.getElementById('orb');
+const orbLabel = document.getElementById('orbLabel');
+
+function setOrbState(speaker) {
+  orb.className = 'orb';
+  if (speaker === 'agent') {
+    orb.classList.add('speaking-agent');
+    orbLabel.textContent = 'SARAH';
+    orbLabel.style.color = 'rgba(79, 70, 229, 0.5)';
+  } else if (speaker === 'human') {
+    orb.classList.add('speaking-human');
+    orbLabel.textContent = 'LISTENING';
+    orbLabel.style.color = 'rgba(16, 185, 129, 0.5)';
+  } else {
+    orbLabel.textContent = 'PROCESSING';
+    orbLabel.style.color = 'rgba(255, 255, 255, 0.25)';
+  }
+}
+
+// ═══ STAGE MANAGEMENT ═══
+const stageCards = document.querySelectorAll('.stage-card');
+let activeStages = [];
+
+function setStage(stageName) {
+  stageCards.forEach(card => {
+    const name = card.dataset.stage;
+    if (name === stageName) {
+      // Mark all before as completed
+      let found = false;
+      stageCards.forEach(c => {
+        if (c.dataset.stage === stageName) {
+          found = true;
+          c.className = 'stage-card active';
+        } else if (!found) {
+          c.className = 'stage-card completed';
+        } else {
+          c.className = 'stage-card';
+        }
+      });
+    }
+  });
+}
+
+// ═══ INSIGHT MANAGEMENT ═══
+const insightCardsEl = document.getElementById('insightCards');
+let insightCount = 0;
+
+function addInsight(data) {
+  insightCount++;
+  const card = document.createElement('div');
+  const colorClass = data.color === 'green' ? 'green' : 'neutral';
+  card.className = 'insight-card ' + colorClass;
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  const m = String(Math.floor(elapsed / 60)).padStart(2, '0');
+  const s = String(elapsed % 60).padStart(2, '0');
+  card.innerHTML = `
+    <div class="insight-label">${data.label}</div>
+    <div class="insight-detail">${data.detail}</div>
+    <div class="insight-time">${m}:${s}</div>
+  `;
+  insightCardsEl.appendChild(card);
+  requestAnimationFrame(() => {
+    card.classList.add('visible');
+  });
+}
+
+function addWeatherCard() {
+  const card = document.createElement('div');
+  card.className = 'weather-card';
+  card.innerHTML = `
+    <div class="weather-tooltip">Research shows natural light correlates with positive financial decisions. Afternoon calls in good weather see 31% higher resolution rates.</div>
+    <div class="weather-main">&#9728;&#65039; 72&deg;F in San Francisco</div>
+    <div class="weather-sub">Afternoon light &rarr; 31% higher resolution rate</div>
+  `;
+  insightCardsEl.appendChild(card);
+  requestAnimationFrame(() => {
+    card.classList.add('visible');
+  });
+}
+
+// ═══ CONVERSATION ENGINE ═══
+const conversationEl = document.getElementById('conversation');
+let currentMessageEl = null;
+let prevMessageEl = null;
+
+const MAX_VISIBLE_WORDS = 5;
+
+function createMessageElement(speaker, text, annotations) {
+  // Fade out previous
+  if (currentMessageEl) {
+    currentMessageEl.classList.remove('active');
+    currentMessageEl.classList.add('fading');
+    const old = currentMessageEl;
+    setTimeout(() => { if (old.parentNode) old.parentNode.removeChild(old); }, 800);
+  }
+
+  const wrapper = document.createElement('div');
+  wrapper.className = 'message hidden';
+
+  const label = document.createElement('div');
+  label.className = 'message-label ' + speaker;
+  label.textContent = speaker === 'agent' ? 'SARAH' : 'YOU';
+  wrapper.appendChild(label);
+
+  const textEl = document.createElement('div');
+  textEl.className = 'message-text ' + (speaker === 'agent' ? 'agent-text' : 'human-text');
+
+  const words = text.split(/\s+/);
+  wrapper.appendChild(textEl);
+
+  if (speaker === 'agent') {
+    const pulse = document.createElement('div');
+    pulse.className = 'agent-pulse';
+    wrapper.appendChild(pulse);
+  }
+
+  conversationEl.appendChild(wrapper);
+  requestAnimationFrame(() => {
+    wrapper.classList.remove('hidden');
+    wrapper.classList.add('active');
+  });
+  currentMessageEl = wrapper;
+
+  if (speaker === 'agent') {
+    // STREAMING MODE: show last N words only, like live subtitles
+    let wordIdx = 0;
+    const wordDelay = 100;
+    const activeSpans = [];
+
+    function showNextWord() {
+      if (wordIdx >= words.length) return;
+      const span = document.createElement('span');
+      span.className = 'word';
+      span.textContent = words[wordIdx];
+      textEl.appendChild(span);
+      if (wordIdx < words.length - 1) textEl.appendChild(document.createTextNode(' '));
+      activeSpans.push(span);
+      requestAnimationFrame(() => span.classList.add('visible'));
+
+      // Fade out old words to keep max N visible
+      if (activeSpans.length > MAX_VISIBLE_WORDS) {
+        const old = activeSpans.shift();
+        old.style.opacity = '0';
+        old.style.transition = 'opacity 0.3s';
+        // Remove after fade
+        const nextSibling = old.nextSibling;
+        setTimeout(() => {
+          if (old.parentNode) old.parentNode.removeChild(old);
+          // Remove trailing space
+          if (nextSibling && nextSibling.nodeType === 3 && nextSibling.parentNode) {
+            nextSibling.parentNode.removeChild(nextSibling);
+          }
+        }, 300);
+      }
+
+      wordIdx++;
+      if (wordIdx < words.length) setTimeout(showNextWord, wordDelay);
+    }
+    showNextWord();
+
+    const totalWordTime = words.length * wordDelay + 200;
+    return { wrapper, wordCount: words.length, totalWordTime };
+
+  } else {
+    // HUMAN MODE: show full text with annotations (human messages are short)
+    textEl.style.whiteSpace = 'normal';
+    const wordSpans = [];
+    let i = 0;
+    while (i < words.length) {
+      let matched = false;
+      if (annotations && annotations.length > 0) {
+        for (const ann of annotations) {
+          const phraseWords = ann.word.split(/\s+/);
+          if (i + phraseWords.length <= words.length) {
+            const candidate = words.slice(i, i + phraseWords.length).join(' ');
+            if (candidate.toLowerCase() === ann.word.toLowerCase() ||
+                candidate.toLowerCase().replace(/[^a-z\s]/g, '') === ann.word.toLowerCase().replace(/[^a-z\s]/g, '')) {
+              const phraseEl = document.createElement('span');
+              phraseEl.className = 'annotated-phrase';
+              phraseEl.style.borderBottomColor = 'transparent';
+              phraseEl.style.background = 'transparent';
+              for (let j = 0; j < phraseWords.length; j++) {
+                const span = document.createElement('span');
+                span.className = 'word';
+                span.textContent = words[i + j];
+                phraseEl.appendChild(span);
+                wordSpans.push({ el: span, index: i + j });
+              }
+              const annEl = document.createElement('span');
+              annEl.className = 'annotation green';
+              annEl.textContent = ann.label;
+              phraseEl.appendChild(annEl);
+              phraseEl._annotation = annEl;
+              phraseEl._delay = ann.delay || 500;
+              textEl.appendChild(phraseEl);
+              if (i + phraseWords.length < words.length) textEl.appendChild(document.createTextNode(' '));
+              i += phraseWords.length;
+              matched = true;
+              break;
+            }
+          }
+        }
+      }
+      if (!matched) {
+        const span = document.createElement('span');
+        span.className = 'word';
+        span.textContent = words[i];
+        textEl.appendChild(span);
+        wordSpans.push({ el: span, index: i });
+        if (i < words.length - 1) textEl.appendChild(document.createTextNode(' '));
+        i++;
+      }
+    }
+
+    const allWords = textEl.querySelectorAll('.word');
+    const wordDelay = 80;
+    allWords.forEach((w, idx) => {
+      setTimeout(() => w.classList.add('visible'), idx * wordDelay);
+    });
+
+    const totalWordTime = allWords.length * wordDelay + 200;
+    const annotatedPhrases = textEl.querySelectorAll('.annotated-phrase');
+    annotatedPhrases.forEach(phrase => {
+      const delay = phrase._delay || 500;
+      setTimeout(() => {
+        phrase.style.borderBottomColor = 'var(--green)';
+        phrase.style.background = 'rgba(16, 185, 129, 0.12)';
+        phrase.style.transition = 'border-bottom-color 0.3s, background 0.3s';
+      }, totalWordTime + delay - 200);
+      setTimeout(() => {
+        if (phrase._annotation) phrase._annotation.classList.add('visible');
+      }, totalWordTime + delay);
+    });
+
+    return { wrapper, wordCount: allWords.length, totalWordTime };
+  }
+}
+
+// ═══ SCRIPT ═══
+const script = [
+  { time: 0, speaker: 'agent', text: 'Good afternoon, this is Sarah calling on behalf of Schweber Law regarding an outstanding balance.' },
+  { time: 0.5, stage: 'Introduction' },
+
+  { time: 5.5, speaker: 'human', text: 'Yeah, who is this?', annotations: [] },
+
+  { time: 8.5, speaker: 'agent', text: "I'm reaching out about invoice 4-7-2-1 for three thousand two hundred dollars from Acme Corp." },
+  { time: 10, insight: { label: 'Balance Disclosed', detail: '$3,200', color: 'neutral' } },
+
+  { time: 14, speaker: 'human', text: 'Oh right, yeah I know about that.', annotations: [
+    { word: 'know about that', label: '\u2192 Debt awareness confirmed', delay: 600 }
+  ]},
+  { time: 16.5, insight: { label: 'Awareness', detail: 'Confirmed \u2713', color: 'green' } },
+  { time: 16.5, stage: 'Identity Verification' },
+
+  { time: 18, speaker: 'agent', text: 'Perfect. Just to confirm, am I speaking with Michael Thompson?' },
+
+  { time: 22, speaker: 'human', text: "That's me.", annotations: [
+    { word: "That's me", label: '\u2192 Identity confirmed', delay: 400 }
+  ]},
+  { time: 24, insight: { label: 'Identity', detail: 'Verified \u2713', color: 'green' } },
+  { time: 24, stage: 'Balance Discussion' },
+
+  { time: 26, speaker: 'agent', text: 'Great. The current balance is three thousand two hundred dollars. We have several convenient options available for you today.' },
+
+  { time: 32, speaker: 'human', text: 'I mean, I can probably do something. What are the options?', annotations: [
+    { word: 'probably', label: '\u2192 Hedging \u2014 moderate confidence', delay: 500 },
+    { word: 'something', label: '\u2192 Payment intent detected', delay: 900 },
+    { word: 'options', label: '\u2192 Seeking alternatives', delay: 1300 }
+  ]},
+  { time: 35, insight: { label: 'Payment Intent', detail: 'Receptive', color: 'green' } },
+  { time: 36, weather: true },
+
+  { time: 37, speaker: 'agent', text: 'We can set up a one-time payment, or I can offer a three-month installment plan. Which works better for your situation?' },
+
+  { time: 43, speaker: 'human', text: 'The installment thing sounds more doable.', annotations: [
+    { word: 'installment', label: '\u2192 Preferred: installment plan', delay: 500 },
+    { word: 'more doable', label: '\u2192 Positive commitment signal', delay: 1000 }
+  ]},
+  { time: 46, insight: { label: 'Plan Selected', detail: 'Installment \u2713', color: 'green' } },
+  { time: 46, stage: 'Payment Resolution' },
+
+  { time: 48, speaker: 'agent', text: "Perfect choice. I'll send a secure payment link to your email right now. You'll receive it within the next minute." },
+  { time: 52, insight: { label: 'Resolution', detail: 'Link Sent \u2713', color: 'green' } },
+  { time: 52, stage: 'Confirmation' },
+
+  { time: 55, action: 'end' }
+];
+
+// ═══ PLAYBACK ENGINE ═══
+let playbackTimeouts = [];
+
+function runScript() {
+  // Reset state
+  playbackTimeouts.forEach(t => clearTimeout(t));
+  playbackTimeouts = [];
+  insightCardsEl.innerHTML = '';
+  conversationEl.innerHTML = '';
+  currentMessageEl = null;
+  insightCount = 0;
+  document.getElementById('summaryOverlay').classList.remove('visible');
+  setOrbState(null);
+  setWaveform(false, null);
+  stageCards.forEach(c => c.className = 'stage-card');
+
+  startTimer();
+
+  script.forEach(event => {
+    const t = setTimeout(() => {
+      if (event.speaker) {
+        const info = createMessageElement(event.speaker, event.text, event.annotations || []);
+        setOrbState(event.speaker);
+        setWaveform(true, event.speaker);
+
+        // Stop waveform after text finishes
+        const duration = (info.totalWordTime || 2000) + 500;
+        setTimeout(() => {
+          setWaveform(false, null);
+          setOrbState(null);
+        }, duration);
+      }
+      if (event.stage) {
+        setStage(event.stage);
+      }
+      if (event.insight) {
+        addInsight(event.insight);
+      }
+      if (event.weather) {
+        addWeatherCard();
+      }
+      if (event.action === 'end') {
+        stopTimer();
+        setWaveform(false, null);
+        setOrbState(null);
+        setTimeout(() => {
+          document.getElementById('summaryOverlay').classList.add('visible');
+        }, 1500);
+      }
+    }, event.time * 1000);
+    playbackTimeouts.push(t);
+  });
+}
+
+// ═══ CONTROLS ═══
+document.getElementById('endCallBtn').addEventListener('click', () => {
+  stopTimer();
+  playbackTimeouts.forEach(t => clearTimeout(t));
+  setWaveform(false, null);
+  document.getElementById('summaryOverlay').classList.add('visible');
+});
+
+// Secondary CTA tracking
+var secCta = document.getElementById('secondaryCta');
+if (secCta) secCta.addEventListener('click', function() {
+  try { gtag('event', 'post_call_email_analysis', {}); } catch(e) {}
+});
+
+// ═══ START ═══
+runScript();
+</script>
+</body>
+</html>
