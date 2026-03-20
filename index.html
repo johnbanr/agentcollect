@@ -1338,7 +1338,7 @@
 
     function getCompanyName(domain) {
         var name = domain.split('.')[0];
-        var brands = { uber:'Uber', dell:'Dell', microsoft:'Microsoft', fedex:'FedEx', amazon:'Amazon', google:'Google', apple:'Apple', meta:'Meta', stripe:'Stripe', plaid:'Plaid', checkr:'Checkr' };
+        var brands = { uber:'Uber', dell:'Dell', microsoft:'Microsoft', fedex:'FedEx', amazon:'Amazon', google:'Google', apple:'Apple', meta:'Meta', stripe:'Stripe', plaid:'Plaid', checkr:'Checkr', youtube:'YouTube', netflix:'Netflix', spotify:'Spotify', shopify:'Shopify', salesforce:'Salesforce', oracle:'Oracle', ibm:'IBM', adobe:'Adobe', cisco:'Cisco', sap:'SAP', hp:'HP', intel:'Intel', paypal:'PayPal', tesla:'Tesla', doordash:'DoorDash', xerox:'Xerox', slack:'Slack', zoom:'Zoom' };
         return brands[name] || capitalize(name);
     }
 
