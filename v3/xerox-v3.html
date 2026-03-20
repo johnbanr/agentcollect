@@ -51,8 +51,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
   linear-gradient(90deg, rgba(79,70,229,.015) 1px, transparent 1px);
   background-size:80px 80px;pointer-events:none}
 .hero-km-logo{height:32px;margin-bottom:52px;opacity:.7}
-.hero-title{font-size:20px;font-weight:700;color:var(--text);letter-spacing:-.02em;margin-bottom:6px;text-align:center}
-.hero-hint{font-size:13px;color:var(--muted);opacity:.6;text-align:center;margin-bottom:0}
+.hero-calling-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--blue);opacity:.7;margin-bottom:8px;text-align:center;animation:fadeInUp .6s ease .2s both}
+.hero-title{font-size:22px;font-weight:800;color:var(--text);letter-spacing:-.03em;margin-bottom:6px;text-align:center;animation:fadeInUp .6s ease .3s both}
+.hero-hint{font-size:14px;color:var(--green);opacity:.8;text-align:center;margin-bottom:0;font-weight:600;animation:fadeInUp .6s ease .4s both}
 
 /* Pulse rings — incoming call effect */
 .orb-ring{position:absolute;border-radius:50%;border:1.5px solid rgba(79,70,229,.12);pointer-events:none}
@@ -274,8 +275,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
     </div>
   </div>
 
-  <div class="hero-title">Your Xerox Holdings agent is calling.</div>
-  <div class="hero-hint">Click to answer</div>
+  <div class="hero-calling-label">Incoming call</div>
+  <div class="hero-title">Xerox Holdings Agent</div>
+  <div class="hero-hint">Tap to answer</div>
 
   <div class="orb-label" id="orb-label">Click to call your agent<span class="orb-label-hint">Live AI voice — 30 seconds</span></div>
 
