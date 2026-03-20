@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgentCollect — Split Screen Call Player</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --indigo: #4F46E5;
+            --indigo-light: #6366F1;
+            --indigo-glow: rgba(79, 70, 229, .35);
+            --green: #10B981;
+            --green-glow: rgba(16, 185, 129, .25);
+            --bg: #07070D;
+            --bg-glass: rgba(255, 255, 255, .03);
+            --border-glass: rgba(255, 255, 255, .06);
+            --white: #EEEEF2;
+            --white-dim: rgba(238, 238, 242, .45);
+            --white-ghost: rgba(238, 238, 242, .15);
+            --red: #EF4444;
+            --display: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            --sans: 'Inter', -apple-system, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+
+        html, body {
+            width: 100%; height: 100%;
+            overflow: hidden;
+            background: var(--bg);
+            font-family: var(--sans);
+            color: var(--white);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ═══ LAYOUT ═══ */
+        .split {
+            position: fixed; inset: 0;
+            display: flex;
+        }
+
+        .panel-left {
+            width: 45%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 40px 36px;
+            background: var(--bg-glass);
+            overflow-y: auto;
+            scrollbar-width: none;
+        }
+        .panel-left::-webkit-scrollbar { display: none; }
+
+        .divider {
+            width: 1px;
+            background: var(--border-glass);
+            flex-shrink: 0;
+        }
+
+        .panel-right {
+            width: 55%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* ═══ LOGO (top-left) ═══ */
+        .logo {
+            position: fixed;
+            top: 28px; left: 36px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 0;
+            font-family: var(--display);
+            font-weight: 900;
+            font-size: 17px;
+            letter-spacing: -0.02em;
+            color: var(--white);
+            opacity: 0.7;
+        }
+        .logo-dot {
+            display: inline-block;
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--indigo);
+            margin-left: 1px;
+            margin-bottom: 6px;
+        }
+
+        /* ═══ INTELLIGENCE PANEL (left) ═══ */
+        .intel-header {
+            margin-top: 36px;
+            margin-bottom: 24px;
+        }
+        .intel-label {
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: rgba(238, 238, 242, .35);
+            margin-bottom: 6px;
+        }
+        .intel-title {
+            font-family: var(--display);
+            font-weight: 800;
+            font-size: 13px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: rgba(238, 238, 242, .5);
+        }
+
+        /* Company card */
+        .company-card {
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: 14px;
+            padding: 22px 24px;
+            margin-bottom: 20px;
+        }
+        .company-top {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+        .company-logo {
+            width: 44px; height: 44px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, .08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--display);
+            font-weight: 900;
+            font-size: 18px;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+        .company-name {
+            font-family: var(--display);
+            font-weight: 800;
+            font-size: 20px;
+            letter-spacing: -0.01em;
+        }
+        .company-sub {
+            font-size: 12px;
+            color: rgba(238, 238, 242, .4);
+            margin-top: 2px;
+        }
+        .company-details {
+            display: flex;
+            gap: 24px;
+        }
+        .company-stat {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .company-stat-label {
+            font-family: var(--mono);
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(238, 238, 242, .3);
+        }
+        .company-stat-value {
+            font-family: var(--display);
+            font-weight: 800;
+            font-size: 16px;
+            color: var(--white);
+        }
+
+        /* Stage indicator */
+        .stage-indicator {
+            margin-bottom: 16px;
+            padding: 0 4px;
+        }
+        .stage-label {
+            font-family: var(--mono);
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--indigo-light);
+            opacity: 0;
+            transform: translateY(6px);
+            transition: all 0.5s cubic-bezier(.4,0,.2,1);
+        }
+        .stage-label.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Intelligence cards */
+        .insights-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .insight-card {
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid rgba(255, 255, 255, .05);
+            border-left: 3px solid rgba(255, 255, 255, .1);
+            border-radius: 10px;
+            padding: 14px 18px;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.6s cubic-bezier(.4,0,.2,1);
+        }
+        .insight-card.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .insight-card.green {
+            border-left-color: var(--green);
+        }
+        .insight-card.green .insight-detail {
+            color: var(--green);
+        }
+        .insight-label {
+            font-family: var(--mono);
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: rgba(238, 238, 242, .35);
+            margin-bottom: 4px;
+        }
+        .insight-detail {
+            font-family: var(--display);
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--white);
+        }
+
+        /* ═══ ORB (top-center of right panel) ═══ */
+        .orb-container {
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .orb {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%,
+                #818CF8 0%,
+                var(--indigo) 40%,
+                #3730A3 70%,
+                #1E1B4B 100%
+            );
+            box-shadow:
+                0 0 40px 10px var(--indigo-glow),
+                0 0 80px 30px rgba(79, 70, 229, .1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .orb.speaking-agent {
+            transform: scale(1.15);
+            box-shadow:
+                0 0 50px 15px var(--indigo-glow),
+                0 0 100px 40px rgba(79, 70, 229, .15);
+            animation: orbPulse 1.2s ease-in-out infinite;
+        }
+        .orb.speaking-human {
+            transform: scale(1.08);
+            box-shadow:
+                0 0 40px 10px rgba(255, 255, 255, .08),
+                0 0 80px 30px rgba(255, 255, 255, .04);
+            animation: orbPulseHuman 1.4s ease-in-out infinite;
+        }
+        @keyframes orbPulse {
+            0%, 100% { transform: scale(1.15); }
+            50% { transform: scale(1.22); }
+        }
+        @keyframes orbPulseHuman {
+            0%, 100% { transform: scale(1.08); }
+            50% { transform: scale(1.13); }
+        }
+
+        /* ═══ TELEPROMPTER (center of right panel) ═══ */
+        .teleprompter {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 85%;
+            max-width: 680px;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .subtitle-block {
+            position: relative;
+            min-height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .line-prev, .line-current {
+            transition: all 0.45s cubic-bezier(.4,0,.2,1);
+        }
+
+        .line-prev {
+            opacity: 0.15;
+            margin-bottom: 16px;
+        }
+
+        .speaker-tag {
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            margin-bottom: 8px;
+            transition: opacity 0.3s;
+        }
+        .speaker-tag.agent {
+            color: var(--indigo-light);
+            text-align: left;
+        }
+        .speaker-tag.human {
+            color: rgba(238, 238, 242, .4);
+            text-align: right;
+        }
+
+        .subtitle-text {
+            font-family: var(--display);
+            font-weight: 800;
+            font-size: 44px;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            color: var(--white);
+        }
+        .subtitle-text.agent {
+            text-align: left;
+        }
+        .subtitle-text.human {
+            text-align: right;
+            color: rgba(238, 238, 242, .7);
+        }
+
+        .line-prev .subtitle-text {
+            font-size: 32px;
+        }
+
+        /* ═══ TIMER (bottom-left of right panel) ═══ */
+        .timer {
+            position: absolute;
+            bottom: 32px;
+            left: 36px;
+            font-family: var(--mono);
+            font-size: 13px;
+            font-weight: 400;
+            color: rgba(238, 238, 242, .25);
+            letter-spacing: 0.06em;
+        }
+
+        /* ═══ END CALL (bottom-center of right panel) ═══ */
+        .end-call {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 52px; height: 52px;
+            border-radius: 50%;
+            background: var(--red);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(239, 68, 68, .3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .end-call:hover {
+            transform: translateX(-50%) scale(1.08);
+            box-shadow: 0 6px 28px rgba(239, 68, 68, .45);
+        }
+        .end-call svg {
+            width: 22px; height: 22px;
+            fill: white;
+        }
+
+        /* ═══ POST-CALL OVERLAY ═══ */
+        .post-call {
+            position: fixed; inset: 0;
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.8s cubic-bezier(.4,0,.2,1);
+        }
+        .post-call.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .post-headline {
+            font-family: var(--display);
+            font-weight: 900;
+            font-size: 56px;
+            letter-spacing: -0.03em;
+            color: var(--white);
+            text-align: center;
+            margin-bottom: 12px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(.4,0,.2,1) 0.3s;
+        }
+        .post-call.visible .post-headline {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .post-sub {
+            font-family: var(--sans);
+            font-size: 18px;
+            color: rgba(238, 238, 242, .45);
+            text-align: center;
+            margin-bottom: 48px;
+            opacity: 0;
+            transform: translateY(16px);
+            transition: all 0.6s cubic-bezier(.4,0,.2,1) 0.5s;
+        }
+        .post-call.visible .post-sub {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .post-stats {
+            display: flex;
+            gap: 48px;
+            margin-bottom: 56px;
+            opacity: 0;
+            transform: translateY(16px);
+            transition: all 0.6s cubic-bezier(.4,0,.2,1) 0.7s;
+        }
+        .post-call.visible .post-stats {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .post-stat {
+            text-align: center;
+        }
+        .post-stat-value {
+            font-family: var(--display);
+            font-weight: 900;
+            font-size: 36px;
+            color: var(--green);
+            margin-bottom: 4px;
+        }
+        .post-stat-label {
+            font-family: var(--mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(238, 238, 242, .35);
+        }
+
+        .post-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            background: var(--indigo);
+            color: white;
+            font-family: var(--display);
+            font-weight: 700;
+            font-size: 16px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 4px 24px var(--indigo-glow);
+            transition: transform 0.2s, box-shadow 0.2s;
+            opacity: 0;
+            transform: translateY(16px);
+            transition: all 0.6s cubic-bezier(.4,0,.2,1) 0.9s;
+        }
+        .post-call.visible .post-cta {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .post-cta:hover {
+            transform: scale(1.04);
+            box-shadow: 0 6px 32px rgba(79, 70, 229, .5);
+        }
+
+        .post-timer-label {
+            margin-top: 20px;
+            font-family: var(--mono);
+            font-size: 11px;
+            color: rgba(238, 238, 242, .25);
+            letter-spacing: 0.08em;
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(.4,0,.2,1) 1.1s;
+        }
+        .post-call.visible .post-timer-label {
+            opacity: 1;
+        }
+
+        /* ═══ SUBTLE BG GRADIENT ═══ */
+        .bg-glow {
+            position: fixed;
+            width: 600px; height: 600px;
+            border-radius: 50%;
+            filter: blur(200px);
+            pointer-events: none;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        .bg-glow-1 {
+            top: -200px; right: 10%;
+            background: var(--indigo);
+        }
+        .bg-glow-2 {
+            bottom: -300px; left: 30%;
+            background: #3730A3;
+            opacity: 0.08;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background glows -->
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+
+    <!-- Main split layout -->
+    <div class="split" id="split">
+
+        <!-- LEFT: Intelligence Panel -->
+        <div class="panel-left">
+            <div class="logo">
+                AgentCollect<span class="logo-dot"></span>
+            </div>
+
+            <div class="intel-header">
+                <div class="intel-label">Real-time</div>
+                <div class="intel-title">Intelligence</div>
+            </div>
+
+            <!-- Company card -->
+            <div class="company-card">
+                <div class="company-top">
+                    <div class="company-logo">X</div>
+                    <div>
+                        <div class="company-name">Xerox</div>
+                        <div class="company-sub">Acme Corp &mdash; Schweber Law</div>
+                    </div>
+                </div>
+                <div class="company-details">
+                    <div class="company-stat">
+                        <div class="company-stat-label">Outstanding</div>
+                        <div class="company-stat-value">$3,200</div>
+                    </div>
+                    <div class="company-stat">
+                        <div class="company-stat-label">Invoice</div>
+                        <div class="company-stat-value">#4721</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stage indicator -->
+            <div class="stage-indicator">
+                <div class="stage-label" id="stageLabel">Introduction</div>
+            </div>
+
+            <!-- Insights stack -->
+            <div class="insights-stack" id="insightsStack"></div>
+        </div>
+
+        <!-- Divider -->
+        <div class="divider"></div>
+
+        <!-- RIGHT: Live Conversation -->
+        <div class="panel-right">
+
+            <!-- Orb -->
+            <div class="orb-container">
+                <div class="orb" id="orb"></div>
+            </div>
+
+            <!-- Teleprompter -->
+            <div class="teleprompter">
+                <div class="subtitle-block" id="subtitleBlock">
+                    <div class="line-prev" id="linePrev"></div>
+                    <div class="line-current" id="lineCurrent"></div>
+                </div>
+            </div>
+
+            <!-- Timer -->
+            <div class="timer" id="timer">0:00</div>
+
+            <!-- End Call -->
+            <button class="end-call" id="endCallBtn" title="End Call">
+                <svg viewBox="0 0 24 24"><path d="M12 9c-1.6 0-3.15.25-4.6.72v3.1c0 .39-.23.74-.56.9-.98.49-1.87 1.12-2.66 1.85-.18.18-.43.28-.7.28-.28 0-.53-.11-.71-.29L.29 13.08a.956.956 0 010-1.36C3.42 8.63 7.47 7 12 7s8.58 1.63 11.71 4.72c.18.18.29.43.29.71 0 .28-.11.53-.29.71l-2.48 2.48c-.18.18-.43.29-.71.29-.27 0-.52-.1-.7-.28-.79-.73-1.68-1.36-2.66-1.85a.996.996 0 01-.56-.9v-3.1C15.15 9.25 13.6 9 12 9z"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Post-call overlay -->
+    <div class="post-call" id="postCall">
+        <div class="post-headline">That was your agent.</div>
+        <div class="post-sub">55 seconds. One resolved invoice. Zero human time.</div>
+        <div class="post-stats">
+            <div class="post-stat">
+                <div class="post-stat-value">55s</div>
+                <div class="post-stat-label">Call Duration</div>
+            </div>
+            <div class="post-stat">
+                <div class="post-stat-value">$3,200</div>
+                <div class="post-stat-label">Resolved</div>
+            </div>
+            <div class="post-stat">
+                <div class="post-stat-value">6</div>
+                <div class="post-stat-label">Insights Captured</div>
+            </div>
+        </div>
+        <a href="https://cal.com/johnb/30" target="_blank" class="post-cta">
+            15 min to go live
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <div class="post-timer-label">Fully autonomous. No scripts. No agents.</div>
+    </div>
+
+    <script>
+    // ═══ SCRIPT DATA ═══
+    const script = [
+        { time: 0, speaker: 'agent', text: 'Good afternoon, this is Sarah calling on behalf of Schweber Law regarding an outstanding balance.' },
+        { time: 0.5, stage: 'Introduction' },
+        { time: 5.5, speaker: 'human', text: 'Yeah, who is this?' },
+        { time: 8.5, speaker: 'agent', text: "I'm reaching out about invoice 4-7-2-1 for three thousand two hundred dollars from Acme Corp." },
+        { time: 10, insight: { label: 'Balance Disclosed', detail: '$3,200' } },
+        { time: 14, speaker: 'human', text: 'Oh right, yeah I know about that.' },
+        { time: 16.5, insight: { label: 'Awareness', detail: 'Confirmed \u2713', color: 'green' } },
+        { time: 16.5, stage: 'Identity Verification' },
+        { time: 18, speaker: 'agent', text: 'Perfect. Just to confirm, am I speaking with Michael Thompson?' },
+        { time: 22, speaker: 'human', text: "That's me." },
+        { time: 24, insight: { label: 'Identity', detail: 'Verified \u2713', color: 'green' } },
+        { time: 24, stage: 'Balance Discussion' },
+        { time: 26, speaker: 'agent', text: 'Great. The current balance is three thousand two hundred dollars. We have several convenient options available for you today.' },
+        { time: 32, speaker: 'human', text: 'I mean, I can probably do something. What are the options?' },
+        { time: 35, insight: { label: 'Payment Intent', detail: 'Receptive', color: 'green' } },
+        { time: 37, speaker: 'agent', text: 'We can set up a one-time payment, or I can offer a three-month installment plan. Which works better for your situation?' },
+        { time: 43, speaker: 'human', text: 'The installment thing sounds more doable.' },
+        { time: 46, insight: { label: 'Plan Selected', detail: 'Installment \u2713', color: 'green' } },
+        { time: 46, stage: 'Payment Resolution' },
+        { time: 48, speaker: 'agent', text: "Perfect choice. I'll send a secure payment link to your email right now. You'll receive it within the next minute." },
+        { time: 52, insight: { label: 'Resolution', detail: 'Link Sent \u2713', color: 'green' } },
+        { time: 52, stage: 'Confirmation' },
+        { time: 55, action: 'end' }
+    ];
+
+    // ═══ STATE ═══
+    let startTime = null;
+    let elapsed = 0;
+    let animFrame = null;
+    let firedIndices = new Set();
+    let prevLine = null;
+
+    // ═══ ELEMENTS ═══
+    const orb = document.getElementById('orb');
+    const timerEl = document.getElementById('timer');
+    const linePrev = document.getElementById('linePrev');
+    const lineCurrent = document.getElementById('lineCurrent');
+    const stageLabel = document.getElementById('stageLabel');
+    const insightsStack = document.getElementById('insightsStack');
+    const postCall = document.getElementById('postCall');
+    const endCallBtn = document.getElementById('endCallBtn');
+
+    // ═══ HELPERS ═══
+    function formatTime(s) {
+        const m = Math.floor(s / 60);
+        const sec = Math.floor(s % 60);
+        return `${m}:${sec.toString().padStart(2, '0')}`;
+    }
+
+    function chunkText(text, wordsPerChunk = 6) {
+        const words = text.split(' ');
+        const chunks = [];
+        for (let i = 0; i < words.length; i += wordsPerChunk) {
+            chunks.push(words.slice(i, i + wordsPerChunk).join(' '));
+        }
+        return chunks;
+    }
+
+    function showSubtitle(speaker, text) {
+        const chunks = chunkText(text, 6);
+        const speakerName = speaker === 'agent' ? 'SARAH' : 'YOU';
+
+        // Move current to prev
+        const currentContent = lineCurrent.innerHTML;
+        if (currentContent) {
+            linePrev.innerHTML = currentContent;
+        }
+
+        // Show first chunk immediately
+        showChunk(0);
+
+        function showChunk(idx) {
+            if (idx >= chunks.length) return;
+
+            // If not the first chunk, move previous chunk up
+            if (idx > 0) {
+                linePrev.innerHTML = `
+                    <div class="speaker-tag ${speaker}">${speakerName}</div>
+                    <div class="subtitle-text ${speaker}">${chunks[idx - 1]}</div>
+                `;
+            }
+
+            lineCurrent.innerHTML = `
+                <div class="speaker-tag ${speaker}">${speakerName}</div>
+                <div class="subtitle-text ${speaker}">${chunks[idx]}</div>
+            `;
+
+            // Schedule next chunk
+            if (idx + 1 < chunks.length) {
+                const wordsInChunk = chunks[idx].split(' ').length;
+                const delay = wordsInChunk * 280; // ~280ms per word
+                setTimeout(() => showChunk(idx + 1), delay);
+            }
+        }
+
+        // Update orb
+        orb.className = 'orb';
+        void orb.offsetWidth; // force reflow
+        orb.classList.add(speaker === 'agent' ? 'speaking-agent' : 'speaking-human');
+    }
+
+    function addInsight(label, detail, color) {
+        const card = document.createElement('div');
+        card.className = 'insight-card' + (color === 'green' ? ' green' : '');
+        card.innerHTML = `
+            <div class="insight-label">${label}</div>
+            <div class="insight-detail">${detail}</div>
+        `;
+        insightsStack.appendChild(card);
+
+        // Trigger animation after append
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                card.classList.add('visible');
+            });
+        });
+    }
+
+    function setStage(name) {
+        stageLabel.textContent = name;
+        stageLabel.classList.remove('visible');
+        void stageLabel.offsetWidth;
+        stageLabel.classList.add('visible');
+    }
+
+    function showPostCall() {
+        // Clear orb
+        orb.className = 'orb';
+        // Clear subtitles
+        linePrev.innerHTML = '';
+        lineCurrent.innerHTML = '';
+
+        setTimeout(() => {
+            postCall.classList.add('visible');
+        }, 600);
+    }
+
+    // ═══ MAIN LOOP ═══
+    function tick(now) {
+        if (!startTime) startTime = now;
+        elapsed = (now - startTime) / 1000;
+
+        timerEl.textContent = formatTime(elapsed);
+
+        for (let i = 0; i < script.length; i++) {
+            if (firedIndices.has(i)) continue;
+            const ev = script[i];
+            if (elapsed >= ev.time) {
+                firedIndices.add(i);
+
+                if (ev.speaker) {
+                    showSubtitle(ev.speaker, ev.text);
+                }
+                if (ev.insight) {
+                    addInsight(ev.insight.label, ev.insight.detail, ev.insight.color);
+                }
+                if (ev.stage) {
+                    setStage(ev.stage);
+                }
+                if (ev.action === 'end') {
+                    showPostCall();
+                    return; // stop loop
+                }
+            }
+        }
+
+        animFrame = requestAnimationFrame(tick);
+    }
+
+    // ═══ START ═══
+    function startCall() {
+        // Show initial stage
+        requestAnimationFrame(() => {
+            stageLabel.classList.add('visible');
+        });
+        animFrame = requestAnimationFrame(tick);
+    }
+
+    endCallBtn.addEventListener('click', () => {
+        if (animFrame) cancelAnimationFrame(animFrame);
+        showPostCall();
+    });
+
+    // Auto-start on load
+    window.addEventListener('load', () => {
+        setTimeout(startCall, 800);
+    });
+    </script>
+</body>
+</html>

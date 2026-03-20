@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgentCollect — Konica Enhanced Call Player</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --indigo: #4F46E5;
+            --indigo-light: #6366F1;
+            --indigo-glow: rgba(79, 70, 229, 0.35);
+            --green: #10B981;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --bg-page: #07070D;
+            --bg-widget: #0f0f1a;
+            --border: rgba(255, 255, 255, 0.08);
+            --white: #EEEEF2;
+            --white-dim: rgba(238, 238, 242, 0.5);
+            --white-ghost: rgba(238, 238, 242, 0.15);
+            --red: #EF4444;
+            --display: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            --sans: 'Inter', -apple-system, sans-serif;
+        }
+
+        html, body {
+            width: 100%; height: 100%;
+            background: var(--bg-page);
+            font-family: var(--sans);
+            color: var(--white);
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* ═══ BRAND WATERMARK ═══ */
+        .brand-watermark {
+            position: fixed;
+            top: 24px; left: 28px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--display);
+            font-weight: 900;
+            font-size: 15px;
+            color: rgba(238, 238, 242, 0.25);
+            letter-spacing: -0.3px;
+            z-index: 100;
+        }
+        .brand-watermark .dot {
+            width: 6px; height: 6px;
+            background: var(--indigo);
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 1px;
+            position: relative;
+            top: -4px;
+        }
+
+        /* ═══ WIDGET ═══ */
+        .widget {
+            width: 100%;
+            max-width: 480px;
+            background: var(--bg-widget);
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow:
+                0 0 80px rgba(79, 70, 229, 0.08),
+                0 4px 60px rgba(0, 0, 0, 0.5);
+            max-height: 90vh;
+        }
+
+        /* ═══ HEADER ═══ */
+        .widget-header {
+            padding: 28px 28px 0;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-shrink: 0;
+        }
+        .agent-orb {
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--indigo), var(--indigo-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            flex-shrink: 0;
+        }
+        .agent-orb::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            border: 2px solid rgba(79, 70, 229, 0.3);
+            animation: orbPulse 2s ease-in-out infinite;
+        }
+        @keyframes orbPulse {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.15); opacity: 0; }
+        }
+        .agent-orb svg {
+            width: 20px; height: 20px;
+            fill: white;
+        }
+        .header-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .header-text h2 {
+            font-family: var(--display);
+            font-weight: 800;
+            font-size: 17px;
+            color: var(--white);
+            letter-spacing: -0.3px;
+        }
+        .header-text span {
+            font-size: 12px;
+            color: var(--white-dim);
+            font-weight: 500;
+        }
+        .live-badge {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--green);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+        .live-dot {
+            width: 7px; height: 7px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: livePulse 1.5s ease-in-out infinite;
+        }
+        @keyframes livePulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
+            50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+        }
+
+        /* ═══ WAVEFORM ═══ */
+        .waveform-area {
+            padding: 20px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            flex-shrink: 0;
+        }
+        .wave-bar {
+            width: 3px;
+            background: var(--indigo);
+            border-radius: 2px;
+            transition: height 0.15s ease;
+            opacity: 0.7;
+        }
+        .wave-bar.active {
+            opacity: 1;
+        }
+
+        /* ═══ TIMER ═══ */
+        .timer {
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--white-dim);
+            font-variant-numeric: tabular-nums;
+            padding-bottom: 16px;
+            flex-shrink: 0;
+            letter-spacing: 0.5px;
+        }
+
+        /* ═══ DIVIDER ═══ */
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 0 28px;
+            flex-shrink: 0;
+        }
+
+        /* ═══ TRANSCRIPT ═══ */
+        .transcript-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            min-height: 200px;
+            max-height: 320px;
+            scroll-behavior: smooth;
+        }
+        .transcript-area::-webkit-scrollbar {
+            width: 4px;
+        }
+        .transcript-area::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .transcript-area::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+        }
+
+        .transcript-line {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            opacity: 0;
+            transform: translateY(12px);
+            animation: lineIn 0.4s ease forwards;
+        }
+        @keyframes lineIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .transcript-line .speaker {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+        }
+        .transcript-line .speaker.agent {
+            color: var(--indigo-light);
+        }
+        .transcript-line .speaker.human {
+            color: var(--green);
+        }
+        .transcript-line .text {
+            font-size: 14px;
+            line-height: 1.55;
+            color: rgba(238, 238, 242, 0.85);
+            font-weight: 400;
+        }
+
+        /* ═══ END CALL BUTTON ═══ */
+        .call-controls {
+            padding: 20px 28px 24px;
+            display: flex;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .end-call-btn {
+            width: 56px; height: 56px;
+            border-radius: 50%;
+            background: var(--red);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 20px rgba(239, 68, 68, 0.3);
+        }
+        .end-call-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 4px 30px rgba(239, 68, 68, 0.5);
+        }
+        .end-call-btn svg {
+            width: 24px; height: 24px;
+            fill: white;
+        }
+
+        /* ═══ POST-CALL SUMMARY ═══ */
+        .summary-card {
+            display: none;
+            flex-direction: column;
+            padding: 32px 28px;
+            gap: 24px;
+            opacity: 0;
+            animation: summaryFadeIn 0.6s ease 0.3s forwards;
+        }
+        .summary-card.visible {
+            display: flex;
+        }
+        @keyframes summaryFadeIn {
+            to { opacity: 1; }
+        }
+
+        .summary-headline {
+            text-align: center;
+        }
+        .summary-headline h3 {
+            font-family: var(--display);
+            font-weight: 900;
+            font-size: 22px;
+            color: var(--white);
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+        }
+        .summary-headline p {
+            font-size: 13px;
+            color: var(--white-dim);
+            line-height: 1.5;
+        }
+
+        .summary-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+        }
+        .stat-box {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 16px 12px;
+            text-align: center;
+        }
+        .stat-box .value {
+            font-family: var(--display);
+            font-weight: 800;
+            font-size: 20px;
+            color: var(--white);
+            letter-spacing: -0.5px;
+        }
+        .stat-box .label {
+            font-size: 10px;
+            color: var(--white-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+
+        .summary-cta {
+            display: flex;
+            justify-content: center;
+        }
+        .summary-cta a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            background: var(--indigo);
+            color: white;
+            font-family: var(--display);
+            font-weight: 700;
+            font-size: 14px;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            letter-spacing: -0.2px;
+        }
+        .summary-cta a:hover {
+            background: var(--indigo-light);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 30px var(--indigo-glow);
+        }
+        .summary-cta a svg {
+            width: 16px; height: 16px;
+            fill: white;
+        }
+
+        /* ═══ CALL-ACTIVE vs POST-CALL states ═══ */
+        .call-active { display: contents; }
+        .call-active.hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <!-- Brand watermark -->
+    <div class="brand-watermark">
+        AgentCollect<span class="dot"></span>
+    </div>
+
+    <!-- Widget -->
+    <div class="widget">
+
+        <!-- Active call UI -->
+        <div class="call-active" id="callActive">
+            <!-- Header -->
+            <div class="widget-header">
+                <div class="agent-orb">
+                    <svg viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 00-1.02.24l-2.2 2.2a15.045 15.045 0 01-6.59-6.59l2.2-2.21a.96.96 0 00.25-1A11.36 11.36 0 018.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+                </div>
+                <div class="header-text">
+                    <h2>Xerox Agent</h2>
+                    <span>Sarah &middot; AI Collection Specialist</span>
+                </div>
+                <div class="live-badge" id="liveBadge">
+                    <div class="live-dot"></div>
+                    LIVE
+                </div>
+            </div>
+
+            <!-- Waveform -->
+            <div class="waveform-area" id="waveform"></div>
+
+            <!-- Timer -->
+            <div class="timer" id="timer">0:00</div>
+
+            <!-- Divider -->
+            <div class="divider"></div>
+
+            <!-- Transcript -->
+            <div class="transcript-area" id="transcript"></div>
+
+            <!-- End call -->
+            <div class="call-controls">
+                <button class="end-call-btn" id="endCallBtn" title="End call">
+                    <svg viewBox="0 0 24 24"><path d="M12 9c-1.6 0-3.15.25-4.6.72v3.1c0 .39-.23.74-.56.9-.98.49-1.87 1.12-2.66 1.85-.18.18-.43.28-.7.28-.28 0-.53-.11-.71-.29L.29 13.08a.956.956 0 010-1.36C3.42 8.63 7.47 7 12 7s8.58 1.63 11.71 4.72c.18.18.29.44.29.71 0 .28-.11.53-.29.71l-2.48 2.48c-.18.18-.43.29-.71.29-.27 0-.52-.11-.7-.28a11.27 11.27 0 00-2.67-1.85.996.996 0 01-.56-.9v-3.1C15.15 9.25 13.6 9 12 9z"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Post-call summary -->
+        <div class="summary-card" id="summaryCard">
+            <div class="summary-headline">
+                <h3>That was your agent.</h3>
+                <p>Calls. Emails. SMS. Every channel &mdash; one AI.</p>
+            </div>
+
+            <div class="summary-stats">
+                <div class="stat-box">
+                    <div class="value">0:51</div>
+                    <div class="label">Duration</div>
+                </div>
+                <div class="stat-box">
+                    <div class="value">$3,200</div>
+                    <div class="label">Recovered</div>
+                </div>
+                <div class="stat-box">
+                    <div class="value">3-mo</div>
+                    <div class="label">Plan</div>
+                </div>
+            </div>
+
+            <div class="summary-cta">
+                <a href="https://cal.com/johnb/30" target="_blank">
+                    15 min to go live
+                    <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // ═══ SCRIPTED CONVERSATION ═══
+        const script = [
+            { time: 0, speaker: 'agent', text: 'Good afternoon, this is Sarah calling on behalf of Schweber Law regarding an outstanding balance.' },
+            { time: 5.5, speaker: 'human', text: 'Yeah, who is this?' },
+            { time: 8.5, speaker: 'agent', text: "I'm reaching out about invoice 4-7-2-1 for three thousand two hundred dollars from Acme Corp." },
+            { time: 14, speaker: 'human', text: 'Oh right, yeah I know about that.' },
+            { time: 18, speaker: 'agent', text: 'Perfect. Just to confirm, am I speaking with Michael Thompson?' },
+            { time: 22, speaker: 'human', text: "That's me." },
+            { time: 26, speaker: 'agent', text: 'Great. The current balance is three thousand two hundred dollars. We have several convenient options available for you today.' },
+            { time: 32, speaker: 'human', text: 'I mean, I can probably do something. What are the options?' },
+            { time: 37, speaker: 'agent', text: 'We can set up a one-time payment, or I can offer a three-month installment plan. Which works better for your situation?' },
+            { time: 43, speaker: 'human', text: 'The installment thing sounds more doable.' },
+            { time: 48, speaker: 'agent', text: "Perfect choice. I'll send a secure payment link to your email right now. You'll receive it within the next minute." },
+            { time: 55, action: 'end' }
+        ];
+
+        // ═══ ELEMENTS ═══
+        const transcript = document.getElementById('transcript');
+        const timer = document.getElementById('timer');
+        const waveform = document.getElementById('waveform');
+        const callActive = document.getElementById('callActive');
+        const summaryCard = document.getElementById('summaryCard');
+        const liveBadge = document.getElementById('liveBadge');
+        const endCallBtn = document.getElementById('endCallBtn');
+
+        // ═══ WAVEFORM BARS ═══
+        const BAR_COUNT = 40;
+        const bars = [];
+        for (let i = 0; i < BAR_COUNT; i++) {
+            const bar = document.createElement('div');
+            bar.className = 'wave-bar';
+            bar.style.height = '4px';
+            waveform.appendChild(bar);
+            bars.push(bar);
+        }
+
+        // ═══ STATE ═══
+        let startTime = null;
+        let animFrame = null;
+        let callEnded = false;
+        let currentSpeaker = null;
+
+        // ═══ TIMER ═══
+        function updateTimer() {
+            if (callEnded) return;
+            const elapsed = (Date.now() - startTime) / 1000;
+            const m = Math.floor(elapsed / 60);
+            const s = Math.floor(elapsed % 60);
+            timer.textContent = `${m}:${s.toString().padStart(2, '0')}`;
+        }
+
+        // ═══ WAVEFORM ANIMATION ═══
+        function animateWaveform() {
+            if (callEnded) return;
+            const now = Date.now() / 1000;
+            bars.forEach((bar, i) => {
+                const isAgent = currentSpeaker === 'agent';
+                const isHuman = currentSpeaker === 'human';
+                const base = isAgent ? 18 : isHuman ? 12 : 4;
+                const variance = isAgent ? 22 : isHuman ? 16 : 2;
+                const speed = isAgent ? 4 : 3;
+                const h = base + Math.sin(now * speed + i * 0.4) * variance * Math.random();
+                bar.style.height = Math.max(3, h) + 'px';
+                bar.classList.toggle('active', isAgent || isHuman);
+                if (isHuman) {
+                    bar.style.background = 'var(--green)';
+                } else {
+                    bar.style.background = 'var(--indigo)';
+                }
+            });
+            animFrame = requestAnimationFrame(animateWaveform);
+        }
+
+        // ═══ ADD TRANSCRIPT LINE ═══
+        function addLine(speaker, text) {
+            const div = document.createElement('div');
+            div.className = 'transcript-line';
+            const label = speaker === 'agent' ? 'SARAH' : 'YOU';
+            const cls = speaker === 'agent' ? 'agent' : 'human';
+            div.innerHTML = `
+                <span class="speaker ${cls}">${label}</span>
+                <span class="text">${text}</span>
+            `;
+            transcript.appendChild(div);
+            // Auto-scroll to bottom
+            requestAnimationFrame(() => {
+                transcript.scrollTop = transcript.scrollHeight;
+            });
+        }
+
+        // ═══ END CALL ═══
+        function endCall() {
+            if (callEnded) return;
+            callEnded = true;
+            cancelAnimationFrame(animFrame);
+
+            // Flatten waveform
+            bars.forEach(bar => {
+                bar.style.height = '3px';
+                bar.style.opacity = '0.3';
+            });
+
+            // Hide live badge
+            liveBadge.style.opacity = '0';
+
+            // Transition to summary
+            setTimeout(() => {
+                callActive.classList.add('hidden');
+                summaryCard.classList.add('visible');
+            }, 600);
+        }
+
+        // ═══ END CALL BUTTON ═══
+        endCallBtn.addEventListener('click', endCall);
+
+        // ═══ START ═══
+        function start() {
+            startTime = Date.now();
+            animateWaveform();
+
+            // Timer tick
+            setInterval(updateTimer, 250);
+
+            // Schedule transcript lines
+            script.forEach(entry => {
+                setTimeout(() => {
+                    if (callEnded) return;
+                    if (entry.action === 'end') {
+                        endCall();
+                        return;
+                    }
+                    currentSpeaker = entry.speaker;
+                    addLine(entry.speaker, entry.text);
+
+                    // Reset speaker after a pause (simulate silence between lines)
+                    const nextEntry = script.find(e => e.time > entry.time);
+                    if (nextEntry && !nextEntry.action) {
+                        const gap = (nextEntry.time - entry.time) * 1000;
+                        setTimeout(() => {
+                            if (!callEnded && currentSpeaker === entry.speaker) {
+                                currentSpeaker = null;
+                            }
+                        }, Math.min(gap - 500, gap * 0.7));
+                    }
+                }, entry.time * 1000);
+            });
+        }
+
+        // Auto-start on load
+        window.addEventListener('load', () => {
+            setTimeout(start, 500);
+        });
+    </script>
+</body>
+</html>

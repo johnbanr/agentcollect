@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgentCollect - Cinema Call Player</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --indigo: #4F46E5;
+    --green: #10B981;
+    --bg: #07070D;
+    --text: #FAFBFF;
+    --red: #EF4444;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+  }
+
+  /* Radial gradient overlay */
+  .bg-gradient {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 20%, rgba(79,70,229,0.08) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 40% at 50% 80%, rgba(16,185,129,0.04) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Logo top-left */
+  .logo {
+    position: fixed;
+    top: 32px;
+    left: 40px;
+    z-index: 10;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    opacity: 0.7;
+  }
+  .logo-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background: var(--indigo);
+    border-radius: 50%;
+    margin-left: 1px;
+    vertical-align: super;
+    position: relative;
+    top: -2px;
+  }
+
+  /* Geo card top-right */
+  .geo-card {
+    position: fixed;
+    top: 36px;
+    right: 40px;
+    z-index: 10;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(250,251,255,0.35);
+    letter-spacing: 0.04em;
+  }
+
+  /* Orb */
+  .orb-container {
+    position: fixed;
+    top: 15vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .orb {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 35%, rgba(79,70,229,0.9) 0%, rgba(79,70,229,0.4) 50%, rgba(79,70,229,0.1) 80%, transparent 100%);
+    box-shadow: 0 0 60px rgba(79,70,229,0.25), 0 0 120px rgba(79,70,229,0.1);
+    transition: transform 0.6s ease, box-shadow 0.6s ease, background 0.8s ease;
+    animation: orb-idle 4s ease-in-out infinite;
+  }
+  .orb.agent-speaking {
+    animation: orb-pulse 1.2s ease-in-out infinite;
+    box-shadow: 0 0 80px rgba(79,70,229,0.4), 0 0 160px rgba(79,70,229,0.15);
+  }
+  .orb.human-speaking {
+    background: radial-gradient(circle at 40% 35%, rgba(16,185,129,0.8) 0%, rgba(79,70,229,0.35) 50%, rgba(79,70,229,0.1) 80%, transparent 100%);
+    animation: orb-pulse 1.4s ease-in-out infinite;
+    box-shadow: 0 0 80px rgba(16,185,129,0.3), 0 0 160px rgba(16,185,129,0.1);
+  }
+
+  @keyframes orb-idle {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+  }
+  @keyframes orb-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+  }
+
+  /* Stage label */
+  .stage-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: rgba(79,70,229,0.6);
+    transition: opacity 0.5s ease;
+  }
+  .stage-label.changing {
+    animation: stage-fade 0.6s ease;
+  }
+  @keyframes stage-fade {
+    0% { opacity: 0; transform: translateY(6px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Insight line */
+  .insight-bar {
+    position: fixed;
+    bottom: 180px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: rgba(250,251,255,0.4);
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    white-space: nowrap;
+  }
+  .insight-bar.visible {
+    opacity: 1;
+  }
+  .insight-bar .insight-label {
+    color: rgba(79,70,229,0.7);
+  }
+  .insight-bar .insight-detail {
+    color: rgba(16,185,129,0.8);
+    margin-left: 8px;
+  }
+
+  /* Teleprompter subtitles */
+  .subtitle-container {
+    position: fixed;
+    bottom: 220px;
+    left: 40px;
+    right: 40px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    pointer-events: none;
+  }
+  .subtitle-line {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    max-width: 75%;
+  }
+  .subtitle-line.agent {
+    align-self: flex-start;
+    text-align: left;
+  }
+  .subtitle-line.human {
+    align-self: flex-end;
+    text-align: right;
+  }
+  .subtitle-line .speaker-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .subtitle-line.agent .speaker-tag { color: var(--indigo); }
+  .subtitle-line.human .speaker-tag { color: var(--green); }
+
+  .subtitle-line .subtitle-text {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: clamp(32px, 4.5vw, 56px);
+    line-height: 1.15;
+    color: var(--text);
+  }
+  .subtitle-line.human .subtitle-text {
+    color: rgba(250,251,255,0.8);
+  }
+  .subtitle-line.dimmed {
+    opacity: 0.15;
+    transform: translateY(-8px);
+  }
+  .subtitle-line.current {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .subtitle-line.entering {
+    animation: slide-up 0.45s ease-out forwards;
+  }
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Timer + waveform bottom-left */
+  .timer-area {
+    position: fixed;
+    bottom: 36px;
+    left: 40px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .timer {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: rgba(250,251,255,0.4);
+    letter-spacing: 0.05em;
+  }
+  .waveform {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    height: 20px;
+  }
+  .waveform .bar {
+    width: 2px;
+    background: rgba(79,70,229,0.5);
+    border-radius: 1px;
+    transition: height 0.15s ease;
+  }
+
+  /* End Call button */
+  .end-call-btn {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    background: var(--red);
+    color: white;
+    border: none;
+    border-radius: 40px;
+    padding: 14px 36px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: background 0.2s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .end-call-btn:hover {
+    background: #DC2626;
+    transform: translateX(-50%) scale(1.04);
+  }
+  .end-call-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Post-call overlay */
+  .post-call-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s ease;
+  }
+  .post-call-overlay.visible {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .post-call-overlay .headline {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 900;
+    font-size: clamp(36px, 5vw, 64px);
+    color: var(--text);
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .post-call-overlay .subheadline {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(16px, 2vw, 22px);
+    color: rgba(250,251,255,0.5);
+    margin-bottom: 56px;
+    text-align: center;
+    max-width: 600px;
+    line-height: 1.5;
+  }
+  .post-call-stats {
+    display: flex;
+    gap: 48px;
+    margin-bottom: 56px;
+  }
+  .stat-item {
+    text-align: center;
+  }
+  .stat-value {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 900;
+    font-size: 36px;
+    color: var(--indigo);
+  }
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(250,251,255,0.35);
+    margin-top: 8px;
+  }
+  .post-call-cta {
+    display: inline-block;
+    background: var(--indigo);
+    color: white;
+    text-decoration: none;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    padding: 18px 48px;
+    border-radius: 60px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    letter-spacing: -0.01em;
+  }
+  .post-call-cta:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 40px rgba(79,70,229,0.3);
+  }
+  .post-call-cta-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(250,251,255,0.3);
+    margin-top: 14px;
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-gradient"></div>
+
+<!-- Logo -->
+<div class="logo">AgentCollect<span class="logo-dot"></span></div>
+
+<!-- Geo card -->
+<div class="geo-card">San Francisco &middot; 2:47 PM PST &middot; &#9728;&#65039; 72&deg;F</div>
+
+<!-- Orb -->
+<div class="orb-container">
+  <div class="orb" id="orb"></div>
+  <div class="stage-label" id="stageLabel">INTRODUCTION</div>
+</div>
+
+<!-- Insight bar -->
+<div class="insight-bar" id="insightBar">
+  <span class="insight-label" id="insightLabel"></span>
+  <span class="insight-detail" id="insightDetail"></span>
+</div>
+
+<!-- Subtitles -->
+<div class="subtitle-container" id="subtitleContainer"></div>
+
+<!-- Timer + Waveform -->
+<div class="timer-area">
+  <div class="timer" id="timer">0:00</div>
+  <div class="waveform" id="waveform"></div>
+</div>
+
+<!-- End Call -->
+<button class="end-call-btn" id="endCallBtn">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+    <path d="M3 11l2-2a12.73 12.73 0 0114 0l2 2M8 14l-2 2M16 14l2 2"/>
+  </svg>
+  End Call
+</button>
+
+<!-- Post-call -->
+<div class="post-call-overlay" id="postCall">
+  <div class="headline">That was your agent.</div>
+  <div class="subheadline">Calls. Emails. SMS. Every channel &mdash; one AI.<br>Compliant, respectful, and relentless.</div>
+  <div class="post-call-stats">
+    <div class="stat-item">
+      <div class="stat-value">55s</div>
+      <div class="stat-label">Call Duration</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">$3,200</div>
+      <div class="stat-label">Resolved</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">3x</div>
+      <div class="stat-label">Installments</div>
+    </div>
+  </div>
+  <a href="https://cal.com/johnb/30" target="_blank" class="post-call-cta">15 min to go live</a>
+  <div class="post-call-cta-sub">Book a call &rarr; cal.com/johnb/30</div>
+</div>
+
+<script>
+  // --- Script data ---
+  const script = [
+    { time: 0, speaker: 'agent', text: 'Good afternoon, this is Sarah calling on behalf of Schweber Law regarding an outstanding balance.' },
+    { time: 0.5, stage: 'Introduction' },
+    { time: 5.5, speaker: 'human', text: 'Yeah, who is this?' },
+    { time: 8.5, speaker: 'agent', text: "I'm reaching out about invoice 4-7-2-1 for three thousand two hundred dollars from Acme Corp." },
+    { time: 10, insight: { label: 'Balance Disclosed', detail: '$3,200' } },
+    { time: 14, speaker: 'human', text: 'Oh right, yeah I know about that.' },
+    { time: 16.5, insight: { label: 'Awareness', detail: 'Confirmed \u2713' } },
+    { time: 16.5, stage: 'Identity Verification' },
+    { time: 18, speaker: 'agent', text: 'Perfect. Just to confirm, am I speaking with Michael Thompson?' },
+    { time: 22, speaker: 'human', text: "That's me." },
+    { time: 24, insight: { label: 'Identity', detail: 'Verified \u2713' } },
+    { time: 24, stage: 'Balance Discussion' },
+    { time: 26, speaker: 'agent', text: 'Great. The current balance is three thousand two hundred dollars. We have several convenient options available for you today.' },
+    { time: 32, speaker: 'human', text: 'I mean, I can probably do something. What are the options?' },
+    { time: 35, insight: { label: 'Payment Intent', detail: 'Receptive' } },
+    { time: 37, speaker: 'agent', text: 'We can set up a one-time payment, or I can offer a three-month installment plan. Which works better for your situation?' },
+    { time: 43, speaker: 'human', text: 'The installment thing sounds more doable.' },
+    { time: 46, insight: { label: 'Plan Selected', detail: 'Installment \u2713' } },
+    { time: 46, stage: 'Payment Resolution' },
+    { time: 48, speaker: 'agent', text: "Perfect choice. I'll send a secure payment link to your email right now. You'll receive it within the next minute." },
+    { time: 52, insight: { label: 'Resolution', detail: 'Link Sent \u2713' } },
+    { time: 52, stage: 'Confirmation' },
+    { time: 55, action: 'end' }
+  ];
+
+  // --- Waveform bars ---
+  const waveformEl = document.getElementById('waveform');
+  const barCount = 24;
+  const bars = [];
+  for (let i = 0; i < barCount; i++) {
+    const bar = document.createElement('div');
+    bar.className = 'bar';
+    bar.style.height = '4px';
+    waveformEl.appendChild(bar);
+    bars.push(bar);
+  }
+
+  // --- State ---
+  let startTime = null;
+  let currentSpeaker = null;
+  let insightTimeout = null;
+  let animFrame = null;
+  let scriptIndex = 0;
+  let ended = false;
+
+  const orb = document.getElementById('orb');
+  const stageLabel = document.getElementById('stageLabel');
+  const insightBar = document.getElementById('insightBar');
+  const insightLabel = document.getElementById('insightLabel');
+  const insightDetail = document.getElementById('insightDetail');
+  const subtitleContainer = document.getElementById('subtitleContainer');
+  const timer = document.getElementById('timer');
+  const endCallBtn = document.getElementById('endCallBtn');
+  const postCall = document.getElementById('postCall');
+
+  // --- Chunk text into ~6 word groups ---
+  function chunkText(text) {
+    const words = text.split(' ');
+    const chunks = [];
+    for (let i = 0; i < words.length; i += 6) {
+      chunks.push(words.slice(i, i + 6).join(' '));
+    }
+    return chunks;
+  }
+
+  // --- Show subtitle with teleprompter effect ---
+  function showSubtitle(speaker, text) {
+    const chunks = chunkText(text);
+    const speakerName = speaker === 'agent' ? 'SARAH' : 'YOU';
+
+    // Set orb state
+    currentSpeaker = speaker;
+    orb.className = 'orb';
+    orb.classList.add(speaker === 'agent' ? 'agent-speaking' : 'human-speaking');
+
+    // Show chunks sequentially
+    chunks.forEach((chunk, i) => {
+      setTimeout(() => {
+        // Dim all existing lines
+        const existing = subtitleContainer.querySelectorAll('.subtitle-line');
+        existing.forEach(el => {
+          el.classList.remove('current', 'entering');
+          el.classList.add('dimmed');
+        });
+
+        // Keep only the last dimmed line
+        while (subtitleContainer.children.length > 1) {
+          subtitleContainer.removeChild(subtitleContainer.firstChild);
+        }
+
+        // Create new line
+        const line = document.createElement('div');
+        line.className = `subtitle-line ${speaker} current entering`;
+        line.innerHTML = `
+          <span class="speaker-tag">${speakerName}</span>
+          <div class="subtitle-text">${chunk}</div>
+        `;
+        subtitleContainer.appendChild(line);
+      }, i * 1200);
+    });
+
+    // Reset orb after all chunks shown
+    const totalDuration = chunks.length * 1200 + 800;
+    setTimeout(() => {
+      orb.className = 'orb';
+      currentSpeaker = null;
+    }, totalDuration);
+  }
+
+  // --- Show insight ---
+  function showInsight(label, detail) {
+    insightLabel.textContent = label + ' \u00B7 ';
+    insightDetail.textContent = detail;
+    insightBar.classList.add('visible');
+
+    if (insightTimeout) clearTimeout(insightTimeout);
+    insightTimeout = setTimeout(() => {
+      insightBar.classList.remove('visible');
+    }, 4000);
+  }
+
+  // --- Update stage ---
+  function updateStage(name) {
+    stageLabel.textContent = name.toUpperCase();
+    stageLabel.classList.remove('changing');
+    void stageLabel.offsetWidth; // reflow
+    stageLabel.classList.add('changing');
+  }
+
+  // --- End call ---
+  function endCall() {
+    if (ended) return;
+    ended = true;
+    cancelAnimationFrame(animFrame);
+
+    // Clear subtitles
+    subtitleContainer.innerHTML = '';
+    insightBar.classList.remove('visible');
+    orb.className = 'orb';
+
+    // Show post-call after brief pause
+    setTimeout(() => {
+      postCall.classList.add('visible');
+    }, 600);
+  }
+
+  // --- Timer format ---
+  function formatTime(seconds) {
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60);
+    return `${m}:${s.toString().padStart(2, '0')}`;
+  }
+
+  // --- Waveform animation ---
+  function animateWaveform() {
+    bars.forEach(bar => {
+      const h = currentSpeaker
+        ? 3 + Math.random() * 17
+        : 3 + Math.random() * 3;
+      bar.style.height = h + 'px';
+      bar.style.background = currentSpeaker === 'human'
+        ? 'rgba(16,185,129,0.5)'
+        : 'rgba(79,70,229,0.5)';
+    });
+  }
+
+  // --- Main loop ---
+  function tick() {
+    if (ended) return;
+    const elapsed = (performance.now() - startTime) / 1000;
+
+    // Update timer
+    timer.textContent = formatTime(elapsed);
+
+    // Process script events
+    while (scriptIndex < script.length && script[scriptIndex].time <= elapsed) {
+      const event = script[scriptIndex];
+
+      if (event.speaker) {
+        showSubtitle(event.speaker, event.text);
+      } else if (event.stage) {
+        updateStage(event.stage);
+      } else if (event.insight) {
+        showInsight(event.insight.label, event.insight.detail);
+      } else if (event.action === 'end') {
+        endCall();
+        return;
+      }
+
+      scriptIndex++;
+    }
+
+    // Animate waveform
+    if (Math.floor(elapsed * 8) !== Math.floor((elapsed - 0.016) * 8)) {
+      animateWaveform();
+    }
+
+    animFrame = requestAnimationFrame(tick);
+  }
+
+  // --- End call button ---
+  endCallBtn.addEventListener('click', endCall);
+
+  // --- Start ---
+  window.addEventListener('load', () => {
+    startTime = performance.now();
+    animFrame = requestAnimationFrame(tick);
+  });
+</script>
+
+</body>
+</html>
