@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How AI collections solves luxury retail B2B challenges | Galeries Lafayette | AgentCollect</title>
+  <meta name="description" content="Why traditional collections fails in luxury retail — and how AI preserves high-value brand relationships while recovering B2B receivables from concession partners and suppliers.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="AI collections for luxury retail | Galeries Lafayette">
+  <meta property="og:description" content="When a single brand partnership is worth millions annually, collections can't risk the relationship. Here's how AI changes the equation for luxury retail.">
+  <meta property="og:type" content="article">
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "AI collections for luxury retail — the Galeries Lafayette challenge",
+    "description": "How AI-powered collections adapts to the unique challenges of luxury retail: high-value brand relationships, fashion calendar timing, multi-brand concessions, and cross-border suppliers.",
+    "author": { "@type": "Organization", "name": "AgentCollect" },
+    "publisher": { "@type": "Organization", "name": "AgentCollect", "url": "https://agentcollect.com" },
+    "about": { "@type": "Organization", "name": "Galeries Lafayette", "url": "https://galerieslafayette.com" }
+  }
+  </script>
+
+  <!-- Microsoft Clarity -->
+  <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","vtpmvp6kvr");</script>
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GRZZT9K05B"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-GRZZT9K05B');</script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --bg: #f6f3ef;
+      --bg-subtle: #eeebe6;
+      --bg-warm: #faf8f5;
+      --bg-dark: #121826;
+      --text: #0B1B3D;
+      --text-secondary: #525266;
+      --text-muted: #8e8ea0;
+      --accent: #4F46E5;
+      --font-display: 'Plus Jakarta Sans', sans-serif;
+      --accent-light: rgba(79,70,229,.06);
+      --accent-purple: #4F46E5;
+      --border: #e0ddd8;
+      --radius: 8px;
+      --radius-lg: 12px;
+      --max-width: 1200px;
+      --sidebar-width: 300px;
+      --green: #0d9488;
+      --green-bg: #f0fdfa;
+      --red: #dc2626;
+      --orange: #ea580c;
+      --blue: #3b82f6;
+      --indigo: #6366f1;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+
+    /* ── Progress Bar ── */
+    .progress-bar {
+      position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+      background: linear-gradient(90deg, var(--accent), #6366f1);
+      z-index: 200; transition: width 0.1s linear; border-radius: 0 2px 2px 0;
+    }
+
+    /* ── Nav ── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(246,243,239,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: var(--max-width); margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 18px; font-weight: 900; color: var(--text);
+      text-decoration: none; letter-spacing: -0.5px;
+    }
+    .dot {
+      display: inline-block; width: 6px; height: 6px;
+      border-radius: 50%; background: #4F46E5;
+      margin-left: 1px; vertical-align: super;
+    }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a {
+      font-size: 14px; color: var(--text-secondary); text-decoration: none;
+      font-weight: 500; transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--accent) !important; color: #fff !important;
+      padding: 8px 16px; border-radius: 6px; font-weight: 600 !important;
+      font-size: 13px !important; transition: opacity 0.15s;
+    }
+    .nav-cta:hover { opacity: 0.9; }
+
+    /* ── Breadcrumb ── */
+    .breadcrumb {
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+    }
+    .breadcrumb .container {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 14px; color: var(--text-muted);
+    }
+    .breadcrumb a { color: var(--accent); text-decoration: none; font-weight: 500; }
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    /* ── Layout: content + sidebar ── */
+    .cs-layout {
+      display: grid;
+      grid-template-columns: 1fr var(--sidebar-width);
+      gap: 64px; padding-top: 48px; padding-bottom: 80px; align-items: start;
+    }
+
+    /* ── Main content ── */
+    .cs-main { max-width: 780px; min-width: 0; }
+    .cs-main h1 {
+      font-family: var(--font-display);
+      font-size: 36px; font-weight: 700; line-height: 1.2;
+      letter-spacing: -0.5px; margin-bottom: 24px;
+    }
+    .cs-intro {
+      font-size: 17px; line-height: 1.7; color: var(--text-secondary);
+      margin-bottom: 40px;
+    }
+
+    /* Section labels */
+    .cs-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 2px; color: var(--accent); margin-bottom: 16px; display: block;
+    }
+
+    /* Sections */
+    .cs-section { margin-bottom: 48px; }
+    .cs-section h2 {
+      font-family: var(--font-display);
+      font-size: 24px; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.3px;
+    }
+    .cs-section p {
+      font-size: 16px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 16px;
+    }
+    .cs-section p strong { color: var(--text); }
+
+    /* Features list */
+    .cs-features { display: flex; flex-direction: column; gap: 20px; margin-top: 24px; }
+    .cs-feature { display: flex; gap: 16px; align-items: flex-start; }
+    .cs-feature-icon {
+      flex-shrink: 0; width: 40px; height: 40px; border-radius: 8px;
+      background: var(--accent-light);
+      display: flex; align-items: center; justify-content: center; color: var(--accent);
+    }
+    .cs-feature strong { display: block; font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .cs-feature p { font-size: 14px; color: var(--text-secondary); margin: 0; line-height: 1.5; }
+
+    /* CTA section */
+    .cs-cta {
+      background: var(--bg-subtle); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 40px; text-align: center;
+      margin-top: 48px;
+    }
+    .cs-cta h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+    .cs-cta p { font-size: 15px; color: var(--text-secondary); margin-bottom: 20px; }
+    .cs-cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .cs-cta-btn {
+      display: inline-block; background: var(--accent); color: #fff;
+      padding: 12px 28px; border-radius: 8px; font-weight: 600; font-size: 15px;
+      text-decoration: none; transition: opacity 0.15s;
+    }
+    .cs-cta-btn:hover { opacity: 0.9; }
+    .cs-trust-row {
+      display: flex; gap: 24px; justify-content: center; margin-top: 20px; flex-wrap: wrap;
+    }
+    .cs-trust-row span {
+      font-size: 12px; color: var(--text-muted); font-weight: 500;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .cs-trust-row span::before { content: '\2713'; color: var(--green); font-weight: 700; }
+
+    /* ── Sidebar ── */
+    .cs-sidebar { position: sticky; top: 72px; }
+    .cs-sidebar-inner { display: flex; flex-direction: column; gap: 20px; }
+    .cs-company-card {
+      border: 1px solid var(--border); border-radius: var(--radius-lg);
+      padding: 24px; background: #fff;
+    }
+    .cs-company-logo { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .cs-sidebar-section { margin-bottom: 16px; }
+    .cs-sidebar-section:last-child { margin-bottom: 0; }
+    .cs-sidebar-label {
+      font-size: 12px; font-weight: 600; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;
+    }
+    .cs-sidebar-value { font-size: 14px; font-weight: 500; color: var(--text); }
+    .cs-product-list { display: flex; flex-wrap: wrap; gap: 6px; }
+    .cs-product-tag {
+      display: inline-block; background: var(--accent-light); color: var(--accent);
+      padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;
+    }
+    .cs-sidebar-cta {
+      display: block; text-align: center; background: var(--accent); color: #fff;
+      padding: 12px 20px; border-radius: 8px; font-weight: 600; font-size: 14px;
+      text-decoration: none; transition: opacity 0.15s;
+    }
+    .cs-sidebar-cta:hover { opacity: 0.9; }
+
+    /* ── Footer ── */
+    .cs-footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 0 32px;
+    }
+    .cs-footer-inner {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 32px;
+    }
+    .cs-footer-brand p { font-size: 14px; color: var(--text-muted); margin-top: 8px; max-width: 300px; }
+    .cs-footer-links-grid { display: flex; gap: 48px; }
+    .cs-footer-links-grid div { display: flex; flex-direction: column; gap: 8px; }
+    .cs-footer-links-grid h4 {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1px; color: var(--text); margin-bottom: 4px;
+    }
+    .cs-footer-links-grid a { font-size: 13px; color: var(--text-secondary); text-decoration: none; }
+    .cs-footer-links-grid a:hover { color: var(--text); }
+    .cs-footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 24px; border-top: 1px solid var(--border);
+    }
+    .cs-footer-bottom p { font-size: 13px; color: var(--text-muted); }
+    .cs-footer-badges { display: flex; gap: 16px; }
+    .cs-footer-badges span {
+      font-size: 12px; color: var(--text-muted); font-weight: 500;
+      padding: 4px 10px; border: 1px solid var(--border); border-radius: 4px;
+    }
+
+    /* ── Video embed ── */
+    .cs-video-embed {
+      margin: 32px 0 40px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      border: 1px solid var(--border);
+      position: relative;
+    }
+    .cs-video-embed iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+      display: block;
+      border: none;
+    }
+    .cs-video-embed-caption {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 20px;
+      background: #fff;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .cs-video-embed-caption svg { flex-shrink: 0; }
+
+    /* ── Scroll animations ── */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Responsive ── */
+    @media (max-width: 1100px) {
+      .cs-layout { grid-template-columns: 1fr; gap: 32px; overflow: hidden; }
+      .cs-sidebar { position: static; order: 1; min-width: 0; }
+      .cs-sidebar-inner { flex-direction: row; flex-wrap: wrap; gap: 12px; }
+      .cs-company-card { flex: 1; min-width: 280px; }
+      .cs-sidebar-cta { flex: 0; white-space: nowrap; align-self: center; }
+      .cs-main h1 { font-size: 28px; }
+      .cs-footer-inner { flex-direction: column; gap: 24px; }
+      .cs-footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links a:not(.nav-cta) { display: none; }
+      .cs-main h1 { font-size: 24px; }
+      .breadcrumb { display: none; }
+      .cs-sidebar-inner { flex-direction: column; }
+      .cs-company-card { min-width: 0; }
+      .cs-sidebar-cta { white-space: normal; }
+      .cs-footer-links-grid { flex-direction: column; gap: 24px; }
+      .cs-section h2 { font-size: 20px; word-break: break-word; }
+      .cs-section p { word-break: break-word; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div class="progress-bar" id="progress-bar"></div>
+
+<!-- Nav -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">AgentCollect<span class="dot"></span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/customers">Customers</a>
+      <a href="https://cal.com/johnb/30" class="nav-cta">Book a demo</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <div class="container">
+    <a href="/customers">Customers</a>
+    <span class="breadcrumb-sep">/</span>
+    <span>Galeries Lafayette</span>
+  </div>
+</div>
+
+<!-- Main layout: content + sidebar -->
+<div class="container cs-layout">
+
+  <!-- LEFT: Main content -->
+  <main class="cs-main">
+
+    <!-- Galeries Lafayette logo -->
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px;margin-top:8px">
+      <svg width="120" height="32" viewBox="0 0 140 36" fill="#8801d2"><text x="70" y="15" font-family="Georgia,'Times New Roman',serif" font-style="italic" font-size="16" font-weight="700" text-anchor="middle" letter-spacing="1">Galeries</text><text x="70" y="33" font-family="Georgia,'Times New Roman',serif" font-style="italic" font-size="16" font-weight="700" text-anchor="middle" letter-spacing="1">Lafayette</text></svg>
+      <span style="font-family:var(--font-display);font-size:15px;font-weight:600;color:var(--text-muted);letter-spacing:0.5px;text-transform:uppercase">Industry Use Case</span>
+    </div>
+
+    <h1>When your concession partners are Chanel and Dior, collections can't sound like collections</h1>
+
+    <p class="cs-intro">Galeries Lafayette works with hundreds of luxury brands, designers, and concession partners. When a prestigious maison is late on a payment&mdash;whether it's concession fees, marketing co-investments, or seasonal buy commitments&mdash;the relationship is worth far more than any single invoice. But B2B receivables in luxury retail pile up fast, and traditional collection methods risk damaging partnerships that took decades to build.</p>
+
+    <!-- Video testimonial -->
+    <div class="cs-video-embed fade-in">
+      <iframe src="https://www.youtube.com/embed/TA8IQTUy6HE" title="Galeries Lafayette — AgentCollect" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      <div class="cs-video-embed-caption">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        <span>&ldquo;Une solution qui respecte l'image de marque tout en &eacute;tant efficace&rdquo; &mdash; Direction Financi&egrave;re, Galeries Lafayette</span>
+      </div>
+    </div>
+
+    <!-- Industry Challenge -->
+    <section class="cs-section fade-in">
+      <span class="cs-label">The industry challenge</span>
+      <h2>Luxury retail creates a collections problem where the relationship is always worth more than the debt</h2>
+      <p>A department store like Galeries Lafayette operates hundreds of concessions, pop-ups, and wholesale relationships with the world's most prestigious brands. When payments are late, the stakes go far beyond the balance owed. A poorly handled collection touchpoint with a major brand can cost a flagship floor position, an exclusive capsule launch, or a relationship that's been cultivated for generations.</p>
+
+      <div class="cs-features">
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          </div>
+          <div>
+            <strong>Relationships worth millions at stake</strong>
+            <p>A concession partnership with a house like Herm&egrave;s or Louis Vuitton generates millions in annual revenue. One aggressive collection email to the wrong person at LVMH finance and that relationship is damaged. Traditional agencies have no concept of "this debtor is also our most important partner."</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div>
+            <strong>Payment cycles tied to the fashion calendar</strong>
+            <p>Luxury retail doesn't operate on standard net-30 terms. Payments follow the fashion calendar&mdash;pre-collection orders in January, Spring/Summer deliveries, Paris Fashion Week commitments, Haute Couture season, holiday buying. A brand that's "late" in March may simply be on a cycle that peaks in April after the collections drop.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          </div>
+          <div>
+            <strong>Cross-border complexity</strong>
+            <p>Italian leather houses, French ateliers, Swiss watchmakers, Asian textile manufacturers, American streetwear brands. Each supplier operates in a different currency, regulatory environment, and business culture. A collection approach that works for a Milanese leather supplier will alienate a Japanese ceramics artisan.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div>
+            <strong>Multi-brand concession complexity</strong>
+            <p>A single floor at Galeries Lafayette may host 40 different brand concessions, each with its own payment terms, commission structures, and accounting contacts. Managing receivables across hundreds of these relationships&mdash;each with different corporate structures&mdash;overwhelms traditional collection workflows.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <strong>Prestige sensitivity</strong>
+            <p>In luxury, perception is everything. A brand that hears "your account has been sent to collections" doesn't just pay the invoice&mdash;they reconsider the relationship entirely. The mere framing of a payment conversation can determine whether a partner stays for another decade or quietly exits at contract renewal.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How AI Adapts -->
+    <section class="cs-section fade-in">
+      <span class="cs-label">How AI adapts</span>
+      <h2>AI outreach that speaks the language of luxury</h2>
+      <p>AgentCollect's AI doesn't just automate collection emails. It fundamentally understands that in luxury retail, every financial touchpoint is also a brand touchpoint&mdash;and calibrates accordingly.</p>
+
+      <div class="cs-features">
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+          <div>
+            <strong>Luxury-calibrated tone</strong>
+            <p>The AI understands that writing to the CFO of a couture house requires a fundamentally different register than writing to a startup's accounts payable. No "past due" warnings. No "failure to pay" language. Instead: a respectful acknowledgment of the outstanding balance, framed as a partnership matter, written with the polish that luxury professionals expect in every interaction.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div>
+            <strong>Fashion-calendar-aware timing</strong>
+            <p>The AI knows not to chase a payment during Paris Fashion Week. It understands that January is for Spring/Summer orders and cash is allocated to buying, not settling last season's invoices. It times outreach to align with when brands actually have budget cycles&mdash;post-season sell-through, after trunk show revenue lands, when co-op marketing budgets refresh.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div>
+            <strong>Relationship-first intelligence</strong>
+            <p>Before sending any outreach, the AI considers the full context of the relationship. A brand that's been a concession partner for 15 years and is 30 days late gets a gentle "friendly reminder" positioned as housekeeping. A new pop-up partner that's 90 days past due gets a more structured approach. The escalation curve adapts to the strategic value of each relationship.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          </div>
+          <div>
+            <strong>Multi-language sophistication</strong>
+            <p>A French atelier receives outreach in French. An Italian leather house gets Italian. A Japanese brand gets Japanese&mdash;with the correct level of formality (keigo) that luxury business culture demands. Not machine-translated templates, but culturally native communication that respects the nuances of each market.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Capabilities -->
+    <section class="cs-section fade-in">
+      <span class="cs-label">Key capabilities</span>
+      <h2>Built for the economics of luxury retail receivables</h2>
+      <p>Luxury retail B2B collections isn't about volume&mdash;it's about precision. Each account represents a brand relationship with strategic value that far exceeds the balance owed. The tooling needs to reflect that reality.</p>
+
+      <div class="cs-features">
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <strong>AI Email sequences</strong>
+            <p>Every email reads like it came from a senior relationship manager, not a collections department. References the specific partnership history, acknowledges the brand's importance, and presents the outstanding balance as a matter of mutual interest&mdash;because in luxury retail, it genuinely is.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <strong>Self-service payment portal</strong>
+            <p>A branded, elegant portal where brand partners can review balances, raise disputes, or settle invoices on their own terms. No phone calls, no awkward conversations. For finance teams at luxury houses who manage hundreds of retail partnerships, the efficiency of self-service is as valued as the discretion.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <div>
+            <strong>Relationship intelligence</strong>
+            <p>The system tracks the full arc of each brand relationship&mdash;not just payment history, but partnership tenure, seasonal patterns, dispute history, and strategic importance. This context shapes every interaction, ensuring that a brand worth &euro;5M annually is never treated the same as a one-season pop-up.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          </div>
+          <div>
+            <strong>Multi-language support</strong>
+            <p>Native-quality outreach in French, Italian, English, Japanese, and more. Not just translation&mdash;cultural adaptation. The formality level, business conventions, and communication style are calibrated to each market's expectations of luxury business interactions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Real Math -->
+    <section class="cs-section fade-in">
+      <span class="cs-label">The real math</span>
+      <h2>Why traditional agencies are the wrong fit for luxury retail</h2>
+      <p>The luxury retail collections problem isn't about effort&mdash;it's about appropriateness. Traditional collection agencies optimize for pressure and volume. In luxury B2B, pressure destroys the very relationships that generate revenue. A single misstep&mdash;a poorly worded email, a call to the wrong person, aggressive language in a voicemail&mdash;can unravel a partnership that took years to establish.</p>
+      <p>AI changes this equation. Every touchpoint is calibrated to the brand, the relationship history, and the cultural context. The tone is always right because it's not dependent on which agent happened to pick up the file that morning. And because the marginal cost of personalization is near zero, every account&mdash;from a &euro;500,000 concession balance to a &euro;5,000 pop-up invoice&mdash;gets the same level of sophistication.</p>
+      <p>For a luxury department store managing receivables across hundreds of brand partnerships, this isn't just more effective. It's the only approach that doesn't put the underlying business relationships at risk.</p>
+    </section>
+
+    <!-- CTA -->
+    <section class="cs-cta fade-in">
+      <h3>AI-powered collections for luxury retail</h3>
+      <p>AgentCollect helps luxury retailers and department stores recover B2B receivables from brand partners and suppliers&mdash;with the tone, timing, and cultural sophistication that prestigious relationships demand.</p>
+      <div class="cs-cta-buttons">
+        <a href="https://cal.com/johnb/30" class="cs-cta-btn">Learn more about AgentCollect &rarr;</a>
+      </div>
+      <div class="cs-trust-row">
+        <span>SOC 2 Type II</span>
+        <span>GDPR</span>
+        <span>B2B Only</span>
+      </div>
+    </section>
+
+    <div style="text-align:center;margin:32px 0 0">
+      <a href="/customers" style="color:var(--text-muted);font-size:14px;text-decoration:none;font-family:var(--font-display)">&larr; Back to all use cases</a>
+    </div>
+
+  </main>
+
+  <!-- RIGHT: Sticky sidebar -->
+  <aside class="cs-sidebar">
+    <div class="cs-sidebar-inner">
+      <!-- Company card -->
+      <div class="cs-company-card">
+        <div class="cs-company-logo" style="display:flex;align-items:center;gap:10px">
+          <svg width="100" height="28" viewBox="0 0 140 36" fill="#8801d2"><text x="70" y="15" font-family="Georgia,'Times New Roman',serif" font-style="italic" font-size="16" font-weight="700" text-anchor="middle" letter-spacing="1">Galeries</text><text x="70" y="33" font-family="Georgia,'Times New Roman',serif" font-style="italic" font-size="16" font-weight="700" text-anchor="middle" letter-spacing="1">Lafayette</text></svg>
+        </div>
+
+        <div class="cs-sidebar-section">
+          <div class="cs-sidebar-label">Industry</div>
+          <div class="cs-sidebar-value">Luxury Retail / Department Stores</div>
+        </div>
+
+        <div class="cs-sidebar-section">
+          <div class="cs-sidebar-label">Use case</div>
+          <div class="cs-sidebar-value">Brand partner &amp; concession receivables</div>
+        </div>
+
+        <div class="cs-sidebar-section">
+          <div class="cs-sidebar-label">Products used</div>
+          <div class="cs-product-list">
+            <span class="cs-product-tag">AI Email</span>
+            <span class="cs-product-tag">Payment Portal</span>
+            <span class="cs-product-tag">Relationship Intelligence</span>
+            <span class="cs-product-tag">Multi-Language Support</span>
+          </div>
+        </div>
+
+        <div class="cs-sidebar-section">
+          <div class="cs-sidebar-label">Key challenges</div>
+          <div class="cs-product-list">
+            <span class="cs-product-tag">High-value relationships</span>
+            <span class="cs-product-tag">Fashion calendar cycles</span>
+            <span class="cs-product-tag">Cross-border suppliers</span>
+            <span class="cs-product-tag">Prestige sensitivity</span>
+            <span class="cs-product-tag">Multi-brand concessions</span>
+          </div>
+        </div>
+
+        <div class="cs-sidebar-section">
+          <div class="cs-sidebar-label">Company size</div>
+          <div class="cs-sidebar-value">15,000+ employees</div>
+        </div>
+
+        <div class="cs-sidebar-section">
+          <div class="cs-sidebar-label">Annual revenue</div>
+          <div class="cs-sidebar-value">&euro;4.6B+</div>
+        </div>
+      </div>
+
+      <a href="https://cal.com/johnb/30" class="cs-sidebar-cta">Book a demo &rarr;</a>
+    </div>
+  </aside>
+
+</div>
+
+<!-- Footer -->
+<footer class="cs-footer">
+  <div class="container">
+    <div class="cs-footer-inner">
+      <div class="cs-footer-brand">
+        <a href="/" class="nav-logo">AgentCollect<span class="dot"></span></a>
+        <p>AI-powered collections that recover revenue without risking relationships.</p>
+      </div>
+      <div class="cs-footer-links-grid">
+        <div>
+          <h4>Product</h4>
+          <a href="/">How it works</a>
+          <a href="https://cal.com/johnb/30">Book a demo</a>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <a href="/">About</a>
+          <a href="/customers">Customers</a>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+        </div>
+      </div>
+    </div>
+    <div class="cs-footer-bottom">
+      <p>&copy; 2026 AgentCollect, Inc. All rights reserved.</p>
+      <div class="cs-footer-badges">
+        <span>SOC 2 Type II</span>
+        <span>GDPR</span>
+        <span>B2B Only</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Progress Bar */
+const progressBar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const pct = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight)) * 100;
+  progressBar.style.width = pct + '%';
+});
+
+/* Scroll Fade-In */
+const fadeEls = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+fadeEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

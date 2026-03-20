@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How AI collections solves fintech API platform challenges | Plaid | AgentCollect</title>
+  <meta name="description" content="Why traditional collections fails for fintech infrastructure companies — and how AI preserves relationships with startups that could become tomorrow's unicorns.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="AI collections for fintech API platforms | Plaid">
+  <meta property="og:description" content="A $200 overdue invoice from a 3-person startup today could be from a $1B company tomorrow. Aggressive collections destroys the relationship. Here's how AI changes the approach.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="AgentCollect">
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "AI collections for fintech API platforms — the Plaid challenge",
+    "description": "How AI-powered collections adapts to the unique challenges of fintech infrastructure: startup cash flow volatility, high growth potential of small accounts, developer-first culture, and funding cycle dynamics.",
+    "author": { "@type": "Organization", "name": "AgentCollect" },
+    "publisher": { "@type": "Organization", "name": "AgentCollect", "url": "https://agentcollect.com" },
+    "about": { "@type": "Organization", "name": "Plaid", "url": "https://plaid.com" }
+  }
+  </script>
+
+  <!-- Microsoft Clarity -->
+  <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","vtpmvp6kvr");</script>
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GRZZT9K05B"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-GRZZT9K05B');</script>
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
+
+  <style>
+/* Case Study V3 — Self-contained for AgentCollect */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;900&display=swap');
+
+:root {
+  --bg: #f6f3ef;
+  --bg-subtle: #eeebe6;
+  --bg-warm: #faf8f5;
+  --bg-dark: #121826;
+  --text: #121826;
+  --text-secondary: #525266;
+  --text-muted: #8e8ea0;
+  --accent: #4F46E5;
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+  --accent-light: rgba(79,70,229,.06);
+  --accent-purple: #4F46E5;
+  --border: #e0ddd8;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --max-width: 1200px;
+  --sidebar-width: 300px;
+  --green: #0d9488;
+  --green-bg: #f0fdfa;
+  --red: #dc2626;
+  --orange: #ea580c;
+  --blue: #3b82f6;
+  --indigo: #6366f1;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+
+/* ── Progress Bar ── */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), #6366f1);
+  z-index: 200;
+  transition: width 0.1s linear;
+  border-radius: 0 2px 2px 0;
+}
+
+/* ── Nav ── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(246,243,239,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: var(--max-width); margin: 0 auto; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 56px;
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 18px; font-weight: 900; color: var(--text);
+  text-decoration: none; letter-spacing: -0.5px;
+}
+.dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4F46E5;
+  margin-left: 1px;
+  vertical-align: super;
+}
+.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links a {
+  font-size: 14px; color: var(--text-secondary); text-decoration: none;
+  font-weight: 500; transition: color 0.15s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-cta {
+  background: var(--accent) !important; color: #fff !important;
+  padding: 8px 16px; border-radius: 6px; font-weight: 600 !important;
+  font-size: 13px !important; transition: opacity 0.15s;
+}
+.nav-cta:hover { opacity: 0.9; }
+
+/* ── Breadcrumb ── */
+.breadcrumb {
+  border-bottom: 1px solid var(--border);
+  padding: 12px 0;
+}
+.breadcrumb .container {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 14px; color: var(--text-muted);
+}
+.breadcrumb a { color: var(--accent); text-decoration: none; font-weight: 500; }
+.breadcrumb a:hover { text-decoration: underline; }
+
+/* ── Layout: content + sidebar ── */
+.cs-layout {
+  display: grid;
+  grid-template-columns: 1fr var(--sidebar-width);
+  gap: 64px;
+  padding-top: 48px;
+  padding-bottom: 80px;
+  align-items: start;
+}
+
+/* ── Main content ── */
+.cs-main { max-width: 780px; min-width: 0; }
+
+.cs-main h1 {
+  font-family: var(--font-display);
+  font-size: 36px; font-weight: 700; line-height: 1.2;
+  letter-spacing: -0.5px; margin-bottom: 24px;
+}
+
+.cs-intro {
+  font-size: 17px; line-height: 1.7; color: var(--text-secondary);
+  margin-bottom: 40px;
+}
+
+/* Section labels */
+.cs-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 2px; color: var(--accent); margin-bottom: 16px; display: block;
+}
+
+/* Sections */
+.cs-section { margin-bottom: 48px; }
+.cs-section h2 {
+  font-family: var(--font-display);
+  font-size: 24px; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.3px;
+}
+.cs-section p {
+  font-size: 16px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 16px;
+}
+.cs-section p strong { color: var(--text); }
+
+/* Features list */
+.cs-features { display: flex; flex-direction: column; gap: 20px; margin-top: 24px; }
+.cs-feature { display: flex; gap: 16px; align-items: flex-start; }
+.cs-feature-icon {
+  flex-shrink: 0; width: 40px; height: 40px; border-radius: 8px;
+  background: var(--accent-light);
+  display: flex; align-items: center; justify-content: center; color: var(--accent);
+}
+.cs-feature strong { display: block; font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.cs-feature p { font-size: 14px; color: var(--text-secondary); margin: 0; line-height: 1.5; }
+
+/* CTA section */
+.cs-cta {
+  background: var(--bg-subtle); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 40px; text-align: center;
+  margin-top: 48px;
+}
+.cs-cta h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.cs-cta p { font-size: 15px; color: var(--text-secondary); margin-bottom: 20px; }
+.cs-cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.cs-cta-btn {
+  display: inline-block; background: var(--accent); color: #fff;
+  padding: 12px 28px; border-radius: 8px; font-weight: 600; font-size: 15px;
+  text-decoration: none; transition: opacity 0.15s;
+}
+.cs-cta-btn:hover { opacity: 0.9; }
+.cs-trust-row {
+  display: flex; gap: 24px; justify-content: center; margin-top: 20px; flex-wrap: wrap;
+}
+.cs-trust-row span {
+  font-size: 12px; color: var(--text-muted); font-weight: 500;
+  display: flex; align-items: center; gap: 6px;
+}
+.cs-trust-row span::before { content: '\2713'; color: var(--green); font-weight: 700; }
+
+/* ── Sidebar ── */
+.cs-sidebar { position: sticky; top: 72px; }
+.cs-sidebar-inner { display: flex; flex-direction: column; gap: 20px; }
+.cs-company-card {
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 24px; background: #fff;
+}
+.cs-company-logo { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.cs-sidebar-section { margin-bottom: 16px; }
+.cs-sidebar-section:last-child { margin-bottom: 0; }
+.cs-sidebar-label {
+  font-size: 12px; font-weight: 600; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;
+}
+.cs-sidebar-value { font-size: 14px; font-weight: 500; color: var(--text); }
+.cs-product-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.cs-product-tag {
+  display: inline-block; background: var(--accent-light); color: var(--accent);
+  padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;
+}
+.cs-sidebar-cta {
+  display: block; text-align: center; background: var(--accent); color: #fff;
+  padding: 12px 20px; border-radius: 8px; font-weight: 600; font-size: 14px;
+  text-decoration: none; transition: opacity 0.15s;
+}
+.cs-sidebar-cta:hover { opacity: 0.9; }
+
+/* ── Footer ── */
+.cs-footer {
+  border-top: 1px solid var(--border);
+  padding: 48px 0 32px;
+}
+.cs-footer-inner {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 32px;
+}
+.cs-footer-brand p { font-size: 14px; color: var(--text-muted); margin-top: 8px; max-width: 300px; }
+.cs-footer-links-grid { display: flex; gap: 48px; }
+.cs-footer-links-grid div { display: flex; flex-direction: column; gap: 8px; }
+.cs-footer-links-grid h4 {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--text); margin-bottom: 4px;
+}
+.cs-footer-links-grid a { font-size: 13px; color: var(--text-secondary); text-decoration: none; }
+.cs-footer-links-grid a:hover { color: var(--text); }
+.cs-footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 24px; border-top: 1px solid var(--border);
+}
+.cs-footer-bottom p { font-size: 13px; color: var(--text-muted); }
+.cs-footer-badges { display: flex; gap: 16px; }
+.cs-footer-badges span {
+  font-size: 12px; color: var(--text-muted); font-weight: 500;
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 4px;
+}
+
+/* ── Scroll animations ── */
+.fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+  .cs-layout { grid-template-columns: 1fr; gap: 32px; }
+  .cs-sidebar { position: static; order: 1; min-width: 0; }
+  .cs-sidebar-inner { flex-direction: row; flex-wrap: wrap; gap: 12px; }
+  .cs-company-card { flex: 1; min-width: 280px; }
+  .cs-sidebar-cta { flex: 0; white-space: nowrap; align-self: center; }
+  .cs-main h1 { font-size: 28px; }
+  .cs-footer-inner { flex-direction: column; gap: 24px; }
+  .cs-footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+}
+  </style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div class="progress-bar" id="progress-bar"></div>
+
+<!-- Nav -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">AgentCollect<span class="dot"></span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/customers">Customers</a>
+      <a href="https://cal.com/johnb/30" class="nav-cta">Book a demo</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <div class="container">
+    <a href="/customers">Customers</a>
+    <span class="breadcrumb-sep">/</span>
+    <span>Plaid</span>
+  </div>
+</div>
+
+<!-- Main layout: content + sidebar -->
+<div class="container cs-layout">
+
+  <!-- LEFT: Main content -->
+  <main class="cs-main">
+
+    <!-- Plaid logo -->
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px;margin-top:8px">
+      <svg width="28" height="28" viewBox="-1 -1 50 50" fill="#0ba299"><path d="M18.637 0L4.09 3.81.081 18.439l5.014 5.148L0 28.65l3.773 14.693 14.484 4.047 5.096-5.064 5.014 5.147 14.547-3.81 4.008-14.63-5.013-5.146 5.095-5.063L43.231 4.13 28.745.083l-5.094 5.063zM9.71 6.624l7.663-2.008 3.351 3.44-4.887 4.856zm16.822 1.478l3.405-3.383 7.63 2.132-6.227 6.187zm-21.86 9.136l2.111-7.705 6.125 6.288-4.886 4.856-3.35-3.44zm29.547-1.243l6.227-6.189 1.986 7.74-3.404 3.384zm-15.502-.127l4.887-4.856 4.807 4.936-4.886 4.856zm-7.814 7.765l4.886-4.856 4.81 4.936-4.888 4.856zm15.503.127l4.886-4.856L36.1 23.84l-4.887 4.856zM4.57 29.927l3.406-3.385 4.807 4.937-6.225 6.186zm14.021 1.598l4.887-4.856 4.808 4.936-4.886 4.856zm15.502.128l4.887-4.856 3.351 3.439-2.11 7.705zm-24.656 8.97l6.226-6.189 4.81 4.936-3.406 3.385-7.63-2.133zm16.843-1.206l4.886-4.856 6.126 6.289-7.662 2.007z" fill-rule="evenodd"/></svg>
+      <span style="font-family:var(--font-display);font-size:15px;font-weight:600;color:var(--text-muted);letter-spacing:0.5px;text-transform:uppercase">Industry Use Case</span>
+    </div>
+
+    <h1>The $200 invoice you write off today could be from a billion-dollar company tomorrow</h1>
+
+    <p class="cs-intro">Plaid connects thousands of fintech applications to the financial system. Many of those customers are early-stage startups&mdash;pre-revenue, burning through runway, building the next big thing. When a 3-person team misses a $200 API usage invoice, traditional collections has two bad options: ignore it (and watch millions in aggregate AR pile up) or send it to an agency that treats a future unicorn like a deadbeat. AI creates a third option.</p>
+
+    <!-- Industry Challenge -->
+    <section class="cs-section fade-in">
+      <span class="cs-label">The industry challenge</span>
+      <h2>Fintech infrastructure creates a collections problem that traditional agencies can't even understand</h2>
+      <p>Plaid's customer base spans the entire fintech lifecycle&mdash;from two founders in a garage building a budgeting app, to publicly traded neobanks processing billions. The relationship with each customer is a long-term bet. And collections is where that bet gets tested.</p>
+
+      <div class="cs-features">
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <div>
+            <strong>Startup cash flow is inherently volatile</strong>
+            <p>A startup that can't pay a $500 invoice in March might close a $5M Series A in April. Traditional agencies don't understand this. They see a missed payment and escalate. The AI sees a company that just posted 3 engineering jobs on LinkedIn and adjusts its approach accordingly.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div>
+            <strong>Small accounts have asymmetric upside</strong>
+            <p>Stripe was once a small account for its infrastructure providers. So was Robinhood. So was Coinbase. Writing off a $200 invoice is easy. Losing a customer that grows to $2M/year in API usage is catastrophic. Every small account needs to be treated like a potential enterprise relationship.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l2-2-2-2"/><path d="M8 6L6 8l2 2"/><path d="M14.5 4l-5 16"/></svg>
+          </div>
+          <div>
+            <strong>Developers hate phone calls</strong>
+            <p>The fintech ecosystem runs on developer culture. These are people who communicate through GitHub issues and Slack channels. A cold call from a collections agent isn't just ineffective&mdash;it signals that the platform doesn't understand its own community. It's a brand-damaging event.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <div>
+            <strong>Usage-based billing creates genuine disputes</strong>
+            <p>API billing is complex. A startup might see a spike in their invoice because of a testing error, a misconfigured webhook, or an integration they didn't realize was making live calls. These aren't excuses&mdash;they're legitimate questions that require someone who understands API billing to resolve. Traditional agencies can't do this.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How AI Adapts -->
+    <section class="cs-section fade-in">
+      <span class="cs-label">How AI adapts</span>
+      <h2>Collections that understand the startup lifecycle</h2>
+      <p>AgentCollect's AI doesn't treat a pre-seed startup the same as a Series C company. It reads the signals&mdash;funding stage, hiring velocity, product traction, accelerator batch timing&mdash;and adapts every touchpoint to preserve the relationship while recovering the balance.</p>
+
+      <div class="cs-features">
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <div>
+            <strong>Growth signal detection</strong>
+            <p>Before reaching out, the AI checks: is this startup raising? Have they announced a new product? Are they hiring engineers? A company that just raised a $10M round and is hiring 15 people isn't going to skip a $400 invoice on purpose. They probably just lost track of it during the chaos of scaling. A gentle nudge with a direct payment link recovers the balance. An aggressive letter from a law firm loses the account.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div>
+            <strong>Startup-lifecycle-aware outreach</strong>
+            <p>Pre-revenue companies burning through savings get empathy and flexible payment plans. Growth-stage startups with real revenue get professional, direct communication. Enterprise customers with AP departments get structured invoice follow-ups with PO references. Same platform, completely different approach based on who the customer actually is right now.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <strong>Developer-friendly channels</strong>
+            <p>Email and self-service portal first. Always. No cold calls to a CTO's cell phone. The communication reads like it was written by someone who knows what an API key is, not someone reading from a collections script. Technical founders respond to communication that respects their intelligence and their time.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div>
+            <strong>Funding cycle alignment</strong>
+            <p>Y Combinator batches fund in March and September. Other accelerators have their own cycles. Many startups pay annual invoices right after closing a round. The AI knows this rhythm. Instead of escalating during the valley between funding events, it offers to align payment timing with when cash actually arrives&mdash;and follows up the week after Demo Day.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Capabilities -->
+    <section class="cs-section fade-in">
+      <span class="cs-label">Key capabilities</span>
+      <h2>Built for the economics of API platform collections</h2>
+      <p>When you have 10,000 developer accounts and 8,000 of them owe less than $1,000, traditional agencies won't even take your file. The unit economics don't work with human agents. But writing off $8M in aggregate small-balance AR isn't an option either.</p>
+
+      <div class="cs-features">
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <strong>AI Email sequences</strong>
+            <p>Personalized outreach that references the specific API product, the usage pattern, and the balance. Written in the language of the developer ecosystem&mdash;concise, respectful, with a clear one-click payment link. No "Dear Valued Customer" boilerplate.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <strong>Self-service payment portal</strong>
+            <p>Developers prefer solving problems themselves. The portal lets them view their balance breakdown by API product, dispute specific line items, set up automated payments, or pay instantly&mdash;all without talking to anyone. For a developer who forgot to update their card after a corporate restructure, this resolves the issue in 30 seconds.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <div>
+            <strong>Growth intelligence</strong>
+            <p>Automatic enrichment of every account with growth signals: recent funding, hiring trends, product launches, accelerator participation. This data drives both prioritization (don't waste cycles on a company that's shutting down) and tone (a growing startup gets a soft touch, not a demand letter).</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          </div>
+          <div>
+            <strong>Usage-data-backed dispute resolution</strong>
+            <p>When a developer disputes a charge, the system can reference their actual API call patterns. "Your Auth product made 12,400 calls in February vs. 3,100 in January&mdash;here's the breakdown by endpoint." This transforms a confrontational dispute into a data-driven conversation that resolves faster and preserves trust.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Real Math -->
+    <section class="cs-section fade-in">
+      <span class="cs-label">The real math</span>
+      <h2>Why the long game is the only game</h2>
+      <p>The math on fintech infrastructure collections is counterintuitive. Recovering $200 from a startup costs more than the $200 itself if it means losing a customer that would have grown to $50,000/year in API fees within 18 months. Traditional agencies optimize for recovery rate. Platforms like Plaid need to optimize for lifetime customer value.</p>
+      <p>AI makes this possible by keeping the cost of outreach near zero while maintaining a tone that preserves the relationship. The startup that gets a helpful payment reminder and a flexible plan today remembers that experience when they're evaluating infrastructure providers at 100x their current scale.</p>
+      <p>For a platform with thousands of developer accounts, this isn't about any single invoice. It's about building the kind of trust that turns small accounts into enterprise contracts&mdash;while still recovering the millions in aggregate AR that would otherwise be written off.</p>
+    </section>
+
+    <!-- CTA -->
+    <section class="cs-cta fade-in">
+      <h3>AI-powered collections for API platforms and developer infrastructure</h3>
+      <p>AgentCollect helps fintech infrastructure companies recover developer account balances at scale&mdash;with the relationship intelligence and developer-first communication that the startup ecosystem demands.</p>
+      <div class="cs-cta-buttons">
+        <a href="https://cal.com/johnb/30" class="cs-cta-btn">Learn more about AgentCollect &rarr;</a>
+      </div>
+      <div class="cs-trust-row">
+        <span>SOC 2 Type II</span>
+        <span>CCPA/CPRA</span>
+        <span>B2B Only</span>
+      </div>
+    </section>
+
+    <div style="text-align:center;margin:32px 0 0">
+      <a href="/customers" style="color:var(--text-muted);font-size:14px;text-decoration:none;font-family:var(--font-display)">&larr; Back to all use cases</a>
+    </div>
+
+  </main>
+
+  <!-- RIGHT: Sticky sidebar -->
+  <aside class="cs-sidebar">
+    <div class="cs-sidebar-inner">
+      <!-- Company card -->
+      <div class="cs-company-card">
+        <div class="cs-company-logo" style="display:flex;align-items:center;gap:10px">
+          <svg width="32" height="32" viewBox="-1 -1 50 50" fill="#0ba299"><path d="M18.637 0L4.09 3.81.081 18.439l5.014 5.148L0 28.65l3.773 14.693 14.484 4.047 5.096-5.064 5.014 5.147 14.547-3.81 4.008-14.63-5.013-5.146 5.095-5.063L43.231 4.13 28.745.083l-5.094 5.063zM9.71 6.624l7.663-2.008 3.351 3.44-4.887 4.856zm16.822 1.478l3.405-3.383 7.63 2.132-6.227 6.187zm-21.86 9.136l2.111-7.705 6.125 6.288-4.886 4.856-3.35-3.44zm29.547-1.243l6.227-6.189 1.986 7.74-3.404 3.384zm-15.502-.127l4.887-4.856 4.807 4.936-4.886 4.856zm-7.814 7.765l4.886-4.856 4.81 4.936-4.888 4.856zm15.503.127l4.886-4.856L36.1 23.84l-4.887 4.856zM4.57 29.927l3.406-3.385 4.807 4.937-6.225 6.186zm14.021 1.598l4.887-4.856 4.808 4.936-4.886 4.856zm15.502.128l4.887-4.856 3.351 3.439-2.11 7.705zm-24.656 8.97l6.226-6.189 4.81 4.936-3.406 3.385-7.63-2.133zm16.843-1.206l4.886-4.856 6.126 6.289-7.662 2.007z" fill-rule="evenodd"/></svg>
+          <span style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--text-primary)">Plaid</span>
+        </div>
+
+        <div class="cs-sidebar-section">
+          <div class="cs-sidebar-label">Industry</div>
+          <div class="cs-sidebar-value">Fintech / Financial Infrastructure APIs</div>
+        </div>
+
+        <div class="cs-sidebar-section">
+          <div class="cs-sidebar-label">Use case</div>
+          <div class="cs-sidebar-value">Developer account balance recovery</div>
+        </div>
+
+        <div class="cs-sidebar-section">
+          <div class="cs-sidebar-label">Products used</div>
+          <div class="cs-product-list">
+            <span class="cs-product-tag">AI Email</span>
+            <span class="cs-product-tag">Payment Portal</span>
+            <span class="cs-product-tag">Growth Intelligence</span>
+            <span class="cs-product-tag">Developer-First Communication</span>
+          </div>
+        </div>
+
+        <div class="cs-sidebar-section">
+          <div class="cs-sidebar-label">Key challenges</div>
+          <div class="cs-product-list">
+            <span class="cs-product-tag">Startup cash flow volatility</span>
+            <span class="cs-product-tag">High-growth small accounts</span>
+            <span class="cs-product-tag">Developer-first culture</span>
+            <span class="cs-product-tag">Usage-based billing disputes</span>
+          </div>
+        </div>
+
+        <div class="cs-sidebar-section">
+          <div class="cs-sidebar-label">Company size</div>
+          <div class="cs-sidebar-value">2,700+ employees</div>
+        </div>
+
+        <div class="cs-sidebar-section">
+          <div class="cs-sidebar-label">Annual revenue</div>
+          <div class="cs-sidebar-value">$600M+</div>
+        </div>
+      </div>
+
+      <a href="https://cal.com/johnb/30" class="cs-sidebar-cta">Book a demo &rarr;</a>
+    </div>
+  </aside>
+
+</div>
+
+<!-- Footer -->
+<footer class="cs-footer">
+  <div class="container">
+    <div class="cs-footer-inner">
+      <div class="cs-footer-brand">
+        <a href="/" class="nav-logo">AgentCollect<span class="dot"></span></a>
+        <p>AI-powered collections that recover revenue without risking relationships.</p>
+      </div>
+      <div class="cs-footer-links-grid">
+        <div>
+          <h4>Product</h4>
+          <a href="/">Home</a>
+          <a href="/customers">Customers</a>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <a href="https://cal.com/johnb/30">Book a demo</a>
+        </div>
+      </div>
+    </div>
+    <div class="cs-footer-bottom">
+      <p>&copy; 2026 AgentCollect, Inc. All rights reserved.</p>
+      <div class="cs-footer-badges">
+        <span>SOC 2 Type II</span>
+        <span>CCPA/CPRA</span>
+        <span>B2B Only</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Progress Bar */
+const progressBar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const pct = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight)) * 100;
+  progressBar.style.width = pct + '%';
+});
+
+/* Scroll Fade-In */
+const fadeEls = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+fadeEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

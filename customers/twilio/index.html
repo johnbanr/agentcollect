@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Collections for CPaaS & Developer Platforms | AgentCollect</title>
+  <meta name="description" content="How AI-powered collections solves the unique challenges of CPaaS platforms: developer backlash risk, thousands of micro-receivables, and usage-based billing disputes.">
+  <meta name="robots" content="noindex, nofollow">
+  <!-- Microsoft Clarity -->
+  <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","vtpmvp6kvr");</script>
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GRZZT9K05B"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-GRZZT9K05B');</script>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="AI Collections for CPaaS & Developer Platforms">
+  <meta property="og:description" content="How AI-powered collections solves the unique challenges of CPaaS platforms: developer backlash risk, thousands of micro-receivables, and usage-based billing disputes.">
+  <meta property="og:type" content="article">
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "AI Collections for CPaaS & Developer Platforms",
+    "description": "How AI-powered collections addresses the unique challenges of CPaaS and developer platforms: community reputation risk, micro-receivable volume, and usage-based billing disputes.",
+    "author": { "@type": "Organization", "name": "AgentCollect" },
+    "publisher": { "@type": "Organization", "name": "AgentCollect", "url": "https://agentcollect.com" },
+    "about": { "@type": "Organization", "name": "Twilio", "url": "https://twilio.com" }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
+
+  <style>
+/* AgentCollect Case Study — V3 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;900&display=swap');
+
+:root {
+  --bg: #f6f3ef;
+  --bg-subtle: #eeebe6;
+  --bg-warm: #faf8f5;
+  --bg-dark: #121826;
+  --text: #121826;
+  --text-primary: #121826;
+  --text-secondary: #525266;
+  --text-muted: #8e8ea0;
+  --accent: #4F46E5;
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+  --accent-light: rgba(79,70,229,.06);
+  --accent-purple: #4F46E5;
+  --border: #e0ddd8;
+  --radius: 8px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --max-width: 1200px;
+  --sidebar-width: 300px;
+  --green: #0d9488;
+  --green-bg: #f0fdfa;
+  --red: #dc2626;
+  --orange: #ea580c;
+  --blue: #3b82f6;
+  --indigo: #6366f1;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+
+/* ── Progress Bar ── */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), #6366f1);
+  z-index: 200;
+  transition: width 0.1s linear;
+  border-radius: 0 2px 2px 0;
+}
+
+/* ── Nav ── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(246,243,239,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: var(--max-width); margin: 0 auto; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 56px;
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 18px; font-weight: 900; color: var(--text);
+  text-decoration: none; letter-spacing: -0.5px;
+}
+.dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4F46E5;
+  margin-left: 1px;
+  vertical-align: super;
+}
+.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links a {
+  font-size: 14px; color: var(--text-secondary); text-decoration: none;
+  font-weight: 500; transition: color 0.15s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-cta {
+  background: var(--accent) !important; color: #fff !important;
+  padding: 8px 16px; border-radius: 6px; font-weight: 600 !important;
+  font-size: 13px !important; transition: opacity 0.15s;
+}
+.nav-cta:hover { opacity: 0.9; }
+
+/* ── Breadcrumb ── */
+.breadcrumb {
+  border-bottom: 1px solid var(--border);
+  padding: 12px 0;
+}
+.breadcrumb .container {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 14px; color: var(--text-muted);
+}
+.breadcrumb a { color: var(--accent); text-decoration: none; font-weight: 500; }
+.breadcrumb a:hover { text-decoration: underline; }
+
+/* ── Layout: content + sidebar ── */
+.cs-layout {
+  display: grid;
+  grid-template-columns: 1fr var(--sidebar-width);
+  gap: 64px;
+  padding-top: 48px;
+  padding-bottom: 80px;
+  align-items: start;
+}
+
+/* ── Main content ── */
+.cs-main { max-width: 780px; min-width: 0; }
+
+.cs-main h1 {
+  font-family: var(--font-display);
+  font-size: 36px; font-weight: 700; line-height: 1.2;
+  letter-spacing: -0.5px; margin-bottom: 24px;
+}
+
+.cs-intro {
+  font-size: 17px; line-height: 1.7; color: var(--text-secondary);
+  margin-bottom: 40px;
+}
+
+/* Section labels */
+.cs-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 2px; color: var(--accent); margin-bottom: 16px; display: block;
+}
+
+/* Sections */
+.cs-section { margin-bottom: 48px; }
+.cs-section h2 {
+  font-family: var(--font-display);
+  font-size: 24px; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.3px;
+}
+.cs-section p {
+  font-size: 16px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 16px;
+}
+.cs-section p strong { color: var(--text); }
+
+/* Features list */
+.cs-features { display: flex; flex-direction: column; gap: 20px; margin-top: 24px; }
+.cs-feature { display: flex; gap: 16px; align-items: flex-start; }
+.cs-feature-icon {
+  flex-shrink: 0; width: 40px; height: 40px; border-radius: 8px;
+  background: var(--accent-light);
+  display: flex; align-items: center; justify-content: center; color: var(--accent);
+}
+.cs-feature strong { display: block; font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.cs-feature p { font-size: 14px; color: var(--text-secondary); margin: 0; line-height: 1.5; }
+
+/* ── Large Stat ── */
+.cs-large-stat { text-align: center; padding: 40px 0; }
+.cs-large-stat-number {
+  font-size: clamp(56px, 10vw, 80px); font-weight: 300;
+  letter-spacing: -3px; color: var(--accent); line-height: 1;
+}
+.cs-large-stat-label { font-size: 18px; color: var(--text-secondary); margin-top: 8px; }
+.cs-large-stat-detail { color: var(--text-muted); margin-top: 8px; font-size: 15px; }
+
+/* ── Dispute Table ── */
+.cs-dispute-table {
+  width: 100%; border-collapse: collapse; margin: 24px 0;
+  background: var(--bg); border-radius: var(--radius); overflow: hidden;
+  border: 1px solid var(--border);
+}
+.cs-dispute-table th, .cs-dispute-table td { padding: 16px 24px; text-align: left; font-size: 14px; }
+.cs-dispute-table th {
+  background: var(--bg-subtle); color: var(--text-secondary); font-weight: 600;
+  text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;
+}
+.cs-dispute-table td { border-top: 1px solid var(--border); color: var(--text-secondary); }
+.cs-dispute-table td strong { color: var(--text); font-weight: 600; }
+.cs-highlight { color: var(--green) !important; font-weight: 600; }
+
+/* Quotes */
+.cs-quote {
+  border-left: 3px solid var(--accent);
+  padding: 24px 0 24px 24px; margin: 40px 0;
+}
+.cs-quote p {
+  font-size: 18px; font-weight: 500; line-height: 1.6;
+  color: var(--text); font-style: italic; margin-bottom: 16px;
+}
+.cs-quote cite { display: flex; align-items: center; gap: 12px; font-style: normal; }
+.cs-quote cite strong { display: block; font-size: 14px; font-weight: 600; color: var(--text); }
+.cs-quote cite span { font-size: 13px; color: var(--text-muted); }
+
+/* CTA section */
+.cs-cta {
+  background: var(--bg-subtle); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 40px; text-align: center;
+  margin-top: 48px;
+}
+.cs-cta h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.cs-cta p { font-size: 15px; color: var(--text-secondary); margin-bottom: 20px; }
+.cs-cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.cs-cta-btn {
+  display: inline-block; background: var(--accent); color: #fff;
+  padding: 12px 28px; border-radius: 8px; font-weight: 600; font-size: 15px;
+  text-decoration: none; transition: opacity 0.15s;
+}
+.cs-cta-btn:hover { opacity: 0.9; }
+.cs-trust-row {
+  display: flex; gap: 24px; justify-content: center; margin-top: 20px; flex-wrap: wrap;
+}
+.cs-trust-row span {
+  font-size: 12px; color: var(--text-muted); font-weight: 500;
+  display: flex; align-items: center; gap: 6px;
+}
+.cs-trust-row span::before { content: '\2713'; color: var(--green); font-weight: 700; }
+
+/* ── Sidebar ── */
+.cs-sidebar { position: sticky; top: 72px; }
+.cs-sidebar-inner { display: flex; flex-direction: column; gap: 20px; }
+.cs-company-card {
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 24px; background: #fff;
+}
+.cs-company-logo { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.cs-sidebar-section { margin-bottom: 16px; }
+.cs-sidebar-section:last-child { margin-bottom: 0; }
+.cs-sidebar-label {
+  font-size: 12px; font-weight: 600; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;
+}
+.cs-sidebar-value { font-size: 14px; font-weight: 500; color: var(--text); }
+.cs-product-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.cs-product-tag {
+  display: inline-block; background: var(--accent-light); color: var(--accent);
+  padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;
+}
+.cs-sidebar-stats {
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 20px; background: #fff;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.cs-sidebar-stat { display: flex; align-items: baseline; gap: 8px; }
+.cs-sidebar-stat-number { font-size: 22px; font-weight: 700; color: var(--accent); letter-spacing: -0.3px; }
+.cs-sidebar-stat-label { font-size: 13px; color: var(--text-muted); }
+.cs-sidebar-cta {
+  display: block; text-align: center; background: var(--accent); color: #fff;
+  padding: 12px 20px; border-radius: 8px; font-weight: 600; font-size: 14px;
+  text-decoration: none; transition: opacity 0.15s;
+}
+.cs-sidebar-cta:hover { opacity: 0.9; }
+
+/* ── Footer ── */
+.cs-footer {
+  border-top: 1px solid var(--border);
+  padding: 48px 0 32px;
+}
+.cs-footer-inner {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 32px;
+}
+.cs-footer-brand p { font-size: 14px; color: var(--text-muted); margin-top: 8px; max-width: 300px; }
+.cs-footer-links-grid { display: flex; gap: 48px; }
+.cs-footer-links-grid div { display: flex; flex-direction: column; gap: 8px; }
+.cs-footer-links-grid h4 {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--text); margin-bottom: 4px;
+}
+.cs-footer-links-grid a { font-size: 13px; color: var(--text-secondary); text-decoration: none; }
+.cs-footer-links-grid a:hover { color: var(--text); }
+.cs-footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 24px; border-top: 1px solid var(--border);
+}
+.cs-footer-bottom p { font-size: 13px; color: var(--text-muted); }
+.cs-footer-badges { display: flex; gap: 16px; }
+.cs-footer-badges span {
+  font-size: 12px; color: var(--text-muted); font-weight: 500;
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 4px;
+}
+
+/* ── Scroll animations ── */
+.fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+  .cs-layout { grid-template-columns: 1fr; gap: 32px; overflow: hidden; }
+  .cs-sidebar { position: static; order: 1; min-width: 0; }
+  .cs-sidebar-inner { flex-direction: row; flex-wrap: wrap; gap: 12px; }
+  .cs-company-card { flex: 1; min-width: 280px; }
+  .cs-sidebar-stats { flex-direction: row; flex: 1; min-width: 200px; }
+  .cs-sidebar-cta { flex: 0; white-space: nowrap; align-self: center; }
+  .cs-main h1 { font-size: 28px; }
+  .cs-footer-inner { flex-direction: column; gap: 24px; }
+  .cs-footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+}
+
+@media (max-width: 600px) {
+  .nav-links a:not(.nav-cta) { display: none; }
+  .cs-main h1 { font-size: 24px; }
+  .breadcrumb { display: none; }
+  .cs-sidebar-inner { flex-direction: column; }
+  .cs-company-card { min-width: 0; }
+  .cs-sidebar-stats { min-width: 0; flex-direction: column; }
+  .cs-sidebar-cta { white-space: normal; }
+  .cs-footer-links-grid { flex-direction: column; gap: 24px; }
+  .cs-section h2 { font-size: 20px; word-break: break-word; }
+  .cs-section p { word-break: break-word; }
+  .cs-large-stat-detail { font-size: 13px; padding: 0 8px; }
+  .cs-dispute-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .cs-dispute-table th, .cs-dispute-table td { padding: 10px 8px; font-size: 12px; white-space: nowrap; }
+  .cs-dispute-table th { font-size: 9px; }
+}
+
+/* ── Page-specific styles ── */
+.cs-scenario-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 24px 0 32px;
+}
+.cs-scenario {
+  background: var(--bg-warm);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+.cs-scenario-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.cs-scenario-title {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+.cs-scenario p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+.cs-tone-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin: 24px 0 32px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.cs-tone-side {
+  padding: 24px;
+}
+.cs-tone-bad {
+  background: #fef2f2;
+  border-right: 1px solid var(--border);
+}
+.cs-tone-good {
+  background: #f0fdf4;
+}
+.cs-tone-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 12px;
+}
+.cs-tone-bad .cs-tone-label { color: #dc2626; }
+.cs-tone-good .cs-tone-label { color: #16a34a; }
+.cs-tone-side p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+  font-style: italic;
+}
+.cs-viral-risk {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  margin: 24px 0 32px;
+  color: #fff;
+}
+.cs-viral-risk h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 16px;
+  color: #fff;
+}
+.cs-viral-chain {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.cs-viral-step {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.cs-viral-arrow {
+  color: rgba(255,255,255,0.3);
+  font-size: 18px;
+}
+.cs-viral-step.cs-viral-danger {
+  background: rgba(242,47,70,0.15);
+  border-color: rgba(242,47,70,0.3);
+  color: #f87171;
+}
+@media (max-width: 700px) {
+  .cs-scenario-grid { grid-template-columns: 1fr; }
+  .cs-tone-compare { grid-template-columns: 1fr; }
+  .cs-tone-bad { border-right: none; border-bottom: 1px solid var(--border); }
+  .cs-viral-chain { flex-direction: column; align-items: flex-start; }
+  .cs-viral-arrow { transform: rotate(90deg); }
+}
+  </style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div class="progress-bar" id="progress-bar"></div>
+
+<!-- Nav -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">AgentCollect<span class="dot"></span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/customers">Customers</a>
+      <a href="https://cal.com/johnb/30" class="nav-cta">Book a demo</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <div class="container">
+    <a href="../">Customers</a>
+    <span class="breadcrumb-sep">/</span>
+    <span>Twilio</span>
+  </div>
+</div>
+
+<!-- Main layout: content + sidebar -->
+<div class="container cs-layout">
+
+  <!-- LEFT: Main content -->
+  <main class="cs-main">
+
+    <!-- Twilio logo -->
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px;margin-top:8px">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="#f22f46"><path d="M12 0C5.381-.008.008 5.352 0 11.971V12c0 6.64 5.359 12 12 12 6.64 0 12-5.36 12-12 0-6.641-5.36-12-12-12zm0 20.801c-4.846.015-8.786-3.904-8.801-8.75V12c-.014-4.846 3.904-8.786 8.75-8.801H12c4.847-.014 8.786 3.904 8.801 8.75V12c.015 4.847-3.904 8.786-8.75 8.801H12zm5.44-11.76c0 1.359-1.12 2.479-2.481 2.479-1.366-.007-2.472-1.113-2.479-2.479 0-1.361 1.12-2.481 2.479-2.481 1.361 0 2.481 1.12 2.481 2.481zm0 5.919c0 1.36-1.12 2.48-2.481 2.48-1.367-.008-2.473-1.114-2.479-2.48 0-1.359 1.12-2.479 2.479-2.479 1.361-.001 2.481 1.12 2.481 2.479zm-5.919 0c0 1.36-1.12 2.48-2.479 2.48-1.368-.007-2.475-1.113-2.481-2.48 0-1.359 1.12-2.479 2.481-2.479 1.358-.001 2.479 1.12 2.479 2.479zm0-5.919c0 1.359-1.12 2.479-2.479 2.479-1.367-.007-2.475-1.112-2.481-2.479 0-1.361 1.12-2.481 2.481-2.481 1.358 0 2.479 1.12 2.479 2.481z"/></svg>
+      <span style="font-family:var(--font-display);font-size:15px;font-weight:600;color:var(--text-muted);letter-spacing:0.5px;text-transform:uppercase">Industry Use Case</span>
+    </div>
+
+    <h1>When your debtors have Twitter followers: AI collections for developer platforms</h1>
+
+    <p class="cs-intro">Developer communities have long memories and short fuses. One bad collections email gets screenshotted, posted on Hacker News, and becomes a permanent stain on your brand. For CPaaS platforms with thousands of small accounts, the question isn't whether to collect&mdash;it's whether you can afford the reputational risk of collecting badly.</p>
+
+    <!-- The Viral Risk -->
+    <section class="cs-section fade-in">
+      <span class="cs-label">The risk</span>
+      <h2>One bad email. 500,000 impressions. Permanent brand damage.</h2>
+      <p>In most industries, a collections mistake is a one-on-one problem. In developer platforms, it's a PR crisis. Developers are vocal, connected, and have audiences. They screenshot. They tweet. They write blog posts titled "Why I'm leaving [Platform] forever."</p>
+
+      <div class="cs-viral-risk">
+        <h3>The viral collection chain</h3>
+        <div class="cs-viral-chain">
+          <div class="cs-viral-step">Aggressive email sent</div>
+          <div class="cs-viral-arrow">&rarr;</div>
+          <div class="cs-viral-step">Developer screenshots it</div>
+          <div class="cs-viral-arrow">&rarr;</div>
+          <div class="cs-viral-step">Posted on Twitter/HN</div>
+          <div class="cs-viral-arrow">&rarr;</div>
+          <div class="cs-viral-step cs-viral-danger">500K+ impressions</div>
+          <div class="cs-viral-arrow">&rarr;</div>
+          <div class="cs-viral-step cs-viral-danger">Brand damage for years</div>
+        </div>
+      </div>
+
+      <p>Traditional collection agencies don't understand this dynamic. They send the same threatening template to a developer with 50K GitHub followers as they would to a faceless corporate AP department. The cost of that mistake dwarfs whatever the outstanding balance was.</p>
+    </section>
+
+    <!-- The Developer Problem -->
+    <section class="cs-section fade-in">
+      <span class="cs-label">The challenge</span>
+      <h2>Four problems traditional agencies can't solve</h2>
+
+      <div class="cs-scenario-grid">
+        <div class="cs-scenario">
+          <div class="cs-scenario-label">Problem 1</div>
+          <div class="cs-scenario-title">The $127 account that becomes a $1.2M customer</div>
+          <p>A developer signs up for a hobby project, racks up $127 in overdue charges, and goes quiet. Eighteen months later, that developer is VP of Engineering at a Series C startup. Alienate them over $127? You just lost a seven-figure contract.</p>
+        </div>
+        <div class="cs-scenario">
+          <div class="cs-scenario-label">Problem 2</div>
+          <div class="cs-scenario-title">10,000 accounts under $500</div>
+          <p>Traditional agencies won't touch accounts this small&mdash;the economics don't work with human agents. But $200 &times; 10,000 accounts is $2M in outstanding receivables. That's real money left on the table.</p>
+        </div>
+        <div class="cs-scenario">
+          <div class="cs-scenario-label">Problem 3</div>
+          <div class="cs-scenario-title">The "I already cancelled" dispute</div>
+          <p>Usage-based billing creates a specific class of disputes: developers who switched to a competitor, thought they cancelled, but didn't fully decommission their account. They're not trying to dodge payment&mdash;they genuinely didn't know.</p>
+        </div>
+        <div class="cs-scenario">
+          <div class="cs-scenario-label">Problem 4</div>
+          <div class="cs-scenario-title">Developers don't answer phone calls</div>
+          <p>Calling a developer about an overdue bill is the fastest way to lose them forever. They live in Slack, email, and dashboards. They want to fix things themselves, on their own schedule, without talking to anyone.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tone Calibration -->
+    <section class="cs-section fade-in">
+      <span class="cs-label">Tone calibration</span>
+      <h2>What a developer reads vs. what they should read</h2>
+      <p>The difference between recovery and reputational damage is often just a few words. AI calibrates tone per account type&mdash;a hobby developer with $80 outstanding gets a very different message than an enterprise team with a $15K invoice.</p>
+
+      <div class="cs-tone-compare">
+        <div class="cs-tone-side cs-tone-bad">
+          <div class="cs-tone-label">Traditional agency</div>
+          <p>"FINAL NOTICE: Your account is severely past due. Failure to remit payment of $83.47 within 10 days will result in further collection action and may impact your credit standing. Contact us immediately at 1-800-..."</p>
+        </div>
+        <div class="cs-tone-side cs-tone-good">
+          <div class="cs-tone-label">AgentCollect AI</div>
+          <p>"Hi Alex&mdash;Looks like there's a $83.47 balance on your account from API usage in October. If this was a project you've wrapped up, you can settle it in 30 seconds here: [one-click portal link]. Questions? Just reply to this email."</p>
+        </div>
+      </div>
+
+      <p>The first version gets screenshotted and tweeted. The second gets paid. Same balance, wildly different outcome.</p>
+    </section>
+
+    <!-- Solution -->
+    <section class="cs-section fade-in">
+      <span class="cs-label">The solution</span>
+      <h2>AI that speaks developer</h2>
+
+      <div class="cs-features">
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <strong>Developer-friendly email sequences</strong>
+            <p>Clear, technical, no fluff. Plain text over HTML. Direct links over "call us." Tone calibrated to account size&mdash;a $50 hobby project gets empathy, a $10K enterprise account gets professional urgency.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div>
+            <strong>Self-service payment portal</strong>
+            <p>Developers want to fix things themselves. One-click payment link, clear breakdown of charges, instant receipt. No phone calls, no support tickets, no humans unless they want one.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+          </div>
+          <div>
+            <strong>Account intelligence</strong>
+            <p>Growth-signal detection identifies accounts that may scale. A developer who just raised a seed round isn't someone you alienate over $200&mdash;they're a future enterprise customer. The AI knows the difference.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 3z"/></svg>
+          </div>
+          <div>
+            <strong>Tone calibration engine</strong>
+            <p>Every outbound message is scored for developer-friendliness before it sends. No legal threats on small accounts. No aggressive language ever. The system treats every account like it could end up on the front page of Hacker News&mdash;because it could.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Volume Economics -->
+    <section class="cs-section fade-in">
+      <span class="cs-label">Volume economics</span>
+      <h2>The math on micro-receivables</h2>
+
+      <p>Traditional collection agencies need a minimum balance to make the economics work&mdash;typically $1,000+. That means thousands of small developer accounts go uncollected. AI changes the unit economics entirely.</p>
+
+      <div class="cs-large-stat">
+        <div class="cs-large-stat-number">$0</div>
+        <div class="cs-large-stat-label">minimum account size</div>
+        <p class="cs-large-stat-detail">AI handles a $47 account with the same care as a $47,000 account&mdash;at a fraction of the cost of a human agent</p>
+      </div>
+
+      <table class="cs-dispute-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Traditional agency</th>
+            <th>AgentCollect AI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Minimum account size</strong></td>
+            <td>$1,000+</td>
+            <td class="cs-highlight">No minimum</td>
+          </tr>
+          <tr>
+            <td><strong>Cost per contact</strong></td>
+            <td>$15&ndash;25</td>
+            <td class="cs-highlight">Under $1</td>
+          </tr>
+          <tr>
+            <td><strong>Tone consistency</strong></td>
+            <td>Varies by agent</td>
+            <td class="cs-highlight">Calibrated per account</td>
+          </tr>
+          <tr>
+            <td><strong>Brand risk</strong></td>
+            <td>High</td>
+            <td class="cs-highlight">Near zero</td>
+          </tr>
+          <tr>
+            <td><strong>Capacity</strong></td>
+            <td>100s/month</td>
+            <td class="cs-highlight">Unlimited</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Usage-based billing disputes -->
+    <section class="cs-section fade-in">
+      <span class="cs-label">Dispute intelligence</span>
+      <h2>Usage-based billing creates unique disputes</h2>
+      <p>CPaaS platforms don't invoice for widgets. They invoice for API calls, SMS segments, phone minutes, and compute time. Disputes look different here:</p>
+
+      <div class="cs-features">
+        <div class="cs-feature">
+          <div class="cs-feature-icon" style="background:rgba(242,47,70,0.08);color:#f22f46">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          </div>
+          <div>
+            <strong>"I thought I cancelled"</strong>
+            <p>Developer switched to a competitor but left a number provisioned. Usage trickled in. They didn't know they owed anything. Resolution: clear usage breakdown + one-click settlement.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon" style="background:rgba(242,47,70,0.08);color:#f22f46">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <div>
+            <strong>"This spike wasn't me"</strong>
+            <p>Sudden usage spike from a compromised API key or misconfigured webhook. The developer disputes the charge legitimately. AI routes to fraud review instead of escalating collections pressure.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon" style="background:rgba(242,47,70,0.08);color:#f22f46">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+          </div>
+          <div>
+            <strong>"The startup died"</strong>
+            <p>Startup ran out of funding. The founder personally signed up. Company is gone, but the balance remains. AI identifies defunct companies and adjusts approach&mdash;compassionate resolution over aggressive pursuit.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quote -->
+    <blockquote class="cs-quote fade-in">
+      <p>"In developer platforms, your collections process <em>is</em> your brand. Every email is a potential screenshot, every interaction is a potential blog post. You can't outsource this to someone who doesn't understand that."</p>
+      <cite>
+        <div>
+          <strong>AgentCollect</strong>
+          <span>AI Collections for Developer Platforms</span>
+        </div>
+      </cite>
+    </blockquote>
+
+    <!-- CTA -->
+    <section class="cs-cta fade-in">
+      <h3>Recover revenue without becoming a cautionary tweet</h3>
+      <p>AgentCollect's AI handles thousands of developer accounts with tone calibration that protects your brand at every touchpoint.</p>
+      <div class="cs-cta-buttons">
+        <a href="https://cal.com/johnb/30" class="cs-cta-btn">Learn more about AgentCollect &rarr;</a>
+      </div>
+      <div class="cs-trust-row">
+        <span>SOC 2 Type II</span>
+        <span>CCPA/CPRA</span>
+        <span>B2B Only</span>
+      </div>
+    </section>
+
+    <div style="text-align:center;margin:32px 0 0">
+      <a href="../" style="color:var(--text-muted);font-size:14px;text-decoration:none;font-family:var(--font-display)">&larr; Back to all use cases</a>
+    </div>
+
+  </main>
+
+  <!-- RIGHT: Sticky sidebar -->
+  <aside class="cs-sidebar">
+    <div class="cs-sidebar-inner">
+      <!-- Company card -->
+      <div class="cs-company-card">
+        <div class="cs-company-logo">
+          <svg width="120" height="40" viewBox="0 0 24 24" fill="#f22f46"><path d="M12 0C5.381-.008.008 5.352 0 11.971V12c0 6.64 5.359 12 12 12 6.64 0 12-5.36 12-12 0-6.641-5.36-12-12-12zm0 20.801c-4.846.015-8.786-3.904-8.801-8.75V12c-.014-4.846 3.904-8.786 8.75-8.801H12c4.847-.014 8.786 3.904 8.801 8.75V12c.015 4.847-3.904 8.786-8.75 8.801H12zm5.44-11.76c0 1.359-1.12 2.479-2.481 2.479-1.366-.007-2.472-1.113-2.479-2.479 0-1.361 1.12-2.481 2.479-2.481 1.361 0 2.481 1.12 2.481 2.481zm0 5.919c0 1.36-1.12 2.48-2.481 2.48-1.367-.008-2.473-1.114-2.479-2.48 0-1.359 1.12-2.479 2.479-2.479 1.361-.001 2.481 1.12 2.481 2.479zm-5.919 0c0 1.36-1.12 2.48-2.479 2.48-1.368-.007-2.475-1.113-2.481-2.48 0-1.359 1.12-2.479 2.481-2.479 1.358-.001 2.479 1.12 2.479 2.479zm0-5.919c0 1.359-1.12 2.479-2.479 2.479-1.367-.007-2.475-1.112-2.481-2.479 0-1.361 1.12-2.481 2.481-2.481 1.358 0 2.479 1.12 2.479 2.481z"/></svg>
+        </div>
+
+        <div class="cs-sidebar-section">
+          <div class="cs-sidebar-label">Products used</div>
+          <div class="cs-product-list">
+            <span class="cs-product-tag">AI Email</span>
+            <span class="cs-product-tag">Payment Portal</span>
+            <span class="cs-product-tag">Account Intelligence</span>
+            <span class="cs-product-tag">Tone Calibration</span>
+          </div>
+        </div>
+
+        <div class="cs-sidebar-section">
+          <div class="cs-sidebar-label">Industry</div>
+          <div class="cs-sidebar-value">CPaaS / Developer Platforms</div>
+        </div>
+
+        <div class="cs-sidebar-section">
+          <div class="cs-sidebar-label">Use case</div>
+          <div class="cs-sidebar-value">Micro-receivable recovery with brand protection</div>
+        </div>
+
+        <div class="cs-sidebar-section">
+          <div class="cs-sidebar-label">Key challenge</div>
+          <div class="cs-sidebar-value">Developer community backlash risk</div>
+        </div>
+
+        <div class="cs-sidebar-section">
+          <div class="cs-sidebar-label">Account volume</div>
+          <div class="cs-sidebar-value">Thousands of accounts, $50&ndash;$500 each</div>
+        </div>
+      </div>
+
+      <!-- Sidebar stats -->
+      <div class="cs-sidebar-stats">
+        <div class="cs-sidebar-stat">
+          <div class="cs-sidebar-stat-number">$0</div>
+          <div class="cs-sidebar-stat-label">minimum balance</div>
+        </div>
+        <div class="cs-sidebar-stat">
+          <div class="cs-sidebar-stat-number">&lt;$1</div>
+          <div class="cs-sidebar-stat-label">cost per contact</div>
+        </div>
+        <div class="cs-sidebar-stat">
+          <div class="cs-sidebar-stat-number">0</div>
+          <div class="cs-sidebar-stat-label">brand incidents</div>
+        </div>
+      </div>
+
+      <a href="https://cal.com/johnb/30" class="cs-sidebar-cta">Book a demo &rarr;</a>
+    </div>
+  </aside>
+
+</div>
+
+<!-- Footer -->
+<footer class="cs-footer">
+  <div class="container">
+    <div class="cs-footer-inner">
+      <div class="cs-footer-brand">
+        <a href="/" class="nav-logo">AgentCollect<span class="dot"></span></a>
+        <p>AI-powered collections that recover revenue without risking relationships.</p>
+      </div>
+      <div class="cs-footer-links-grid">
+        <div>
+          <h4>Product</h4>
+          <a href="/">Home</a>
+          <a href="/customers">Customers</a>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <a href="https://cal.com/johnb/30">Book a demo</a>
+        </div>
+      </div>
+    </div>
+    <div class="cs-footer-bottom">
+      <p>&copy; 2026 AgentCollect, Inc. All rights reserved.</p>
+      <div class="cs-footer-badges">
+        <span>SOC 2 Type II</span>
+        <span>CCPA/CPRA</span>
+        <span>B2B Only</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Progress Bar */
+const progressBar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const pct = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight)) * 100;
+  progressBar.style.width = pct + '%';
+});
+
+/* Scroll Fade-In */
+const fadeEls = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+fadeEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Collections for Cloud Infrastructure: How Usage-Based Billing Creates a New Kind of Dispute | AgentCollect</title>
+  <meta name="description" content="Usage-based billing creates billing disputes nobody anticipated. AI-powered collections understands usage patterns and turns disputes into data conversations.">
+  <meta name="robots" content="noindex, nofollow">
+  <!-- Microsoft Clarity -->
+  <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","vtpmvp6kvr");</script>
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GRZZT9K05B"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-GRZZT9K05B');</script>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="AI Collections for Cloud Infrastructure: Usage-Based Billing Disputes">
+  <meta property="og:description" content="Usage-based billing creates billing disputes nobody anticipated. AI-powered collections understands usage patterns and turns disputes into data conversations.">
+  <meta property="og:type" content="article">
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "AI Collections for Cloud Infrastructure: How Usage-Based Billing Creates a New Kind of Dispute",
+    "description": "Usage-based billing creates billing disputes nobody anticipated. AI-powered collections understands usage patterns and turns disputes into data conversations.",
+    "author": { "@type": "Organization", "name": "AgentCollect" },
+    "publisher": { "@type": "Organization", "name": "AgentCollect", "url": "https://agentcollect.com" },
+    "about": { "@type": "Organization", "name": "Redis", "url": "https://redis.io" }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* AgentCollect Case Study — V3 */
+    :root {
+      --bg: #f6f3ef;
+      --bg-subtle: #eeebe6;
+      --bg-warm: #faf8f5;
+      --bg-dark: #121826;
+      --text: #0B1B3D;
+      --text-secondary: #525266;
+      --text-muted: #8e8ea0;
+      --accent: #4F46E5;
+      --font-display: 'Plus Jakarta Sans', sans-serif;
+      --accent-light: rgba(79,70,229,.06);
+      --accent-purple: #4F46E5;
+      --border: #e0ddd8;
+      --radius: 8px;
+      --radius-lg: 12px;
+      --max-width: 1200px;
+      --sidebar-width: 300px;
+      --green: #0d9488;
+      --green-bg: #f0fdfa;
+      --red: #dc2626;
+      --orange: #ea580c;
+      --blue: #3b82f6;
+      --indigo: #6366f1;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+
+    /* ── Progress Bar ── */
+    .progress-bar {
+      position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+      background: linear-gradient(90deg, var(--accent), #6366f1);
+      z-index: 200; transition: width 0.1s linear; border-radius: 0 2px 2px 0;
+    }
+
+    /* ── Nav ── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(246,243,239,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: var(--max-width); margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between; height: 56px;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 18px; font-weight: 900; color: var(--text);
+      text-decoration: none; letter-spacing: -0.5px;
+    }
+    .dot {
+      display: inline-block; width: 6px; height: 6px;
+      border-radius: 50%; background: #4F46E5;
+      margin-left: 1px; vertical-align: super;
+    }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a {
+      font-size: 14px; color: var(--text-secondary); text-decoration: none;
+      font-weight: 500; transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--accent) !important; color: #fff !important;
+      padding: 8px 16px; border-radius: 6px; font-weight: 600 !important;
+      font-size: 13px !important; transition: opacity 0.15s;
+    }
+    .nav-cta:hover { opacity: 0.9; }
+
+    /* ── Breadcrumb ── */
+    .breadcrumb { border-bottom: 1px solid var(--border); padding: 12px 0; }
+    .breadcrumb .container {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 14px; color: var(--text-muted);
+    }
+    .breadcrumb a { color: var(--accent); text-decoration: none; font-weight: 500; }
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    /* ── Layout: content + sidebar ── */
+    .cs-layout {
+      display: grid; grid-template-columns: 1fr var(--sidebar-width);
+      gap: 64px; padding-top: 48px; padding-bottom: 80px; align-items: start;
+    }
+
+    /* ── Main content ── */
+    .cs-main { max-width: 780px; min-width: 0; }
+    .cs-main h1 {
+      font-family: var(--font-display);
+      font-size: 36px; font-weight: 700; line-height: 1.2;
+      letter-spacing: -0.5px; margin-bottom: 24px;
+    }
+    .cs-intro {
+      font-size: 17px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 40px;
+    }
+
+    /* Section labels */
+    .cs-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 2px; color: var(--accent); margin-bottom: 16px; display: block;
+    }
+
+    /* Sections */
+    .cs-section { margin-bottom: 48px; }
+    .cs-section h2 {
+      font-family: var(--font-display);
+      font-size: 24px; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.3px;
+    }
+    .cs-section p {
+      font-size: 16px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 16px;
+    }
+    .cs-section p strong { color: var(--text); }
+
+    /* Features list */
+    .cs-features { display: flex; flex-direction: column; gap: 20px; margin-top: 24px; }
+    .cs-feature { display: flex; gap: 16px; align-items: flex-start; }
+    .cs-feature-icon {
+      flex-shrink: 0; width: 40px; height: 40px; border-radius: 8px;
+      background: var(--accent-light);
+      display: flex; align-items: center; justify-content: center; color: var(--accent);
+    }
+    .cs-feature strong { display: block; font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .cs-feature p { font-size: 14px; color: var(--text-secondary); margin: 0; line-height: 1.5; }
+
+    /* CTA section */
+    .cs-cta {
+      background: var(--bg-subtle); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 40px; text-align: center; margin-top: 48px;
+    }
+    .cs-cta h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+    .cs-cta p { font-size: 15px; color: var(--text-secondary); margin-bottom: 20px; }
+    .cs-cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .cs-cta-btn {
+      display: inline-block; background: var(--accent); color: #fff;
+      padding: 12px 28px; border-radius: 8px; font-weight: 600; font-size: 15px;
+      text-decoration: none; transition: opacity 0.15s;
+    }
+    .cs-cta-btn:hover { opacity: 0.9; }
+    .cs-trust-row {
+      display: flex; gap: 24px; justify-content: center; margin-top: 20px; flex-wrap: wrap;
+    }
+    .cs-trust-row span {
+      font-size: 12px; color: var(--text-muted); font-weight: 500;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .cs-trust-row span::before { content: '\2713'; color: var(--green); font-weight: 700; }
+
+    /* ── Sidebar ── */
+    .cs-sidebar { position: sticky; top: 72px; }
+    .cs-sidebar-inner { display: flex; flex-direction: column; gap: 20px; }
+    .cs-company-card {
+      border: 1px solid var(--border); border-radius: var(--radius-lg);
+      padding: 24px; background: #fff;
+    }
+    .cs-company-logo { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .cs-sidebar-section { margin-bottom: 16px; }
+    .cs-sidebar-section:last-child { margin-bottom: 0; }
+    .cs-sidebar-label {
+      font-size: 12px; font-weight: 600; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;
+    }
+    .cs-sidebar-value { font-size: 14px; font-weight: 500; color: var(--text); }
+    .cs-product-list { display: flex; flex-wrap: wrap; gap: 6px; }
+    .cs-product-tag {
+      display: inline-block; background: var(--accent-light); color: var(--accent);
+      padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;
+    }
+    .cs-sidebar-stats {
+      border: 1px solid var(--border); border-radius: var(--radius-lg);
+      padding: 20px; background: #fff;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .cs-sidebar-stat { display: flex; align-items: baseline; gap: 8px; }
+    .cs-sidebar-stat-number { font-size: 22px; font-weight: 700; color: var(--accent); letter-spacing: -0.3px; }
+    .cs-sidebar-stat-label { font-size: 13px; color: var(--text-muted); }
+    .cs-sidebar-cta {
+      display: block; text-align: center; background: var(--accent); color: #fff;
+      padding: 12px 20px; border-radius: 8px; font-weight: 600; font-size: 14px;
+      text-decoration: none; transition: opacity 0.15s;
+    }
+    .cs-sidebar-cta:hover { opacity: 0.9; }
+
+    /* ── Footer ── */
+    .cs-footer { border-top: 1px solid var(--border); padding: 48px 0 32px; }
+    .cs-footer-inner {
+      display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 32px;
+    }
+    .cs-footer-brand p { font-size: 14px; color: var(--text-muted); margin-top: 8px; max-width: 300px; }
+    .cs-footer-links-grid { display: flex; gap: 48px; }
+    .cs-footer-links-grid div { display: flex; flex-direction: column; gap: 8px; }
+    .cs-footer-links-grid h4 {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1px; color: var(--text); margin-bottom: 4px;
+    }
+    .cs-footer-links-grid a { font-size: 13px; color: var(--text-secondary); text-decoration: none; }
+    .cs-footer-links-grid a:hover { color: var(--text); }
+    .cs-footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 24px; border-top: 1px solid var(--border);
+    }
+    .cs-footer-bottom p { font-size: 13px; color: var(--text-muted); }
+    .cs-footer-badges { display: flex; gap: 16px; }
+    .cs-footer-badges span {
+      font-size: 12px; color: var(--text-muted); font-weight: 500;
+      padding: 4px 10px; border: 1px solid var(--border); border-radius: 4px;
+    }
+
+    /* ── Scroll animations ── */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Page-specific styles ── */
+    .cs-use-case-label {
+      display: inline-block;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.8px;
+      text-transform: uppercase; color: #d82c20;
+      background: rgba(216, 44, 32, 0.08);
+      padding: 4px 10px; border-radius: 4px; margin-bottom: 8px;
+    }
+    .cs-usage-scenario {
+      background: var(--bg-warm);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px; margin: 24px 0;
+    }
+    .cs-usage-scenario-header {
+      font-size: 13px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 12px;
+    }
+    .cs-usage-scenario p {
+      margin: 0; font-size: 15px; line-height: 1.7; color: var(--text);
+    }
+    .cs-usage-scenario code {
+      background: rgba(216, 44, 32, 0.08); color: #d82c20;
+      padding: 2px 6px; border-radius: 4px; font-size: 13px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+    .cs-comparison {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px; margin: 24px 0;
+    }
+    .cs-comparison-card {
+      padding: 24px; border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+    }
+    .cs-comparison-card.traditional { background: var(--bg-warm); }
+    .cs-comparison-card.ai {
+      background: linear-gradient(135deg, rgba(216, 44, 32, 0.04), rgba(216, 44, 32, 0.02));
+      border-color: rgba(216, 44, 32, 0.2);
+    }
+    .cs-comparison-card h4 {
+      font-size: 14px; font-weight: 600; margin: 0 0 12px; color: var(--text);
+    }
+    .cs-comparison-card ul { list-style: none; padding: 0; margin: 0; }
+    .cs-comparison-card li {
+      font-size: 14px; line-height: 1.6; padding: 4px 0; color: var(--text-secondary);
+    }
+    .cs-comparison-card.traditional li::before { content: "\2717  "; color: #dc2626; font-weight: 600; }
+    .cs-comparison-card.ai li::before { content: "\2713  "; color: #16a34a; font-weight: 600; }
+    .cs-tier-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px; margin: 24px 0;
+    }
+    .cs-tier-card {
+      padding: 24px; border-radius: var(--radius-lg);
+      border: 1px solid var(--border); background: var(--bg-warm);
+    }
+    .cs-tier-card h4 {
+      font-size: 15px; font-weight: 600; margin: 0 0 4px; color: var(--text);
+    }
+    .cs-tier-card .tier-range {
+      font-size: 13px; color: var(--text-muted); margin-bottom: 12px;
+    }
+    .cs-tier-card ul { list-style: none; padding: 0; margin: 0; }
+    .cs-tier-card li {
+      font-size: 14px; line-height: 1.6; padding: 3px 0; color: var(--text-secondary);
+    }
+    .cs-tier-card li::before { content: "\2192  "; color: #d82c20; }
+
+    /* ── Responsive ── */
+    @media (max-width: 1100px) {
+      .cs-layout { grid-template-columns: 1fr; gap: 32px; overflow: hidden; }
+      .cs-sidebar { position: static; order: 1; min-width: 0; }
+      .cs-sidebar-inner { flex-direction: row; flex-wrap: wrap; gap: 12px; }
+      .cs-company-card { flex: 1; min-width: 280px; }
+      .cs-sidebar-stats { flex-direction: row; flex: 1; min-width: 200px; }
+      .cs-sidebar-cta { flex: 0; white-space: nowrap; align-self: center; }
+      .cs-main h1 { font-size: 28px; }
+      .cs-comparison { grid-template-columns: 1fr; }
+      .cs-tier-grid { grid-template-columns: 1fr; }
+      .cs-footer-inner { flex-direction: column; gap: 24px; }
+      .cs-footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    }
+    @media (max-width: 768px) {
+      .cs-comparison, .cs-tier-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .nav-links a:not(.nav-cta) { display: none; }
+      .cs-main h1 { font-size: 24px; }
+      .breadcrumb { display: none; }
+      .cs-sidebar-inner { flex-direction: column; }
+      .cs-company-card { min-width: 0; }
+      .cs-sidebar-stats { min-width: 0; flex-direction: column; }
+      .cs-sidebar-cta { white-space: normal; }
+      .cs-footer-links-grid { flex-direction: column; gap: 24px; }
+      .cs-section h2 { font-size: 20px; word-break: break-word; }
+      .cs-section p { word-break: break-word; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div class="progress-bar" id="progress-bar"></div>
+
+<!-- Nav -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">AgentCollect<span class="dot"></span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/customers">Customers</a>
+      <a href="https://cal.com/johnb/30" class="nav-cta">Book a demo</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <div class="container">
+    <a href="/customers">Customers</a>
+    <span class="breadcrumb-sep">/</span>
+    <span>Redis</span>
+  </div>
+</div>
+
+<!-- Main layout: content + sidebar -->
+<div class="container cs-layout">
+
+  <!-- LEFT: Main content -->
+  <main class="cs-main">
+
+    <!-- Redis logo + use case label -->
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px;margin-top:8px">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="#d82c20"><path d="M22.71 13.145c-1.66 2.092-3.452 4.483-7.038 4.483-3.203 0-4.397-2.825-4.48-5.12.701 1.484 2.073 2.685 4.214 2.63 4.117-.133 6.94-3.852 6.94-7.239 0-4.05-3.022-6.972-8.268-6.972-3.752 0-8.4 1.428-11.455 3.685C2.59 6.937 3.885 9.958 4.35 9.626c2.648-1.904 4.748-3.13 6.784-3.744C8.12 9.244.886 17.05 0 18.425c.1 1.261 1.66 4.648 2.424 4.648.232 0 .431-.133.664-.365a100.49 100.49 0 0 0 5.54-6.765c.222 3.104 1.748 6.898 6.014 6.898 3.819 0 7.604-2.756 9.33-8.965.2-.764-.73-1.361-1.261-.73zm-4.349-5.013c0 1.959-1.926 2.922-3.685 2.922-.941 0-1.664-.247-2.235-.568 1.051-1.592 2.092-3.225 3.21-4.973 1.972.334 2.71 1.43 2.71 2.619z"/></svg>
+      <div>
+        <span class="cs-use-case-label">Industry Use Case</span>
+        <span style="font-family:var(--font-display);font-size:15px;font-weight:600;color:var(--text-muted);letter-spacing:0.5px;text-transform:uppercase;margin-left:8px">Redis</span>
+      </div>
+    </div>
+
+    <h1>When your customer's bill triples overnight, traditional collections makes it worse</h1>
+
+    <p class="cs-intro">Usage-based billing is the growth engine of cloud infrastructure. It is also the source of a category of billing disputes that traditional collections agencies cannot handle. When a Redis cluster auto-scales from 2GB to 6GB during a traffic spike, the resulting invoice shocks customers who never expected to pay 3x their usual bill. The dispute is not about ability to pay. It is about understanding what happened.</p>
+
+    <!-- The scenario -->
+    <div class="cs-usage-scenario">
+      <div class="cs-usage-scenario-header">A real scenario</div>
+      <p>A startup runs a <code>cache.r6g.xlarge</code> Redis cluster on a usage-based plan. On November 24 (Black Friday), their traffic spikes 4x. Auto-scaling kicks in, expanding from 2GB to 6GB across three nodes. The next invoice is $4,200 instead of the usual $1,400. The customer disputes it, saying they "never authorized" the scaling. Traditional collections calls this "refusal to pay." In reality, it is a data conversation waiting to happen.</p>
+    </div>
+
+    <!-- Industry Challenge -->
+    <section class="cs-section fade-in">
+      <span class="cs-label">The industry challenge</span>
+      <h2>Usage-based billing creates disputes nobody anticipated</h2>
+      <p>Cloud infrastructure companies face a unique collections problem. Unlike traditional SaaS with fixed monthly invoices, usage-based pricing means bills fluctuate. And fluctuation creates friction at five specific points:</p>
+
+      <div class="cs-features">
+        <div class="cs-feature">
+          <div class="cs-feature-icon" style="color:#d82c20">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <div>
+            <strong>Auto-scaling bill shock</strong>
+            <p>Infrastructure scales automatically to handle traffic. Customers see a bill they did not expect and dispute it reflexively. The dispute is not about the amount&mdash;it is about the surprise.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon" style="color:#d82c20">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div>
+            <strong>Developer-oriented customers</strong>
+            <p>Infrastructure buyers are engineers. They hate cold calls. They will not pick up the phone for an unknown number. They will, however, read a well-structured email that references their actual usage data.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon" style="color:#d82c20">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
+          <div>
+            <strong>Forgotten clusters still running</strong>
+            <p>A developer spins up a test cluster, leaves the company, and nobody shuts it down. Months of invoices accumulate against a resource nobody remembers provisioning.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon" style="color:#d82c20">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+          </div>
+          <div>
+            <strong>Freemium-to-paid confusion</strong>
+            <p>Customers upgrade from a free tier, exceed limits, and are surprised by the first real invoice. They thought they were "just trying it out."</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon" style="color:#d82c20">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+          </div>
+          <div>
+            <strong>Enterprise vs. self-serve disconnect</strong>
+            <p>Enterprise customers have procurement teams and PO numbers. Self-serve customers have a credit card on file that expired two months ago. Same product, entirely different collection approach.</p>
+          </div>
+        </div>
+      </div>
+
+      <p>Traditional collection agencies treat all of these the same: generic demand letter, phone call, escalation. For a developer who forgot to shut down a test cluster, receiving a threatening phone call about a $300 invoice is the fastest way to ensure they never use your platform again.</p>
+    </section>
+
+    <!-- How AI Adapts -->
+    <section class="cs-section fade-in">
+      <span class="cs-label">How AI adapts</span>
+      <h2>AI turns a billing dispute into a data conversation</h2>
+      <p>When a customer disputes a usage-based invoice, the conversation should not start with "you owe $4,200." It should start with "your cluster scaled from 2GB to 6GB during your Black Friday traffic spike on November 24." That is a fundamentally different conversation&mdash;and one that only AI with usage intelligence can have at scale.</p>
+
+      <div class="cs-comparison">
+        <div class="cs-comparison-card traditional">
+          <h4>Traditional collections</h4>
+          <ul>
+            <li>Generic demand: "Invoice #4521 is 45 days past due"</li>
+            <li>Phone calls to engineers who never answer</li>
+            <li>No understanding of what was consumed</li>
+            <li>Treats a forgotten cluster the same as a refusal to pay</li>
+            <li>Damages the relationship with a technical buyer</li>
+          </ul>
+        </div>
+        <div class="cs-comparison-card ai">
+          <h4>AI-powered collections</h4>
+          <ul>
+            <li>Data-backed: "Your usage increased 3x during Nov 24-26"</li>
+            <li>Email-first with developer-friendly formatting</li>
+            <li>Parses usage patterns to explain the invoice</li>
+            <li>Detects orphaned resources and suggests cleanup</li>
+            <li>Preserves the relationship by being helpful, not threatening</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cs-usage-scenario">
+        <div class="cs-usage-scenario-header">What AI-powered outreach looks like</div>
+        <p><strong>Subject:</strong> Your Redis Cloud usage for November<br><br>
+        "Hi Sarah, I noticed your <code>prod-cache-east</code> cluster scaled from 2GB to 6GB between November 24-26 to handle increased traffic. This auto-scaling kept your application responsive during a 4x traffic spike. The resulting usage was $2,800 above your typical monthly baseline. I have attached a detailed usage breakdown. Would a payment plan across two billing cycles work better for your team?"</p>
+      </div>
+
+      <p>This is not a collections email. It is a usage review that happens to include a payment request. The customer feels understood, not harassed. The dispute resolves because the data speaks for itself.</p>
+    </section>
+
+    <!-- Key Capabilities -->
+    <section class="cs-section fade-in">
+      <span class="cs-label">Key capabilities</span>
+      <h2>Built for how infrastructure companies actually bill</h2>
+
+      <div class="cs-features">
+        <div class="cs-feature">
+          <div class="cs-feature-icon" style="color:#d82c20">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <strong>Usage-aware outreach</strong>
+            <p>AI references specific clusters, time periods, and scaling events. Every email demonstrates that the invoice is legitimate by showing exactly what was consumed and when.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon" style="color:#d82c20">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div>
+            <strong>Developer-friendly communication</strong>
+            <p>No phone spam. Email-first with clean formatting, inline usage tables, and direct links to the payment portal. Written for people who read documentation, not marketing copy.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon" style="color:#d82c20">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          </div>
+          <div>
+            <strong>Self-service payment portal</strong>
+            <p>One link. No account creation. The customer can review their usage, see the breakdown, choose a payment method, or set up installments. 70%+ of self-serve customers resolve through the portal without a single human interaction.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon" style="color:#d82c20">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <strong>Automated dispute resolution</strong>
+            <p>When a customer replies "I didn't authorize this scaling," AI does not escalate to a human. It pulls the scaling event logs, shows the auto-scaling configuration the customer set up, and resolves the dispute with data.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tiered Approach -->
+    <section class="cs-section fade-in">
+      <span class="cs-label">Tiered approach</span>
+      <h2>Different customers need different strategies</h2>
+      <p>A self-serve developer with a $200 overdue invoice and an enterprise customer with a $50,000 contract renewal are fundamentally different collection scenarios. AI adapts the approach automatically.</p>
+
+      <div class="cs-tier-grid">
+        <div class="cs-tier-card">
+          <h4>Self-serve customers</h4>
+          <div class="tier-range">$50 &ndash; $5,000 invoices</div>
+          <ul>
+            <li>Email + payment portal only</li>
+            <li>Usage breakdown attached</li>
+            <li>One-click payment link</li>
+            <li>Suggest downgrade if over-provisioned</li>
+            <li>Auto-detect expired credit cards</li>
+          </ul>
+        </div>
+        <div class="cs-tier-card">
+          <h4>Enterprise customers</h4>
+          <div class="tier-range">$5,000+ contracts</div>
+          <ul>
+            <li>Personal outreach to AP + technical contact</li>
+            <li>Reference PO numbers and contract terms</li>
+            <li>Usage report formatted for procurement</li>
+            <li>Installment plans for unexpected overages</li>
+            <li>Escalation path to customer success</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Orphan Cluster Problem -->
+    <section class="cs-section fade-in">
+      <span class="cs-label">Usage intelligence</span>
+      <h2>The orphaned cluster problem</h2>
+      <p>Every cloud infrastructure company has them: clusters, instances, or databases that are still running but nobody is using. The developer who created it left the company. The project was abandoned. The test environment was never torn down.</p>
+      <p>These accounts accumulate invoices month after month. Traditional collections treats them as standard overdue accounts. AI recognizes the pattern: declining or zero actual usage, the same invoice amount repeating, no logins to the dashboard in months.</p>
+      <p>Instead of demanding payment for six months of an unused cluster, AI reaches out with a different message entirely: "It looks like your <code>staging-redis-01</code> cluster has had no active connections since August. Would you like to shut it down? We can also help you settle the outstanding balance for the inactive period."</p>
+      <p>This approach recovers more revenue because it is honest. The customer was going to dispute the full amount anyway. By acknowledging the situation and offering to help clean it up, you recover a portion and save the customer relationship for when they need Redis again.</p>
+    </section>
+
+    <!-- CTA -->
+    <section class="cs-cta fade-in">
+      <h3>AI-powered collections for cloud infrastructure companies</h3>
+      <p>AgentCollect helps usage-based billing companies recover overdue invoices with AI that understands what your customers actually consumed.</p>
+      <div class="cs-cta-buttons">
+        <a href="https://cal.com/johnb/30" class="cs-cta-btn">Learn more about AgentCollect &rarr;</a>
+      </div>
+      <div class="cs-trust-row">
+        <span>SOC 2 Type II</span>
+        <span>CCPA/CPRA</span>
+        <span>B2B Only</span>
+      </div>
+    </section>
+
+    <div style="text-align:center;margin:32px 0 0">
+      <a href="/customers" style="color:var(--text-muted);font-size:14px;text-decoration:none;font-family:var(--font-display)">&larr; Back to all use cases</a>
+    </div>
+
+  </main>
+
+  <!-- RIGHT: Sticky sidebar -->
+  <aside class="cs-sidebar">
+    <div class="cs-sidebar-inner">
+      <!-- Company card -->
+      <div class="cs-company-card">
+        <div class="cs-company-logo" style="display:flex;align-items:center;gap:12px">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="#d82c20"><path d="M22.71 13.145c-1.66 2.092-3.452 4.483-7.038 4.483-3.203 0-4.397-2.825-4.48-5.12.701 1.484 2.073 2.685 4.214 2.63 4.117-.133 6.94-3.852 6.94-7.239 0-4.05-3.022-6.972-8.268-6.972-3.752 0-8.4 1.428-11.455 3.685C2.59 6.937 3.885 9.958 4.35 9.626c2.648-1.904 4.748-3.13 6.784-3.744C8.12 9.244.886 17.05 0 18.425c.1 1.261 1.66 4.648 2.424 4.648.232 0 .431-.133.664-.365a100.49 100.49 0 0 0 5.54-6.765c.222 3.104 1.748 6.898 6.014 6.898 3.819 0 7.604-2.756 9.33-8.965.2-.764-.73-1.361-1.261-.73zm-4.349-5.013c0 1.959-1.926 2.922-3.685 2.922-.941 0-1.664-.247-2.235-.568 1.051-1.592 2.092-3.225 3.21-4.973 1.972.334 2.71 1.43 2.71 2.619z"/></svg>
+          <span style="font-family:var(--font-display);font-size:18px;font-weight:600;color:var(--text)">Redis</span>
+        </div>
+
+        <div class="cs-sidebar-section">
+          <div class="cs-sidebar-label">Products used</div>
+          <div class="cs-product-list">
+            <span class="cs-product-tag">AI Email</span>
+            <span class="cs-product-tag">Payment Portal</span>
+            <span class="cs-product-tag">Dispute Resolution</span>
+            <span class="cs-product-tag">Usage Intelligence</span>
+          </div>
+        </div>
+
+        <div class="cs-sidebar-section">
+          <div class="cs-sidebar-label">Industry</div>
+          <div class="cs-sidebar-value">Cloud Infrastructure / Database-as-a-Service</div>
+        </div>
+
+        <div class="cs-sidebar-section">
+          <div class="cs-sidebar-label">Billing model</div>
+          <div class="cs-sidebar-value">Usage-based pricing</div>
+        </div>
+
+        <div class="cs-sidebar-section">
+          <div class="cs-sidebar-label">Key challenge</div>
+          <div class="cs-sidebar-value">Usage-based billing disputes from auto-scaling events</div>
+        </div>
+
+        <div class="cs-sidebar-section">
+          <div class="cs-sidebar-label">Customer type</div>
+          <div class="cs-sidebar-value">Developer-first / Engineering teams</div>
+        </div>
+      </div>
+
+      <!-- Sidebar highlights -->
+      <div class="cs-sidebar-stats">
+        <div class="cs-sidebar-stat">
+          <div class="cs-sidebar-stat-number" style="color:#d82c20">70%+</div>
+          <div class="cs-sidebar-stat-label">self-resolve via portal</div>
+        </div>
+        <div class="cs-sidebar-stat">
+          <div class="cs-sidebar-stat-number" style="color:#d82c20">0</div>
+          <div class="cs-sidebar-stat-label">phone calls to developers</div>
+        </div>
+        <div class="cs-sidebar-stat">
+          <div class="cs-sidebar-stat-number" style="color:#d82c20">100%</div>
+          <div class="cs-sidebar-stat-label">usage-aware outreach</div>
+        </div>
+      </div>
+
+      <a href="https://cal.com/johnb/30" class="cs-sidebar-cta">Book a demo &rarr;</a>
+    </div>
+  </aside>
+
+</div>
+
+<!-- Footer -->
+<footer class="cs-footer">
+  <div class="container">
+    <div class="cs-footer-inner">
+      <div class="cs-footer-brand">
+        <a href="/" class="nav-logo">AgentCollect<span class="dot"></span></a>
+        <p>AI-powered collections that recover revenue without risking relationships.</p>
+      </div>
+      <div class="cs-footer-links-grid">
+        <div>
+          <h4>Product</h4>
+          <a href="/">Home</a>
+          <a href="/customers">Customers</a>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <a href="/about">About</a>
+          <a href="/customers">Case Studies</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <a href="https://cal.com/johnb/30">Book a demo</a>
+        </div>
+      </div>
+    </div>
+    <div class="cs-footer-bottom">
+      <p>&copy; 2026 AgentCollect, Inc. All rights reserved.</p>
+      <div class="cs-footer-badges">
+        <span>SOC 2 Type II</span>
+        <span>CCPA/CPRA</span>
+        <span>B2B Only</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Progress Bar */
+const progressBar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const pct = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight)) * 100;
+  progressBar.style.width = pct + '%';
+});
+
+/* Scroll Fade-In */
+const fadeEls = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+fadeEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

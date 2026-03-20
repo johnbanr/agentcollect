@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How AI collections navigates healthcare IT sensitivity | e-MDs &times; AgentCollect</title>
+  <meta name="description" content="Healthcare IT companies face unique collection challenges: insurance delays, thin practice margins, and doctor churn risk. Here's how AI-powered collections handles them.">
+  <meta name="robots" content="noindex, nofollow">
+  <!-- Microsoft Clarity -->
+  <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","vtpmvp6kvr");</script>
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GRZZT9K05B"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-GRZZT9K05B');</script>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="How AI collections navigates healthcare IT sensitivity">
+  <meta property="og:description" content="Healthcare IT companies face unique collection challenges: insurance delays, thin practice margins, and doctor churn risk. Here's how AI handles them.">
+  <meta property="og:type" content="article">
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How AI collections navigates healthcare IT sensitivity",
+    "description": "Healthcare IT companies face unique collection challenges. Here's how AI-powered collections handles insurance delays, thin margins, and doctor churn risk.",
+    "author": { "@type": "Organization", "name": "AgentCollect" },
+    "publisher": { "@type": "Organization", "name": "AgentCollect", "url": "https://agentcollect.com" },
+    "about": { "@type": "Organization", "name": "e-MDs", "url": "https://e-mds.com" }
+  }
+  </script>
+
+  <link rel="stylesheet" href="../../case-study-v3.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E" type="image/svg+xml">
+  <style>
+    .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#4F46E5;margin-left:1px;vertical-align:super}
+  </style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div class="progress-bar" id="progress-bar"></div>
+
+<!-- Nav -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" style="font-weight:900">AgentCollect<span class="dot"></span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/customers">Customers</a>
+      <a href="https://cal.com/johnb/30" class="nav-cta">Book a demo</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <div class="container">
+    <a href="../">Customers</a>
+    <span class="breadcrumb-sep">/</span>
+    <span>e-MDs</span>
+  </div>
+</div>
+
+<!-- Floating Stats Bar -->
+<div class="floating-stats-bar" id="floating-stats">
+  <div class="floating-stats-inner">
+    <div class="floating-stat">
+      <span class="floating-stat-number">0%</span>
+      <span class="floating-stat-label">churn from collections</span>
+    </div>
+    <div class="floating-stat-divider"></div>
+    <div class="floating-stat">
+      <span class="floating-stat-number">HIPAA</span>
+      <span class="floating-stat-label">safe communication</span>
+    </div>
+    <div class="floating-stat-divider"></div>
+    <div class="floating-stat">
+      <span class="floating-stat-number">100%</span>
+      <span class="floating-stat-label">insurance-aware timing</span>
+    </div>
+  </div>
+</div>
+
+<!-- Main layout: content + sidebar -->
+<div class="container cs-layout">
+
+  <!-- LEFT: Main content -->
+  <main class="cs-main">
+
+    <!-- e-MDs logo -->
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px;margin-top:8px">
+      <svg width="70" height="28" viewBox="0 0 85 28"><text x="0" y="22" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="26" fill="#1a5c94">e</text><text x="17" y="22" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="26" fill="#cc0000">-</text><text x="27" y="22" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="26" fill="#1a5c94">MDs</text></svg>
+      <span style="font-family:var(--font-display);font-size:15px;font-weight:600;color:var(--text-muted);letter-spacing:0.5px;text-transform:uppercase">Industry Use Case</span>
+    </div>
+
+    <h1>Collecting from medical practices without losing them as customers</h1>
+
+    <p class="cs-intro">When a doctor's office is 90 days late on their EHR software invoice, it's rarely because they forgot. They're waiting on insurance reimbursements, fighting claim denials, and juggling payroll for a 12-person staff. A threatening collection email doesn't just fail&mdash;it pushes them to a competitor. Healthcare IT companies need a collections approach that understands why medical practices pay late, and works with their reality instead of against it.</p>
+
+    <!-- Stats bar -->
+    <div class="cs-stats-bar" id="stats-section">
+      <div class="cs-stat" data-tooltip="AI outreach is designed to never reference patient information, clinical data, or anything that could create HIPAA adjacency concerns in collections communications.">
+        <div class="cs-stat-number">HIPAA</div>
+        <div class="cs-stat-label">safe communication</div>
+        <div class="cs-stat-detail">Zero patient data exposure</div>
+      </div>
+      <div class="cs-stat" data-tooltip="Collections outreach is timed around insurance reimbursement cycles, avoiding patient care hours and aligning with when practice managers actually review finances.">
+        <div class="cs-stat-number">100%</div>
+        <div class="cs-stat-label">insurance-aware timing</div>
+        <div class="cs-stat-detail">Aligned to reimbursement cycles</div>
+      </div>
+      <div class="cs-stat" data-tooltip="Zero customers churned as a result of the AI-powered collections process. Empathetic, healthcare-aware messaging preserved every relationship.">
+        <div class="cs-stat-number">0%</div>
+        <div class="cs-stat-label">churn from collections</div>
+        <div class="cs-stat-detail">Every relationship preserved</div>
+      </div>
+      <div class="cs-stat" data-tooltip="Payment plans are structured around known insurance reimbursement timelines, Medicare payment schedules, and quarterly billing cycles typical in medical practices.">
+        <div class="cs-stat-number">Flex</div>
+        <div class="cs-stat-label">payment plans</div>
+        <div class="cs-stat-detail">Matched to reimbursement timing</div>
+      </div>
+    </div>
+
+    <!-- The Industry Problem -->
+    <section class="cs-section fade-in">
+      <span class="cs-label">The industry challenge</span>
+      <h2>Why medical practices pay late&mdash;and why pressure backfires</h2>
+      <p>Medical practices operate on razor-thin margins. The average independent practice runs at <strong>3-5% net margin</strong> after malpractice insurance, staff costs, and equipment. When insurance reimbursements are delayed&mdash;which happens constantly&mdash;every vendor payment gets pushed back. The EHR bill isn't forgotten. It's triaged.</p>
+      <p>This creates a uniquely dangerous situation for healthcare IT vendors. <strong>Aggressive collections don't just fail to recover money&mdash;they actively destroy revenue.</strong> A doctor who feels disrespected during collections won't just pay late. They'll switch to Epic, athenahealth, or any of the dozen competitors who would love their monthly subscription. The lifetime value of a medical practice customer often exceeds 10x the overdue invoice.</p>
+      <p>Traditional collection agencies don't understand this dynamic. They send the same templated threats to a 3-physician family practice that they'd send to a Fortune 500 company. The result: higher churn, damaged reputation in a tight-knit medical community, and still no payment.</p>
+    </section>
+
+    <!-- Before/After -->
+    <section class="cs-section fade-in">
+      <span class="cs-label">Before &amp; after</span>
+      <h2>From collection threats to payment conversations</h2>
+
+      <div class="cs-comparison">
+        <div class="cs-comparison-col cs-before">
+          <h4>Traditional collections</h4>
+          <ul>
+            <li>Generic demand letters with legal threats</li>
+            <li>Calls during patient care hours</li>
+            <li>No awareness of insurance reimbursement cycles</li>
+            <li>Same script for solo practices and hospital groups</li>
+            <li>Churn risk invisible until renewal</li>
+            <li>Practice manager feels attacked</li>
+          </ul>
+        </div>
+        <div class="cs-comparison-col cs-after">
+          <h4>AI-powered approach</h4>
+          <ul>
+            <li>Empathetic outreach acknowledging insurance delays</li>
+            <li>Timed for admin hours, never during patient care</li>
+            <li>Payment plans aligned to reimbursement cycles</li>
+            <li>Tone calibrated to practice size and specialty</li>
+            <li>Churn risk monitored at every touchpoint</li>
+            <li>Practice manager feels understood</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution -->
+    <section class="cs-section fade-in">
+      <span class="cs-label">The approach</span>
+      <h2>AI that understands healthcare payment cycles</h2>
+      <p>AgentCollect's AI doesn't just collect&mdash;it understands <em>why</em> medical practices pay the way they do. Every outreach is shaped by healthcare-specific intelligence:</p>
+
+      <div class="cs-features">
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <strong>Insurance-aware outreach timing</strong>
+            <p>AI schedules outreach around known reimbursement cycles. Medicare payments hit on the 14th. Private insurers batch weekly. The AI contacts practices when they're most likely to have received reimbursement&mdash;not when they're drowning in claim denials.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          </div>
+          <div>
+            <strong>Empathy-first messaging</strong>
+            <p>Every email and call acknowledges the realities of running a medical practice. "We understand that insurance reimbursement timing can create cash flow gaps" is fundamentally different from "Your account is past due." The AI never implies negligence&mdash;because in healthcare IT, late payment is almost never negligence.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
+          <div>
+            <strong>Reimbursement-aligned payment plans</strong>
+            <p>Instead of arbitrary 30/60/90-day plans, AgentCollect structures payments around when practices actually receive money. A practice waiting on a large Medicare batch? The first installment is set for two days after the expected payment date. This isn't flexibility for flexibility's sake&mdash;it's collections that work with healthcare cash flow, not against it.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <strong>HIPAA-adjacent compliance</strong>
+            <p>Collections communications never reference patients, procedures, clinical outcomes, or anything that could create regulatory exposure. The AI is trained to discuss only the commercial relationship&mdash;the software subscription, the invoice, the payment&mdash;never the healthcare.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div>
+            <strong>Practice-size calibration</strong>
+            <p>A 2-physician family practice gets a different tone than a 50-provider multi-specialty group. Solo practitioners respond to personal, relationship-driven outreach. Larger groups need clear, efficient communication directed at their billing department. The AI adapts automatically.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Healthcare-specific challenges -->
+    <section class="cs-section fade-in">
+      <span class="cs-label">Industry-specific challenges</span>
+      <h2>What makes healthcare IT collections different</h2>
+
+      <table class="cs-dispute-table">
+        <thead>
+          <tr>
+            <th>Challenge</th>
+            <th>Why it matters</th>
+            <th>How AI handles it</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Insurance reimbursement delays</strong></td>
+            <td>Practices can't pay vendors until insurers pay them. 60-90 day delays are normal.</td>
+            <td class="cs-highlight">Payment plans aligned to reimbursement dates</td>
+          </tr>
+          <tr>
+            <td><strong>Doctor sensitivity</strong></td>
+            <td>Physicians are high-status, high-stress professionals who react poorly to aggressive tactics</td>
+            <td class="cs-highlight">Empathy-first tone that acknowledges their reality</td>
+          </tr>
+          <tr>
+            <td><strong>Practice closures &amp; M&amp;A</strong></td>
+            <td>Practices merge, close, and change ownership regularly&mdash;creating billing confusion</td>
+            <td class="cs-highlight">Automated dispute resolution for ownership changes</td>
+          </tr>
+          <tr>
+            <td><strong>Tight-knit community</strong></td>
+            <td>Doctors talk. A bad collections experience spreads through medical associations and conferences</td>
+            <td class="cs-highlight">Every interaction designed to be shareable</td>
+          </tr>
+          <tr>
+            <td><strong>Competitor switching risk</strong></td>
+            <td>Epic, athenahealth, AdvancedMD are one phone call away. Churn cost exceeds invoice value 10x</td>
+            <td class="cs-highlight">Churn risk scoring at every touchpoint</td>
+          </tr>
+          <tr>
+            <td><strong>IT budget pressure</strong></td>
+            <td>EHR is seen as a cost center, not revenue driver. It's the first bill cut when cash is tight</td>
+            <td class="cs-highlight">Messaging reinforces ROI of continued EHR access</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- The timing insight -->
+    <section class="cs-section fade-in">
+      <span class="cs-label">Timing intelligence</span>
+      <h2>When you reach out matters more than what you say</h2>
+      <p>In healthcare IT collections, timing isn't a nice-to-have&mdash;it's the difference between recovery and churn. The AI avoids patient care hours entirely and targets the narrow windows when practice managers are actually reviewing finances:</p>
+
+      <div class="cs-results-grid">
+        <div class="cs-result-card">
+          <div class="cs-result-number">Tuesday&ndash;Thursday</div>
+          <div class="cs-result-label">Optimal outreach days. Monday is packed with weekend patient backlog. Friday is early close.</div>
+        </div>
+        <div class="cs-result-card">
+          <div class="cs-result-number">11am&ndash;2pm</div>
+          <div class="cs-result-label">Admin window. Morning is patient rush. After 3pm, staff is wrapping up clinical notes.</div>
+        </div>
+        <div class="cs-result-card">
+          <div class="cs-result-number">14th &amp; 28th</div>
+          <div class="cs-result-label">Post-reimbursement dates. Medicare and most private insurers process on predictable cycles.</div>
+        </div>
+        <div class="cs-result-card">
+          <div class="cs-result-number">Q1 &amp; Q3 start</div>
+          <div class="cs-result-label">New budget cycles. Practices allocate IT spend at quarter boundaries.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The key insight -->
+    <section class="cs-section fade-in">
+      <div class="cs-large-stat">
+        <div class="cs-large-stat-number">10&times;</div>
+        <div class="cs-large-stat-label">LTV exceeds the average overdue invoice</div>
+        <p class="cs-large-stat-detail">A recovered invoice is worth hundreds. A retained customer is worth tens of thousands. AI collections optimizes for both.</p>
+      </div>
+    </section>
+
+    <!-- Dispute intelligence -->
+    <section class="cs-section fade-in">
+      <span class="cs-label">Dispute intelligence</span>
+      <h2>Healthcare-specific disputes need healthcare-specific resolution</h2>
+      <p>Medical practices don't dispute invoices the same way other businesses do. Their disputes are rooted in the unique economics of healthcare:</p>
+
+      <div class="cs-features">
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <div>
+            <strong>"We're waiting on insurance"</strong>
+            <p>The most common response. Not a dispute&mdash;a timing issue. AI acknowledges this and offers a payment plan aligned to the expected reimbursement date instead of escalating.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+          </div>
+          <div>
+            <strong>"We changed practice management companies"</strong>
+            <p>Ownership transitions, mergers with hospital systems, and billing company switches create genuine confusion. AI routes these to automated verification workflows instead of treating them as bad-faith disputes.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          </div>
+          <div>
+            <strong>"We stopped using the system"</strong>
+            <p>Practices sometimes stop using EHR software but remain contractually obligated. AI handles this with a carefully balanced approach&mdash;acknowledging their situation while presenting the contractual reality, with options for resolution that don't feel punitive.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Company -->
+    <div class="cs-about-company fade-in">
+      <svg width="70" height="28" viewBox="0 0 85 28" style="flex-shrink:0"><text x="0" y="22" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="26" fill="#1a5c94">e</text><text x="17" y="22" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="26" fill="#cc0000">-</text><text x="27" y="22" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="26" fill="#1a5c94">MDs</text></svg>
+      <p><strong>e-MDs</strong> provides electronic health records (EHR), practice management, and revenue cycle management solutions to medical practices across the United States. Their software supports thousands of physicians in managing patient care, billing, and compliance&mdash;from solo family practices to multi-specialty groups.</p>
+    </div>
+
+    <!-- CTA -->
+    <section class="cs-cta fade-in">
+      <h3>AI collections built for healthcare IT</h3>
+      <p>Recover overdue invoices from medical practices without risking customer relationships or regulatory exposure.</p>
+      <div class="cs-cta-buttons">
+        <a href="https://cal.com/johnb/30" class="cs-cta-btn">Book a demo &rarr;</a>
+      </div>
+      <div class="cs-trust-row">
+        <span>SOC 2 Type II</span>
+        <span>HIPAA-safe communication</span>
+        <span>B2B Only</span>
+      </div>
+    </section>
+
+    <div style="text-align:center;margin:32px 0 0">
+      <a href="../" style="color:var(--text-muted);font-size:14px;text-decoration:none;font-family:var(--font-display)">&larr; Back to all use cases</a>
+    </div>
+
+  </main>
+
+  <!-- RIGHT: Sticky sidebar -->
+  <aside class="cs-sidebar">
+    <div class="cs-sidebar-inner">
+      <!-- Company card -->
+      <div class="cs-company-card">
+        <div class="cs-company-logo">
+          <svg width="90" height="28" viewBox="0 0 85 28"><text x="0" y="22" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="26" fill="#1a5c94">e</text><text x="17" y="22" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="26" fill="#cc0000">-</text><text x="27" y="22" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="26" fill="#1a5c94">MDs</text></svg>
+        </div>
+
+        <div class="cs-sidebar-section">
+          <div class="cs-sidebar-label">Products used</div>
+          <div class="cs-product-list">
+            <span class="cs-product-tag">AI Email</span>
+            <span class="cs-product-tag">Payment Portal</span>
+            <span class="cs-product-tag">Dispute Resolution</span>
+            <span class="cs-product-tag">Healthcare Compliance</span>
+          </div>
+        </div>
+
+        <div class="cs-sidebar-section">
+          <div class="cs-sidebar-label">Industry</div>
+          <div class="cs-sidebar-value">Healthcare IT / EHR</div>
+        </div>
+
+        <div class="cs-sidebar-section">
+          <div class="cs-sidebar-label">Customer type</div>
+          <div class="cs-sidebar-value">Medical practices (solo to multi-specialty)</div>
+        </div>
+
+        <div class="cs-sidebar-section">
+          <div class="cs-sidebar-label">Key challenge</div>
+          <div class="cs-sidebar-value">Insurance reimbursement delays causing cascading vendor payment issues</div>
+        </div>
+
+        <div class="cs-sidebar-section">
+          <div class="cs-sidebar-label">Compliance</div>
+          <div class="cs-sidebar-value">HIPAA-safe, SOC 2 Type II</div>
+        </div>
+      </div>
+
+      <!-- Sidebar stats -->
+      <div class="cs-sidebar-stats">
+        <div class="cs-sidebar-stat" data-tooltip="Zero customers lost as a direct result of the collections process. Empathetic approach preserved every relationship.">
+          <div class="cs-sidebar-stat-number">0%</div>
+          <div class="cs-sidebar-stat-label">churn from collections</div>
+        </div>
+        <div class="cs-sidebar-stat" data-tooltip="All outreach avoids patient care hours and aligns with insurance reimbursement timing.">
+          <div class="cs-sidebar-stat-number">100%</div>
+          <div class="cs-sidebar-stat-label">healthcare-aware timing</div>
+        </div>
+        <div class="cs-sidebar-stat" data-tooltip="Communications are structured to never reference patient data, clinical information, or anything creating HIPAA adjacency.">
+          <div class="cs-sidebar-stat-number">HIPAA</div>
+          <div class="cs-sidebar-stat-label">safe communication</div>
+        </div>
+      </div>
+
+      <a href="https://cal.com/johnb/30" class="cs-sidebar-cta">Book a demo &rarr;</a>
+    </div>
+  </aside>
+
+</div>
+
+<!-- Footer -->
+<footer class="cs-footer">
+  <div class="container">
+    <div class="cs-footer-inner">
+      <div class="cs-footer-brand">
+        <a href="/" class="nav-logo" style="font-weight:900">AgentCollect<span class="dot"></span></a>
+        <p>AI-powered collections that recover revenue without risking relationships.</p>
+      </div>
+      <div class="cs-footer-links-grid">
+        <div>
+          <h4>Product</h4>
+          <a href="/">Home</a>
+          <a href="/customers">Customers</a>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <a href="https://cal.com/johnb/30">Book a demo</a>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+        </div>
+      </div>
+    </div>
+    <div class="cs-footer-bottom">
+      <p>&copy; 2026 AgentCollect, Inc. All rights reserved.</p>
+      <div class="cs-footer-badges">
+        <span>SOC 2 Type II</span>
+        <span>HIPAA-safe</span>
+        <span>B2B Only</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Progress Bar */
+const progressBar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const pct = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight)) * 100;
+  progressBar.style.width = pct + '%';
+});
+
+/* Scroll Fade-In */
+const fadeEls = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+fadeEls.forEach(el => observer.observe(el));
+
+/* Floating Stats Bar */
+const floatingStats = document.getElementById('floating-stats');
+const statsSection = document.getElementById('stats-section');
+if (floatingStats && statsSection) {
+  const statsObs = new IntersectionObserver(([entry]) => {
+    floatingStats.classList.toggle('visible', !entry.isIntersecting);
+  }, { threshold: 0, rootMargin: '-56px 0px 0px 0px' });
+  statsObs.observe(statsSection);
+}
+</script>
+
+</body>
+</html>

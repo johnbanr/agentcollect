@@ -1,239 +1,748 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customers — AgentCollect</title>
-    <meta name="description" content="How enterprise finance teams use AgentCollect's AI to recover overdue invoices without damaging customer relationships.">
-    <meta name="robots" content="noindex, nofollow">
-    <meta property="og:title" content="Customer Stories — AgentCollect">
-    <meta property="og:description" content="Enterprise AI collections that recover revenue without risking relationships.">
-    <meta property="og:type" content="website">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Clarity -->
-    <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","vtpmvp6kvr");</script>
-    <!-- GA4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GRZZT9K05B"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-GRZZT9K05B');</script>
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box}
-        :root{
-            --bg:#f6f3ef;--bg-subtle:#eeebe6;--bg-warm:#faf8f5;
-            --text:#0B1B3D;--text-mid:#374151;--text-muted:#64748B;--text-dim:#94A3B8;
-            --indigo:#4F46E5;--indigo-dark:#4338CA;--indigo-light:rgba(79,70,229,.06);
-            --green:#10B981;--border:#E8ECF2;
-            --sans:'Inter',-apple-system,sans-serif;--display:'Plus Jakarta Sans',sans-serif;
-            --max-w:1120px;
-        }
-        body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.7}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Collections Use Cases by Industry | AgentCollect</title>
+  <meta name="description" content="How AI-powered collections solve industry-specific receivables challenges — from marketplaces to fintech to healthcare.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta property="og:title" content="AI Collections Use Cases by Industry | AgentCollect">
+  <meta property="og:description" content="Industry-specific AI collections: marketplace logistics, developer platforms, fintech APIs, healthcare IT, and more.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Clarity -->
+  <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","vtpmvp6kvr");</script>
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GRZZT9K05B"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-GRZZT9K05B');</script>
+  <style>
+    :root {
+      --bg: #f6f3ef;
+      --bg-subtle: #eeebe6;
+      --text: #0B1B3D;
+      --text-secondary: #374151;
+      --text-muted: #64748B;
+      --accent: #4F46E5;
+      --accent-light: rgba(79,70,229,.06);
+      --border: #E8ECF2;
+      --radius: 8px;
+      --radius-lg: 12px;
+      --font-display: 'Plus Jakarta Sans', sans-serif;
+    }
 
-        /* Nav */
-        .nav{position:sticky;top:0;z-index:100;background:rgba(246,243,239,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
-        .nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:56px}
-        .nav-logo{font-family:var(--display);font-size:18px;font-weight:900;color:var(--text);text-decoration:none;letter-spacing:-.5px}
-        .nav-logo .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--indigo);margin-left:1px;vertical-align:super}
-        .nav-links{display:flex;align-items:center;gap:28px}
-        .nav-links a{font-size:14px;color:var(--text-muted);text-decoration:none;font-weight:500;transition:color .15s}
-        .nav-links a:hover{color:var(--text)}
-        .nav-links a.active{color:var(--indigo);font-weight:600}
-        .nav-cta{background:var(--indigo)!important;color:#fff!important;padding:8px 16px;border-radius:6px;font-weight:600!important;font-size:13px!important;transition:opacity .15s}
-        .nav-cta:hover{opacity:.9}
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
 
-        /* Hero */
-        .hero{padding:80px 24px 60px;text-align:center}
-        .hero-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;background:var(--indigo-light);border:1px solid rgba(79,70,229,.12);font-size:13px;font-weight:600;color:var(--indigo);margin-bottom:20px}
-        .hero h1{font-family:var(--display);font-size:clamp(32px,5vw,48px);font-weight:900;letter-spacing:-.04em;line-height:1.15;margin-bottom:16px;max-width:700px;margin-left:auto;margin-right:auto}
-        .hero p{font-size:17px;color:var(--text-mid);max-width:560px;margin:0 auto;line-height:1.7}
+    /* Nav */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(246,243,239,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 18px; font-weight: 900; color: var(--text);
+      text-decoration: none; letter-spacing: -0.5px;
+    }
+    .nav-logo .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-left:1px;vertical-align:super}
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a {
+      font-size: 14px; color: var(--text-muted); text-decoration: none;
+      font-weight: 500; transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--accent); font-weight: 600; }
+    .nav-cta {
+      background: var(--accent) !important; color: #fff !important;
+      padding: 8px 16px; border-radius: 6px; font-weight: 600 !important;
+      font-size: 13px !important; transition: opacity 0.15s;
+    }
+    .nav-cta:hover { opacity: 0.9; }
 
-        /* Logo bar */
-        .logo-bar{display:flex;align-items:center;justify-content:center;gap:40px;padding:40px 24px;flex-wrap:wrap;opacity:.5}
-        .logo-bar img{height:28px;object-fit:contain;filter:grayscale(100%);transition:filter .2s,opacity .2s;opacity:.6}
-        .logo-bar img:hover{filter:none;opacity:1}
+    /* Hero */
+    .hero {
+      max-width: 1200px; margin: 0 auto; padding: 80px 24px 48px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      font-size: 13px; font-weight: 600; color: var(--accent);
+      background: var(--accent-light);
+      padding: 6px 16px; border-radius: 20px;
+      margin-bottom: 20px; letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .hero p {
+      font-size: 18px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
 
-        /* Case studies grid */
-        .cases{max-width:var(--max-w);margin:0 auto;padding:0 24px 80px}
-        .cases-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px}
-        .case-card{background:#fff;border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all .2s;cursor:pointer;text-decoration:none;color:inherit}
-        .case-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.06);border-color:rgba(79,70,229,.15)}
-        .case-card-img{height:200px;background:#000;position:relative;overflow:hidden}
-        .case-card-img img{width:100%;height:100%;object-fit:cover;opacity:.8}
-        .case-card-logo{position:absolute;top:16px;left:16px;background:rgba(255,255,255,.95);border-radius:8px;padding:6px 10px;display:flex;align-items:center;gap:8px}
-        .case-card-logo svg{flex-shrink:0}
-        .case-card-logo span{font-family:var(--display);font-size:13px;font-weight:700;color:var(--text)}
-        .case-card-body{padding:24px}
-        .case-card-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--indigo);margin-bottom:8px}
-        .case-card-title{font-family:var(--display);font-size:20px;font-weight:800;letter-spacing:-.03em;line-height:1.3;margin-bottom:12px}
-        .case-card-desc{font-size:14px;color:var(--text-mid);line-height:1.6;margin-bottom:16px}
-        .case-card-stats{display:flex;gap:20px;flex-wrap:wrap}
-        .case-card-stat{display:flex;flex-direction:column}
-        .case-card-stat-number{font-family:var(--display);font-size:20px;font-weight:800;color:var(--indigo);letter-spacing:-.03em}
-        .case-card-stat-label{font-size:11px;color:var(--text-muted);font-weight:500}
-        .case-card-arrow{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--indigo);margin-top:16px}
+    /* Logos bar */
+    .logos-bar {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px 48px;
+      text-align: center;
+    }
+    .logos-bar p {
+      font-size: 13px; font-weight: 500; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 1px;
+      margin-bottom: 28px;
+    }
+    .logos-row {
+      display: flex; align-items: center; justify-content: center;
+      gap: 40px; flex-wrap: wrap;
+    }
+    .logo-item {
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      opacity: 0.45; transition: opacity 0.2s;
+      text-decoration: none; cursor: pointer;
+    }
+    .logo-item:hover { opacity: 0.7; }
+    .logo-item svg { height: 22px; width: auto; }
+    .logo-item span {
+      font-size: 11px; font-weight: 600; color: var(--text-secondary);
+      letter-spacing: 0.3px;
+    }
+    .logo-item.fade-in { animation: fadeUp 0.5s ease forwards; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 0.45; transform: translateY(0); }
+    }
 
-        /* Testimonials */
-        .testimonials{max-width:var(--max-w);margin:0 auto;padding:0 24px 80px}
-        .testimonials h2{font-family:var(--display);font-size:28px;font-weight:900;letter-spacing:-.04em;text-align:center;margin-bottom:40px}
-        .test-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
-        .test-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:24px}
-        .test-quote{font-size:15px;color:var(--text-mid);line-height:1.65;margin-bottom:16px;font-style:italic}
-        .test-author{font-size:13px;font-weight:600;color:var(--text)}
-        .test-company{font-size:12px;color:var(--text-muted)}
-        .test-metric{display:inline-flex;padding:4px 10px;border-radius:20px;background:var(--indigo-light);color:var(--indigo);font-size:12px;font-weight:700;margin-top:8px}
+    /* Featured card */
+    .featured-section {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px 40px;
+    }
+    .featured-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1),
+                  box-shadow 0.4s cubic-bezier(0.4,0,0.2,1);
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+    }
+    .featured-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 64px rgba(50,50,93,0.14), 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .featured-media {
+      position: relative;
+      aspect-ratio: 16/10;
+      overflow: hidden;
+      background: #1a1612;
+    }
+    .featured-media img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.4,0,0.2,1);
+    }
+    .featured-media video {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    .featured-card:hover .featured-media video { opacity: 1; }
+    .featured-card:hover .featured-media img { transform: scale(1.04); }
+    .featured-play {
+      position: absolute;
+      bottom: 20px; right: 20px;
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.3);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.3s, background 0.3s;
+      z-index: 2;
+    }
+    .featured-card:hover .featured-play {
+      transform: scale(1.1);
+      background: rgba(255,255,255,0.35);
+    }
+    .featured-body {
+      padding: 40px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .featured-logo {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 20px;
+    }
+    .featured-logo span {
+      font-family: var(--font-display);
+      font-size: 16px; font-weight: 600; color: var(--text-secondary);
+    }
+    .featured-badge {
+      display: inline-block;
+      font-size: 11px; font-weight: 700;
+      color: var(--accent); background: var(--accent-light);
+      padding: 4px 10px; border-radius: 12px;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      margin-bottom: 16px; width: fit-content;
+    }
+    .featured-body h2 {
+      font-family: var(--font-display);
+      font-size: 28px; font-weight: 800;
+      line-height: 1.25; margin-bottom: 12px;
+      color: var(--text);
+    }
+    .featured-body > p {
+      font-size: 15px; color: var(--text-secondary);
+      line-height: 1.6; margin-bottom: 24px;
+    }
+    .featured-stats {
+      display: flex; gap: 32px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .featured-stat-value {
+      font-family: var(--font-display);
+      font-size: 28px; font-weight: 800;
+      color: var(--accent); line-height: 1;
+    }
+    .featured-stat-label {
+      font-size: 12px; color: var(--text-muted); margin-top: 4px;
+    }
+    .featured-cta {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 14px; font-weight: 600; color: var(--accent);
+      margin-top: 20px;
+      opacity: 0; transform: translateY(8px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .featured-card:hover .featured-cta {
+      opacity: 1; transform: translateY(0);
+    }
+    .featured-cta svg { transition: transform 0.3s; }
+    .featured-card:hover .featured-cta svg { transform: translateX(4px); }
 
-        /* CTA */
-        .cta-section{background:linear-gradient(135deg,#1e1b3a,#0a0a1a);border-radius:20px;max-width:var(--max-w);margin:0 auto 80px;padding:60px 40px;text-align:center;color:#fff}
-        .cta-section h2{font-family:var(--display);font-size:28px;font-weight:900;margin-bottom:8px}
-        .cta-section p{font-size:16px;color:rgba(255,255,255,.6);margin-bottom:24px}
-        .cta-btn{display:inline-flex;align-items:center;gap:6px;padding:14px 28px;background:#fff;color:var(--text);border-radius:10px;font-family:var(--display);font-weight:700;font-size:15px;text-decoration:none;transition:all .2s}
-        .cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,255,255,.15)}
+    /* Cards Grid */
+    .cards-section {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px 80px;
+    }
+    .cards-section-title {
+      font-family: var(--font-display);
+      font-size: 14px; font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
 
-        /* Footer */
-        .footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center}
-        .footer p{font-size:13px;color:var(--text-muted)}
-        .footer a{color:var(--indigo);text-decoration:none}
+    /* Card with animated gradient */
+    .story-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1),
+                  box-shadow 0.4s cubic-bezier(0.4,0,0.2,1);
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .story-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 64px rgba(50,50,93,0.14), 0 8px 24px rgba(0,0,0,0.08);
+    }
 
-        @media(max-width:600px){
-            .cases-grid{grid-template-columns:1fr}
-            .test-grid{grid-template-columns:1fr}
-            .logo-bar{gap:24px}
-            .logo-bar img{height:22px}
-            .nav-links a:not(.nav-cta):not(.active){display:none}
-            .cta-section{margin:0 16px 60px;padding:40px 24px}
-        }
-    </style>
+    .card-media {
+      position: relative;
+      height: 180px;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      background-size: 200% 200%;
+      animation: none;
+      transition: background-position 0.8s cubic-bezier(0.4,0,0.2,1);
+      background-position: 0% 50%;
+    }
+    .story-card:hover .card-media {
+      background-position: 100% 50%;
+    }
+    .card-media .card-logo-white {
+      z-index: 1;
+      transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+    }
+    .card-media .card-logo-white svg {
+      height: 36px; width: auto;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15));
+    }
+    .story-card:hover .card-logo-white {
+      transform: scale(1.08);
+    }
+    .card-industry {
+      position: absolute;
+      top: 14px; right: 14px;
+      font-size: 11px; font-weight: 600;
+      color: rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(8px);
+      padding: 4px 10px; border-radius: 10px;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      z-index: 2;
+    }
+    /* Shimmer on hover */
+    .card-media::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%; right: 0; bottom: 0;
+      width: 200%;
+      background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.08) 45%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.08) 55%, transparent 60%);
+      transition: transform 0.8s ease;
+      transform: translateX(0);
+      z-index: 1;
+    }
+    .story-card:hover .card-media::after {
+      transform: translateX(50%);
+    }
+
+    .card-body { padding: 22px; }
+    .card-company-row {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 10px;
+    }
+    .card-company-row svg { height: 18px; width: auto; flex-shrink: 0; }
+    .card-company-row span {
+      font-family: var(--font-display);
+      font-size: 13px; font-weight: 600; color: var(--text-secondary);
+    }
+    .card-body h3 {
+      font-family: var(--font-display);
+      font-size: 17px; font-weight: 700;
+      line-height: 1.35; margin-bottom: 8px;
+      color: var(--text);
+    }
+    .card-body p {
+      font-size: 13px; color: var(--text-secondary);
+      line-height: 1.6; margin-bottom: 0;
+    }
+    .card-tag {
+      display: inline-block;
+      font-size: 11px; font-weight: 600;
+      color: var(--accent); background: var(--accent-light);
+      padding: 3px 8px; border-radius: 6px;
+      margin-top: 12px;
+    }
+
+    /* Brand gradients */
+    .bg-doordash { background: linear-gradient(135deg, #eb1700 0%, #ff3008 40%, #ff6347 100%); background-size: 200% 200%; }
+    .bg-redis { background: linear-gradient(135deg, #a41e11 0%, #d82c20 40%, #ff4438 100%); background-size: 200% 200%; }
+    .bg-twilio { background: linear-gradient(135deg, #c4183c 0%, #f22f46 40%, #ff6b7a 100%); background-size: 200% 200%; }
+    .bg-emds { background: linear-gradient(135deg, #0d3b66 0%, #1a5c94 40%, #2680c2 100%); background-size: 200% 200%; }
+    .bg-checkr { background: linear-gradient(135deg, #1b2838 0%, #2d4059 40%, #4a7c96 100%); background-size: 200% 200%; }
+    .bg-aircall { background: linear-gradient(135deg, #00b388 0%, #00d4a1 40%, #48e8c0 100%); background-size: 200% 200%; }
+    .bg-plaid { background: linear-gradient(135deg, #065e57 0%, #0ba299 40%, #2dd4c4 100%); background-size: 200% 200%; }
+    .bg-lafayette { background: linear-gradient(135deg, #3d0070 0%, #8801d2 40%, #b44adf 100%); background-size: 200% 200%; }
+
+    /* Bottom CTA */
+    .bottom-cta {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px 100px;
+      text-align: center;
+    }
+    .bottom-cta-box {
+      background: linear-gradient(135deg, #1e1b3a, #0a0a1a);
+      border-radius: var(--radius-lg);
+      padding: 60px 40px;
+      color: #fff;
+    }
+    .bottom-cta-box h2 {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+    .bottom-cta-box p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 28px;
+      max-width: 500px;
+      margin-left: auto; margin-right: auto;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: #fff; color: var(--text);
+      padding: 14px 32px; border-radius: 8px;
+      font-weight: 600; font-size: 15px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255,255,255,0.15);
+    }
+
+    .footer {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px 40px;
+      text-align: center;
+      font-size: 13px; color: var(--text-muted);
+    }
+    .footer a { color: var(--accent); text-decoration: none; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .featured-card { grid-template-columns: 1fr; }
+      .featured-body { padding: 28px; }
+      .featured-body h2 { font-size: 24px; }
+      .cards-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .hero { padding: 60px 24px 32px; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .nav-links a:not(.nav-cta):not(.active) { display: none; }
+      .featured-stats { gap: 20px; }
+      .featured-stat-value { font-size: 24px; }
+      .featured-cta { opacity: 1; transform: translateY(0); }
+      .bottom-cta-box { padding: 40px 20px; }
+      .logos-row { gap: 28px; }
+    }
+  </style>
 </head>
 <body>
 
 <nav class="nav">
-    <div class="nav-inner">
-        <a href="/" class="nav-logo">AgentCollect<span class="dot"></span></a>
-        <div class="nav-links">
-            <a href="/customers" class="active">Customers</a>
-            <a href="/pricing">Pricing</a>
-            <a href="/how-it-works">How It Works</a>
-            <a href="https://cal.com/johnb/30" class="nav-cta">Book a demo</a>
-        </div>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">AgentCollect<span class="dot"></span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/customers" class="active">Customers</a>
+      <a href="https://cal.com/johnb/30" class="nav-cta">Book a demo</a>
     </div>
+  </div>
 </nav>
 
 <div class="hero">
-    <div class="hero-badge">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        Customer Stories
+  <div class="hero-badge">Use Cases by Industry</div>
+  <h1>Every industry has a collections<br>problem. AI solves each one differently.</h1>
+  <p>Marketplace logistics, developer platforms, fintech APIs, healthcare IT — each vertical has unique receivables challenges. Here's how AI adapts.</p>
+</div>
+
+<!-- Logo bar -->
+<div class="logos-bar">
+  <p>Trusted by industry leaders</p>
+  <div class="logos-row">
+    <a href="#featured" class="logo-item">
+      <svg viewBox="0 0 23 23" height="22"><rect width="11" height="11" fill="#f25022"/><rect x="12" width="11" height="11" fill="#7fba00"/><rect y="12" width="11" height="11" fill="#00a4ef"/><rect x="12" y="12" width="11" height="11" fill="#ffb900"/></svg>
+      <span>Microsoft</span>
+    </a>
+    <a href="#doordash" class="logo-item">
+      <svg viewBox="0 0 24 24" height="22" fill="#121826"><path d="M23.071 8.409a6.09 6.09 0 00-5.396-3.228H.584A.589.589 0 00.17 6.184L3.894 9.93a1.752 1.752 0 001.242.516h12.049a1.554 1.554 0 11.031 3.108H8.91a.589.589 0 00-.415 1.003l3.725 3.747a1.75 1.75 0 001.242.516h3.757c4.887 0 8.584-5.225 5.852-10.413"/></svg>
+      <span>DoorDash</span>
+    </a>
+    <a href="#twilio" class="logo-item">
+      <svg viewBox="0 0 24 24" height="22" fill="#121826"><path d="M12 0C5.381-.008.008 5.352 0 11.971V12c0 6.64 5.359 12 12 12 6.64 0 12-5.36 12-12 0-6.641-5.36-12-12-12zm0 20.801c-4.846.015-8.786-3.904-8.801-8.75V12c-.014-4.846 3.904-8.786 8.75-8.801H12c4.847-.014 8.786 3.904 8.801 8.75V12c.015 4.847-3.904 8.786-8.75 8.801H12zm5.44-11.76c0 1.359-1.12 2.479-2.481 2.479-1.366-.007-2.472-1.113-2.479-2.479 0-1.361 1.12-2.481 2.479-2.481 1.361 0 2.481 1.12 2.481 2.481zm0 5.919c0 1.36-1.12 2.48-2.481 2.48-1.367-.008-2.473-1.114-2.479-2.48 0-1.359 1.12-2.479 2.479-2.479 1.361-.001 2.481 1.12 2.481 2.479zm-5.919 0c0 1.36-1.12 2.48-2.479 2.48-1.368-.007-2.475-1.113-2.481-2.48 0-1.359 1.12-2.479 2.481-2.479 1.358-.001 2.479 1.12 2.479 2.479zm0-5.919c0 1.359-1.12 2.479-2.479 2.479-1.367-.007-2.475-1.112-2.481-2.479 0-1.361 1.12-2.481 2.481-2.481 1.358 0 2.479 1.12 2.479 2.481z"/></svg>
+      <span>Twilio</span>
+    </a>
+    <a href="#redis" class="logo-item">
+      <svg viewBox="0 0 24 24" height="22" fill="#121826"><path d="M22.71 13.145c-1.66 2.092-3.452 4.483-7.038 4.483-3.203 0-4.397-2.825-4.48-5.12.701 1.484 2.073 2.685 4.214 2.63 4.117-.133 6.94-3.852 6.94-7.239 0-4.05-3.022-6.972-8.268-6.972-3.752 0-8.4 1.428-11.455 3.685C2.59 6.937 3.885 9.958 4.35 9.626c2.648-1.904 4.748-3.13 6.784-3.744C8.12 9.244.886 17.05 0 18.425c.1 1.261 1.66 4.648 2.424 4.648.232 0 .431-.133.664-.365a100.49 100.49 0 0 0 5.54-6.765c.222 3.104 1.748 6.898 6.014 6.898 3.819 0 7.604-2.756 9.33-8.965.2-.764-.73-1.361-1.261-.73zm-4.349-5.013c0 1.959-1.926 2.922-3.685 2.922-.941 0-1.664-.247-2.235-.568 1.051-1.592 2.092-3.225 3.21-4.973 1.972.334 2.71 1.43 2.71 2.619z"/></svg>
+      <span>Redis</span>
+    </a>
+    <a href="#aircall" class="logo-item">
+      <svg viewBox="0 0 24 24" height="22" fill="#121826"><path d="M23.451 5.906a6.978 6.978 0 0 0-5.375-5.39C16.727.204 14.508 0 12 0S7.273.204 5.924.516a6.978 6.978 0 0 0-5.375 5.39C.237 7.26.034 9.485.034 12s.203 4.74.515 6.094a6.978 6.978 0 0 0 5.375 5.39C7.273 23.796 9.492 24 12 24s4.727-.204 6.076-.516a6.978 6.978 0 0 0 5.375-5.39c.311-1.354.515-3.578.515-6.094 0-2.515-.203-4.74-.515-6.094zm-5.873 12.396l-.003.001c-.428.152-1.165.283-2.102.377l-.147.014a.444.444 0 0 1-.45-.271 1.816 1.816 0 0 0-1.296-1.074c-.351-.081-.928-.134-1.58-.134s-1.229.053-1.58.134a1.817 1.817 0 0 0-1.291 1.062.466.466 0 0 1-.471.281 8 8 0 0 0-.129-.012c-.938-.094-1.676-.224-2.105-.377l-.003-.001a.76.76 0 0 1-.492-.713c0-.032.003-.066.005-.098.073-.979.666-3.272 1.552-5.89C8.5 8.609 9.559 6.187 10.037 5.714a1.029 1.029 0 0 1 .404-.26l.004-.002c.314-.106.892-.178 1.554-.178.663 0 1.241.071 1.554.178l.005.002a1.025 1.025 0 0 1 .405.26c.478.472 1.537 2.895 2.549 5.887.886 2.617 1.479 4.91 1.552 5.89.002.032.005.066.005.098a.76.76 0 0 1-.491.713z"/></svg>
+      <span>Aircall</span>
+    </a>
+    <a href="#plaid" class="logo-item">
+      <svg viewBox="-1 -1 50 50" height="22" fill="#121826"><path d="M18.637 0L4.09 3.81.081 18.439l5.014 5.148L0 28.65l3.773 14.693 14.484 4.047 5.096-5.064 5.014 5.147 14.547-3.81 4.008-14.63-5.013-5.146 5.095-5.063L43.231 4.13 28.745.083l-5.094 5.063zM9.71 6.624l7.663-2.008 3.351 3.44-4.887 4.856zm16.822 1.478l3.405-3.383 7.63 2.132-6.227 6.187zm-21.86 9.136l2.111-7.705 6.125 6.288-4.886 4.856-3.35-3.44zm29.547-1.243l6.227-6.189 1.986 7.74-3.404 3.384zm-15.502-.127l4.887-4.856 4.807 4.936-4.886 4.856zm-7.814 7.765l4.886-4.856 4.81 4.936-4.888 4.856zm15.503.127l4.886-4.856L36.1 23.84l-4.887 4.856zM4.57 29.927l3.406-3.385 4.807 4.937-6.225 6.186zm14.021 1.598l4.887-4.856 4.808 4.936-4.886 4.856zm15.502.128l4.887-4.856 3.351 3.439-2.11 7.705zm-24.656 8.97l6.226-6.189 4.81 4.936-3.406 3.385-7.63-2.133zm16.843-1.206l4.886-4.856 6.126 6.289-7.662 2.007z" fill-rule="evenodd"/></svg>
+      <span>Plaid</span>
+    </a>
+    <a href="#checkr" class="logo-item">
+      <svg viewBox="0 0 1565 367" height="22" fill="#121826"><path fill-rule="evenodd" d="m834.4 226.1c0 6.8-0.7 14-1.4 20.8h-199.8c6.1 36.2 29.7 55.9 64.5 55.9 24.3 0 44.4-11.4 55.4-29.7l67.7 17.9c-22.9 46.6-68.7 75.6-123.1 75.6-77.7 0-136.8-60.2-136.8-139.4 0-79.5 58.4-139.4 136.8-139.4 81.2 0 136.7 62.7 136.7 138.3zm-71.6-27.6c-10-32.2-33.3-49.8-65.1-49.8-31.9 0-54.4 18.7-62.7 49.8z"/><path d="m290.7 359.5h71.2v-138.7c0-43 23.6-68.8 59.1-68.8 32.2 0 46.1 19.7 46.1 59.1v148.4h71.3v-160.6c0-67.4-37.3-110-97-110-31.5 0-59.8 11.8-79.9 30.8v-119.7h-70.8"/><path d="m1375.6 95.3h-82.3l-79.1 117.2v-212.5h-71.2v359.5h71.2v-126.6l84.5 126.6h86.2l-98.8-138.4z"/><path d="m1541.4 93.9c-34 0-57.7 10.4-76.6 33.7l-12.6-32.3h-45.8v264.2h71.6v-137.3c0-43 15.8-60.9 56.2-60.9h30.8v-67.4z"/><path d="m140.3 300c-38.3 0-67.6-31.9-67.6-72.8 0-40.8 29-72 67.6-72 26.9 0 50.9 14 62.7 39.4l65.1-22.6c-20.4-51.6-68.4-84.2-127.1-84.2-80.5 0-141 59.5-141 138.7 0 79.2 60.9 140.5 140 140.5 59.7 0 109.1-34.1 128.8-87.5l-66.2-22.9c-10 26.9-34.7 43.4-62.3 43.4z"/><path d="m992.3 300c-38.3 0-67.7-31.9-67.7-72.8 0-40.8 29-72 67.7-72 26.8 0 50.8 14 62.6 39.4l65.2-22.6c-20.4-51.6-68.4-84.2-127.1-84.2-80.2 0-140.7 59.5-140.7 138.7 0 79.2 60.9 140.5 140 140.5 59.7 0 109.1-34.1 128.8-87.5l-66.2-22.9c-10 26.9-35.1 43.4-62.6 43.4z"/></svg>
+      <span>Checkr</span>
+    </a>
+    <a href="#lafayette" class="logo-item">
+      <svg viewBox="0 0 120 28" height="18" fill="#121826"><text x="0" y="14" font-family="Georgia,'Times New Roman',serif" font-style="italic" font-size="14" font-weight="700" letter-spacing="0.5">Galeries</text><text x="0" y="27" font-family="Georgia,'Times New Roman',serif" font-style="italic" font-size="14" font-weight="700" letter-spacing="0.5">Lafayette</text></svg>
+      <span>Galeries Lafayette</span>
+    </a>
+  </div>
+</div>
+
+<!-- Featured: Microsoft -->
+<div class="featured-section">
+  <a href="microsoft/" class="featured-card" id="featured">
+    <div class="featured-media">
+      <img src="https://respaid.com/customers/microsoft/poster.jpg" alt="Neil Doyle - Microsoft">
+      <video muted loop playsinline preload="none" id="ms-preview">
+        <source src="https://respaid.com/customers/microsoft/preview.mp4" type="video/mp4">
+      </video>
+      <div class="featured-play">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><polygon points="8 5 20 12 8 19 8 5"/></svg>
+      </div>
     </div>
-    <h1>Enterprise teams trust AgentCollect to recover revenue</h1>
-    <p>AI-powered collections that recover overdue invoices without damaging customer relationships. Here's how.</p>
-</div>
-
-<div class="logo-bar">
-    <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=128" alt="Microsoft" style="height:32px">
-    <img src="https://www.google.com/s2/favicons?domain=doordash.com&sz=128" alt="DoorDash" style="height:32px">
-    <img src="https://www.google.com/s2/favicons?domain=checkr.com&sz=128" alt="Checkr" style="height:32px">
-    <img src="https://www.google.com/s2/favicons?domain=uber.com&sz=128" alt="Uber" style="height:32px">
-    <img src="https://www.google.com/s2/favicons?domain=dell.com&sz=128" alt="Dell" style="height:32px">
-</div>
-
-<div class="cases">
-    <div class="cases-grid">
-        <!-- Microsoft -->
-        <a href="/customers/microsoft" class="case-card">
-            <div class="case-card-img">
-                <img src="https://respaid.com/customers/microsoft/poster.jpg" alt="Microsoft case study">
-                <div class="case-card-logo">
-                    <svg width="18" height="18" viewBox="0 0 23 23" fill="none"><rect width="11" height="11" fill="#f25022"/><rect x="12" width="11" height="11" fill="#7fba00"/><rect y="12" width="11" height="11" fill="#00a4ef"/><rect x="12" y="12" width="11" height="11" fill="#ffb900"/></svg>
-                    <span>Microsoft</span>
-                </div>
-            </div>
-            <div class="case-card-body">
-                <div class="case-card-label">Enterprise Technology</div>
-                <div class="case-card-title">Microsoft recovers 3.2x more with AI-powered collections</div>
-                <div class="case-card-desc">How Microsoft's Global Treasury deployed AI across hundreds of enterprise accounts in 44 states — with a 99.7% positive CX score.</div>
-                <div class="case-card-stats">
-                    <div class="case-card-stat">
-                        <div class="case-card-stat-number">3.2x</div>
-                        <div class="case-card-stat-label">recovery rate</div>
-                    </div>
-                    <div class="case-card-stat">
-                        <div class="case-card-stat-number">99.7%</div>
-                        <div class="case-card-stat-label">positive CX</div>
-                    </div>
-                    <div class="case-card-stat">
-                        <div class="case-card-stat-number">+130%</div>
-                        <div class="case-card-stat-label">contact enrichment</div>
-                    </div>
-                </div>
-                <div class="case-card-arrow">Read case study <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-            </div>
-        </a>
-
-        <!-- Coming soon placeholder -->
-        <div class="case-card" style="opacity:.5;cursor:default;border-style:dashed">
-            <div class="case-card-img" style="background:var(--bg-subtle);display:flex;align-items:center;justify-content:center">
-                <span style="font-family:var(--display);font-size:18px;font-weight:700;color:var(--text-dim)">Coming soon</span>
-            </div>
-            <div class="case-card-body">
-                <div class="case-card-label">More stories</div>
-                <div class="case-card-title">Additional case studies in progress</div>
-                <div class="case-card-desc">We're documenting more success stories from enterprise clients across SaaS, distribution, and professional services.</div>
-            </div>
+    <div class="featured-body">
+      <div class="featured-logo">
+        <svg width="20" height="20" viewBox="0 0 23 23"><rect width="11" height="11" fill="#f25022"/><rect x="12" width="11" height="11" fill="#7fba00"/><rect y="12" width="11" height="11" fill="#00a4ef"/><rect x="12" y="12" width="11" height="11" fill="#ffb900"/></svg>
+        <span>Microsoft</span>
+      </div>
+      <div class="featured-badge">Featured story</div>
+      <h2>Microsoft recovers 3.2x more with AI-powered collections</h2>
+      <p>Global Treasury deployed AgentCollect across hundreds of enterprise accounts in 44 US states — with a 99.7% positive customer experience score.</p>
+      <div class="featured-stats">
+        <div>
+          <div class="featured-stat-value">99.7%</div>
+          <div class="featured-stat-label">positive CX</div>
         </div>
+        <div>
+          <div class="featured-stat-value">3.2x</div>
+          <div class="featured-stat-label">recovery rate</div>
+        </div>
+        <div>
+          <div class="featured-stat-value">44</div>
+          <div class="featured-stat-label">US states</div>
+        </div>
+      </div>
+      <div class="featured-cta">
+        Read the full story
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </div>
     </div>
+  </a>
 </div>
 
-<!-- Testimonials -->
-<div class="testimonials">
-    <h2>What finance teams say</h2>
-    <div class="test-grid">
-        <div class="test-card">
-            <div class="test-quote">"We hit ~50% collection in 20 days. More importantly, not a single customer complained."</div>
-            <div class="test-author">VP of Finance</div>
-            <div class="test-company">Enterprise SaaS Company</div>
-            <div class="test-metric">~50% in 20 days</div>
+<!-- Use Cases Grid -->
+<div class="cards-section">
+  <div class="cards-section-title">Use cases by industry</div>
+  <div class="cards-grid">
+
+    <!-- DoorDash -->
+    <a class="story-card" id="doordash" href="doordash/">
+      <div class="card-media bg-doordash">
+        <span class="card-industry">Logistics</span>
+        <div class="card-logo-white">
+          <svg viewBox="0 0 24 24" height="36" fill="#fff"><path d="M23.071 8.409a6.09 6.09 0 00-5.396-3.228H.584A.589.589 0 00.17 6.184L3.894 9.93a1.752 1.752 0 001.242.516h12.049a1.554 1.554 0 11.031 3.108H8.91a.589.589 0 00-.415 1.003l3.725 3.747a1.75 1.75 0 001.242.516h3.757c4.887 0 8.584-5.225 5.852-10.413"/></svg>
         </div>
-        <div class="test-card">
-            <div class="test-quote">"Traditional agencies took 4 months and damaged relationships. AgentCollect recovered 48% in 3 weeks."</div>
-            <div class="test-author">CFO</div>
-            <div class="test-company">Manufacturing Company</div>
-            <div class="test-metric">48% in 3 weeks</div>
+      </div>
+      <div class="card-body">
+        <div class="card-company-row">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="#ff3008"><path d="M23.071 8.409a6.09 6.09 0 00-5.396-3.228H.584A.589.589 0 00.17 6.184L3.894 9.93a1.752 1.752 0 001.242.516h12.049a1.554 1.554 0 11.031 3.108H8.91a.589.589 0 00-.415 1.003l3.725 3.747a1.75 1.75 0 001.242.516h3.757c4.887 0 8.584-5.225 5.852-10.413"/></svg>
+          <span>DoorDash</span>
         </div>
-        <div class="test-card">
-            <div class="test-quote">"The AI found decision-makers our data didn't even have. Game changer for old receivables."</div>
-            <div class="test-author">Controller</div>
-            <div class="test-company">Distribution Company</div>
-            <div class="test-metric">40% contact discovery</div>
+        <h3>Marketplace receivables: a race against the clock</h3>
+        <p>Nearly 1 in 3 restaurants close within their first year. Every overdue invoice from a merchant is a ticking clock — AI adapts outreach speed and tone to the merchant's situation before it's too late.</p>
+        <span class="card-tag">Logistics</span>
+      </div>
+    </a>
+
+    <!-- Redis -->
+    <a class="story-card" id="redis" href="redis/">
+      <div class="card-media bg-redis">
+        <span class="card-industry">Infrastructure</span>
+        <div class="card-logo-white">
+          <svg viewBox="0 0 24 24" height="36" fill="#fff"><path d="M22.71 13.145c-1.66 2.092-3.452 4.483-7.038 4.483-3.203 0-4.397-2.825-4.48-5.12.701 1.484 2.073 2.685 4.214 2.63 4.117-.133 6.94-3.852 6.94-7.239 0-4.05-3.022-6.972-8.268-6.972-3.752 0-8.4 1.428-11.455 3.685C2.59 6.937 3.885 9.958 4.35 9.626c2.648-1.904 4.748-3.13 6.784-3.744C8.12 9.244.886 17.05 0 18.425c.1 1.261 1.66 4.648 2.424 4.648.232 0 .431-.133.664-.365a100.49 100.49 0 0 0 5.54-6.765c.222 3.104 1.748 6.898 6.014 6.898 3.819 0 7.604-2.756 9.33-8.965.2-.764-.73-1.361-1.261-.73zm-4.349-5.013c0 1.959-1.926 2.922-3.685 2.922-.941 0-1.664-.247-2.235-.568 1.051-1.592 2.092-3.225 3.21-4.973 1.972.334 2.71 1.43 2.71 2.619z"/></svg>
         </div>
-        <div class="test-card">
-            <div class="test-quote">"We were skeptical about AI collections. Now it's our default for anything over 30 days."</div>
-            <div class="test-author">Director of AR</div>
-            <div class="test-company">Professional Services Firm</div>
-            <div class="test-metric">7x faster than agency</div>
+      </div>
+      <div class="card-body">
+        <div class="card-company-row">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="#d82c20"><path d="M22.71 13.145c-1.66 2.092-3.452 4.483-7.038 4.483-3.203 0-4.397-2.825-4.48-5.12.701 1.484 2.073 2.685 4.214 2.63 4.117-.133 6.94-3.852 6.94-7.239 0-4.05-3.022-6.972-8.268-6.972-3.752 0-8.4 1.428-11.455 3.685C2.59 6.937 3.885 9.958 4.35 9.626c2.648-1.904 4.748-3.13 6.784-3.744C8.12 9.244.886 17.05 0 18.425c.1 1.261 1.66 4.648 2.424 4.648.232 0 .431-.133.664-.365a100.49 100.49 0 0 0 5.54-6.765c.222 3.104 1.748 6.898 6.014 6.898 3.819 0 7.604-2.756 9.33-8.965.2-.764-.73-1.361-1.261-.73zm-4.349-5.013c0 1.959-1.926 2.922-3.685 2.922-.941 0-1.664-.247-2.235-.568 1.051-1.592 2.092-3.225 3.21-4.973 1.972.334 2.71 1.43 2.71 2.619z"/></svg>
+          <span>Redis</span>
         </div>
-        <div class="test-card">
-            <div class="test-quote">"Zero complaints. Zero. In 18 months, not a single escalation."</div>
-            <div class="test-author">CEO</div>
-            <div class="test-company">B2B Marketplace</div>
-            <div class="test-metric">0 complaints</div>
+        <h3>Infrastructure SaaS: usage-based billing creates complex disputes</h3>
+        <p>When customers pay per query or per GB, overages spark disputes. AI parses usage data to craft precise, data-backed outreach that resolves billing disagreements before they escalate.</p>
+        <span class="card-tag">Cloud Infrastructure</span>
+      </div>
+    </a>
+
+    <!-- Twilio -->
+    <a class="story-card" id="twilio" href="twilio/">
+      <div class="card-media bg-twilio">
+        <span class="card-industry">Communications</span>
+        <div class="card-logo-white">
+          <svg viewBox="0 0 24 24" height="36" fill="#fff"><path d="M12 0C5.381-.008.008 5.352 0 11.971V12c0 6.64 5.359 12 12 12 6.64 0 12-5.36 12-12 0-6.641-5.36-12-12-12zm0 20.801c-4.846.015-8.786-3.904-8.801-8.75V12c-.014-4.846 3.904-8.786 8.75-8.801H12c4.847-.014 8.786 3.904 8.801 8.75V12c.015 4.847-3.904 8.786-8.75 8.801H12zm5.44-11.76c0 1.359-1.12 2.479-2.481 2.479-1.366-.007-2.472-1.113-2.479-2.479 0-1.361 1.12-2.481 2.479-2.481 1.361 0 2.481 1.12 2.481 2.481zm0 5.919c0 1.36-1.12 2.48-2.481 2.48-1.367-.008-2.473-1.114-2.479-2.48 0-1.359 1.12-2.479 2.479-2.479 1.361-.001 2.481 1.12 2.481 2.479zm-5.919 0c0 1.36-1.12 2.48-2.479 2.48-1.368-.007-2.475-1.113-2.481-2.48 0-1.359 1.12-2.479 2.481-2.479 1.358-.001 2.479 1.12 2.479 2.479zm0-5.919c0 1.359-1.12 2.479-2.479 2.479-1.367-.007-2.475-1.112-2.481-2.479 0-1.361 1.12-2.481 2.481-2.481 1.358 0 2.479 1.12 2.479 2.481z"/></svg>
         </div>
-        <div class="test-card">
-            <div class="test-quote">"The integration took 10 minutes. We were live same day with invoices flowing automatically."</div>
-            <div class="test-author">Head of Operations</div>
-            <div class="test-company">Logistics Company</div>
-            <div class="test-metric">10-minute setup</div>
+      </div>
+      <div class="card-body">
+        <div class="card-company-row">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="#f22f46"><path d="M12 0C5.381-.008.008 5.352 0 11.971V12c0 6.64 5.359 12 12 12 6.64 0 12-5.36 12-12 0-6.641-5.36-12-12-12zm0 20.801c-4.846.015-8.786-3.904-8.801-8.75V12c-.014-4.846 3.904-8.786 8.75-8.801H12c4.847-.014 8.786 3.904 8.801 8.75V12c.015 4.847-3.904 8.786-8.75 8.801H12zm5.44-11.76c0 1.359-1.12 2.479-2.481 2.479-1.366-.007-2.472-1.113-2.479-2.479 0-1.361 1.12-2.481 2.479-2.481 1.361 0 2.481 1.12 2.481 2.481zm0 5.919c0 1.36-1.12 2.48-2.481 2.48-1.367-.008-2.473-1.114-2.479-2.48 0-1.359 1.12-2.479 2.479-2.479 1.361-.001 2.481 1.12 2.481 2.479zm-5.919 0c0 1.36-1.12 2.48-2.479 2.48-1.368-.007-2.475-1.113-2.481-2.48 0-1.359 1.12-2.479 2.481-2.479 1.358-.001 2.479 1.12 2.479 2.479zm0-5.919c0 1.359-1.12 2.479-2.479 2.479-1.367-.007-2.475-1.112-2.481-2.479 0-1.361 1.12-2.481 2.481-2.481 1.358 0 2.479 1.12 2.479 2.481z"/></svg>
+          <span>Twilio</span>
         </div>
-    </div>
+        <h3>Developer platforms: thousands of small accounts, one wrong email kills trust</h3>
+        <p>Developer communities talk. One aggressive collection email gets screenshotted and shared on Twitter. AI calibrates tone per account size — a $50 hobby project gets a different approach than a $50K enterprise contract.</p>
+        <span class="card-tag">CPaaS / APIs</span>
+      </div>
+    </a>
+
+    <!-- eMDs -->
+    <a class="story-card" id="emds" href="emds/">
+      <div class="card-media bg-emds">
+        <span class="card-industry">Healthcare</span>
+        <div class="card-logo-white">
+          <svg viewBox="0 0 85 28" height="36" fill="#fff"><text x="0" y="22" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="26">e</text><text x="17" y="22" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="26" fill="#ff3333">-</text><text x="27" y="22" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="26">MDs</text></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-company-row">
+          <svg viewBox="0 0 85 28" width="40" height="18" fill="#1a5c94"><text x="0" y="22" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="26">e</text><text x="17" y="22" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="26" fill="#cc0000">-</text><text x="27" y="22" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="26">MDs</text></svg>
+          <span>eMDs</span>
+        </div>
+        <h3>Healthcare IT: compliance constraints make collections a minefield</h3>
+        <p>Medical practices deal with insurance reimbursement delays, regulatory audits, and thin margins. Standard collection tactics backfire. AI navigates HIPAA-adjacent sensitivities and payment cycle realities.</p>
+        <span class="card-tag">Health Tech</span>
+      </div>
+    </a>
+
+    <!-- Checkr -->
+    <a class="story-card" id="checkr" href="checkr/">
+      <div class="card-media bg-checkr">
+        <span class="card-industry">HR Tech</span>
+        <div class="card-logo-white">
+          <svg viewBox="0 0 1565 367" height="36" fill="#fff"><path fill-rule="evenodd" d="m834.4 226.1c0 6.8-0.7 14-1.4 20.8h-199.8c6.1 36.2 29.7 55.9 64.5 55.9 24.3 0 44.4-11.4 55.4-29.7l67.7 17.9c-22.9 46.6-68.7 75.6-123.1 75.6-77.7 0-136.8-60.2-136.8-139.4 0-79.5 58.4-139.4 136.8-139.4 81.2 0 136.7 62.7 136.7 138.3zm-71.6-27.6c-10-32.2-33.3-49.8-65.1-49.8-31.9 0-54.4 18.7-62.7 49.8z"/><path d="m290.7 359.5h71.2v-138.7c0-43 23.6-68.8 59.1-68.8 32.2 0 46.1 19.7 46.1 59.1v148.4h71.3v-160.6c0-67.4-37.3-110-97-110-31.5 0-59.8 11.8-79.9 30.8v-119.7h-70.8"/><path d="m1375.6 95.3h-82.3l-79.1 117.2v-212.5h-71.2v359.5h71.2v-126.6l84.5 126.6h86.2l-98.8-138.4z"/><path d="m1541.4 93.9c-34 0-57.7 10.4-76.6 33.7l-12.6-32.3h-45.8v264.2h71.6v-137.3c0-43 15.8-60.9 56.2-60.9h30.8v-67.4z"/><path d="m140.3 300c-38.3 0-67.6-31.9-67.6-72.8 0-40.8 29-72 67.6-72 26.9 0 50.9 14 62.7 39.4l65.1-22.6c-20.4-51.6-68.4-84.2-127.1-84.2-80.5 0-141 59.5-141 138.7 0 79.2 60.9 140.5 140 140.5 59.7 0 109.1-34.1 128.8-87.5l-66.2-22.9c-10 26.9-34.7 43.4-62.3 43.4z"/><path d="m992.3 300c-38.3 0-67.7-31.9-67.7-72.8 0-40.8 29-72 67.7-72 26.8 0 50.8 14 62.6 39.4l65.2-22.6c-20.4-51.6-68.4-84.2-127.1-84.2-80.2 0-140.7 59.5-140.7 138.7 0 79.2 60.9 140.5 140 140.5 59.7 0 109.1-34.1 128.8-87.5l-66.2-22.9c-10 26.9-35.1 43.4-62.6 43.4z"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-company-row">
+          <svg viewBox="0 0 1565 367" width="60" height="14" fill="#009bb5"><path fill-rule="evenodd" d="m834.4 226.1c0 6.8-0.7 14-1.4 20.8h-199.8c6.1 36.2 29.7 55.9 64.5 55.9 24.3 0 44.4-11.4 55.4-29.7l67.7 17.9c-22.9 46.6-68.7 75.6-123.1 75.6-77.7 0-136.8-60.2-136.8-139.4 0-79.5 58.4-139.4 136.8-139.4 81.2 0 136.7 62.7 136.7 138.3zm-71.6-27.6c-10-32.2-33.3-49.8-65.1-49.8-31.9 0-54.4 18.7-62.7 49.8z"/><path d="m290.7 359.5h71.2v-138.7c0-43 23.6-68.8 59.1-68.8 32.2 0 46.1 19.7 46.1 59.1v148.4h71.3v-160.6c0-67.4-37.3-110-97-110-31.5 0-59.8 11.8-79.9 30.8v-119.7h-70.8"/><path d="m1375.6 95.3h-82.3l-79.1 117.2v-212.5h-71.2v359.5h71.2v-126.6l84.5 126.6h86.2l-98.8-138.4z"/><path d="m1541.4 93.9c-34 0-57.7 10.4-76.6 33.7l-12.6-32.3h-45.8v264.2h71.6v-137.3c0-43 15.8-60.9 56.2-60.9h30.8v-67.4z"/><path d="m140.3 300c-38.3 0-67.6-31.9-67.6-72.8 0-40.8 29-72 67.6-72 26.9 0 50.9 14 62.7 39.4l65.1-22.6c-20.4-51.6-68.4-84.2-127.1-84.2-80.5 0-141 59.5-141 138.7 0 79.2 60.9 140.5 140 140.5 59.7 0 109.1-34.1 128.8-87.5l-66.2-22.9c-10 26.9-34.7 43.4-62.3 43.4z"/><path d="m992.3 300c-38.3 0-67.7-31.9-67.7-72.8 0-40.8 29-72 67.7-72 26.8 0 50.8 14 62.6 39.4l65.2-22.6c-20.4-51.6-68.4-84.2-127.1-84.2-80.2 0-140.7 59.5-140.7 138.7 0 79.2 60.9 140.5 140 140.5 59.7 0 109.1-34.1 128.8-87.5l-66.2-22.9c-10 26.9-35.1 43.4-62.6 43.4z"/></svg>
+          <span>Checkr</span>
+        </div>
+        <h3>HR Tech: high-volume, low-value invoices that agencies ignore</h3>
+        <p>Background checks cost $30-$100 each. Traditional agencies won't touch invoices this small. AI handles thousands of micro-receivables profitably — where the unit economics never worked for humans.</p>
+        <span class="card-tag">HR / Screening</span>
+      </div>
+    </a>
+
+    <!-- Aircall -->
+    <a class="story-card" id="aircall" href="aircall/">
+      <div class="card-media bg-aircall">
+        <span class="card-industry">Communications</span>
+        <div class="card-logo-white">
+          <svg viewBox="0 0 24 24" height="36" fill="#fff"><path d="M23.451 5.906a6.978 6.978 0 0 0-5.375-5.39C16.727.204 14.508 0 12 0S7.273.204 5.924.516a6.978 6.978 0 0 0-5.375 5.39C.237 7.26.034 9.485.034 12s.203 4.74.515 6.094a6.978 6.978 0 0 0 5.375 5.39C7.273 23.796 9.492 24 12 24s4.727-.204 6.076-.516a6.978 6.978 0 0 0 5.375-5.39c.311-1.354.515-3.578.515-6.094 0-2.515-.203-4.74-.515-6.094zm-5.873 12.396l-.003.001c-.428.152-1.165.283-2.102.377l-.147.014a.444.444 0 0 1-.45-.271 1.816 1.816 0 0 0-1.296-1.074c-.351-.081-.928-.134-1.58-.134s-1.229.053-1.58.134a1.817 1.817 0 0 0-1.291 1.062.466.466 0 0 1-.471.281 8 8 0 0 0-.129-.012c-.938-.094-1.676-.224-2.105-.377l-.003-.001a.76.76 0 0 1-.492-.713c0-.032.003-.066.005-.098.073-.979.666-3.272 1.552-5.89C8.5 8.609 9.559 6.187 10.037 5.714a1.029 1.029 0 0 1 .404-.26l.004-.002c.314-.106.892-.178 1.554-.178.663 0 1.241.071 1.554.178l.005.002a1.025 1.025 0 0 1 .405.26c.478.472 1.537 2.895 2.549 5.887.886 2.617 1.479 4.91 1.552 5.89.002.032.005.066.005.098a.76.76 0 0 1-.491.713z"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-company-row">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="#00b388"><path d="M23.451 5.906a6.978 6.978 0 0 0-5.375-5.39C16.727.204 14.508 0 12 0S7.273.204 5.924.516a6.978 6.978 0 0 0-5.375 5.39C.237 7.26.034 9.485.034 12s.203 4.74.515 6.094a6.978 6.978 0 0 0 5.375 5.39C7.273 23.796 9.492 24 12 24s4.727-.204 6.076-.516a6.978 6.978 0 0 0 5.375-5.39c.311-1.354.515-3.578.515-6.094 0-2.515-.203-4.74-.515-6.094zm-5.873 12.396l-.003.001c-.428.152-1.165.283-2.102.377l-.147.014a.444.444 0 0 1-.45-.271 1.816 1.816 0 0 0-1.296-1.074c-.351-.081-.928-.134-1.58-.134s-1.229.053-1.58.134a1.817 1.817 0 0 0-1.291 1.062.466.466 0 0 1-.471.281 8 8 0 0 0-.129-.012c-.938-.094-1.676-.224-2.105-.377l-.003-.001a.76.76 0 0 1-.492-.713c0-.032.003-.066.005-.098.073-.979.666-3.272 1.552-5.89C8.5 8.609 9.559 6.187 10.037 5.714a1.029 1.029 0 0 1 .404-.26l.004-.002c.314-.106.892-.178 1.554-.178.663 0 1.241.071 1.554.178l.005.002a1.025 1.025 0 0 1 .405.26c.478.472 1.537 2.895 2.549 5.887.886 2.617 1.479 4.91 1.552 5.89.002.032.005.066.005.098a.76.76 0 0 1-.491.713z"/></svg>
+          <span>Aircall</span>
+        </div>
+        <h3>Cross-border SaaS: different laws, languages, and payment cultures</h3>
+        <p>Collecting in the US is not the same as collecting in France. Payment terms, legal frameworks, and what's considered "polite follow-up" vary dramatically. AI adapts language, timing, and legal references per jurisdiction.</p>
+        <span class="card-tag">International</span>
+      </div>
+    </a>
+
+    <!-- Plaid -->
+    <a class="story-card" id="plaid" href="plaid/">
+      <div class="card-media bg-plaid">
+        <span class="card-industry">Fintech</span>
+        <div class="card-logo-white">
+          <svg viewBox="-1 -1 50 50" height="36" fill="#fff"><path d="M18.637 0L4.09 3.81.081 18.439l5.014 5.148L0 28.65l3.773 14.693 14.484 4.047 5.096-5.064 5.014 5.147 14.547-3.81 4.008-14.63-5.013-5.146 5.095-5.063L43.231 4.13 28.745.083l-5.094 5.063zM9.71 6.624l7.663-2.008 3.351 3.44-4.887 4.856zm16.822 1.478l3.405-3.383 7.63 2.132-6.227 6.187zm-21.86 9.136l2.111-7.705 6.125 6.288-4.886 4.856-3.35-3.44zm29.547-1.243l6.227-6.189 1.986 7.74-3.404 3.384zm-15.502-.127l4.887-4.856 4.807 4.936-4.886 4.856zm-7.814 7.765l4.886-4.856 4.81 4.936-4.888 4.856zm15.503.127l4.886-4.856L36.1 23.84l-4.887 4.856zM4.57 29.927l3.406-3.385 4.807 4.937-6.225 6.186zm14.021 1.598l4.887-4.856 4.808 4.936-4.886 4.856zm15.502.128l4.887-4.856 3.351 3.439-2.11 7.705zm-24.656 8.97l6.226-6.189 4.81 4.936-3.406 3.385-7.63-2.133zm16.843-1.206l4.886-4.856 6.126 6.289-7.662 2.007z" fill-rule="evenodd"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-company-row">
+          <svg viewBox="-1 -1 50 50" width="18" height="18" fill="#0ba299"><path d="M18.637 0L4.09 3.81.081 18.439l5.014 5.148L0 28.65l3.773 14.693 14.484 4.047 5.096-5.064 5.014 5.147 14.547-3.81 4.008-14.63-5.013-5.146 5.095-5.063L43.231 4.13 28.745.083l-5.094 5.063zM9.71 6.624l7.663-2.008 3.351 3.44-4.887 4.856zm16.822 1.478l3.405-3.383 7.63 2.132-6.227 6.187zm-21.86 9.136l2.111-7.705 6.125 6.288-4.886 4.856-3.35-3.44zm29.547-1.243l6.227-6.189 1.986 7.74-3.404 3.384zm-15.502-.127l4.887-4.856 4.807 4.936-4.886 4.856zm-7.814 7.765l4.886-4.856 4.81 4.936-4.888 4.856zm15.503.127l4.886-4.856L36.1 23.84l-4.887 4.856zM4.57 29.927l3.406-3.385 4.807 4.937-6.225 6.186zm14.021 1.598l4.887-4.856 4.808 4.936-4.886 4.856zm15.502.128l4.887-4.856 3.351 3.439-2.11 7.705zm-24.656 8.97l6.226-6.189 4.81 4.936-3.406 3.385-7.63-2.133zm16.843-1.206l4.886-4.856 6.126 6.289-7.662 2.007z" fill-rule="evenodd"/></svg>
+          <span>Plaid</span>
+        </div>
+        <h3>Fintech APIs: chasing a $200 bill could cost you a future unicorn</h3>
+        <p>API-based financial infrastructure serves thousands of fintech startups — many pre-revenue. A $200 overdue invoice from today's 3-person team could be tomorrow's $1B company. AI assesses account trajectory to calibrate urgency and preserve long-term relationships.</p>
+        <span class="card-tag">Fintech / APIs</span>
+      </div>
+    </a>
+
+    <!-- Galeries Lafayette -->
+    <a class="story-card" id="lafayette" href="lafayette/">
+      <div class="card-media bg-lafayette">
+        <span class="card-industry">Luxury Retail</span>
+        <div class="card-logo-white">
+          <svg viewBox="0 0 140 36" height="36" fill="#fff"><text x="70" y="15" font-family="Georgia,'Times New Roman',serif" font-style="italic" font-size="16" font-weight="700" text-anchor="middle" letter-spacing="1">Galeries</text><text x="70" y="33" font-family="Georgia,'Times New Roman',serif" font-style="italic" font-size="16" font-weight="700" text-anchor="middle" letter-spacing="1">Lafayette</text></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-company-row">
+          <svg viewBox="0 0 120 28" width="50" height="16" fill="#8801d2"><text x="0" y="12" font-family="Georgia,'Times New Roman',serif" font-style="italic" font-size="12" font-weight="700" letter-spacing="0.3">Galeries</text><text x="0" y="25" font-family="Georgia,'Times New Roman',serif" font-style="italic" font-size="12" font-weight="700" letter-spacing="0.3">Lafayette</text></svg>
+          <span>Galeries Lafayette</span>
+        </div>
+        <h3>Luxury retail: high-value B2B accounts where relationships are everything</h3>
+        <p>Department stores and luxury brands work with hundreds of suppliers and concession partners. Late payments from prestigious accounts require diplomatic, brand-aware outreach — AI adapts tone to match the prestige of the relationship.</p>
+        <span class="card-tag">Luxury Retail</span>
+      </div>
+    </a>
+
+  </div>
 </div>
 
-<!-- CTA -->
-<div class="cta-section" style="margin-left:24px;margin-right:24px">
-    <h2>Ready to see what AI can do for your AR?</h2>
-    <p>Join Microsoft and other enterprise teams recovering revenue without risking relationships.</p>
-    <a href="https://cal.com/johnb/30" class="cta-btn">Book a 30-min demo <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+<!-- Bottom CTA -->
+<div class="bottom-cta">
+  <div class="bottom-cta-box">
+    <h2>Ready to recover more, risk less?</h2>
+    <p>Join enterprise finance teams using AI-powered collections that protect customer relationships.</p>
+    <a href="https://cal.com/johnb/30" class="cta-btn">Book a demo</a>
+  </div>
 </div>
 
 <footer class="footer">
-    <p>&copy; 2026 AgentCollect, Inc. &middot; <a href="/">Home</a> &middot; <a href="/pricing">Pricing</a> &middot; <a href="/security">Security</a></p>
+  <p>&copy; 2026 AgentCollect, Inc. &middot; <a href="/">Home</a> &middot; <a href="/customers">Customers</a></p>
 </footer>
+
+<script>
+/* Video preview on hover */
+var featured = document.getElementById('featured');
+var fVideo = featured ? featured.querySelector('video') : null;
+if (featured && fVideo) {
+  featured.addEventListener('mouseenter', function() {
+    fVideo.currentTime = 0;
+    fVideo.play().catch(function(){});
+  });
+  featured.addEventListener('mouseleave', function() {
+    fVideo.pause();
+  });
+}
+/* Fade-in logo items on scroll */
+var logoObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) {
+      var items = e.target.querySelectorAll('.logo-item');
+      items.forEach(function(item, i) {
+        setTimeout(function() { item.classList.add('fade-in'); }, i * 80);
+      });
+      logoObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+var logosRow = document.querySelector('.logos-row');
+if (logosRow) {
+  logosRow.querySelectorAll('.logo-item').forEach(function(item) { item.style.opacity = '0'; });
+  logoObs.observe(logosRow);
+}
+</script>
 
 </body>
 </html>
