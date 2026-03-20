@@ -44,25 +44,26 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 .nav-expiry{font-size:14px;color:var(--muted);font-weight:500}
 .nav-expiry strong{color:var(--text);font-weight:700}
 
-/* ===== HERO — CENTERED INCOMING CALL ===== */
-.hero{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;background:linear-gradient(160deg,#FAFBFF 0%,#f0eeff 40%,#eef0ff 60%,#FAFBFF 100%);padding:80px 24px 60px}
+/* ===== HERO — SPLIT INVERSE ===== */
+.hero{min-height:100vh;min-height:100dvh;display:grid;grid-template-columns:1.8fr 1fr;align-items:center;position:relative;overflow:hidden;background:linear-gradient(160deg,#FAFBFF 0%,#f3f1ff 40%,#eef0ff 60%,#FAFBFF 100%)}
 .hero::before{content:'';position:absolute;inset:0;background-image:
-  linear-gradient(rgba(79,70,229,.015) 1px, transparent 1px),
-  linear-gradient(90deg, rgba(79,70,229,.015) 1px, transparent 1px);
-  background-size:80px 80px;pointer-events:none}
-.hero-km-logo{height:32px;margin-bottom:52px;opacity:.7}
-.hero-title{font-size:20px;font-weight:700;color:var(--text);letter-spacing:-.02em;margin-bottom:6px;text-align:center}
-.hero-hint{font-size:13px;color:var(--muted);opacity:.6;text-align:center;margin-bottom:0}
+  linear-gradient(rgba(79,70,229,.018) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(79,70,229,.018) 1px, transparent 1px);
+  background-size:72px 72px;pointer-events:none}
 
-/* Pulse rings — incoming call effect */
-.orb-ring{position:absolute;border-radius:50%;border:1.5px solid rgba(79,70,229,.12);pointer-events:none}
-.orb-ring-1{inset:-30px;animation:ringPulse 3s ease-out infinite}
-.orb-ring-2{inset:-60px;animation:ringPulse 3s ease-out infinite .6s}
-.orb-ring-3{inset:-90px;animation:ringPulse 3s ease-out infinite 1.2s}
-@keyframes ringPulse{0%{opacity:.6;transform:scale(.95)}50%{opacity:.2;transform:scale(1)}100%{opacity:0;transform:scale(1.05)}}
+/* LEFT — ORB SIDE */
+.hero-orb-side{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 48px;position:relative}
+.hero-orb-side::before{content:'';position:absolute;width:500px;height:500px;top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(79,70,229,.08) 0%,rgba(124,58,237,.03) 40%,transparent 70%);border-radius:50%;pointer-events:none;animation:heroGlow 5s ease-in-out infinite}
+@keyframes heroGlow{0%,100%{opacity:.5;transform:translate(-50%,-50%) scale(1)}50%{opacity:.8;transform:translate(-50%,-50%) scale(1.08)}}
+
+/* RIGHT — TEXT SIDE */
+.hero-text-side{display:flex;flex-direction:column;justify-content:center;padding:80px 80px 80px 0}
+.hero-text-side h2{font-size:28px;font-weight:800;letter-spacing:-.03em;color:#0B1B3D;margin:20px 0 12px;line-height:1.15}
+.hero-text-side .hero-hint{font-size:14px;color:#6b7280;display:flex;align-items:center;gap:6px}
+.hero-text-side .hero-hint svg{width:16px;height:16px;transform:rotate(180deg)}
 
 /* ===== ORB ===== */
-.orb-wrap{position:relative;width:320px;height:320px;margin:0 auto 36px;cursor:pointer}
+.orb-wrap{position:relative;width:320px;height:320px;margin:0 auto 32px;cursor:pointer}
 .orb-glow{position:absolute;inset:-60px;border-radius:50%;background:radial-gradient(circle,rgba(79,70,229,.18) 0%,rgba(59,130,246,.06) 40%,transparent 70%);animation:orbGlowPulse 4s ease-in-out infinite}
 .orb-main{position:relative;width:320px;height:320px;border-radius:50%;overflow:hidden;animation:orbDrift 6s ease-in-out infinite;transition:transform .3s,box-shadow .3s;box-shadow:0 0 80px rgba(79,70,229,.25),0 0 160px rgba(59,130,246,.08),inset 0 0 60px rgba(0,0,0,.3)}
 .orb-wrap:hover .orb-main{transform:scale(1.06)}
@@ -96,8 +97,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 .orb-mic-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:11;opacity:0;transition:opacity .3s}
 .orb-wrap:hover .orb-mic-overlay{opacity:1}
 .orb-mic-overlay svg{width:48px;height:48px;color:#fff;filter:drop-shadow(0 2px 8px rgba(0,0,0,.4));stroke:currentColor}
-.orb-label{text-align:center;font-size:15px;font-weight:600;color:var(--muted);margin-top:0;margin-bottom:20px;letter-spacing:-.01em;display:none}
-.orb-label .orb-label-hint{display:block;font-size:12px;font-weight:400;color:var(--muted);opacity:.5;margin-top:4px}
+.orb-label{text-align:center;font-size:14px;font-weight:600;color:var(--muted);margin-top:0;margin-bottom:24px;letter-spacing:-.01em}
+.orb-label .orb-label-hint{display:block;font-size:12px;font-weight:400;color:var(--muted);opacity:.6;margin-top:4px}
 
 /* ===== CALL STATES (below orb) ===== */
 .call-state{display:flex;flex-direction:column;align-items:center;width:100%;max-width:360px;margin:0 auto}
@@ -165,17 +166,19 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 
 /* ===== MOBILE ===== */
 @media(max-width:960px){
+  .hero{grid-template-columns:1fr;text-align:center}
+  .hero-orb-side{padding:120px 32px 40px}
+  .hero-text-side{padding:0 32px 60px;align-items:center}
+  .hero-text-side .hero-hint{justify-content:center}
   .nav-inner{padding:14px 24px}
 }
 @media(max-width:768px){
   .nav-expiry{font-size:12px}
+  .hero-orb-side{padding:100px 24px 32px}
+  .hero-text-side{padding:0 24px 48px}
   .orb-wrap{width:240px;height:240px}
   .orb-main{width:240px;height:240px}
   .orb-logo-center img{width:52px;height:52px;padding:10px}
-  .orb-ring-1{inset:-20px}
-  .orb-ring-2{inset:-44px}
-  .orb-ring-3{inset:-68px}
-  .hero-title{font-size:18px}
   .proof-section{padding:80px 24px 64px}
   .proof-cards{grid-template-columns:1fr;gap:12px}
   .info-strip{grid-template-columns:1fr;gap:10px}
@@ -185,15 +188,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 }
 @media(max-width:480px){
   .nav-expiry{display:none}
+  .hero-orb-side{padding:92px 20px 28px}
+  .hero-text-side{padding:0 20px 40px}
   .orb-wrap{width:200px;height:200px}
   .orb-main{width:200px;height:200px}
   .orb-logo-center img{width:44px;height:44px;padding:8px}
-  .orb-ring-1{inset:-16px}
-  .orb-ring-2{inset:-36px}
-  .orb-ring-3{inset:-56px}
-  .hero{padding:72px 20px 48px}
-  .hero-km-logo{height:28px;margin-bottom:40px}
-  .hero-title{font-size:16px}
 }
 </style>
 </head>
@@ -207,72 +206,77 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
   </div>
 </nav>
 
-<!-- SECTION 1: HERO — INCOMING CALL -->
+<!-- SECTION 1: HERO — SPLIT INVERSE -->
 <section class="hero" id="hero">
-  <img src="https://cdn.brandfetch.io/konicaminolta.com/w/800/h/200/logo" alt="Konica Minolta" class="hero-km-logo" onerror="this.onerror=null;this.src='https://logo.clearbit.com/konicaminolta.com';this.style.height='36px'" crossorigin="anonymous">
 
-  <!-- ORB with pulse rings -->
-  <div class="orb-wrap" id="orb-wrap">
-    <div class="orb-ring orb-ring-1"></div>
-    <div class="orb-ring orb-ring-2"></div>
-    <div class="orb-ring orb-ring-3"></div>
-    <div class="orb-glow"></div>
-    <div class="orb-particle" style="background:rgba(79,70,229,.5)"></div>
-    <div class="orb-particle" style="background:rgba(59,130,246,.5)"></div>
-    <div class="orb-particle" style="background:rgba(79,70,229,.3)"></div>
-    <div class="orb-particle" style="background:rgba(59,130,246,.3)"></div>
-    <div class="orb-particle" style="background:rgba(30,64,175,.4)"></div>
-    <div class="orb-particle" style="background:rgba(96,165,250,.3)"></div>
-    <div class="orb-main" id="orb-main">
-      <div class="orb-layer orb-layer-1"></div>
-      <div class="orb-layer orb-layer-2"></div>
-      <div class="orb-layer orb-layer-3"></div>
-      <div class="orb-layer orb-layer-4"></div>
-      <div class="orb-logo-center" id="orb-logo-center">
-        <img src="https://www.google.com/s2/favicons?domain=konicaminolta.com&sz=128" alt="KM" onerror="this.style.display='none'">
+  <!-- LEFT — ORB SIDE -->
+  <div class="hero-orb-side">
+    <!-- ORB -->
+    <div class="orb-wrap" id="orb-wrap">
+      <div class="orb-glow"></div>
+      <div class="orb-particle" style="background:rgba(79,70,229,.5)"></div>
+      <div class="orb-particle" style="background:rgba(59,130,246,.5)"></div>
+      <div class="orb-particle" style="background:rgba(79,70,229,.3)"></div>
+      <div class="orb-particle" style="background:rgba(59,130,246,.3)"></div>
+      <div class="orb-particle" style="background:rgba(30,64,175,.4)"></div>
+      <div class="orb-particle" style="background:rgba(96,165,250,.3)"></div>
+      <div class="orb-main" id="orb-main">
+        <div class="orb-layer orb-layer-1"></div>
+        <div class="orb-layer orb-layer-2"></div>
+        <div class="orb-layer orb-layer-3"></div>
+        <div class="orb-layer orb-layer-4"></div>
+        <div class="orb-logo-center" id="orb-logo-center">
+          <img src="https://www.google.com/s2/favicons?domain=konicaminolta.com&sz=128" alt="KM" onerror="this.style.display='none'">
+        </div>
+        <div class="orb-mic-overlay" id="orb-mic-overlay">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
+        </div>
       </div>
-      <div class="orb-mic-overlay" id="orb-mic-overlay">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
+    </div>
+    <div class="orb-label" id="orb-label">Live AI voice<span class="orb-label-hint">30 seconds</span></div>
+
+    <!-- Call States (below orb) -->
+    <div class="call-state" id="call-state">
+      <div class="cs-connecting" id="cs-connecting">
+        <div class="co-spinner"></div>
+        <div class="cs-connecting-text" id="cs-connecting-text">Connecting to Konica Minolta agent...</div>
+      </div>
+      <div class="cs-active" id="cs-active">
+        <div class="cs-status" id="cs-status">Listening...</div>
+        <div class="cs-waveform" id="cs-waveform">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="cs-transcript" id="cs-transcript"></div>
+        <button class="cs-end-btn" id="cs-end-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          End call
+        </button>
+      </div>
+      <div class="cs-post-call" id="cs-post-call">
+        <div class="cs-post-check">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="cs-post-title">That was 30 seconds.</div>
+        <div class="cs-post-sub">Now imagine 10,000 accounts with your real data.</div>
+        <a href="https://cal.com/johnb/30" target="_blank" class="cs-post-cta" id="cs-post-cta">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Run this on your portfolio
+        </a>
+        <button class="cs-post-retry" id="cs-post-retry">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+          Try another call
+        </button>
       </div>
     </div>
   </div>
 
-  <div class="hero-title">Your Konica Minolta agent is calling.</div>
-  <div class="hero-hint">Click to answer</div>
-
-  <div class="orb-label" id="orb-label">Click to call your agent<span class="orb-label-hint">Live AI voice — 30 seconds</span></div>
-
-  <!-- Call States (below orb) -->
-  <div class="call-state" id="call-state">
-    <div class="cs-connecting" id="cs-connecting">
-      <div class="co-spinner"></div>
-      <div class="cs-connecting-text" id="cs-connecting-text">Connecting to Konica Minolta agent...</div>
-    </div>
-    <div class="cs-active" id="cs-active">
-      <div class="cs-status" id="cs-status">Listening...</div>
-      <div class="cs-waveform" id="cs-waveform">
-        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-      </div>
-      <div class="cs-transcript" id="cs-transcript"></div>
-      <button class="cs-end-btn" id="cs-end-btn">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-        End call
-      </button>
-    </div>
-    <div class="cs-post-call" id="cs-post-call">
-      <div class="cs-post-check">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-      </div>
-      <div class="cs-post-title">That was 30 seconds.</div>
-      <div class="cs-post-sub">Now imagine 10,000 accounts with your real data.</div>
-      <a href="https://cal.com/johnb/30" target="_blank" class="cs-post-cta" id="cs-post-cta">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        Run this on your portfolio
-      </a>
-      <button class="cs-post-retry" id="cs-post-retry">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
-        Try another call
-      </button>
+  <!-- RIGHT — TEXT SIDE -->
+  <div class="hero-text-side">
+    <img src="https://cdn.brandfetch.io/konicaminolta.com/w/800/h/200/logo" alt="Konica Minolta" style="height:32px;opacity:.8" onerror="this.onerror=null;this.src='https://logo.clearbit.com/konicaminolta.com';this.style.height='36px'" crossorigin="anonymous">
+    <h2>Your agent is ready.</h2>
+    <div class="hero-hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Click to hear it
     </div>
   </div>
 </section>
@@ -280,8 +284,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 <!-- SECTION 2: THE PROOF -->
 <section class="proof-section">
   <div class="rv">
-    <h2 class="proof-sec-title">Your collection agency has a <span style="color:var(--red)">1.1&#9733;</span> rating.</h2>
-    <p style="font-size:17px;color:var(--muted);margin-top:-36px;margin-bottom:52px;line-height:1.5">DLL Finance collects your receivables under your brand.</p>
+    <h2 class="proof-sec-title">DLL Finance is collecting under your name.</h2>
   </div>
 
   <div class="proof-cards rv rv-d1">
@@ -318,7 +321,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
   <div class="rv">
     <h2 id="close-title">Your Konica Minolta agent is 90% ready.</h2>
     <p class="close-sub">One meeting to connect your data. Then it goes live and starts recovering cash.</p>
-    <a href="https://cal.com/johnb/30" target="_blank" class="close-cta" onclick="try{gtag('event','book_cta',{page:'konica-v11b'})}catch(e){}">Finish setup — book 15 min</a>
+    <a href="https://cal.com/johnb/30" target="_blank" class="close-cta" onclick="try{gtag('event','book_cta',{page:'konica-v11e'})}catch(e){}">Finish setup — book 15 min</a>
     <p class="close-guarantee">No collection, no fee. Performance-based only.</p>
     <p class="close-footer">Konica Minolta used as example. All contacts from public sources. Powered by AgentCollect.</p>
   </div>
@@ -442,15 +445,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
     callActive = true;
     callStartTime = Date.now();
 
-    // Hide label + title, show connecting
+    // Hide label, show connecting
     if(orbLabel) orbLabel.style.display = 'none';
     if(orbMicOverlay) orbMicOverlay.style.display = 'none';
-    var heroTitle = document.querySelector('.hero-title');
-    var heroHint = document.querySelector('.hero-hint');
-    if(heroTitle) heroTitle.style.display = 'none';
-    if(heroHint) heroHint.style.display = 'none';
-    // Hide pulse rings during call
-    document.querySelectorAll('.orb-ring').forEach(function(r){ r.style.display = 'none'; });
     csConnecting.style.display = 'flex';
     csActive.classList.remove('visible');
 
@@ -485,11 +482,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
           startWaveformAnim('idle');
           // Hide logo, show mic on orb during call
           if(orbLogo) orbLogo.style.opacity = '0';
-          try { gtag('event', 'call_started', { company: 'Konica Minolta', page: 'konica-v11b' }); } catch(e){}
+          try { gtag('event', 'call_started', { company: 'Konica Minolta', page: 'konica-v11e' }); } catch(e){}
         });
 
         retellClient.on('call_ended', function(){
-          try { gtag('event', 'call_completed', { company: 'Konica Minolta', page: 'konica-v11b' }); } catch(e){}
+          try { gtag('event', 'call_completed', { company: 'Konica Minolta', page: 'konica-v11e' }); } catch(e){}
           var duration = callStartTime ? Math.round((Date.now() - callStartTime) / 1000) : 30;
           endCall(duration);
         });
@@ -522,7 +519,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
         if(orbLabel){ orbLabel.style.display = ''; orbLabel.innerHTML = 'Connection failed — try again<span class="orb-label-hint">Click the orb</span>'; orbLabel.style.color = '#ef4444'; }
         if(orbMicOverlay) orbMicOverlay.style.display = '';
         if(orb) orb.classList.remove('speaking');
-        setTimeout(function(){ if(orbLabel){ orbLabel.innerHTML = 'Click to call your agent<span class="orb-label-hint">Live AI voice — 30 seconds</span>'; orbLabel.style.color = ''; } }, 3000);
+        setTimeout(function(){ if(orbLabel){ orbLabel.innerHTML = 'Live AI voice<span class="orb-label-hint">30 seconds</span>'; orbLabel.style.color = ''; } }, 3000);
       }
     })();
   }
@@ -570,7 +567,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 
   var postCta = document.getElementById('cs-post-cta');
   if(postCta) postCta.addEventListener('click', function(){
-    try { gtag('event', 'post_call_book_demo', { company: 'Konica Minolta', page: 'konica-v11b' }); } catch(e){}
+    try { gtag('event', 'post_call_book_demo', { company: 'Konica Minolta', page: 'konica-v11e' }); } catch(e){}
   });
 
   if(csEndBtn) csEndBtn.addEventListener('click', function(e){
