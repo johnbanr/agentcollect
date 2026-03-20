@@ -1,7 +1,10 @@
 {
   "rewrites": [
 { "source": "/showcase", "destination": "/showcase.html" },
-{ "source": "/salesforce", "destination": "/v3/salesforce-v2.html" },
+{ "source": "/salesforce", "destination": "/v3/salesforce-c.html" },
+{ "source": "/salesforce-a", "destination": "/v3/salesforce-a.html" },
+{ "source": "/salesforce-b", "destination": "/v3/salesforce-b.html" },
+{ "source": "/salesforce-c", "destination": "/v3/salesforce-c.html" },
 { "source": "/xerox", "destination": "/v3/xerox-v3.html" },
 { "source": "/xerox-v3", "destination": "/v3/xerox-v3.html" },
 { "source": "/xerox-wall", "destination": "/v3/xerox-v3-wall.html" },

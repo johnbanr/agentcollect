@@ -3,390 +3,226 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fix Compare — "What is AgentCollect" Section Options</title>
+<title>What is AgentCollect — 3 Section Options</title>
 <meta name="robots" content="noindex, nofollow">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GRZZT9K05B"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-GRZZT9K05B');</script>
+<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","vr6uvxdalw");</script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --blue:#4F46E5;--blue-dark:#4338CA;--text:#0B1B3D;--muted:#6b7280;--border:#e5e7eb;--bg:#FAFBFF;
-  --green:#10B981;--green-dark:#059669;--red:#dc2626;--amber:#F59E0B;
-  --mono:'JetBrains Mono',monospace;--sans:'Plus Jakarta Sans',system-ui,sans-serif;
-  --shadow-sm:0 1px 2px rgba(0,0,0,.05);
-  --shadow:0 1px 3px rgba(0,0,0,.1),0 1px 2px rgba(0,0,0,.06);
-  --shadow-lg:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);
+  --indigo:#4F46E5;--green:#10B981;--text:#0B1B3D;--muted:#6b7280;
+  --bg:#FAFBFF;--border:#E8ECF2;--slate:#475569;--slate-light:#94A3B8;
 }
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.6}
-::selection{background:rgba(79,70,229,.1)}
+body{background:#f0f1f3;color:var(--text);font-family:'Plus Jakarta Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;padding:40px 24px}
 
-/* Page header */
-.page-header{max-width:960px;margin:0 auto;padding:60px 32px 40px;text-align:center}
-.page-header h1{font-size:28px;font-weight:900;color:var(--text);letter-spacing:-.03em;margin-bottom:8px}
-.page-header p{font-size:15px;color:var(--muted);max-width:600px;margin:0 auto;line-height:1.7}
-.page-header .problem{background:rgba(220,38,38,.06);border:1px solid rgba(220,38,38,.12);border-radius:12px;padding:16px 24px;margin-top:24px;font-size:14px;color:#991b1b;text-align:left;line-height:1.7}
-.page-header .problem strong{color:var(--red)}
+.page-title{text-align:center;font-size:32px;font-weight:900;margin-bottom:8px;letter-spacing:-.5px}
+.page-sub{text-align:center;font-size:15px;color:var(--muted);margin-bottom:12px;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.6}
+.page-context{text-align:center;font-size:13px;color:var(--slate-light);margin-bottom:48px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.5;font-style:italic}
 
 /* Version blocks */
-.version-block{max-width:960px;margin:0 auto 60px;padding:0 32px}
-.version-label{display:inline-flex;align-items:center;gap:10px;margin-bottom:20px}
-.version-label .tag{display:inline-block;padding:6px 16px;border-radius:8px;font-size:13px;font-weight:700;letter-spacing:.03em;text-transform:uppercase}
-.version-label .tag-a{background:rgba(79,70,229,.08);color:var(--blue)}
-.version-label .tag-b{background:rgba(245,158,11,.08);color:#b45309}
-.version-label .tag-c{background:rgba(16,185,129,.08);color:#047857}
-.version-label .tag-rec{background:var(--green);color:#fff;font-size:11px;padding:4px 10px;border-radius:6px;letter-spacing:.05em}
-.version-label .desc{font-size:14px;color:var(--muted);font-weight:500}
-.version-content{background:#fff;border:1px solid var(--border);border-radius:16px;padding:48px;box-shadow:var(--shadow)}
-.version-content.recommended{border:2px solid var(--green);box-shadow:0 0 0 4px rgba(16,185,129,.08),var(--shadow-lg)}
+.version-block{background:var(--bg);border-radius:20px;padding:48px 32px 40px;margin-bottom:40px;overflow:hidden;position:relative;box-shadow:0 1px 3px rgba(0,0,0,.08);max-width:900px;margin-left:auto;margin-right:auto}
+.version-block.recommended{border:2px solid var(--green);box-shadow:0 4px 24px rgba(16,185,129,.15)}
+.version-label{position:absolute;top:16px;left:24px;background:var(--indigo);color:#fff;font-size:12px;font-weight:800;padding:4px 12px;border-radius:100px;letter-spacing:.5px}
+.version-label.reco{background:var(--green)}
+.reco-badge{position:absolute;top:16px;right:24px;background:var(--green);color:#fff;font-size:11px;font-weight:800;padding:5px 14px;border-radius:100px;letter-spacing:.3px;display:flex;align-items:center;gap:6px}
+.reco-badge::before{content:'';display:inline-block;width:6px;height:6px;background:#fff;border-radius:50%}
+.version-title{text-align:center;font-size:14px;color:var(--muted);font-weight:600;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;margin-top:24px}
+.version-desc{text-align:center;font-size:13px;color:var(--muted);margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto}
 
-/* Option A: One-liner + Comparison */
-.one-liner{font-size:22px;font-weight:800;color:var(--text);letter-spacing:-.02em;line-height:1.4;text-align:center;margin-bottom:40px;max-width:720px;margin-left:auto;margin-right:auto}
-.one-liner span{color:var(--blue)}
+/* ===== SHARED SECTION STYLES ===== */
+.section-headline{font-size:28px;font-weight:900;text-align:center;letter-spacing:-.5px;margin-bottom:12px;color:var(--text)}
+.section-oneliner{font-size:17px;text-align:center;color:var(--slate);line-height:1.6;max-width:560px;margin:0 auto 36px;font-weight:500}
+.section-oneliner strong{color:var(--text);font-weight:700}
 
-.comparison{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px}
-@media(max-width:700px){.comparison{grid-template-columns:1fr;gap:16px}}
+/* ===== COMPARISON TABLE ===== */
+.compare-table{width:100%;max-width:640px;margin:0 auto;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:12px;border:1px solid var(--border)}
+.compare-table thead th{padding:14px 20px;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.5px}
+.compare-table thead th:first-child{background:#fff;color:var(--muted);text-align:left;width:28%}
+.compare-table thead th:nth-child(2){background:#fef2f2;color:#dc2626;text-align:center}
+.compare-table thead th:nth-child(3){background:#eef2ff;color:var(--indigo);text-align:center}
+.compare-table tbody td{padding:14px 20px;font-size:14px;font-weight:500;border-top:1px solid var(--border)}
+.compare-table tbody td:first-child{font-weight:700;color:var(--text);background:#fff}
+.compare-table tbody td:nth-child(2){text-align:center;color:#991b1b;background:#fffbfb;font-weight:500}
+.compare-table tbody td:nth-child(3){text-align:center;color:var(--indigo);background:#fafbff;font-weight:600}
+.compare-table .icon-x{color:#dc2626;font-weight:700;margin-right:4px}
+.compare-table .icon-check{color:var(--green);font-weight:700;margin-right:4px}
 
-.compare-col{border-radius:14px;padding:32px 28px;position:relative}
-.compare-col.agency{background:rgba(220,38,38,.03);border:1px solid rgba(220,38,38,.1)}
-.compare-col.ac{background:rgba(79,70,229,.03);border:1px solid rgba(79,70,229,.1)}
+/* ===== VOICE DEMO TEASER ===== */
+.voice-teaser{text-align:center;padding:32px 24px}
+.voice-headline{font-size:24px;font-weight:900;letter-spacing:-.4px;margin-bottom:8px;color:var(--text)}
+.voice-subtitle{font-size:15px;color:var(--slate);margin-bottom:28px;font-weight:500}
 
-.compare-col-header{display:flex;align-items:center;gap:10px;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid rgba(0,0,0,.06)}
-.compare-col-header .icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.compare-col.agency .icon{background:rgba(220,38,38,.08)}
-.compare-col.ac .icon{background:rgba(79,70,229,.08)}
-.compare-col-header h3{font-size:16px;font-weight:800;letter-spacing:-.01em}
-.compare-col.agency h3{color:var(--red)}
-.compare-col.ac h3{color:var(--blue)}
+.mini-orb-wrap{display:flex;justify-content:center;margin-bottom:20px}
+.mini-orb{width:80px;height:80px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#818cf8,var(--indigo),#3730a3);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;box-shadow:0 8px 32px rgba(79,70,229,.3);transition:transform .2s,box-shadow .2s}
+.mini-orb:hover{transform:scale(1.08);box-shadow:0 12px 40px rgba(79,70,229,.4)}
+.mini-orb::before{content:'';position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(79,70,229,.15);animation:orbPulse 2s ease-in-out infinite}
+.mini-orb svg{width:28px;height:28px;fill:#fff;margin-left:3px}
+@keyframes orbPulse{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.15);opacity:0}}
 
-.compare-item{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid rgba(0,0,0,.04)}
-.compare-item:last-child{border-bottom:none}
-.compare-item .bullet{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:1px}
-.compare-col.agency .bullet{background:rgba(220,38,38,.08);color:var(--red)}
-.compare-col.ac .bullet{background:rgba(79,70,229,.08);color:var(--blue)}
-.compare-item .label{font-size:14px;color:var(--text);font-weight:500;line-height:1.5}
-.compare-item .label strong{font-weight:800}
-.compare-col.agency .label strong{color:var(--red)}
-.compare-col.ac .label strong{color:var(--blue)}
+.voice-cta-text{font-size:13px;color:var(--slate-light);font-weight:500}
 
-/* Option B: Voice Demo */
-.demo-section{text-align:center}
-.demo-headline{font-size:20px;font-weight:800;color:var(--text);letter-spacing:-.02em;margin-bottom:8px}
-.demo-sub{font-size:14px;color:var(--muted);margin-bottom:36px}
+/* ===== DIVIDER ===== */
+.section-divider{width:60px;height:2px;background:var(--border);margin:36px auto;border-radius:2px}
 
-.demo-container{display:flex;gap:40px;align-items:flex-start}
-@media(max-width:700px){.demo-container{flex-direction:column;gap:24px}}
+/* ===== COMPACT TABLE (Option C) ===== */
+.compare-compact{width:100%;max-width:520px;margin:0 auto;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:10px;border:1px solid var(--border)}
+.compare-compact thead th{padding:10px 16px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.5px}
+.compare-compact thead th:first-child{background:#fff;color:var(--muted);text-align:left;width:30%}
+.compare-compact thead th:nth-child(2){background:#fef2f2;color:#dc2626;text-align:center}
+.compare-compact thead th:nth-child(3){background:#eef2ff;color:var(--indigo);text-align:center}
+.compare-compact tbody td{padding:10px 16px;font-size:13px;font-weight:500;border-top:1px solid var(--border)}
+.compare-compact tbody td:first-child{font-weight:700;color:var(--text);background:#fff}
+.compare-compact tbody td:nth-child(2){text-align:center;color:#991b1b;background:#fffbfb}
+.compare-compact tbody td:nth-child(3){text-align:center;color:var(--indigo);background:#fafbff;font-weight:600}
 
-/* Orb visual */
-.demo-orb-wrap{flex-shrink:0;width:200px;height:200px;position:relative;margin:0 auto}
-.demo-orb{width:200px;height:200px;border-radius:50%;background:conic-gradient(from 0deg,#4F46E5,#3B82F6,#1E40AF,#60A5FA,#4F46E5);box-shadow:0 0 60px rgba(79,70,229,.25),0 0 120px rgba(59,130,246,.08);animation:orbSpin 8s linear infinite;position:relative;overflow:hidden}
-.demo-orb::after{content:'';position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.25) 0%,transparent 50%)}
-@keyframes orbSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-.demo-orb-ring{position:absolute;border-radius:50%;border:1.5px solid rgba(79,70,229,.1);pointer-events:none}
-.demo-orb-ring-1{inset:-16px;animation:ringPulse 3s ease-out infinite}
-.demo-orb-ring-2{inset:-32px;animation:ringPulse 3s ease-out infinite .6s}
-@keyframes ringPulse{0%{opacity:.5;transform:scale(.97)}50%{opacity:.2;transform:scale(1)}100%{opacity:0;transform:scale(1.04)}}
-.demo-orb-label{position:absolute;bottom:-28px;left:50%;transform:translateX(-50%);font-size:12px;color:var(--muted);white-space:nowrap;font-weight:600;letter-spacing:.02em}
-
-/* Transcript */
-.transcript{flex:1;text-align:left}
-.transcript-line{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid rgba(0,0,0,.04);align-items:flex-start}
-.transcript-line:last-child{border-bottom:none}
-.transcript-line .speaker{flex-shrink:0;width:72px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding-top:2px}
-.transcript-line .speaker.debtor{color:var(--muted)}
-.transcript-line .speaker.agent{color:var(--blue)}
-.transcript-line .text{font-size:14px;line-height:1.6;color:var(--text)}
-.transcript-line .text em{font-style:italic;color:var(--muted)}
-.transcript-key{font-size:22px;font-weight:800;color:var(--blue);text-align:center;margin-top:32px;letter-spacing:-.02em}
-
-/* Divider */
-.section-divider{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:40px 0}
-
-/* Footer */
-.page-footer{max-width:960px;margin:0 auto;padding:20px 32px 60px;text-align:center}
-.page-footer p{font-size:13px;color:var(--muted)}
-
-/* Responsive */
-@media(max-width:600px){
-  .page-header{padding:40px 20px 30px}
-  .page-header h1{font-size:22px}
-  .version-block{padding:0 16px;margin-bottom:40px}
-  .version-content{padding:28px 20px}
-  .one-liner{font-size:18px}
-  .comparison{gap:12px}
-  .compare-col{padding:24px 20px}
-  .demo-container{flex-direction:column;gap:24px}
-  .demo-orb-wrap{width:160px;height:160px}
-  .demo-orb{width:160px;height:160px}
+/* ===== RESPONSIVE ===== */
+@media(max-width:640px){
+  body{padding:24px 12px}
+  .page-title{font-size:24px}
+  .version-block{padding:40px 16px 32px;border-radius:16px}
+  .section-headline{font-size:22px}
+  .section-oneliner{font-size:15px;margin-bottom:28px}
+  .compare-table,.compare-compact{font-size:12px}
+  .compare-table thead th,.compare-compact thead th{padding:10px 12px;font-size:11px}
+  .compare-table tbody td,.compare-compact tbody td{padding:10px 12px;font-size:12px}
+  .voice-headline{font-size:20px}
+  .mini-orb{width:64px;height:64px}
+  .mini-orb svg{width:22px;height:22px}
 }
 </style>
 </head>
 <body>
 
-<!-- Page Header -->
-<div class="page-header">
-  <h1>Fix: "What is AgentCollect" Section</h1>
-  <p>Three options for the section that goes AFTER the wall of pain on prospect pages. Currently prospects go from "your agency sucks" to logos to "book a call" without ever understanding what they're buying.</p>
-  <div class="problem">
-    <strong>The gap:</strong> Wall of pain proves their current agency is terrible. But then we never explain what AgentCollect actually does differently. The prospect is convinced their agency sucks, but doesn't know what we're selling.
-  </div>
-</div>
+<h1 class="page-title">"What is AgentCollect?" Section</h1>
+<p class="page-sub">3 options for a product explanation section that sits between the wall-of-pain/social-proof and the "How it works" section on prospect pages.</p>
+<p class="page-context">Problem: prospects see complaints, logos, then "book a call" -- but never learn WHAT AgentCollect actually does.</p>
 
-<!-- ============================================ -->
-<!-- OPTION A: One-liner + Side-by-side comparison -->
-<!-- ============================================ -->
+<!-- ===== OPTION A: One-Liner + Comparison Table ===== -->
 <div class="version-block">
-  <div class="version-label">
-    <span class="tag tag-a">Option A</span>
-    <span class="desc">One-liner + Side-by-side comparison table</span>
-  </div>
-  <div class="version-content">
-    <p class="one-liner">
-      <span>AgentCollect</span> replaces your collection agency with an AI agent that calls, emails, and collects &mdash; under your brand, zero complaints.
-    </p>
+  <div class="version-label">OPTION A</div>
+  <div class="version-title">One-Liner + Comparison Table</div>
+  <div class="version-desc">Minimal. Headline, one sentence, then a side-by-side table. Rational appeal -- lets the data do the talking.</div>
 
-    <div class="comparison">
-      <!-- Left: Their Agency -->
-      <div class="compare-col agency">
-        <div class="compare-col-header">
-          <div class="icon">&#10005;</div>
-          <h3>Their Agency</h3>
-        </div>
-        <div class="compare-item">
-          <div class="bullet">&#10005;</div>
-          <div class="label"><strong>30 calls from Asia</strong> per debtor, no context, no care</div>
-        </div>
-        <div class="compare-item">
-          <div class="bullet">&#10005;</div>
-          <div class="label"><strong>$826K in overcharges</strong> billed on amounts already paid</div>
-        </div>
-        <div class="compare-item">
-          <div class="bullet">&#10005;</div>
-          <div class="label"><strong>154 BBB complaints</strong> damaging your reputation</div>
-        </div>
-        <div class="compare-item">
-          <div class="bullet">&#10005;</div>
-          <div class="label"><strong>4-6 months</strong> average resolution time</div>
-        </div>
-        <div class="compare-item">
-          <div class="bullet">&#10005;</div>
-          <div class="label"><strong>Brand damage</strong> &mdash; your name on their harassment</div>
-        </div>
-      </div>
+  <div style="padding:0 8px">
+    <h2 class="section-headline">What is AgentCollect?</h2>
+    <p class="section-oneliner">An AI agent that <strong>calls, emails, and collects</strong> -- under your brand. No humans. No agency. Just results.</p>
 
-      <!-- Right: AgentCollect -->
-      <div class="compare-col ac">
-        <div class="compare-col-header">
-          <div class="icon">&#10003;</div>
-          <h3>AgentCollect</h3>
-        </div>
-        <div class="compare-item">
-          <div class="bullet">&#10003;</div>
-          <div class="label"><strong>AI calls from a US number</strong> &mdash; calm, professional, every time</div>
-        </div>
-        <div class="compare-item">
-          <div class="bullet">&#10003;</div>
-          <div class="label"><strong>Exact amount owed</strong> &mdash; synced with your invoices in real time</div>
-        </div>
-        <div class="compare-item">
-          <div class="bullet">&#10003;</div>
-          <div class="label"><strong>0 complaints in 12 months</strong> &mdash; FDCPA compliant by design</div>
-        </div>
-        <div class="compare-item">
-          <div class="bullet">&#10003;</div>
-          <div class="label"><strong>20 days avg resolution</strong> &mdash; faster than any human team</div>
-        </div>
-        <div class="compare-item">
-          <div class="bullet">&#10003;</div>
-          <div class="label"><strong>Your brand, your tone</strong> &mdash; debtors think it's you</div>
-        </div>
-      </div>
-    </div>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Traditional Agency</th>
+          <th>AgentCollect</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Calls</td>
+          <td><span class="icon-x">&times;</span> Offshore call center</td>
+          <td><span class="icon-check">&check;</span> AI voice agent, your brand</td>
+        </tr>
+        <tr>
+          <td>Speed</td>
+          <td><span class="icon-x">&times;</span> 90+ days</td>
+          <td><span class="icon-check">&check;</span> 20 days avg</td>
+        </tr>
+        <tr>
+          <td>Brand</td>
+          <td><span class="icon-x">&times;</span> Their name, their script</td>
+          <td><span class="icon-check">&check;</span> Your name, your tone</td>
+        </tr>
+        <tr>
+          <td>Cost</td>
+          <td><span class="icon-x">&times;</span> 25-50% commission</td>
+          <td><span class="icon-check">&check;</span> Performance-based</td>
+        </tr>
+        <tr>
+          <td>Disputes</td>
+          <td><span class="icon-x">&times;</span> Ignored</td>
+          <td><span class="icon-check">&check;</span> Resolved automatically</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 
-<!-- ============================================ -->
-<!-- OPTION B: Voice demo transcript -->
-<!-- ============================================ -->
+<!-- ===== OPTION B: Voice Demo Teaser ===== -->
 <div class="version-block">
-  <div class="version-label">
-    <span class="tag tag-b">Option B</span>
-    <span class="desc">Embedded voice call demo (static transcript)</span>
-  </div>
-  <div class="version-content">
-    <div class="demo-section">
-      <p class="demo-headline">See how your Xerox agent handles a real dispute</p>
-      <p class="demo-sub">AI-powered voice agent resolves issues in real time &mdash; no hold music, no scripts, no escalation.</p>
+  <div class="version-label">OPTION B</div>
+  <div class="version-title">Voice Demo Teaser</div>
+  <div class="version-desc">Emotional appeal. Let them hear the product instead of reading about it. Mini orb + play button creates curiosity.</div>
 
-      <div class="demo-container">
-        <!-- Orb -->
-        <div class="demo-orb-wrap">
-          <div class="demo-orb-ring demo-orb-ring-1"></div>
-          <div class="demo-orb-ring demo-orb-ring-2"></div>
-          <div class="demo-orb"></div>
-          <div class="demo-orb-label">Your Xerox Agent</div>
-        </div>
+  <div class="voice-teaser">
+    <h2 class="voice-headline">Hear the difference.</h2>
+    <p class="voice-subtitle">This isn't a call center. This is your AI agent.</p>
 
-        <!-- Transcript -->
-        <div class="transcript">
-          <div class="transcript-line">
-            <div class="speaker debtor">Debtor</div>
-            <div class="text">"I never received an invoice for this. I'm not paying something I never got."</div>
-          </div>
-          <div class="transcript-line">
-            <div class="speaker agent">Agent</div>
-            <div class="text">"I understand, and I want to help clear this up. I've located invoice #4821 from March 2024 &mdash; it was sent to your billing email on file. Would you like me to resend it right now?"</div>
-          </div>
-          <div class="transcript-line">
-            <div class="speaker debtor">Debtor</div>
-            <div class="text">"...yeah, okay. Can you send it to my new email?"</div>
-          </div>
-          <div class="transcript-line">
-            <div class="speaker agent">Agent</div>
-            <div class="text">"Of course. I'll update your email and resend the invoice immediately. The balance is $2,340. Would you like to resolve this today with a payment link, or would a 3-month plan work better?"</div>
-          </div>
-          <div class="transcript-line">
-            <div class="speaker debtor">Debtor</div>
-            <div class="text">"A payment plan would help. Can we do that?"</div>
-          </div>
-          <div class="transcript-line">
-            <div class="speaker agent">Agent</div>
-            <div class="text">"Absolutely. I'll set up 3 monthly payments of $780. You'll receive the first payment link by email in about 60 seconds. <em>Is there anything else I can help with today?</em>"</div>
-          </div>
-        </div>
+    <div class="mini-orb-wrap">
+      <div class="mini-orb">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
       </div>
-
-      <p class="transcript-key">Dispute resolved. Payment secured. Zero escalation.</p>
     </div>
+
+    <p style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px">Play a sample call</p>
+    <p class="voice-cta-text">30 seconds. No signup. Your brand, your tone.</p>
   </div>
 </div>
 
-<!-- ============================================ -->
-<!-- OPTION C: Both combined (RECOMMENDED) -->
-<!-- ============================================ -->
-<div class="version-block">
-  <div class="version-label">
-    <span class="tag tag-c">Option C</span>
-    <span class="tag tag-rec">RECOMMENDED</span>
-    <span class="desc">One-liner + comparison + voice demo (full flow)</span>
-  </div>
-  <div class="version-content recommended">
+<!-- ===== OPTION C: Combined (RECOMMENDED) ===== -->
+<div class="version-block recommended">
+  <div class="version-label reco">OPTION C</div>
+  <div class="reco-badge">RECOMMENDED</div>
+  <div class="version-title">Combined: Explanation + Voice Teaser</div>
+  <div class="version-desc">Best of both worlds. Answers "what does it do?" with the table AND "how does it sound?" with the orb. Rational + emotional.</div>
 
-    <!-- 1. One-liner -->
-    <p class="one-liner">
-      <span>AgentCollect</span> replaces your collection agency with an AI agent that calls, emails, and collects &mdash; under your brand, zero complaints.
-    </p>
+  <div style="padding:0 8px">
+    <h2 class="section-headline">What is AgentCollect?</h2>
+    <p class="section-oneliner">An AI agent that <strong>calls, emails, and collects</strong> -- under your brand. No humans. No agency. Just results.</p>
 
-    <!-- 2. Comparison -->
-    <div class="comparison">
-      <div class="compare-col agency">
-        <div class="compare-col-header">
-          <div class="icon">&#10005;</div>
-          <h3>Their Agency</h3>
-        </div>
-        <div class="compare-item">
-          <div class="bullet">&#10005;</div>
-          <div class="label"><strong>30 calls from Asia</strong> per debtor, no context, no care</div>
-        </div>
-        <div class="compare-item">
-          <div class="bullet">&#10005;</div>
-          <div class="label"><strong>$826K in overcharges</strong> billed on amounts already paid</div>
-        </div>
-        <div class="compare-item">
-          <div class="bullet">&#10005;</div>
-          <div class="label"><strong>154 BBB complaints</strong> damaging your reputation</div>
-        </div>
-        <div class="compare-item">
-          <div class="bullet">&#10005;</div>
-          <div class="label"><strong>4-6 months</strong> average resolution time</div>
-        </div>
-        <div class="compare-item">
-          <div class="bullet">&#10005;</div>
-          <div class="label"><strong>Brand damage</strong> &mdash; your name on their harassment</div>
+    <table class="compare-compact">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Traditional Agency</th>
+          <th>AgentCollect</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Calls</td>
+          <td><span class="icon-x">&times;</span> Offshore call center</td>
+          <td><span class="icon-check">&check;</span> AI voice agent</td>
+        </tr>
+        <tr>
+          <td>Speed</td>
+          <td><span class="icon-x">&times;</span> 90+ days</td>
+          <td><span class="icon-check">&check;</span> 20 days avg</td>
+        </tr>
+        <tr>
+          <td>Brand</td>
+          <td><span class="icon-x">&times;</span> Their name, their script</td>
+          <td><span class="icon-check">&check;</span> Your name, your tone</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-divider"></div>
+
+    <div class="voice-teaser" style="padding-bottom:0">
+      <h2 class="voice-headline">Hear the difference.</h2>
+      <p class="voice-subtitle">This isn't a call center. This is your AI agent.</p>
+
+      <div class="mini-orb-wrap">
+        <div class="mini-orb">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
         </div>
       </div>
 
-      <div class="compare-col ac">
-        <div class="compare-col-header">
-          <div class="icon">&#10003;</div>
-          <h3>AgentCollect</h3>
-        </div>
-        <div class="compare-item">
-          <div class="bullet">&#10003;</div>
-          <div class="label"><strong>AI calls from a US number</strong> &mdash; calm, professional, every time</div>
-        </div>
-        <div class="compare-item">
-          <div class="bullet">&#10003;</div>
-          <div class="label"><strong>Exact amount owed</strong> &mdash; synced with your invoices in real time</div>
-        </div>
-        <div class="compare-item">
-          <div class="bullet">&#10003;</div>
-          <div class="label"><strong>0 complaints in 12 months</strong> &mdash; FDCPA compliant by design</div>
-        </div>
-        <div class="compare-item">
-          <div class="bullet">&#10003;</div>
-          <div class="label"><strong>20 days avg resolution</strong> &mdash; faster than any human team</div>
-        </div>
-        <div class="compare-item">
-          <div class="bullet">&#10003;</div>
-          <div class="label"><strong>Your brand, your tone</strong> &mdash; debtors think it's you</div>
-        </div>
-      </div>
-    </div>
-
-    <hr class="section-divider">
-
-    <!-- 3. Voice demo -->
-    <div class="demo-section">
-      <p class="demo-headline">See how your Xerox agent handles a real dispute</p>
-      <p class="demo-sub">AI-powered voice agent resolves issues in real time &mdash; no hold music, no scripts, no escalation.</p>
-
-      <div class="demo-container">
-        <div class="demo-orb-wrap">
-          <div class="demo-orb-ring demo-orb-ring-1"></div>
-          <div class="demo-orb-ring demo-orb-ring-2"></div>
-          <div class="demo-orb"></div>
-          <div class="demo-orb-label">Your Xerox Agent</div>
-        </div>
-
-        <div class="transcript">
-          <div class="transcript-line">
-            <div class="speaker debtor">Debtor</div>
-            <div class="text">"I never received an invoice for this. I'm not paying something I never got."</div>
-          </div>
-          <div class="transcript-line">
-            <div class="speaker agent">Agent</div>
-            <div class="text">"I understand, and I want to help clear this up. I've located invoice #4821 from March 2024 &mdash; it was sent to your billing email on file. Would you like me to resend it right now?"</div>
-          </div>
-          <div class="transcript-line">
-            <div class="speaker debtor">Debtor</div>
-            <div class="text">"...yeah, okay. Can you send it to my new email?"</div>
-          </div>
-          <div class="transcript-line">
-            <div class="speaker agent">Agent</div>
-            <div class="text">"Of course. I'll update your email and resend the invoice immediately. The balance is $2,340. Would you like to resolve this today with a payment link, or would a 3-month plan work better?"</div>
-          </div>
-          <div class="transcript-line">
-            <div class="speaker debtor">Debtor</div>
-            <div class="text">"A payment plan would help. Can we do that?"</div>
-          </div>
-          <div class="transcript-line">
-            <div class="speaker agent">Agent</div>
-            <div class="text">"Absolutely. I'll set up 3 monthly payments of $780. You'll receive the first payment link by email in about 60 seconds. <em>Is there anything else I can help with today?</em>"</div>
-          </div>
-        </div>
-      </div>
-
-      <p class="transcript-key">Dispute resolved. Payment secured. Zero escalation.</p>
+      <p style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px">Play a sample call</p>
+      <p class="voice-cta-text">30 seconds. No signup. Your brand, your tone.</p>
     </div>
   </div>
-</div>
-
-<!-- Footer -->
-<div class="page-footer">
-  <p>Internal comparison page &mdash; pick the best option to insert after the wall of pain on prospect pages.</p>
 </div>
 
 </body>
