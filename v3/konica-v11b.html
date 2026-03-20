@@ -73,9 +73,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 .orb-layer-2{background:conic-gradient(from 180deg,rgba(79,70,229,.8),rgba(59,130,246,.5),rgba(30,64,175,.6),rgba(96,165,250,.4),rgba(79,70,229,.8));animation:orbSpin 12s linear infinite reverse;mix-blend-mode:soft-light}
 .orb-layer-3{background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.25) 0%,transparent 50%)}
 .orb-layer-4{background:radial-gradient(circle at 50% 110%,rgba(0,0,0,.4) 0%,transparent 60%)}
-.orb-logo-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:10}
-.orb-logo-center img{width:64px;height:64px;object-fit:contain;border-radius:50%;background:rgba(255,255,255,.95);padding:12px;box-shadow:0 4px 24px rgba(0,0,0,.25),0 0 0 2px rgba(255,255,255,.2);transition:transform .3s}
-.orb-wrap:hover .orb-logo-center img{transform:scale(1.08)}
+.orb-phone-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:10}
+.orb-phone-icon{width:72px;height:72px;border-radius:50%;background:#22c55e;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(34,197,94,.4),0 0 0 3px rgba(255,255,255,.2);transition:transform .3s;animation:phonePulse 2s ease-in-out infinite}
+.orb-phone-icon svg{width:32px;height:32px;color:#fff;stroke:currentColor}
+.orb-wrap:hover .orb-phone-icon{transform:scale(1.1);box-shadow:0 4px 32px rgba(34,197,94,.6),0 0 0 3px rgba(255,255,255,.3)}
+@keyframes phonePulse{0%,100%{box-shadow:0 4px 24px rgba(34,197,94,.4),0 0 0 3px rgba(255,255,255,.2)}50%{box-shadow:0 4px 32px rgba(34,197,94,.6),0 0 0 6px rgba(34,197,94,.15)}}
 .orb-particle{position:absolute;width:4px;height:4px;border-radius:50%;animation:orbParticle 4s ease-in-out infinite}
 .orb-particle:nth-child(1){top:-16px;left:30%;animation-delay:0s}
 .orb-particle:nth-child(2){top:20%;right:-12px;animation-delay:1s}
@@ -92,10 +94,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 @keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* ===== ORB MIC OVERLAY ===== */
-.orb-mic-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:11;opacity:0;transition:opacity .3s}
-.orb-wrap:hover .orb-mic-overlay{opacity:1}
-.orb-mic-overlay svg{width:48px;height:48px;color:#fff;filter:drop-shadow(0 2px 8px rgba(0,0,0,.4));stroke:currentColor}
+/* (mic overlay removed — phone icon is always visible) */
 .orb-label{text-align:center;font-size:15px;font-weight:600;color:var(--muted);margin-top:0;margin-bottom:20px;letter-spacing:-.01em;display:none}
 .orb-label .orb-label-hint{display:block;font-size:12px;font-weight:400;color:var(--muted);opacity:.5;margin-top:4px}
 
@@ -171,7 +170,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
   .nav-expiry{font-size:12px}
   .orb-wrap{width:240px;height:240px}
   .orb-main{width:240px;height:240px}
-  .orb-logo-center img{width:52px;height:52px;padding:10px}
+  .orb-phone-icon{width:56px;height:56px}
+  .orb-phone-icon svg{width:26px;height:26px}
   .orb-ring-1{inset:-20px}
   .orb-ring-2{inset:-44px}
   .orb-ring-3{inset:-68px}
@@ -187,7 +187,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
   .nav-expiry{display:none}
   .orb-wrap{width:200px;height:200px}
   .orb-main{width:200px;height:200px}
-  .orb-logo-center img{width:44px;height:44px;padding:8px}
+  .orb-phone-icon{width:48px;height:48px}
+  .orb-phone-icon svg{width:22px;height:22px}
   .orb-ring-1{inset:-16px}
   .orb-ring-2{inset:-36px}
   .orb-ring-3{inset:-56px}
@@ -228,11 +229,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
       <div class="orb-layer orb-layer-2"></div>
       <div class="orb-layer orb-layer-3"></div>
       <div class="orb-layer orb-layer-4"></div>
-      <div class="orb-logo-center" id="orb-logo-center">
-        <img src="https://www.google.com/s2/favicons?domain=konicaminolta.com&sz=128" alt="KM" onerror="this.style.display='none'">
-      </div>
-      <div class="orb-mic-overlay" id="orb-mic-overlay">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
+      <div class="orb-phone-center" id="orb-phone-center">
+        <div class="orb-phone-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
       </div>
     </div>
   </div>
@@ -399,8 +399,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 (function(){
   var orbWrap = document.getElementById('orb-wrap');
   var orbLabel = document.getElementById('orb-label');
-  var orbLogo = document.getElementById('orb-logo-center');
-  var orbMicOverlay = document.getElementById('orb-mic-overlay');
+  var orbPhone = document.getElementById('orb-phone-center');
   var csConnecting = document.getElementById('cs-connecting');
   var csActive = document.getElementById('cs-active');
   var csEndBtn = document.getElementById('cs-end-btn');
@@ -444,7 +443,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 
     // Hide label + title, show connecting
     if(orbLabel) orbLabel.style.display = 'none';
-    if(orbMicOverlay) orbMicOverlay.style.display = 'none';
+    if(orbPhone) orbPhone.style.display = 'none';
     var heroTitle = document.querySelector('.hero-title');
     var heroHint = document.querySelector('.hero-hint');
     if(heroTitle) heroTitle.style.display = 'none';
@@ -484,7 +483,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
           csStatus.textContent = 'Your turn — speak now';
           startWaveformAnim('idle');
           // Hide logo, show mic on orb during call
-          if(orbLogo) orbLogo.style.opacity = '0';
+          if(orbPhone) orbPhone.style.opacity = '0';
           try { gtag('event', 'call_started', { company: 'Konica Minolta', page: 'konica-v11b' }); } catch(e){}
         });
 
@@ -520,7 +519,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
         callActive = false;
         csConnecting.style.display = 'none';
         if(orbLabel){ orbLabel.style.display = ''; orbLabel.innerHTML = 'Connection failed — try again<span class="orb-label-hint">Click the orb</span>'; orbLabel.style.color = '#ef4444'; }
-        if(orbMicOverlay) orbMicOverlay.style.display = '';
+        if(orbPhone) orbPhone.style.display = '';
         if(orb) orb.classList.remove('speaking');
         setTimeout(function(){ if(orbLabel){ orbLabel.innerHTML = 'Click to call your agent<span class="orb-label-hint">Live AI voice — 30 seconds</span>'; orbLabel.style.color = ''; } }, 3000);
       }
@@ -545,7 +544,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
     stopWaveformAnim();
     var orb = document.getElementById('orb-main');
     if(orb) orb.classList.remove('speaking');
-    if(orbLogo) orbLogo.style.opacity = '1';
+    if(orbPhone) orbPhone.style.opacity = '1';
 
     csStatus.textContent = 'Call ended';
     var postCall = document.getElementById('cs-post-call');
@@ -565,7 +564,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
     var postCall = document.getElementById('cs-post-call');
     if(postCall) postCall.style.display = 'none';
     if(orbLabel){ orbLabel.style.display = ''; }
-    if(orbMicOverlay) orbMicOverlay.style.display = '';
+    if(orbPhone) orbPhone.style.display = '';
   });
 
   var postCta = document.getElementById('cs-post-cta');
