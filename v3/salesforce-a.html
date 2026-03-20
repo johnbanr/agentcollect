@@ -93,12 +93,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 @keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* Hero preview bubble */
-.hero-bubble{display:flex;align-items:flex-start;gap:12px;background:rgba(255,255,255,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(79,70,229,.12);border-radius:16px;padding:14px 18px;max-width:380px;margin:24px auto 0;animation:fadeInUp .6s ease .5s both;transition:opacity .3s,transform .3s}
-.hero-bubble.hidden{opacity:0;transform:translateY(-8px);pointer-events:none;position:absolute}
-.hero-bubble-avatar{flex-shrink:0;width:36px;height:36px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;font-family:var(--sans)}
-.hero-bubble-name{font-size:12px;font-weight:700;color:var(--blue);margin-bottom:3px;letter-spacing:.01em}
-.hero-bubble-msg{font-size:13px;line-height:1.45;color:var(--text);opacity:.85}
+/* Orb bubble — floats on top of orb like landing page */
+.orb-bubble{position:absolute;top:16px;right:-40px;background:rgba(255,255,255,.3);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.35);border-radius:14px;padding:10px 18px;font-size:15px;font-weight:700;color:#fff;white-space:nowrap;animation:orbBubble 3s ease-in-out infinite;text-shadow:0 1px 4px rgba(0,0,0,.5);z-index:15}
+@keyframes orbBubble{0%,100%{opacity:.7;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
 
 .orb-label{text-align:center;font-size:15px;font-weight:600;color:var(--muted);margin-top:0;margin-bottom:20px;letter-spacing:-.01em;display:none}
 .orb-label .orb-label-hint{display:block;font-size:12px;font-weight:400;color:var(--muted);opacity:.5;margin-top:4px}
@@ -257,6 +254,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 }
 @media(max-width:480px){
   .nav-expiry{display:none}
+  .orb-bubble{display:none}
   .orb-wrap{width:200px;height:200px;aspect-ratio:1;margin:0 auto 28px}
   .orb-main{width:200px;height:200px;aspect-ratio:1}
   .orb-phone-center svg{width:32px;height:32px}
@@ -312,20 +310,12 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
       </div>
     </div>
+    <div class="orb-bubble" id="orb-bubble">Hi, I'm Sarah from Salesforce...</div>
   </div>
 
   <div class="hero-calling-label">Incoming call</div>
   <div class="hero-title">Salesforce Agent</div>
   <div class="hero-hint">Tap to answer</div>
-
-  <!-- Sarah preview bubble — visible before call starts -->
-  <div class="hero-bubble" id="hero-bubble">
-    <div class="hero-bubble-avatar">S</div>
-    <div class="hero-bubble-content">
-      <div class="hero-bubble-name">Sarah from Salesforce</div>
-      <div class="hero-bubble-msg">Hi, I'm reaching out about invoice SF-2026-4891 for your Sales Cloud subscription — $18,400 outstanding...</div>
-    </div>
-  </div>
 
   <div class="orb-label" id="orb-label">Click to call your agent<span class="orb-label-hint">Live AI voice — 30 seconds</span></div>
 
@@ -686,11 +676,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
     var heroTitle = document.querySelector('.hero-title');
     var heroHint = document.querySelector('.hero-hint');
     var heroCallingLabel = document.querySelector('.hero-calling-label');
-    var heroBubble = document.getElementById('hero-bubble');
+    var orbBubble = document.getElementById('orb-bubble');
     if(heroTitle) heroTitle.style.display = 'none';
     if(heroHint) heroHint.style.display = 'none';
     if(heroCallingLabel) heroCallingLabel.style.display = 'none';
-    if(heroBubble) heroBubble.classList.add('hidden');
+    if(orbBubble) orbBubble.style.display = 'none';
     // Hide pulse rings during call
     document.querySelectorAll('.orb-ring').forEach(function(r){ r.style.display = 'none'; });
     csConnecting.style.display = 'flex';
