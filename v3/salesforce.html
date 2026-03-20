@@ -8,7 +8,11 @@
 <meta property="og:title" content="AgentCollect × Salesforce">
 <meta property="og:description" content="Your AI collection agent is ready. Click and talk.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://www.agentcollect.com/og.png?v=3">
+<meta property="og:image" content="https://www.agentcollect.com/v3/og-salesforce.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.agentcollect.com/v3/og-salesforce.png">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,11 +49,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 .nav-expiry strong{color:var(--text);font-weight:700}
 
 /* ===== HERO — CENTERED INCOMING CALL ===== */
-.hero{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;background:linear-gradient(160deg,#FAFBFF 0%,#f0eeff 40%,#eef0ff 60%,#FAFBFF 100%);padding:80px 24px 60px}
-.hero::before{content:'';position:absolute;inset:0;background-image:
-  linear-gradient(rgba(79,70,229,.015) 1px, transparent 1px),
-  linear-gradient(90deg, rgba(79,70,229,.015) 1px, transparent 1px);
-  background-size:80px 80px;pointer-events:none}
+.hero{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;background:#f6f3ef;padding:80px 24px 60px}
+.hero::before{content:'';position:absolute;width:800px;height:800px;top:40%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(79,70,229,.12) 0%,rgba(79,70,229,.05) 40%,transparent 70%);border-radius:50%;pointer-events:none;animation:heroGlow 6s ease-in-out infinite}
+.hero::after{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 700px 400px at 30% 0%,rgba(79,70,229,.08),transparent),radial-gradient(ellipse 500px 500px at 80% 80%,rgba(16,185,129,.06),transparent)}
+@keyframes heroGlow{0%,100%{opacity:.5;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.12)}}
 .hero-km-logo{height:32px;margin-bottom:52px;opacity:.7}
 .hero-calling-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--blue);opacity:.7;margin-bottom:8px;text-align:center;animation:fadeInUp .6s ease .2s both}
 .hero-title{font-size:22px;font-weight:800;color:var(--text);letter-spacing:-.03em;margin-bottom:6px;text-align:center;animation:fadeInUp .6s ease .3s both}
@@ -135,8 +138,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 /* Wall of Pain */
 .pain-wall{overflow:hidden;margin-top:40px;margin-bottom:40px;position:relative;padding:8px 0;width:100vw;margin-left:calc(-50vw + 50%)}
 .pain-wall::before,.pain-wall::after{content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2;pointer-events:none}
-.pain-wall::before{left:0;background:linear-gradient(to right,var(--bg),transparent)}
-.pain-wall::after{right:0;background:linear-gradient(to left,var(--bg),transparent)}
+.pain-wall::before{left:0;background:linear-gradient(to right,#FAFBFF,transparent)}
+.pain-wall::after{right:0;background:linear-gradient(to left,#FAFBFF,transparent)}
 .pain-row{display:flex;gap:14px;padding:6px 0;width:max-content}
 .pain-row-1{animation:painScroll1 32s linear infinite}
 .pain-row-2{animation:painScroll2 38s linear infinite}
@@ -206,7 +209,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 .social-quote-role{font-size:13px;color:var(--muted)}
 
 /* ===== SECTION 3: HOW IT WORKS ===== */
-.how-section{padding:100px 48px 80px;background:#f6f3ef;text-align:center;position:relative}
+.how-section{padding:100px 48px 80px;background:linear-gradient(180deg,#f6f3ef 0%,#F8F7F5 100%);text-align:center;position:relative}
 .how-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:16px}
 .how-title{font-size:clamp(28px,3.5vw,42px);font-weight:900;letter-spacing:-.03em;line-height:1.08;margin-bottom:56px;color:var(--text)}
 .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;max-width:960px;margin:0 auto}
