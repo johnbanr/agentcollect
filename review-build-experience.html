@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Review — Agent Build Experience — Pick A/B/C/D</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --bg:#FAFBFF;--text:#0B1B3D;--text-mid:#374151;--text-muted:#64748B;--text-dim:#94A3B8;
+            --indigo:#4F46E5;--indigo-dark:#4338CA;--green:#10B981;--amber:#F59E0B;--red:#EF4444;
+            --mono:'JetBrains Mono',monospace;--sans:'Inter',-apple-system,sans-serif;--display:'Plus Jakarta Sans',sans-serif;
+        }
+        body{font-family:var(--sans);background:#f6f3ef;color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.7}
+
+        .review-header{background:linear-gradient(135deg,#1e1b3a,#0a0a1a);color:#fff;padding:60px 24px;text-align:center}
+        .review-header h1{font-family:var(--display);font-size:32px;font-weight:900;margin-bottom:12px}
+        .review-header p{font-size:16px;color:rgba(255,255,255,.6);max-width:600px;margin:0 auto}
+
+        .option-section{max-width:900px;margin:0 auto;padding:60px 24px}
+        .option-label{display:inline-flex;align-items:center;gap:8px;background:var(--indigo);color:#fff;font-family:var(--display);font-weight:800;font-size:14px;padding:6px 16px;border-radius:8px;margin-bottom:16px;letter-spacing:.02em}
+        .option-label.reco{background:#10B981}
+        .option-title{font-family:var(--display);font-size:26px;font-weight:900;letter-spacing:-.04em;margin-bottom:8px}
+        .option-desc{font-size:15px;color:var(--text-mid);margin-bottom:24px;max-width:600px;line-height:1.7}
+
+        .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(79,70,229,.15),transparent);margin:0 auto;max-width:600px}
+
+        /* ========== OPTION A: LIVE TERMINAL FEED ========== */
+        .terminal-wrap{background:#0a0a1a;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.06);max-width:600px}
+        .terminal-bar{display:flex;align-items:center;gap:6px;padding:12px 16px;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.06)}
+        .terminal-dot{width:10px;height:10px;border-radius:50%}
+        .terminal-bar span{font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.3);margin-left:auto}
+        .terminal-body{padding:24px;font-family:var(--mono);font-size:14px;line-height:2.2}
+        .t-line{opacity:0;transform:translateX(-4px);transition:all .3s ease}
+        .t-line.shown{opacity:1;transform:none}
+        .t-prefix{color:var(--green)}
+        .t-text{color:rgba(255,255,255,.7)}
+        .t-highlight{color:#fff;font-weight:600}
+        .t-dim{color:rgba(255,255,255,.3)}
+        .t-check{color:var(--green)}
+        .t-warn{color:var(--amber)}
+        .t-found{color:#818CF8}
+        .t-cursor{display:inline-block;width:8px;height:16px;background:var(--green);animation:blink 1s step-end infinite;vertical-align:middle;margin-left:4px}
+        @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+        .terminal-progress{margin:16px 24px 24px;height:3px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden}
+        .terminal-progress-fill{height:100%;background:linear-gradient(90deg,var(--indigo),var(--green));width:0%;transition:width 1.5s ease;border-radius:4px}
+
+        /* Gate in terminal */
+        .terminal-gate{margin:0 24px 24px;border:1px dashed rgba(79,70,229,.4);border-radius:12px;padding:20px;text-align:center}
+        .terminal-gate-title{font-family:var(--display);font-size:18px;font-weight:800;color:#fff;margin-bottom:6px}
+        .terminal-gate-sub{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:14px}
+        .terminal-gate-row{display:flex;gap:8px;max-width:320px;margin:0 auto}
+        .terminal-gate-input{flex:1;min-width:0;padding:10px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;font-family:var(--sans);font-size:13px;color:#fff;outline:none}
+        .terminal-gate-btn{padding:10px 18px;background:var(--indigo);color:#fff;border:none;border-radius:8px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer}
+
+        /* ========== OPTION B: ORB-CENTRIC ========== */
+        .orb-experience{background:linear-gradient(180deg,#1e1b3a 0%,#0a0a1a 40%,#0a0a1a 60%,#1e1b3a 100%);border-radius:20px;overflow:hidden;text-align:center;padding:48px 24px}
+        .orb-exp-wrap{position:relative;width:160px;height:160px;margin:0 auto 24px}
+        .orb-exp-main{width:160px;height:160px;border-radius:50%;background:conic-gradient(from 0deg,#FF0000,#CC0000,#FF0000,#282828,#FF0000);animation:orbSpin 8s linear infinite;box-shadow:0 0 60px rgba(255,0,0,.3),0 0 120px rgba(255,0,0,.1),inset 0 0 50px rgba(0,0,0,.3);position:relative;overflow:hidden}
+        .orb-exp-main::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.2) 0%,transparent 50%)}
+        .orb-exp-glow{position:absolute;inset:-30px;border-radius:50%;background:radial-gradient(circle,rgba(255,0,0,.2) 0%,transparent 70%);animation:orbGlowPulse 4s ease-in-out infinite}
+        @keyframes orbSpin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+        @keyframes orbGlowPulse{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:.8;transform:scale(1.08)}}
+        @keyframes orbPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+
+        .orb-exp-status{font-family:var(--display);font-size:18px;font-weight:800;color:#fff;margin-bottom:6px;min-height:26px}
+        .orb-exp-sub{font-size:14px;color:rgba(255,255,255,.4);margin-bottom:28px;min-height:20px}
+
+        .orb-feed{max-width:400px;margin:0 auto;text-align:left}
+        .orb-feed-line{display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:10px;background:rgba(255,255,255,.03);margin-bottom:6px;opacity:0;transform:translateY(8px);transition:all .4s ease}
+        .orb-feed-line.shown{opacity:1;transform:none}
+        .orb-feed-icon{width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
+        .orb-feed-icon.check{background:rgba(16,185,129,.15);color:var(--green)}
+        .orb-feed-icon.scan{background:rgba(79,70,229,.15);color:#818CF8}
+        .orb-feed-icon.people{background:rgba(245,158,11,.15);color:var(--amber)}
+        .orb-feed-text{font-size:13px;color:rgba(255,255,255,.6)}
+        .orb-feed-text strong{color:#fff;font-weight:600}
+
+        .orb-gate{margin-top:24px;border:1px dashed rgba(255,255,255,.15);border-radius:14px;padding:24px;opacity:0;transform:translateY(8px);transition:all .5s ease}
+        .orb-gate.shown{opacity:1;transform:none}
+        .orb-gate-title{font-family:var(--display);font-size:18px;font-weight:800;color:#fff;margin-bottom:12px}
+        .orb-gate-row{display:flex;gap:8px;max-width:340px;margin:0 auto}
+        .orb-gate-input{flex:1;min-width:0;padding:11px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:9px;font-family:var(--sans);font-size:13px;color:#fff;outline:none}
+        .orb-gate-btn{padding:11px 20px;background:#fff;color:var(--text);border:none;border-radius:9px;font-family:var(--display);font-size:13px;font-weight:700;cursor:pointer}
+
+        /* ========== OPTION C: INTEL CARDS ========== */
+        .cards-experience{background:#fff;border-radius:20px;overflow:hidden;border:1px solid rgba(0,0,0,.06)}
+        .cards-header{padding:24px 28px;border-bottom:1px solid rgba(0,0,0,.04);display:flex;align-items:center;gap:14px}
+        .cards-logo{width:44px;height:44px;border-radius:10px;object-fit:contain;background:#f5f5f5;padding:4px}
+        .cards-header-text h3{font-family:var(--display);font-size:18px;font-weight:800;letter-spacing:-.03em}
+        .cards-header-text span{font-size:13px;color:var(--text-muted)}
+        .cards-progress{height:3px;background:rgba(79,70,229,.06)}
+        .cards-progress-fill{height:100%;background:var(--indigo);width:0%;transition:width 1.5s ease}
+
+        .cards-body{padding:28px}
+        .intel-card{border:1px solid rgba(0,0,0,.06);border-radius:14px;padding:20px;margin-bottom:12px;opacity:0;transform:translateY(12px);transition:all .5s cubic-bezier(.16,1,.3,1);display:flex;align-items:flex-start;gap:14px}
+        .intel-card.shown{opacity:1;transform:none}
+        .intel-card-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .intel-card-icon.brand{background:rgba(79,70,229,.06);color:var(--indigo)}
+        .intel-card-icon.dispute{background:rgba(245,158,11,.06);color:#B45309}
+        .intel-card-icon.people{background:rgba(16,185,129,.06);color:var(--green)}
+        .intel-card-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim);margin-bottom:4px}
+        .intel-card-value{font-family:var(--display);font-size:16px;font-weight:700;color:var(--text);letter-spacing:-.02em}
+        .intel-card-sub{font-size:13px;color:var(--text-muted);margin-top:2px}
+
+        .intel-pills{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+        .intel-pill{display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600}
+        .intel-pill.amber{background:rgba(245,158,11,.08);color:#B45309}
+        .intel-pill.green{background:rgba(16,185,129,.08);color:#059669}
+
+        .cards-gate{border:1.5px dashed rgba(79,70,229,.25);border-radius:14px;padding:24px;text-align:center;margin-top:8px;opacity:0;transform:translateY(8px);transition:all .5s ease}
+        .cards-gate.shown{opacity:1;transform:none}
+        .cards-gate-title{font-family:var(--display);font-size:18px;font-weight:800;margin-bottom:4px}
+        .cards-gate-sub{font-size:13px;color:var(--text-muted);margin-bottom:14px}
+        .cards-gate-row{display:flex;gap:8px;max-width:360px;margin:0 auto}
+        .cards-gate-input{flex:1;min-width:0;padding:11px 14px;border:1.5px solid rgba(79,70,229,.15);border-radius:9px;font-family:var(--sans);font-size:13px;color:var(--text);outline:none}
+        .cards-gate-btn{padding:11px 20px;background:var(--indigo);color:#fff;border:none;border-radius:9px;font-family:var(--display);font-size:13px;font-weight:700;cursor:pointer}
+
+        /* ========== OPTION D: THE SCAN (Hybrid Orb + Feed) ========== */
+        .scan-experience{background:linear-gradient(180deg,#0f0f1a 0%,#0a0a14 50%,#0f0f1a 100%);border-radius:20px;overflow:hidden;padding:48px 24px;position:relative}
+        .scan-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:700px;margin:0 auto;align-items:center}
+        @media(max-width:600px){.scan-grid{grid-template-columns:1fr;text-align:center}}
+
+        .scan-orb-area{position:relative;display:flex;justify-content:center}
+        .scan-orb{width:200px;height:200px;border-radius:50%;position:relative}
+        .scan-orb-ring{position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(255,0,0,.1);animation:scanRing 3s linear infinite}
+        .scan-orb-ring:nth-child(2){inset:-20px;border-color:rgba(255,0,0,.05);animation-duration:5s;animation-direction:reverse}
+        .scan-orb-core{width:200px;height:200px;border-radius:50%;background:conic-gradient(from 0deg,#FF0000,#CC0000,#FF0000,#282828,#FF0000);animation:orbSpin 8s linear infinite;box-shadow:0 0 80px rgba(255,0,0,.25),inset 0 0 50px rgba(0,0,0,.3);position:relative;overflow:hidden}
+        .scan-orb-core::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.2) 0%,transparent 50%)}
+        .scan-orb-sweep{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,transparent 0%,transparent 85%,rgba(255,255,255,.08) 95%,transparent 100%);animation:orbSpin 3s linear infinite}
+        @keyframes scanRing{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+
+        .scan-orb-badge{position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,.1);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:6px 14px;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.7);white-space:nowrap}
+
+        .scan-intel{text-align:left}
+        .scan-title{font-family:var(--display);font-size:22px;font-weight:900;color:#fff;margin-bottom:4px;letter-spacing:-.03em}
+        .scan-sub{font-size:13px;color:rgba(255,255,255,.35);margin-bottom:24px}
+
+        .scan-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.04);opacity:0;transform:translateX(12px);transition:all .5s ease}
+        .scan-item.shown{opacity:1;transform:none}
+        .scan-item:last-child{border-bottom:none}
+        .scan-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+        .scan-dot.green{background:var(--green);box-shadow:0 0 8px rgba(16,185,129,.4)}
+        .scan-dot.amber{background:var(--amber);box-shadow:0 0 8px rgba(245,158,11,.4)}
+        .scan-dot.indigo{background:#818CF8;box-shadow:0 0 8px rgba(129,140,248,.4)}
+        .scan-item-text{font-size:14px;color:rgba(255,255,255,.6)}
+        .scan-item-text strong{color:#fff;font-weight:600}
+        .scan-item-meta{font-size:11px;color:rgba(255,255,255,.25);margin-left:auto;font-family:var(--mono);white-space:nowrap}
+
+        .scan-gate{grid-column:1/-1;border:1px dashed rgba(255,255,255,.12);border-radius:14px;padding:24px;text-align:center;margin-top:8px;opacity:0;transform:translateY(8px);transition:all .5s ease}
+        .scan-gate.shown{opacity:1;transform:none}
+        .scan-gate-title{font-family:var(--display);font-size:18px;font-weight:800;color:#fff;margin-bottom:4px}
+        .scan-gate-sub{font-size:13px;color:rgba(255,255,255,.35);margin-bottom:14px}
+        .scan-gate-row{display:flex;gap:8px;max-width:340px;margin:0 auto}
+        .scan-gate-input{flex:1;min-width:0;padding:11px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:9px;font-family:var(--sans);font-size:13px;color:#fff;outline:none}
+        .scan-gate-btn{padding:11px 20px;background:#fff;color:var(--text);border:none;border-radius:9px;font-family:var(--display);font-size:13px;font-weight:700;cursor:pointer}
+
+        /* Steve note styling */
+        .steve-note{max-width:900px;margin:0 auto;padding:40px 24px}
+        .steve-box{background:linear-gradient(135deg,rgba(79,70,229,.03),rgba(79,70,229,.06));border:1px solid rgba(79,70,229,.1);border-radius:16px;padding:28px}
+        .steve-box h3{font-family:var(--display);font-size:18px;font-weight:800;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+        .steve-box p{font-size:14px;color:var(--text-mid);line-height:1.7;margin-bottom:8px}
+        .steve-box ul{font-size:14px;color:var(--text-mid);line-height:1.8;padding-left:20px}
+        .steve-box .reco{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.15);border-radius:10px;padding:14px 18px;margin-top:14px;font-size:14px;font-weight:600;color:#059669}
+
+        /* Play button */
+        .play-btn{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:6px 12px;font-family:var(--sans);font-size:12px;font-weight:600;color:#fff;cursor:pointer;z-index:10;transition:all .2s}
+        .play-btn:hover{background:rgba(255,255,255,.2)}
+    </style>
+</head>
+<body>
+
+<div class="review-header">
+    <h1>Agent Build Experience — Pick A/B/C/D</h1>
+    <p>What should the user SEE while the agent builds? Each option shows the same data differently. Click ▶ Play to watch the animation.</p>
+</div>
+
+<!-- ========== OPTION A: LIVE TERMINAL FEED ========== -->
+<div class="option-section">
+    <div class="option-label">Option A</div>
+    <div class="option-title">The Terminal — "Watching AI think"</div>
+    <div class="option-desc">Perplexity/hacker aesthetic. Lines appear one by one like a CLI scanning the company. Feels fast, smart, technical. The progress bar fills as lines appear. Email gate is inline at the end.</div>
+
+    <div class="terminal-wrap" id="termA" style="position:relative">
+        <button class="play-btn" onclick="playTerminal()">▶ Play</button>
+        <div class="terminal-bar">
+            <div class="terminal-dot" style="background:#EF4444"></div>
+            <div class="terminal-dot" style="background:#F59E0B"></div>
+            <div class="terminal-dot" style="background:#10B981"></div>
+            <span>agentcollect — youtube.com</span>
+        </div>
+        <div class="terminal-progress"><div class="terminal-progress-fill" id="termProgress"></div></div>
+        <div class="terminal-body" id="termBody">
+            <div class="t-line" data-delay="0"><span class="t-prefix">▸</span> <span class="t-text">Scanning</span> <span class="t-highlight">youtube.com</span><span class="t-dim">...</span></div>
+            <div class="t-line" data-delay="800"><span class="t-prefix">▸</span> <span class="t-text">Industry:</span> <span class="t-highlight">Media & Entertainment</span> <span class="t-check">✓</span></div>
+            <div class="t-line" data-delay="1600"><span class="t-prefix">▸</span> <span class="t-text">Dispute pattern:</span> <span class="t-found">Subscription billing overcharges</span></div>
+            <div class="t-line" data-delay="2400"><span class="t-prefix">▸</span> <span class="t-text">Dispute pattern:</span> <span class="t-found">Auto-renewal charges after cancellation</span></div>
+            <div class="t-line" data-delay="3200"><span class="t-prefix">▸</span> <span class="t-text">Decision makers:</span> <span class="t-highlight">3 AR contacts identified</span> <span class="t-check">✓</span></div>
+            <div class="t-line" data-delay="4000"><span class="t-prefix">▸</span> <span class="t-text">Voice agent:</span> <span class="t-highlight">Calibrated for YouTube brand</span> <span class="t-check">✓</span></div>
+            <div class="t-line" data-delay="4800"><span class="t-check" style="font-size:16px">⬤</span> <span class="t-highlight">YouTube collection agent ready.</span><span class="t-cursor"></span></div>
+        </div>
+        <div class="terminal-gate" id="termGate" style="opacity:0;transform:translateY(8px);transition:all .5s ease">
+            <div class="terminal-gate-title">Unlock your YouTube agent</div>
+            <div class="terminal-gate-sub">Enter your work email to start the voice demo.</div>
+            <div class="terminal-gate-row">
+                <input class="terminal-gate-input" placeholder="you@company.com">
+                <button class="terminal-gate-btn">Unlock →</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ========== OPTION B: ORB-CENTRIC ========== -->
+<div class="option-section">
+    <div class="option-label reco">Option B ★ Ma reco</div>
+    <div class="option-title">Orb-Centric — "The agent is learning"</div>
+    <div class="option-desc">The orb IS the experience from the start. No separate dossier. The orb pulses and changes colors as discoveries appear below it. After email, the orb is already there — zero transition. One continuous flow.</div>
+
+    <div class="orb-experience" id="orbB" style="position:relative">
+        <button class="play-btn" onclick="playOrb()">▶ Play</button>
+        <div class="orb-exp-status" id="orbStatus">Building your YouTube agent...</div>
+        <div class="orb-exp-sub" id="orbSub">Analyzing company data</div>
+
+        <div class="orb-exp-wrap">
+            <div class="orb-exp-glow"></div>
+            <div class="orb-exp-main" id="orbMain"></div>
+        </div>
+
+        <div class="orb-feed" id="orbFeed">
+            <div class="orb-feed-line" data-delay="600">
+                <div class="orb-feed-icon check">✓</div>
+                <div class="orb-feed-text"><strong>YouTube</strong> — Media & Entertainment</div>
+            </div>
+            <div class="orb-feed-line" data-delay="1800">
+                <div class="orb-feed-icon scan">⚡</div>
+                <div class="orb-feed-text">Dispute: <strong>Subscription billing overcharges</strong></div>
+            </div>
+            <div class="orb-feed-line" data-delay="2800">
+                <div class="orb-feed-icon scan">⚡</div>
+                <div class="orb-feed-text">Dispute: <strong>Auto-renewal after cancellation</strong></div>
+            </div>
+            <div class="orb-feed-line" data-delay="3800">
+                <div class="orb-feed-icon people">👤</div>
+                <div class="orb-feed-text"><strong>3 decision makers</strong> identified</div>
+            </div>
+            <div class="orb-feed-line" data-delay="4800">
+                <div class="orb-feed-icon check">✓</div>
+                <div class="orb-feed-text">Agent <strong>voice calibrated</strong> to YouTube brand</div>
+            </div>
+        </div>
+
+        <div class="orb-gate" id="orbGate">
+            <div class="orb-gate-title">Your YouTube agent is ready.</div>
+            <div class="orb-gate-row">
+                <input class="orb-gate-input" placeholder="you@company.com">
+                <button class="orb-gate-btn">Start voice demo →</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ========== OPTION C: INTEL CARDS ========== -->
+<div class="option-section">
+    <div class="option-label">Option C</div>
+    <div class="option-title">Intel Cards — "Three reveals"</div>
+    <div class="option-desc">Clean, light, structured. Three cards slide in one at a time — each reveals ONE insight. Company → Disputes → People. Feels like reading a brief. Professional, less dramatic.</div>
+
+    <div class="cards-experience" id="cardsC" style="position:relative">
+        <button class="play-btn" style="color:var(--text)" onclick="playCards()">▶ Play</button>
+        <div class="cards-header">
+            <img class="cards-logo" src="https://www.google.com/s2/favicons?domain=youtube.com&sz=128" alt="YouTube">
+            <div class="cards-header-text">
+                <h3>YouTube Collection Agent</h3>
+                <span id="cardsStatus">Analyzing...</span>
+            </div>
+        </div>
+        <div class="cards-progress"><div class="cards-progress-fill" id="cardsProgress"></div></div>
+        <div class="cards-body" id="cardsBody">
+            <div class="intel-card" data-delay="600">
+                <div class="intel-card-icon brand">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+                </div>
+                <div>
+                    <div class="intel-card-label">Company</div>
+                    <div class="intel-card-value">YouTube — Media & Entertainment</div>
+                    <div class="intel-card-sub">Subscription-based digital media platform</div>
+                </div>
+            </div>
+            <div class="intel-card" data-delay="2000">
+                <div class="intel-card-icon dispute">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                </div>
+                <div>
+                    <div class="intel-card-label">Most common disputes</div>
+                    <div class="intel-pills">
+                        <span class="intel-pill amber">Subscription billing overcharges</span>
+                        <span class="intel-pill amber">Auto-renewal after cancellation</span>
+                    </div>
+                </div>
+            </div>
+            <div class="intel-card" data-delay="3500">
+                <div class="intel-card-icon people">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                </div>
+                <div>
+                    <div class="intel-card-label">Decision makers</div>
+                    <div class="intel-card-value">3 AR contacts identified</div>
+                    <div class="intel-card-sub">Names available after verification</div>
+                </div>
+            </div>
+
+            <div class="cards-gate" id="cardsGate">
+                <div class="cards-gate-title">Your YouTube agent is ready.</div>
+                <div class="cards-gate-sub">Enter your work email to start the voice demo.</div>
+                <div class="cards-gate-row">
+                    <input class="cards-gate-input" placeholder="you@company.com">
+                    <button class="cards-gate-btn">Unlock →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ========== OPTION D: THE SCAN (Hybrid) ========== -->
+<div class="option-section">
+    <div class="option-label">Option D</div>
+    <div class="option-title">The Scan — "Radar meets intelligence"</div>
+    <div class="option-desc">Split layout: the orb on the left with radar rings, intel items on the right appearing as the scan "discovers" them. Feels like a mission control dashboard. Most visual, most dramatic.</div>
+
+    <div class="scan-experience" id="scanD" style="position:relative">
+        <button class="play-btn" onclick="playScan()">▶ Play</button>
+        <div class="scan-grid">
+            <div class="scan-orb-area">
+                <div class="scan-orb">
+                    <div class="scan-orb-ring"></div>
+                    <div class="scan-orb-ring"></div>
+                    <div class="scan-orb-core"></div>
+                    <div class="scan-orb-sweep"></div>
+                </div>
+                <div class="scan-orb-badge" id="scanBadge">scanning youtube.com</div>
+            </div>
+
+            <div class="scan-intel">
+                <div class="scan-title" id="scanTitle">YouTube</div>
+                <div class="scan-sub" id="scanSub">Building collection agent...</div>
+
+                <div class="scan-item" data-delay="800">
+                    <div class="scan-dot green"></div>
+                    <div class="scan-item-text"><strong>Media & Entertainment</strong></div>
+                    <div class="scan-item-meta">industry</div>
+                </div>
+                <div class="scan-item" data-delay="2000">
+                    <div class="scan-dot amber"></div>
+                    <div class="scan-item-text">Subscription billing overcharges</div>
+                    <div class="scan-item-meta">dispute #1</div>
+                </div>
+                <div class="scan-item" data-delay="3000">
+                    <div class="scan-dot amber"></div>
+                    <div class="scan-item-text">Auto-renewal after cancellation</div>
+                    <div class="scan-item-meta">dispute #2</div>
+                </div>
+                <div class="scan-item" data-delay="4000">
+                    <div class="scan-dot indigo"></div>
+                    <div class="scan-item-text"><strong>3 decision makers</strong> found</div>
+                    <div class="scan-item-meta">contacts</div>
+                </div>
+                <div class="scan-item" data-delay="5000">
+                    <div class="scan-dot green"></div>
+                    <div class="scan-item-text">Voice agent <strong>ready</strong></div>
+                    <div class="scan-item-meta">calibrated</div>
+                </div>
+            </div>
+
+            <div class="scan-gate" id="scanGate">
+                <div class="scan-gate-title">Your YouTube agent is ready.</div>
+                <div class="scan-gate-sub">Enter your email to start the voice demo.</div>
+                <div class="scan-gate-row">
+                    <input class="scan-gate-input" placeholder="you@company.com">
+                    <button class="scan-gate-btn">Start demo →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== STEVE'S ANALYSIS ========== -->
+<div class="steve-note">
+    <div class="steve-box">
+        <h3>🧠 Steve's Analysis — What to show & why</h3>
+        <p><strong>Outcome:</strong> Maximum "WTF" → email capture → voice demo conversion.</p>
+        <p><strong>Content (same for all 4 options):</strong></p>
+        <ul>
+            <li><strong>Company identity</strong> (logo + industry) — instant recognition, "it knows me"</li>
+            <li><strong>2 dispute patterns</strong> (industry-specific) — "how did they know our exact problems?"</li>
+            <li><strong>Decision makers found</strong> — "they already know who to call." Biggest WTF.</li>
+            <li><strong>Agent voice calibrated</strong> — "it's already built?" Transition to demo.</li>
+            <li>❌ Products/services — noise, doesn't create WTF</li>
+            <li>❌ Payment risk score — JB killed this, agreed</li>
+        </ul>
+        <div class="reco">
+            <strong>Ma reco: B (Orb-Centric)</strong> — Because the orb IS the agent. When the user watches it learn, they're watching THEIR agent come alive. No transition to demo — the orb is already the demo. Options A and D are cool but create a context switch when transitioning to the voice call. B flows seamlessly: build → gate → orb already there → click to call.
+        </div>
+    </div>
+</div>
+
+<div style="padding:60px 24px;text-align:center">
+    <p style="font-size:15px;color:var(--text-muted)">Pick A / B / C / D — I'll implement it in the homepage JS.</p>
+</div>
+
+<script>
+    // Animation functions for each option
+
+    function playTerminal() {
+        var lines = document.querySelectorAll('#termBody .t-line');
+        var progress = document.getElementById('termProgress');
+        var gate = document.getElementById('termGate');
+
+        // Reset
+        lines.forEach(function(l) { l.classList.remove('shown'); });
+        progress.style.width = '0%';
+        gate.style.opacity = '0';
+        gate.style.transform = 'translateY(8px)';
+
+        lines.forEach(function(line, i) {
+            var delay = parseInt(line.dataset.delay);
+            setTimeout(function() {
+                line.classList.add('shown');
+                progress.style.width = Math.min(100, ((i + 1) / lines.length) * 100) + '%';
+            }, delay);
+        });
+
+        // Show gate after last line
+        setTimeout(function() {
+            gate.style.opacity = '1';
+            gate.style.transform = 'translateY(0)';
+        }, 5400);
+    }
+
+    function playOrb() {
+        var lines = document.querySelectorAll('#orbFeed .orb-feed-line');
+        var status = document.getElementById('orbStatus');
+        var sub = document.getElementById('orbSub');
+        var gate = document.getElementById('orbGate');
+        var orb = document.getElementById('orbMain');
+
+        // Reset
+        lines.forEach(function(l) { l.classList.remove('shown'); });
+        gate.classList.remove('shown');
+        status.textContent = 'Building your YouTube agent...';
+        sub.textContent = 'Analyzing company data';
+
+        var statusTexts = [
+            { t: 600, s: 'Scanning YouTube...', sub: 'Company analysis' },
+            { t: 1800, s: 'Analyzing disputes...', sub: 'Pattern recognition' },
+            { t: 3800, s: 'Finding decision makers...', sub: 'Contact discovery' },
+            { t: 4800, s: 'Calibrating agent voice...', sub: 'Brand alignment' },
+            { t: 5800, s: 'YouTube agent ready.', sub: '' }
+        ];
+
+        statusTexts.forEach(function(item) {
+            setTimeout(function() {
+                status.textContent = item.s;
+                sub.textContent = item.sub;
+            }, item.t);
+        });
+
+        lines.forEach(function(line) {
+            var delay = parseInt(line.dataset.delay);
+            setTimeout(function() {
+                line.classList.add('shown');
+                // Pulse orb on each reveal
+                orb.style.animation = 'none';
+                orb.offsetHeight;
+                orb.style.animation = 'orbSpin 8s linear infinite, orbPulse .6s ease-out';
+                setTimeout(function() {
+                    orb.style.animation = 'orbSpin 8s linear infinite';
+                }, 600);
+            }, delay);
+        });
+
+        // Show gate
+        setTimeout(function() { gate.classList.add('shown'); }, 5800);
+    }
+
+    function playCards() {
+        var cards = document.querySelectorAll('#cardsBody .intel-card');
+        var progress = document.getElementById('cardsProgress');
+        var status = document.getElementById('cardsStatus');
+        var gate = document.getElementById('cardsGate');
+
+        // Reset
+        cards.forEach(function(c) { c.classList.remove('shown'); });
+        gate.classList.remove('shown');
+        progress.style.width = '0%';
+        status.textContent = 'Analyzing...';
+
+        var statusTexts = [
+            { t: 600, s: 'Company identified', p: '33%' },
+            { t: 2000, s: 'Disputes analyzed', p: '66%' },
+            { t: 3500, s: 'Contacts found', p: '100%' }
+        ];
+
+        statusTexts.forEach(function(item) {
+            setTimeout(function() {
+                status.textContent = item.s;
+                progress.style.width = item.p;
+            }, item.t);
+        });
+
+        cards.forEach(function(card) {
+            var delay = parseInt(card.dataset.delay);
+            setTimeout(function() { card.classList.add('shown'); }, delay);
+        });
+
+        // Show gate
+        setTimeout(function() { gate.classList.add('shown'); }, 4500);
+    }
+
+    function playScan() {
+        var items = document.querySelectorAll('#scanD .scan-item');
+        var badge = document.getElementById('scanBadge');
+        var sub = document.getElementById('scanSub');
+        var gate = document.getElementById('scanGate');
+
+        // Reset
+        items.forEach(function(i) { i.classList.remove('shown'); });
+        gate.classList.remove('shown');
+        badge.textContent = 'scanning youtube.com';
+        sub.textContent = 'Building collection agent...';
+
+        var badgeTexts = [
+            { t: 800, s: 'industry match' },
+            { t: 2000, s: 'analyzing disputes' },
+            { t: 4000, s: 'finding contacts' },
+            { t: 5000, s: 'calibrating voice' },
+            { t: 5800, s: 'agent ready ✓' }
+        ];
+
+        badgeTexts.forEach(function(item) {
+            setTimeout(function() { badge.textContent = item.s; }, item.t);
+        });
+
+        items.forEach(function(item) {
+            var delay = parseInt(item.dataset.delay);
+            setTimeout(function() { item.classList.add('shown'); }, delay);
+        });
+
+        // Show gate
+        setTimeout(function() {
+            gate.classList.add('shown');
+            sub.textContent = 'Ready to collect.';
+        }, 5800);
+    }
+</script>
+
+</body>
+</html>
