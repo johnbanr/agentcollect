@@ -602,8 +602,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            company_name: 'Brink's Company',
-            product: 'Brink's cash management and security services contract',
+            company_name: "Brink's Company",
+            product: "Brink's cash management and security services contract",
             amount: '$3,800'
           })
         });
@@ -624,11 +624,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
           startWaveformAnim('idle');
           // Hide logo, show mic on orb during call
           if(orbPhone) orbPhone.style.opacity = '0';
-          try { gtag('event', 'call_started', { company: 'Brink's Company', page: 'brinks-v2' }); } catch(e){}
+          try { gtag('event', 'call_started', { company: "Brink's Company", page: 'brinks-v2' }); } catch(e){}
         });
 
         retellClient.on('call_ended', function(){
-          try { gtag('event', 'call_completed', { company: 'Brink's Company', page: 'brinks-v2' }); } catch(e){}
+          try { gtag('event', 'call_completed', { company: "Brink's Company", page: 'brinks-v2' }); } catch(e){}
           var duration = callStartTime ? Math.round((Date.now() - callStartTime) / 1000) : 30;
           endCall(duration);
         });
@@ -715,7 +715,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 
   var postCta = document.getElementById('cs-post-cta');
   if(postCta) postCta.addEventListener('click', function(){
-    try { gtag('event', 'post_call_book_demo', { company: 'Brink's Company', page: 'brinks-v2' }); } catch(e){}
+    try { gtag('event', 'post_call_book_demo', { company: "Brink's Company", page: 'brinks-v2' }); } catch(e){}
   });
 
   if(csEndBtn) csEndBtn.addEventListener('click', function(e){
