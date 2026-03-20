@@ -16,12 +16,21 @@ body{background:#f0f1f3;color:var(--text);font-family:'Plus Jakarta Sans',system
 .page-sub{text-align:center;font-size:15px;color:var(--muted);margin-bottom:48px}
 
 .version-block{background:var(--bg);border-radius:20px;padding:48px 0 40px;margin-bottom:40px;overflow:hidden;position:relative;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.version-block.recommended{border:2px solid var(--green);box-shadow:0 4px 24px rgba(16,185,129,.15)}
 .version-label{position:absolute;top:16px;left:24px;background:var(--blue);color:#fff;font-size:12px;font-weight:800;padding:4px 12px;border-radius:100px;letter-spacing:.5px}
+.version-label.reco{background:var(--green)}
+.reco-badge{position:absolute;top:16px;right:24px;background:var(--green);color:#fff;font-size:11px;font-weight:800;padding:5px 14px;border-radius:100px;letter-spacing:.3px;display:flex;align-items:center;gap:6px}
+.reco-badge::before{content:'';display:inline-block;width:6px;height:6px;background:#fff;border-radius:50%}
 .version-title{text-align:center;font-size:14px;color:var(--muted);font-weight:600;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px}
 .version-desc{text-align:center;font-size:13px;color:var(--muted);margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto;padding:0 24px}
 
 /* Shared headline */
 .proof-context{text-align:center;font-size:16px;font-weight:700;color:var(--red);margin-bottom:8px;letter-spacing:-.2px;padding:0 24px}
+
+/* Source logos inline — small icons */
+.src-logo{height:14px;width:auto;opacity:.5;margin-left:6px;vertical-align:middle;flex-shrink:0}
+.b-pill .src-logo{height:12px;opacity:.4;filter:brightness(10)}
+.c-card .src-logo{height:13px;opacity:.4;margin-top:6px;display:block}
 
 /* ============================
    VERSION A: Pill Marquee (current)
@@ -37,10 +46,10 @@ body{background:#f0f1f3;color:var(--text);font-family:'Plus Jakarta Sans',system
 @keyframes aScrollR{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
 .a-pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid rgba(220,38,38,.12);border-radius:100px;padding:10px 20px;font-size:14px;font-weight:600;color:var(--text);white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,.04);flex-shrink:0}
 .a-pill .hl{color:var(--red);font-weight:800}
-.a-pill .src{font-size:11px;color:var(--muted);font-weight:500;margin-left:4px}
+.a-pill .src{font-size:11px;color:var(--muted);font-weight:500;margin-left:4px;display:inline-flex;align-items:center;gap:4px}
 
 /* ============================
-   VERSION B: Dark Wall — 3 rows, red glow
+   VERSION B: Dark Wall — 3 rows, red glow (RECOMMENDED)
    ============================ */
 .b-wall-wrap{background:#0B1215;border-radius:16px;margin:0 24px;padding:32px 0;overflow:hidden;position:relative}
 .b-wall-wrap::before,.b-wall-wrap::after{content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2;pointer-events:none}
@@ -49,13 +58,11 @@ body{background:#f0f1f3;color:var(--text);font-family:'Plus Jakarta Sans',system
 .b-row{display:flex;gap:12px;padding:6px 0;width:max-content}
 .b-row-1{animation:bScroll1 30s linear infinite}
 .b-row-2{animation:bScroll2 38s linear infinite}
-.b-row-3{animation:bScroll3 34s linear infinite}
 @keyframes bScroll1{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @keyframes bScroll2{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
-@keyframes bScroll3{0%{transform:translateX(-25%)}100%{transform:translateX(-75%)}}
 .b-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(220,38,38,.08);border:1px solid rgba(220,38,38,.25);border-radius:8px;padding:8px 16px;font-size:13px;font-weight:600;color:rgba(255,255,255,.85);white-space:nowrap;flex-shrink:0}
 .b-pill .hl{color:#ef4444;font-weight:800}
-.b-pill .src{font-size:10px;color:rgba(255,255,255,.35);font-weight:500;margin-left:4px}
+.b-pill .src{font-size:10px;color:rgba(255,255,255,.35);font-weight:500;margin-left:4px;display:inline-flex;align-items:center;gap:4px}
 .b-count{text-align:center;margin-top:16px;font-size:20px;font-weight:800;color:#ef4444;letter-spacing:-.5px}
 .b-count span{font-size:13px;color:rgba(255,255,255,.4);font-weight:500}
 
@@ -65,7 +72,7 @@ body{background:#f0f1f3;color:var(--text);font-family:'Plus Jakarta Sans',system
 .c-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:0 24px;max-width:900px;margin:0 auto}
 .c-card{background:#fff;border:1px solid rgba(220,38,38,.1);border-radius:12px;padding:14px 18px;font-size:13px;font-weight:600;color:var(--text);line-height:1.4;box-shadow:0 2px 8px rgba(0,0,0,.04);position:relative;max-width:220px}
 .c-card .hl{color:var(--red);font-weight:800}
-.c-card .src{display:block;font-size:10px;color:var(--muted);font-weight:500;margin-top:6px}
+.c-card .src{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--muted);font-weight:500;margin-top:6px}
 .c-card:nth-child(odd){transform:rotate(-1deg)}
 .c-card:nth-child(even){transform:rotate(.8deg)}
 .c-card:nth-child(3n){transform:rotate(-1.5deg) translateY(-4px)}
@@ -82,102 +89,103 @@ body{background:#f0f1f3;color:var(--text);font-family:'Plus Jakarta Sans',system
 <h1 class="page-title">Wall of Pain — 3 Approaches</h1>
 <p class="page-sub">Same 14 Xerox complaints, 3 different visual treatments. Pick one.</p>
 
-<!-- ===== VERSION A: Pill Marquee (current) ===== -->
-<div class="version-block">
-  <div class="version-label">VERSION A</div>
-  <div class="version-title">Pill Marquee — Current</div>
-  <div class="version-desc">Clean pills scrolling in 2 rows, opposite directions. Light, professional, edge fade.</div>
-
-  <div class="proof-context">Real complaints. Real customers. All under the Xerox name.</div>
-
-  <div class="a-wall">
-    <div class="a-row a-row-left">
-      <span class="a-pill">About <span class="hl">30 calls from Asia</span> <span class="src">— BBB</span></span>
-      <span class="a-pill"><span class="hl">Billed</span> for returned equipment <span class="src">— BBB</span></span>
-      <span class="a-pill">They <span class="hl">prey on small businesses</span> <span class="src">— Trustpilot</span></span>
-      <span class="a-pill">CFPB fined <span class="hl">$1.1M</span> for bad data <span class="src">— CFPB</span></span>
-      <span class="a-pill"><span class="hl">Non-cancellable lease</span> forced on us <span class="src">— Trustpilot</span></span>
-      <span class="a-pill">Charged for <span class="hl">826K oversized prints</span> <span class="src">— BBB</span></span>
-      <span class="a-pill"><span class="hl">Worst company</span> in 30 years <span class="src">— Trustpilot</span></span>
-      <!-- dup -->
-      <span class="a-pill">About <span class="hl">30 calls from Asia</span> <span class="src">— BBB</span></span>
-      <span class="a-pill"><span class="hl">Billed</span> for returned equipment <span class="src">— BBB</span></span>
-      <span class="a-pill">They <span class="hl">prey on small businesses</span> <span class="src">— Trustpilot</span></span>
-      <span class="a-pill">CFPB fined <span class="hl">$1.1M</span> for bad data <span class="src">— CFPB</span></span>
-      <span class="a-pill"><span class="hl">Non-cancellable lease</span> forced on us <span class="src">— Trustpilot</span></span>
-      <span class="a-pill">Charged for <span class="hl">826K oversized prints</span> <span class="src">— BBB</span></span>
-      <span class="a-pill"><span class="hl">Worst company</span> in 30 years <span class="src">— Trustpilot</span></span>
-    </div>
-    <div class="a-row a-row-right">
-      <span class="a-pill">If you default <span class="hl">they will destroy you</span> <span class="src">— Trustpilot</span></span>
-      <span class="a-pill"><span class="hl">No one answers</span> the phone <span class="src">— Trustpilot</span></span>
-      <span class="a-pill">Charging <span class="hl">after lease ended</span> <span class="src">— Trustpilot</span></span>
-      <span class="a-pill"><span class="hl">Harassing calls</span> after cancellation <span class="src">— BBB</span></span>
-      <span class="a-pill">Feels like a <span class="hl">scam operation</span> <span class="src">— Trustpilot</span></span>
-      <span class="a-pill">Paid <span class="hl">four extra years</span> unknowingly <span class="src">— BBB</span></span>
-      <span class="a-pill"><span class="hl">Passed around</span> dept to dept <span class="src">— BBB</span></span>
-      <!-- dup -->
-      <span class="a-pill">If you default <span class="hl">they will destroy you</span> <span class="src">— Trustpilot</span></span>
-      <span class="a-pill"><span class="hl">No one answers</span> the phone <span class="src">— Trustpilot</span></span>
-      <span class="a-pill">Charging <span class="hl">after lease ended</span> <span class="src">— Trustpilot</span></span>
-      <span class="a-pill"><span class="hl">Harassing calls</span> after cancellation <span class="src">— BBB</span></span>
-      <span class="a-pill">Feels like a <span class="hl">scam operation</span> <span class="src">— Trustpilot</span></span>
-      <span class="a-pill">Paid <span class="hl">four extra years</span> unknowingly <span class="src">— BBB</span></span>
-      <span class="a-pill"><span class="hl">Passed around</span> dept to dept <span class="src">— BBB</span></span>
-    </div>
-  </div>
-  <div class="wall-label">154 complaints across XFS, FITTLE & PEAC — <a href="#">view on BBB ↗</a></div>
-</div>
-
-<!-- ===== VERSION B: Dark Wall ===== -->
-<div class="version-block">
-  <div class="version-label">VERSION B</div>
+<!-- ===== VERSION B: Dark Wall (RECOMMENDED — FIRST) ===== -->
+<div class="version-block recommended">
+  <div class="version-label reco">VERSION B</div>
+  <div class="reco-badge">NEO RECOMMENDED</div>
   <div class="version-title">Dark Wall — 3 Rows, Red Glow</div>
-  <div class="version-desc">Dark background, 3 rows at different speeds, red glow on pills. Aggressive, overwhelming, war-room feel.</div>
+  <div class="version-desc">Dark background, 3 rows at different speeds, red glow on pills. Real source logos. Aggressive, overwhelming, war-room feel.</div>
 
   <div class="proof-context">Real complaints. Real customers. All under the Xerox name.</div>
 
   <div class="b-wall-wrap">
     <div class="b-row b-row-1">
-      <span class="b-pill">About <span class="hl">30 calls from Asia</span> <span class="src">— BBB</span></span>
-      <span class="b-pill"><span class="hl">Billed</span> for returned equipment <span class="src">— BBB</span></span>
-      <span class="b-pill">They <span class="hl">prey on small businesses</span> <span class="src">— Trustpilot</span></span>
-      <span class="b-pill">CFPB fined <span class="hl">$1.1M</span> for bad data <span class="src">— CFPB</span></span>
-      <span class="b-pill"><span class="hl">Non-cancellable lease</span> forced on us <span class="src">— Trustpilot</span></span>
+      <span class="b-pill">About <span class="hl">30 calls from Asia</span> <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo" onerror="this.replaceWith(document.createTextNode('BBB'))"></span></span>
+      <span class="b-pill"><span class="hl">Billed</span> for returned equipment <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo" onerror="this.replaceWith(document.createTextNode('BBB'))"></span></span>
+      <span class="b-pill">They <span class="hl">prey on small businesses</span> <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo" onerror="this.replaceWith(document.createTextNode('Trustpilot'))"></span></span>
+      <span class="b-pill">CFPB fined <span class="hl">$1.1M</span> for bad data <span class="src"><img src="https://cdn.brandfetch.io/consumerfinance.gov/w/64/h/64/logo" alt="CFPB" class="src-logo" onerror="this.replaceWith(document.createTextNode('CFPB'))"></span></span>
+      <span class="b-pill"><span class="hl">Non-cancellable lease</span> forced on us <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo" onerror="this.replaceWith(document.createTextNode('Trustpilot'))"></span></span>
       <!-- dup -->
-      <span class="b-pill">About <span class="hl">30 calls from Asia</span> <span class="src">— BBB</span></span>
-      <span class="b-pill"><span class="hl">Billed</span> for returned equipment <span class="src">— BBB</span></span>
-      <span class="b-pill">They <span class="hl">prey on small businesses</span> <span class="src">— Trustpilot</span></span>
-      <span class="b-pill">CFPB fined <span class="hl">$1.1M</span> for bad data <span class="src">— CFPB</span></span>
-      <span class="b-pill"><span class="hl">Non-cancellable lease</span> forced on us <span class="src">— Trustpilot</span></span>
+      <span class="b-pill">About <span class="hl">30 calls from Asia</span> <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo" onerror="this.replaceWith(document.createTextNode('BBB'))"></span></span>
+      <span class="b-pill"><span class="hl">Billed</span> for returned equipment <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo" onerror="this.replaceWith(document.createTextNode('BBB'))"></span></span>
+      <span class="b-pill">They <span class="hl">prey on small businesses</span> <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo" onerror="this.replaceWith(document.createTextNode('Trustpilot'))"></span></span>
+      <span class="b-pill">CFPB fined <span class="hl">$1.1M</span> for bad data <span class="src"><img src="https://cdn.brandfetch.io/consumerfinance.gov/w/64/h/64/logo" alt="CFPB" class="src-logo" onerror="this.replaceWith(document.createTextNode('CFPB'))"></span></span>
+      <span class="b-pill"><span class="hl">Non-cancellable lease</span> forced on us <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo" onerror="this.replaceWith(document.createTextNode('Trustpilot'))"></span></span>
     </div>
     <div class="b-row b-row-2">
-      <span class="b-pill">If you default <span class="hl">they will destroy you</span> <span class="src">— Trustpilot</span></span>
-      <span class="b-pill"><span class="hl">No one answers</span> the phone <span class="src">— Trustpilot</span></span>
-      <span class="b-pill">Charging <span class="hl">after lease ended</span> <span class="src">— Trustpilot</span></span>
-      <span class="b-pill"><span class="hl">Harassing calls</span> after cancellation <span class="src">— BBB</span></span>
-      <span class="b-pill">Feels like a <span class="hl">scam operation</span> <span class="src">— Trustpilot</span></span>
+      <span class="b-pill">If you default <span class="hl">they will destroy you</span> <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo" onerror="this.replaceWith(document.createTextNode('Trustpilot'))"></span></span>
+      <span class="b-pill"><span class="hl">No one answers</span> the phone <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo" onerror="this.replaceWith(document.createTextNode('Trustpilot'))"></span></span>
+      <span class="b-pill">Charging <span class="hl">after lease ended</span> <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo" onerror="this.replaceWith(document.createTextNode('Trustpilot'))"></span></span>
+      <span class="b-pill"><span class="hl">Harassing calls</span> after cancellation <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo" onerror="this.replaceWith(document.createTextNode('BBB'))"></span></span>
+      <span class="b-pill">Feels like a <span class="hl">scam operation</span> <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo" onerror="this.replaceWith(document.createTextNode('Trustpilot'))"></span></span>
       <!-- dup -->
-      <span class="b-pill">If you default <span class="hl">they will destroy you</span> <span class="src">— Trustpilot</span></span>
-      <span class="b-pill"><span class="hl">No one answers</span> the phone <span class="src">— Trustpilot</span></span>
-      <span class="b-pill">Charging <span class="hl">after lease ended</span> <span class="src">— Trustpilot</span></span>
-      <span class="b-pill"><span class="hl">Harassing calls</span> after cancellation <span class="src">— BBB</span></span>
-      <span class="b-pill">Feels like a <span class="hl">scam operation</span> <span class="src">— Trustpilot</span></span>
+      <span class="b-pill">If you default <span class="hl">they will destroy you</span> <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo" onerror="this.replaceWith(document.createTextNode('Trustpilot'))"></span></span>
+      <span class="b-pill"><span class="hl">No one answers</span> the phone <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo" onerror="this.replaceWith(document.createTextNode('Trustpilot'))"></span></span>
+      <span class="b-pill">Charging <span class="hl">after lease ended</span> <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo" onerror="this.replaceWith(document.createTextNode('Trustpilot'))"></span></span>
+      <span class="b-pill"><span class="hl">Harassing calls</span> after cancellation <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo" onerror="this.replaceWith(document.createTextNode('BBB'))"></span></span>
+      <span class="b-pill">Feels like a <span class="hl">scam operation</span> <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo" onerror="this.replaceWith(document.createTextNode('Trustpilot'))"></span></span>
     </div>
     <div class="b-row b-row-1" style="animation-duration:42s">
-      <span class="b-pill">Charged for <span class="hl">826K oversized prints</span> <span class="src">— BBB</span></span>
-      <span class="b-pill"><span class="hl">Worst company</span> in 30 years <span class="src">— Trustpilot</span></span>
-      <span class="b-pill">Paid <span class="hl">four extra years</span> unknowingly <span class="src">— BBB</span></span>
-      <span class="b-pill"><span class="hl">Passed around</span> dept to dept <span class="src">— BBB</span></span>
+      <span class="b-pill">Charged for <span class="hl">826K oversized prints</span> <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo" onerror="this.replaceWith(document.createTextNode('BBB'))"></span></span>
+      <span class="b-pill"><span class="hl">Worst company</span> in 30 years <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo" onerror="this.replaceWith(document.createTextNode('Trustpilot'))"></span></span>
+      <span class="b-pill">Paid <span class="hl">four extra years</span> unknowingly <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo" onerror="this.replaceWith(document.createTextNode('BBB'))"></span></span>
+      <span class="b-pill"><span class="hl">Passed around</span> dept to dept <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo" onerror="this.replaceWith(document.createTextNode('BBB'))"></span></span>
       <!-- dup -->
-      <span class="b-pill">Charged for <span class="hl">826K oversized prints</span> <span class="src">— BBB</span></span>
-      <span class="b-pill"><span class="hl">Worst company</span> in 30 years <span class="src">— Trustpilot</span></span>
-      <span class="b-pill">Paid <span class="hl">four extra years</span> unknowingly <span class="src">— BBB</span></span>
-      <span class="b-pill"><span class="hl">Passed around</span> dept to dept <span class="src">— BBB</span></span>
+      <span class="b-pill">Charged for <span class="hl">826K oversized prints</span> <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo" onerror="this.replaceWith(document.createTextNode('BBB'))"></span></span>
+      <span class="b-pill"><span class="hl">Worst company</span> in 30 years <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo" onerror="this.replaceWith(document.createTextNode('Trustpilot'))"></span></span>
+      <span class="b-pill">Paid <span class="hl">four extra years</span> unknowingly <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo" onerror="this.replaceWith(document.createTextNode('BBB'))"></span></span>
+      <span class="b-pill"><span class="hl">Passed around</span> dept to dept <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo" onerror="this.replaceWith(document.createTextNode('BBB'))"></span></span>
     </div>
     <div class="b-count">154 <span>complaints filed under Xerox</span></div>
   </div>
-  <div class="wall-label" style="margin-top:16px"><a href="#">view on BBB ↗</a></div>
+  <div class="wall-label" style="margin-top:16px"><a href="https://www.bbb.org/us/ca/san-diego/profile/collections-agencies/transworld-systems-inc-1126-27002653/customer-reviews" target="_blank">view on BBB ↗</a></div>
+</div>
+
+<!-- ===== VERSION A: Pill Marquee ===== -->
+<div class="version-block">
+  <div class="version-label">VERSION A</div>
+  <div class="version-title">Pill Marquee — Light</div>
+  <div class="version-desc">Clean pills scrolling in 2 rows, opposite directions. Light, professional, edge fade. Less aggressive.</div>
+
+  <div class="proof-context">Real complaints. Real customers. All under the Xerox name.</div>
+
+  <div class="a-wall">
+    <div class="a-row a-row-left">
+      <span class="a-pill">About <span class="hl">30 calls from Asia</span> <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo" onerror="this.replaceWith(document.createTextNode('BBB'))"></span></span>
+      <span class="a-pill"><span class="hl">Billed</span> for returned equipment <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo" onerror="this.replaceWith(document.createTextNode('BBB'))"></span></span>
+      <span class="a-pill">They <span class="hl">prey on small businesses</span> <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo" onerror="this.replaceWith(document.createTextNode('Trustpilot'))"></span></span>
+      <span class="a-pill">CFPB fined <span class="hl">$1.1M</span> for bad data <span class="src"><img src="https://cdn.brandfetch.io/consumerfinance.gov/w/64/h/64/logo" alt="CFPB" class="src-logo" onerror="this.replaceWith(document.createTextNode('CFPB'))"></span></span>
+      <span class="a-pill"><span class="hl">Non-cancellable lease</span> forced on us <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo" onerror="this.replaceWith(document.createTextNode('Trustpilot'))"></span></span>
+      <span class="a-pill">Charged for <span class="hl">826K oversized prints</span> <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo" onerror="this.replaceWith(document.createTextNode('BBB'))"></span></span>
+      <span class="a-pill"><span class="hl">Worst company</span> in 30 years <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo" onerror="this.replaceWith(document.createTextNode('Trustpilot'))"></span></span>
+      <!-- dup -->
+      <span class="a-pill">About <span class="hl">30 calls from Asia</span> <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo" onerror="this.replaceWith(document.createTextNode('BBB'))"></span></span>
+      <span class="a-pill"><span class="hl">Billed</span> for returned equipment <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo" onerror="this.replaceWith(document.createTextNode('BBB'))"></span></span>
+      <span class="a-pill">They <span class="hl">prey on small businesses</span> <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo" onerror="this.replaceWith(document.createTextNode('Trustpilot'))"></span></span>
+      <span class="a-pill">CFPB fined <span class="hl">$1.1M</span> for bad data <span class="src"><img src="https://cdn.brandfetch.io/consumerfinance.gov/w/64/h/64/logo" alt="CFPB" class="src-logo" onerror="this.replaceWith(document.createTextNode('CFPB'))"></span></span>
+      <span class="a-pill"><span class="hl">Non-cancellable lease</span> forced on us <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo" onerror="this.replaceWith(document.createTextNode('Trustpilot'))"></span></span>
+      <span class="a-pill">Charged for <span class="hl">826K oversized prints</span> <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo" onerror="this.replaceWith(document.createTextNode('BBB'))"></span></span>
+      <span class="a-pill"><span class="hl">Worst company</span> in 30 years <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo" onerror="this.replaceWith(document.createTextNode('Trustpilot'))"></span></span>
+    </div>
+    <div class="a-row a-row-right">
+      <span class="a-pill">If you default <span class="hl">they will destroy you</span> <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo" onerror="this.replaceWith(document.createTextNode('Trustpilot'))"></span></span>
+      <span class="a-pill"><span class="hl">No one answers</span> the phone <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo" onerror="this.replaceWith(document.createTextNode('Trustpilot'))"></span></span>
+      <span class="a-pill">Charging <span class="hl">after lease ended</span> <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo" onerror="this.replaceWith(document.createTextNode('Trustpilot'))"></span></span>
+      <span class="a-pill"><span class="hl">Harassing calls</span> after cancellation <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo" onerror="this.replaceWith(document.createTextNode('BBB'))"></span></span>
+      <span class="a-pill">Feels like a <span class="hl">scam operation</span> <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo" onerror="this.replaceWith(document.createTextNode('Trustpilot'))"></span></span>
+      <span class="a-pill">Paid <span class="hl">four extra years</span> unknowingly <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo" onerror="this.replaceWith(document.createTextNode('BBB'))"></span></span>
+      <span class="a-pill"><span class="hl">Passed around</span> dept to dept <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo" onerror="this.replaceWith(document.createTextNode('BBB'))"></span></span>
+      <!-- dup -->
+      <span class="a-pill">If you default <span class="hl">they will destroy you</span> <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo" onerror="this.replaceWith(document.createTextNode('Trustpilot'))"></span></span>
+      <span class="a-pill"><span class="hl">No one answers</span> the phone <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo" onerror="this.replaceWith(document.createTextNode('Trustpilot'))"></span></span>
+      <span class="a-pill">Charging <span class="hl">after lease ended</span> <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo" onerror="this.replaceWith(document.createTextNode('Trustpilot'))"></span></span>
+      <span class="a-pill"><span class="hl">Harassing calls</span> after cancellation <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo" onerror="this.replaceWith(document.createTextNode('BBB'))"></span></span>
+      <span class="a-pill">Feels like a <span class="hl">scam operation</span> <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo" onerror="this.replaceWith(document.createTextNode('Trustpilot'))"></span></span>
+      <span class="a-pill">Paid <span class="hl">four extra years</span> unknowingly <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo" onerror="this.replaceWith(document.createTextNode('BBB'))"></span></span>
+      <span class="a-pill"><span class="hl">Passed around</span> dept to dept <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo" onerror="this.replaceWith(document.createTextNode('BBB'))"></span></span>
+    </div>
+  </div>
+  <div class="wall-label">154 complaints across XFS, FITTLE & PEAC — <a href="https://www.bbb.org/us/ca/san-diego/profile/collections-agencies/transworld-systems-inc-1126-27002653/customer-reviews" target="_blank">view on BBB ↗</a></div>
 </div>
 
 <!-- ===== VERSION C: Scattered Cards ===== -->
@@ -189,22 +197,22 @@ body{background:#f0f1f3;color:var(--text);font-family:'Plus Jakarta Sans',system
   <div class="proof-context">Real complaints. Real customers. All under the Xerox name.</div>
 
   <div class="c-grid" style="margin-top:24px">
-    <div class="c-card">"About <span class="hl">30 calls from somewhere in Asia</span>" <span class="src">— BBB complaint</span></div>
-    <div class="c-card">"They <span class="hl">prey on small businesses</span>" <span class="src">— Trustpilot</span></div>
-    <div class="c-card">"CFPB fined <span class="hl">$1.1M</span> for bad data" <span class="src">— CFPB action</span></div>
-    <div class="c-card">"If you default, <span class="hl">they will destroy you</span>" <span class="src">— Trustpilot</span></div>
-    <div class="c-card">"<span class="hl">Non-cancellable lease</span> forced upon us" <span class="src">— Trustpilot</span></div>
-    <div class="c-card">"Charged for <span class="hl">826,592 oversized prints</span>" <span class="src">— BBB</span></div>
-    <div class="c-card">"<span class="hl">Worst company</span> in my 30-year career" <span class="src">— Trustpilot</span></div>
-    <div class="c-card">"<span class="hl">No one answers</span> the phone, ever" <span class="src">— Trustpilot</span></div>
-    <div class="c-card">"Feels like a <span class="hl">scam operation</span>" <span class="src">— Trustpilot</span></div>
-    <div class="c-card">"Paid <span class="hl">four extra years</span> without knowing" <span class="src">— BBB</span></div>
-    <div class="c-card">"<span class="hl">Harassing calls</span> after cancellation" <span class="src">— BBB</span></div>
-    <div class="c-card">"<span class="hl">Passed around</span> dept to dept" <span class="src">— BBB</span></div>
-    <div class="c-card">"<span class="hl">Billed</span> for equipment we returned" <span class="src">— BBB</span></div>
-    <div class="c-card">"Charging <span class="hl">after lease ended</span>" <span class="src">— Trustpilot</span></div>
+    <div class="c-card">"About <span class="hl">30 calls from somewhere in Asia</span>" <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo"> BBB complaint</span></div>
+    <div class="c-card">"They <span class="hl">prey on small businesses</span>" <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo"> Trustpilot</span></div>
+    <div class="c-card">"CFPB fined <span class="hl">$1.1M</span> for bad data" <span class="src"><img src="https://cdn.brandfetch.io/consumerfinance.gov/w/64/h/64/logo" alt="CFPB" class="src-logo"> CFPB action</span></div>
+    <div class="c-card">"If you default, <span class="hl">they will destroy you</span>" <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo"> Trustpilot</span></div>
+    <div class="c-card">"<span class="hl">Non-cancellable lease</span> forced upon us" <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo"> Trustpilot</span></div>
+    <div class="c-card">"Charged for <span class="hl">826,592 oversized prints</span>" <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo"> BBB</span></div>
+    <div class="c-card">"<span class="hl">Worst company</span> in my 30-year career" <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo"> Trustpilot</span></div>
+    <div class="c-card">"<span class="hl">No one answers</span> the phone, ever" <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo"> Trustpilot</span></div>
+    <div class="c-card">"Feels like a <span class="hl">scam operation</span>" <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo"> Trustpilot</span></div>
+    <div class="c-card">"Paid <span class="hl">four extra years</span> without knowing" <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo"> BBB</span></div>
+    <div class="c-card">"<span class="hl">Harassing calls</span> after cancellation" <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo"> BBB</span></div>
+    <div class="c-card">"<span class="hl">Passed around</span> dept to dept" <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo"> BBB</span></div>
+    <div class="c-card">"<span class="hl">Billed</span> for equipment we returned" <span class="src"><img src="https://cdn.brandfetch.io/bbb.org/w/64/h/64/logo" alt="BBB" class="src-logo"> BBB</span></div>
+    <div class="c-card">"Charging <span class="hl">after lease ended</span>" <span class="src"><img src="https://cdn.brandfetch.io/trustpilot.com/w/64/h/64/logo" alt="Trustpilot" class="src-logo"> Trustpilot</span></div>
   </div>
-  <div class="wall-label">154 complaints across XFS, FITTLE & PEAC — <a href="#">view on BBB ↗</a></div>
+  <div class="wall-label">154 complaints across XFS, FITTLE & PEAC — <a href="https://www.bbb.org/us/ca/san-diego/profile/collections-agencies/transworld-systems-inc-1126-27002653/customer-reviews" target="_blank">view on BBB ↗</a></div>
 </div>
 
 </body>
