@@ -856,10 +856,21 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
         console.error('Voice call error:', err);
         callActive = false;
         csConnecting.style.display = 'none';
-        if(orbLabel){ orbLabel.style.display = ''; orbLabel.innerHTML = 'Connection failed — try again<span class="orb-label-hint">Click the orb</span>'; orbLabel.style.color = '#ef4444'; }
+        // Restore hero elements
+        var ht = document.querySelector('.hero-title');
+        var hh = document.querySelector('.hero-hint');
+        var hcl = document.querySelector('.hero-calling-label');
+        var hb = document.getElementById('hero-bubble');
+        if(ht) ht.style.display = '';
+        if(hh) hh.style.display = '';
+        if(hcl) hcl.style.display = '';
+        if(hb) hb.classList.remove('hidden');
+        document.querySelectorAll('.orb-ring').forEach(function(r){ r.style.display = ''; });
         if(orbPhone) orbPhone.style.display = '';
         if(orb) orb.classList.remove('speaking');
-        setTimeout(function(){ if(orbLabel){ orbLabel.innerHTML = 'Click to call your agent<span class="orb-label-hint">Live AI voice — 30 seconds</span>'; orbLabel.style.color = ''; } }, 3000);
+        // Show error briefly in hint
+        if(hh){ hh.textContent = 'Connection failed — tap to try again'; hh.style.color = '#ef4444'; }
+        setTimeout(function(){ if(hh){ hh.textContent = 'Tap to answer'; hh.style.color = ''; } }, 3000);
       }
     })();
   }
