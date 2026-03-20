@@ -1,6 +1,7 @@
 {
   "rewrites": [
 { "source": "/showcase", "destination": "/showcase.html" },
+{ "source": "/salesforce", "destination": "/v3/salesforce-v2.html" },
 { "source": "/xerox", "destination": "/v3/xerox-v3.html" },
 { "source": "/xerox-v3", "destination": "/v3/xerox-v3.html" },
 { "source": "/xerox-wall", "destination": "/v3/xerox-v3-wall.html" },
