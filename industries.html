@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <title>Industries — AgentCollect</title>
+    <meta name="description" content="AgentCollect serves every industry that invoices. SaaS, healthcare, logistics, financial services, professional services, and manufacturing — your AI collection agent is ready.">
+    <meta property="og:title" content="Industries — AgentCollect">
+    <meta property="og:description" content="From SaaS to logistics, healthcare to financial services — if you send invoices, your agent is ready.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.agentcollect.com/industries">
+    <meta property="og:image" content="https://www.agentcollect.com/og.png?v=5">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Industries — AgentCollect">
+    <meta name="twitter:description" content="From SaaS to logistics, healthcare to financial services — if you send invoices, your agent is ready.">
+    <meta name="twitter:image" content="https://www.agentcollect.com/og.png?v=5">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --bg:#FAFBFF;--bg-card:#fff;--bg-dark:#0B1B3D;--bg-warm:#F8F7F5;
+            --border:#E8ECF2;--border-hover:rgba(79,70,229,.18);
+            --text:#0B1B3D;--text-mid:#374151;--text-muted:#64748B;--text-dim:#94A3B8;
+            --indigo:#4F46E5;--indigo-dark:#4338CA;--indigo-light:rgba(79,70,229,.04);--indigo-glow:rgba(79,70,229,.08);
+            --green:#10B981;--green-dark:#059669;--green-light:rgba(16,185,129,.04);
+            --amber:#F59E0B;--red:#EF4444;
+            --mono:'JetBrains Mono',monospace;--sans:'Inter',-apple-system,sans-serif;--display:'Plus Jakarta Sans',sans-serif;
+            --shadow-sm:0 1px 2px rgba(0,0,0,.03);
+            --shadow-md:0 2px 8px rgba(0,0,0,.04);
+            --shadow-lg:0 8px 24px rgba(0,0,0,.06);
+            --radius:14px;
+            --max-w:1120px;
+        }
+        html{scroll-behavior:smooth}
+        body{font-family:var(--sans);font-size:17px;background:#f6f3ef;color:var(--text);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden;line-height:1.7;position:relative}
+        body::before{content:'';position:fixed;inset:0;z-index:-1;background-image:
+            linear-gradient(rgba(79,70,229,.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(79,70,229,.03) 1px, transparent 1px);
+            background-size:64px 64px;pointer-events:none}
+        h1,h2,h3,h4,h5{font-family:var(--display);line-height:1.15;letter-spacing:-.04em}
+        ::selection{background:rgba(79,70,229,.08)}
+        .gradient-divider{height:1px;background:linear-gradient(90deg,transparent,var(--indigo),var(--green),transparent);opacity:.3;max-width:var(--max-w);margin:0 auto}
+
+        @keyframes pulse-ring{0%{box-shadow:0 0 0 0 rgba(79,70,229,.2)}70%{box-shadow:0 0 0 6px rgba(79,70,229,0)}100%{box-shadow:0 0 0 0 rgba(79,70,229,0)}}
+
+        .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+        .s1{transition-delay:.1s}.s2{transition-delay:.2s}.s3{transition-delay:.3s}.s4{transition-delay:.4s}.s5{transition-delay:.5s}.s6{transition-delay:.6s}
+
+        /* NAV */
+        .nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(246,243,239,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+        .nav.scrolled{box-shadow:0 1px 3px rgba(0,0,0,.02)}
+        .nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 32px;display:flex;align-items:center;height:64px}
+        .logo{display:inline-flex;align-items:baseline;text-decoration:none;margin-right:auto;font-family:var(--display);font-size:18px;font-weight:900;letter-spacing:-.04em;color:var(--text)}
+        .dot-circle{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--indigo);margin-left:1px;vertical-align:super}
+        .logo-tagline{font-size:11px;color:var(--text-muted);font-weight:400;margin-left:14px;padding-left:14px;border-left:1px solid var(--border);white-space:nowrap;letter-spacing:-.01em;margin-right:28px}
+        .nav-links{display:flex;gap:32px;margin-right:28px}
+        .nav-links a{color:var(--text-muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s;letter-spacing:-.01em}
+        .nav-links a:hover{color:var(--text)}
+        .nav-links a.active{color:var(--indigo)}
+        .nav-right{display:flex;align-items:center;gap:10px}
+        .nav-cta{padding:14px 28px;background:var(--indigo);color:#fff;border:none;border-radius:12px;font-family:var(--sans);font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;letter-spacing:-.01em}
+        .nav-cta:hover{background:var(--indigo-dark)}
+        .nav-mobile{display:none;background:none;border:none;cursor:pointer;padding:8px;min-width:44px;min-height:44px}
+
+        /* SECTION HELPERS */
+        .section-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--indigo);margin-bottom:12px}
+        .section-title{font-size:clamp(28px,3.5vw,42px);font-weight:900;color:var(--text);margin-bottom:12px}
+        .section-sub{font-size:17px;color:var(--text-mid);max-width:480px;line-height:1.65;letter-spacing:-.01em}
+
+        /* HERO */
+        .hero{padding:140px 32px 60px;text-align:center;background:#f6f3ef;position:relative;overflow:hidden}
+        .hero::after{content:'';position:absolute;inset:0;pointer-events:none;
+            background:radial-gradient(ellipse 600px 500px at 70% 20%, rgba(79,70,229,.04), transparent),
+                        radial-gradient(ellipse 500px 400px at 30% 80%, rgba(16,185,129,.03), transparent)}
+        .hero-label{display:inline-flex;align-items:center;gap:8px;margin-bottom:20px;padding:7px 18px;background:rgba(79,70,229,.04);border:1px solid rgba(79,70,229,.1);border-radius:100px;position:relative;z-index:1}
+        .hero-label-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse-ring 2s infinite}
+        .hero-label-text{font-size:12px;font-weight:600;color:var(--indigo);letter-spacing:.02em}
+        .hero h1{font-size:clamp(34px,5vw,58px);font-weight:900;letter-spacing:-.04em;line-height:1.08;margin-bottom:24px;max-width:760px;margin-left:auto;margin-right:auto;position:relative;z-index:1}
+        .hero-sub{font-size:18px;color:var(--text-mid);max-width:560px;margin:0 auto;line-height:1.65;letter-spacing:-.01em;position:relative;z-index:1}
+
+        /* INDUSTRY GRID */
+        .industries{padding:80px 32px 100px;background:#f6f3ef}
+        .industries-inner{max-width:var(--max-w);margin:0 auto}
+        .industries-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+        .industry-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:32px;position:relative;overflow:hidden;transition:all .2s}
+        .industry-card:hover{border-color:var(--border-hover);transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+        .industry-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--indigo),var(--green));transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+        .industry-card:hover::before{transform:scaleX(1)}
+        .industry-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;flex-shrink:0}
+        .industry-card h3{font-family:var(--display);font-size:20px;font-weight:800;letter-spacing:-.03em;color:var(--text);margin-bottom:10px}
+        .industry-card .industry-desc{font-size:15px;color:var(--text-mid);line-height:1.65;margin-bottom:20px}
+        .industry-bullets{display:flex;flex-direction:column;gap:10px}
+        .industry-bullet{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text-mid);font-weight:500}
+        .industry-bullet svg{flex-shrink:0}
+
+        /* CTA */
+        .cta-section{padding:100px 32px;background:var(--bg-dark);text-align:center;position:relative;overflow:hidden}
+        .cta-section::before{content:'';position:absolute;inset:0;background-image:
+            linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+            background-size:64px 64px;pointer-events:none}
+        .cta-section h2{font-size:clamp(28px,4vw,46px);font-weight:900;letter-spacing:-.04em;color:#fff;margin-bottom:14px;position:relative}
+        .cta-section p{font-size:17px;color:rgba(255,255,255,.6);max-width:480px;margin:0 auto 40px;line-height:1.65;position:relative}
+        .cta-note{margin-top:20px;font-size:14px;color:rgba(255,255,255,.4);position:relative}
+        .cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative}
+        .cta-btn-primary{display:inline-flex;align-items:center;gap:8px;padding:15px 32px;background:#fff;color:var(--bg-dark);border-radius:12px;font-family:var(--sans);font-size:15px;font-weight:600;text-decoration:none;transition:all .2s}
+        .cta-btn-primary:hover{box-shadow:0 8px 24px rgba(255,255,255,.1);transform:translateY(-1px)}
+
+        /* FOOTER */
+        footer{background:#f6f3ef;border-top:1px solid var(--border);padding:56px 32px 32px}
+        .footer-inner{max-width:var(--max-w);margin:0 auto}
+        .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:40px}
+        .footer-brand-name{font-family:var(--display);font-size:16px;font-weight:800;color:var(--text);letter-spacing:-.03em;margin-bottom:10px}
+        .footer-tagline{font-size:14px;color:var(--text-dim);line-height:1.65;max-width:220px}
+        .footer-col h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--text-muted);margin-bottom:16px}
+        .footer-col a{display:block;font-size:14px;color:var(--text-muted);text-decoration:none;margin-bottom:10px;transition:color .2s}
+        .footer-col a:hover{color:var(--text)}
+        .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid var(--border);flex-wrap:wrap;gap:12px}
+        .footer-copy{font-size:12px;color:var(--text-dim)}
+        .footer-badges{display:flex;gap:8px}
+        .footer-badge{padding:4px 10px;border:1px solid var(--border);border-radius:4px;font-size:10px;color:var(--text-dim);font-weight:600;letter-spacing:.02em}
+
+        /* RESPONSIVE */
+        @media(max-width:1024px){
+            .industries-grid{grid-template-columns:repeat(2,1fr)}
+            .footer-top{grid-template-columns:1fr 1fr 1fr}
+        }
+        @media(max-width:768px){
+            .nav-links{display:none}
+            .nav-mobile{display:block}
+            .nav-inner{padding:0 20px}
+            .logo-tagline{display:none}
+            .hero{padding:100px 20px 48px}
+            .industries{padding:48px 20px 72px}
+            .industries-grid{grid-template-columns:1fr}
+            .cta-section{padding:72px 20px}
+            .cta-btns{flex-direction:column;align-items:center}
+            .footer-top{grid-template-columns:1fr;gap:24px}
+            .footer-bottom{flex-direction:column;text-align:center}
+            .footer-badges{justify-content:center}
+        }
+    </style>
+    <script>
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "vtpmvp6kvr");
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GRZZT9K05B"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-GRZZT9K05B');</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+<div class="nav-inner">
+    <a href="/" class="logo">Agent<span>Collect</span><span class="dot-circle"></span></a>
+    <span class="logo-tagline">The end of manual collection.</span>
+    <div class="nav-links">
+        <a href="/pricing">Pricing</a>
+        <a href="/how-it-works">How It Works</a>
+        <a href="/security">Security</a>
+    </div>
+    <div class="nav-right">
+        <a href="https://cal.com/johnb/30" class="nav-cta" target="_blank" rel="noopener">Book a demo</a>
+    </div>
+    <button class="nav-mobile" aria-label="Open menu" onclick="window.location.href='https://cal.com/johnb/30'">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="1.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-label reveal">
+        <span class="hero-label-dot"></span>
+        <span class="hero-label-text">Industries</span>
+    </div>
+    <h1 class="reveal s1">Built for every industry<br>that invoices.</h1>
+    <p class="hero-sub reveal s2">From SaaS to logistics, healthcare to financial services — if you send invoices, your agent is ready.</p>
+</section>
+
+<div class="gradient-divider"></div>
+
+<!-- INDUSTRY CARDS -->
+<section class="industries">
+    <div class="industries-inner">
+        <div class="industries-grid">
+
+            <!-- SaaS & Technology -->
+            <div class="industry-card reveal s1">
+                <div class="industry-icon" style="background:rgba(79,70,229,.06)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--indigo)" stroke-width="1.75"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                </div>
+                <h3>SaaS & Technology</h3>
+                <p class="industry-desc">Recover failed payments, churned subscriptions, and disputed charges — without losing the customer.</p>
+                <div class="industry-bullets">
+                    <div class="industry-bullet">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        Subscription recovery
+                    </div>
+                    <div class="industry-bullet">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        Failed payment retry
+                    </div>
+                    <div class="industry-bullet">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        Churn prevention
+                    </div>
+                </div>
+            </div>
+
+            <!-- Healthcare & Medical -->
+            <div class="industry-card reveal s2">
+                <div class="industry-icon" style="background:rgba(16,185,129,.06)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.75"><path d="M4.8 2.3A.3.3 0 005 2H19a.3.3 0 01.3.3v19.4a.3.3 0 01-.3.3H5a.3.3 0 01-.3-.3V2.3z"/><path d="M14 11h-4m2-2v4"/></svg>
+                </div>
+                <h3>Healthcare & Medical</h3>
+                <p class="industry-desc">Patient-friendly billing that respects HIPAA. Collect outstanding balances while maintaining trust.</p>
+                <div class="industry-bullets">
+                    <div class="industry-bullet">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        HIPAA compliant
+                    </div>
+                    <div class="industry-bullet">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        Patient-friendly tone
+                    </div>
+                    <div class="industry-bullet">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        Insurance follow-up
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logistics & Transportation -->
+            <div class="industry-card reveal s3">
+                <div class="industry-icon" style="background:rgba(245,158,11,.06)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.75"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 4v5h-7V8z"/><path d="M5.5 21a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM18.5 21a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"/></svg>
+                </div>
+                <h3>Logistics & Transportation</h3>
+                <p class="industry-desc">Freight brokers, carriers, and 3PLs — collect from shippers and partners at scale.</p>
+                <div class="industry-bullets">
+                    <div class="industry-bullet">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        Freight invoice recovery
+                    </div>
+                    <div class="industry-bullet">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        Carrier settlements
+                    </div>
+                    <div class="industry-bullet">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        Multi-party disputes
+                    </div>
+                </div>
+            </div>
+
+            <!-- Financial Services -->
+            <div class="industry-card reveal s4">
+                <div class="industry-icon" style="background:rgba(79,70,229,.06)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--indigo)" stroke-width="1.75"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg>
+                </div>
+                <h3>Financial Services</h3>
+                <p class="industry-desc">Banks, lenders, and fintechs — compliant collection under Reg F, TCPA, and state laws.</p>
+                <div class="industry-bullets">
+                    <div class="industry-bullet">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        Reg F compliant
+                    </div>
+                    <div class="industry-bullet">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        TCPA safe
+                    </div>
+                    <div class="industry-bullet">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        State-by-state licensing
+                    </div>
+                </div>
+            </div>
+
+            <!-- Professional Services -->
+            <div class="industry-card reveal s5">
+                <div class="industry-icon" style="background:rgba(16,185,129,.06)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.75"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+                </div>
+                <h3>Professional Services</h3>
+                <p class="industry-desc">Law firms, consultancies, agencies — collect outstanding fees without damaging client relationships.</p>
+                <div class="industry-bullets">
+                    <div class="industry-bullet">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        Relationship-first approach
+                    </div>
+                    <div class="industry-bullet">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        Retainer recovery
+                    </div>
+                    <div class="industry-bullet">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        Project milestone disputes
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manufacturing & Distribution -->
+            <div class="industry-card reveal s6">
+                <div class="industry-icon" style="background:rgba(245,158,11,.06)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.75"><path d="M2 20h20M6 20V4l6 4V4l6 4v12"/></svg>
+                </div>
+                <h3>Manufacturing & Distribution</h3>
+                <p class="industry-desc">Collect on net-30/60/90 invoices from retailers, distributors, and wholesale buyers.</p>
+                <div class="industry-bullets">
+                    <div class="industry-bullet">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        PO-based collection
+                    </div>
+                    <div class="industry-bullet">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        Net terms recovery
+                    </div>
+                    <div class="industry-bullet">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        High-volume processing
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<div class="gradient-divider"></div>
+
+<!-- CTA -->
+<section class="cta-section">
+    <h2 class="reveal">Your agent is ready.<br>One call to go live.</h2>
+    <p class="reveal s1">Upload your invoices. Your AI agent starts collecting in hours — calls, emails, disputes, payment plans. All under your brand.</p>
+    <div class="cta-btns reveal s2">
+        <a href="https://cal.com/johnb/30" class="cta-btn-primary" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Book a 30-min demo
+        </a>
+    </div>
+    <p class="cta-note reveal s3">$0 if we don't collect.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div>
+                <div class="footer-brand-name">Agent<span>Collect</span><span class="dot-circle" style="width:5px;height:5px;display:inline-block;border-radius:50%;background:var(--indigo);margin-left:1px;vertical-align:super"></span></div>
+                <div class="footer-tagline">The end of manual collection.</div>
+            </div>
+            <div class="footer-col">
+                <h4>Product</h4>
+                <a href="/pricing">Pricing</a>
+                <a href="/how-it-works">How It Works</a>
+                <a href="/industries">Industries</a>
+            </div>
+            <div class="footer-col">
+                <h4>Trust</h4>
+                <a href="/security">Security</a>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="https://cal.com/johnb/30" target="_blank" rel="noopener">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-copy">&copy; 2026 AgentCollect, Inc. 490 Post St, San Francisco, CA</div>
+            <div class="footer-badges">
+                <span class="footer-badge">SOC 2</span>
+                <span class="footer-badge">CCPA</span>
+                <span class="footer-badge">Reg F</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+// Nav scroll behavior
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 10);
+}, {passive: true});
+
+// Reveal on scroll
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            e.target.classList.add('visible');
+        }
+    });
+}, {threshold: 0.15});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
