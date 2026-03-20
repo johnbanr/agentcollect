@@ -639,7 +639,7 @@
                     <img id="orb-brand-logo" src="" alt="" onerror="this.style.display='none'">
                     <span id="orb-brand-name">Collection Agent</span>
                 </div>
-                <div class="orb-sub">Sarah is ready to engage your debtors.</div>
+                <div class="orb-sub">Your agent is ready.</div>
                 <div class="orb-wrap" id="orb-wrap">
                     <div class="orb-glow" id="orb-glow" style="background:radial-gradient(circle,rgba(79,70,229,.2) 0%,transparent 70%)"></div>
                     <div class="orb-particle" style="background:rgba(79,70,229,.5)"></div>
@@ -2306,16 +2306,9 @@
             });
         }
 
-        // Set left panel teaser
-        var firstDispute = data.disputes[0];
-        panelLeftTeaserText.textContent = '"' + firstDispute.teaser + '"';
-        panelLeftDesc.textContent = 'See how your agent handles this.';
-
-        // Reset to teaser view
-        panelLeftTeaser.style.display = '';
-        disputeInline.classList.remove('visible');
-        disputeTryAnother.classList.remove('visible');
-        responseArea.classList.remove('visible');
+        // Hide dispute panel — voice-only mode
+        var panelLeft = document.getElementById('panel-left');
+        if (panelLeft) panelLeft.style.display = 'none';
 
         // Show demo area with animation
         demoArea.classList.add('visible');
