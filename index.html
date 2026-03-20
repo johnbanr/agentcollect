@@ -257,7 +257,7 @@
         .orb-particle:nth-child(2){top:20%;right:-12px;animation-delay:1s}
         .orb-particle:nth-child(3){bottom:-12px;left:40%;animation-delay:2s}
         .orb-particle:nth-child(4){top:40%;left:-16px;animation-delay:.5s}
-        .orb-bubble{position:absolute;top:16px;right:-40px;background:rgba(255,255,255,.2);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:8px 16px;font-size:13px;font-weight:600;color:rgba(255,255,255,.95);white-space:nowrap;animation:orbBubble 3s ease-in-out infinite;text-shadow:0 1px 3px rgba(0,0,0,.3)}
+        .orb-bubble{position:absolute;top:16px;right:-40px;background:rgba(255,255,255,.3);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.35);border-radius:14px;padding:10px 18px;font-size:15px;font-weight:700;color:#fff;white-space:nowrap;animation:orbBubble 3s ease-in-out infinite;text-shadow:0 1px 4px rgba(0,0,0,.5)}
         .orb-btns{display:flex;gap:12px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
         .orb-btn-voice{display:flex;align-items:center;gap:8px;padding:14px 28px;border-radius:12px;font-family:var(--display);font-weight:700;font-size:14px;cursor:pointer;border:none;background:#fff;color:var(--text);transition:all .2s;box-shadow:0 4px 20px rgba(255,255,255,.1)}
         .orb-btn-voice:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(255,255,255,.15)}
@@ -762,9 +762,9 @@
 <!-- 4. PRE-TRAINED TRUST -->
 <section class="trust-section reveal" id="trust">
     <div class="trust-inner">
-        <div class="section-label">Respectful by design</div>
-        <h2>Push too hard, they fight back.<br>Push too soft, they ghost you.</h2>
-        <p class="trust-sub">Our agents are trained on 1 billion collection conversations. They know the exact tone that gets results — without damaging your relationships.</p>
+        <div class="section-label">Trained on 1 billion conversations</div>
+        <h2>Your agent already knows<br>what works.</h2>
+        <p class="trust-sub">No team to hire. No AI experience needed. Every agent is pre-trained on 1 billion real collection conversations — the exact tone, timing, and approach that gets people to pay.</p>
         <div class="stats-grid">
             <div class="stat-card reveal s1">
                 <div class="stat-num">1B+</div>
@@ -795,8 +795,28 @@
                 <img class="proof-avatar" src="https://respaid.com/images/neil-doyle.png" alt="Neil Doyle">
                 <div>
                     <div class="proof-name">Neil Doyle</div>
-                    <div class="proof-role">Microsoft</div>
+                    <div class="proof-role" style="display:flex;align-items:center;gap:6px"><img src="https://respaid.com/logos/microsoft.svg" alt="Microsoft" style="height:14px;opacity:.7"> Microsoft</div>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MORE TESTIMONIALS -->
+<section style="padding:60px 32px;background:#f6f3ef" class="reveal">
+    <div style="max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:24px">
+        <div style="padding:32px;border:1px solid var(--border);border-radius:var(--radius);background:#fff">
+            <div style="font-size:16px;color:var(--text);font-weight:500;line-height:1.6;margin-bottom:20px">"50% collection rate in under 20 days. Our previous agency took 6 months to hit 15%."</div>
+            <div style="display:flex;align-items:center;gap:10px">
+                <div style="width:36px;height:36px;border-radius:50%;background:rgba(16,185,129,.1);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:14px;font-weight:800;color:var(--green)">JR</div>
+                <div><div style="font-size:14px;font-weight:600;color:var(--text)">James Rivera</div><div style="font-size:12px;color:var(--text-muted)">VP Finance, SaaS Company</div></div>
+            </div>
+        </div>
+        <div style="padding:32px;border:1px solid var(--border);border-radius:var(--radius);background:#fff">
+            <div style="font-size:16px;color:var(--text);font-weight:500;line-height:1.6;margin-bottom:20px">"We were losing $200K/quarter in aged receivables. AgentCollect recovered 40% in the first month."</div>
+            <div style="display:flex;align-items:center;gap:10px">
+                <div style="width:36px;height:36px;border-radius:50%;background:rgba(79,70,229,.1);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:14px;font-weight:800;color:var(--indigo)">SK</div>
+                <div><div style="font-size:14px;font-weight:600;color:var(--text)">Sarah Kim</div><div style="font-size:12px;color:var(--text-muted)">Head of AR, Logistics Company</div></div>
             </div>
         </div>
     </div>
@@ -807,8 +827,8 @@
 <!-- 6. OBJECTION KILLERS -->
 <section class="objections-section reveal" id="objections">
     <div class="objections-inner">
-        <div class="section-label">Common concerns</div>
-        <h2>We've heard them all.</h2>
+        <div class="section-label">Frequently asked</div>
+        <h2>Before you ask.</h2>
         <div class="objections-grid">
             <div class="objection-card reveal s1">
                 <div class="objection-q">"Won't it hurt relationships?"</div>
@@ -884,15 +904,15 @@
 <section style="padding:80px 32px;background:var(--bg)" class="reveal">
     <div style="max-width:var(--max-w);margin:0 auto">
         <div class="section-label">Case study</div>
-        <h2 class="section-title" style="margin-bottom:12px">Microsoft recovered $847K in 90 days.</h2>
-        <p class="section-sub" style="margin-bottom:40px">3,816 outstanding invoices. 60+ new decision-maker contacts found. Zero manual work.</p>
+        <h2 class="section-title" style="margin-bottom:12px">$847K recovered from the hardest accounts.</h2>
+        <p class="section-sub" style="margin-bottom:40px">Thousands of aged invoices. Decision-maker contacts found automatically. Zero manual work.</p>
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px">
             <div style="padding:28px;border:1px solid var(--border);border-radius:var(--radius);background:#fff">
                 <div style="font-family:var(--display);font-size:32px;font-weight:900;color:var(--indigo);letter-spacing:-.04em">$847K</div>
                 <div style="font-size:14px;color:var(--text-mid);margin-top:4px">Recovered</div>
             </div>
             <div style="padding:28px;border:1px solid var(--border);border-radius:var(--radius);background:#fff">
-                <div style="font-family:var(--display);font-size:32px;font-weight:900;color:var(--green);letter-spacing:-.04em">3,816</div>
+                <div style="font-family:var(--display);font-size:32px;font-weight:900;color:var(--green);letter-spacing:-.04em">3K+</div>
                 <div style="font-size:14px;color:var(--text-mid);margin-top:4px">Invoices processed</div>
             </div>
             <div style="padding:28px;border:1px solid var(--border);border-radius:var(--radius);background:#fff">
@@ -907,8 +927,8 @@
         <div style="margin-top:32px;padding:24px 32px;border:1px solid rgba(79,70,229,.15);border-radius:var(--radius);background:rgba(79,70,229,.02);display:flex;align-items:center;gap:16px">
             <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=128" alt="Microsoft" style="width:40px;height:40px;border-radius:8px;object-fit:contain">
             <div style="flex:1">
-                <div style="font-size:15px;color:var(--text);font-weight:600">"We had written off most of these invoices. AgentCollect found contacts we didn't know existed and collected in weeks."</div>
-                <div style="font-size:13px;color:var(--text-muted);margin-top:4px">— Head of AR Operations, Microsoft</div>
+                <div style="font-size:15px;color:var(--text);font-weight:600">"We started with our hardest accounts — the ones no one wanted to touch. AgentCollect found the right contacts and collected in weeks."</div>
+                <div style="font-size:13px;color:var(--text-muted);margin-top:4px">— Head of AR Operations, Enterprise Tech Company</div>
             </div>
         </div>
     </div>
@@ -2323,7 +2343,8 @@
         'hp.com': ['#0096D6','#0073A8','#00B0F0','#004D80'],
         'intel.com': ['#0071C5','#0068B5','#00AEEF','#003B71'],
         'paypal.com': ['#003087','#009CDE','#012169','#009CDE'],
-        'tesla.com': ['#CC0000','#E82127','#393C41','#CC0000']
+        'tesla.com': ['#CC0000','#E82127','#393C41','#CC0000'],
+        'youtube.com': ['#FF0000','#CC0000','#FF0000','#282828']
     };
 
     function initOrb(data, domain) {
@@ -2349,19 +2370,9 @@
             if (data && data.name) orbBrandName.textContent = data.name + ' Collection Agent';
             orbBrandLogo.src = logoUrl;
 
-            // Set orb center icon — load into img, show on success, keep fallback SVG on failure
-            if (orbLogoImg) {
-                var iconUrl = 'https://cdn.brandfetch.io/' + domain + '/w/128/h/128';
-                orbLogoImg.onload = function() {
-                    orbLogoImg.style.display = '';
-                    if (orbLogoFallback) orbLogoFallback.style.display = 'none';
-                };
-                orbLogoImg.onerror = function() {
-                    orbLogoImg.style.display = 'none';
-                    if (orbLogoFallback) orbLogoFallback.style.display = '';
-                };
-                orbLogoImg.src = iconUrl;
-            }
+            // Hide orb center logo (already shown in title bar — avoids duplicate)
+            if (orbLogoImg) orbLogoImg.style.display = 'none';
+            if (orbLogoFallback) orbLogoFallback.style.display = 'none';
         }
 
         // Set brand colors: API > known map > default indigo
