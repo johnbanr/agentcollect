@@ -138,9 +138,14 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 .problem-card:hover .complaint-source{border-color:var(--blue);color:var(--blue)}
 .complaint-source svg{width:12px;height:12px}
 
-/* Social proof strip */
-.social-strip{margin-top:56px;padding-top:56px;border-top:1px solid var(--border)}
-.social-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:28px}
+/* ===== AGENTCOLLECT PROOF SECTION (separate from DLL) ===== */
+.ac-proof-section{padding:100px 48px 80px;max-width:920px;margin:0 auto;text-align:center}
+.ac-proof-brand{display:flex;align-items:baseline;justify-content:center;margin-bottom:32px}
+.ac-proof-logo{font-size:22px;font-weight:900;color:var(--text);letter-spacing:-.4px}
+.ac-proof-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--blue);margin-left:1px}
+.ac-proof-title{font-size:clamp(26px,3.2vw,38px);font-weight:900;letter-spacing:-.03em;line-height:1.1;margin-bottom:8px;color:var(--text)}
+.ac-proof-sub{font-size:17px;color:var(--muted);margin-bottom:48px;line-height:1.5}
+
 .social-logos{display:flex;align-items:center;justify-content:center;gap:36px;flex-wrap:wrap;margin-bottom:40px}
 .social-logos img{height:22px;filter:grayscale(100%) brightness(.4);opacity:.5;object-fit:contain;transition:all .4s cubic-bezier(.16,1,.3,1)}
 .social-logos img:hover{filter:none;opacity:1;transform:scale(1.08)}
@@ -149,51 +154,29 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 .social-stat.v{opacity:1;transform:translateY(0)}
 .social-stat-num{font-size:32px;font-weight:900;color:var(--blue);letter-spacing:-.03em;font-family:var(--sans)}
 .social-stat-label{font-size:12px;color:var(--muted);font-weight:500;margin-top:4px}
-.social-quote{background:linear-gradient(135deg,rgba(79,70,229,.03),rgba(79,70,229,.06));border:1px solid rgba(79,70,229,.08);border-radius:20px;padding:32px 36px;max-width:520px;margin:0 auto;text-align:left;opacity:0;transform:translateY(16px);transition:all .6s cubic-bezier(.16,1,.3,1)}
-.social-quote.v{opacity:1;transform:translateY(0)}
+.social-quote{background:linear-gradient(135deg,rgba(79,70,229,.03),rgba(79,70,229,.06));border:1px solid rgba(79,70,229,.08);border-radius:20px;padding:32px 36px;max-width:520px;margin:0 auto;text-align:left}
 .social-quote-text{font-size:18px;font-weight:700;color:var(--text);line-height:1.45;letter-spacing:-.02em;margin-bottom:16px}
 .social-quote-text::before{content:'\201C';color:rgba(79,70,229,.25);font-size:36px;line-height:0;vertical-align:bottom;margin-right:2px}
 .social-quote-author{display:flex;align-items:center;gap:12px}
-.social-quote-avatar{width:36px;height:36px;border-radius:50%;object-fit:contain;background:var(--bg);border:1px solid var(--border)}
+.social-quote-avatar{width:40px;height:40px;border-radius:50%;object-fit:contain;background:var(--bg);border:1px solid var(--border)}
 .social-quote-name{font-size:14px;font-weight:700;color:var(--text)}
-.social-quote-role{font-size:12px;color:var(--muted)}
+.social-quote-role{font-size:13px;color:var(--muted)}
 
-/* ===== SECTION 3: FIND → ENGAGE → COLLECT (dark) ===== */
-.platform-section{background:linear-gradient(170deg,#0B1B3D 0%,#0f1f42 40%,#131a3a 100%);padding:120px 48px 80px;text-align:center;position:relative;overflow:hidden}
-.platform-section::before{content:'';position:absolute;inset:0;background-image:
-  linear-gradient(rgba(79,70,229,.03) 1px, transparent 1px),
-  linear-gradient(90deg, rgba(79,70,229,.03) 1px, transparent 1px);
-  background-size:60px 60px;pointer-events:none}
-.platform-section::after{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(79,70,229,.08) 0%,transparent 60%);pointer-events:none}
-.platform-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:rgba(79,70,229,.6);margin-bottom:16px}
-.platform-section h2{font-size:clamp(28px,3.5vw,44px);font-weight:900;color:#fff;letter-spacing:-.03em;line-height:1.08;margin-bottom:8px;position:relative}
-.platform-sub{font-size:17px;color:rgba(255,255,255,.45);margin-bottom:72px;line-height:1.6}
+/* ===== SECTION 3: HOW IT WORKS (light, homepage style) ===== */
+.how-section{padding:100px 48px 80px;background:#f6f3ef;text-align:center;position:relative}
+.how-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:16px}
+.how-title{font-size:clamp(28px,3.5vw,42px);font-weight:900;letter-spacing:-.03em;line-height:1.08;margin-bottom:56px;color:var(--text)}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;max-width:960px;margin:0 auto}
+.how-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:36px 28px;text-align:left;transition:all .25s}
+.how-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.how-num{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-family:var(--sans);font-size:20px;font-weight:900}
+.how-card-title{font-size:18px;font-weight:800;margin-bottom:8px;letter-spacing:-.03em;color:var(--text)}
+.how-card-desc{font-size:15px;color:var(--muted);line-height:1.65}
 
-/* 3-pillar cards */
-.pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:920px;margin:0 auto 72px;position:relative;z-index:2}
-.pillar-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:36px 28px 32px;text-align:left;opacity:0;transform:translateY(24px);transition:all .5s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden}
-.pillar-card.v{opacity:1;transform:translateY(0)}
-.pillar-card:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.12);transform:translateY(-4px)}
-.pillar-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;border-radius:2px 2px 0 0;opacity:.6}
-.pillar-card:nth-child(1)::before{background:linear-gradient(90deg,var(--blue),rgba(79,70,229,.2))}
-.pillar-card:nth-child(2)::before{background:linear-gradient(90deg,var(--green),rgba(16,185,129,.2))}
-.pillar-card:nth-child(3)::before{background:linear-gradient(90deg,var(--amber),rgba(245,158,11,.2))}
-.pillar-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:20px}
-.pillar-icon svg{width:22px;height:22px;color:#fff}
-.pillar-icon.blue{background:rgba(79,70,229,.15);border:1px solid rgba(79,70,229,.25)}
-.pillar-icon.green{background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.25)}
-.pillar-icon.amber{background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.25)}
-.pillar-step{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px}
-.pillar-step.blue{color:rgba(79,70,229,.7)}
-.pillar-step.green{color:rgba(16,185,129,.7)}
-.pillar-step.amber{color:rgba(245,158,11,.7)}
-.pillar-title{font-size:20px;font-weight:800;color:#fff;letter-spacing:-.02em;margin-bottom:8px;line-height:1.2}
-.pillar-desc{font-size:13px;color:rgba(255,255,255,.4);line-height:1.5}
-
-.close-cta{display:inline-block;background:#fff;color:var(--text);padding:18px 44px;border-radius:14px;font-weight:700;font-size:17px;text-decoration:none;transition:transform .2s cubic-bezier(.16,1,.3,1),box-shadow .2s;font-family:var(--sans);letter-spacing:-.01em;position:relative}
-.close-cta:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(255,255,255,.15)}
-.close-guarantee{font-size:14px;color:rgba(255,255,255,.25);margin-top:24px;font-style:italic}
-.close-footer{font-size:12px;color:rgba(255,255,255,.15);margin-top:56px;line-height:1.5}
+.close-cta{display:inline-block;background:var(--blue);color:#fff;padding:18px 44px;border-radius:14px;font-weight:700;font-size:17px;text-decoration:none;transition:transform .2s cubic-bezier(.16,1,.3,1),box-shadow .2s;font-family:var(--sans);letter-spacing:-.01em;position:relative}
+.close-cta:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(79,70,229,.3)}
+.how-guarantee{font-size:14px;color:var(--muted);margin-top:24px;font-style:italic}
+.how-footer{font-size:12px;color:var(--muted);opacity:.5;margin-top:56px;line-height:1.5;text-align:center}
 
 /* ===== FLOATING VOICE FAB ===== */
 .voice-fab{position:fixed;bottom:28px;right:28px;z-index:9000;display:flex;align-items:center;gap:10px;background:#0f0f1a;border:1px solid rgba(79,70,229,.3);border-radius:50px;padding:12px 20px 12px 14px;cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);box-shadow:0 8px 32px rgba(0,0,0,.4);opacity:0;pointer-events:none;transform:translateY(20px)}
@@ -218,8 +201,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
   .hero-title{font-size:18px}
   .proof-section{padding:80px 24px 64px}
   .proof-cards{grid-template-columns:1fr;gap:12px}
-  .platform-section{padding:80px 24px 56px}
-  .pillar-grid{grid-template-columns:1fr;gap:16px;max-width:400px;margin:0 auto 56px}
+  .how-section{padding:80px 24px 56px}
+  .how-grid{grid-template-columns:1fr;gap:16px;max-width:400px;margin:0 auto}
+  .ac-proof-section{padding:80px 24px 64px}
   .voice-fab{bottom:16px;right:16px;padding:10px 16px 10px 10px}
   .voice-fab-text{font-size:12px}
 }
@@ -338,85 +322,82 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
     </a>
   </div>
 
-  <div class="social-strip rv">
-    <div class="social-label">Trusted by enterprise teams</div>
-    <div class="social-logos">
-      <img src="https://respaid.com/logos/microsoft.svg" alt="Microsoft" loading="lazy" onerror="this.style.display='none'">
-      <img src="https://cdn.prod.website-files.com/6633d7e9bd4516c8fbe714ea/6917bec130210a5551350be0_DoorDash-Logo-700x394.png" alt="DoorDash" loading="lazy" onerror="this.style.display='none'">
-      <img src="https://cdn.prod.website-files.com/6633d7e9bd4516c8fbe714ea/681486e9407f3fb4dbd3d3f0_Uber-Freight-Logo.png" alt="Uber Freight" loading="lazy" onerror="this.style.display='none'">
-      <img src="https://cdn.prod.website-files.com/6633d7e9bd4516c8fbe714ea/67da8be5048d3251e3b1616b_checkr_logo_wordmark_aqua3.png" alt="Checkr" loading="lazy" onerror="this.style.display='none'">
-      <img src="https://cdn.prod.website-files.com/6633d7e9bd4516c8fbe714ea/685ab786cf9dabb5db539afc_Plaid_logo.svg.png" alt="Plaid" loading="lazy" onerror="this.style.display='none'">
-      <img src="https://cdn.prod.website-files.com/6633d7e9bd4516c8fbe714ea/6740498fdd3e5c836292e2e5_Redis_logo.svg.png" alt="Redis" loading="lazy" onerror="this.style.display='none'">
+  </div>
+</section>
+
+<!-- SECTION 2b: AGENTCOLLECT SOCIAL PROOF (visually separated) -->
+<section class="ac-proof-section">
+  <div class="rv">
+    <div class="ac-proof-brand">
+      <span class="ac-proof-logo">AgentCollect</span><span class="ac-proof-dot"></span>
     </div>
-    <div class="social-stats" id="social-stats">
-      <div class="social-stat" id="ss1">
-        <div class="social-stat-num" data-target="50" data-suffix="%">0%</div>
-        <div class="social-stat-label">Collection rate</div>
-      </div>
-      <div class="social-stat" id="ss2">
-        <div class="social-stat-num" data-target="20" data-suffix="d">0d</div>
-        <div class="social-stat-label">Avg resolution</div>
-      </div>
-      <div class="social-stat" id="ss3">
-        <div class="social-stat-num" data-target="90" data-suffix="%">0%</div>
-        <div class="social-stat-label">Disputes resolved</div>
-      </div>
+    <h2 class="ac-proof-title">A different approach.</h2>
+    <p class="ac-proof-sub">Enterprise teams recover more — without the brand damage.</p>
+  </div>
+  <div class="social-logos rv rv-d1">
+    <img src="https://respaid.com/logos/microsoft.svg" alt="Microsoft" loading="lazy" onerror="this.style.display='none'">
+    <img src="https://cdn.prod.website-files.com/6633d7e9bd4516c8fbe714ea/6917bec130210a5551350be0_DoorDash-Logo-700x394.png" alt="DoorDash" loading="lazy" onerror="this.style.display='none'">
+    <img src="https://cdn.prod.website-files.com/6633d7e9bd4516c8fbe714ea/681486e9407f3fb4dbd3d3f0_Uber-Freight-Logo.png" alt="Uber Freight" loading="lazy" onerror="this.style.display='none'">
+    <img src="https://cdn.prod.website-files.com/6633d7e9bd4516c8fbe714ea/67da8be5048d3251e3b1616b_checkr_logo_wordmark_aqua3.png" alt="Checkr" loading="lazy" onerror="this.style.display='none'">
+    <img src="https://cdn.prod.website-files.com/6633d7e9bd4516c8fbe714ea/685ab786cf9dabb5db539afc_Plaid_logo.svg.png" alt="Plaid" loading="lazy" onerror="this.style.display='none'">
+    <img src="https://cdn.prod.website-files.com/6633d7e9bd4516c8fbe714ea/6740498fdd3e5c836292e2e5_Redis_logo.svg.png" alt="Redis" loading="lazy" onerror="this.style.display='none'">
+  </div>
+  <div class="social-stats rv rv-d2" id="social-stats">
+    <div class="social-stat" id="ss1">
+      <div class="social-stat-num" data-target="50" data-suffix="%">0%</div>
+      <div class="social-stat-label">Collection rate</div>
     </div>
-    <div class="social-quote" id="social-quote">
-      <div class="social-quote-text">Tripled our collection rates by batch 3.</div>
-      <div class="social-quote-author">
-        <img src="https://respaid.com/logos/microsoft.svg" alt="Microsoft" class="social-quote-avatar">
-        <div>
-          <div class="social-quote-name">Neil Doyle</div>
-          <div class="social-quote-role">Microsoft</div>
-        </div>
+    <div class="social-stat" id="ss2">
+      <div class="social-stat-num" data-target="20" data-suffix="d">0d</div>
+      <div class="social-stat-label">Avg resolution</div>
+    </div>
+    <div class="social-stat" id="ss3">
+      <div class="social-stat-num" data-target="90" data-suffix="%">0%</div>
+      <div class="social-stat-label">Disputes resolved</div>
+    </div>
+  </div>
+  <div class="social-quote rv" id="social-quote">
+    <div class="social-quote-text">We had written off most of these invoices. AgentCollect recovered them without a single complaint.</div>
+    <div class="social-quote-author">
+      <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=128" alt="Microsoft" class="social-quote-avatar">
+      <div>
+        <div class="social-quote-name">Neil Doyle</div>
+        <div class="social-quote-role">Head of AR Operations, Microsoft</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SECTION 3: FIND → ENGAGE → COLLECT -->
-<section class="platform-section">
+<!-- SECTION 3: HOW IT WORKS — light cards (homepage style) -->
+<section class="how-section">
   <div class="rv">
-    <div class="platform-label">How it works</div>
-    <h2>Find. Engage. Collect.</h2>
-    <p class="platform-sub">100% amicable. Zero manual work.</p>
+    <div class="how-label">How it works</div>
+    <h2 class="how-title">Three steps. Zero manual work.</h2>
   </div>
 
-  <div class="pillar-grid">
-    <div class="pillar-card" id="pillar1">
-      <div class="pillar-icon blue">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
-      </div>
-      <div class="pillar-step blue">Step 1</div>
-      <div class="pillar-title">Find</div>
-      <div class="pillar-desc">20% of contacts are stale. We find the real decision-maker.</div>
+  <div class="how-grid">
+    <div class="how-card rv" id="step1">
+      <div class="how-num" style="background:rgba(79,70,229,.08);color:var(--blue)">1</div>
+      <h3 class="how-card-title">Find the right contacts</h3>
+      <p class="how-card-desc">20% of contacts are stale. We enrich and verify every account before outreach begins.</p>
     </div>
-
-    <div class="pillar-card" id="pillar2">
-      <div class="pillar-icon green">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.5 19.5 0 01-6-6A2 2 0 014.11 2h3"/><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4"/></svg>
-      </div>
-      <div class="pillar-step green">Step 2</div>
-      <div class="pillar-title">Engage</div>
-      <div class="pillar-desc">Email, call, SMS — triggered by real activity. Right time, right channel.</div>
+    <div class="how-card rv rv-d1" id="step2">
+      <div class="how-num" style="background:rgba(16,185,129,.08);color:var(--green)">2</div>
+      <h3 class="how-card-title">AI agents engage</h3>
+      <p class="how-card-desc">Calls, emails, SMS — all under your brand. Debtors never know it's AI.</p>
     </div>
-
-    <div class="pillar-card" id="pillar3">
-      <div class="pillar-icon amber">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
-      </div>
-      <div class="pillar-step amber">Step 3</div>
-      <div class="pillar-title">Collect</div>
-      <div class="pillar-desc">Branded payment page. Card or wire. Funds go straight to your account.</div>
+    <div class="how-card rv rv-d2" id="step3">
+      <div class="how-num" style="background:rgba(245,158,11,.08);color:var(--amber)">3</div>
+      <h3 class="how-card-title">You get paid</h3>
+      <p class="how-card-desc">Branded payment page. Card or wire. Funds go directly to your account.</p>
     </div>
   </div>
 
-  <div class="rv" style="transition-delay:.4s">
+  <div class="rv" style="transition-delay:.4s;text-align:center;margin-top:56px">
     <a href="https://cal.com/johnb/30" target="_blank" rel="noopener" class="close-cta" id="close-cta" onclick="try{gtag('event','book_cta',{page:'konica-v11b'})}catch(e){}">Run this on your portfolio</a>
-    <p class="close-guarantee">No collection, no fee. Performance-based only.</p>
+    <p class="how-guarantee">No collection, no fee. Performance-based only.</p>
   </div>
-  <p class="close-footer">Built for Konica Minolta. All contacts from public sources. Powered by AgentCollect.</p>
+  <p class="how-footer">Built for Konica Minolta. All contacts from public sources. Powered by AgentCollect.</p>
 </section>
 
 <!-- Floating Voice FAB -->
