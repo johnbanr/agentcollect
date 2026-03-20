@@ -129,7 +129,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 .proof-sec-sub{font-size:17px;color:var(--muted);margin-bottom:52px;line-height:1.5}
 
 /* Wall of Pain — Version D (light, 3 rows) */
-.pain-wall{overflow:hidden;margin-top:40px;margin-bottom:40px;position:relative;padding:8px 0}
+.pain-wall{overflow:hidden;margin-top:40px;margin-bottom:40px;position:relative;padding:8px 0;width:100vw;margin-left:calc(-50vw + 50%)}
 .pain-wall::before,.pain-wall::after{content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2;pointer-events:none}
 .pain-wall::before{left:0;background:linear-gradient(to right,var(--bg),transparent)}
 .pain-wall::after{right:0;background:linear-gradient(to left,var(--bg),transparent)}
@@ -140,7 +140,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 @keyframes painScroll1{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @keyframes painScroll2{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
 @keyframes painScroll3{0%{transform:translateX(-25%)}100%{transform:translateX(-75%)}}
-.pain-pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid rgba(220,38,38,.1);border-radius:100px;padding:10px 20px;font-size:14px;font-weight:600;color:var(--text);white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,.04);flex-shrink:0}
+.pain-pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid rgba(220,38,38,.15);border-radius:100px;padding:10px 20px;font-size:14px;font-weight:600;color:var(--text);white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.08);flex-shrink:0}
 .pain-pill .hl{color:var(--red);font-weight:800}
 .pain-pill .src-logo{height:14px;width:auto;opacity:.45;margin-left:2px;vertical-align:middle;flex-shrink:0}
 .pain-count{text-align:center;margin-top:20px;font-size:15px;font-weight:700;color:var(--red)}
