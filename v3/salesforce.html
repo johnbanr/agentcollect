@@ -53,13 +53,13 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 .hero::before{content:'';position:absolute;width:800px;height:800px;top:40%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(79,70,229,.12) 0%,rgba(79,70,229,.05) 40%,transparent 70%);border-radius:50%;pointer-events:none;animation:heroGlow 6s ease-in-out infinite}
 .hero::after{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 700px 400px at 30% 0%,rgba(79,70,229,.08),transparent),radial-gradient(ellipse 500px 500px at 80% 80%,rgba(16,185,129,.06),transparent)}
 @keyframes heroGlow{0%,100%{opacity:.5;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.12)}}
-.hero-km-logo{height:32px;margin-bottom:52px;opacity:.7}
+.hero-km-logo{height:52px;margin-bottom:52px;opacity:.85}
 .hero-calling-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--blue);opacity:.7;margin-bottom:8px;text-align:center;animation:fadeInUp .6s ease .2s both}
 .hero-title{font-size:22px;font-weight:800;color:var(--text);letter-spacing:-.03em;margin-bottom:6px;text-align:center;animation:fadeInUp .6s ease .3s both}
 .hero-hint{font-size:14px;color:var(--green);opacity:.8;text-align:center;margin-bottom:0;font-weight:600;animation:fadeInUp .6s ease .4s both}
 
 /* Pulse rings — incoming call effect */
-.orb-ring{position:absolute;border-radius:50%;border:1.5px solid rgba(79,70,229,.12);pointer-events:none}
+.orb-ring{position:absolute;border-radius:50%;border:1.5px solid rgba(0,161,224,.12);pointer-events:none}
 .orb-ring-1{inset:-30px;animation:ringPulse 3s ease-out infinite}
 .orb-ring-2{inset:-60px;animation:ringPulse 3s ease-out infinite .6s}
 .orb-ring-3{inset:-90px;animation:ringPulse 3s ease-out infinite 1.2s}
@@ -67,14 +67,14 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 
 /* ===== ORB ===== */
 .orb-wrap{position:relative;width:320px;height:320px;aspect-ratio:1;margin:0 auto 36px;cursor:pointer}
-.orb-glow{position:absolute;inset:-60px;border-radius:50%;background:radial-gradient(circle,rgba(79,70,229,.18) 0%,rgba(59,130,246,.06) 40%,transparent 70%);animation:orbGlowPulse 4s ease-in-out infinite}
-.orb-main{position:relative;width:320px;height:320px;aspect-ratio:1;border-radius:50%;-webkit-border-radius:50%;overflow:hidden;-webkit-mask-image:-webkit-radial-gradient(white,black);mask-image:radial-gradient(white,black);animation:orbDrift 6s ease-in-out infinite;transition:transform .3s,box-shadow .3s;box-shadow:0 0 80px rgba(79,70,229,.25),0 0 160px rgba(59,130,246,.08),inset 0 0 60px rgba(0,0,0,.3)}
+.orb-glow{position:absolute;inset:-60px;border-radius:50%;background:radial-gradient(circle,rgba(0,161,224,.18) 0%,rgba(27,150,255,.06) 40%,transparent 70%);animation:orbGlowPulse 4s ease-in-out infinite}
+.orb-main{position:relative;width:320px;height:320px;aspect-ratio:1;border-radius:50%;-webkit-border-radius:50%;overflow:hidden;-webkit-mask-image:-webkit-radial-gradient(white,black);mask-image:radial-gradient(white,black);animation:orbDrift 6s ease-in-out infinite;transition:transform .3s,box-shadow .3s;box-shadow:0 0 80px rgba(0,161,224,.25),0 0 160px rgba(27,150,255,.08),inset 0 0 60px rgba(0,0,0,.3)}
 .orb-wrap:hover .orb-main{transform:scale(1.06)}
 .orb-wrap:active .orb-main{transform:scale(.95)}
 .orb-main.speaking{animation:orbDrift 6s ease-in-out infinite,orbPulseSpeak .8s ease-in-out infinite}
 .orb-layer{position:absolute;inset:0;border-radius:50%}
-.orb-layer-1{background:conic-gradient(from 0deg,#4F46E5,#3B82F6,#1E40AF,#60A5FA,#4F46E5);animation:orbSpin 8s linear infinite}
-.orb-layer-2{background:conic-gradient(from 180deg,rgba(79,70,229,.8),rgba(59,130,246,.5),rgba(30,64,175,.6),rgba(96,165,250,.4),rgba(79,70,229,.8));animation:orbSpin 12s linear infinite reverse;mix-blend-mode:soft-light}
+.orb-layer-1{background:conic-gradient(from 0deg,#00A1E0,#1B96FF,#032D60,#54C7EC,#00A1E0);animation:orbSpin 8s linear infinite}
+.orb-layer-2{background:conic-gradient(from 180deg,rgba(0,161,224,.8),rgba(27,150,255,.5),rgba(3,45,96,.6),rgba(84,199,236,.4),rgba(0,161,224,.8));animation:orbSpin 12s linear infinite reverse;mix-blend-mode:soft-light}
 .orb-layer-3{background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.25) 0%,transparent 50%)}
 .orb-layer-4{background:radial-gradient(circle at 50% 110%,rgba(0,0,0,.4) 0%,transparent 60%)}
 .orb-phone-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:10;transition:opacity .3s,transform .3s}
@@ -272,7 +272,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
   .orb-ring-2{inset:-36px}
   .orb-ring-3{inset:-56px}
   .hero{padding:72px 20px 48px}
-  .hero-km-logo{height:28px;margin-bottom:40px}
+  .hero-km-logo{height:44px;margin-bottom:40px}
   .hero-title{font-size:16px}
   .social-logos{gap:20px}
   .social-logos img{height:18px}
