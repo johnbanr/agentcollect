@@ -232,6 +232,13 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 .voice-fab-icon svg{width:20px;height:20px;color:#fff}
 .voice-fab-text{color:rgba(255,255,255,.9);font-size:13px;font-weight:600;white-space:nowrap}
 
+/* FAB live call state */
+.voice-fab.live{border-color:rgba(239,68,68,.4);background:#1a0f0f;box-shadow:0 8px 32px rgba(239,68,68,.3)}
+.voice-fab.live:hover{border-color:rgba(239,68,68,.6);box-shadow:0 12px 40px rgba(239,68,68,.4)}
+.voice-fab.live .voice-fab-icon{background:#ef4444;box-shadow:0 0 16px rgba(239,68,68,.5);animation:fabPulse 1.5s ease-in-out infinite}
+.voice-fab.live .voice-fab-text{color:rgba(255,255,255,.9)}
+@keyframes fabPulse{0%,100%{box-shadow:0 0 16px rgba(239,68,68,.5)}50%{box-shadow:0 0 28px rgba(239,68,68,.7)}}
+
 /* ===== MOBILE ===== */
 @media(max-width:960px){
   .nav-inner{padding:14px 24px}
@@ -466,8 +473,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 
 <!-- Floating Voice FAB -->
 <div class="voice-fab" id="voice-fab">
-  <div class="voice-fab-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/></svg></div>
-  <div class="voice-fab-text">Call your agent</div>
+  <div class="voice-fab-icon" id="voice-fab-icon">
+    <svg id="fab-mic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/></svg>
+    <svg id="fab-hangup-icon" style="display:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+  </div>
+  <div class="voice-fab-text" id="voice-fab-text">Call your agent</div>
 </div>
 
 <script type="module">
@@ -568,11 +578,39 @@ window.__RetellWebClient = RetellWebClient;
 // ===== Floating Voice FAB =====
 (function(){
   var fab = document.getElementById('voice-fab');
+  var fabText = document.getElementById('voice-fab-text');
+  var fabMicIcon = document.getElementById('fab-mic-icon');
+  var fabHangupIcon = document.getElementById('fab-hangup-icon');
   var hero = document.getElementById('hero');
-  var fabHidden = false;
+  var fabLive = false;
   if(!fab || !hero) return;
 
+  // Expose FAB controls globally so call logic can use them
+  window.__fabSetLive = function(isLive){
+    fabLive = isLive;
+    if(isLive){
+      fab.classList.add('visible', 'live');
+      fabText.textContent = 'End call';
+      fabMicIcon.style.display = 'none';
+      fabHangupIcon.style.display = '';
+    } else {
+      fab.classList.remove('live');
+      fabText.textContent = 'Call your agent';
+      fabMicIcon.style.display = '';
+      fabHangupIcon.style.display = 'none';
+      // Re-evaluate visibility based on scroll
+      var heroBottom = hero.getBoundingClientRect().bottom;
+      if(heroBottom >= 0) fab.classList.remove('visible');
+    }
+  };
+
   fab.addEventListener('click', function(){
+    if(fabLive){
+      // Hang up the call
+      var endBtn = document.getElementById('cs-end-btn');
+      if(endBtn) endBtn.click();
+      return;
+    }
     hero.scrollIntoView({behavior:'smooth', block:'start'});
     setTimeout(function(){
       var orb = document.getElementById('orb-wrap');
@@ -581,7 +619,7 @@ window.__RetellWebClient = RetellWebClient;
   });
 
   window.addEventListener('scroll', function(){
-    if(fabHidden) return;
+    if(fabLive){ fab.classList.add('visible'); return; }
     var heroBottom = hero.getBoundingClientRect().bottom;
     if(heroBottom < 0){
       fab.classList.add('visible');
@@ -589,19 +627,6 @@ window.__RetellWebClient = RetellWebClient;
       fab.classList.remove('visible');
     }
   });
-
-  // Hide FAB once call starts
-  var callState = document.getElementById('call-state');
-  if(callState){
-    var observer = new MutationObserver(function(){
-      var active = document.getElementById('cs-active');
-      if(active && active.classList.contains('visible')){
-        fab.classList.remove('visible');
-        fabHidden = true;
-      }
-    });
-    observer.observe(callState, {subtree:true, attributes:true, attributeFilter:['class']});
-  }
 })();
 
 // ===== WebRTC Voice Call (2-in-1 Orb) =====
@@ -710,6 +735,7 @@ window.__RetellWebClient = RetellWebClient;
           csStatus.textContent = 'Your turn — speak now';
           startWaveformAnim('idle');
           if(orbPhone) orbPhone.style.opacity = '0';
+          if(window.__fabSetLive) window.__fabSetLive(true);
           try { gtag('event', 'call_started', { company: 'Salesforce', page: 'salesforce' }); } catch(e){}
         });
 
@@ -780,6 +806,7 @@ window.__RetellWebClient = RetellWebClient;
     callActive = false;
     if(retellClient){ try { retellClient.stopCall(); } catch(e){} retellClient = null; }
     stopWaveformAnim();
+    if(window.__fabSetLive) window.__fabSetLive(false);
     var orb = document.getElementById('orb-main');
     if(orb) orb.classList.remove('speaking');
     if(orbPhone) orbPhone.style.opacity = '1';
