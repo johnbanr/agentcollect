@@ -485,6 +485,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
   <div class="voice-fab-text">Call your agent</div>
 </div>
 
+<script type="module">
+// ===== Preload RetellAI SDK =====
+import { RetellWebClient } from 'https://cdn.jsdelivr.net/npm/retell-client-js-sdk@2.0.7/+esm';
+window.__RetellWebClient = RetellWebClient;
+</script>
 <script>
 // ===== Expiry Countdown =====
 (function(){
@@ -699,8 +704,18 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
         var result = await response.json();
         if(!result.success || !result.access_token) throw new Error('No access token');
 
-        var module = await import('https://cdn.jsdelivr.net/npm/retell-client-js-sdk@2.0.7/+esm');
-        var RetellWebClient = module.RetellWebClient;
+        var RetellWebClient = window.__RetellWebClient;
+        if(!RetellWebClient){
+          // Fallback: try dynamic import if preload failed
+          try {
+            var module = await import('https://cdn.jsdelivr.net/npm/retell-client-js-sdk@2.0.7/+esm');
+            RetellWebClient = module.RetellWebClient;
+          } catch(importErr) {
+            // Second fallback: try unpkg
+            var module2 = await import('https://unpkg.com/retell-client-js-sdk@2.0.7/dist/index.js');
+            RetellWebClient = module2.RetellWebClient;
+          }
+        }
         retellClient = new RetellWebClient();
 
         retellClient.on('call_started', function(){
@@ -756,10 +771,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
         document.querySelectorAll('.orb-ring').forEach(function(r){ r.style.display = ''; });
         if(orbPhone) orbPhone.style.display = '';
         if(orb) orb.classList.remove('speaking');
-        // Show error with details
-        var errMsg = (err && err.message) ? err.message : String(err);
-        if(hh){ hh.textContent = 'Error: ' + errMsg.substring(0,60); hh.style.color = '#ef4444'; hh.style.fontSize = '12px'; }
-        setTimeout(function(){ if(hh){ hh.textContent = 'Tap to answer'; hh.style.color = ''; hh.style.fontSize = ''; } }, 8000);
+        // Show retry prompt instead of raw error
+        console.error('Call error details:', (err && err.message) || err);
+        if(hh){ hh.textContent = 'Connection failed — tap to retry'; hh.style.color = '#ef4444'; hh.style.fontSize = '13px'; }
+        setTimeout(function(){ if(hh){ hh.textContent = 'Tap to answer'; hh.style.color = ''; hh.style.fontSize = ''; } }, 6000);
       }
     })();
   }
