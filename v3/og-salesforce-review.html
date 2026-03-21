@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<title>Salesforce OG Preview — Pick one</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#111;color:#fff;padding:40px}
+h1{font-size:28px;font-weight:900;margin-bottom:8px;text-align:center}
+.sub{text-align:center;color:#888;font-size:14px;margin-bottom:48px}
+
+.grid{display:flex;flex-direction:column;gap:64px;max-width:700px;margin:0 auto}
+
+.option{background:#1a1a1a;border-radius:16px;overflow:hidden;border:1px solid #333}
+.option-label{padding:16px 24px;display:flex;justify-content:space-between;align-items:center}
+.option-label .letter{font-size:20px;font-weight:900;color:#4F46E5}
+.option-label .take{font-size:13px;color:#888;max-width:480px;text-align:right}
+
+/* iMessage SMS preview simulation */
+.sms-preview{padding:24px;background:#1a1a1a}
+.sms-bubble{background:#e5e5ea;border-radius:18px;padding:0;max-width:380px;margin:0 auto;overflow:hidden}
+.sms-img{width:100%;display:block}
+.sms-meta{padding:10px 14px 12px}
+.sms-title{font-size:14px;font-weight:700;color:#000;line-height:1.3;margin-bottom:2px}
+.sms-url{font-size:11px;color:#8e8e93}
+
+/* OG image frame (1200x630 scaled to fit) */
+.og-frame{width:100%;aspect-ratio:1200/630;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center}
+
+/* === VARIANT STYLES === */
+
+/* A: Current — 298 complaints (red number) */
+.og-a{background:#f6f3ef}
+.og-a .glow{position:absolute;width:500px;height:500px;top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(79,70,229,.08) 0%,transparent 60%);border-radius:50%}
+.og-a .content{position:relative;text-align:center}
+.og-a .sf-logo{height:32px;opacity:.6;margin-bottom:28px}
+.og-a .num{font-size:120px;font-weight:900;letter-spacing:-.06em;line-height:.85;color:#dc2626;margin-bottom:8px}
+.og-a .line{font-size:22px;font-weight:800;color:#0B1B3D}
+.og-a .line .muted{color:#6b7280;font-weight:600}
+
+/* B: Dark mode — "Your agent recovered $2.4M" */
+.og-b{background:#0B1B3D}
+.og-b .content{position:relative;text-align:center}
+.og-b .sf-logo{height:32px;opacity:.5;margin-bottom:28px;filter:brightness(10)}
+.og-b .num{font-size:100px;font-weight:900;letter-spacing:-.04em;line-height:.85;color:#10B981;margin-bottom:8px}
+.og-b .line{font-size:22px;font-weight:700;color:#fff;opacity:.7}
+
+/* C: Split — complaints vs recovered */
+.og-c{background:#f6f3ef;padding:0 40px}
+.og-c .content{position:relative;display:flex;align-items:center;gap:40px}
+.og-c .side{text-align:center;flex:1}
+.og-c .side-num{font-size:80px;font-weight:900;letter-spacing:-.04em;line-height:1}
+.og-c .side-label{font-size:16px;font-weight:700;margin-top:4px}
+.og-c .red{color:#dc2626}
+.og-c .green{color:#10B981}
+.og-c .divider{width:2px;height:100px;background:#e5e7eb;flex-shrink:0}
+.og-c .sf-logo{height:28px;opacity:.5;margin-bottom:20px}
+
+/* D: Minimal — question mark */
+.og-d{background:#0B1B3D}
+.og-d .content{position:relative;text-align:center}
+.og-d .sf-logo{height:36px;filter:brightness(10);opacity:.4;margin-bottom:24px}
+.og-d .question{font-size:28px;font-weight:800;color:#fff;line-height:1.4;max-width:500px;margin:0 auto}
+.og-d .question .hl{color:#4F46E5}
+
+/* E: Agent card style */
+.og-e{background:linear-gradient(135deg,#f6f3ef 0%,#ede9e3 100%)}
+.og-e .content{position:relative;text-align:center}
+.og-e .agent-badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #e5e7eb;border-radius:100px;padding:6px 16px 6px 6px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.og-e .agent-dot{width:10px;height:10px;border-radius:50%;background:#10B981;flex-shrink:0}
+.og-e .agent-text{font-size:12px;font-weight:700;color:#0B1B3D}
+.og-e .sf-logo{height:36px;opacity:.7;margin-bottom:16px}
+.og-e .headline{font-size:26px;font-weight:900;color:#0B1B3D;letter-spacing:-.02em}
+
+/* Brand watermark */
+.og-brand{position:absolute;bottom:12px;left:20px;font-size:11px;font-weight:900;color:#0B1B3D;opacity:.25}
+.og-brand .dot{display:inline-block;width:4px;height:4px;border-radius:50%;background:#4F46E5;margin-left:1px}
+.og-brand-light{color:#fff !important;opacity:.2 !important}
+.og-sources{position:absolute;bottom:12px;right:20px;font-size:9px;color:#9ca3af;font-weight:500}
+</style>
+</head>
+<body>
+
+<h1>Salesforce OG — Pick the combo</h1>
+<p class="sub">Image + titre que le prospect voit dans iMessage/SMS/Slack quand tu envoies le lien</p>
+
+<div class="grid">
+
+<!-- A: Current -->
+<div class="option">
+  <div class="option-label">
+    <span class="letter">A — Current</span>
+    <span class="take">Data shock. Specific number = credible. But title is bland.</span>
+  </div>
+  <div class="sms-preview">
+    <div class="sms-bubble">
+      <div class="og-frame og-a">
+        <div class="glow"></div>
+        <div class="content">
+          <img src="https://cdn.brandfetch.io/salesforce.com/w/256/h/48/logo" alt="SF" class="sf-logo" crossorigin="anonymous">
+          <div class="num">298</div>
+          <div class="line">billing complaints <span class="muted">from your customers.</span></div>
+        </div>
+        <div class="og-brand">AgentCollect<span class="dot"></span></div>
+        <div class="og-sources">BBB · Trustpilot · G2</div>
+      </div>
+      <div class="sms-meta">
+        <div class="sms-title">AgentCollect × Salesforce</div>
+        <div class="sms-url">agentcollect.com</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- A2: Same image, better title -->
+<div class="option">
+  <div class="option-label">
+    <span class="letter">A2 — Same image, killer title</span>
+    <span class="take">The image already punches. Just fix the title to match the energy.</span>
+  </div>
+  <div class="sms-preview">
+    <div class="sms-bubble">
+      <div class="og-frame og-a">
+        <div class="glow"></div>
+        <div class="content">
+          <img src="https://cdn.brandfetch.io/salesforce.com/w/256/h/48/logo" alt="SF" class="sf-logo" crossorigin="anonymous">
+          <div class="num">298</div>
+          <div class="line">billing complaints <span class="muted">from your customers.</span></div>
+        </div>
+        <div class="og-brand">AgentCollect<span class="dot"></span></div>
+        <div class="og-sources">BBB · Trustpilot · G2</div>
+      </div>
+      <div class="sms-meta">
+        <div class="sms-title">298 billing complaints. We found them all.</div>
+        <div class="sms-url">agentcollect.com</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- B: Dark mode recovery -->
+<div class="option">
+  <div class="option-label">
+    <span class="letter">B — Dark + Recovery angle</span>
+    <span class="take">Flip the narrative: not "you have complaints" but "we already recovered." Aspirational.</span>
+  </div>
+  <div class="sms-preview">
+    <div class="sms-bubble">
+      <div class="og-frame og-b">
+        <div class="content">
+          <img src="https://cdn.brandfetch.io/salesforce.com/w/256/h/48/logo" alt="SF" class="sf-logo" crossorigin="anonymous">
+          <div class="num">$2.4M</div>
+          <div class="line">recovered without a single human call.</div>
+        </div>
+        <div class="og-brand og-brand-light">AgentCollect<span class="dot"></span></div>
+      </div>
+      <div class="sms-meta">
+        <div class="sms-title">Your Salesforce agent just recovered $2.4M</div>
+        <div class="sms-url">agentcollect.com</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- C: Split contrast -->
+<div class="option">
+  <div class="option-label">
+    <span class="letter">C — Split: complaints vs recovered</span>
+    <span class="take">Visual contrast. Red = pain, Green = solution. Both numbers hit at once.</span>
+  </div>
+  <div class="sms-preview">
+    <div class="sms-bubble">
+      <div class="og-frame og-c">
+        <div class="content">
+          <div class="side">
+            <img src="https://cdn.brandfetch.io/salesforce.com/w/256/h/48/logo" alt="SF" class="sf-logo" crossorigin="anonymous">
+            <div class="side-num red">298</div>
+            <div class="side-label" style="color:#dc2626">complaints found</div>
+          </div>
+          <div class="divider"></div>
+          <div class="side">
+            <div style="height:28px;margin-bottom:20px"></div>
+            <div class="side-num green">$0</div>
+            <div class="side-label" style="color:#10B981">recovered so far</div>
+          </div>
+        </div>
+        <div class="og-brand">AgentCollect<span class="dot"></span></div>
+      </div>
+      <div class="sms-meta">
+        <div class="sms-title">298 complaints. $0 recovered. We can fix that.</div>
+        <div class="sms-url">agentcollect.com</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- D: Dark question -->
+<div class="option">
+  <div class="option-label">
+    <span class="letter">D — Provocative question</span>
+    <span class="take">Pure curiosity gap. No data, just a question they can't ignore.</span>
+  </div>
+  <div class="sms-preview">
+    <div class="sms-bubble">
+      <div class="og-frame og-d">
+        <div class="content">
+          <img src="https://cdn.brandfetch.io/salesforce.com/w/256/h/48/logo" alt="SF" class="sf-logo" crossorigin="anonymous">
+          <div class="question">Who's collecting your <span class="hl">unpaid invoices</span> right now?</div>
+        </div>
+        <div class="og-brand og-brand-light">AgentCollect<span class="dot"></span></div>
+      </div>
+      <div class="sms-meta">
+        <div class="sms-title">Salesforce: we need to talk about your AR</div>
+        <div class="sms-url">agentcollect.com</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- E: Agent live badge -->
+<div class="option">
+  <div class="option-label">
+    <span class="letter">E — Agent is live</span>
+    <span class="take">"We already built it" energy. The green dot = live, real, ready. FOMO.</span>
+  </div>
+  <div class="sms-preview">
+    <div class="sms-bubble">
+      <div class="og-frame og-e">
+        <div class="content">
+          <div class="agent-badge">
+            <div class="agent-dot"></div>
+            <div class="agent-text">AGENT LIVE</div>
+          </div><br>
+          <img src="https://cdn.brandfetch.io/salesforce.com/w/256/h/48/logo" alt="SF" class="sf-logo" crossorigin="anonymous"><br>
+          <div class="headline">Your collection agent is ready.</div>
+        </div>
+        <div class="og-brand">AgentCollect<span class="dot"></span></div>
+      </div>
+      <div class="sms-meta">
+        <div class="sms-title">We built a collection agent for Salesforce</div>
+        <div class="sms-url">agentcollect.com</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div style="text-align:center;padding:48px 0 24px;color:#555;font-size:13px">
+  Pick a letter. I'll update OG tags + regenerate the image in 30 seconds.
+</div>
+
+</body></html>
