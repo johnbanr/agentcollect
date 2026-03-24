@@ -167,27 +167,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 .proof-sec-title{font-size:clamp(26px,3.2vw,38px);font-weight:900;letter-spacing:-.03em;line-height:1.1;margin-bottom:16px;color:var(--text)}
 .proof-sec-sub{font-size:17px;color:var(--muted);margin-bottom:52px;line-height:1.5}
 
-/* Wall of Pain */
-.pain-wall{overflow:hidden;margin-top:40px;margin-bottom:40px;position:relative;padding:8px 0;width:100vw;margin-left:calc(-50vw + 50%)}
-.pain-wall::before,.pain-wall::after{content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2;pointer-events:none}
-.pain-wall::before{left:0;background:linear-gradient(to right,#FAFBFF,transparent)}
-.pain-wall::after{right:0;background:linear-gradient(to left,#FAFBFF,transparent)}
-.pain-row{display:flex;gap:14px;padding:6px 0;width:max-content}
-.pain-row-1{animation:painScroll1 32s linear infinite}
-.pain-row-2{animation:painScroll2 38s linear infinite}
-.pain-wall:hover .pain-row{animation-play-state:paused}
-@keyframes painScroll1{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-@keyframes painScroll2{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
-.pain-pill{cursor:pointer;transition:transform .15s,box-shadow .15s}
-.pain-pill:hover{transform:scale(1.04);box-shadow:0 4px 16px rgba(220,38,38,.15);z-index:2}
-.pain-pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid rgba(220,38,38,.15);border-radius:100px;padding:10px 20px;font-size:14px;font-weight:600;color:var(--text);white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.08);flex-shrink:0;text-decoration:none}
-.pain-pill .hl{color:var(--red);font-weight:800}
-.pain-pill .src-logo{height:16px;width:auto;opacity:.4;margin-left:4px;vertical-align:middle;flex-shrink:0;border-radius:3px}
-.pain-pill .src-tag{font-size:11px;font-weight:700;color:#9ca3af;letter-spacing:.02em;margin-left:6px;flex-shrink:0}
-.pain-count{text-align:center;margin-top:20px;font-size:15px;font-weight:700;color:var(--red)}
-.pain-count span{color:var(--muted);font-weight:500}
-.pain-count a{color:var(--red);text-decoration:none;font-weight:700}
-.pain-count a:hover{text-decoration:underline}
 
 /* ===== WHAT IS AGENTCOLLECT ===== */
 .wia-section{padding:80px 48px;max-width:920px;margin:0 auto;text-align:center}
@@ -402,40 +381,28 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 <section class="proof-section">
   <div class="rv">
     <h2 class="proof-sec-title">Great team. Great document technology.</h2>
-    <p class="proof-sec-sub">Some accounts just slip through. Here's what your customers are saying.</p>
+    <p class="proof-sec-sub">Some accounts just slip through. Here's what happens when they do.</p>
   </div>
 
-  <div class="pain-wall rv">
-    <!-- Row 1: Billing after cancellation, CFPB fine, continued invoicing -->
-    <div class="pain-row pain-row-1">
-      <a class="pain-pill" href="https://www.bbb.org/us/ct/norwalk/profile/business-form-printer/xerox-corporation-0111-12000842/complaints" target="_blank">"Cancelled lease, still <span class="hl">billed for 6 months</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ct/norwalk/profile/business-form-printer/xerox-corporation-0111-12000842/complaints" target="_blank">"CFPB fined Xerox <span class="hl">$1.1M</span> for billing violations" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ct/norwalk/profile/business-form-printer/xerox-corporation-0111-12000842/complaints" target="_blank">"Returned equipment — <span class="hl">invoices keep coming</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ct/norwalk/profile/business-form-printer/xerox-corporation-0111-12000842/complaints" target="_blank">"Unclear <span class="hl">buyout terms</span> — trapped in auto-renew" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ct/norwalk/profile/business-form-printer/xerox-corporation-0111-12000842/complaints" target="_blank">"Sent to collections over <span class="hl">disputed charges</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <!-- dup for scroll -->
-      <a class="pain-pill" href="https://www.bbb.org/us/ct/norwalk/profile/business-form-printer/xerox-corporation-0111-12000842/complaints" target="_blank">"Cancelled lease, still <span class="hl">billed for 6 months</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ct/norwalk/profile/business-form-printer/xerox-corporation-0111-12000842/complaints" target="_blank">"CFPB fined Xerox <span class="hl">$1.1M</span> for billing violations" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ct/norwalk/profile/business-form-printer/xerox-corporation-0111-12000842/complaints" target="_blank">"Returned equipment — <span class="hl">invoices keep coming</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ct/norwalk/profile/business-form-printer/xerox-corporation-0111-12000842/complaints" target="_blank">"Unclear <span class="hl">buyout terms</span> — trapped in auto-renew" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ct/norwalk/profile/business-form-printer/xerox-corporation-0111-12000842/complaints" target="_blank">"Sent to collections over <span class="hl">disputed charges</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-    </div>
-    <!-- Row 2: Continued billing, no resolution -->
-    <div class="pain-row pain-row-2">
-      <a class="pain-pill" href="https://www.bbb.org/us/ct/norwalk/profile/business-form-printer/xerox-corporation-0111-12000842/complaints" target="_blank">"Contract ended — <span class="hl">billed anyway</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ct/norwalk/profile/business-form-printer/xerox-corporation-0111-12000842/complaints" target="_blank">"Called 10 times — <span class="hl">no one can help</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ct/norwalk/profile/business-form-printer/xerox-corporation-0111-12000842/complaints" target="_blank">"Lease buyout quote <span class="hl">changed 3 times</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ct/norwalk/profile/business-form-printer/xerox-corporation-0111-12000842/complaints" target="_blank">"Continued invoicing after <span class="hl">equipment return</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ct/norwalk/profile/business-form-printer/xerox-corporation-0111-12000842/complaints" target="_blank">"Billing after cancellation — <span class="hl">no refund</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <!-- dup -->
-      <a class="pain-pill" href="https://www.bbb.org/us/ct/norwalk/profile/business-form-printer/xerox-corporation-0111-12000842/complaints" target="_blank">"Contract ended — <span class="hl">billed anyway</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ct/norwalk/profile/business-form-printer/xerox-corporation-0111-12000842/complaints" target="_blank">"Called 10 times — <span class="hl">no one can help</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ct/norwalk/profile/business-form-printer/xerox-corporation-0111-12000842/complaints" target="_blank">"Lease buyout quote <span class="hl">changed 3 times</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ct/norwalk/profile/business-form-printer/xerox-corporation-0111-12000842/complaints" target="_blank">"Continued invoicing after <span class="hl">equipment return</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ct/norwalk/profile/business-form-printer/xerox-corporation-0111-12000842/complaints" target="_blank">"Billing after cancellation — <span class="hl">no refund</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-    </div>
+  <div class="proof-complaints" style="max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:16px;padding:0 24px;">
+    <a href="https://www.bbb.org/us/ct/norwalk/profile/business-form-printer/xerox-corporation-0111-12000842/complaints" target="_blank" rel="noopener" class="complaint-pill" style="display:flex;align-items:center;gap:12px;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.15);border-radius:12px;padding:16px 20px;text-decoration:none;color:#1a1a1a;font-size:15px;line-height:1.5;">
+      <img src="/v3/logos/bbb.png" alt="BBB" style="width:28px;height:28px;flex-shrink:0;">
+      <span>"We continue to receive monthly invoices and harassing calls from Xerox collections department"</span>
+    </a>
+    <a href="https://www.bbb.org/us/ct/norwalk/profile/business-form-printer/xerox-corporation-0111-12000842/complaints" target="_blank" rel="noopener" class="complaint-pill" style="display:flex;align-items:center;gap:12px;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.15);border-radius:12px;padding:16px 20px;text-decoration:none;color:#1a1a1a;font-size:15px;line-height:1.5;">
+      <img src="/v3/logos/bbb.png" alt="BBB" style="width:28px;height:28px;flex-shrink:0;">
+      <span>"I have received about 30 calls from somewhere in Asia looking to collect the money due"</span>
+    </a>
+    <a href="https://www.bbb.org/us/ct/norwalk/profile/business-form-printer/xerox-corporation-0111-12000842/complaints" target="_blank" rel="noopener" class="complaint-pill" style="display:flex;align-items:center;gap:12px;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.15);border-radius:12px;padding:16px 20px;text-decoration:none;color:#1a1a1a;font-size:15px;line-height:1.5;">
+      <img src="/v3/logos/bbb.png" alt="BBB" style="width:28px;height:28px;flex-shrink:0;">
+      <span>"Multiple calls per day from Xerox regarding an alleged overdue invoice — for nearly three months"</span>
+    </a>
   </div>
-  <div class="pain-count rv">65 <span>BBB complaints about Xerox &mdash; </span><a href="https://www.bbb.org/us/ct/norwalk/profile/business-form-printer/xerox-corporation-0111-12000842/complaints" target="_blank">BBB &#8599;</a></div>
+  <p class="proof-count" style="text-align:center;margin-top:16px;">
+    <a href="https://www.bbb.org/us/ct/norwalk/profile/business-form-printer/xerox-corporation-0111-12000842/complaints" target="_blank" rel="noopener" style="color:#ef4444;text-decoration:none;font-weight:600;">
+      65 BBB complaints about Xerox &mdash; BBB &#8599;
+    </a>
+  </p>
 
   </div>
 </section>

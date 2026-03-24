@@ -167,26 +167,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 .proof-sec-sub{font-size:17px;color:var(--muted);margin-bottom:52px;line-height:1.5}
 
 /* Wall of Pain */
-.pain-wall{overflow:hidden;margin-top:40px;margin-bottom:40px;position:relative;padding:8px 0;width:100vw;margin-left:calc(-50vw + 50%)}
-.pain-wall::before,.pain-wall::after{content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2;pointer-events:none}
-.pain-wall::before{left:0;background:linear-gradient(to right,#FAFBFF,transparent)}
-.pain-wall::after{right:0;background:linear-gradient(to left,#FAFBFF,transparent)}
-.pain-row{display:flex;gap:14px;padding:6px 0;width:max-content}
-.pain-row-1{animation:painScroll1 32s linear infinite}
-.pain-row-2{animation:painScroll2 38s linear infinite}
-.pain-wall:hover .pain-row{animation-play-state:paused}
-@keyframes painScroll1{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-@keyframes painScroll2{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
-.pain-pill{cursor:pointer;transition:transform .15s,box-shadow .15s}
-.pain-pill:hover{transform:scale(1.04);box-shadow:0 4px 16px rgba(220,38,38,.15);z-index:2}
-.pain-pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid rgba(220,38,38,.15);border-radius:100px;padding:10px 20px;font-size:14px;font-weight:600;color:var(--text);white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.08);flex-shrink:0;text-decoration:none}
-.pain-pill .hl{color:var(--red);font-weight:800}
-.pain-pill .src-logo{height:16px;width:auto;opacity:.4;margin-left:4px;vertical-align:middle;flex-shrink:0;border-radius:3px}
-.pain-pill .src-tag{font-size:11px;font-weight:700;color:#9ca3af;letter-spacing:.02em;margin-left:6px;flex-shrink:0}
-.pain-count{text-align:center;margin-top:20px;font-size:15px;font-weight:700;color:var(--red)}
-.pain-count span{color:var(--muted);font-weight:500}
-.pain-count a{color:var(--red);text-decoration:none;font-weight:700}
-.pain-count a:hover{text-decoration:underline}
 
 /* ===== AGENTCOLLECT PROOF SECTION ===== */
 .ac-proof-section{padding:80px 48px 80px;max-width:920px;margin:0 auto;text-align:center}
@@ -364,40 +344,28 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 <section class="proof-section">
   <div class="rv">
     <h2 class="proof-sec-title">Great team. Great utility management.</h2>
-    <p class="proof-sec-sub">Some accounts just slip through. Here's what your customers are saying.</p>
+    <p class="proof-sec-sub">Some accounts just slip through. Here's what happens when they do.</p>
   </div>
 
-  <div class="pain-wall rv">
-    <!-- Row 1 -->
-    <div class="pain-row pain-row-1">
-      <a class="pain-pill" href="https://www.bbb.org/us/ut/river-heights/profile/billing-services/conservice-utility-management-billing-1166-22011873/complaints" target="_blank">"<span class="hl">Phantom charges</span> from faulty meters" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ut/river-heights/profile/billing-services/conservice-utility-management-billing-1166-22011873/complaints" target="_blank">"<span class="hl">$2,000+ overcharges</span> on utility bills" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ut/river-heights/profile/billing-services/conservice-utility-management-billing-1166-22011873/complaints" target="_blank">"Billing for utilities <span class="hl">never used</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ut/river-heights/profile/billing-services/conservice-utility-management-billing-1166-22011873/complaints" target="_blank">"<span class="hl">Impossible to dispute</span> charges — no human answers" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ut/river-heights/profile/billing-services/conservice-utility-management-billing-1166-22011873/complaints" target="_blank">"Meter reads don't match — <span class="hl">refuses to correct</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <!-- dup -->
-      <a class="pain-pill" href="https://www.bbb.org/us/ut/river-heights/profile/billing-services/conservice-utility-management-billing-1166-22011873/complaints" target="_blank">"<span class="hl">Phantom charges</span> from faulty meters" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ut/river-heights/profile/billing-services/conservice-utility-management-billing-1166-22011873/complaints" target="_blank">"<span class="hl">$2,000+ overcharges</span> on utility bills" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ut/river-heights/profile/billing-services/conservice-utility-management-billing-1166-22011873/complaints" target="_blank">"Billing for utilities <span class="hl">never used</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ut/river-heights/profile/billing-services/conservice-utility-management-billing-1166-22011873/complaints" target="_blank">"<span class="hl">Impossible to dispute</span> charges — no human answers" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ut/river-heights/profile/billing-services/conservice-utility-management-billing-1166-22011873/complaints" target="_blank">"Meter reads don't match — <span class="hl">refuses to correct</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-    </div>
-    <!-- Row 2 -->
-    <div class="pain-row pain-row-2">
-      <a class="pain-pill" href="https://www.bbb.org/us/ut/river-heights/profile/billing-services/conservice-utility-management-billing-1166-22011873/complaints" target="_blank">"Charged <span class="hl">$800/mo for water</span> in a studio" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ut/river-heights/profile/billing-services/conservice-utility-management-billing-1166-22011873/complaints" target="_blank">"<span class="hl">Class action lawsuit</span> filed for overbilling" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ut/river-heights/profile/billing-services/conservice-utility-management-billing-1166-22011873/complaints" target="_blank">"Empty apartment — still <span class="hl">billed $500</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ut/river-heights/profile/billing-services/conservice-utility-management-billing-1166-22011873/complaints" target="_blank">"Dispute process is a <span class="hl">dead end</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ut/river-heights/profile/billing-services/conservice-utility-management-billing-1166-22011873/complaints" target="_blank">"Sent to <span class="hl">collections</span> for charges I disputed" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <!-- dup -->
-      <a class="pain-pill" href="https://www.bbb.org/us/ut/river-heights/profile/billing-services/conservice-utility-management-billing-1166-22011873/complaints" target="_blank">"Charged <span class="hl">$800/mo for water</span> in a studio" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ut/river-heights/profile/billing-services/conservice-utility-management-billing-1166-22011873/complaints" target="_blank">"<span class="hl">Class action lawsuit</span> filed for overbilling" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ut/river-heights/profile/billing-services/conservice-utility-management-billing-1166-22011873/complaints" target="_blank">"Empty apartment — still <span class="hl">billed $500</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ut/river-heights/profile/billing-services/conservice-utility-management-billing-1166-22011873/complaints" target="_blank">"Dispute process is a <span class="hl">dead end</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/ut/river-heights/profile/billing-services/conservice-utility-management-billing-1166-22011873/complaints" target="_blank">"Sent to <span class="hl">collections</span> for charges I disputed" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"></a>
-    </div>
+  <div class="proof-complaints" style="max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:16px;padding:0 24px;">
+    <a href="https://www.bbb.org/us/ut/river-heights/profile/billing-services/conservice-utility-management-billing-1166-22011873/complaints" target="_blank" rel="noopener" class="complaint-pill" style="display:flex;align-items:center;gap:12px;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.15);border-radius:12px;padding:16px 20px;text-decoration:none;color:#1a1a1a;font-size:15px;line-height:1.5;">
+      <img src="/v3/logos/bbb.png" alt="BBB" style="width:28px;height:28px;flex-shrink:0;">
+      <span>"Literally nobody at either of these companies is making any effort to resolve this"</span>
+    </a>
+    <a href="https://www.bbb.org/us/ut/river-heights/profile/billing-services/conservice-utility-management-billing-1166-22011873/complaints" target="_blank" rel="noopener" class="complaint-pill" style="display:flex;align-items:center;gap:12px;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.15);border-radius:12px;padding:16px 20px;text-decoration:none;color:#1a1a1a;font-size:15px;line-height:1.5;">
+      <img src="/v3/logos/bbb.png" alt="BBB" style="width:28px;height:28px;flex-shrink:0;">
+      <span>"I have not heard back, it's been 5 business days. No update."</span>
+    </a>
+    <a href="https://www.bbb.org/us/ut/river-heights/profile/billing-services/conservice-utility-management-billing-1166-22011873/complaints" target="_blank" rel="noopener" class="complaint-pill" style="display:flex;align-items:center;gap:12px;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.15);border-radius:12px;padding:16px 20px;text-decoration:none;color:#1a1a1a;font-size:15px;line-height:1.5;">
+      <img src="/v3/logos/bbb.png" alt="BBB" style="width:28px;height:28px;flex-shrink:0;">
+      <span>"I have emailed Conservice multiple times and no reply"</span>
+    </a>
   </div>
-  <div class="pain-count rv">535 <span>BBB complaints about Conservice &mdash; </span><a href="https://www.bbb.org/us/ut/river-heights/profile/billing-services/conservice-utility-management-billing-1166-22011873/complaints" target="_blank">BBB &#8599;</a></div>
+  <p class="proof-count" style="text-align:center;margin-top:16px;">
+    <a href="https://www.bbb.org/us/ut/river-heights/profile/billing-services/conservice-utility-management-billing-1166-22011873/complaints" target="_blank" rel="noopener" style="color:#ef4444;text-decoration:none;font-weight:600;">
+      535 BBB complaints about Conservice &mdash; BBB &#8599;
+    </a>
+  </p>
 
   </div>
 </section>
