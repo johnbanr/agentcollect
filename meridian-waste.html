@@ -179,9 +179,16 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 @keyframes painScroll1{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @keyframes painScroll2{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
 .pain-pill{cursor:pointer;transition:transform .15s,box-shadow .15s}
-.pain-pill:hover{transform:scale(1.04);box-shadow:0 4px 16px rgba(220,38,38,.15);z-index:2}
-.pain-pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid rgba(220,38,38,.15);border-radius:100px;padding:10px 20px;font-size:14px;font-weight:600;color:var(--text);white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.08);flex-shrink:0;text-decoration:none}
-.pain-pill .hl{color:var(--red);font-weight:800}
+.pain-pill:hover{transform:scale(1.04);z-index:2}
+.pain-pill{display:inline-flex;align-items:center;gap:8px;border-radius:100px;padding:10px 20px;font-size:14px;font-weight:600;color:var(--text);white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.08);flex-shrink:0;text-decoration:none}
+/* Amber pills — process broken (silence, no response) */
+.pain-pill.amber{background:rgba(245,158,11,.03);border:1px solid rgba(245,158,11,.15)}
+.pain-pill.amber:hover{box-shadow:0 4px 16px rgba(245,158,11,.12)}
+.pain-pill.amber .hl{color:var(--amber);font-weight:800}
+/* Red pills — consequences (collections, BBB) */
+.pain-pill.red{background:#fff;border:1px solid rgba(220,38,38,.15)}
+.pain-pill.red:hover{box-shadow:0 4px 16px rgba(220,38,38,.15)}
+.pain-pill.red .hl{color:var(--red);font-weight:800}
 .pain-pill .src-logo{height:16px;width:auto;opacity:.4;margin-left:4px;vertical-align:middle;flex-shrink:0;border-radius:3px}
 .pain-pill .src-tag{font-size:11px;font-weight:700;color:#9ca3af;letter-spacing:.02em;margin-left:6px;flex-shrink:0}
 .pain-count{text-align:center;margin-top:20px;font-size:15px;font-weight:700;color:var(--red)}
@@ -426,32 +433,32 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
   </div>
 
   <div class="pain-wall rv">
-    <!-- Row 1: Collection — sent to agency, threatened, collection notice -->
+    <!-- Row 1: AMBER — the silence / process broken -->
     <div class="pain-row pain-row-1">
-      <a class="pain-pill" href="https://www.bbb.org/us/va/petersburg/profile/recycling-services/container-first-meridian-waste-0603-63401724/complaints" target="_blank">"i have a letter from <span class="hl">A.R.M.</span> about collection" <span class="src-tag">BBB Virginia</span></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/mo/foristell/profile/garbage-removal/meridian-waste-missouri-llc-0734-310611568/complaints" target="_blank">"they were going to turn me in to <span class="hl">collections</span>" <span class="src-tag">BBB Missouri</span></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/va/petersburg/profile/recycling-services/container-first-meridian-waste-0603-63401724/complaints" target="_blank">"overcharged 2 years — then a <span class="hl">collection notice</span>" <span class="src-tag">BBB Virginia</span></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/al/huntsville/profile/dumpster-service/meridian-waste-0513-900045566" target="_blank">"<span class="hl">F rating</span> — failed to respond to 5 complaints" <span class="src-tag">BBB Alabama</span></a>
+      <a class="pain-pill amber" href="https://www.bbb.org/us/al/huntsville/profile/dumpster-service/meridian-waste-0513-900045566" target="_blank">"<span class="hl">F rating</span> — failed to respond to 5 complaints" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"> <span class="src-tag">Alabama · 2024</span></a>
+      <a class="pain-pill amber" href="https://www.bbb.org/us/mo/foristell/profile/garbage-removal/meridian-waste-missouri-llc-0734-310611568/complaints" target="_blank">"numerous calls, messages and emails — <span class="hl">no response</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"> <span class="src-tag">Missouri · 2024</span></a>
+      <a class="pain-pill amber" href="https://www.bbb.org/us/va/petersburg/profile/recycling-services/container-first-meridian-waste-0603-63401724/complaints" target="_blank">"2 weeks, no check and <span class="hl">no returned calls</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"> <span class="src-tag">Virginia · Oct 2024</span></a>
+      <a class="pain-pill amber" href="https://www.bbb.org/us/mo/foristell/profile/garbage-removal/meridian-waste-missouri-llc-0734-310611568/complaints" target="_blank">"calls going to <span class="hl">voicemail</span>, no call back" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"> <span class="src-tag">Missouri · 2023</span></a>
       <!-- dup for scroll -->
-      <a class="pain-pill" href="https://www.bbb.org/us/va/petersburg/profile/recycling-services/container-first-meridian-waste-0603-63401724/complaints" target="_blank">"i have a letter from <span class="hl">A.R.M.</span> about collection" <span class="src-tag">BBB Virginia</span></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/mo/foristell/profile/garbage-removal/meridian-waste-missouri-llc-0734-310611568/complaints" target="_blank">"they were going to turn me in to <span class="hl">collections</span>" <span class="src-tag">BBB Missouri</span></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/va/petersburg/profile/recycling-services/container-first-meridian-waste-0603-63401724/complaints" target="_blank">"overcharged 2 years — then a <span class="hl">collection notice</span>" <span class="src-tag">BBB Virginia</span></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/al/huntsville/profile/dumpster-service/meridian-waste-0513-900045566" target="_blank">"<span class="hl">F rating</span> — failed to respond to 5 complaints" <span class="src-tag">BBB Alabama</span></a>
+      <a class="pain-pill amber" href="https://www.bbb.org/us/al/huntsville/profile/dumpster-service/meridian-waste-0513-900045566" target="_blank">"<span class="hl">F rating</span> — failed to respond to 5 complaints" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"> <span class="src-tag">Alabama · 2024</span></a>
+      <a class="pain-pill amber" href="https://www.bbb.org/us/mo/foristell/profile/garbage-removal/meridian-waste-missouri-llc-0734-310611568/complaints" target="_blank">"numerous calls, messages and emails — <span class="hl">no response</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"> <span class="src-tag">Missouri · 2024</span></a>
+      <a class="pain-pill amber" href="https://www.bbb.org/us/va/petersburg/profile/recycling-services/container-first-meridian-waste-0603-63401724/complaints" target="_blank">"2 weeks, no check and <span class="hl">no returned calls</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"> <span class="src-tag">Virginia · Oct 2024</span></a>
+      <a class="pain-pill amber" href="https://www.bbb.org/us/mo/foristell/profile/garbage-removal/meridian-waste-missouri-llc-0734-310611568/complaints" target="_blank">"calls going to <span class="hl">voicemail</span>, no call back" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"> <span class="src-tag">Missouri · 2023</span></a>
     </div>
-    <!-- Row 2: The silence that leads to collections — disputes ignored -->
+    <!-- Row 2: RED — consequences (collections, A.R.M., BBB) -->
     <div class="pain-row pain-row-2">
-      <a class="pain-pill" href="https://www.bbb.org/us/mo/foristell/profile/garbage-removal/meridian-waste-missouri-llc-0734-310611568/complaints" target="_blank">"numerous calls, messages and emails — <span class="hl">no response</span>" <span class="src-tag">BBB Missouri</span></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/va/petersburg/profile/recycling-services/container-first-meridian-waste-0603-63401724/complaints" target="_blank">"2 weeks, no check and <span class="hl">no returned calls</span>" <span class="src-tag">BBB Virginia</span></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/nc/charlotte/profile/waste-management/meridian-waste-north-carolina-llc-0473-92022122" target="_blank">"if I can do <span class="hl">zero review</span>, I will" <span class="src-tag">BBB N. Carolina</span></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/mo/foristell/profile/garbage-removal/meridian-waste-missouri-llc-0734-310611568/complaints" target="_blank">"calls going to <span class="hl">voicemail</span>, no call back" <span class="src-tag">BBB Missouri</span></a>
+      <a class="pain-pill red" href="https://www.bbb.org/us/va/petersburg/profile/recycling-services/container-first-meridian-waste-0603-63401724/complaints" target="_blank">"i have a letter from <span class="hl">A.R.M.</span> about collection" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"> <span class="src-tag">Virginia · Jul 2024</span></a>
+      <a class="pain-pill red" href="https://www.bbb.org/us/mo/foristell/profile/garbage-removal/meridian-waste-missouri-llc-0734-310611568/complaints" target="_blank">"they were going to turn me in to <span class="hl">collections</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"> <span class="src-tag">Missouri · Oct 2023</span></a>
+      <a class="pain-pill red" href="https://www.bbb.org/us/va/petersburg/profile/recycling-services/container-first-meridian-waste-0603-63401724/complaints" target="_blank">"overcharged 2 years — then a <span class="hl">collection notice</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"> <span class="src-tag">Virginia · Jul 2024</span></a>
+      <a class="pain-pill red" href="https://www.bbb.org/us/nc/charlotte/profile/waste-management/meridian-waste-north-carolina-llc-0473-92022122" target="_blank">"if I can do <span class="hl">zero review</span>, I will" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"> <span class="src-tag">N. Carolina</span></a>
       <!-- dup for scroll -->
-      <a class="pain-pill" href="https://www.bbb.org/us/mo/foristell/profile/garbage-removal/meridian-waste-missouri-llc-0734-310611568/complaints" target="_blank">"numerous calls, messages and emails — <span class="hl">no response</span>" <span class="src-tag">BBB Missouri</span></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/va/petersburg/profile/recycling-services/container-first-meridian-waste-0603-63401724/complaints" target="_blank">"2 weeks, no check and <span class="hl">no returned calls</span>" <span class="src-tag">BBB Virginia</span></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/nc/charlotte/profile/waste-management/meridian-waste-north-carolina-llc-0473-92022122" target="_blank">"if I can do <span class="hl">zero review</span>, I will" <span class="src-tag">BBB N. Carolina</span></a>
-      <a class="pain-pill" href="https://www.bbb.org/us/mo/foristell/profile/garbage-removal/meridian-waste-missouri-llc-0734-310611568/complaints" target="_blank">"calls going to <span class="hl">voicemail</span>, no call back" <span class="src-tag">BBB Missouri</span></a>
+      <a class="pain-pill red" href="https://www.bbb.org/us/va/petersburg/profile/recycling-services/container-first-meridian-waste-0603-63401724/complaints" target="_blank">"i have a letter from <span class="hl">A.R.M.</span> about collection" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"> <span class="src-tag">Virginia · Jul 2024</span></a>
+      <a class="pain-pill red" href="https://www.bbb.org/us/mo/foristell/profile/garbage-removal/meridian-waste-missouri-llc-0734-310611568/complaints" target="_blank">"they were going to turn me in to <span class="hl">collections</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"> <span class="src-tag">Missouri · Oct 2023</span></a>
+      <a class="pain-pill red" href="https://www.bbb.org/us/va/petersburg/profile/recycling-services/container-first-meridian-waste-0603-63401724/complaints" target="_blank">"overcharged 2 years — then a <span class="hl">collection notice</span>" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"> <span class="src-tag">Virginia · Jul 2024</span></a>
+      <a class="pain-pill red" href="https://www.bbb.org/us/nc/charlotte/profile/waste-management/meridian-waste-north-carolina-llc-0473-92022122" target="_blank">"if I can do <span class="hl">zero review</span>, I will" <img class="src-logo" src="/v3/logos/bbb.png" alt="BBB"> <span class="src-tag">N. Carolina</span></a>
     </div>
   </div>
-  <div class="pain-count rv">BBB F rating (Alabama) · 3 collection complaints · 5 unanswered disputes <span>&mdash; </span><a href="https://www.bbb.org/us/al/huntsville/profile/dumpster-service/meridian-waste-0513-900045566" target="_blank">BBB &#8599;</a> <span>|</span> <a href="https://www.bbb.org/us/va/petersburg/profile/recycling-services/container-first-meridian-waste-0603-63401724/complaints" target="_blank">Virginia &#8599;</a> <span>|</span> <a href="https://www.bbb.org/us/mo/foristell/profile/garbage-removal/meridian-waste-missouri-llc-0734-310611568/complaints" target="_blank">Missouri &#8599;</a></div>
+  <div class="pain-count rv">BBB F rating · A.R.M. Solutions (119 CFPB complaints) · 5 unanswered disputes across 4 states <span>&mdash; </span><a href="https://www.bbb.org/us/al/huntsville/profile/dumpster-service/meridian-waste-0513-900045566" target="_blank">BBB &#8599;</a></div>
 
   </div>
 </section>
