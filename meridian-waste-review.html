@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Meridian Waste — Pain Wall Variants</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --blue:#4F46E5;--blue-dark:#4338CA;--text:#0B1B3D;--muted:#6b7280;--border:#e5e7eb;--bg:#FAFBFF;
+  --green:#10B981;--red:#dc2626;--amber:#F59E0B;
+  --mono:'JetBrains Mono',monospace;--sans:'Plus Jakarta Sans',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6}
+
+.variant-label{text-align:center;padding:60px 24px 20px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+.variant-title{text-align:center;font-size:28px;font-weight:900;letter-spacing:-.03em;margin-bottom:8px;color:var(--text);padding:0 24px}
+.variant-desc{text-align:center;font-size:15px;color:var(--muted);margin-bottom:40px;padding:0 24px;max-width:600px;margin-left:auto;margin-right:auto}
+
+.divider{border:none;border-top:3px solid var(--blue);max-width:200px;margin:80px auto;opacity:.15}
+
+/* ===== SHARED PAIN WALL STYLES ===== */
+.proof-section{padding:40px 48px;max-width:920px;margin:0 auto;text-align:center}
+.proof-sec-title{font-size:clamp(26px,3.2vw,38px);font-weight:900;letter-spacing:-.03em;line-height:1.1;margin-bottom:16px;color:var(--text)}
+.proof-sec-sub{font-size:17px;color:var(--muted);margin-bottom:40px;line-height:1.5}
+
+/* Pain wall — scrolling pills */
+.pain-wall{overflow:hidden;margin-top:40px;margin-bottom:40px;position:relative;padding:8px 0;width:100vw;margin-left:calc(-50vw + 50%)}
+.pain-wall::before,.pain-wall::after{content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2;pointer-events:none}
+.pain-wall::before{left:0;background:linear-gradient(to right,#FAFBFF,transparent)}
+.pain-wall::after{right:0;background:linear-gradient(to left,#FAFBFF,transparent)}
+.pain-row{display:flex;gap:14px;padding:6px 0;width:max-content}
+.pain-row-1{animation:painScroll1 32s linear infinite}
+.pain-row-2{animation:painScroll2 38s linear infinite}
+.pain-wall:hover .pain-row{animation-play-state:paused}
+@keyframes painScroll1{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes painScroll2{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
+
+.pain-pill{display:inline-flex;align-items:center;gap:8px;border-radius:100px;padding:10px 20px;font-size:14px;font-weight:600;color:var(--text);white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.08);flex-shrink:0;text-decoration:none;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.pain-pill:hover{transform:scale(1.04);z-index:2}
+
+/* Red pills (complaints) */
+.pain-pill.red{background:#fff;border:1px solid rgba(220,38,38,.15)}
+.pain-pill.red:hover{box-shadow:0 4px 16px rgba(220,38,38,.15)}
+.pain-pill.red .hl{color:var(--red);font-weight:800}
+
+/* Blue pills (insights/adjacent) */
+.pain-pill.blue{background:rgba(79,70,229,.03);border:1px solid rgba(79,70,229,.12)}
+.pain-pill.blue:hover{box-shadow:0 4px 16px rgba(79,70,229,.12)}
+.pain-pill.blue .hl{color:var(--blue);font-weight:800}
+
+/* Amber pills (warning/process) */
+.pain-pill.amber{background:rgba(245,158,11,.03);border:1px solid rgba(245,158,11,.15)}
+.pain-pill.amber:hover{box-shadow:0 4px 16px rgba(245,158,11,.12)}
+.pain-pill.amber .hl{color:var(--amber);font-weight:800}
+
+.pain-pill .src-tag{font-size:11px;font-weight:700;color:#9ca3af;letter-spacing:.02em;margin-left:6px;flex-shrink:0}
+
+.pain-count{text-align:center;margin-top:20px;font-size:15px;font-weight:700;color:var(--red)}
+.pain-count span{color:var(--muted);font-weight:500}
+.pain-count a{color:var(--red);text-decoration:none;font-weight:700}
+.pain-count a:hover{text-decoration:underline}
+
+.pain-count.blue-count{color:var(--blue)}
+.pain-count.blue-count a{color:var(--blue)}
+
+/* Static grid version */
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:720px;margin:40px auto;text-align:left;padding:0 24px}
+.pain-card{background:#fff;border-radius:16px;padding:24px;border:1px solid var(--border);transition:transform .15s,box-shadow .15s}
+.pain-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.pain-card .label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.pain-card .label.red{color:var(--red)}
+.pain-card .label.amber{color:var(--amber)}
+.pain-card .label.blue{color:var(--blue)}
+.pain-card .quote{font-size:15px;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:8px}
+.pain-card .quote::before{content:'\201C';color:rgba(0,0,0,.15);font-size:28px;line-height:0;vertical-align:bottom;margin-right:2px}
+.pain-card .source{font-size:12px;color:var(--muted);font-weight:500}
+
+/* Timeline version */
+.pain-timeline{max-width:560px;margin:40px auto;padding:0 24px;position:relative}
+.pain-timeline::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--amber),var(--red),var(--red))}
+.tl-step{display:flex;gap:20px;margin-bottom:28px;position:relative}
+.tl-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;margin-top:5px;position:relative;z-index:1}
+.tl-dot.amber{background:var(--amber);box-shadow:0 0 0 4px rgba(245,158,11,.15)}
+.tl-dot.red{background:var(--red);box-shadow:0 0 0 4px rgba(220,38,38,.15)}
+.tl-content{flex:1}
+.tl-label{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.tl-label.amber{color:var(--amber)}
+.tl-label.red{color:var(--red)}
+.tl-quote{font-size:15px;font-weight:600;color:var(--text);line-height:1.4}
+.tl-quote .hl{font-weight:800}
+.tl-quote .hl.red{color:var(--red)}
+.tl-quote .hl.amber{color:var(--amber)}
+.tl-source{font-size:11px;color:var(--muted);margin-top:4px}
+
+@media(max-width:768px){
+  .pain-grid{grid-template-columns:1fr}
+  .variant-title{font-size:22px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== VARIANT A: Current — Scrolling pills, all same style ===== -->
+<div class="variant-label">Variant A — Current</div>
+<h2 class="variant-title">Scrolling pills, same red style</h2>
+<p class="variant-desc">What's live now. All pills look the same — no visual distinction between "silence" and "collection."</p>
+
+<section class="proof-section">
+  <h2 class="proof-sec-title">Your customers have billing disputes. Nobody's responding.</h2>
+  <p class="proof-sec-sub">Here's what happens next.</p>
+
+  <div class="pain-wall">
+    <div class="pain-row pain-row-1">
+      <a class="pain-pill red" href="#" target="_blank">"failure to respond to <span class="hl">5 complaints</span>" <span class="src-tag">BBB Alabama</span></a>
+      <a class="pain-pill red" href="#" target="_blank">"numerous calls, messages and emails — <span class="hl">no response</span>" <span class="src-tag">BBB Missouri</span></a>
+      <a class="pain-pill red" href="#" target="_blank">"i have a letter from <span class="hl">A.R.M.</span> about collection" <span class="src-tag">BBB Virginia</span></a>
+      <a class="pain-pill red" href="#" target="_blank">"they were going to turn me in to <span class="hl">collections</span>" <span class="src-tag">BBB Missouri</span></a>
+      <!-- dup -->
+      <a class="pain-pill red" href="#" target="_blank">"failure to respond to <span class="hl">5 complaints</span>" <span class="src-tag">BBB Alabama</span></a>
+      <a class="pain-pill red" href="#" target="_blank">"numerous calls, messages and emails — <span class="hl">no response</span>" <span class="src-tag">BBB Missouri</span></a>
+      <a class="pain-pill red" href="#" target="_blank">"i have a letter from <span class="hl">A.R.M.</span> about collection" <span class="src-tag">BBB Virginia</span></a>
+      <a class="pain-pill red" href="#" target="_blank">"they were going to turn me in to <span class="hl">collections</span>" <span class="src-tag">BBB Missouri</span></a>
+    </div>
+    <div class="pain-row pain-row-2">
+      <a class="pain-pill red" href="#" target="_blank">"2 weeks, no check and <span class="hl">no returned calls</span>" <span class="src-tag">BBB Virginia</span></a>
+      <a class="pain-pill red" href="#" target="_blank">"overcharged 2 years — then a <span class="hl">collection notice</span>" <span class="src-tag">BBB Virginia</span></a>
+      <a class="pain-pill red" href="#" target="_blank">"calls going to <span class="hl">voicemail</span>, no call back" <span class="src-tag">BBB Missouri</span></a>
+      <a class="pain-pill red" href="#" target="_blank">"if I can do <span class="hl">zero review</span>, I will" <span class="src-tag">BBB N. Carolina</span></a>
+      <!-- dup -->
+      <a class="pain-pill red" href="#" target="_blank">"2 weeks, no check and <span class="hl">no returned calls</span>" <span class="src-tag">BBB Virginia</span></a>
+      <a class="pain-pill red" href="#" target="_blank">"overcharged 2 years — then a <span class="hl">collection notice</span>" <span class="src-tag">BBB Virginia</span></a>
+      <a class="pain-pill red" href="#" target="_blank">"calls going to <span class="hl">voicemail</span>, no call back" <span class="src-tag">BBB Missouri</span></a>
+      <a class="pain-pill red" href="#" target="_blank">"if I can do <span class="hl">zero review</span>, I will" <span class="src-tag">BBB N. Carolina</span></a>
+    </div>
+  </div>
+  <div class="pain-count">BBB F rating (Alabama) · 3 collection complaints · 5 unanswered disputes <span>&mdash; </span><a href="#">BBB &#8599;</a></div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== VARIANT B: Two-tone pills — amber for silence, red for collections ===== -->
+<div class="variant-label">Variant B — Two-tone</div>
+<h2 class="variant-title">Amber = silence/dispute, Red = collection outcome</h2>
+<p class="variant-desc">Row 1 amber pills show the PROCESS failing. Row 2 red pills show the CONSEQUENCE. Visual storytelling.</p>
+
+<section class="proof-section">
+  <h2 class="proof-sec-title">Your customers have billing disputes. Nobody's responding.</h2>
+  <p class="proof-sec-sub">Here's what happens next.</p>
+
+  <div class="pain-wall">
+    <!-- Row 1: Amber — the silence (PROCESS) -->
+    <div class="pain-row pain-row-1">
+      <span class="pain-pill amber">"failure to respond to <span class="hl">5 complaints</span>" <span class="src-tag">BBB Alabama · F rating</span></span>
+      <span class="pain-pill amber">"numerous calls, messages and emails — <span class="hl">no response</span>" <span class="src-tag">BBB Missouri</span></span>
+      <span class="pain-pill amber">"2 weeks, no check and <span class="hl">no returned calls</span>" <span class="src-tag">BBB Virginia</span></span>
+      <span class="pain-pill amber">"calls going to <span class="hl">voicemail</span>, no call back" <span class="src-tag">BBB Missouri</span></span>
+      <!-- dup -->
+      <span class="pain-pill amber">"failure to respond to <span class="hl">5 complaints</span>" <span class="src-tag">BBB Alabama · F rating</span></span>
+      <span class="pain-pill amber">"numerous calls, messages and emails — <span class="hl">no response</span>" <span class="src-tag">BBB Missouri</span></span>
+      <span class="pain-pill amber">"2 weeks, no check and <span class="hl">no returned calls</span>" <span class="src-tag">BBB Virginia</span></span>
+      <span class="pain-pill amber">"calls going to <span class="hl">voicemail</span>, no call back" <span class="src-tag">BBB Missouri</span></span>
+    </div>
+    <!-- Row 2: Red — the consequence (COLLECTIONS) -->
+    <div class="pain-row pain-row-2">
+      <a class="pain-pill red" href="#">"overcharged 2 years — then a <span class="hl">collection notice</span>" <span class="src-tag">BBB Virginia</span></a>
+      <a class="pain-pill red" href="#">"i have a letter from <span class="hl">A.R.M.</span> about collection" <span class="src-tag">BBB Virginia</span></a>
+      <a class="pain-pill red" href="#">"they were going to turn me in to <span class="hl">collections</span>" <span class="src-tag">BBB Missouri</span></a>
+      <a class="pain-pill red" href="#">"if I can do <span class="hl">zero review</span>, I will" <span class="src-tag">BBB N. Carolina</span></a>
+      <!-- dup -->
+      <a class="pain-pill red" href="#">"overcharged 2 years — then a <span class="hl">collection notice</span>" <span class="src-tag">BBB Virginia</span></a>
+      <a class="pain-pill red" href="#">"i have a letter from <span class="hl">A.R.M.</span> about collection" <span class="src-tag">BBB Virginia</span></a>
+      <a class="pain-pill red" href="#">"they were going to turn me in to <span class="hl">collections</span>" <span class="src-tag">BBB Missouri</span></a>
+      <a class="pain-pill red" href="#">"if I can do <span class="hl">zero review</span>, I will" <span class="src-tag">BBB N. Carolina</span></a>
+    </div>
+  </div>
+  <div class="pain-count">BBB F rating (Alabama) · 5 unanswered disputes → 3 collection complaints <span>&mdash; </span><a href="#">BBB &#8599;</a></div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== VARIANT C: Timeline — tell the story step by step ===== -->
+<div class="variant-label">Variant C — Timeline</div>
+<h2 class="variant-title">Visual pipeline: silence → escalation → collections → BBB</h2>
+<p class="variant-desc">No scrolling. Static timeline that tells the story step by step. Each quote is a stop on the journey.</p>
+
+<section class="proof-section">
+  <h2 class="proof-sec-title">Your customers have billing disputes. Nobody's responding.</h2>
+  <p class="proof-sec-sub">Here's what happens next.</p>
+
+  <div class="pain-timeline">
+    <div class="tl-step">
+      <div class="tl-dot amber"></div>
+      <div class="tl-content">
+        <div class="tl-label amber">Dispute starts</div>
+        <div class="tl-quote">"overcharged for their services <span class="hl amber">more than 2 years</span>"</div>
+        <div class="tl-source">BBB Virginia — July 2024</div>
+      </div>
+    </div>
+    <div class="tl-step">
+      <div class="tl-dot amber"></div>
+      <div class="tl-content">
+        <div class="tl-label amber">Nobody responds</div>
+        <div class="tl-quote">"numerous calls, messages and emails — <span class="hl amber">no response</span>"</div>
+        <div class="tl-source">BBB Missouri — multiple complaints</div>
+      </div>
+    </div>
+    <div class="tl-step">
+      <div class="tl-dot amber"></div>
+      <div class="tl-content">
+        <div class="tl-label amber">BBB steps in</div>
+        <div class="tl-quote">"failure to respond to <span class="hl amber">5 complaints</span>" — <strong>F rating</strong></div>
+        <div class="tl-source">BBB Alabama — official finding</div>
+      </div>
+    </div>
+    <div class="tl-step">
+      <div class="tl-dot red"></div>
+      <div class="tl-content">
+        <div class="tl-label red">Sent to collections</div>
+        <div class="tl-quote">"i have a letter from <span class="hl red">A.R.M.</span> about collection"</div>
+        <div class="tl-source">BBB Virginia — July 2024</div>
+      </div>
+    </div>
+    <div class="tl-step">
+      <div class="tl-dot red"></div>
+      <div class="tl-content">
+        <div class="tl-label red">Customer lost</div>
+        <div class="tl-quote">"if I can do <span class="hl red">zero review</span>, I will"</div>
+        <div class="tl-source">BBB North Carolina</div>
+      </div>
+    </div>
+  </div>
+  <div class="pain-count">BBB F rating · A.R.M. Solutions (119 CFPB complaints) · <a href="#">Full BBB profile &#8599;</a></div>
+</section>
+
+<hr class="divider">
+
+<p style="text-align:center;padding:40px 24px 80px;font-size:13px;color:var(--muted)">
+  <strong>A</strong> = current (all same) · <strong>B</strong> = two-tone (amber process + red consequence) · <strong>C</strong> = timeline (story)
+</p>
+
+</body>
+</html>
