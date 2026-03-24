@@ -16,6 +16,18 @@
 - **Icon (square):** A + dot on purple `#433196` background (for favicon, app icon, LinkedIn profile pic)
 - **Tagline:** "The end of manual collection."
 
+## Web Browsing & Review — Tool Hierarchy (MANDATORY)
+
+When reviewing, scraping, QA-ing, or interacting with ANY external web page:
+
+| Task | Tool | Why |
+|------|------|-----|
+| **Web research / scraping / site review** | **Browserbase** (`mcp__browserbase__*`) | Cloud Chrome, anti-detection, shadow DOM support |
+| **Visual QA of our own sites** | **Chrome MCP** or **Claude Preview** | Real browser, persistent session |
+| **Local dev server preview** | **Claude Preview** (`mcp__Claude_Preview__*`) | Localhost only |
+
+**NEVER use** local Playwright, `WebFetch`, `curl`, or `wget` for web page review — these don't render JS, can't screenshot, and have no anti-detection. Use **Browserbase** for any external web browsing task.
+
 ### Positioning
 - Ends manual debt collection — replaces internal teams, BPOs, agencies with AI agents
 - Buyer: CFO/CEO (mid-market) or VP AR (enterprise)
