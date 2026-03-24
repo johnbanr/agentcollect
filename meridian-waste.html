@@ -470,7 +470,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
   </div>
   <div class="social-stats rv rv-d1" id="social-stats" style="margin-bottom:48px">
     <div class="social-stat" id="ss1">
-      <div class="social-stat-num" style="font-size:28px;letter-spacing:-.02em">1:1</div>
+      <div class="social-stat-num" data-static="true" style="font-size:28px;letter-spacing:-.02em">1:1</div>
       <div class="social-stat-label">one agent per debtor</div>
     </div>
     <div class="social-stat" id="ss2">
@@ -598,6 +598,7 @@ window.__RetellWebClient = RetellWebClient;
             stat.classList.add('v');
             var numEl = stat.querySelector('.social-stat-num');
             if(!numEl) return;
+            if(numEl.getAttribute('data-static') === 'true') return;
             var target = parseInt(numEl.getAttribute('data-target'));
             var suffix = numEl.getAttribute('data-suffix') || '';
             var duration = 1200;
