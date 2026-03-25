@@ -8,7 +8,7 @@ AgentCollect replaces traditional collection agencies with AI agents and license
 
 ## Key Facts
 
-- Founded: 2023 (Y Combinator S23)
+- Founded: 2020 (Y Combinator S23)
 - Founder: John Banner
 - Headquarters: San Francisco, CA
 - Website: https://www.agentcollect.com
@@ -54,6 +54,12 @@ Microsoft, Dell Technologies, Plaid, Checkr, DoorDash, Twilio, Redis, Uber Freig
 |---|---|
 | Success-only fees | 25-35% commission |
 | Results in ~20 days | 4-6 months typical |
+| 1 AI agent per account | 1 human per 250 accounts |
+| Up to 85,000 recoveries per day | Limited by headcount |
+| 12-month mandate | Give up after 90 days |
+| Attorney mode: 70% email open rate | 20% email open rate |
+| Contact Finder: +130% contacts enriched | Manual skip tracing |
+| 90% of disputes resolved instantly by AI | Weeks of back-and-forth |
 | Debtor pays client directly | Debtor pays the agency |
 | Licensed attorney, bar number | No legal standing |
 | Zero compliance incidents | FDCPA violation risk |
@@ -138,6 +144,58 @@ Free calculators for AR and finance teams:
 
 - DSO Calculator: https://www.agentcollect.com/tools/dso-calculator
 - Agency Cost Calculator: https://www.agentcollect.com/tools/agency-cost-calculator
+
+## Blog & Guides
+
+In-depth articles on AI debt collection, AR automation, and recovery strategies:
+
+- Blog hub: https://www.agentcollect.com/blog
+- AI Debt Collection Guide: https://www.agentcollect.com/blog/ai-debt-collection
+- How Much Do Collection Agencies Charge: https://www.agentcollect.com/blog/how-much-do-collection-agencies-charge
+- When to Hire a Collection Agency: https://www.agentcollect.com/blog/when-to-hire-collection-agency
+- B2B Debt Collection: https://www.agentcollect.com/blog/b2b-debt-collection
+- Best Debt Collection Software 2026: https://www.agentcollect.com/blog/best-debt-collection-software
+- AR Outsourcing: https://www.agentcollect.com/blog/accounts-receivable-outsourcing
+- AR Best Practices: https://www.agentcollect.com/blog/accounts-receivable-best-practices
+- AI vs Traditional Debt Collection: https://www.agentcollect.com/blog/ai-vs-traditional-debt-collection
+- Top 10 Collection Agencies: https://www.agentcollect.com/blog/top-debt-collection-agencies
+- Invoice Factoring vs Collections: https://www.agentcollect.com/blog/invoice-factoring-vs-collections
+- Client Won't Pay Invoice: https://www.agentcollect.com/blog/client-wont-pay-invoice
+- Automated AR: https://www.agentcollect.com/blog/automated-accounts-receivable
+- Debt Collection Software: https://www.agentcollect.com/blog/debt-collection-software
+- Collection Agency Alternative: https://www.agentcollect.com/blog/collection-agency-alternative
+- AR Recovery Strategies: https://www.agentcollect.com/blog/accounts-receivable-recovery
+
+## Guides
+
+Step-by-step guides for AR teams:
+
+- Guides hub: https://www.agentcollect.com/guides
+- How to Collect Unpaid Invoices: https://www.agentcollect.com/guides/how-to-collect-unpaid-invoices
+- How to Reduce DSO: https://www.agentcollect.com/guides/how-to-reduce-dso
+- How to Write Collection Emails: https://www.agentcollect.com/guides/how-to-write-collection-emails
+- How to Send Accounts to Collections: https://www.agentcollect.com/guides/how-to-send-accounts-to-collections
+- How to Handle Payment Disputes: https://www.agentcollect.com/guides/how-to-handle-payment-disputes
+- How to Automate Collections: https://www.agentcollect.com/guides/how-to-automate-collections
+
+## Templates
+
+Free downloadable templates for AR teams:
+
+- Templates hub: https://www.agentcollect.com/templates
+- Collection Letter Template: https://www.agentcollect.com/templates/collection-letter
+- Demand Letter Template: https://www.agentcollect.com/templates/demand-letter
+- Payment Reminder Email: https://www.agentcollect.com/templates/payment-reminder-email
+- Invoice Follow-up Email: https://www.agentcollect.com/templates/invoice-follow-up
+- Payment Plan Agreement: https://www.agentcollect.com/templates/payment-plan-agreement
+- AR Policy Template: https://www.agentcollect.com/templates/accounts-receivable-policy
+
+## Locations
+
+AI debt collection by US city:
+
+- Locations hub: https://www.agentcollect.com/locations
+- Los Angeles: https://www.agentcollect.com/locations/los-angeles
 
 ## Additional Glossary Terms (batch 2)
 

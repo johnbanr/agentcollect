@@ -156,12 +156,22 @@
   <url><loc>https://www.agentcollect.com/tools/agency-cost-calculator</loc><lastmod>2026-03-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
   <!-- Blog hub + 5 pillar articles -->
-  <url><loc>https://www.agentcollect.com/blog</loc><lastmod>2026-03-24</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.agentcollect.com/blog</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://www.agentcollect.com/blog/ai-debt-collection</loc><lastmod>2026-03-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.agentcollect.com/blog/automated-accounts-receivable</loc><lastmod>2026-03-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.agentcollect.com/blog/debt-collection-software</loc><lastmod>2026-03-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.agentcollect.com/blog/collection-agency-alternative</loc><lastmod>2026-03-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.agentcollect.com/blog/accounts-receivable-recovery</loc><lastmod>2026-03-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.agentcollect.com/blog/how-much-do-collection-agencies-charge</loc><lastmod>2026-03-25</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.agentcollect.com/blog/when-to-hire-collection-agency</loc><lastmod>2026-03-25</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.agentcollect.com/blog/b2b-debt-collection</loc><lastmod>2026-03-25</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.agentcollect.com/blog/best-debt-collection-software</loc><lastmod>2026-03-25</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.agentcollect.com/blog/accounts-receivable-outsourcing</loc><lastmod>2026-03-25</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.agentcollect.com/blog/accounts-receivable-best-practices</loc><lastmod>2026-03-25</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.agentcollect.com/blog/ai-vs-traditional-debt-collection</loc><lastmod>2026-03-25</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.agentcollect.com/blog/top-debt-collection-agencies</loc><lastmod>2026-03-25</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.agentcollect.com/blog/invoice-factoring-vs-collections</loc><lastmod>2026-03-25</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.agentcollect.com/blog/client-wont-pay-invoice</loc><lastmod>2026-03-25</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- Templates hub + 6 templates -->
   <url><loc>https://www.agentcollect.com/templates</loc><lastmod>2026-03-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -181,8 +191,9 @@
   <url><loc>https://www.agentcollect.com/guides/how-to-automate-collections</loc><lastmod>2026-03-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agentcollect.com/guides/how-to-handle-payment-disputes</loc><lastmod>2026-03-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
-  <!-- Locations hub -->
-  <url><loc>https://www.agentcollect.com/locations</loc><lastmod>2026-03-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <!-- Locations hub + city pages -->
+  <url><loc>https://www.agentcollect.com/locations</loc><lastmod>2026-03-25</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agentcollect.com/locations/los-angeles</loc><lastmod>2026-03-25</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
   <!-- Compare: Yvette AR (missing from sitemap) -->
   <url><loc>https://www.agentcollect.com/compare/yvette-ar</loc><lastmod>2026-03-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
