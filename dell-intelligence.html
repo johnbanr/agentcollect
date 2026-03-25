@@ -669,8 +669,11 @@ const counterObs = new IntersectionObserver((entries) => {
       counterObs.unobserve(e.target);
     }
   });
-}, { threshold: 0.5 });
+}, { threshold: 0.01 });
 counterEls.forEach(el => counterObs.observe(el));
+
+// Fallback: animate all counters after 2s
+setTimeout(() => { counterEls.forEach(el => { if (el.textContent === '0') animateCounter(el); }); }, 2000);
 
 // Batch bars animation
 const batchBars = document.querySelectorAll('.batch-bar');
@@ -682,8 +685,11 @@ const barObs = new IntersectionObserver((entries) => {
       barObs.unobserve(e.target);
     }
   });
-}, { threshold: 0.3 });
+}, { threshold: 0.01 });
 batchBars.forEach(el => barObs.observe(el));
+
+// Fallback: animate batch bars after 2.5s
+setTimeout(() => { batchBars.forEach(el => { const w = el.dataset.width; if (el.style.width !== w + '%') el.style.width = w + '%'; }); }, 2500);
 </script>
 </body>
 </html>
