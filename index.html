@@ -409,6 +409,31 @@
         .pricing-cta{display:inline-flex;align-items:center;gap:8px;padding:16px 36px;background:var(--indigo);color:#fff;border:none;border-radius:12px;font-family:var(--sans);font-size:16px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s}
         .pricing-cta:hover{background:var(--indigo-dark);transform:translateY(-1px)}
 
+        /* ========== ABANDONED PAYMENT RECOVERY ========== */
+        .apr-section{padding:100px 32px;background:#f6f3ef;position:relative;overflow:hidden}
+        .apr-section::before{content:'';position:absolute;top:0;right:0;width:500px;height:500px;background:radial-gradient(circle,rgba(16,185,129,.06) 0%,transparent 70%);pointer-events:none}
+        .apr-inner{max-width:var(--max-w);margin:0 auto}
+        .apr-headline{font-size:clamp(28px,3.5vw,42px);font-weight:900;color:var(--text);margin-bottom:12px;letter-spacing:-.04em}
+        .apr-desc{font-size:17px;color:var(--text-mid);max-width:540px;line-height:1.65;letter-spacing:-.01em;margin-bottom:48px}
+        .apr-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:56px}
+        .apr-stat{padding:28px;border:1px solid var(--border);border-radius:var(--radius);background:#fff;transition:all .3s}
+        .apr-stat:hover{border-color:var(--border-hover);box-shadow:var(--shadow-md);transform:translateY(-2px)}
+        .apr-stat-value{font-family:var(--display);font-size:28px;font-weight:900;letter-spacing:-.04em;margin-bottom:4px}
+        .apr-stat-label{font-size:14px;color:var(--text-mid);line-height:1.5}
+        .apr-flow{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap}
+        .apr-flow-step{display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;flex:1;min-width:120px;max-width:180px}
+        .apr-flow-icon{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;transition:transform .3s}
+        .apr-flow-step:hover .apr-flow-icon{transform:scale(1.08)}
+        .apr-flow-name{font-family:var(--display);font-size:15px;font-weight:700;color:var(--text);letter-spacing:-.02em;margin-bottom:2px}
+        .apr-flow-detail{font-size:12px;color:var(--text-muted);line-height:1.4}
+        .apr-flow-arrow{display:flex;align-items:center;color:var(--text-dim);flex-shrink:0;margin:0 4px;margin-bottom:28px}
+        @media(max-width:768px){
+            .apr-section{padding:72px 20px}
+            .apr-stats{grid-template-columns:1fr}
+            .apr-flow{flex-direction:column;gap:16px}
+            .apr-flow-arrow{transform:rotate(90deg);margin:0}
+        }
+
         /* ========== FINAL CTA ========== */
         .final-cta{padding:120px 32px;text-align:center;background:var(--bg-dark);color:#fff;position:relative;overflow:hidden}
         .final-cta::before{content:'';position:absolute;inset:0;background-image:
@@ -1134,6 +1159,72 @@
         </div>
     </div>
 </section>
+
+<!-- SECTION: ABANDONED PAYMENT RECOVERY -->
+<section class="apr-section reveal">
+    <div class="apr-inner">
+        <div class="section-label">Abandoned Payment Recovery</div>
+        <h2 class="apr-headline">Every almost-payment<br>becomes a recovery.</h2>
+        <p class="apr-desc">When a debtor visits the payment page but doesn't pay, our AI detects the intent and re-engages them within minutes.</p>
+
+        <div class="apr-stats">
+            <div class="apr-stat reveal s1">
+                <div class="apr-stat-value" style="color:var(--green)">15%</div>
+                <div class="apr-stat-label">of abandoned payments recovered</div>
+            </div>
+            <div class="apr-stat reveal s2">
+                <div class="apr-stat-value" style="color:var(--indigo)">0–100</div>
+                <div class="apr-stat-label">Real-time intent scoring</div>
+            </div>
+            <div class="apr-stat reveal s3">
+                <div class="apr-stat-value" style="color:var(--amber)">&lt; 5 min</div>
+                <div class="apr-stat-label">Contextual re-engagement</div>
+            </div>
+        </div>
+
+        <div class="apr-flow reveal s4">
+            <div class="apr-flow-step">
+                <div class="apr-flow-icon" style="background:rgba(79,70,229,.06)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--indigo)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+                </div>
+                <div class="apr-flow-name">Visit</div>
+                <div class="apr-flow-detail">Debtor opens payment page</div>
+            </div>
+            <div class="apr-flow-arrow">
+                <svg width="32" height="12" viewBox="0 0 32 12" fill="none"><path d="M0 6h28m0 0l-5-5m5 5l-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="apr-flow-step">
+                <div class="apr-flow-icon" style="background:rgba(245,158,11,.06)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+                </div>
+                <div class="apr-flow-name">Score</div>
+                <div class="apr-flow-detail">AI scores intent 0–100</div>
+            </div>
+            <div class="apr-flow-arrow">
+                <svg width="32" height="12" viewBox="0 0 32 12" fill="none"><path d="M0 6h28m0 0l-5-5m5 5l-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="apr-flow-step">
+                <div class="apr-flow-icon" style="background:rgba(79,70,229,.06)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--indigo)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                </div>
+                <div class="apr-flow-name">Re-engage</div>
+                <div class="apr-flow-detail">Call, SMS, or email</div>
+            </div>
+            <div class="apr-flow-arrow">
+                <svg width="32" height="12" viewBox="0 0 32 12" fill="none"><path d="M0 6h28m0 0l-5-5m5 5l-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="apr-flow-step">
+                <div class="apr-flow-icon" style="background:rgba(16,185,129,.06)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                </div>
+                <div class="apr-flow-name">Pay</div>
+                <div class="apr-flow-detail">Payment completed</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="gradient-divider"></div>
 
 <!-- 9. FINAL CTA (single closing screen — pricing info folded in) -->
 <section class="final-cta reveal">
