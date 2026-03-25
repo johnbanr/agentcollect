@@ -226,6 +226,127 @@ z-index:1}
 .agent-cta:hover{background:var(--green-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(16,185,129,.3)}
 .agent-cta svg{width:20px;height:20px}
 
+/* ===== AGENT DEMO (Dell orb) ===== */
+.agent-demo-section{min-height:80vh;background:#f6f3ef;padding:80px 24px 40px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.agent-demo-section::before{content:'';position:absolute;width:800px;height:800px;top:40%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(0,118,206,.12) 0%,rgba(79,70,229,.05) 40%,transparent 70%);border-radius:50%;pointer-events:none;animation:demoHeroGlow 6s ease-in-out infinite}
+.agent-demo-section::after{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 700px 400px at 30% 0%,rgba(0,118,206,.08),transparent),radial-gradient(ellipse 500px 500px at 80% 80%,rgba(79,70,229,.06),transparent)}
+@keyframes demoHeroGlow{0%,100%{opacity:.5;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.12)}}
+
+/* Pulse rings */
+.demo-orb-ring{position:absolute;border-radius:50%;border:1.5px solid rgba(0,118,206,.12);pointer-events:none}
+.demo-orb-ring-1{inset:-30px;animation:demoRingPulse 3s ease-out infinite}
+.demo-orb-ring-2{inset:-60px;animation:demoRingPulse 3s ease-out infinite .6s}
+.demo-orb-ring-3{inset:-90px;animation:demoRingPulse 3s ease-out infinite 1.2s}
+@keyframes demoRingPulse{0%{opacity:.6;transform:scale(.95)}50%{opacity:.2;transform:scale(1)}100%{opacity:0;transform:scale(1.05)}}
+
+/* Orb */
+.demo-orb-wrap{position:relative;width:320px;height:320px;aspect-ratio:1;margin:0 auto 36px;cursor:pointer}
+.demo-orb-glow{position:absolute;inset:-60px;border-radius:50%;background:radial-gradient(circle,rgba(0,118,206,.18) 0%,rgba(79,70,229,.06) 40%,transparent 70%);animation:demoOrbGlowPulse 4s ease-in-out infinite}
+.demo-orb{position:relative;width:320px;height:320px;aspect-ratio:1;border-radius:50%;-webkit-border-radius:50%;overflow:hidden;-webkit-mask-image:-webkit-radial-gradient(white,black);mask-image:radial-gradient(white,black);animation:demoOrbDrift 6s ease-in-out infinite;transition:transform .3s,box-shadow .3s;box-shadow:0 0 80px rgba(0,118,206,.25),0 0 160px rgba(79,70,229,.08),inset 0 0 60px rgba(0,0,0,.3)}
+.demo-orb-wrap:hover .demo-orb{transform:scale(1.06)}
+.demo-orb-wrap:active .demo-orb{transform:scale(.95)}
+.demo-orb.speaking{animation:demoOrbDrift 6s ease-in-out infinite,demoOrbPulseSpeak .8s ease-in-out infinite}
+.demo-orb-layer{position:absolute;inset:0;border-radius:50%}
+.demo-orb-layer-1{background:conic-gradient(from 0deg,#0076CE,#4F46E5,#032D60,#54C7EC,#0076CE);animation:demoOrbSpin 8s linear infinite}
+.demo-orb-layer-2{background:conic-gradient(from 180deg,rgba(0,118,206,.8),rgba(79,70,229,.5),rgba(3,45,96,.6),rgba(84,199,236,.4),rgba(0,118,206,.8));animation:demoOrbSpin 12s linear infinite reverse;mix-blend-mode:soft-light}
+.demo-orb-layer-3{background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.25) 0%,transparent 50%)}
+.demo-orb-layer-4{background:radial-gradient(circle at 50% 110%,rgba(0,0,0,.4) 0%,transparent 60%)}
+.demo-orb-phone{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:10;transition:opacity .3s,transform .3s}
+.demo-orb-phone svg{width:44px;height:44px;color:#fff;stroke:currentColor;filter:drop-shadow(0 2px 12px rgba(0,0,0,.35));transition:transform .3s}
+.demo-orb-wrap:hover .demo-orb-phone svg{transform:scale(1.12)}
+.demo-orb-particle{position:absolute;width:4px;height:4px;border-radius:50%;animation:demoOrbParticle 4s ease-in-out infinite}
+.demo-orb-particle:nth-child(1){top:-16px;left:30%;animation-delay:0s}
+.demo-orb-particle:nth-child(2){top:20%;right:-12px;animation-delay:1s}
+.demo-orb-particle:nth-child(3){bottom:-12px;left:40%;animation-delay:2s}
+.demo-orb-particle:nth-child(4){top:40%;left:-16px;animation-delay:.5s}
+.demo-orb-particle:nth-child(5){top:-10px;right:25%;animation-delay:1.5s}
+.demo-orb-particle:nth-child(6){bottom:-8px;right:30%;animation-delay:2.5s}
+
+@keyframes demoOrbSpin{0%{transform:rotate(0deg) scale(1.15)}100%{transform:rotate(360deg) scale(1.15)}}
+@keyframes demoOrbDrift{0%,100%{transform:translateY(0) scale(1)}33%{transform:translateY(-4px) scale(1.01)}66%{transform:translateY(-2px) scale(.995)}}
+@keyframes demoOrbPulseSpeak{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+@keyframes demoOrbGlowPulse{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:.8;transform:scale(1.08)}}
+@keyframes demoOrbParticle{0%,100%{opacity:0;transform:translateY(0) scale(1)}25%{opacity:1}50%{opacity:.8;transform:translateY(-18px) scale(1.4)}75%{opacity:.3}}
+
+/* Orb bubble */
+.demo-orb-bubble{position:absolute;top:16px;right:-40px;background:rgba(255,255,255,.3);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.35);border-radius:14px;padding:10px 18px;font-size:15px;font-weight:700;color:var(--text);white-space:nowrap;animation:demoOrbBubble 3s ease-in-out infinite;z-index:15}
+@keyframes demoOrbBubble{0%,100%{opacity:.7;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+
+.demo-calling-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--blue);opacity:.7;margin-bottom:8px;text-align:center;animation:demoFadeInUp .6s ease .2s both}
+.demo-title{font-size:22px;font-weight:800;color:var(--text);letter-spacing:-.03em;margin-bottom:6px;text-align:center;animation:demoFadeInUp .6s ease .3s both}
+.demo-hint{font-size:14px;color:var(--green);opacity:.8;text-align:center;margin-bottom:0;font-weight:600;animation:demoFadeInUp .6s ease .4s both}
+.demo-phone-link{font-size:14px;color:var(--muted);text-align:center;margin-top:12px;font-weight:500;animation:demoFadeInUp .6s ease .5s both}
+.demo-phone-link a{color:var(--blue);text-decoration:none;font-weight:600}
+.demo-phone-link a:hover{text-decoration:underline}
+
+/* Demo Hints */
+.demo-hints{max-width:640px;margin:32px auto 0;text-align:center}
+.demo-hints-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--blue);opacity:.6;margin-bottom:14px}
+.demo-hints-grid{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.demo-hint-pill{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:rgba(255,255,255,.8);border:1px solid rgba(0,0,0,.06);border-radius:50px;cursor:default;transition:all .25s;backdrop-filter:blur(8px);position:relative}
+.demo-hint-pill:hover{border-color:var(--blue);background:rgba(79,70,229,.04);transform:translateY(-2px);box-shadow:0 4px 12px rgba(79,70,229,.1)}
+.demo-hint-icon{font-size:16px;flex-shrink:0}
+.demo-hint-text{font-size:13px;font-weight:600;color:var(--text);white-space:nowrap}
+.demo-hint-badge{font-size:10px;font-weight:700;color:var(--blue);background:rgba(79,70,229,.08);padding:3px 8px;border-radius:20px;white-space:nowrap}
+.demo-hints-note{font-size:12px;color:var(--muted);margin-top:16px;font-style:italic}
+@media(max-width:768px){
+  .demo-hint-text{white-space:normal;text-align:left}
+  .demo-hint-pill{padding:8px 12px}
+  .demo-hint-badge{display:none}
+}
+
+.demo-label{text-align:center;color:var(--muted);font-size:15px;font-weight:600;margin-top:0;margin-bottom:20px;letter-spacing:-.01em;display:none}
+.demo-label .demo-label-hint{display:block;font-size:12px;font-weight:400;color:var(--muted);opacity:.5;margin-top:4px}
+
+/* Call states */
+.demo-call-state{display:flex;flex-direction:column;align-items:center;width:100%;max-width:360px;margin:0 auto}
+.demo-connecting{display:none;flex-direction:column;align-items:center;gap:12px;padding:8px 0;animation:demoFadeInUp .3s ease}
+.demo-spinner{width:28px;height:28px;border:3px solid rgba(79,70,229,.15);border-top-color:var(--blue);border-radius:50%;animation:demoSpin .8s linear infinite}
+@keyframes demoSpin{to{transform:rotate(360deg)}}
+@keyframes demoFadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.demo-connecting-text{color:var(--muted);font-size:13px;font-weight:500}
+.demo-active{display:none;flex-direction:column;align-items:center;gap:10px;padding:8px 0;width:100%}
+.demo-active.visible{display:flex}
+.demo-status{font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--blue)}
+.demo-waveform{display:flex;align-items:center;justify-content:center;gap:3px;height:40px;padding:4px 0}
+.demo-waveform span{width:3.5px;border-radius:3px;background:var(--blue);min-height:4px;will-change:height;transition:height .08s linear}
+.demo-transcript{width:100%;max-height:80px;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
+.demo-transcript::-webkit-scrollbar{display:none}
+.demo-transcript-msg{padding:8px 12px;border-radius:12px;font-size:13px;line-height:1.5;margin-bottom:6px;animation:demoFadeInUp .3s ease}
+.demo-transcript-msg.agent{background:rgba(79,70,229,.08);color:var(--text)}
+.demo-transcript-msg.user{background:rgba(0,0,0,.04);color:var(--muted);text-align:right}
+.demo-end-btn{padding:10px 24px;background:rgba(239,68,68,.06);color:#ef4444;border:1px solid rgba(239,68,68,.15);border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px;font-family:var(--sans)}
+.demo-end-btn:hover{background:rgba(239,68,68,.12)}
+.demo-post-call{display:none;flex-direction:column;align-items:center;gap:10px;padding:8px 0;animation:demoFadeInUp .4s ease}
+.demo-post-call.visible{display:flex}
+.demo-post-check{margin-bottom:4px}
+.demo-post-title{font-size:18px;font-weight:800;color:var(--text)}
+.demo-post-sub{font-size:14px;color:var(--muted);text-align:center;line-height:1.5;max-width:300px}
+.demo-post-cta{display:flex;align-items:center;gap:8px;padding:14px 28px;background:var(--blue);color:#fff;border:none;border-radius:14px;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;text-decoration:none;margin-top:6px;box-shadow:0 0 20px rgba(79,70,229,.3);font-family:var(--sans)}
+.demo-post-cta:hover{background:var(--blue-dark);transform:translateY(-1px);box-shadow:0 4px 24px rgba(79,70,229,.4)}
+.demo-retry-btn{background:none;border:1px solid var(--border);color:var(--muted);padding:8px 16px;border-radius:8px;font-size:12px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px;margin-top:2px;font-family:var(--sans)}
+.demo-retry-btn:hover{border-color:var(--blue);color:var(--blue)}
+
+@media(max-width:768px){
+  .demo-orb-wrap{width:240px;height:240px}
+  .demo-orb{width:240px;height:240px;border-radius:50%;-webkit-border-radius:50%;-webkit-mask-image:-webkit-radial-gradient(white,black)}
+  .demo-orb-phone svg{width:36px;height:36px}
+  .demo-orb-ring-1{inset:-20px}
+  .demo-orb-ring-2{inset:-44px}
+  .demo-orb-ring-3{inset:-68px}
+  .demo-title{font-size:18px}
+  .demo-orb-bubble{display:none}
+}
+@media(max-width:480px){
+  .demo-orb-wrap{width:200px;height:200px;aspect-ratio:1;margin:0 auto 28px}
+  .demo-orb{width:200px;height:200px;aspect-ratio:1;border-radius:50%;-webkit-border-radius:50%;-webkit-mask-image:-webkit-radial-gradient(white,black)}
+  .demo-orb-phone svg{width:32px;height:32px}
+  .demo-orb-ring-1{inset:-16px}
+  .demo-orb-ring-2{inset:-36px}
+  .demo-orb-ring-3{inset:-56px}
+  .demo-title{font-size:16px}
+}
+
 /* ===== PROPOSAL ===== */
 .proposal-section{padding:100px 32px}
 .proposal-inner{max-width:1120px;margin:0 auto}
@@ -266,7 +387,7 @@ z-index:1}
   .hero-stats{grid-template-columns:repeat(2,1fr)}
   .batch-grid,.channel-grid,.acct-grid,.temporal-grid,.agent-grid,.proposal-grid,.readiness-grid{grid-template-columns:1fr}
   .hero{padding:120px 20px 60px}
-  .section,.agent-section,.proposal-section{padding:60px 20px}
+  .section,.agent-section,.agent-demo-section,.proposal-section{padding:60px 20px}
   .accounting-section{padding:40px 24px;margin:40px 0;border-radius:16px}
   .nav-inner{padding:14px 20px}
   .cs-flow{flex-wrap:wrap;gap:8px}
@@ -588,12 +709,125 @@ z-index:1}
   </div>
 </section>
 
-<!-- YOUR OWN AI AGENT -->
+<!-- YOUR OWN AI AGENT — Live Demo -->
+<section class="agent-demo-section" id="agent-demo">
+
+  <div style="text-align:center;margin-bottom:32px;position:relative;z-index:2">
+    <div class="section-label rv" style="color:var(--blue)">Your Own AI Agent</div>
+    <h2 class="section-title rv rv-d1" style="max-width:700px;margin-left:auto;margin-right:auto">Everything we just showed you &mdash; but running inside Dell.</h2>
+    <p class="section-subtitle rv rv-d2" style="margin-left:auto;margin-right:auto;text-align:center">Trained on your data. Speaking your language. Available 24/7. Try it now.</p>
+  </div>
+
+  <!-- ORB with pulse rings -->
+  <div class="demo-orb-wrap" id="demo-orb-wrap">
+    <div class="demo-orb-ring demo-orb-ring-1"></div>
+    <div class="demo-orb-ring demo-orb-ring-2"></div>
+    <div class="demo-orb-ring demo-orb-ring-3"></div>
+    <div class="demo-orb-glow"></div>
+    <div class="demo-orb-particle" style="background:rgba(0,118,206,.5)"></div>
+    <div class="demo-orb-particle" style="background:rgba(79,70,229,.5)"></div>
+    <div class="demo-orb-particle" style="background:rgba(0,118,206,.3)"></div>
+    <div class="demo-orb-particle" style="background:rgba(84,199,236,.3)"></div>
+    <div class="demo-orb-particle" style="background:rgba(3,45,96,.4)"></div>
+    <div class="demo-orb-particle" style="background:rgba(79,70,229,.3)"></div>
+    <div class="demo-orb" id="demo-orb">
+      <div class="demo-orb-layer demo-orb-layer-1"></div>
+      <div class="demo-orb-layer demo-orb-layer-2"></div>
+      <div class="demo-orb-layer demo-orb-layer-3"></div>
+      <div class="demo-orb-layer demo-orb-layer-4"></div>
+      <div class="demo-orb-phone" id="demo-orb-phone">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      </div>
+    </div>
+    <div class="demo-orb-bubble" id="demo-orb-bubble">Hi, I'm Sarah from Dell Technologies...</div>
+  </div>
+
+  <div class="demo-calling-label">Incoming call</div>
+  <div class="demo-title">Dell Technologies Agent</div>
+  <div class="demo-hint">Tap to answer</div>
+  <div class="demo-phone-link">Or call: <a href="tel:+12016277551">(201) 627-7551</a></div>
+
+  <div class="demo-label" id="demo-label">Click to call your agent<span class="demo-label-hint">Live AI voice &mdash; 30 seconds</span></div>
+
+  <!-- Try saying this — real Dell scenarios -->
+  <div class="demo-hints rv rv-d2" id="demo-hints">
+    <div class="demo-hints-title">Try saying:</div>
+    <div class="demo-hints-grid">
+      <div class="demo-hint-pill" data-hint="I need a copy of the invoice with the PO number so I can process payment">
+        <span class="demo-hint-icon">&#128196;</span>
+        <span class="demo-hint-text">"Send me the invoice with the PO number"</span>
+        <span class="demo-hint-badge">59% of real disputes</span>
+      </div>
+      <div class="demo-hint-pill" data-hint="We already sent a check for this, it cleared our bank two weeks ago">
+        <span class="demo-hint-icon">&#9989;</span>
+        <span class="demo-hint-text">"We already paid this — check cleared 2 weeks ago"</span>
+        <span class="demo-hint-badge">23% of disputes</span>
+      </div>
+      <div class="demo-hint-pill" data-hint="I've never seen this before, how do I know this is actually from Dell?">
+        <span class="demo-hint-icon">&#10067;</span>
+        <span class="demo-hint-text">"How do I know this is actually from Dell?"</span>
+        <span class="demo-hint-badge">legitimacy check</span>
+      </div>
+      <div class="demo-hint-pill" data-hint="The employee who placed this order left the company, what do we do?">
+        <span class="demo-hint-icon">&#128100;</span>
+        <span class="demo-hint-text">"That employee no longer works here"</span>
+        <span class="demo-hint-badge">departed contact</span>
+      </div>
+      <div class="demo-hint-pill" data-hint="I canceled this service before it even started, I have proof by email">
+        <span class="demo-hint-icon">&#128683;</span>
+        <span class="demo-hint-text">"I canceled before the service started"</span>
+        <span class="demo-hint-badge">$70K dispute</span>
+      </div>
+      <div class="demo-hint-pill" data-hint="We pay Dell by credit card, not invoice. We're disputing these charges.">
+        <span class="demo-hint-icon">&#128179;</span>
+        <span class="demo-hint-text">"We pay by credit card, not invoice"</span>
+        <span class="demo-hint-badge">payment method</span>
+      </div>
+    </div>
+    <div class="demo-hints-note">These are real scenarios from your portfolio. The AI handles all of them.</div>
+  </div>
+
+  <!-- Call States (below orb) -->
+  <div class="demo-call-state" id="demo-call-state">
+    <div class="demo-connecting" id="demo-connecting">
+      <div class="demo-spinner"></div>
+      <div class="demo-connecting-text" id="demo-connecting-text">Connecting to Dell agent...</div>
+    </div>
+    <div class="demo-active" id="demo-active">
+      <div class="demo-status" id="demo-status">Listening...</div>
+      <div class="demo-waveform" id="demo-waveform">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="demo-transcript" id="demo-transcript"></div>
+      <button class="demo-end-btn" id="demo-end-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        End call
+      </button>
+    </div>
+    <div class="demo-post-call" id="demo-post-call">
+      <div class="demo-post-check">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <div class="demo-post-title">That was 30 seconds.</div>
+      <div class="demo-post-sub">Now imagine 650 accounts with your real data.</div>
+      <a href="https://cal.com/johnb/30" target="_blank" class="demo-post-cta" id="demo-post-cta">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Run the next experiment
+      </a>
+      <button class="demo-retry-btn" id="demo-retry-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+        Try another call
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- YOUR OWN AI AGENT — Readiness -->
 <section class="agent-section" id="agent">
   <div class="agent-inner">
-    <div class="agent-label rv">The Next Step</div>
-    <h2 class="agent-title rv rv-d1">What if Dell had its own<br>AI collection agent?</h2>
-    <p class="agent-subtitle rv rv-d2">Everything we just showed you &mdash; but running inside Dell. Trained on your data. Speaking your language. Available 24/7.</p>
+    <div class="agent-label rv">Readiness Assessment</div>
+    <h2 class="agent-title rv rv-d1">72% built. From the work<br>we already did.</h2>
+    <p class="agent-subtitle rv rv-d2">We have already built 72% of a dedicated Dell agent from the work on your 650 accounts. The remaining 28% requires your invoice data and a formal partnership.</p>
 
     <div class="agent-grid">
       <div class="rv rv-d2">
@@ -638,10 +872,8 @@ z-index:1}
       <div class="rv rv-d3">
         <div class="agent-pitch">
           <div class="agent-pitch-text">
-            We have already built <strong>72% of a dedicated Dell agent</strong> from the work we have done on your 650 accounts. We know your debtor profiles, optimal contact windows, preferred payment methods, and dispute patterns.<br><br>
-            The remaining <em>28%</em> requires your invoice data and a formal partnership agreement. We plug into Dell's AR system, apply Dell branding to all communications, and build custom payment plans based on your policies.<br><br>
             <strong>Timeline: 4&ndash;6 weeks to full deployment.</strong><br><br>
-            The agent will handle thousands of accounts simultaneously, 24/7, in multiple languages &mdash; at a fraction of the cost of a BPO or internal team.
+            We plug into Dell's AR system, apply Dell branding to all communications, and build custom payment plans based on your policies. The agent will handle thousands of accounts simultaneously, 24/7, in multiple languages &mdash; at a fraction of the cost of a BPO or internal team.
           </div>
         </div>
 
@@ -650,7 +882,7 @@ z-index:1}
           Schedule a Demo Call
         </a>
         <div style="margin-top:12px">
-          <a href="tel:+14157998879" style="color:rgba(255,255,255,.4);font-size:13px;text-decoration:none">or call directly: +1 (415) 799-8879</a>
+          <a href="tel:+12016277551" style="color:rgba(255,255,255,.4);font-size:13px;text-decoration:none">or call directly: (201) 627-7551</a>
         </div>
       </div>
     </div>
@@ -827,6 +1059,175 @@ z-index:1}
     if(circle) circle.classList.add('animated');
   }, 2500);
 
+})();
+
+// ===== Preload RetellAI SDK =====
+import('https://cdn.jsdelivr.net/npm/retell-client-js-sdk@2.0.7/+esm')
+  .then(function(m){ window.__RetellWebClient = m.RetellWebClient; })
+  .catch(function(){});
+
+// ===== Dell Agent Demo WebRTC =====
+(function(){
+  var orbWrap = document.getElementById('demo-orb-wrap');
+  var orb = document.getElementById('demo-orb');
+  var orbPhone = document.getElementById('demo-orb-phone');
+  var label = document.getElementById('demo-label');
+  var connecting = document.getElementById('demo-connecting');
+  var active = document.getElementById('demo-active');
+  var statusEl = document.getElementById('demo-status');
+  var transcript = document.getElementById('demo-transcript');
+  var waveformEl = document.getElementById('demo-waveform');
+  var waveformBars = waveformEl ? waveformEl.querySelectorAll('span') : [];
+  var endBtn = document.getElementById('demo-end-btn');
+  var postCall = document.getElementById('demo-post-call');
+  var retryBtn = document.getElementById('demo-retry-btn');
+  var demoCallingLabel = document.querySelector('.demo-calling-label');
+  var demoTitle = document.querySelector('.demo-title');
+  var demoHint = document.querySelector('.demo-hint');
+  var demoPhoneLink = document.querySelector('.demo-phone-link');
+  var demoBubble = document.getElementById('demo-orb-bubble');
+  var waveAnimId = null, waveMode = 'idle';
+  var callActive = false, retellClient = null, callStartTime = null;
+
+  function animWave(){
+    for(var i=0;i<waveformBars.length;i++){
+      var h;
+      if(waveMode==='agent') h=10+Math.random()*34;
+      else if(waveMode==='user') h=6+Math.random()*18;
+      else h=4+Math.sin(Date.now()/500+i*.6)*3;
+      waveformBars[i].style.height=h+'px';
+    }
+    waveAnimId=requestAnimationFrame(animWave);
+  }
+  function startWave(m){waveMode=m||'idle';if(!waveAnimId)animWave();}
+  function stopWave(){waveMode='idle';if(waveAnimId){cancelAnimationFrame(waveAnimId);waveAnimId=null;}for(var i=0;i<waveformBars.length;i++)waveformBars[i].style.height='4px';}
+
+  function hideHeroElements(){
+    if(demoCallingLabel) demoCallingLabel.style.display='none';
+    if(demoTitle) demoTitle.style.display='none';
+    if(demoHint) demoHint.style.display='none';
+    if(demoPhoneLink) demoPhoneLink.style.display='none';
+    if(demoBubble) demoBubble.style.display='none';
+    if(label) label.style.display='none';
+    if(orbPhone) orbPhone.style.display='none';
+    document.querySelectorAll('.demo-orb-ring').forEach(function(r){r.style.display='none';});
+  }
+
+  function showHeroElements(){
+    if(demoCallingLabel) demoCallingLabel.style.display='';
+    if(demoTitle) demoTitle.style.display='';
+    if(demoHint) demoHint.style.display='';
+    if(demoPhoneLink) demoPhoneLink.style.display='';
+    if(demoBubble) demoBubble.style.display='';
+    if(orbPhone){ orbPhone.style.display=''; orbPhone.style.opacity='1'; }
+    document.querySelectorAll('.demo-orb-ring').forEach(function(r){r.style.display='';});
+  }
+
+  function endCall(dur){
+    callActive=false;
+    if(retellClient){try{retellClient.stopCall();}catch(e){}}
+    retellClient=null;
+    if(window.__micStream){window.__micStream.getTracks().forEach(function(t){t.stop();});window.__micStream=null;}
+    stopWave();
+    if(orb)orb.classList.remove('speaking');
+
+    statusEl.textContent='Call ended';
+    var duration = callStartTime ? Math.round((Date.now()-callStartTime)/1000) : 30;
+    var postTitle = document.querySelector('.demo-post-title');
+    if(postTitle && duration > 0) postTitle.textContent='That was '+duration+' second'+(duration!==1?'s':'')+'.';
+
+    setTimeout(function(){
+      connecting.style.display='none';
+      active.classList.remove('visible');
+      transcript.innerHTML='';
+      postCall.classList.add('visible');
+    }, 1500);
+  }
+
+  function resetDemo(){
+    postCall.classList.remove('visible');
+    showHeroElements();
+    transcript.innerHTML='';
+  }
+
+  function startCall(){
+    if(callActive)return;
+    callActive=true;
+    callStartTime=Date.now();
+    hideHeroElements();
+    connecting.style.display='flex';
+    active.classList.remove('visible');
+    postCall.classList.remove('visible');
+    if(orb)orb.classList.add('speaking');
+
+    (async function(){
+      try{
+        var micP=navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true,sampleRate:{ideal:48000},channelCount:{ideal:1}}})
+          .then(function(s){window.__micStream=s;})
+          .catch(function(){throw new Error('Microphone access required');});
+
+        var apiP=fetch('https://backend.widr.app/api/v1/demo/web-call',{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({company_name:'Dell Technologies',product:'IT infrastructure, servers, storage, and technology solutions',amount:'$3,289'})
+        }).then(async function(r){
+          if(!r.ok)throw new Error('API error '+r.status);
+          return r.json();
+        });
+
+        var sdkP=Promise.resolve(window.__RetellWebClient).then(function(R){
+          if(R)return R;
+          return import('https://cdn.jsdelivr.net/npm/retell-client-js-sdk@2.0.7/+esm').then(function(m){return m.RetellWebClient;});
+        });
+
+        var res=await Promise.all([micP,apiP,sdkP]);
+        var result=res[1],RetellWebClient=res[2];
+        if(!result.success||!result.access_token)throw new Error('No access token');
+        retellClient=new RetellWebClient();
+
+        retellClient.on('call_started',function(){
+          callStartTime=Date.now();
+          connecting.style.display='none';
+          active.classList.add('visible');
+          statusEl.textContent='Your turn \u2014 speak now';
+          startWave('idle');
+          if(orbPhone) orbPhone.style.opacity='0';
+          try{gtag('event','demo_call_started',{company:'Dell',page:'dell-v3'});}catch(e){}
+        });
+        retellClient.on('call_ended',function(){
+          try{gtag('event','demo_call_completed',{company:'Dell',page:'dell-v3'});}catch(e){}
+          endCall();
+        });
+        retellClient.on('agent_start_talking',function(){startWave('agent');statusEl.textContent='Agent speaking...';});
+        retellClient.on('agent_stop_talking',function(){startWave('user');statusEl.textContent='Your turn \u2014 speak now';});
+        retellClient.on('update',function(u){
+          if(u&&u.transcript){
+            var last=null;
+            for(var i=u.transcript.length-1;i>=0;i--){if((u.transcript[i].content||'').trim()){last=u.transcript[i];break;}}
+            if(last){
+              var role=last.role==='agent'?'agent':'user';
+              transcript.innerHTML='<div class="demo-transcript-msg '+role+'">'+last.content+'</div>';
+              transcript.scrollTop=transcript.scrollHeight;
+            }
+          }
+        });
+        retellClient.on('error',function(e){console.error('RetellAI:',e);endCall();});
+        await retellClient.startCall({accessToken:result.access_token});
+      }catch(err){
+        console.error('Demo call error:',err);
+        callActive=false;
+        connecting.style.display='none';
+        if(orb)orb.classList.remove('speaking');
+        showHeroElements();
+        if(demoHint){demoHint.textContent='Connection failed \u2014 tap to retry';demoHint.style.color='#ef4444';demoHint.style.fontSize='13px';}
+        setTimeout(function(){if(demoHint){demoHint.textContent='Tap to answer';demoHint.style.color='';demoHint.style.fontSize='';}},6000);
+      }
+    })();
+  }
+
+  if(orbWrap)orbWrap.addEventListener('click',function(){if(!callActive)startCall();});
+  if(endBtn)endBtn.addEventListener('click',function(){endCall();});
+  if(retryBtn)retryBtn.addEventListener('click',function(){resetDemo();});
 })();
 </script>
 </body>
