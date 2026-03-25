@@ -1,5 +1,6 @@
 {
   "rewrites": [
+{ "source": "/dell", "destination": "/v3/dell.html" },
 { "source": "/office-practicum", "destination": "/office-practicum.html" },
 { "source": "/data-sales", "destination": "/data-sales.html" },
 { "source": "/csc-leasing", "destination": "/csc-leasing.html" },
