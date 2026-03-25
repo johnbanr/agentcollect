@@ -183,50 +183,7 @@ z-index:1}
 .acct-card-title svg{width:18px;height:18px;color:var(--green);flex-shrink:0}
 .acct-card-text{font-size:14px;color:rgba(255,255,255,.45);line-height:1.6}
 
-/* ===== AI AGENT UPSELL ===== */
-.agent-section{background:linear-gradient(135deg,#0B1B3D 0%,#0f2247 50%,#132a52 100%);padding:56px 32px;position:relative;overflow:hidden}
-.agent-section::before{content:'';position:absolute;inset:0;background:
-  radial-gradient(ellipse 800px 500px at 20% 80%,rgba(16,185,129,.08),transparent),
-  radial-gradient(ellipse 600px 400px at 80% 20%,rgba(79,70,229,.1),transparent)}
-.agent-section *{position:relative;z-index:1}
-.agent-inner{max-width:1120px;margin:0 auto}
-.agent-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--green);margin-bottom:12px}
-.agent-title{font-family:var(--sans);font-size:clamp(28px,4vw,48px);font-weight:900;color:#fff;letter-spacing:-.04em;line-height:1.08;margin-bottom:16px;max-width:700px}
-.agent-subtitle{font-size:18px;color:rgba(255,255,255,.5);max-width:600px;line-height:1.6;margin-bottom:32px}
-
-.agent-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
-
-/* Progress circle */
-.progress-wrap{text-align:center;margin-bottom:20px}
-.progress-circle{position:relative;width:160px;height:160px;margin:0 auto 16px}
-.progress-circle svg{width:160px;height:160px;transform:rotate(-90deg)}
-.progress-circle .bg{fill:none;stroke:rgba(255,255,255,.08);stroke-width:12}
-.progress-circle .fill{fill:none;stroke:var(--green);stroke-width:12;stroke-linecap:round;stroke-dasharray:565;stroke-dashoffset:565;transition:stroke-dashoffset 2s cubic-bezier(.16,1,.3,1)}
-.progress-circle.animated .fill{stroke-dashoffset:158}
-.progress-pct{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.progress-pct-num{font-family:var(--sans);font-size:40px;font-weight:900;color:#fff;letter-spacing:-.03em;line-height:1}
-.progress-pct-label{font-size:13px;color:rgba(255,255,255,.45);font-weight:500;margin-top:4px}
-
-/* Readiness table */
-.readiness-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.readiness-col-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.08)}
-.readiness-col-title.ready{color:var(--green)}
-.readiness-col-title.needs{color:var(--amber)}
-.readiness-item{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.7);padding:6px 0;line-height:1.4}
-.readiness-item svg{width:16px;height:16px;flex-shrink:0}
-.readiness-item.done svg{color:var(--green)}
-.readiness-item.pending svg{color:var(--amber)}
-
-.agent-pitch{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:24px;margin-top:24px}
-.agent-pitch-text{font-size:16px;color:rgba(255,255,255,.7);line-height:1.7}
-.agent-pitch-text strong{color:#fff;font-weight:700}
-.agent-pitch-text em{color:var(--green);font-style:normal;font-weight:700}
-
-.agent-cta{display:inline-flex;align-items:center;gap:10px;margin-top:24px;padding:14px 32px;background:var(--green);color:#fff;border-radius:12px;font-family:var(--sans);font-weight:800;font-size:16px;text-decoration:none;transition:all .2s;border:none;cursor:pointer}
-.agent-cta:hover{background:var(--green-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(16,185,129,.3)}
-.agent-cta svg{width:20px;height:20px}
-
-/* ===== AGENT DEMO (Dell orb) ===== */
+/* ===== AI AGENT DEMO ===== */
 .agent-demo-section{min-height:auto;background:#f6f3ef;padding:48px 24px 32px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .agent-demo-section::before{content:'';position:absolute;width:800px;height:800px;top:40%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(0,118,206,.12) 0%,rgba(79,70,229,.05) 40%,transparent 70%);border-radius:50%;pointer-events:none;animation:demoHeroGlow 6s ease-in-out infinite}
 .agent-demo-section::after{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 700px 400px at 30% 0%,rgba(0,118,206,.08),transparent),radial-gradient(ellipse 500px 500px at 80% 80%,rgba(79,70,229,.06),transparent)}
@@ -234,15 +191,15 @@ z-index:1}
 
 /* Pulse rings */
 .demo-orb-ring{position:absolute;border-radius:50%;border:1.5px solid rgba(0,118,206,.12);pointer-events:none}
-.demo-orb-ring-1{inset:-30px;animation:demoRingPulse 3s ease-out infinite}
-.demo-orb-ring-2{inset:-60px;animation:demoRingPulse 3s ease-out infinite .6s}
-.demo-orb-ring-3{inset:-90px;animation:demoRingPulse 3s ease-out infinite 1.2s}
+.demo-orb-ring-1{inset:-20px;animation:demoRingPulse 3s ease-out infinite}
+.demo-orb-ring-2{inset:-40px;animation:demoRingPulse 3s ease-out infinite .6s}
+.demo-orb-ring-3{inset:-60px;animation:demoRingPulse 3s ease-out infinite 1.2s}
 @keyframes demoRingPulse{0%{opacity:.6;transform:scale(.95)}50%{opacity:.2;transform:scale(1)}100%{opacity:0;transform:scale(1.05)}}
 
-/* Orb */
-.demo-orb-wrap{position:relative;width:220px;height:220px;aspect-ratio:1;margin:0 auto 20px;cursor:pointer}
-.demo-orb-glow{position:absolute;inset:-60px;border-radius:50%;background:radial-gradient(circle,rgba(0,118,206,.18) 0%,rgba(79,70,229,.06) 40%,transparent 70%);animation:demoOrbGlowPulse 4s ease-in-out infinite}
-.demo-orb{position:relative;width:220px;height:220px;aspect-ratio:1;border-radius:50%;-webkit-border-radius:50%;overflow:hidden;-webkit-mask-image:-webkit-radial-gradient(white,black);mask-image:radial-gradient(white,black);animation:demoOrbDrift 6s ease-in-out infinite;transition:transform .3s,box-shadow .3s;box-shadow:0 0 80px rgba(0,118,206,.25),0 0 160px rgba(79,70,229,.08),inset 0 0 60px rgba(0,0,0,.3)}
+/* Orb — smaller */
+.demo-orb-wrap{position:relative;width:160px;height:160px;aspect-ratio:1;margin:0 auto 12px;cursor:pointer}
+.demo-orb-glow{position:absolute;inset:-40px;border-radius:50%;background:radial-gradient(circle,rgba(0,118,206,.18) 0%,rgba(79,70,229,.06) 40%,transparent 70%);animation:demoOrbGlowPulse 4s ease-in-out infinite}
+.demo-orb{position:relative;width:160px;height:160px;aspect-ratio:1;border-radius:50%;-webkit-border-radius:50%;overflow:hidden;-webkit-mask-image:-webkit-radial-gradient(white,black);mask-image:radial-gradient(white,black);animation:demoOrbDrift 6s ease-in-out infinite;transition:transform .3s,box-shadow .3s;box-shadow:0 0 80px rgba(0,118,206,.25),0 0 160px rgba(79,70,229,.08),inset 0 0 60px rgba(0,0,0,.3)}
 .demo-orb-wrap:hover .demo-orb{transform:scale(1.06)}
 .demo-orb-wrap:active .demo-orb{transform:scale(.95)}
 .demo-orb.speaking{animation:demoOrbDrift 6s ease-in-out infinite,demoOrbPulseSpeak .8s ease-in-out infinite}
@@ -252,7 +209,7 @@ z-index:1}
 .demo-orb-layer-3{background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.25) 0%,transparent 50%)}
 .demo-orb-layer-4{background:radial-gradient(circle at 50% 110%,rgba(0,0,0,.4) 0%,transparent 60%)}
 .demo-orb-phone{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:10;transition:opacity .3s,transform .3s}
-.demo-orb-phone svg{width:36px;height:36px;color:#fff;stroke:currentColor;filter:drop-shadow(0 2px 12px rgba(0,0,0,.35));transition:transform .3s}
+.demo-orb-phone svg{width:32px;height:32px;color:#fff;stroke:currentColor;filter:drop-shadow(0 2px 12px rgba(0,0,0,.35));transition:transform .3s}
 .demo-orb-wrap:hover .demo-orb-phone svg{transform:scale(1.12)}
 .demo-orb-particle{position:absolute;width:4px;height:4px;border-radius:50%;animation:demoOrbParticle 4s ease-in-out infinite}
 .demo-orb-particle:nth-child(1){top:-16px;left:30%;animation-delay:0s}
@@ -269,25 +226,25 @@ z-index:1}
 @keyframes demoOrbParticle{0%,100%{opacity:0;transform:translateY(0) scale(1)}25%{opacity:1}50%{opacity:.8;transform:translateY(-18px) scale(1.4)}75%{opacity:.3}}
 
 /* Orb bubble */
-.demo-orb-bubble{position:absolute;top:16px;right:-40px;background:rgba(255,255,255,.3);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.35);border-radius:14px;padding:10px 18px;font-size:15px;font-weight:700;color:var(--text);white-space:nowrap;animation:demoOrbBubble 3s ease-in-out infinite;z-index:15}
+.demo-orb-bubble{position:absolute;top:10px;right:-40px;background:rgba(255,255,255,.3);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.35);border-radius:14px;padding:8px 14px;font-size:13px;font-weight:700;color:var(--text);white-space:nowrap;animation:demoOrbBubble 3s ease-in-out infinite;z-index:15}
 @keyframes demoOrbBubble{0%,100%{opacity:.7;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
 
-.demo-calling-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--blue);opacity:.7;margin-bottom:8px;text-align:center;animation:demoFadeInUp .6s ease .2s both}
-.demo-title{font-size:22px;font-weight:800;color:var(--text);letter-spacing:-.03em;margin-bottom:6px;text-align:center;animation:demoFadeInUp .6s ease .3s both}
-.demo-hint{font-size:14px;color:var(--green);opacity:.8;text-align:center;margin-bottom:0;font-weight:600;animation:demoFadeInUp .6s ease .4s both}
-.demo-phone-link{font-size:14px;color:var(--muted);text-align:center;margin-top:12px;font-weight:500;animation:demoFadeInUp .6s ease .5s both}
+.demo-calling-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--blue);opacity:.7;margin-bottom:4px;text-align:center;animation:demoFadeInUp .6s ease .2s both}
+.demo-title{font-size:18px;font-weight:800;color:var(--text);letter-spacing:-.03em;margin-bottom:4px;text-align:center;animation:demoFadeInUp .6s ease .3s both}
+.demo-hint{font-size:13px;color:var(--green);opacity:.8;text-align:center;margin-bottom:0;font-weight:600;animation:demoFadeInUp .6s ease .4s both}
+.demo-phone-link{font-size:13px;color:var(--muted);text-align:center;margin-top:8px;font-weight:500;animation:demoFadeInUp .6s ease .5s both}
 .demo-phone-link a{color:var(--blue);text-decoration:none;font-weight:600}
 .demo-phone-link a:hover{text-decoration:underline}
 
-/* Demo Hints */
-.demo-hints{max-width:720px;margin:16px auto 0;text-align:center}
-.demo-hints-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--blue);opacity:.6;margin-bottom:8px}
-.demo-hints-grid{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
-.demo-hint-pill{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:rgba(255,255,255,.8);border:1px solid rgba(0,0,0,.06);border-radius:50px;cursor:default;transition:all .25s;backdrop-filter:blur(8px);position:relative}
+/* Demo Hints — compact */
+.demo-hints{max-width:500px;margin:12px auto 0;text-align:center}
+.demo-hints-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--blue);opacity:.6;margin-bottom:6px}
+.demo-hints-grid{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.demo-hint-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:rgba(255,255,255,.8);border:1px solid rgba(0,0,0,.06);border-radius:50px;cursor:default;transition:all .25s;backdrop-filter:blur(8px);position:relative}
 .demo-hint-pill:hover{border-color:var(--blue);background:rgba(79,70,229,.04);transform:translateY(-2px);box-shadow:0 4px 12px rgba(79,70,229,.1)}
-.demo-hint-icon{font-size:16px;flex-shrink:0}
-.demo-hint-text{font-size:13px;font-weight:600;color:var(--text);white-space:nowrap}
-.demo-hint-badge{font-size:10px;font-weight:700;color:var(--blue);background:rgba(79,70,229,.08);padding:3px 8px;border-radius:20px;white-space:nowrap}
+.demo-hint-icon{font-size:14px;flex-shrink:0}
+.demo-hint-text{font-size:12px;font-weight:600;color:var(--text);white-space:nowrap}
+.demo-hint-badge{font-size:9px;font-weight:700;color:var(--blue);background:rgba(79,70,229,.08);padding:2px 6px;border-radius:20px;white-space:nowrap}
 .demo-hints-note{font-size:12px;color:var(--muted);margin-top:16px;font-style:italic}
 @media(max-width:768px){
   .demo-hint-text{white-space:normal;text-align:left}
@@ -328,56 +285,78 @@ z-index:1}
 .demo-retry-btn:hover{border-color:var(--blue);color:var(--blue)}
 
 @media(max-width:768px){
-  .demo-orb-wrap{width:180px;height:180px}
-  .demo-orb{width:180px;height:180px;border-radius:50%;-webkit-border-radius:50%;-webkit-mask-image:-webkit-radial-gradient(white,black)}
-  .demo-orb-phone svg{width:32px;height:32px}
-  .demo-orb-ring-1{inset:-16px}
-  .demo-orb-ring-2{inset:-36px}
-  .demo-orb-ring-3{inset:-56px}
-  .demo-title{font-size:18px}
-  .demo-orb-bubble{display:none}
-}
-@media(max-width:480px){
-  .demo-orb-wrap{width:160px;height:160px;aspect-ratio:1;margin:0 auto 16px}
-  .demo-orb{width:160px;height:160px;aspect-ratio:1;border-radius:50%;-webkit-border-radius:50%;-webkit-mask-image:-webkit-radial-gradient(white,black)}
+  .demo-orb-wrap{width:140px;height:140px}
+  .demo-orb{width:140px;height:140px;border-radius:50%;-webkit-border-radius:50%;-webkit-mask-image:-webkit-radial-gradient(white,black)}
   .demo-orb-phone svg{width:28px;height:28px}
   .demo-orb-ring-1{inset:-12px}
   .demo-orb-ring-2{inset:-28px}
   .demo-orb-ring-3{inset:-44px}
   .demo-title{font-size:16px}
+  .demo-orb-bubble{display:none}
+}
+@media(max-width:480px){
+  .demo-orb-wrap{width:120px;height:120px;aspect-ratio:1;margin:0 auto 12px}
+  .demo-orb{width:120px;height:120px;aspect-ratio:1;border-radius:50%;-webkit-border-radius:50%;-webkit-mask-image:-webkit-radial-gradient(white,black)}
+  .demo-orb-phone svg{width:24px;height:24px}
+  .demo-orb-ring-1{inset:-10px}
+  .demo-orb-ring-2{inset:-22px}
+  .demo-orb-ring-3{inset:-34px}
+  .demo-title{font-size:15px}
 }
 
-/* ===== PROPOSAL ===== */
+/* ===== READINESS SECTION ===== */
+.readiness-section{background:linear-gradient(135deg,#0B1B3D 0%,#0f2247 50%,#132a52 100%);padding:56px 32px;position:relative;overflow:hidden}
+.readiness-section::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(ellipse 800px 500px at 20% 80%,rgba(16,185,129,.08),transparent),
+  radial-gradient(ellipse 600px 400px at 80% 20%,rgba(79,70,229,.1),transparent)}
+.readiness-section *{position:relative;z-index:1}
+.readiness-inner{max-width:1120px;margin:0 auto}
+.readiness-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--green);margin-bottom:12px}
+.readiness-title{font-family:var(--sans);font-size:clamp(24px,3.5vw,36px);font-weight:900;color:#fff;letter-spacing:-.03em;line-height:1.12;margin-bottom:8px}
+.readiness-subtitle{font-size:16px;color:rgba(255,255,255,.5);max-width:600px;line-height:1.6;margin-bottom:32px}
+
+.readiness-checklist{display:grid;grid-template-columns:1fr 1fr;gap:10px 32px;margin-bottom:28px}
+.readiness-item{display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(255,255,255,.8);padding:8px 0}
+.readiness-item .check{width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px}
+.readiness-item .check.done{background:var(--green);color:#fff}
+.readiness-item .check.pending{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);color:rgba(255,255,255,.4)}
+.readiness-item.pending-item{color:rgba(255,255,255,.5)}
+
+.readiness-timeline{display:inline-flex;align-items:center;gap:12px;padding:14px 24px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:14px}
+.readiness-timeline-text{font-size:15px;color:rgba(255,255,255,.7);line-height:1.5}
+.readiness-timeline-text strong{color:#fff}
+
+/* ===== PROPOSAL — Visual cards ===== */
 .proposal-section{padding:60px 32px}
 .proposal-inner{max-width:1120px;margin:0 auto}
-.proposal-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:40px}
-.proposal-card{background:#fff;border-radius:20px;padding:28px 24px;box-shadow:var(--shadow-lg);border:1px solid rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden}
+.proposal-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px}
+.proposal-card{background:#fff;border-radius:20px;padding:32px 28px;box-shadow:var(--shadow-lg);border:1px solid rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden}
 .proposal-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-xl)}
 .proposal-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
 .proposal-card:nth-child(1)::before{background:var(--blue)}
 .proposal-card:nth-child(2)::before{background:var(--green)}
-.proposal-track{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.proposal-track{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
 .proposal-card:nth-child(1) .proposal-track{color:var(--blue)}
 .proposal-card:nth-child(2) .proposal-track{color:var(--green)}
-.proposal-card-title{font-family:var(--sans);font-size:22px;font-weight:900;color:var(--text);letter-spacing:-.02em;margin-bottom:12px;line-height:1.2}
-.proposal-card-text{font-size:15px;color:var(--muted);line-height:1.6;margin-bottom:20px}
-.proposal-card-action{font-size:14px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:6px}
-.proposal-card-action svg{width:16px;height:16px}
+.proposal-card-title{font-family:var(--sans);font-size:22px;font-weight:900;color:var(--text);letter-spacing:-.02em;margin-bottom:16px;line-height:1.2}
 
-.proposal-connector{text-align:center;padding:20px;background:linear-gradient(135deg,rgba(79,70,229,.04),rgba(16,185,129,.04));border-radius:16px;border:1px solid rgba(79,70,229,.06);margin-bottom:40px}
-.proposal-connector-text{font-size:16px;color:var(--text);font-weight:600}
-.proposal-connector-text strong{color:var(--blue)}
+.proposal-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}
+.proposal-row:last-child{border-bottom:none}
+.proposal-row-icon{font-size:18px;flex-shrink:0}
+.proposal-row-label{font-size:14px;color:var(--muted);font-weight:500}
+.proposal-row-value{font-family:var(--sans);font-size:15px;font-weight:800;color:var(--text);margin-left:auto;white-space:nowrap}
+.proposal-row-value.green{color:var(--green-dark)}
 
-.proposal-urgency{background:#0B1B3D;border-left:4px solid #F59E0B;border-radius:12px;padding:20px 24px;margin-bottom:40px;display:flex;align-items:flex-start;gap:14px}
-.proposal-urgency-icon{font-size:20px;line-height:1;flex-shrink:0;margin-top:2px}
-.proposal-urgency-title{font-family:var(--sans);font-size:14px;font-weight:800;color:#F59E0B;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
-.proposal-urgency-text{font-size:14px;color:rgba(255,255,255,.8);line-height:1.7}
-.proposal-urgency-text strong{color:#fff;font-weight:700}
-
-.proposal-cta{text-align:center}
-.proposal-cta a{display:inline-flex;align-items:center;gap:10px;padding:16px 40px;background:var(--blue);color:#fff;border-radius:14px;font-family:var(--sans);font-weight:800;font-size:17px;text-decoration:none;transition:all .2s}
-.proposal-cta a:hover{background:var(--blue-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(79,70,229,.3)}
-.proposal-cta a svg{width:20px;height:20px}
+/* ===== CTA ===== */
+.cta-section{padding:48px 32px 60px;text-align:center}
+.cta-inner{max-width:600px;margin:0 auto}
+.cta-title{font-family:var(--sans);font-size:clamp(28px,4vw,40px);font-weight:900;color:var(--text);letter-spacing:-.03em;margin-bottom:12px}
+.cta-subtitle{font-size:16px;color:var(--muted);margin-bottom:28px;line-height:1.6}
+.cta-btn{display:inline-flex;align-items:center;gap:10px;padding:18px 48px;background:var(--blue);color:#fff;border-radius:14px;font-family:var(--sans);font-weight:800;font-size:18px;text-decoration:none;transition:all .2s;box-shadow:0 0 24px rgba(79,70,229,.25)}
+.cta-btn:hover{background:var(--blue-dark);transform:translateY(-2px);box-shadow:0 8px 32px rgba(79,70,229,.35)}
+.cta-btn svg{width:20px;height:20px}
+.cta-sub{margin-top:12px;font-size:13px;color:var(--muted-light)}
+.cta-sub a{color:var(--blue);text-decoration:none;font-weight:600}
 
 /* ===== FOOTER ===== */
 .footer{background:var(--text);padding:60px 32px;text-align:center;color:rgba(255,255,255,.5)}
@@ -391,9 +370,9 @@ z-index:1}
 /* ===== RESPONSIVE ===== */
 @media(max-width:900px){
   .hero-stats{grid-template-columns:repeat(2,1fr)}
-  .batch-grid,.channel-grid,.acct-grid,.temporal-grid,.agent-grid,.proposal-grid,.readiness-grid{grid-template-columns:1fr}
+  .batch-grid,.channel-grid,.acct-grid,.temporal-grid,.readiness-checklist,.proposal-grid{grid-template-columns:1fr}
   .hero{padding:120px 20px 60px}
-  .section,.agent-section,.proposal-section{padding:48px 20px}
+  .section,.readiness-section,.proposal-section,.cta-section{padding:48px 20px}
   .agent-demo-section{padding:36px 16px 24px}
   .accounting-section{padding:40px 24px;margin:40px 0;border-radius:16px}
   .nav-inner{padding:14px 20px}
@@ -719,10 +698,13 @@ z-index:1}
 <!-- YOUR OWN AI AGENT — Live Demo -->
 <section class="agent-demo-section" id="agent-demo">
 
-  <div style="text-align:center;margin-bottom:16px;position:relative;z-index:2">
-    <div class="section-label rv" style="color:var(--blue)">Your Own AI Agent</div>
-    <h2 class="section-title rv rv-d1" style="max-width:700px;margin-left:auto;margin-right:auto">Everything we just showed you &mdash; but running inside Dell.</h2>
-    <p class="section-subtitle rv rv-d2" style="margin-left:auto;margin-right:auto;text-align:center;margin-bottom:16px">Trained on your data. Speaking your language. Available 24/7. Try it now.</p>
+  <div style="text-align:center;margin-bottom:8px;position:relative;z-index:2">
+    <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:rgba(79,70,229,.06);border:1px solid rgba(79,70,229,.1);border-radius:100px;font-size:11px;font-weight:700;color:var(--blue);letter-spacing:.06em;margin-bottom:12px">
+      <span style="width:6px;height:6px;border-radius:50%;background:var(--green);animation:demoOrbGlowPulse 2s ease-in-out infinite"></span>
+      Live preview &middot; Trained on 650 Dell accounts
+    </div>
+    <h2 class="section-title rv rv-d1" style="max-width:600px;margin-left:auto;margin-right:auto;font-size:clamp(24px,3.5vw,36px)">"She already knows your portfolio."</h2>
+    <p style="font-size:16px;color:var(--muted);margin:0 auto 12px;font-weight:500">Say hello to Sarah.</p>
   </div>
 
   <!-- ORB with pulse rings -->
@@ -746,34 +728,29 @@ z-index:1}
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
       </div>
     </div>
-    <div class="demo-orb-bubble" id="demo-orb-bubble">Hi, I'm Sarah from Dell Technologies...</div>
+    <div class="demo-orb-bubble" id="demo-orb-bubble">Hi, I'm Sarah from Dell...</div>
   </div>
 
   <div class="demo-calling-label">Incoming call</div>
   <div class="demo-title">Dell Technologies Agent</div>
   <div class="demo-hint">Tap to answer</div>
-  <div class="demo-phone-link">Or call: <a href="tel:+12016277551">(201) 627-7551</a></div>
+  <div class="demo-phone-link">Or call: <a href="tel:+13322416776">(332) 241-6776</a></div>
 
   <div class="demo-label" id="demo-label">Click to call your agent<span class="demo-label-hint">Live AI voice &mdash; 30 seconds</span></div>
 
-  <!-- Try saying this — real Dell scenarios -->
+  <!-- Try saying this — 2 most impactful suggestions -->
   <div class="demo-hints rv rv-d2" id="demo-hints">
     <div class="demo-hints-title">Try saying:</div>
     <div class="demo-hints-grid">
       <div class="demo-hint-pill" data-hint="I need a copy of the invoice with the PO number so I can process payment">
         <span class="demo-hint-icon">&#128196;</span>
         <span class="demo-hint-text">"Send me the invoice with the PO number"</span>
-        <span class="demo-hint-badge">59% of real disputes</span>
+        <span class="demo-hint-badge">59% of disputes</span>
       </div>
       <div class="demo-hint-pill" data-hint="We already sent a check for this, it cleared our bank two weeks ago">
         <span class="demo-hint-icon">&#9989;</span>
-        <span class="demo-hint-text">"We already paid this — check cleared 2 weeks ago"</span>
+        <span class="demo-hint-text">"We already paid this"</span>
         <span class="demo-hint-badge">23% of disputes</span>
-      </div>
-      <div class="demo-hint-pill" data-hint="I've never seen this before, how do I know this is actually from Dell?">
-        <span class="demo-hint-icon">&#10067;</span>
-        <span class="demo-hint-text">"How do I know this is actually from Dell?"</span>
-        <span class="demo-hint-badge">legitimacy check</span>
       </div>
     </div>
   </div>
@@ -813,69 +790,52 @@ z-index:1}
   </div>
 </section>
 
-<!-- YOUR OWN AI AGENT — Readiness -->
-<section class="agent-section" id="agent">
-  <div class="agent-inner">
-    <div class="agent-label rv">Readiness Assessment</div>
-    <h2 class="agent-title rv rv-d1" style="font-size:clamp(24px,3.5vw,40px)">72% built. From the work we already did.</h2>
-    <p class="agent-subtitle rv rv-d2" style="margin-bottom:24px">To finish: just an email address and an API connection to your accounting software.</p>
+<!-- READINESS — Visual checklist -->
+<section class="readiness-section" id="readiness">
+  <div class="readiness-inner">
+    <div class="readiness-label rv">Deployment Readiness</div>
+    <h2 class="readiness-title rv rv-d1">Everything we just showed you &mdash; but running inside Dell.</h2>
+    <p class="readiness-subtitle rv rv-d2">Trained on your data. Speaking your language. Available 24/7.</p>
 
-    <div class="agent-grid">
-      <div class="rv rv-d2">
-        <div class="progress-wrap">
-          <div class="progress-circle" id="progressCircle">
-            <svg viewBox="0 0 200 200">
-              <circle class="bg" cx="100" cy="100" r="90"/>
-              <circle class="fill" cx="100" cy="100" r="90"/>
-            </svg>
-            <div class="progress-pct">
-              <div class="progress-pct-num"><span class="counter" data-target="72">0</span>%</div>
-              <div class="progress-pct-label">Ready to deploy</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="readiness-grid">
-          <div>
-            <div class="readiness-col-title ready">Ready Now</div>
-            <div class="readiness-item done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> AI phone calls (outbound)</div>
-            <div class="readiness-item done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> SMS outreach</div>
-            <div class="readiness-item done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Email sequences</div>
-            <div class="readiness-item done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Voicemail delivery</div>
-            <div class="readiness-item done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Engagement tracking</div>
-            <div class="readiness-item done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Payment page</div>
-            <div class="readiness-item done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Temporal attribution</div>
-            <div class="readiness-item done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Multi-language (EN/FR/ES)</div>
-          </div>
-          <div>
-            <div class="readiness-col-title needs">Just need from Dell</div>
-            <div class="readiness-item pending"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> An email address for the agent</div>
-            <div class="readiness-item pending"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> API access to accounting software</div>
-          </div>
-        </div>
+    <div class="readiness-checklist rv rv-d2">
+      <div class="readiness-item">
+        <span class="check done"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+        AI Calls
       </div>
-
-      <div class="rv rv-d3">
-        <div class="agent-pitch">
-          <div class="agent-pitch-text">
-            <strong>Timeline: 2 weeks to full deployment.</strong><br>
-            All we need: an email address and API access to your accounting software. That&rsquo;s it.
-          </div>
-        </div>
-
-        <a class="agent-cta" href="https://cal.com/john-banner" target="_blank">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-          Schedule a Demo Call
-        </a>
-        <div style="margin-top:12px">
-          <a href="tel:+12016277551" style="color:rgba(255,255,255,.4);font-size:13px;text-decoration:none">or call directly: (201) 627-7551</a>
-        </div>
+      <div class="readiness-item">
+        <span class="check done"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+        SMS outreach
       </div>
+      <div class="readiness-item">
+        <span class="check done"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+        Email sequences
+      </div>
+      <div class="readiness-item">
+        <span class="check done"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+        Voicemail delivery
+      </div>
+      <div class="readiness-item">
+        <span class="check done"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+        Engagement tracking
+      </div>
+      <div class="readiness-item pending-item">
+        <span class="check pending">&#9744;</span>
+        Invoice lookup <span style="font-size:12px;color:rgba(255,255,255,.35);margin-left:4px">needs API access</span>
+      </div>
+      <div class="readiness-item pending-item">
+        <span class="check pending">&#9744;</span>
+        Custom payment plans <span style="font-size:12px;color:rgba(255,255,255,.35);margin-left:4px">needs contract</span>
+      </div>
+    </div>
+
+    <div class="readiness-timeline rv rv-d3">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <div class="readiness-timeline-text"><strong>2 weeks to full deployment.</strong> We just need an email address and API access to your accounting software.</div>
     </div>
   </div>
 </section>
 
-<!-- PROPOSAL -->
+<!-- TWO TRACKS PROPOSAL — Visual cards -->
 <section class="proposal-section" id="proposal">
   <div class="proposal-inner">
     <div class="section-label rv" style="text-align:center">Proposal</div>
@@ -885,54 +845,67 @@ z-index:1}
     <div class="proposal-grid">
       <div class="proposal-card rv">
         <div class="proposal-track">Track 1</div>
-        <div class="proposal-card-title">Continue Collection</div>
-        <ul style="list-style:none;padding:0;margin:0 0 16px;display:flex;flex-direction:column;gap:10px">
-          <li style="display:flex;align-items:flex-start;gap:10px;font-size:15px;color:var(--muted);line-height:1.5"><svg style="flex-shrink:0;margin-top:2px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg> Send Batch #4</li>
-          <li style="display:flex;align-items:flex-start;gap:10px;font-size:15px;color:var(--muted);line-height:1.5"><svg style="flex-shrink:0;margin-top:2px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg> We recover at <strong style="color:var(--text)">33%+ rate</strong></li>
-          <li style="display:flex;align-items:flex-start;gap:10px;font-size:15px;color:var(--muted);line-height:1.5"><svg style="flex-shrink:0;margin-top:2px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg> AI keeps learning Dell patterns</li>
-        </ul>
-        <div class="proposal-card-action">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-          Ready now
+        <div class="proposal-card-title">Continue 3rd Party</div>
+        <div class="proposal-row">
+          <span class="proposal-row-icon">&#128640;</span>
+          <span class="proposal-row-label">Model</span>
+          <span class="proposal-row-value">We handle everything</span>
+        </div>
+        <div class="proposal-row">
+          <span class="proposal-row-icon">&#128230;</span>
+          <span class="proposal-row-label">Next step</span>
+          <span class="proposal-row-value">Batch #4 ready to launch</span>
+        </div>
+        <div class="proposal-row">
+          <span class="proposal-row-icon">&#128200;</span>
+          <span class="proposal-row-label">Recovery rate</span>
+          <span class="proposal-row-value green">33.7% and climbing</span>
+        </div>
+        <div class="proposal-row">
+          <span class="proposal-row-icon">&#128101;</span>
+          <span class="proposal-row-label">Dell resources</span>
+          <span class="proposal-row-value">Zero</span>
         </div>
       </div>
+
       <div class="proposal-card rv rv-d1">
         <div class="proposal-track">Track 2</div>
-        <div class="proposal-card-title">Build the Dell Agent</div>
-        <ul style="list-style:none;padding:0;margin:0 0 16px;display:flex;flex-direction:column;gap:10px">
-          <li style="display:flex;align-items:flex-start;gap:10px;font-size:15px;color:var(--muted);line-height:1.5"><svg style="flex-shrink:0;margin-top:2px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg> Your own AI, trained on your data</li>
-          <li style="display:flex;align-items:flex-start;gap:10px;font-size:15px;color:var(--muted);line-height:1.5"><svg style="flex-shrink:0;margin-top:2px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg> Dell-branded, integrated with your AR</li>
-          <li style="display:flex;align-items:flex-start;gap:10px;font-size:15px;color:var(--muted);line-height:1.5"><svg style="flex-shrink:0;margin-top:2px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg> <strong style="color:var(--text)">2 weeks</strong> to deploy</li>
-        </ul>
-        <div class="proposal-card-action">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-          Formalize the partnership
+        <div class="proposal-card-title">Build Dell's Agent</div>
+        <div class="proposal-row">
+          <span class="proposal-row-icon">&#129302;</span>
+          <span class="proposal-row-label">Model</span>
+          <span class="proposal-row-value">Dell owns the agent</span>
+        </div>
+        <div class="proposal-row">
+          <span class="proposal-row-icon">&#9201;</span>
+          <span class="proposal-row-label">Timeline</span>
+          <span class="proposal-row-value green">2 weeks to deploy</span>
+        </div>
+        <div class="proposal-row">
+          <span class="proposal-row-icon">&#128338;</span>
+          <span class="proposal-row-label">Availability</span>
+          <span class="proposal-row-value green">24/7</span>
+        </div>
+        <div class="proposal-row">
+          <span class="proposal-row-icon">&#128274;</span>
+          <span class="proposal-row-label">Dell resources</span>
+          <span class="proposal-row-value">Email + API access</span>
         </div>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="proposal-connector rv rv-d2">
-      <div class="proposal-connector-text"><strong>Both tracks run in parallel.</strong> Track 1 feeds Track 2 &mdash; every account we recover teaches the future Dell agent.</div>
-    </div>
-
-    <div class="proposal-urgency rv rv-d2">
-      <div class="proposal-urgency-icon">⚡</div>
-      <div>
-        <div class="proposal-urgency-title">Time-sensitive</div>
-        <div class="proposal-urgency-text">
-          The AI model trained on your 650 accounts retains its learning for a limited window.<br>
-          To preserve Batch 1–3 intelligence, <strong>Batch #4 must start by April 25.</strong><br>
-          Pilot pricing is locked through Q1 — standard enterprise rates apply after.
-        </div>
-      </div>
-    </div>
-
-    <div class="proposal-cta rv rv-d3">
-      <a href="https://cal.com/john-banner" target="_blank">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        Book a Call
-      </a>
-    </div>
+<!-- CTA — Let's Discuss -->
+<section class="cta-section" id="cta">
+  <div class="cta-inner rv">
+    <h2 class="cta-title">Let's discuss</h2>
+    <p class="cta-subtitle">30 minutes. No pitch. Just a conversation about what makes sense for Dell.</p>
+    <a href="https://cal.com/johnb/30" target="_blank" class="cta-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Book a Call
+    </a>
+    <div class="cta-sub">Or call directly: <a href="tel:+13322416776">(332) 241-6776</a></div>
   </div>
 </section>
 
@@ -1048,20 +1021,6 @@ z-index:1}
         el.style.width = el.dataset.width + '%';
       }
     });
-  }, 2500);
-
-  // Progress circle animation
-  var circle = document.getElementById('progressCircle');
-  if (circle && 'IntersectionObserver' in window) {
-    var pObs = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){ circle.classList.add('animated'); pObs.unobserve(circle); }
-      });
-    }, { threshold: 0.01 });
-    pObs.observe(circle);
-  }
-  setTimeout(function(){
-    if(circle) circle.classList.add('animated');
   }, 2500);
 
 })();
