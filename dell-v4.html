@@ -402,6 +402,17 @@ z-index:1}
   .dispute-cards{grid-template-columns:1fr}
   .invoice-grid{grid-template-columns:1fr}
 }
+
+/* ===== HOVER TOOLTIPS ===== */
+.tip{position:relative;border-bottom:1px dotted currentColor;cursor:help}
+.tip::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#0B1B3D;color:#fff;padding:8px 14px;border-radius:8px;font-size:12px;font-weight:400;font-family:'Inter',sans-serif;line-height:1.5;white-space:normal;max-width:340px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:100;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+.tip:hover::after{opacity:1}
+.tip::before{content:'';position:absolute;bottom:calc(100% + 2px);left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#0B1B3D;opacity:0;pointer-events:none;transition:opacity .2s;z-index:100}
+.tip:hover::before{opacity:1}
+@media(max-width:768px){
+  .tip::after,.tip::before{display:none}
+  .tip{border-bottom:none;cursor:default}
+}
 </style>
 </head>
 <body>
@@ -435,15 +446,15 @@ z-index:1}
       <div class="hero-stat-label">Accounts Processed</div>
     </div>
     <div class="hero-stat">
-      <div class="hero-stat-num"><span class="counter" data-target="194">0</span></div>
+      <div class="hero-stat-num"><span class="tip" data-tip="160 recovered via our platform + 34 confirmed paid directly to Dell during our outreach period"><span class="counter" data-target="194">0</span></span></div>
       <div class="hero-stat-label">Accounts Recovered</div>
     </div>
     <div class="hero-stat">
-      <div class="hero-stat-num"><span class="dollar">$</span><span class="counter" data-target="395286" data-format="currency">0</span></div>
+      <div class="hero-stat-num"><span class="tip" data-tip="Includes payments via our secure payment link + confirmed direct payments to Dell"><span class="dollar">$</span><span class="counter" data-target="395286" data-format="currency">0</span></span></div>
       <div class="hero-stat-label">Total Recovered</div>
     </div>
     <div class="hero-stat">
-      <div class="hero-stat-num"><span class="counter" data-target="29.8" data-decimals="1">0</span><span class="pct">%</span></div>
+      <div class="hero-stat-num"><span class="tip" data-tip="194 out of 650 accounts. Includes cases where debtors confirmed direct payment to Dell — these were unresolved receivables before our outreach."><span class="counter" data-target="29.8" data-decimals="1">0</span><span class="pct">%</span></span></div>
       <div class="hero-stat-label">Recovery Rate</div>
     </div>
   </div>
@@ -465,21 +476,21 @@ z-index:1}
     <div class="batch-card rv">
       <div class="batch-label">Batch #1</div>
       <div class="batch-date">Sep 2025</div>
-      <div class="batch-rate">23.6<span class="pct">%</span></div>
+      <div class="batch-rate"><span class="tip" data-tip="33 of 140 accounts — first batch, AI baseline">23.6<span class="pct">%</span></span></div>
       <div class="batch-detail">33 of 140 accounts recovered</div>
       <div class="batch-bar-wrap"><div class="batch-bar b1" data-width="23.6"></div></div>
     </div>
     <div class="batch-card rv rv-d1">
       <div class="batch-label">Batch #2</div>
       <div class="batch-date">Nov 2025</div>
-      <div class="batch-rate">23.9<span class="pct">%</span></div>
+      <div class="batch-rate"><span class="tip" data-tip="26 of 109 accounts — AI began optimizing contact timing">23.9<span class="pct">%</span></span></div>
       <div class="batch-detail">26 of 109 accounts recovered</div>
       <div class="batch-bar-wrap"><div class="batch-bar b2" data-width="23.9"></div></div>
     </div>
     <div class="batch-card highlight rv rv-d2">
       <div class="batch-label">Batch #3</div>
       <div class="batch-date">Jan 2026</div>
-      <div class="batch-rate" style="color:var(--green)">33.7<span class="pct">%</span></div>
+      <div class="batch-rate" style="color:var(--green)"><span class="tip" data-tip="135 of 401 accounts — AI optimized channel selection, timing, and follow-up cadence">33.7<span class="pct">%</span></span></div>
       <div class="batch-detail">135 of 401 accounts recovered</div>
       <div class="batch-bar-wrap"><div class="batch-bar b3" data-width="33.7"></div></div>
     </div>
@@ -490,7 +501,7 @@ z-index:1}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
     </div>
     <div class="batch-insight-text">
-      Batch #3 hit <strong>33.7% recovery</strong> &mdash; a <span class="batch-growth">+43% improvement</span> over Batch #1. The AI learned optimal contact windows, channel preferences, and follow-up intervals from each prior batch.
+      Batch #3 hit <strong>33.7% recovery</strong> &mdash; a <span class="batch-growth tip" data-tip="From 23.6% (Batch #1) to 33.7% (Batch #3). Same playbook, same team — AI optimization only.">+43% improvement</span> over Batch #1. The AI learned optimal contact windows, channel preferences, and follow-up intervals from each prior batch.
     </div>
   </div>
 </section>
@@ -504,27 +515,27 @@ z-index:1}
 
   <div class="dispute-big-stats rv rv-d2">
     <div class="dispute-big-stat">
-      <div class="num blue">60<span class="unit">%</span></div>
+      <div class="num blue"><span class="tip" data-tip="49 automated responses + 3 AI-drafted responses out of 86 total disputes across all 3 batches">60<span class="unit">%</span></span></div>
       <div class="label">Auto-Resolved</div>
     </div>
     <div class="dispute-big-stat">
-      <div class="num green">17<span class="unit"> sec</span></div>
+      <div class="num green"><span class="tip" data-tip="Average time between dispute submission and AI response. Measured across 52 automated resolutions.">17<span class="unit"> sec</span></span></div>
       <div class="label">Avg. Resolution Time</div>
     </div>
     <div class="dispute-big-stat">
-      <div class="num text-color">86</div>
+      <div class="num text-color"><span class="tip" data-tip="16 from Batch #1, 15 from Batch #2, 55 from Batch #3. Includes invoice requests, payment confirmations, and legitimacy checks.">86</span></div>
       <div class="label">Total Disputes Handled</div>
     </div>
   </div>
 
   <div class="dispute-cards rv rv-d3">
     <div class="dispute-card">
-      <div class="dispute-card-pct">59%</div>
+      <div class="dispute-card-pct"><span class="tip" data-tip="Most common dispute type. Debtor needs invoice copy to process payment through their AP system.">59%</span></div>
       <div class="dispute-card-title">Invoice Request</div>
       <div class="dispute-card-text">Debtor asks for invoice copy. AI responds with download instructions and payment link in 17 seconds.</div>
     </div>
     <div class="dispute-card">
-      <div class="dispute-card-pct">23%</div>
+      <div class="dispute-card-pct"><span class="tip" data-tip="Debtor claims prior payment. AI asks for confirmation details to verify and close the case.">23%</span></div>
       <div class="dispute-card-title">Already Paid</div>
       <div class="dispute-card-text">Debtor claims payment. AI asks for confirmation details. Case resolved or escalated to human review.</div>
     </div>
@@ -538,7 +549,7 @@ z-index:1}
   <div class="dispute-insight rv rv-d4">
     <div class="dispute-insight-icon">&#128161;</div>
     <div class="dispute-insight-text">
-      The remaining 40% required manual intervention &mdash; mostly because we didn't have the actual invoice PDF. <strong>With invoice access, we project 85&ndash;90% auto-resolution.</strong>
+      The remaining 40% required manual intervention &mdash; mostly because we didn't have the actual invoice PDF. <strong>With invoice access, we project <span class="tip" data-tip="Current 60% auto-resolution + estimated 25-30% from having invoice PDFs available. Based on manual invoice conversion data.">85&ndash;90%</span> auto-resolution.</strong>
     </div>
   </div>
 </section>
@@ -593,15 +604,15 @@ z-index:1}
 
     <!-- RIGHT: Stat Card -->
     <div class="invoice-stat-card">
-      <div class="big-num">4 out of 10</div>
+      <div class="big-num"><span class="tip" data-tip="4 confirmed payments out of 10 cases where Dell manually provided invoice PDFs to disputing debtors">4 out of 10</span></div>
       <div class="big-label">disputes converted to payment</div>
       <div class="stat-row">
         <span class="stat-row-label">Recovered from disputes</span>
-        <span class="stat-row-value green">$7,152</span>
+        <span class="stat-row-value green tip" data-tip="Semler Brossy $3,699 + Harsco Metals $1,718 + Jeanie Phillips $1,481 + Leon Goldstein $253">$7,152</span>
       </div>
       <div class="stat-row">
         <span class="stat-row-label">Conversion by dollar value</span>
-        <span class="stat-row-value green">53%</span>
+        <span class="stat-row-value green tip" data-tip="$7,152 recovered out of $13,441 total disputed amount across the 10 invoice cases">53%</span>
       </div>
       <div class="stat-note">These payments would have been lost without the invoice.</div>
     </div>
@@ -609,8 +620,8 @@ z-index:1}
 
   <!-- Projection -->
   <div class="invoice-projection rv rv-d3">
-    <p><strong>Batch #4 Projection:</strong> With invoices provided from Day 1, we project recovery rates of <span class="highlight-num">40%+</span> (up from 33.7%). Every dispute that asks for an invoice gets it in seconds &mdash; not days. Disputes resolve in 17 seconds instead of waiting for manual email from Dell.</p>
-    <p><strong>DSO Impact:</strong> Automated invoice delivery at first contact means debtors who want to pay can pay immediately. No waiting for Dell to find and forward the invoice. No 5-day turnaround. Estimated DSO reduction: <span class="highlight-num">30&ndash;45 days</span> on recovered accounts.</p>
+    <p><strong>Batch #4 Projection:</strong> With invoices provided from Day 1, we project recovery rates of <span class="highlight-num tip" data-tip="Current 33.7% + estimated lift from automated invoice delivery. Conservative estimate based on 40% invoice-to-payment conversion rate.">40%+</span> (up from 33.7%). Every dispute that asks for an invoice gets it in seconds &mdash; not days. Disputes resolve in 17 seconds instead of waiting for manual email from Dell.</p>
+    <p><strong>DSO Impact:</strong> Automated invoice delivery at first contact means debtors who want to pay can pay immediately. No waiting for Dell to find and forward the invoice. No 5-day turnaround. Estimated DSO reduction: <span class="highlight-num tip" data-tip="Based on current avg dispute resolution time (5-10 days manual) vs 17 seconds automated. Applies to accounts in active dispute.">30&ndash;45 days</span> on recovered accounts.</p>
   </div>
 </section>
 
@@ -620,10 +631,9 @@ z-index:1}
   <div style="text-align:center;margin-bottom:8px;position:relative;z-index:2">
     <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:rgba(79,70,229,.06);border:1px solid rgba(79,70,229,.1);border-radius:100px;font-size:11px;font-weight:700;color:var(--blue);letter-spacing:.06em;margin-bottom:12px">
       <span style="width:6px;height:6px;border-radius:50%;background:var(--green);animation:demoOrbGlowPulse 2s ease-in-out infinite"></span>
-      Live preview &middot; Trained on 650 Dell accounts
+      Live preview &middot; 80% ready
     </div>
-    <h2 class="section-title rv rv-d1" style="max-width:600px;margin-left:auto;margin-right:auto;font-size:clamp(24px,3.5vw,36px)">"She already knows your portfolio."</h2>
-    <p style="font-size:16px;color:var(--muted);margin:0 auto 12px;font-weight:500">Say hello to Sarah.</p>
+    <h2 class="section-title rv rv-d1" style="max-width:600px;margin-left:auto;margin-right:auto;font-size:clamp(24px,3.5vw,36px)">Discover your Dell Agent</h2>
   </div>
 
   <!-- ORB with pulse rings -->
@@ -650,10 +660,7 @@ z-index:1}
     <div class="demo-orb-bubble" id="demo-orb-bubble">Hi, I'm Sarah from Dell...</div>
   </div>
 
-  <div class="demo-calling-label">Incoming call</div>
-  <div class="demo-title">Dell Technologies Agent</div>
-  <div class="demo-hint">Tap to answer</div>
-  <div class="demo-phone-link">Or call: <a href="tel:+13322416776">(332) 241-6776</a></div>
+  <div class="demo-hint" style="margin-top:8px">Tap the orb to answer</div>
 
   <div class="demo-label" id="demo-label">Click to call your agent<span class="demo-label-hint">Live AI voice &mdash; 30 seconds</span></div>
 
@@ -670,6 +677,11 @@ z-index:1}
         <span class="demo-hint-icon">&#9989;</span>
         <span class="demo-hint-text">"We already paid this"</span>
         <span class="demo-hint-badge">23% of disputes</span>
+      </div>
+      <div class="demo-hint-pill" data-hint="Mujhe Hindi mein samjhaiye, yeh invoice kya hai">
+        <span class="demo-hint-icon">&#127760;</span>
+        <span class="demo-hint-text">"मुझे हिंदी में समझाइए"</span>
+        <span class="demo-hint-badge">28 languages</span>
       </div>
     </div>
   </div>
@@ -719,19 +731,19 @@ z-index:1}
   <!-- Multi-channel stats bar -->
   <div class="channel-stats-bar rv rv-d2">
     <div class="channel-stat-item">
-      <div class="channel-stat-num"><span class="counter" data-target="2600">0</span><span class="channel-stat-plus">+</span></div>
+      <div class="channel-stat-num"><span class="tip" data-tip="Across all 3 batches, 650 accounts. Multi-step sequences with personalized follow-ups."><span class="counter" data-target="2600">0</span><span class="channel-stat-plus">+</span></span></div>
       <div class="channel-stat-label">Emails Sent</div>
     </div>
     <div class="channel-stat-item">
-      <div class="channel-stat-num"><span class="counter" data-target="1668">0</span><span class="channel-stat-plus">+</span></div>
+      <div class="channel-stat-num"><span class="tip" data-tip="Across all 3 batches, 650 accounts. Timed for optimal open rates per debtor."><span class="counter" data-target="1668">0</span><span class="channel-stat-plus">+</span></span></div>
       <div class="channel-stat-label">SMS Delivered</div>
     </div>
     <div class="channel-stat-item">
-      <div class="channel-stat-num"><span class="counter" data-target="1950">0</span><span class="channel-stat-plus">+</span></div>
+      <div class="channel-stat-num"><span class="tip" data-tip="Across all 3 batches, 650 accounts. AI voice agent with Dell-specific training."><span class="counter" data-target="1950">0</span><span class="channel-stat-plus">+</span></span></div>
       <div class="channel-stat-label">AI Calls Made</div>
     </div>
     <div class="channel-stat-item">
-      <div class="channel-stat-num"><span class="counter" data-target="650">0</span><span class="channel-stat-plus">+</span></div>
+      <div class="channel-stat-num"><span class="tip" data-tip="Across all 3 batches, 650 accounts. Personalized voicemails with callback number."><span class="counter" data-target="650">0</span><span class="channel-stat-plus">+</span></span></div>
       <div class="channel-stat-label">Voicemails Left</div>
     </div>
   </div>
@@ -746,7 +758,7 @@ z-index:1}
           </div>
           <div class="tl-content">
             <div class="tl-time">&lt; 1 hour after touchpoint</div>
-            <div class="tl-count"><span class="counter" data-target="10">0</span> <span>payments</span></div>
+            <div class="tl-count"><span class="tip" data-tip="10 payments made within 60 minutes of an email open, SMS click, or AI call. Strongest proof of direct causation."><span class="counter" data-target="10">0</span></span> <span>payments</span></div>
             <div class="tl-desc">Email or SMS received, paid within minutes. Direct causation.</div>
           </div>
         </div>
@@ -756,7 +768,7 @@ z-index:1}
           </div>
           <div class="tl-content">
             <div class="tl-time">&lt; 24 hours</div>
-            <div class="tl-count"><span class="counter" data-target="26">0</span> <span>payments</span></div>
+            <div class="tl-count"><span class="tip" data-tip="26 payments within 24 hours of a touchpoint. Includes same-day responses to AI calls and voicemails."><span class="counter" data-target="26">0</span></span> <span>payments</span></div>
             <div class="tl-desc">AI call or voicemail prompted same-day payment.</div>
           </div>
         </div>
@@ -766,7 +778,7 @@ z-index:1}
           </div>
           <div class="tl-content">
             <div class="tl-time green">&lt; 7 days</div>
-            <div class="tl-count"><span class="counter" data-target="38">0</span> <span>payments</span></div>
+            <div class="tl-count"><span class="tip" data-tip="38 payments within 7 days. Multi-touch sequences where email + SMS + call combined to drive payment."><span class="counter" data-target="38">0</span></span> <span>payments</span></div>
             <div class="tl-desc">Multi-touch sequence led to payment within one week.</div>
           </div>
         </div>
@@ -865,12 +877,12 @@ z-index:1}
         <div class="proposal-row">
           <span class="proposal-row-icon">&#128200;</span>
           <span class="proposal-row-label">Projected recovery</span>
-          <span class="proposal-row-value green">40%+</span>
+          <span class="proposal-row-value green tip" data-tip="33.7% current + invoice automation lift. Based on 40% conversion rate when invoices are provided on demand.">40%+</span>
         </div>
         <div class="proposal-row">
           <span class="proposal-row-icon">&#9201;</span>
           <span class="proposal-row-label">Timeline</span>
-          <span class="proposal-row-value green">Ready in 48 hours</span>
+          <span class="proposal-row-value green tip" data-tip="Once Dell provides the CSV + invoice PDFs, we configure and launch within 48 hours.">Ready in 48 hours</span>
         </div>
         <div class="proposal-row">
           <span class="proposal-row-icon">&#128101;</span>
@@ -886,7 +898,7 @@ z-index:1}
 
       <div class="proposal-card">
         <div class="proposal-track">Track 2</div>
-        <div class="proposal-card-title">Dell's Own Agent &mdash; 2 Weeks</div>
+        <div class="proposal-card-title">Dell's Own Agent &mdash; <span class="tip" data-tip="From API access granted to agent live. Includes data ingestion, testing, and Dell team training.">2 Weeks</span></div>
         <div class="proposal-row">
           <span class="proposal-row-icon">&#129302;</span>
           <span class="proposal-row-label">What it does</span>
@@ -895,7 +907,7 @@ z-index:1}
         <div class="proposal-row">
           <span class="proposal-row-icon">&#128274;</span>
           <span class="proposal-row-label">API access</span>
-          <span class="proposal-row-value">Read-only (never modify)</span>
+          <span class="proposal-row-value tip" data-tip="Our integration can only READ invoice data. We cannot modify, delete, or write anything to Dell's systems. All data encrypted in transit and at rest.">Read-only (never modify)</span>
         </div>
         <div class="proposal-row">
           <span class="proposal-row-icon">&#128196;</span>
@@ -905,7 +917,7 @@ z-index:1}
         <div class="proposal-row">
           <span class="proposal-row-icon">&#128170;</span>
           <span class="proposal-row-label">Dispute resolution</span>
-          <span class="proposal-row-value green">85&ndash;90% auto</span>
+          <span class="proposal-row-value green tip" data-tip="Current 60% auto-resolution + estimated 25-30% from automated invoice delivery. Based on real conversion data from this portfolio.">85&ndash;90% auto</span>
         </div>
         <div class="proposal-row">
           <span class="proposal-row-icon">&#128101;</span>
@@ -922,7 +934,7 @@ z-index:1}
 
     <!-- Urgency -->
     <div class="readiness-urgency-box rv rv-d4">
-      Every month without automated invoice delivery = disputes that could have been payments. On your current portfolio alone, that's an estimated <strong>$28K/quarter</strong> in recoverable revenue sitting in unresolved disputes.
+      Every month without automated invoice delivery = disputes that could have been payments. On your current portfolio alone, that's an estimated <strong><span class="tip" data-tip="Based on ~86 disputes per 650 accounts, 59% invoice requests, 40% conversion rate when invoice provided. Extrapolated to quarterly volume." style="border-bottom-color:var(--amber)">$28K/quarter</span></strong> in recoverable revenue sitting in unresolved disputes.
     </div>
   </div>
 </section>
@@ -936,7 +948,7 @@ z-index:1}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
       Book a Call
     </a>
-    <div class="cta-sub">Or call directly: <a href="tel:+13322416776">(332) 241-6776</a></div>
+    <div class="cta-sub">30 minutes. Your data. Real results.</div>
   </div>
 </section>
 
