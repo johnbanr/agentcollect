@@ -299,6 +299,7 @@
 { "source": "/locations", "destination": "/locations/index.html" },
 { "source": "/locations/los-angeles", "destination": "/locations/los-angeles.html" },
 { "source": "/locations/new-york", "destination": "/locations/new-york.html" },
+{ "source": "/locations/new-york-city", "destination": "/locations/new-york.html" },
 { "source": "/locations/chicago", "destination": "/locations/chicago.html" },
 { "source": "/locations/houston", "destination": "/locations/houston.html" },
 { "source": "/locations/phoenix", "destination": "/locations/phoenix.html" },
