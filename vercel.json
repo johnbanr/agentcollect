@@ -340,7 +340,14 @@
 { "source": "/customers/emds", "destination": "/customers/emds/index.html" },
 { "source": "/customers/lafayette", "destination": "/customers/lafayette/index.html" },
 { "source": "/report/2026-b2b-recovery-benchmark", "destination": "/report/2026-b2b-recovery-benchmark.html" },
-{ "source": "/report/2026-b2b-payment-disputes", "destination": "/report/2026-b2b-payment-disputes.html" }
+{ "source": "/report/2026-b2b-payment-disputes", "destination": "/report/2026-b2b-payment-disputes.html" },
+{ "source": "/blog/agentic-ai-accounts-receivable", "destination": "/blog/agentic-ai-accounts-receivable.html" },
+{ "source": "/blog/autonomous-collections-software", "destination": "/blog/autonomous-collections-software.html" },
+{ "source": "/blog/ai-voice-agent-collections", "destination": "/blog/ai-voice-agent-collections.html" },
+{ "source": "/blog/order-to-cash-automation", "destination": "/blog/order-to-cash-automation.html" },
+{ "source": "/blog/dunning-management-software", "destination": "/blog/dunning-management-software.html" },
+{ "source": "/blog/cash-application-automation", "destination": "/blog/cash-application-automation.html" },
+{ "source": "/blog/b2b-credit-risk-management", "destination": "/blog/b2b-credit-risk-management.html" }
   ],
   "headers": [
     {
