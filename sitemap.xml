@@ -231,4 +231,31 @@
   <!-- Glossary: DSO (duplicate slug — canonical is days-sales-outstanding) -->
   <url><loc>https://www.agentcollect.com/glossary/dso</loc><lastmod>2026-03-24</lastmod><changefreq>yearly</changefreq><priority>0.5</priority></url>
 
+  <!-- New blog pages — Priority 1 -->
+  <url><loc>https://www.agentcollect.com/blog/agentic-ai-accounts-receivable</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.agentcollect.com/blog/autonomous-collections-software</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.agentcollect.com/blog/ai-voice-agent-collections</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.agentcollect.com/blog/order-to-cash-automation</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.agentcollect.com/blog/dunning-management-software</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.agentcollect.com/blog/cash-application-automation</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.agentcollect.com/blog/b2b-credit-risk-management</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+  <!-- New compare pages -->
+  <url><loc>https://www.agentcollect.com/compare/tesorio-alternatives</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agentcollect.com/compare/kolleno-alternatives</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agentcollect.com/compare/chaser-alternatives</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agentcollect.com/compare/upflow-alternatives</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agentcollect.com/compare/highradius-alternatives</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+
+  <!-- About: John Banner -->
+  <url><loc>https://www.agentcollect.com/about/john-banner</loc><lastmod>2026-03-25</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Reports -->
+  <url><loc>https://www.agentcollect.com/report/2026-b2b-recovery-benchmark</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.agentcollect.com/report/2026-b2b-payment-disputes</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+  <!-- New location pages -->
+  <url><loc>https://www.agentcollect.com/locations/new-york-city</loc><lastmod>2026-03-25</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agentcollect.com/locations/boston</loc><lastmod>2026-03-25</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
 </urlset>
