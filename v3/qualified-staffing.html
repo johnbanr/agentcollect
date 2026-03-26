@@ -167,6 +167,23 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 .proof-sec-title{font-size:clamp(26px,3.2vw,38px);font-weight:900;letter-spacing:-.03em;line-height:1.1;margin-bottom:16px;color:var(--text)}
 .proof-sec-sub{font-size:17px;color:var(--muted);margin-bottom:52px;line-height:1.5}
 
+/* Wall of Pain */
+.pain-wall{overflow:hidden;margin-top:40px;margin-bottom:40px;position:relative;padding:8px 0;width:100vw;margin-left:calc(-50vw + 50%)}
+.pain-wall::before,.pain-wall::after{content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2;pointer-events:none}
+.pain-wall::before{left:0;background:linear-gradient(to right,#FAFBFF,transparent)}
+.pain-wall::after{right:0;background:linear-gradient(to left,#FAFBFF,transparent)}
+.pain-row{display:flex;gap:14px;padding:6px 0;width:max-content}
+.pain-row-1{animation:painScroll1 32s linear infinite}
+.pain-row-2{animation:painScroll2 38s linear infinite}
+.pain-wall:hover .pain-row{animation-play-state:paused}
+@keyframes painScroll1{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes painScroll2{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
+.pain-pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid rgba(220,38,38,.15);border-radius:100px;padding:10px 20px;font-size:14px;font-weight:600;color:var(--text);white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.08);flex-shrink:0;cursor:default;transition:transform .15s,box-shadow .15s}
+.pain-pill:hover{transform:scale(1.04);box-shadow:0 4px 16px rgba(220,38,38,.15);z-index:2}
+.pain-pill .hl{color:var(--red);font-weight:800}
+.pain-count{text-align:center;margin-top:20px;font-size:15px;font-weight:700;color:var(--red)}
+.pain-count span{color:var(--muted);font-weight:500}
+
 /* ===== GRANDFATHER STORY ===== */
 .story-section{padding:0 48px 80px;max-width:680px;margin:0 auto;text-align:left}
 .story-text{font-size:17px;color:var(--muted);line-height:1.75;letter-spacing:-.01em}
@@ -315,7 +332,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 
 <!-- SECTION 1: HERO — INCOMING CALL -->
 <section class="hero" id="hero">
-  <img src="https://cdn.brandfetch.io/qualifiedstaffing.com/w/512/h/80/logo" alt="Qualified Staffing" class="hero-km-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" crossorigin="anonymous"><span style="display:none;font-size:28px;font-weight:900;color:var(--text);letter-spacing:-.03em;opacity:.7">Qualified Staffing</span>
+  <img src="https://cdn.brandfetch.io/qualifiedstaffing.com/w/512/h/80/logo" alt="Qualified Staffing" class="hero-km-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" crossorigin="anonymous"><div style="display:none;flex-direction:column;align-items:center;margin-bottom:52px"><span style="font-size:32px;font-weight:900;color:var(--text);letter-spacing:-.04em;line-height:1.1">Qualified Staffing</span><span style="font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:4px">Since 1988</span></div>
 
   <!-- ORB with pulse rings -->
   <div class="orb-wrap" id="orb-wrap">
@@ -391,6 +408,38 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
     <h2 class="proof-sec-title">Your team places 10,000+ workers.<br>When clients don't pay their staffing invoices on time, your workers feel it first.</h2>
     <p class="proof-sec-sub">You handle the big accounts. But at 40+ offices across 13 states, some invoices slip through. Not because anyone dropped the ball &mdash; because there are only so many hours in a day.</p>
   </div>
+
+  <div class="pain-wall rv">
+    <!-- Row 1: Staffing industry pain points -->
+    <div class="pain-row pain-row-1">
+      <span class="pain-pill">"Invoice <span class="hl">60 days past due</span> &mdash; no response"</span>
+      <span class="pain-pill">"Client went <span class="hl">bankrupt</span> &mdash; $12K outstanding"</span>
+      <span class="pain-pill">"Placed 40 workers &mdash; <span class="hl">never got paid</span>"</span>
+      <span class="pain-pill">"Net-30 became <span class="hl">net-120</span>"</span>
+      <span class="pain-pill">"AR coordinator left &mdash; <span class="hl">no handoff</span>"</span>
+      <!-- dup for infinite scroll -->
+      <span class="pain-pill">"Invoice <span class="hl">60 days past due</span> &mdash; no response"</span>
+      <span class="pain-pill">"Client went <span class="hl">bankrupt</span> &mdash; $12K outstanding"</span>
+      <span class="pain-pill">"Placed 40 workers &mdash; <span class="hl">never got paid</span>"</span>
+      <span class="pain-pill">"Net-30 became <span class="hl">net-120</span>"</span>
+      <span class="pain-pill">"AR coordinator left &mdash; <span class="hl">no handoff</span>"</span>
+    </div>
+    <!-- Row 2: More staffing industry pain points -->
+    <div class="pain-row pain-row-2">
+      <span class="pain-pill">"Contract ended &mdash; final invoice <span class="hl">ignored</span>"</span>
+      <span class="pain-pill">"Client <span class="hl">disputes hours</span> &mdash; won't pay"</span>
+      <span class="pain-pill">"Sent to <span class="hl">collections</span> &mdash; lost the client"</span>
+      <span class="pain-pill">"Small invoices <span class="hl">written off</span> every month"</span>
+      <span class="pain-pill">"Payroll due Friday &mdash; <span class="hl">client hasn't paid</span>"</span>
+      <!-- dup for infinite scroll -->
+      <span class="pain-pill">"Contract ended &mdash; final invoice <span class="hl">ignored</span>"</span>
+      <span class="pain-pill">"Client <span class="hl">disputes hours</span> &mdash; won't pay"</span>
+      <span class="pain-pill">"Sent to <span class="hl">collections</span> &mdash; lost the client"</span>
+      <span class="pain-pill">"Small invoices <span class="hl">written off</span> every month"</span>
+      <span class="pain-pill">"Payroll due Friday &mdash; <span class="hl">client hasn't paid</span>"</span>
+    </div>
+  </div>
+  <div class="pain-count rv">At ~$100-500M in revenue and 40+ offices, even 2% of AR slipping through <span>costs millions.</span></div>
 </section>
 
 <!-- GRANDFATHER STORY -->
