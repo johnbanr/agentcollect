@@ -1,0 +1,12 @@
+CREATE
+LAST	Len	"AgentCollect"
+LAST	Den	"AI-powered debt collection platform"
+LAST	Aen	"Agent Collect|agentcollect"
+LAST	P31	Q1330694
+LAST	P856	"https://www.agentcollect.com"
+LAST	P571	+2020-00-00T00:00:00Z/9
+LAST	P495	Q30
+LAST	P159	Q62
+LAST	P452	Q6048701
+LAST	P275	Q7603
+LAST	P1056	Q6048701
