@@ -347,7 +347,22 @@
 { "source": "/blog/order-to-cash-automation", "destination": "/blog/order-to-cash-automation.html" },
 { "source": "/blog/dunning-management-software", "destination": "/blog/dunning-management-software.html" },
 { "source": "/blog/cash-application-automation", "destination": "/blog/cash-application-automation.html" },
-{ "source": "/blog/b2b-credit-risk-management", "destination": "/blog/b2b-credit-risk-management.html" }
+{ "source": "/blog/b2b-credit-risk-management", "destination": "/blog/b2b-credit-risk-management.html" },
+{ "source": "/blog/how-to-write-off-bad-debt", "destination": "/blog/how-to-write-off-bad-debt.html" },
+{ "source": "/blog/what-happens-sending-to-collections", "destination": "/blog/what-happens-sending-to-collections.html" },
+{ "source": "/blog/how-long-before-debt-goes-to-collections", "destination": "/blog/how-long-before-debt-goes-to-collections.html" },
+{ "source": "/blog/negotiate-with-collection-agency", "destination": "/blog/negotiate-with-collection-agency.html" },
+{ "source": "/blog/average-collection-agency-recovery-rate", "destination": "/blog/average-collection-agency-recovery-rate.html" },
+{ "source": "/blog/accounts-receivable-kpis", "destination": "/blog/accounts-receivable-kpis.html" },
+{ "source": "/blog/dispute-management-software", "destination": "/blog/dispute-management-software.html" },
+{ "source": "/blog/late-payment-impact-small-business", "destination": "/blog/late-payment-impact-small-business.html" },
+{ "source": "/blog/collection-software-netsuite", "destination": "/blog/collection-software-netsuite.html" },
+{ "source": "/blog/collection-software-salesforce", "destination": "/blog/collection-software-salesforce.html" },
+{ "source": "/blog/collection-software-business-central", "destination": "/blog/collection-software-business-central.html" },
+{ "source": "/blog/how-to-collect-debt-from-business", "destination": "/blog/how-to-collect-debt-from-business.html" },
+{ "source": "/blog/how-to-choose-collection-agency", "destination": "/blog/how-to-choose-collection-agency.html" },
+{ "source": "/blog/collection-letter-that-works", "destination": "/blog/collection-letter-that-works.html" },
+{ "source": "/blog/commercial-vs-consumer-debt-collection", "destination": "/blog/commercial-vs-consumer-debt-collection.html" }
   ],
   "headers": [
     {

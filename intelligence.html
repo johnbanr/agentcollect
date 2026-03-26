@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Collection Intelligence — AgentCollect</title>
+    <meta name="description" content="AI-powered accounts receivable audit. See what's hiding in your receivables in seconds.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --bg:#FAFBFF;--bg-card:#fff;--bg-dark:#0B1B3D;--bg-warm:#F8F7F5;
+            --border:#E8ECF2;--border-hover:rgba(79,70,229,.18);
+            --text:#0B1B3D;--text-mid:#374151;--text-muted:#64748B;--text-dim:#94A3B8;
+            --indigo:#4F46E5;--indigo-dark:#4338CA;--indigo-light:rgba(79,70,229,.04);--indigo-glow:rgba(79,70,229,.08);
+            --green:#10B981;--green-dark:#059669;--green-light:rgba(16,185,129,.04);
+            --amber:#F59E0B;--red:#EF4444;
+            --mono:'JetBrains Mono',monospace;--sans:'Inter',-apple-system,sans-serif;--display:'Plus Jakarta Sans',sans-serif;
+            --shadow-sm:0 1px 2px rgba(0,0,0,.03);
+            --shadow-md:0 2px 8px rgba(0,0,0,.04);
+            --shadow-lg:0 8px 24px rgba(0,0,0,.06);
+            --shadow-xl:0 12px 40px rgba(0,0,0,.08);
+            --radius:14px;
+            --max-w:1120px;
+        }
+        html{scroll-behavior:smooth}
+        body{font-family:var(--sans);font-size:17px;background:#f6f3ef;color:var(--text);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden;line-height:1.7;position:relative}
+        body::before{content:'';position:fixed;inset:0;z-index:-1;background-image:
+            linear-gradient(rgba(79,70,229,.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(79,70,229,.03) 1px, transparent 1px);
+            background-size:64px 64px;pointer-events:none}
+        h1,h2,h3,h4,h5{font-family:var(--display);line-height:1.15;letter-spacing:-.04em}
+        ::selection{background:rgba(79,70,229,.08)}
+
+        /* REVEAL */
+        .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+        .s1{transition-delay:.1s}.s2{transition-delay:.2s}.s3{transition-delay:.3s}.s4{transition-delay:.4s}
+
+        /* NAV */
+        .nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(246,243,239,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+        .nav.scrolled{box-shadow:0 1px 3px rgba(0,0,0,.02)}
+        .nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 32px;display:flex;align-items:center;height:64px}
+        .logo{display:inline-flex;align-items:baseline;text-decoration:none;margin-right:auto;font-family:var(--display);font-size:18px;font-weight:900;letter-spacing:-.04em;color:var(--text)}
+        .dot-circle{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--indigo);margin-left:1px;vertical-align:super}
+        .nav-links{display:flex;gap:32px;margin-right:28px}
+        .nav-links a{color:var(--text-muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s;letter-spacing:-.01em}
+        .nav-links a:hover{color:var(--text)}
+        .nav-links a.active{color:var(--indigo)}
+        .nav-right{display:flex;align-items:center;gap:10px}
+        .nav-cta{padding:14px 28px;background:var(--indigo);color:#fff;border:none;border-radius:12px;font-family:var(--sans);font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;letter-spacing:-.01em}
+        .nav-cta:hover{background:var(--indigo-dark)}
+
+        /* HERO */
+        .hero{padding:140px 32px 60px;text-align:center;background:#f6f3ef;position:relative;overflow:hidden}
+        .hero::before{content:'';position:absolute;width:800px;height:800px;top:40%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(79,70,229,.12) 0%,rgba(79,70,229,.05) 40%,transparent 70%);border-radius:50%;pointer-events:none;animation:heroGlow 6s ease-in-out infinite}
+        .hero::after{content:'';position:absolute;inset:0;pointer-events:none;
+            background:radial-gradient(ellipse 700px 400px at 30% 0%, rgba(79,70,229,.08), transparent),
+                radial-gradient(ellipse 500px 500px at 80% 80%, rgba(16,185,129,.06), transparent)}
+        @keyframes heroGlow{0%,100%{opacity:.5;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.12)}}
+        .hero-content{position:relative;z-index:1;max-width:720px;margin:0 auto}
+        .hero h1{font-size:clamp(40px,5.5vw,68px);font-weight:900;letter-spacing:-.05em;line-height:1.0;margin-bottom:16px;color:var(--text)}
+        .hero .sub{font-size:19px;color:var(--text-muted);margin-bottom:40px;letter-spacing:-.01em}
+        .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(79,70,229,.06);border:1px solid rgba(79,70,229,.12);border-radius:100px;padding:8px 18px;font-size:13px;font-weight:600;color:var(--indigo);margin-bottom:24px;letter-spacing:-.01em}
+        .hero-badge svg{width:16px;height:16px}
+
+        /* INDUSTRY PICKER */
+        .industry-picker{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
+        .industry-btn{padding:10px 20px;background:#fff;border:1.5px solid var(--border);border-radius:10px;font-family:var(--sans);font-size:14px;font-weight:500;color:var(--text-mid);cursor:pointer;transition:all .2s}
+        .industry-btn:hover{border-color:var(--indigo);color:var(--indigo)}
+        .industry-btn.active{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+
+        /* MAIN LAYOUT */
+        .main-container{max-width:var(--max-w);margin:0 auto;padding:0 32px 80px;position:relative;z-index:1}
+
+        /* REPORT + CHAT GRID */
+        .intel-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+
+        /* REPORT CARD */
+        .report-card{background:#fff;border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-lg)}
+        .report-header{padding:24px 28px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:16px}
+        .report-company-icon{width:44px;height:44px;border-radius:12px;background:var(--bg-dark);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:900;color:#fff;font-size:20px}
+        .report-company-name{font-family:var(--display);font-weight:800;font-size:18px;letter-spacing:-.03em}
+        .report-company-sub{font-size:13px;color:var(--text-muted);margin-top:2px}
+        .report-badge{margin-left:auto;padding:5px 12px;background:rgba(79,70,229,.06);border-radius:100px;font-size:11px;font-weight:600;color:var(--indigo);text-transform:uppercase;letter-spacing:.08em}
+        .report-body{padding:24px 28px}
+
+        /* KPI ROW */
+        .kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
+        .kpi{text-align:center;padding:16px 8px;background:var(--bg);border-radius:14px;border:1px solid var(--border)}
+        .kpi-value{font-family:var(--mono);font-size:24px;font-weight:500;color:var(--text);letter-spacing:-.02em}
+        .kpi-value.red{color:var(--red)}
+        .kpi-value.green{color:var(--green)}
+        .kpi-value.amber{color:var(--amber)}
+        .kpi-label{font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+
+        /* SEVERITY BAR */
+        .severity-bar{display:flex;height:8px;border-radius:100px;overflow:hidden;margin-bottom:24px;gap:2px}
+        .severity-bar .seg{border-radius:100px}
+        .severity-bar .seg-green{background:var(--green);flex:3}
+        .severity-bar .seg-amber{background:var(--amber);flex:2}
+        .severity-bar .seg-red{background:var(--red);flex:1.5}
+
+        /* TOP DEBTORS */
+        .section-label-sm{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--text-dim);margin-bottom:12px}
+        .debtor-list{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+        .debtor-row{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--bg);border-radius:12px;border:1px solid var(--border);transition:all .2s}
+        .debtor-row:hover{border-color:rgba(79,70,229,.2);box-shadow:0 2px 8px rgba(79,70,229,.06)}
+        .debtor-rank{width:24px;height:24px;border-radius:8px;background:var(--indigo);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+        .debtor-info{flex:1;min-width:0}
+        .debtor-name{font-weight:600;font-size:14px;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .debtor-detail{font-size:12px;color:var(--text-muted)}
+        .debtor-amount{font-family:var(--mono);font-weight:500;font-size:15px;color:var(--red);flex-shrink:0}
+        .debtor-tag{padding:3px 8px;border-radius:6px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;flex-shrink:0}
+        .debtor-tag.recoverable{background:rgba(16,185,129,.1);color:var(--green-dark)}
+        .debtor-tag.dispute{background:rgba(245,158,11,.1);color:#92400E}
+        .debtor-tag.stale{background:rgba(239,68,68,.08);color:var(--red)}
+
+        /* INSIGHT BOX */
+        .insight-box{padding:16px 20px;background:linear-gradient(135deg,rgba(79,70,229,.04),rgba(16,185,129,.03));border:1px solid rgba(79,70,229,.1);border-radius:14px;display:flex;gap:12px;align-items:flex-start}
+        .insight-icon{width:32px;height:32px;background:var(--indigo);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .insight-icon svg{width:16px;height:16px;color:#fff}
+        .insight-text{font-size:14px;color:var(--text-mid);line-height:1.55}
+        .insight-text strong{color:var(--text);font-weight:600}
+
+        /* CHAT CARD */
+        .chat-card{background:#fff;border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-lg);display:flex;flex-direction:column;height:100%;min-height:640px}
+        .chat-header{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
+        .chat-avatar{width:36px;height:36px;border-radius:10px;background:var(--indigo);display:flex;align-items:center;justify-content:center}
+        .chat-avatar svg{width:18px;height:18px;color:#fff}
+        .chat-header-text h3{font-size:15px;font-weight:700;letter-spacing:-.02em}
+        .chat-header-text p{font-size:12px;color:var(--text-muted)}
+        .chat-counter{margin-left:auto;padding:4px 10px;background:var(--bg);border-radius:8px;font-family:var(--mono);font-size:12px;color:var(--text-muted)}
+        .chat-counter span{color:var(--indigo);font-weight:600}
+
+        /* CHAT MESSAGES */
+        .chat-messages{flex:1;padding:20px 24px;overflow-y:auto;display:flex;flex-direction:column;gap:16px}
+        .msg{display:flex;gap:10px;max-width:92%}
+        .msg-bot{align-self:flex-start}
+        .msg-user{align-self:flex-end;flex-direction:row-reverse}
+        .msg-avatar{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:700}
+        .msg-bot .msg-avatar{background:rgba(79,70,229,.08);color:var(--indigo)}
+        .msg-user .msg-avatar{background:rgba(16,185,129,.08);color:var(--green-dark)}
+        .msg-bubble{padding:12px 16px;border-radius:14px;font-size:14px;line-height:1.6;letter-spacing:-.01em}
+        .msg-bot .msg-bubble{background:var(--bg);color:var(--text-mid);border-bottom-left-radius:4px}
+        .msg-user .msg-bubble{background:var(--indigo);color:#fff;border-bottom-right-radius:4px}
+        .msg-bubble strong{font-weight:600;color:var(--text)}
+        .msg-user .msg-bubble strong{color:#fff}
+
+        /* SUGGESTED QUESTIONS */
+        .suggestions{display:flex;flex-wrap:wrap;gap:8px;padding:0 24px 16px}
+        .suggestion-chip{padding:8px 14px;background:var(--bg);border:1px solid var(--border);border-radius:10px;font-size:13px;font-weight:500;color:var(--text-mid);cursor:pointer;transition:all .2s;white-space:nowrap}
+        .suggestion-chip:hover{border-color:var(--indigo);color:var(--indigo);background:rgba(79,70,229,.03)}
+
+        /* CHAT INPUT */
+        .chat-input-wrap{padding:16px 20px;border-top:1px solid var(--border);display:flex;gap:10px;align-items:center}
+        .chat-input{flex:1;border:1.5px solid var(--border);border-radius:12px;padding:12px 16px;font-family:var(--sans);font-size:14px;color:var(--text);outline:none;transition:border-color .2s}
+        .chat-input:focus{border-color:var(--indigo)}
+        .chat-input::placeholder{color:var(--text-dim)}
+        .chat-send{width:40px;height:40px;border-radius:10px;background:var(--indigo);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+        .chat-send:hover{background:var(--indigo-dark)}
+        .chat-send svg{width:18px;height:18px;color:#fff}
+
+        /* CTA SECTION */
+        .cta-section{margin-top:48px;text-align:center;padding:60px 32px;background:#fff;border:1px solid var(--border);border-radius:24px;box-shadow:var(--shadow-lg);max-width:var(--max-w);margin-left:auto;margin-right:auto;position:relative;overflow:hidden}
+        .cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(79,70,229,.04),transparent 70%);pointer-events:none}
+        .cta-section h2{font-size:clamp(28px,3.5vw,40px);font-weight:900;margin-bottom:12px;position:relative}
+        .cta-section p{font-size:17px;color:var(--text-muted);margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto;position:relative}
+        .cta-buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative}
+        .btn-primary{padding:16px 32px;background:var(--indigo);color:#fff;border:none;border-radius:12px;font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+        .btn-primary:hover{background:var(--indigo-dark);transform:translateY(-1px);box-shadow:0 4px 16px rgba(79,70,229,.25)}
+        .btn-secondary{padding:16px 32px;background:#fff;color:var(--text-mid);border:1.5px solid var(--border);border-radius:12px;font-family:var(--sans);font-size:15px;font-weight:500;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+        .btn-secondary:hover{border-color:var(--text-mid);color:var(--text)}
+
+        /* SOCIAL PROOF */
+        .social-proof{max-width:var(--max-w);margin:48px auto 0;padding:0 32px}
+        .social-proof-inner{display:flex;align-items:center;justify-content:center;gap:40px;padding:24px 0;opacity:.6}
+        .social-proof-stat{text-align:center}
+        .social-proof-stat .val{font-family:var(--mono);font-size:22px;font-weight:500;color:var(--text)}
+        .social-proof-stat .label{font-size:12px;color:var(--text-muted);margin-top:2px}
+        .social-proof-divider{width:1px;height:32px;background:var(--border)}
+
+        /* FOOTER */
+        .footer{max-width:var(--max-w);margin:0 auto;padding:40px 32px;text-align:center}
+        .footer p{font-size:13px;color:var(--text-dim)}
+        .footer a{color:var(--text-muted);text-decoration:none}
+        .footer a:hover{color:var(--indigo)}
+
+        /* TYPING INDICATOR */
+        .typing{display:flex;gap:4px;align-items:center;padding:12px 16px}
+        .typing-dot{width:6px;height:6px;border-radius:50%;background:var(--text-dim);animation:typingBounce .6s ease-in-out infinite}
+        .typing-dot:nth-child(2){animation-delay:.15s}
+        .typing-dot:nth-child(3){animation-delay:.3s}
+        @keyframes typingBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+
+        /* GATE OVERLAY */
+        .gate-overlay{display:none;position:absolute;inset:0;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);z-index:10;flex-direction:column;align-items:center;justify-content:center;padding:32px;border-radius:20px}
+        .gate-overlay.active{display:flex}
+        .gate-icon{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,var(--indigo),#7C3AED);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+        .gate-icon svg{width:28px;height:28px;color:#fff}
+        .gate-overlay h3{font-size:22px;font-weight:800;margin-bottom:8px;text-align:center}
+        .gate-overlay p{font-size:15px;color:var(--text-muted);text-align:center;max-width:340px;margin-bottom:24px}
+
+        /* ANIMATE NUMBERS */
+        .animate-in{animation:fadeSlideIn .5s ease-out forwards}
+        @keyframes fadeSlideIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+        /* RESPONSIVE */
+        @media(max-width:900px){
+            .intel-grid{grid-template-columns:1fr}
+            .chat-card{min-height:500px}
+        }
+        @media(max-width:600px){
+            .hero{padding:120px 20px 40px}
+            .main-container{padding:0 16px 60px}
+            .kpi-row{grid-template-columns:1fr}
+            .industry-picker{gap:8px}
+            .industry-btn{padding:8px 14px;font-size:13px}
+            .nav-links{display:none}
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+    <div class="nav-inner">
+        <a href="/" class="logo">AgentCollect<span class="dot-circle"></span></a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/how-it-works">How it works</a>
+            <a href="/intelligence" class="active">Intelligence</a>
+            <a href="/pricing">Pricing</a>
+        </div>
+        <div class="nav-right">
+            <a href="https://cal.com/johnb/30" target="_blank" class="nav-cta">Book a call</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-badge reveal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            Free AR Audit — No credit card required
+        </div>
+        <h1 class="reveal s1">What's hiding in<br>your receivables?</h1>
+        <p class="sub reveal s2">Our AI agent analyzes your accounts receivable in seconds.<br>See what's recoverable, who owes what, and what to do next.</p>
+
+        <div class="industry-picker reveal s3">
+            <button class="industry-btn active" data-industry="staffing">Staffing</button>
+            <button class="industry-btn" data-industry="healthcare">Healthcare</button>
+            <button class="industry-btn" data-industry="legal">Legal Services</button>
+            <button class="industry-btn" data-industry="logistics">Logistics</button>
+        </div>
+    </div>
+</section>
+
+<!-- MAIN -->
+<div class="main-container">
+    <div class="intel-grid reveal s3">
+
+        <!-- LEFT: REPORT -->
+        <div class="report-card" id="reportCard">
+            <div class="report-header">
+                <div class="report-company-icon" id="companyIcon">M</div>
+                <div>
+                    <div class="report-company-name" id="companyName">Meridian Staffing Group</div>
+                    <div class="report-company-sub" id="companySub">847 invoices analyzed &middot; 24 months</div>
+                </div>
+                <div class="report-badge">AI Report</div>
+            </div>
+            <div class="report-body">
+                <!-- KPIs -->
+                <div class="kpi-row">
+                    <div class="kpi">
+                        <div class="kpi-value" id="kpiOutstanding">$1.2M</div>
+                        <div class="kpi-label">Outstanding</div>
+                    </div>
+                    <div class="kpi">
+                        <div class="kpi-value red" id="kpiAging">$412K</div>
+                        <div class="kpi-label">Aging 90+</div>
+                    </div>
+                    <div class="kpi">
+                        <div class="kpi-value green" id="kpiRecoverable">$178K</div>
+                        <div class="kpi-label">Recoverable</div>
+                    </div>
+                </div>
+
+                <!-- Severity bar -->
+                <div class="severity-bar">
+                    <div class="seg seg-green"></div>
+                    <div class="seg seg-amber"></div>
+                    <div class="seg seg-red"></div>
+                </div>
+
+                <!-- Top debtors -->
+                <div class="section-label-sm">Top Priority Debtors</div>
+                <div class="debtor-list" id="debtorList">
+                    <div class="debtor-row">
+                        <div class="debtor-rank">1</div>
+                        <div class="debtor-info">
+                            <div class="debtor-name">TechFlow Solutions</div>
+                            <div class="debtor-detail">142 days overdue &middot; CFO email found</div>
+                        </div>
+                        <div class="debtor-amount">$47,200</div>
+                        <div class="debtor-tag recoverable">Recoverable</div>
+                    </div>
+                    <div class="debtor-row">
+                        <div class="debtor-rank">2</div>
+                        <div class="debtor-info">
+                            <div class="debtor-name">BluePeak Industries LLC</div>
+                            <div class="debtor-detail">98 days overdue &middot; Phone verified</div>
+                        </div>
+                        <div class="debtor-amount">$31,800</div>
+                        <div class="debtor-tag recoverable">Recoverable</div>
+                    </div>
+                    <div class="debtor-row">
+                        <div class="debtor-rank">3</div>
+                        <div class="debtor-info">
+                            <div class="debtor-name">Oakridge Construction</div>
+                            <div class="debtor-detail">201 days &middot; Payment dispute open</div>
+                        </div>
+                        <div class="debtor-amount">$28,500</div>
+                        <div class="debtor-tag dispute">Dispute</div>
+                    </div>
+                    <div class="debtor-row">
+                        <div class="debtor-rank">4</div>
+                        <div class="debtor-info">
+                            <div class="debtor-name">Vertex Management Co</div>
+                            <div class="debtor-detail">267 days &middot; Company may be dissolved</div>
+                        </div>
+                        <div class="debtor-amount">$19,400</div>
+                        <div class="debtor-tag stale">Stale</div>
+                    </div>
+                </div>
+
+                <!-- Insight -->
+                <div class="insight-box">
+                    <div class="insight-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    </div>
+                    <div class="insight-text">
+                        <strong>You're losing ~$8,400/month</strong> by not acting on recoverable invoices. The top 3 debtors alone represent $107K — with verified contact information ready to go.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT: CHAT -->
+        <div class="chat-card" id="chatCard" style="position:relative">
+            <div class="chat-header">
+                <div class="chat-avatar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                </div>
+                <div class="chat-header-text">
+                    <h3>Collection Intelligence</h3>
+                    <p>Ask anything about this portfolio</p>
+                </div>
+                <div class="chat-counter"><span id="questionCount">10</span>/10 questions</div>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <div class="msg msg-bot">
+                    <div class="msg-avatar">AI</div>
+                    <div class="msg-bubble">
+                        I've analyzed <strong>Meridian Staffing's 847 invoices</strong> over the last 24 months. The biggest opportunity is <strong>$178K in recoverable debt</strong> that nobody's working on.<br><br>
+                        What would you like to know?
+                    </div>
+                </div>
+            </div>
+
+            <div class="suggestions" id="suggestions">
+                <div class="suggestion-chip" data-q="Who are the worst payers?">Who are the worst payers?</div>
+                <div class="suggestion-chip" data-q="What's the DSO trend?">What's the DSO trend?</div>
+                <div class="suggestion-chip" data-q="Which invoices should I prioritize?">Which invoices to prioritize?</div>
+                <div class="suggestion-chip" data-q="Why does TechFlow always pay late?">Why does TechFlow pay late?</div>
+            </div>
+
+            <div class="chat-input-wrap">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Ask anything about these receivables...">
+                <button class="chat-send" id="chatSend">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                </button>
+            </div>
+
+            <!-- GATE OVERLAY -->
+            <div class="gate-overlay" id="gateOverlay">
+                <div class="gate-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <h3>You've explored the demo data</h3>
+                <p>Imagine this with YOUR receivables. Book a 15-min call to unlock unlimited access with your real data.</p>
+                <a href="https://cal.com/johnb/30" target="_blank" class="btn-primary" style="margin-bottom:12px">
+                    Book 15-min call with CEO
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <button class="btn-secondary" onclick="document.getElementById('gateOverlay').classList.remove('active')">Keep exploring</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CTA -->
+    <section class="cta-section reveal">
+        <h2>Ready with your real data?</h2>
+        <p>Connect your accounting software or upload a CSV. Your Collection Intelligence report generates in under 60 seconds.</p>
+        <div class="cta-buttons">
+            <a href="https://cal.com/johnb/30" target="_blank" class="btn-primary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                Talk to us
+            </a>
+            <button class="btn-secondary" onclick="alert('Coming soon — CSV upload')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+                Upload CSV
+            </button>
+        </div>
+    </section>
+
+    <!-- SOCIAL PROOF -->
+    <div class="social-proof reveal">
+        <div class="social-proof-inner">
+            <div class="social-proof-stat">
+                <div class="val">$888K</div>
+                <div class="label">Resolved for clients</div>
+            </div>
+            <div class="social-proof-divider"></div>
+            <div class="social-proof-stat">
+                <div class="val">314</div>
+                <div class="label">Companies analyzed</div>
+            </div>
+            <div class="social-proof-divider"></div>
+            <div class="social-proof-stat">
+                <div class="val">48hrs</div>
+                <div class="label">Avg. first result</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>&copy; 2026 <a href="/">AgentCollect</a><span class="dot-circle" style="width:5px;height:5px;margin:0 2px"></span> &mdash; The end of manual collection.</p>
+</footer>
+
+<script>
+// Reveal on scroll
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Nav scroll
+window.addEventListener('scroll', () => {
+    document.querySelector('.nav').classList.toggle('scrolled', window.scrollY > 10);
+});
+
+// Industry data
+const industries = {
+    staffing: {
+        icon: 'M', name: 'Meridian Staffing Group', sub: '847 invoices analyzed &middot; 24 months',
+        outstanding: '$1.2M', aging: '$412K', recoverable: '$178K',
+        debtors: [
+            { name: 'TechFlow Solutions', detail: '142 days overdue &middot; CFO email found', amount: '$47,200', tag: 'recoverable', tagLabel: 'Recoverable' },
+            { name: 'BluePeak Industries LLC', detail: '98 days overdue &middot; Phone verified', amount: '$31,800', tag: 'recoverable', tagLabel: 'Recoverable' },
+            { name: 'Oakridge Construction', detail: '201 days &middot; Payment dispute open', amount: '$28,500', tag: 'dispute', tagLabel: 'Dispute' },
+            { name: 'Vertex Management Co', detail: '267 days &middot; Company may be dissolved', amount: '$19,400', tag: 'stale', tagLabel: 'Stale' }
+        ],
+        insight: "You're losing ~$8,400/month by not acting on recoverable invoices. The top 3 debtors alone represent $107K — with verified contact information ready to go.",
+        greeting: "I've analyzed <strong>Meridian Staffing's 847 invoices</strong> over the last 24 months. The biggest opportunity is <strong>$178K in recoverable debt</strong> that nobody's working on."
+    },
+    healthcare: {
+        icon: 'H', name: 'HealthFirst Medical Group', sub: '1,203 invoices analyzed &middot; 18 months',
+        outstanding: '$2.1M', aging: '$680K', recoverable: '$312K',
+        debtors: [
+            { name: 'Sunrise Senior Living', detail: '156 days overdue &middot; AP Manager found', amount: '$89,200', tag: 'recoverable', tagLabel: 'Recoverable' },
+            { name: 'Valley Physical Therapy', detail: '112 days overdue &middot; Insurance dispute', amount: '$52,400', tag: 'dispute', tagLabel: 'Dispute' },
+            { name: 'Metro Urgent Care', detail: '88 days &middot; 3 phone numbers verified', amount: '$41,700', tag: 'recoverable', tagLabel: 'Recoverable' },
+            { name: 'ClearView Diagnostics', detail: '340 days &middot; No response to 12 attempts', amount: '$23,100', tag: 'stale', tagLabel: 'Stale' }
+        ],
+        insight: "You're losing ~$17,300/month in recoverable revenue. Insurance-related disputes account for 38% of your aging balance — our AI resolves these 3x faster than manual follow-up.",
+        greeting: "I've analyzed <strong>HealthFirst's 1,203 invoices</strong> over 18 months. Insurance disputes are your biggest bottleneck — <strong>$312K is recoverable</strong> with the right approach."
+    },
+    legal: {
+        icon: 'C', name: 'Carter & Associates LLP', sub: '412 invoices analyzed &middot; 24 months',
+        outstanding: '$890K', aging: '$298K', recoverable: '$145K',
+        debtors: [
+            { name: 'Greenfield Properties', detail: '178 days overdue &middot; CFO LinkedIn found', amount: '$62,000', tag: 'recoverable', tagLabel: 'Recoverable' },
+            { name: 'Atlas Ventures Inc', detail: '134 days &middot; Partial payment received', amount: '$38,400', tag: 'recoverable', tagLabel: 'Recoverable' },
+            { name: 'Pinnacle Development', detail: '220 days &middot; Disputes retainer terms', amount: '$27,800', tag: 'dispute', tagLabel: 'Dispute' },
+            { name: 'Redline Automotive Group', detail: '305 days &middot; Changed address, no forwarding', amount: '$16,200', tag: 'stale', tagLabel: 'Stale' }
+        ],
+        insight: "Retainer disputes are 42% of your aging balance. Our AI drafts dispute responses in seconds — and 73% of these resolve within 14 days when addressed properly.",
+        greeting: "I've analyzed <strong>Carter & Associates' 412 invoices</strong>. Your retainer-based billing creates unique collection challenges — but <strong>$145K is recoverable</strong> with targeted outreach."
+    },
+    logistics: {
+        icon: 'P', name: 'Pacific Freight Services', sub: '2,340 invoices analyzed &middot; 12 months',
+        outstanding: '$3.8M', aging: '$1.1M', recoverable: '$520K',
+        debtors: [
+            { name: 'Continental Distributors', detail: '92 days overdue &middot; 5 contacts found', amount: '$128,000', tag: 'recoverable', tagLabel: 'Recoverable' },
+            { name: 'Harbor Logistics Inc', detail: '118 days &middot; Disputes freight charges', amount: '$73,500', tag: 'dispute', tagLabel: 'Dispute' },
+            { name: 'Summit Supply Chain', detail: '76 days &middot; AP email bouncing', amount: '$56,200', tag: 'recoverable', tagLabel: 'Recoverable' },
+            { name: 'Coastal Transport Ltd', detail: '198 days &middot; Company restructuring', amount: '$44,800', tag: 'stale', tagLabel: 'Stale' }
+        ],
+        insight: "High-volume, low-margin invoices are piling up — you have 847 invoices under $5K that total $1.2M. Our AI handles these at scale while your team focuses on the big accounts.",
+        greeting: "I've analyzed <strong>Pacific Freight's 2,340 invoices</strong> in the last 12 months. You have a high-volume problem — <strong>$520K recoverable</strong>, mostly in small invoices nobody's chasing."
+    }
+};
+
+// Switch industry
+document.querySelectorAll('.industry-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.industry-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const data = industries[btn.dataset.industry];
+        updateReport(data);
+        resetChat(data);
+    });
+});
+
+function updateReport(data) {
+    document.getElementById('companyIcon').textContent = data.icon;
+    document.getElementById('companyName').textContent = data.name;
+    document.getElementById('companySub').innerHTML = data.sub;
+    document.getElementById('kpiOutstanding').textContent = data.outstanding;
+    document.getElementById('kpiAging').textContent = data.aging;
+    document.getElementById('kpiRecoverable').textContent = data.recoverable;
+
+    const list = document.getElementById('debtorList');
+    list.innerHTML = data.debtors.map((d, i) => `
+        <div class="debtor-row animate-in" style="animation-delay:${i * .08}s">
+            <div class="debtor-rank">${i + 1}</div>
+            <div class="debtor-info">
+                <div class="debtor-name">${d.name}</div>
+                <div class="debtor-detail">${d.detail}</div>
+            </div>
+            <div class="debtor-amount">${d.amount}</div>
+            <div class="debtor-tag ${d.tag}">${d.tagLabel}</div>
+        </div>
+    `).join('');
+
+    document.querySelector('.insight-text').innerHTML = `<strong>${data.insight.split('.')[0]}.</strong> ${data.insight.split('.').slice(1).join('.')}`;
+}
+
+// Chat mock responses
+const mockResponses = {
+    "Who are the worst payers?": "Based on the data, your <strong>3 worst payers</strong> are:\n\n<strong>1. TechFlow Solutions</strong> — $47,200 overdue, 142 days. They have a pattern: they pay 60-90 days late on every invoice. Their CFO (Sarah Mitchell) hasn't been contacted yet.\n\n<strong>2. BluePeak Industries</strong> — $31,800 overdue, 98 days. They've been growing fast and their AP is overwhelmed. Phone number verified — best time to call is Tuesday 10am.\n\n<strong>3. Oakridge Construction</strong> — $28,500, 201 days with an active dispute about project scope.",
+    "What's the DSO trend?": "Your <strong>DSO has been climbing</strong>:\n\n• 6 months ago: <strong>42 days</strong>\n• 3 months ago: <strong>51 days</strong>\n• Current: <strong>63 days</strong>\n\nThat's a 50% increase in 6 months. The main driver is 23 accounts that shifted from 30-day to 90+ day payment patterns. If we recover the $178K in recoverable debt, your DSO drops back to ~47 days.",
+    "Which invoices should I prioritize?": "I'd recommend this priority order:\n\n<strong>Tier 1 — Act today</strong> (high recovery probability):\n• TechFlow — $47.2K (CFO email found, just needs outreach)\n• BluePeak — $31.8K (phone verified, ready for call)\n\n<strong>Tier 2 — This week</strong> (needs dispute resolution):\n• Oakridge — $28.5K (dispute response can be drafted by AI)\n\n<strong>Tier 3 — Investigate</strong> (uncertain):\n• Vertex — $19.4K (may be dissolved, needs company check)\n\nTier 1 alone is <strong>$79K</strong> that could be recovered in the next 30 days.",
+    "Why does TechFlow always pay late?": "Looking at TechFlow's payment history:\n\n• <strong>12 invoices</strong> in the last 24 months\n• <strong>Average payment delay: 78 days</strong> (your terms are Net 30)\n• They always pay eventually — <strong>100% payment rate</strong>\n• Their delays spiked after Q2 2025, when they hired 40 people\n\n<strong>Pattern:</strong> They're a fast-growing company with an overwhelmed AP team. They prioritize vendors who follow up. The ones who call get paid first.\n\n<strong>Recommendation:</strong> A structured 3-touch outreach (email → call → email) would likely get the $47.2K paid within 21 days."
+};
+
+let questionCount = 10;
+
+function resetChat(data) {
+    const messages = document.getElementById('chatMessages');
+    messages.innerHTML = `
+        <div class="msg msg-bot">
+            <div class="msg-avatar">AI</div>
+            <div class="msg-bubble">${data.greeting}<br><br>What would you like to know?</div>
+        </div>
+    `;
+    questionCount = 10;
+    document.getElementById('questionCount').textContent = '10';
+    document.getElementById('gateOverlay').classList.remove('active');
+}
+
+function addMessage(text, isUser) {
+    const messages = document.getElementById('chatMessages');
+    const msg = document.createElement('div');
+    msg.className = `msg ${isUser ? 'msg-user' : 'msg-bot'} animate-in`;
+    msg.innerHTML = `
+        <div class="msg-avatar">${isUser ? 'You' : 'AI'}</div>
+        <div class="msg-bubble">${text}</div>
+    `;
+    messages.appendChild(msg);
+    messages.scrollTop = messages.scrollHeight;
+}
+
+function showTyping() {
+    const messages = document.getElementById('chatMessages');
+    const typing = document.createElement('div');
+    typing.className = 'msg msg-bot';
+    typing.id = 'typingIndicator';
+    typing.innerHTML = `<div class="msg-avatar">AI</div><div class="typing"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>`;
+    messages.appendChild(typing);
+    messages.scrollTop = messages.scrollHeight;
+}
+
+function removeTyping() {
+    const el = document.getElementById('typingIndicator');
+    if (el) el.remove();
+}
+
+function handleQuestion(question) {
+    if (questionCount <= 0) {
+        document.getElementById('gateOverlay').classList.add('active');
+        return;
+    }
+
+    addMessage(question, true);
+    questionCount--;
+    document.getElementById('questionCount').textContent = questionCount;
+
+    // Hide suggestions after first question
+    document.getElementById('suggestions').style.display = 'none';
+
+    showTyping();
+
+    setTimeout(() => {
+        removeTyping();
+        const response = mockResponses[question] || "Great question. Based on the portfolio analysis, I can see several patterns here. The data suggests that <strong>proactive outreach within the first 90 days</strong> has a 73% recovery rate, dropping to 31% after 180 days.\n\nWould you like me to dig deeper into a specific debtor or time period?";
+        addMessage(response, false);
+
+        if (questionCount <= 0) {
+            setTimeout(() => {
+                document.getElementById('gateOverlay').classList.add('active');
+            }, 1500);
+        }
+    }, 1200 + Math.random() * 800);
+}
+
+// Chip clicks
+document.querySelectorAll('.suggestion-chip').forEach(chip => {
+    chip.addEventListener('click', () => handleQuestion(chip.dataset.q));
+});
+
+// Input submit
+document.getElementById('chatSend').addEventListener('click', () => {
+    const input = document.getElementById('chatInput');
+    if (input.value.trim()) {
+        handleQuestion(input.value.trim());
+        input.value = '';
+    }
+});
+document.getElementById('chatInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        document.getElementById('chatSend').click();
+    }
+});
+</script>
+
+</body>
+</html>

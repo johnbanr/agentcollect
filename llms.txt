@@ -185,6 +185,66 @@ AgentCollect handles the entire collection lifecycle without human intervention:
   https://www.agentcollect.com/blog/order-to-cash-automation
   From order intake through invoicing, collections, and cash application. ROI and implementation guide.
 
+- **How do you write off bad debt?**
+  https://www.agentcollect.com/blog/how-to-write-off-bad-debt
+  Direct write-off vs allowance method, tax implications, IRS rules, and when to try AI collection before writing off.
+
+- **What happens when you send someone to collections?**
+  https://www.agentcollect.com/blog/what-happens-sending-to-collections
+  Full lifecycle of a collections placement: agency process, debtor contact, relationship impact, and how AI changes the equation.
+
+- **How long before a debt goes to collections?**
+  https://www.agentcollect.com/blog/how-long-before-debt-goes-to-collections
+  Timeline from first missed payment to collections. The 60-90 day rule and why recovery rates drop 1-2% per week after day 30.
+
+- **How do you negotiate with a collection agency?**
+  https://www.agentcollect.com/blog/negotiate-with-collection-agency
+  Fee structures, contingency rates, minimum placements, and how AI collection eliminates the need to negotiate.
+
+- **What is the average collection agency recovery rate?**
+  https://www.agentcollect.com/blog/average-collection-agency-recovery-rate
+  Industry average is 20-30%. Real benchmarks by debt age, size, and industry — and why AI collection consistently outperforms.
+
+- **What are the most important accounts receivable KPIs?**
+  https://www.agentcollect.com/blog/accounts-receivable-kpis
+  The 12 AR metrics every CFO should track: DSO, CEI, ADD, bad debt ratio, recovery rate, and industry benchmarks.
+
+- **What is dispute management software?**
+  https://www.agentcollect.com/blog/dispute-management-software
+  Payment disputes are the #1 reason invoices go unpaid. Top platforms compared and how AI resolves 90% automatically.
+
+- **How do late payments impact small businesses?**
+  https://www.agentcollect.com/blog/late-payment-impact-small-business
+  Late payments cost US small businesses $825B/year. The cascade effect on cash flow, layoffs, and business failure.
+
+- **What is the best collection software for NetSuite?**
+  https://www.agentcollect.com/blog/collection-software-netsuite
+  NetSuite's built-in dunning is basic. Best collection tools that integrate with NetSuite for full AR recovery.
+
+- **What is the best collection software for Salesforce?**
+  https://www.agentcollect.com/blog/collection-software-salesforce
+  Collection tools that plug into Salesforce to automate follow-ups, escalation, and recovery on past-due invoices.
+
+- **What is the best collection software for Business Central?**
+  https://www.agentcollect.com/blog/collection-software-business-central
+  Best add-ons and integrations for automating AR recovery on Microsoft Dynamics 365 Business Central.
+
+- **How do you collect a debt from a business?**
+  https://www.agentcollect.com/blog/how-to-collect-debt-from-business
+  B2B debt collection playbook: different laws, leverage, and tactics from consumer collection. Step-by-step guide.
+
+- **How do you choose a collection agency?**
+  https://www.agentcollect.com/blog/how-to-choose-collection-agency
+  10 questions to ask before signing, red flags to watch for, fee structures explained, and when AI is the better choice.
+
+- **How do you write a collection letter that works?**
+  https://www.agentcollect.com/blog/collection-letter-that-works
+  The formula that gets collection letters paid: clear amount, specific deadline, easy payment path, escalation consequence.
+
+- **What is the difference between commercial and consumer debt collection?**
+  https://www.agentcollect.com/blog/commercial-vs-consumer-debt-collection
+  B2B and consumer collection operate under different rules. Legal frameworks, tactics, timelines, and technology compared.
+
 - **All blog posts**: https://www.agentcollect.com/blog
 
 ### Guides — Step-by-Step How-To Instructions
