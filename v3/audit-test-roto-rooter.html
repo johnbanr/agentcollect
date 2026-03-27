@@ -188,6 +188,16 @@ details[open] summary::before{content:'- '}
 .audit-footer p{font-size:12px;color:var(--muted);opacity:.4;line-height:1.6}
 .audit-footer a{color:var(--text);text-decoration:none;font-weight:600;opacity:.4}
 
+/* AGENT WIDGET */
+@keyframes awSpin{to{transform:rotate(360deg)}}
+#aw-orb:hover{transform:scale(1.08);box-shadow:0 0 48px rgba(79,70,229,.6)}
+#aw-orb:active{transform:scale(.95)}
+
+/* BEFORE/AFTER SPLIT */
+@media(max-width:600px){
+  .confetti-section [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important}
+}
+
 /* MOBILE */
 @media(max-width:768px){
   .nav-inner{padding:14px 24px}
@@ -499,12 +509,14 @@ details[open] summary::before{content:'- '}
         contactus@rotorooter.com<br>
         billing@rotorooter.com<br>
         customerservice@rotorooter.com<br>
-        collections@verliance.com
+        collections@verliance.com <span style="font-size:12px;color:var(--muted)">(their collection agency)</span>
       </div>
     </div>
 
     <p class="rv">Industry average response time: <strong>38 hours.</strong></p>
     <p class="rv"><strong>Still waiting.</strong></p>
+
+    <p class="rv" style="margin-top:32px;font-size:15px;color:var(--muted);padding:16px 20px;background:#fff;border:1px solid var(--border);border-radius:12px"><strong style="color:var(--text)">What is Verliance?</strong><br>Roto-Rooter outsources past-due accounts to Verliance Inc., a collection agency founded in 1999 in Temecula, California. Not BBB accredited. Their payment portal is a WordPress site that accepts Visa debit only. Maximum 3 installments.</p>
   </div>
 </section>
 
@@ -567,10 +579,73 @@ details[open] summary::before{content:'- '}
 <!-- ======================================= -->
 <section class="confetti-section" id="payoff">
   <div class="confetti-container" id="confettiContainer"></div>
-  <div class="section-inner">
+  <div class="section-inner" style="max-width:900px">
     <h2 class="rv">Here's what it should look like.</h2>
-    <p class="sub rv">One link. One click. Payment collected.</p>
+    <p class="sub rv">An AI agent picks up instantly. The customer gets a payment link. Done.</p>
 
+    <!-- BEFORE / AFTER SPLIT -->
+    <div class="rv" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:48px">
+      <!-- BEFORE -->
+      <div style="background:#fff;border-radius:16px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow-sm)">
+        <div style="background:#fef2f2;padding:16px 20px;border-bottom:1px solid #fecaca">
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--red)">Today</div>
+        </div>
+        <div style="padding:20px;font-size:14px;color:var(--muted);line-height:1.8">
+          <div style="margin-bottom:8px">Customer calls <strong style="color:var(--text)">(800) 768-6911</strong></div>
+          <div style="margin-bottom:8px">7 of 16 calls &rarr; voicemail</div>
+          <div style="margin-bottom:8px">No identity verification</div>
+          <div style="margin-bottom:8px">Payment portal on spectrumretailnet.com (2005)</div>
+          <div style="margin-bottom:8px">4 emails, 0 replies</div>
+          <div style="font-weight:600;color:var(--red);margin-top:12px">0 payments collected</div>
+        </div>
+      </div>
+      <!-- AFTER -->
+      <div style="background:#fff;border-radius:16px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow-sm)">
+        <div style="background:#f0fdf4;padding:16px 20px;border-bottom:1px solid #bbf7d0">
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green)">With AgentCollect</div>
+        </div>
+        <div style="padding:20px;font-size:14px;color:var(--muted);line-height:1.8">
+          <div style="margin-bottom:8px">AI agent picks up in <strong style="color:var(--text)">2 seconds</strong></div>
+          <div style="margin-bottom:8px">100% answer rate, 24/7</div>
+          <div style="margin-bottom:8px">Identity verified before account access</div>
+          <div style="margin-bottom:8px">Branded payment link sent instantly</div>
+          <div style="margin-bottom:8px">All cards, ACH, Apple Pay</div>
+          <div style="font-weight:600;color:var(--green);margin-top:12px">Payment collected in 30 seconds</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VOICE AGENT WIDGET -->
+    <div class="rv" style="margin-bottom:32px">
+      <p style="text-align:center;font-size:15px;color:var(--muted);margin-bottom:20px;font-weight:500">Try it yourself. Call the Roto-Rooter agent.</p>
+      <div id="agent-widget" style="max-width:420px;margin:0 auto;background:#0f0f1a;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.15)">
+        <!-- Idle state -->
+        <div id="aw-idle" style="display:flex;flex-direction:column;align-items:center;padding:28px 20px 24px;gap:14px">
+          <div id="aw-orb" style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#4F46E5,#7C3AED);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;box-shadow:0 0 32px rgba(79,70,229,.4)" onclick="startAuditCall()">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          </div>
+          <div style="color:rgba(255,255,255,.6);font-size:14px;font-weight:500" id="aw-label">Talk to the Roto-Rooter agent</div>
+        </div>
+        <!-- Connecting -->
+        <div id="aw-connecting" style="display:none;flex-direction:column;align-items:center;padding:28px 20px;gap:12px">
+          <div style="width:32px;height:32px;border:3px solid rgba(255,255,255,.1);border-top-color:#4F46E5;border-radius:50%;animation:awSpin .8s linear infinite"></div>
+          <div style="color:rgba(255,255,255,.6);font-size:13px">Connecting to Roto-Rooter agent...</div>
+        </div>
+        <!-- Active call -->
+        <div id="aw-active" style="display:none;flex-direction:column;align-items:center;padding:20px;gap:12px">
+          <div id="aw-status" style="color:rgba(255,255,255,.5);font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase">Listening...</div>
+          <div id="aw-waveform" style="display:flex;align-items:center;justify-content:center;gap:3px;height:48px"></div>
+          <div id="aw-transcript" style="width:100%;max-height:80px;overflow-y:auto;scrollbar-width:none"></div>
+          <button id="aw-end" onclick="endAuditCall()" style="padding:10px 24px;background:rgba(239,68,68,.12);color:#ef4444;border:1px solid rgba(239,68,68,.25);border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3.68 16.07l3.92-3.11V9.59c2.85-.93 5.94-.93 8.8 0v3.38l3.91 3.1c.46.36.2 1.11-.39 1.11h-3.79c-.26 0-.5-.11-.68-.28l-2.38-2.25c-.87.17-1.76.17-2.63 0L8.06 17c-.18.17-.42.28-.68.28H3.99c-.49 0-.76-.65-.31-1.11z"/></svg>
+            End call
+          </button>
+        </div>
+        <div style="text-align:center;padding:4px 12px 12px;font-size:11px;color:rgba(255,255,255,.2)">Powered by AgentCollect</div>
+      </div>
+    </div>
+
+    <!-- PAYMENT MOCKUP -->
     <div class="payment-mockup rv" id="paymentMockup">
       <div class="pm-header">
         <div class="pm-brand">Roto-Rooter</div>
@@ -597,7 +672,7 @@ details[open] summary::before{content:'- '}
     </div>
 
     <div class="payoff rv">
-      <p>No hidden portals. No account numbers. No voicemail.</p>
+      <p>No hidden portals. No account numbers. No voicemail.<br><strong>Just a link and a conversation.</strong></p>
     </div>
   </div>
 </section>
@@ -643,6 +718,87 @@ details[open] summary::before{content:'- '}
   els.forEach(function(el){ ro.observe(el); });
   setTimeout(function(){ els.forEach(function(el){ el.classList.add('v'); }); }, 3000);
 })();
+
+// Agent voice call widget
+var awCallActive = false;
+var awRetellClient = null;
+
+async function startAuditCall() {
+  if (awCallActive) return;
+  awCallActive = true;
+  document.getElementById('aw-idle').style.display = 'none';
+  document.getElementById('aw-connecting').style.display = 'flex';
+  document.getElementById('aw-active').style.display = 'none';
+
+  try {
+    var response = await fetch('https://backend.widr.app/api/v1/demo/web-call', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        company_name: 'Roto-Rooter',
+        product: 'Sewer Line Repair',
+        amount: '$847',
+        company_context: 'Roto-Rooter is a plumbing and drain service company. The customer Dawn Mills had sewer line repair done at her home in Crystal, Minnesota.',
+        dispute_playbook: ''
+      })
+    });
+    if (!response.ok) throw new Error('API error');
+    var result = await response.json();
+    if (!result.success || !result.access_token) throw new Error('No token');
+
+    var module = await import('https://cdn.jsdelivr.net/npm/retell-client-js-sdk@2.0.7/+esm');
+    awRetellClient = new module.RetellWebClient();
+
+    awRetellClient.on('call_started', function() {
+      document.getElementById('aw-connecting').style.display = 'none';
+      document.getElementById('aw-active').style.display = 'flex';
+      document.getElementById('aw-status').textContent = 'Your turn — speak now';
+      try{gtag('event','audit_call_started',{page:'audit-test-roto-rooter'})}catch(e){}
+    });
+
+    awRetellClient.on('call_ended', function() { endAuditCall(); });
+
+    awRetellClient.on('agent_start_talking', function() {
+      document.getElementById('aw-status').textContent = 'Roto-Rooter Agent speaking...';
+    });
+    awRetellClient.on('agent_stop_talking', function() {
+      document.getElementById('aw-status').textContent = 'Your turn — speak now';
+    });
+
+    awRetellClient.on('update', function(update) {
+      if (update && update.transcript && update.transcript.length) {
+        var last = update.transcript[update.transcript.length - 1];
+        if (last && last.content) {
+          var role = last.role === 'agent' ? 'agent' : 'user';
+          var tc = document.getElementById('aw-transcript');
+          tc.innerHTML = '<div style="padding:8px 12px;border-radius:12px;font-size:13px;line-height:1.5;' + (role === 'agent' ? 'background:rgba(79,70,229,.15);color:rgba(255,255,255,.9)' : 'background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);text-align:right') + '">' + last.content + '</div>';
+        }
+      }
+    });
+
+    awRetellClient.on('error', function() { endAuditCall(); });
+
+    await awRetellClient.startCall({ accessToken: result.access_token });
+  } catch (err) {
+    console.error('Audit call error:', err);
+    awCallActive = false;
+    document.getElementById('aw-connecting').style.display = 'none';
+    document.getElementById('aw-idle').style.display = 'flex';
+    var lbl = document.getElementById('aw-label');
+    lbl.textContent = 'Connection failed — try again';
+    lbl.style.color = '#ef4444';
+    setTimeout(function() { lbl.textContent = 'Talk to the Roto-Rooter agent'; lbl.style.color = ''; }, 3000);
+  }
+}
+
+function endAuditCall() {
+  awCallActive = false;
+  if (awRetellClient) { try { awRetellClient.stopCall(); } catch(e) {} awRetellClient = null; }
+  document.getElementById('aw-active').style.display = 'none';
+  document.getElementById('aw-connecting').style.display = 'none';
+  document.getElementById('aw-idle').style.display = 'flex';
+  document.getElementById('aw-label').textContent = 'Call ended — tap to try again';
+}
 
 // Confetti on payment mockup reveal
 (function(){
