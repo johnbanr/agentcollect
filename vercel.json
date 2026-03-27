@@ -384,7 +384,8 @@
 { "source": "/solutions/fintech", "destination": "/solutions/fintech.html" },
 { "source": "/prudential-overall", "destination": "/v3/prudential-overall.html" },
 { "source": "/texas-disposal", "destination": "/v3/texas-disposal.html" },
-{ "source": "/qualified-staffing", "destination": "/v3/qualified-staffing.html" }
+{ "source": "/qualified-staffing", "destination": "/v3/qualified-staffing.html" },
+{ "source": "/audit/prudential-overall", "destination": "/v3/audit-prudential-overall.html" }
   ],
   "headers": [
     {
