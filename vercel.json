@@ -395,6 +395,7 @@
 { "source": "/audit/texas-disposal", "destination": "/v3/audit-texas-disposal.html" },
 { "source": "/audit/qualified-staffing", "destination": "/v3/audit-qualified-staffing.html" },
 { "source": "/audit/test-roto-rooter", "destination": "/v3/audit-test-roto-rooter.html" },
+{ "source": "/salesforce-hack", "destination": "/v3/salesforce-hack.html" },
 { "source": "/v3/components/:path*", "destination": "/v3/components/:path*" },
 { "source": "/blog/ai-payment-negotiation-agent", "destination": "/blog/ai-payment-negotiation-agent.html" },
 { "source": "/blog/regulation-f-compliance-software", "destination": "/blog/regulation-f-compliance-software.html" },
