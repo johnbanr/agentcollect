@@ -426,33 +426,110 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
       </div>
     </div>
 
+    <!-- Call 3: Secondary Line — Business Hours (March 27) -->
+    <div class="call-card rv rv-d1">
+      <div class="call-card-header">
+        <div class="call-card-info">
+          <h3>Kimble Companies &mdash; Secondary Line</h3>
+          <span class="call-number">(330) 343-1226</span>
+        </div>
+        <div class="call-card-meta">
+          <span class="call-card-date">Mar 27, 2026 &middot; 10:02 AM ET (business hours)</span>
+          <span class="call-badge duration">1m 07s</span>
+          <span class="call-badge result">OPERATOR NO ANSWER</span>
+        </div>
+      </div>
+      <div class="call-audio">
+        <audio controls preload="none" src="https://dxc03zgurdly9.cloudfront.net/57bd7c389aeb6ac18595ece5261e29322f160bf12fa33b1b38f4c428ee2563af/recording.wav"></audio>
+      </div>
+      <button class="call-transcript-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        View transcript
+      </button>
+      <div class="call-transcript">
+        <div class="ct-msg system">
+          <div class="ct-msg-role">System</div>
+          IVR greeting. Same menu as main line: refuse/limestone/coal/oil/gas departments. Press 0 for operator.
+        </div>
+        <div class="ct-msg agent">
+          <div class="ct-msg-role">Agent</div>
+          Pressed 0 for operator transfer.
+        </div>
+        <div class="ct-msg system">
+          <div class="ct-msg-role">System</div>
+          Operator transfer initiated. Held for ~20 seconds. Nobody answered. No voicemail offered. Agent disconnected.
+        </div>
+      </div>
+    </div>
+
+    <!-- Call 4: Toll-Free — Business Hours (March 27) -->
+    <div class="call-card rv rv-d2">
+      <div class="call-card-header">
+        <div class="call-card-info">
+          <h3>Kimble Companies &mdash; Toll-Free</h3>
+          <span class="call-number">(800) 201-0005</span>
+        </div>
+        <div class="call-card-meta">
+          <span class="call-card-date">Mar 27, 2026 &middot; 10:02 AM ET (business hours)</span>
+          <span class="call-badge duration">1m 11s</span>
+          <span class="call-badge result">OPERATOR NO ANSWER</span>
+        </div>
+      </div>
+      <div class="call-audio">
+        <audio controls preload="none" src="https://dxc03zgurdly9.cloudfront.net/5ec2ca6dc96ae968d569bcee65473f059497960818299083de3c884f94ac5670/recording.wav"></audio>
+      </div>
+      <button class="call-transcript-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        View transcript
+      </button>
+      <div class="call-transcript">
+        <div class="ct-msg system">
+          <div class="ct-msg-role">System</div>
+          Same IVR as secondary line. Identical menu structure. Press 0 for operator.
+        </div>
+        <div class="ct-msg agent">
+          <div class="ct-msg-role">Agent</div>
+          Pressed 0 for operator transfer.
+        </div>
+        <div class="ct-msg system">
+          <div class="ct-msg-role">System</div>
+          Operator transfer initiated. Held for ~20 seconds. Nobody answered. No voicemail offered. Both numbers route to the same IVR system.
+        </div>
+      </div>
+    </div>
+
     <!-- Summary -->
     <div class="mystery-summary rv">
-      <div class="mystery-summary-stat">2 calls. 0 humans reached. 0 voicemails left. 0 payments collected.</div>
+      <div class="mystery-summary-stat">4 calls. 0 humans reached. 0 voicemails left. 0 payments collected. Grade: D</div>
+    </div>
+    <div style="margin-top:20px;padding:20px 24px;background:rgba(220,38,38,.06);border:1px solid rgba(220,38,38,.12);border-radius:12px;text-align:left">
+      <p style="font-size:14px;color:rgba(255,255,255,.6);line-height:1.6;margin:0">
+        <strong style="color:#fca5a5">March 27 finding:</strong> Both numbers called during business hours (10:02 AM ET). Same IVR, same result. Operator transfer initiated &mdash; nobody picks up. No dedicated AR/billing option in the IVR. No voicemail. A client trying to pay has no way to reach a human.
+      </p>
     </div>
   </div>
 </section>
 
-<!-- SECTION 2C: COMING SOON -->
+<!-- SECTION 2C: COMPLETED + SCHEDULED TESTS -->
 <section class="coming-section">
   <div class="coming-inner">
     <div class="coming-card rv">
       <div class="coming-header">
         <span class="coming-header-icon">&#128338;</span>
-        <h3>Coming Soon &mdash; Scheduled Tests</h3>
-        <span class="coming-tag">In progress</span>
+        <h3>Test Results &mdash; Scheduled Tests</h3>
+        <span class="coming-tag">Updated</span>
       </div>
 
       <div class="coming-item">
-        <span class="coming-item-icon">&#128336;</span>
-        <span class="coming-item-text"><strong>March 27, 8:00 AM ET</strong> &mdash; Business hours call (main line)</span>
-        <span class="coming-status scheduled">&#9203; SCHEDULED</span>
+        <span class="coming-item-icon">&#128308;</span>
+        <span class="coming-item-text"><strong>March 27, 10:02 AM ET</strong> &mdash; Business hours call (secondary line) &mdash; Operator transfer, no answer</span>
+        <span class="coming-status completed">&#10003; DONE</span>
       </div>
 
       <div class="coming-item">
-        <span class="coming-item-icon">&#128336;</span>
-        <span class="coming-item-text"><strong>March 27, 10:00 AM ET</strong> &mdash; Business hours call (toll-free)</span>
-        <span class="coming-status scheduled">&#9203; SCHEDULED</span>
+        <span class="coming-item-icon">&#128308;</span>
+        <span class="coming-item-text"><strong>March 27, 10:02 AM ET</strong> &mdash; Business hours call (toll-free) &mdash; Same IVR, operator no answer</span>
+        <span class="coming-status completed">&#10003; DONE</span>
       </div>
 
       <div class="coming-item">
