@@ -593,44 +593,74 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
       <p class="chapter-sub">Go ahead &mdash; try to find a &ldquo;Pay My Bill&rdquo; button on rotorooter.com. We&rsquo;ll wait.</p>
     </div>
 
-    <div class="screenshot-grid">
+    <!-- ANNOTATED SCREENSHOTS — Each has CSS overlay callouts -->
+    <div class="screenshot-grid" style="grid-template-columns:1fr;gap:32px;max-width:900px;margin:0 auto">
+
+      <!-- SCREENSHOT 1: Homepage -->
       <div class="screenshot-card rv rv-d1" style="cursor:pointer" onclick="openPortalPreview('https://www.rotorooter.com','rotorooter.com — The Homepage')">
-        <img src="/v3/audit-assets/roto-rooter/homepage-desktop-1440.png" alt="Roto-Rooter Homepage" loading="lazy">
-        <div class="screenshot-caption">
-          <strong>rotorooter.com</strong> &mdash; zero billing or payment links anywhere in the navigation. Not in the header. Not in the footer. Nowhere.
-          <div style="margin-top:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-            <a href="https://www.rotorooter.com" target="_blank" rel="noopener" style="font-size:12px;color:var(--blue);font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:4px" onclick="event.stopPropagation()">
+        <div style="position:relative;overflow:hidden">
+          <img src="/v3/audit-assets/roto-rooter/homepage-desktop-1440.png" alt="Roto-Rooter Homepage" loading="lazy" style="width:100%;height:auto;display:block">
+          <!-- Annotation: Navigation -->
+          <div style="position:absolute;top:0;left:0;right:0;height:52px;border:2px dashed rgba(220,38,38,.6);border-radius:0;pointer-events:none"></div>
+          <div style="position:absolute;top:56px;right:16px;background:var(--red);color:#fff;font-size:11px;font-weight:700;padding:5px 12px;border-radius:8px;box-shadow:0 2px 8px rgba(220,38,38,.3);max-width:200px;line-height:1.3;pointer-events:none">No &ldquo;Pay My Bill&rdquo; in the entire nav bar</div>
+          <!-- Annotation: CTA area -->
+          <div style="position:absolute;bottom:20%;left:50%;transform:translateX(-50%);background:rgba(220,38,38,.9);color:#fff;font-size:11px;font-weight:700;padding:5px 12px;border-radius:8px;white-space:nowrap;pointer-events:none">CTA: &ldquo;Schedule Now&rdquo; &mdash; zero payment option</div>
+        </div>
+        <div class="screenshot-caption" style="padding:16px 20px">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px">
+            <div style="flex:1;min-width:200px">
+              <strong style="font-size:15px">rotorooter.com</strong>
+              <p style="margin-top:4px;font-size:13px;color:var(--muted);line-height:1.5">We searched every link, every dropdown, every footer link. Zero billing. Zero payment. The only CTA is &ldquo;Schedule Now&rdquo; &mdash; for new services, not to pay existing bills.</p>
+            </div>
+            <a href="https://www.rotorooter.com" target="_blank" rel="noopener" style="font-size:12px;color:var(--blue);font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border:1px solid rgba(79,70,229,.2);border-radius:8px;flex-shrink:0;transition:all .2s" onclick="event.stopPropagation()" onmouseover="this.style.background='rgba(79,70,229,.04)'" onmouseout="this.style.background='transparent'">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              Open rotorooter.com
+              See for yourself &rarr;
             </a>
-            <span style="font-size:11px;color:var(--blue);opacity:.5;cursor:pointer" onclick="event.stopPropagation();openPortalPreview('https://www.rotorooter.com','rotorooter.com')">or preview here &rarr;</span>
           </div>
         </div>
       </div>
+
+      <!-- SCREENSHOT 2: Hidden Payment Portal -->
       <div class="screenshot-card rv rv-d2" style="cursor:pointer;border:2px solid var(--red)" onclick="openPortalPreview('https://rotorooter.spectrumretailnet.com','The Hidden Payment Portal')">
-        <div style="position:absolute;top:12px;right:12px;background:var(--red);color:#fff;font-size:10px;font-weight:800;padding:4px 10px;border-radius:100px;letter-spacing:.06em;text-transform:uppercase;z-index:2">Hidden</div>
-        <img src="/v3/audit-assets/roto-rooter/payment-portal-desktop-1440.png" alt="Payment Portal" loading="lazy" style="position:relative">
-        <div class="screenshot-caption">
-          <strong>The payment portal.</strong> It exists &mdash; but on a completely different domain: <code style="font-size:11px;background:#f1f5f9;padding:2px 6px;border-radius:4px">rotorooter.spectrumretailnet.com</code>. Design circa 2005. No link from the main site. You have to already know it exists.
-          <div style="margin-top:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-            <a href="https://rotorooter.spectrumretailnet.com" target="_blank" rel="noopener" style="font-size:12px;color:var(--red);font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:4px" onclick="event.stopPropagation()">
+        <div style="position:absolute;top:12px;right:12px;background:var(--red);color:#fff;font-size:10px;font-weight:800;padding:4px 10px;border-radius:100px;letter-spacing:.06em;text-transform:uppercase;z-index:2">Hidden Portal</div>
+        <div style="position:relative;overflow:hidden">
+          <img src="/v3/audit-assets/roto-rooter/payment-portal-desktop-1440.png" alt="Payment Portal" loading="lazy" style="width:100%;height:auto;display:block">
+          <!-- Annotation: URL bar -->
+          <div style="position:absolute;top:8px;left:50%;transform:translateX(-50%);background:rgba(220,38,38,.9);color:#fff;font-size:11px;font-weight:700;padding:5px 12px;border-radius:8px;white-space:nowrap;pointer-events:none">URL: rotorooter.<em>spectrumretailnet</em>.com &mdash; looks like a phishing site</div>
+          <!-- Annotation: Design -->
+          <div style="position:absolute;bottom:15%;left:16px;background:rgba(220,38,38,.9);color:#fff;font-size:11px;font-weight:700;padding:5px 12px;border-radius:8px;max-width:220px;line-height:1.3;pointer-events:none">Design from 2005. Requires account number to log in.</div>
+        </div>
+        <div class="screenshot-caption" style="padding:16px 20px">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px">
+            <div style="flex:1;min-width:200px">
+              <strong style="font-size:15px">The payment portal exists.</strong>
+              <p style="margin-top:4px;font-size:13px;color:var(--muted);line-height:1.5">It lives on <code style="font-size:11px;background:#fef2f2;color:var(--red);padding:2px 6px;border-radius:4px;font-weight:600">spectrumretailnet.com</code> &mdash; a completely different domain with another company&rsquo;s name. Zero links from rotorooter.com. You have to already know it exists. And when you get there: account number required, design from 2005.</p>
+            </div>
+            <a href="https://rotorooter.spectrumretailnet.com" target="_blank" rel="noopener" style="font-size:12px;color:var(--red);font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border:1px solid rgba(220,38,38,.2);border-radius:8px;flex-shrink:0;transition:all .2s" onclick="event.stopPropagation()" onmouseover="this.style.background='rgba(220,38,38,.04)'" onmouseout="this.style.background='transparent'">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              See it yourself
+              See it yourself &rarr;
             </a>
-            <span style="font-size:11px;color:var(--red);opacity:.5;cursor:pointer" onclick="event.stopPropagation();openPortalPreview('https://rotorooter.spectrumretailnet.com','Payment Portal')">or preview here &rarr;</span>
           </div>
         </div>
       </div>
+
+      <!-- SCREENSHOT 3: Contact Page -->
       <div class="screenshot-card rv rv-d3" style="cursor:pointer" onclick="openPortalPreview('https://www.rotorooter.com/contact-us/','rotorooter.com/contact-us')">
-        <img src="/v3/audit-assets/roto-rooter/contact-us-desktop-1440.png" alt="Contact Us Page" loading="lazy">
-        <div class="screenshot-caption">
-          <strong>Contact page.</strong> Four sections: Service Requests, Locations, Feedback, Careers. Zero mention of billing, payments, or invoices. A customer wanting to pay has no path forward.
-          <div style="margin-top:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-            <a href="https://www.rotorooter.com/contact-us/" target="_blank" rel="noopener" style="font-size:12px;color:var(--blue);font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:4px" onclick="event.stopPropagation()">
+        <div style="position:relative;overflow:hidden">
+          <img src="/v3/audit-assets/roto-rooter/contact-us-desktop-1440.png" alt="Contact Us Page" loading="lazy" style="width:100%;height:auto;display:block">
+          <!-- Annotation: 4 sections -->
+          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(220,38,38,.9);color:#fff;font-size:12px;font-weight:700;padding:8px 16px;border-radius:10px;line-height:1.4;text-align:center;pointer-events:none;max-width:280px">4 contact categories.<br>Service. Locations. Feedback. Careers.<br><strong style="font-size:14px">Zero billing.</strong></div>
+        </div>
+        <div class="screenshot-caption" style="padding:16px 20px">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px">
+            <div style="flex:1;min-width:200px">
+              <strong style="font-size:15px">Contact page &mdash; the last resort.</strong>
+              <p style="margin-top:4px;font-size:13px;color:var(--muted);line-height:1.5">When a customer can&rsquo;t find how to pay, they go to Contact Us. But even there: four sections, and none of them mention billing, payments, or invoices. Dead end.</p>
+            </div>
+            <a href="https://www.rotorooter.com/contact-us/" target="_blank" rel="noopener" style="font-size:12px;color:var(--blue);font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border:1px solid rgba(79,70,229,.2);border-radius:8px;flex-shrink:0;transition:all .2s" onclick="event.stopPropagation()" onmouseover="this.style.background='rgba(79,70,229,.04)'" onmouseout="this.style.background='transparent'">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              Open contact page
+              See for yourself &rarr;
             </a>
-            <span style="font-size:11px;color:var(--blue);opacity:.5;cursor:pointer" onclick="event.stopPropagation();openPortalPreview('https://www.rotorooter.com/contact-us/','Contact Page')">or preview here &rarr;</span>
           </div>
         </div>
       </div>
