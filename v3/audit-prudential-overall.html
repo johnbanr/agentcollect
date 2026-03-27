@@ -253,6 +253,48 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
   .orb-ring-3{inset:-46px}
   .cost-big{font-size:40px}
 }
+
+/* FLOW SECTION */
+.flow-section{padding:80px 48px}
+.flow-container{max-width:920px;margin:0 auto}
+.flow-title{font-size:clamp(24px,3vw,36px);font-weight:900;letter-spacing:-.03em;line-height:1.1;margin-bottom:8px;color:var(--text)}
+.flow-sub{font-size:16px;color:var(--muted);margin-bottom:40px;line-height:1.5}
+.flow-chart{display:flex;justify-content:center;gap:60px;align-items:flex-start}
+.flow-current,.flow-new{max-width:400px;flex:1}
+.flow-step{padding:16px 24px;border-radius:12px;margin:8px 0;font-size:15px;font-weight:500;background:#f8f9fa;border:1px solid #e2e8f0;color:var(--text)}
+.flow-step.warn{background:#fff7ed;border-color:#f59e0b}
+.flow-step.danger{background:#fef2f2;border-color:#ef4444}
+.flow-step.fail{background:#ef4444;color:#fff;font-weight:700;border-color:#ef4444}
+.flow-step.success{background:#ecfdf5;border-color:#10b981}
+.flow-arrow{text-align:center;color:#94a3b8;font-size:20px;line-height:1.2}
+.flow-vs{font-size:32px;font-weight:900;color:#94a3b8;align-self:center;padding:0 20px}
+
+/* FINDINGS SECTION */
+.findings-section{padding:80px 48px;background:#f8f9fa}
+.findings-container{max-width:920px;margin:0 auto}
+.findings-container h2{font-size:clamp(24px,3vw,36px);font-weight:900;letter-spacing:-.03em;line-height:1.1;margin-bottom:40px;color:var(--text)}
+.finding-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:800px;margin:0 auto}
+.finding-card{background:#fff;border-radius:16px;padding:32px;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.finding-number{font-size:48px;font-weight:900;color:#ef4444;line-height:1}
+.finding-label{font-size:18px;font-weight:700;color:#0B1B3D;margin:8px 0}
+.finding-detail{font-size:14px;color:#64748b;line-height:1.5}
+
+/* PORTAL SECTION */
+.portal-section{padding:80px 48px;background:#f8f9fa}
+.portal-container{max-width:600px;margin:0 auto;text-align:center}
+.portal-container h2{font-size:clamp(24px,3vw,36px);font-weight:900;letter-spacing:-.03em;line-height:1.1;margin-bottom:8px;color:var(--text)}
+.portal-sub{color:#64748b;margin-bottom:32px;font-size:16px;line-height:1.5}
+.portal-embed{margin:0 auto}
+
+@media(max-width:768px){
+  .flow-section{padding:60px 24px}
+  .flow-chart{flex-direction:column;gap:32px;align-items:center}
+  .flow-vs{padding:10px 0;align-self:auto}
+  .flow-current,.flow-new{max-width:100%}
+  .findings-section{padding:60px 24px}
+  .finding-grid{grid-template-columns:1fr}
+  .portal-section{padding:60px 24px}
+}
 </style>
 <!-- RB2B -->
 <script>!function(key) {if (window.reb2b) return;window.reb2b = {loaded: true};var s = document.createElement("script");s.async = true;s.src = "https://ddwl4m2hdecbv.cloudfront.net/b/" + key + "/" + key + ".js.gz";document.getElementsByTagName("script")[0].parentNode.insertBefore(s, document.getElementsByTagName("script")[0]);}("LNKLDHEDW9OJ");</script>
@@ -353,6 +395,97 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
     <div class="cost-row total">
       <span class="cost-row-label">Estimated lost revenue</span>
       <span class="cost-row-value">$2M&ndash;4.2M/yr</span>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3B: HOW YOUR CLIENTS PAY TODAY -->
+<section class="flow-section rv">
+  <div class="flow-container">
+    <h2 class="flow-title">How your clients pay today.</h2>
+    <p class="flow-sub">We mapped the journey. It takes 10 steps.</p>
+
+    <div class="flow-chart">
+      <!-- Current process - LEFT side, red-tinted -->
+      <div class="flow-current">
+        <div class="flow-step">&#128231; Receives invoice</div>
+        <div class="flow-arrow">&darr;</div>
+        <div class="flow-step">&#128270; Googles &ldquo;Prudential pay bill&rdquo;</div>
+        <div class="flow-arrow">&darr;</div>
+        <div class="flow-step">&#127760; Finds prudentialuniforms.com</div>
+        <div class="flow-arrow">&darr;</div>
+        <div class="flow-step">&#9757; Clicks &ldquo;PAY NOW&rdquo;</div>
+        <div class="flow-arrow">&darr;</div>
+        <div class="flow-step warn">&#128196; Lands on filler page &mdash; clicks &ldquo;PAY NOW&rdquo; again</div>
+        <div class="flow-arrow">&darr;</div>
+        <div class="flow-step warn">&#128279; Redirected to paymentservicenetwork.com (new tab)</div>
+        <div class="flow-arrow">&darr;</div>
+        <div class="flow-step danger">&#128222; Must CALL (949) 876-7388 to &ldquo;become eligible&rdquo;</div>
+        <div class="flow-arrow">&darr;</div>
+        <div class="flow-step danger">&#8987; 2 min hold &rarr; transfer &rarr; voicemail</div>
+        <div class="flow-arrow">&darr;</div>
+        <div class="flow-step danger">&#128236; No callback</div>
+        <div class="flow-arrow">&darr;</div>
+        <div class="flow-step fail">&#10060; Client gives up &mdash; $2,800 lost</div>
+      </div>
+
+      <!-- Divider -->
+      <div class="flow-vs">vs</div>
+
+      <!-- AgentCollect process - RIGHT side, green-tinted -->
+      <div class="flow-new">
+        <div class="flow-step">&#128241; Receives SMS with payment link</div>
+        <div class="flow-arrow">&darr;</div>
+        <div class="flow-step success">&#128179; Taps Apple Pay / Google Pay</div>
+        <div class="flow-arrow">&darr;</div>
+        <div class="flow-step success">&#9989; Paid &mdash; 12 seconds</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3C: WHAT WE FOUND -->
+<section class="findings-section rv">
+  <div class="findings-container">
+    <h2>What else we found.</h2>
+
+    <div class="finding-grid">
+      <div class="finding-card">
+        <div class="finding-number">3</div>
+        <div class="finding-label">separate portals to manage billing</div>
+        <div class="finding-detail">Payments on paymentservicenetwork.com. Invoices on pos-clean.com. Statements on edocuvault.com.</div>
+      </div>
+
+      <div class="finding-card">
+        <div class="finding-number">7</div>
+        <div class="finding-label">different phone numbers</div>
+        <div class="finding-detail">A client trying to reach billing has 7 numbers to choose from. Most go to the wrong department.</div>
+      </div>
+
+      <div class="finding-card">
+        <div class="finding-number">0</div>
+        <div class="finding-label">live chat or chatbot</div>
+        <div class="finding-detail">No way to get instant help. In 2026.</div>
+      </div>
+
+      <div class="finding-card">
+        <div class="finding-number">3.25%</div>
+        <div class="finding-label">surcharge on credit card payments</div>
+        <div class="finding-detail">Clients who want to pay by card get penalized. This discourages payment.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3D: YOUR PORTAL, REIMAGINED -->
+<section class="portal-section rv">
+  <div class="portal-container">
+    <h2>Your portal, reimagined.</h2>
+    <p class="portal-sub">This is what your clients would see. Try it yourself.</p>
+    <div class="portal-embed">
+      <iframe src="/v3/components/payment-demo-prudential.html"
+              style="width:100%;height:700px;border:none;border-radius:16px;box-shadow:0 4px 24px rgba(0,0,0,0.12);"
+              title="Prudential Overall Payment Demo"></iframe>
     </div>
   </div>
 </section>
