@@ -1,0 +1,266 @@
+{
+  "company": "Roto-Rooter",
+  "slug": "test-roto-rooter",
+  "type": "test_company",
+  "parent_company": "Chemed Corporation (NYSE: CHE)",
+
+  "basics": {
+    "revenue": "$900M (2024)",
+    "revenue_yoy_change": "-5.2%",
+    "employees": "~8,000",
+    "founded": "1935",
+    "hq": "Cincinnati, OH",
+    "industry": "Plumbing / Home Services",
+    "model": "Franchise + Corporate",
+    "website": "rotorooter.com"
+  },
+
+  "hours": {
+    "phone_support": "24/7 (confirmed — humans answer at midnight PT)",
+    "billing_branch": "8:00 AM - 4:30 PM local time (per John, call center agent)",
+    "timezone": "Multiple (national franchise)",
+    "source": "Confirmed via mystery shop calls March 26-27 2026"
+  },
+
+  "phone_numbers": [
+    {"number": "+18007686911", "label": "Main line (800-768-6911)", "ivr": true, "billing_option": "Press 3→6", "notes": "24/7, humans answer, IVR then transfer to call center"},
+    {"number": "+17146661665", "label": "Branch office billing (714-666-1665)", "hours": "8AM-4:30PM", "notes": "Given by call center agent John — actual billing dept"},
+    {"number": "+16572760952", "label": "Branch number (657-276-0952)", "notes": "Given by escalation agent — 'you need the branch'"}
+  ],
+
+  "payment_portal": {
+    "url": "https://rotorooter.spectrumretailnet.com/PP?PAGE=AUTHENTICATE",
+    "provider": "Tempus Technologies Inc",
+    "design_era": "2005-2010",
+    "domain": "spectrumretailnet.com (different from rotorooter.com)",
+    "link_from_main_site": false,
+    "self_registration": false,
+    "forgot_password": false,
+    "mobile_responsive": false,
+    "guest_pay": false,
+    "accepted_methods": ["Credit card", "Debit card", "Cash", "Check", "Synchrony financing"],
+    "grade": "D-"
+  },
+
+  "financing": {
+    "partner": "Synchrony",
+    "apr": "26.99%",
+    "activation_fee": "$29",
+    "promo": "0% for 6 months or 18 months",
+    "notes": "Reverts to full APR on remaining balance after promo"
+  },
+
+  "app": {
+    "ios": true,
+    "android": true,
+    "features": ["Scheduling", "Service tracking", "Appointment management", "Coupons"],
+    "billing_features": false,
+    "notes": "ZERO billing or payment features in app"
+  },
+
+  "ratings": {
+    "trustpilot": {"score": 1.7, "reviews": 188, "rating": "Bad"},
+    "pissedconsumer": {"score": 1.5, "reviews": 706},
+    "consumeraffairs": {"score": 2.1},
+    "glassdoor": {"score": 3.2, "reviews": 985},
+    "bbb": {"rating": "Mixed by location", "complaints": 60, "notes": "Some A+, some not accredited"}
+  },
+
+  "collection_agency": {
+    "name": "Verliance Inc (fka Van Dinter Associates)",
+    "phone": "+18776434549",
+    "alt_phone": "+19516933318",
+    "bbb_accredited": false,
+    "indeed_rating": 1.8,
+    "yelp_reviews": 11,
+    "yelp_sentiment": "negative (scam, rude)",
+    "lawsuit": "Tucey v. Roto-Rooter + Verliance, 5:26-cv-01424, CA Northern District, Feb 2026",
+    "ivr_name": "Reliance Incorporated",
+    "notes": "IVR says 'Reliance Incorporated' not 'Verliance'"
+  },
+
+  "bad_debt_estimate": {
+    "conservative": {"rate": "2%", "amount": "$18M"},
+    "moderate": {"rate": "3.5%", "amount": "$31.5M"},
+    "high": {"rate": "5%", "amount": "$45M"},
+    "recovery_potential": "$5.4M - $13.5M at 30% recovery rate",
+    "sources": ["Chemed Corp 10-K (NYSE: CHE)", "Dun & Bradstreet B2B bad debt rates"]
+  },
+
+  "mystery_calls": [
+    {
+      "id": "original_polite",
+      "date": "2026-03-26 20:19 PT",
+      "number": "+18007686911",
+      "scenario": "Polite client",
+      "agent": "agent_7be4cfedc1e08674f42b2a296b",
+      "duration": "1m50s",
+      "result": "VOICEMAIL",
+      "recording": "https://dxc03zgurdly9.cloudfront.net/8ed381b9ee9d2728f5de2bfa7966fe17db66f0c32cac82b9f4768e5de7689636/recording.wav",
+      "human_reached": false
+    },
+    {
+      "id": "original_hospitalized",
+      "date": "2026-03-26 20:19 PT",
+      "number": "+18007686911",
+      "scenario": "Hospitalized (Dyshanta)",
+      "agent": "agent_417106c8ded2494128408c8054",
+      "duration": "1m15s",
+      "result": "HUMAN REACHED",
+      "recording": "https://dxc03zgurdly9.cloudfront.net/6793f31b30d8e0efe91ad4e48f38046c5524f5500a5d87c4c63e4aebacda0e68/recording.wav",
+      "human_reached": true,
+      "human_name": "Dyshanta"
+    },
+    {
+      "id": "original_frustrated",
+      "date": "2026-03-26 20:19 PT",
+      "number": "+18007686911",
+      "scenario": "Frustrated",
+      "duration": "1m48s",
+      "result": "VOICEMAIL",
+      "recording": "https://dxc03zgurdly9.cloudfront.net/9a933dab094227b68cc246768d29dc6f4c9755c26d94cf200b7d61526283e5d0/recording.wav",
+      "human_reached": false
+    },
+    {
+      "id": "original_hardship",
+      "date": "2026-03-26 20:19 PT",
+      "number": "+18007686911",
+      "scenario": "Financial hardship",
+      "duration": "1m59s",
+      "result": "VOICEMAIL",
+      "recording": "https://dxc03zgurdly9.cloudfront.net/b56496938809016a8d8a55523d25984cf4fc14f8dc3e81e5d07fabd77c33498f/recording.wav",
+      "human_reached": false
+    },
+    {
+      "id": "original_dispute",
+      "date": "2026-03-26 20:19 PT",
+      "number": "+18007686911",
+      "scenario": "Dispute",
+      "duration": "1m51s",
+      "result": "VOICEMAIL",
+      "recording": "https://dxc03zgurdly9.cloudfront.net/f0d7bae36078ca19f454081663c86e962c197dfa2c3993104ce9ef75b44dd3d1/recording.wav",
+      "human_reached": false
+    },
+    {
+      "id": "original_litigation",
+      "date": "2026-03-26 20:19 PT",
+      "number": "+18007686911",
+      "scenario": "Litigation threat",
+      "duration": "1m57s",
+      "result": "VOICEMAIL",
+      "recording": "https://dxc03zgurdly9.cloudfront.net/d6b320da362473fccb5d02b018e3377accef5f8cdaa11d30e9a0e945bcd7c77d/recording.wav",
+      "human_reached": false
+    },
+    {
+      "id": "original_escalation",
+      "date": "2026-03-26 20:19 PT",
+      "number": "+18007686911",
+      "scenario": "Full escalation",
+      "duration": "1m54s",
+      "result": "VOICEMAIL",
+      "recording": "https://dxc03zgurdly9.cloudfront.net/a29e8566369caa36c96fd0a39a872963e2e5f1b52374f4432ab12de285fc2edb/recording.wav",
+      "human_reached": false
+    },
+    {
+      "id": "escalation_human",
+      "date": "2026-03-27 00:00 PT",
+      "number": "+18007686911",
+      "scenario": "Full escalation — supervisor request",
+      "call_id": "call_d90cb50084a847c8791b759a7bd",
+      "duration": "3m40s",
+      "result": "HUMAN REACHED — ESCALATION",
+      "recording": "https://dxc03zgurdly9.cloudfront.net/4538435f88356e91ef322be7bb3ac6ba7a6a8b4c926a009917553fa219c9ccf8/recording.wav",
+      "human_reached": true,
+      "human_name": "Call center agent",
+      "key_quote": "I'm in a call center, sir. You need the branch.",
+      "branch_given": "(657) 276-0952",
+      "featured": true
+    },
+    {
+      "id": "adapted_jasmine",
+      "date": "2026-03-27 00:00 PT",
+      "number": "+19497417328",
+      "scenario": "Adapted persona — drain cleaning $450",
+      "duration": "3m47s",
+      "result": "HUMAN REACHED",
+      "recording": "https://dxc03zgurdly9.cloudfront.net/9f0a7e5e045c1a79e1d5aeba0bbb552bb519334488b6f8684c6ea4645d613367/recording.wav",
+      "human_reached": true,
+      "human_name": "Jasmine"
+    },
+    {
+      "id": "verliance_voicemail",
+      "date": "2026-03-27 04:41 PT",
+      "number": "+18776434549",
+      "scenario": "Verliance collection agency — as Roto-Rooter debtor",
+      "call_id": "call_3c5588bea682c2fb698be8c1128",
+      "duration": "52s",
+      "result": "VOICEMAIL (after hours)",
+      "recording": "https://dxc03zgurdly9.cloudfront.net/9f8aff0c5eeed383a71a26c417ae39e2bff1427ebd65417c0f995c97b294786b/recording.wav",
+      "human_reached": false,
+      "notes": "IVR says 'Reliance Incorporated'. Office closed."
+    },
+    {
+      "id": "hospitalized_clean",
+      "date": "2026-03-27 04:50 PT",
+      "number": "+18007686911",
+      "scenario": "Hospitalized — clean recording",
+      "call_id": "call_c30be8b6a9f3d67d34eec812c7b",
+      "duration": "3m09s",
+      "result": "HUMAN REACHED",
+      "recording": "https://dxc03zgurdly9.cloudfront.net/d20630b7bc46c322cd8320c50fa2b6815b1f9a3a9468b4cc3800751943ed42dd/recording.wav",
+      "human_reached": true,
+      "human_name": "Christie",
+      "key_moments": [
+        "Mike explains hospital stay, wants to pay $450 drain cleaning",
+        "Christie asks for phone number — nothing found",
+        "Christie asks for address — Mike can't provide",
+        "Christie: 'I need the address or ticket'",
+        "Mike thanks her, says he'll call back"
+      ],
+      "clean": true
+    },
+    {
+      "id": "frustrated_john",
+      "date": "2026-03-27 04:53 PT",
+      "number": "+18007686911",
+      "scenario": "Frustrated — 3 days trying",
+      "call_id": "call_d3ee2e91de6500cf33152951783",
+      "duration": "1m57s",
+      "result": "HUMAN REACHED",
+      "recording": "https://dxc03zgurdly9.cloudfront.net/5da7b90fb3766a20edd9def998a8b4aa7751bad5c116acd234474590bae5ea8e/recording.wav",
+      "human_reached": true,
+      "human_name": "John",
+      "key_moments": [
+        "Mike: 'I've been trying for THREE DAYS. Nobody answers!'",
+        "John: 'I can't call you back. I need to provide you with the branch office.'",
+        "Mike: 'Can you transfer me?' → John: 'No. I can't.'",
+        "John gives branch: (714) 666-1665, 8AM-4:30PM, ask for billing",
+        "Mike calms down, apologizes, ends politely"
+      ],
+      "clean": true,
+      "branch_given": "(714) 666-1665"
+    }
+  ],
+
+  "key_findings": [
+    "ZERO links to payment portal from rotorooter.com",
+    "Portal on different domain (spectrumretailnet.com) — looks like phishing",
+    "Portal design circa 2005 — no self-registration, no mobile responsive",
+    "App has ZERO billing features despite iOS + Android presence",
+    "Call center agents CANNOT help you pay — they can only give you another number",
+    "Branch billing hours: 8AM-4:30PM only",
+    "Synchrony financing at 26.99% APR + $29 fee",
+    "Collection agency Verliance has 1.8/5 Indeed + active federal lawsuit",
+    "Humans answer at midnight PT — but they still can't help you pay",
+    "Trustpilot 1.7/5 (188 reviews), PissedConsumer 1.5/5 (706 reviews)"
+  ],
+
+  "stats_with_sources": [
+    {"stat": "68% of Americans paid a bill on their phone this year", "source": "Federal Reserve, 2025", "url": "https://www.federalreserve.gov/publications/mobile-financial-services.htm"},
+    {"stat": "41% of bill payments happen outside business hours", "source": "PayNearMe (n=2,500)", "url": "https://home.paynearme.com/resources"},
+    {"stat": "53% abandon pages loading over 3 seconds", "source": "Google / SOASTA", "url": "https://www.thinkwithgoogle.com/marketing-strategies/app-and-mobile/mobile-page-speed-load-time/"},
+    {"stat": "70.19% average checkout abandonment rate", "source": "Baymard Institute", "url": "https://baymard.com/lists/cart-abandonment-rate"},
+    {"stat": "81% use alternate payment to avoid surcharges", "source": "J.D. Power 2025 (n=37,293)", "url": ""},
+    {"stat": "26% abandon when forced to create account", "source": "Baymard Institute", "url": "https://baymard.com/lists/cart-abandonment-rate"}
+  ]
+}

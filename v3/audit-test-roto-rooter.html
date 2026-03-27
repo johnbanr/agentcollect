@@ -401,11 +401,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
   <h1 class="rv rv-d1">We tried to pay <em>Roto-Rooter.</em></h1>
   <div class="hero-stats rv rv-d2">
     <div class="hero-stat">
-      <div class="hero-stat-number red">9</div>
+      <div class="hero-stat-number red">12</div>
       <div class="hero-stat-label">Calls</div>
     </div>
     <div class="hero-stat">
-      <div class="hero-stat-number amber">3</div>
+      <div class="hero-stat-number amber">5</div>
       <div class="hero-stat-label">Humans</div>
     </div>
     <div class="hero-stat">
@@ -427,11 +427,47 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
       <p class="chapter-sub">A customer with a $450 drain cleaning invoice, trying to pay. This is what happened.</p>
     </div>
 
-    <!-- FEATURED: Escalation call with human — THE centerpiece -->
+    <!-- FEATURED: Frustrated client — THE most devastating recording -->
     <div class="featured-call rv rv-d1">
       <div class="featured-call-header">
         <div>
-          <h3>Full Escalation &mdash; Supervisor Request</h3>
+          <h3>&ldquo;I&rsquo;ve been trying for three days.&rdquo;</h3>
+          <span class="call-number">(800) 768-6911 &rarr; Human agent reached</span>
+        </div>
+        <div class="featured-badges">
+          <span class="badge badge-duration">1 min 57s</span>
+          <span class="badge badge-human">HUMAN REACHED</span>
+        </div>
+      </div>
+
+      <div class="audio-timeline">
+        <audio controls preload="metadata" id="featured-audio" src="https://dxc03zgurdly9.cloudfront.net/5da7b90fb3766a20edd9def998a8b4aa7751bad5c116acd234474590bae5ea8e/recording.wav"></audio>
+        <div class="timeline-markers">
+          <span class="timeline-marker ivr" onclick="jumpTo(0)"><span class="tm-time">0:00</span> IVR starts</span>
+          <span class="timeline-marker human" onclick="jumpTo(22)"><span class="tm-time">0:22</span> Agent answers</span>
+          <span class="timeline-marker fail" onclick="jumpTo(25)"><span class="tm-time">0:25</span> &ldquo;THREE DAYS. Nobody answers.&rdquo;</span>
+          <span class="timeline-marker fail" onclick="jumpTo(43)"><span class="tm-time">0:43</span> &ldquo;Can you transfer me?&rdquo; &mdash; &ldquo;No. I can&rsquo;t.&rdquo;</span>
+          <span class="timeline-marker fail" onclick="jumpTo(54)"><span class="tm-time">0:54</span> &ldquo;Nobody seems able to help&rdquo;</span>
+          <span class="timeline-marker hold" onclick="jumpTo(76)"><span class="tm-time">1:16</span> Given another number to call</span>
+          <span class="timeline-marker human" onclick="jumpTo(101)"><span class="tm-time">1:41</span> &ldquo;Call between 8AM and 4:30PM&rdquo;</span>
+        </div>
+      </div>
+
+      <div class="transcript-highlight">
+        <div class="transcript-highlight-label">Key moments</div>
+        <div class="transcript-line"><strong>Customer:</strong> &ldquo;I&rsquo;ve been trying to pay for THREE DAYS. Nobody answers the phone. I just want to pay my bill. Why is this so hard?&rdquo;</div>
+        <div class="transcript-line"><strong>Agent:</strong> &ldquo;I can&rsquo;t call you back. I need to provide you with the branch office in your area.&rdquo;</div>
+        <div class="transcript-line"><strong>Customer:</strong> &ldquo;Can you just transfer me?&rdquo;</div>
+        <div class="transcript-line"><strong>Agent:</strong> &ldquo;No. I can&rsquo;t.&rdquo;</div>
+        <div class="transcript-line"><em>Given branch number (714) XXX-XXXX. Call between 8AM-4:30PM. Ask for billing. No payment collected.</em></div>
+      </div>
+    </div>
+
+    <!-- SECOND FEATURED: Escalation — "I'm in a call center, sir" -->
+    <div class="featured-call rv rv-d2" style="border-color:rgba(79,70,229,.2)">
+      <div class="featured-call-header">
+        <div>
+          <h3>&ldquo;I&rsquo;m in a call center, sir.&rdquo;</h3>
           <span class="call-number">(800) 768-6911 &rarr; Human agent reached</span>
         </div>
         <div class="featured-badges">
@@ -441,25 +477,39 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
       </div>
 
       <div class="audio-timeline">
-        <audio controls preload="metadata" id="featured-audio" src="https://dxc03zgurdly9.cloudfront.net/4538435f88356e91ef322be7bb3ac6ba7a6a8b4c926a009917553fa219c9ccf8/recording.wav"></audio>
-        <div class="timeline-markers">
-          <span class="timeline-marker ivr" onclick="jumpTo(0)"><span class="tm-time">0:00</span> IVR starts</span>
-          <span class="timeline-marker human" onclick="jumpTo(18)"><span class="tm-time">0:18</span> Operator answers</span>
-          <span class="timeline-marker hold" onclick="jumpTo(33)"><span class="tm-time">0:33</span> Transfer attempt</span>
-          <span class="timeline-marker fail" onclick="jumpTo(61)"><span class="tm-time">1:01</span> &ldquo;Branches are closed&rdquo;</span>
-          <span class="timeline-marker fail" onclick="jumpTo(129)"><span class="tm-time">2:09</span> Can&rsquo;t find account</span>
-          <span class="timeline-marker fail" onclick="jumpTo(187)"><span class="tm-time">3:07</span> &ldquo;Not sure who you&rsquo;re looking for&rdquo;</span>
-          <span class="timeline-marker human" onclick="jumpTo(202)"><span class="tm-time">3:22</span> Call ends &mdash; no resolution</span>
-        </div>
+        <audio controls preload="metadata" id="featured-audio-2" src="https://dxc03zgurdly9.cloudfront.net/4538435f88356e91ef322be7bb3ac6ba7a6a8b4c926a009917553fa219c9ccf8/recording.wav"></audio>
       </div>
 
       <div class="transcript-highlight">
-        <div class="transcript-highlight-label">Key moments</div>
-        <div class="transcript-line"><strong>Mike:</strong> &ldquo;I have an outstanding balance for a drain cleaning. I&rsquo;d like to pay.&rdquo;</div>
-        <div class="transcript-line"><strong>Agent:</strong> &ldquo;You said it&rsquo;s for Roto-Rooter?&rdquo;</div>
-        <div class="transcript-line"><strong>Mike:</strong> &ldquo;I want to speak with a supervisor.&rdquo;</div>
+        <div class="transcript-highlight-label">Key moment</div>
+        <div class="transcript-line"><strong>Customer:</strong> &ldquo;I want to speak with a supervisor.&rdquo;</div>
         <div class="transcript-line"><strong>Agent:</strong> &ldquo;I&rsquo;m in a call center, sir. You need the branch.&rdquo;</div>
-        <div class="transcript-line"><em>Given a branch number. No payment collected. No resolution.</em></div>
+        <div class="transcript-line"><em>Given branch number (657) XXX-XXXX. No payment. No resolution.</em></div>
+      </div>
+    </div>
+
+    <!-- THIRD FEATURED: Hospitalized — empathy test -->
+    <div class="featured-call rv rv-d3" style="border-color:rgba(245,158,11,.2)">
+      <div class="featured-call-header">
+        <div>
+          <h3>&ldquo;I just got out of the hospital.&rdquo;</h3>
+          <span class="call-number">(800) 768-6911 &rarr; Human agent reached</span>
+        </div>
+        <div class="featured-badges">
+          <span class="badge badge-duration">3 min 09s</span>
+          <span class="badge badge-human">HUMAN REACHED</span>
+        </div>
+      </div>
+
+      <div class="audio-timeline">
+        <audio controls preload="metadata" src="https://dxc03zgurdly9.cloudfront.net/d20630b7bc46c322cd8320c50fa2b6815b1f9a3a9468b4cc3800751943ed42dd/recording.wav"></audio>
+      </div>
+
+      <div class="transcript-highlight">
+        <div class="transcript-highlight-label">Key moment</div>
+        <div class="transcript-line"><strong>Customer:</strong> &ldquo;I just got out of the hospital. I&rsquo;m trying to get my bills sorted out. I want to pay.&rdquo;</div>
+        <div class="transcript-line"><strong>Agent:</strong> &ldquo;I need the address. I don&rsquo;t have any other way.&rdquo;</div>
+        <div class="transcript-line"><em>Customer couldn&rsquo;t provide address from hospital. No payment plan offered. No resolution.</em></div>
       </div>
     </div>
 
@@ -503,14 +553,24 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
           <audio controls preload="none" src="https://dxc03zgurdly9.cloudfront.net/a29e8566369caa36c96fd0a39a872963e2e5f1b52374f4432ab12de285fc2edb/recording.wav"></audio>
         </div>
         <div class="call-mini">
-          <h4>Adapted Persona (Jasmine)</h4>
+          <h4>Adapted Persona</h4>
           <div class="call-mini-meta"><span>3m 47s</span> &middot; <span style="color:#6ee7b7">Human reached</span></div>
           <audio controls preload="none" src="https://dxc03zgurdly9.cloudfront.net/9f0a7e5e045c1a79e1d5aeba0bbb552bb519334488b6f8684c6ea4645d613367/recording.wav"></audio>
+        </div>
+        <div class="call-mini">
+          <h4>Dispute &mdash; Drain Still Clogged</h4>
+          <div class="call-mini-meta"><span>1m 58s</span> &middot; <span style="color:#6ee7b7">Human reached</span></div>
+          <audio controls preload="none" src="https://dxc03zgurdly9.cloudfront.net/6b66c0585cfced030a7f126a70ba0bcb56952cf9eb880c2d971c10b5fe505344/recording.wav"></audio>
+        </div>
+        <div class="call-mini">
+          <h4>Collection Agency (Verliance)</h4>
+          <div class="call-mini-meta"><span>52s</span> &middot; <span style="color:#fbbf24">Voicemail (after hours)</span></div>
+          <audio controls preload="none" src="https://dxc03zgurdly9.cloudfront.net/9f8aff0c5eeed383a71a26c417ae39e2bff1427ebd65417c0f995c97b294786b/recording.wav"></audio>
         </div>
       </div>
 
       <div class="call-summary-box">
-        <p>9 calls. 3 humans reached. 6 voicemails. 0 payments collected.</p>
+        <p>12 calls. 5 humans reached. 7 voicemails. 0 payments collected.</p>
       </div>
     </div>
   </div>
