@@ -78,6 +78,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 .audit-subtitle{font-size:18px;font-weight:600;color:rgba(255,255,255,.5);margin-bottom:8px}
 .audit-date{font-size:14px;color:rgba(255,255,255,.35);font-weight:500}
 
+/* SECTION LABELS */
+.section-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:12px}
+.section-title{font-size:clamp(24px,3vw,36px);font-weight:900;letter-spacing:-.03em;line-height:1.1;margin-bottom:8px;color:var(--text)}
+.section-sub{font-size:16px;color:var(--muted);margin-bottom:40px;line-height:1.5}
+
 /* MYSTERY CALLS */
 .mystery-section{padding:100px 48px;background:#0B1B3D;position:relative;overflow:hidden}
 .mystery-section::before{content:'';position:absolute;width:800px;height:800px;top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(79,70,229,.1) 0%,transparent 60%);border-radius:50%;pointer-events:none}
@@ -267,6 +272,58 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 @keyframes fabPulse{0%,100%{box-shadow:0 0 16px rgba(239,68,68,.5)}50%{box-shadow:0 0 28px rgba(239,68,68,.7)}}
 .voice-fab-text{color:rgba(255,255,255,.9);font-size:13px;font-weight:600;white-space:nowrap}
 
+/* FLOW SECTION */
+.flow-section{padding:80px 48px}
+.flow-container{max-width:920px;margin:0 auto}
+.flow-title{font-size:clamp(24px,3vw,36px);font-weight:900;letter-spacing:-.03em;line-height:1.1;margin-bottom:8px;color:var(--text)}
+.flow-sub{font-size:16px;color:var(--muted);margin-bottom:40px;line-height:1.5}
+.flow-chart{display:flex;justify-content:center;gap:60px;align-items:flex-start}
+.flow-current,.flow-new{max-width:400px;flex:1}
+.flow-step{padding:16px 24px;border-radius:12px;margin:8px 0;font-size:15px;font-weight:500;background:#f8f9fa;border:1px solid #e2e8f0;color:var(--text)}
+.flow-step.warn{background:#fff7ed;border-color:#f59e0b}
+.flow-step.danger{background:#fef2f2;border-color:#ef4444}
+.flow-step.fail{background:#ef4444;color:#fff;font-weight:700;border-color:#ef4444}
+.flow-step.success{background:#ecfdf5;border-color:#10b981}
+.flow-arrow{text-align:center;color:#94a3b8;font-size:20px;line-height:1.2}
+.flow-vs{font-size:32px;font-weight:900;color:#94a3b8;display:flex;align-items:center;justify-content:center;align-self:stretch;padding:0 20px}
+
+/* FINDINGS SECTION */
+.findings-section{padding:80px 48px;background:#f8f9fa}
+.findings-container{max-width:920px;margin:0 auto}
+.findings-container h2{font-size:clamp(24px,3vw,36px);font-weight:900;letter-spacing:-.03em;line-height:1.1;margin-bottom:40px;color:var(--text)}
+.finding-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:800px;margin:0 auto}
+.finding-card{background:#fff;border-radius:16px;padding:32px;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.finding-number{font-size:48px;font-weight:900;color:#ef4444;line-height:1}
+.finding-number.indigo{color:var(--blue)}
+.finding-label{font-size:18px;font-weight:700;color:#0B1B3D;margin:8px 0}
+.finding-detail{font-size:14px;color:#64748b;line-height:1.5}
+
+/* PORTAL TODAY (screenshots) */
+.portal-today{padding:80px 48px;background:#fff}
+.portal-today-inner{max-width:960px;margin:0 auto;text-align:center}
+.portal-today-inner h2{font-size:clamp(24px,3vw,36px);font-weight:900;letter-spacing:-.03em;line-height:1.1;margin-bottom:8px;color:var(--text)}
+.portal-today-sub{color:#64748b;margin-bottom:40px;font-size:16px;line-height:1.5}
+.screenshot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:40px}
+.screenshot-card{background:#fff;border-radius:12px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow)}
+.screenshot-card img{width:100%;height:220px;object-fit:cover;object-position:top;display:block;border-bottom:1px solid var(--border)}
+.screenshot-caption{padding:14px 16px;font-size:13px;color:var(--muted);font-weight:500;line-height:1.4;text-align:left}
+.portal-today-callout{background:#fef2f2;border:1px solid #fca5a5;border-radius:12px;padding:20px 28px;max-width:720px;margin:0 auto;display:flex;align-items:flex-start;gap:12px}
+.portal-today-callout svg{flex-shrink:0;width:20px;height:20px;color:var(--red);margin-top:2px}
+.portal-today-callout p{font-size:15px;color:var(--red);font-weight:600;line-height:1.5;text-align:left}
+
+/* INDUSTRY STATS SECTION */
+.stats-section{padding:80px 48px;background:#f8f9fa}
+.stats-container{max-width:920px;margin:0 auto;text-align:center}
+.stats-container h2{font-size:clamp(24px,3vw,36px);font-weight:900;letter-spacing:-.03em;line-height:1.1;margin-bottom:8px;color:var(--text)}
+.stats-sub{color:#64748b;margin-bottom:48px;font-size:16px;line-height:1.5}
+.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:800px;margin:0 auto}
+.stat-card{background:#fff;border-radius:16px;padding:32px;box-shadow:0 2px 12px rgba(0,0,0,.06);text-align:left}
+.stat-number{font-size:42px;font-weight:900;color:var(--blue);line-height:1}
+.stat-label{font-size:16px;font-weight:700;color:#0B1B3D;margin:8px 0 4px}
+.stat-source{font-size:12px;color:#94a3b8;line-height:1.4}
+.stat-source a{color:#94a3b8;text-decoration:underline}
+.stat-source a:hover{color:var(--blue)}
+
 /* MOBILE */
 @media(max-width:960px){
   .nav-inner{padding:14px 24px}
@@ -282,6 +339,16 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
   .agent-section{padding:60px 24px}
   .compare-section{padding:60px 24px}
   .cta-section{padding:60px 24px}
+  .flow-section{padding:60px 24px}
+  .flow-chart{flex-direction:column;gap:32px;align-items:center}
+  .flow-vs{padding:10px 0;align-self:auto}
+  .flow-current,.flow-new{max-width:100%}
+  .findings-section{padding:60px 24px}
+  .finding-grid{grid-template-columns:1fr}
+  .portal-today{padding:60px 24px}
+  .portal-today .screenshot-grid{grid-template-columns:1fr}
+  .stats-section{padding:60px 24px}
+  .stats-grid{grid-template-columns:1fr}
   .orb-wrap{width:220px;height:220px}
   .orb-main{width:220px;height:220px}
   .orb-phone-center svg{width:34px;height:34px}
@@ -464,9 +531,51 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
       </div>
     </div>
 
+    <!-- Call 8: Full Escalation (Human Reached) -->
+    <div class="call-card rv rv-d1" style="border-color:rgba(16,185,129,.25)">
+      <div class="call-card-header">
+        <div class="call-card-info">
+          <h3>Scenario 8: Full Escalation &mdash; Supervisor Request</h3>
+          <span class="call-number">+1 (949) 741-7328 &middot; Human agent reached</span>
+        </div>
+        <div class="call-card-meta">
+          <span class="call-badge duration">3 min 40s</span>
+          <span class="call-badge result">HUMAN REACHED &mdash; ESCALATION</span>
+        </div>
+      </div>
+      <div class="call-audio">
+        <audio controls preload="metadata" src="https://dxc03zgurdly9.cloudfront.net/4538435f88356e91ef322be7bb3ac6ba7a6a8b4c926a009917553fa219c9ccf8/recording.wav"></audio>
+      </div>
+      <div style="margin-top:12px;padding:14px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.15);border-radius:10px">
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#6ee7b7;margin-bottom:8px">Transcript Highlight</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.6);line-height:1.6">
+          <strong style="color:rgba(255,255,255,.8)">Mike:</strong> &ldquo;I want to speak with a supervisor.&rdquo;<br>
+          <strong style="color:rgba(255,255,255,.8)">Agent:</strong> &ldquo;I&rsquo;m in a call center sir, you need the branch.&rdquo;<br>
+          <em style="color:rgba(255,255,255,.4)">Given branch number &mdash; no resolution, no payment collected.</em>
+        </div>
+      </div>
+    </div>
+
+    <!-- Call 9: Adapted Persona (Drain Cleaning) -->
+    <div class="call-card rv rv-d2" style="border-color:rgba(16,185,129,.25)">
+      <div class="call-card-header">
+        <div class="call-card-info">
+          <h3>Scenario 9: Adapted Persona &mdash; Drain Cleaning $450</h3>
+          <span class="call-number">+1 (949) 741-7328 &middot; Human agent (Jasmine)</span>
+        </div>
+        <div class="call-card-meta">
+          <span class="call-badge duration">3 min 47s</span>
+          <span class="call-badge result">HUMAN REACHED</span>
+        </div>
+      </div>
+      <div class="call-audio">
+        <audio controls preload="metadata" src="https://dxc03zgurdly9.cloudfront.net/9f0a7e5e045c1a79e1d5aeba0bbb552bb519334488b6f8684c6ea4645d613367/recording.wav"></audio>
+      </div>
+    </div>
+
     <!-- Summary -->
     <div class="mystery-summary rv">
-      <div class="mystery-summary-stat">7 calls. 1 human reached. 6 voicemails left. 0 payments collected.</div>
+      <div class="mystery-summary-stat">9 calls. 3 humans reached. 6 voicemails left. 0 payments collected.</div>
     </div>
   </div>
 </section>
@@ -529,6 +638,135 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
         <span class="coming-status scheduled">&#9203; SCHEDULED</span>
       </div>
     </div>
+
+    <!-- Collection Agency Audit Card -->
+    <div class="coming-card rv" style="margin-top:20px;border-color:rgba(79,70,229,.25)">
+      <div class="coming-header">
+        <span class="coming-header-icon">&#128269;</span>
+        <h3>Coming Soon &mdash; Collection Agency Audit</h3>
+        <span class="coming-tag">Investigation</span>
+      </div>
+      <div class="coming-item">
+        <span class="coming-item-icon">&#128270;</span>
+        <span class="coming-item-text">Who collects on behalf of Roto-Rooter? How do they treat your clients? Mystery shop results incoming.</span>
+      </div>
+      <div class="coming-item">
+        <span class="coming-item-icon">&#128222;</span>
+        <span class="coming-item-text"><strong>Phase 1:</strong> Identify third-party collection agencies used by Roto-Rooter</span>
+      </div>
+      <div class="coming-item">
+        <span class="coming-item-icon">&#127911;</span>
+        <span class="coming-item-text"><strong>Phase 2:</strong> Mystery shop calls to collection agents posing as debtors</span>
+      </div>
+      <div class="coming-item">
+        <span class="coming-item-icon">&#128200;</span>
+        <span class="coming-item-text"><strong>Phase 3:</strong> Compliance check &mdash; FDCPA violations, tone analysis, resolution rate</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: FINDINGS CARDS -->
+<section class="findings-section rv">
+  <div class="findings-container">
+    <h2>What else we found.</h2>
+    <div class="finding-grid">
+      <div class="finding-card">
+        <div class="finding-number">0</div>
+        <div class="finding-label">links to payment portal from main website</div>
+        <div class="finding-detail">rotorooter.com has zero billing links. No "Pay Bill" in the nav, footer, or contact page. Clients must already know the hidden portal URL.</div>
+      </div>
+      <div class="finding-card">
+        <div class="finding-number">1.7/5</div>
+        <div class="finding-label">Trustpilot rating</div>
+        <div class="finding-detail">Rated "Bad" across 188 reviews. Common themes: overbilling, no itemized receipts, aggressive collections, and billing disputes ignored.</div>
+      </div>
+      <div class="finding-card">
+        <div class="finding-number indigo">$900M</div>
+        <div class="finding-label">revenue &mdash; estimated $18-45M bad debt/year</div>
+        <div class="finding-detail">At industry-standard 2-5% bad debt rate on $900M revenue, Roto-Rooter writes off $18-45M annually. Recovery of even 30% = $5-13M.</div>
+      </div>
+      <div class="finding-card">
+        <div class="finding-number">26.99%</div>
+        <div class="finding-label">Synchrony financing APR + $29 activation fee</div>
+        <div class="finding-detail">Clients offered financing at 26.99% APR with a $29 activation fee. The "0% for 6 months" plan reverts to full APR on the remaining balance.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: YOUR PAYMENT PORTAL TODAY -->
+<section class="portal-today rv">
+  <div class="portal-today-inner">
+    <h2>Your payment portal today</h2>
+    <p class="portal-today-sub">This is what your clients see when they try to pay.</p>
+    <div class="screenshot-grid">
+      <div class="screenshot-card rv rv-d1">
+        <img src="/v3/audit-assets/roto-rooter/homepage-desktop-1440.png" alt="Roto-Rooter Homepage" loading="lazy">
+        <div class="screenshot-caption">Main website at 1440px. Zero billing or payment links anywhere in the navigation.</div>
+      </div>
+      <div class="screenshot-card rv rv-d2">
+        <img src="/v3/audit-assets/roto-rooter/payment-portal-desktop-1440.png" alt="Payment Portal" loading="lazy">
+        <div class="screenshot-caption">Hidden payment portal on rotorooter.spectrumretailnet.com. Design circa 2005. Requires pre-existing account.</div>
+      </div>
+      <div class="screenshot-card rv rv-d3">
+        <img src="/v3/audit-assets/roto-rooter/contact-us-desktop-1440.png" alt="Contact Us Page" loading="lazy">
+        <div class="screenshot-caption">Contact page has 4 sections: Service, Locations, Feedback, Careers. Zero billing options.</div>
+      </div>
+      <div class="screenshot-card rv rv-d1">
+        <img src="/v3/audit-assets/roto-rooter/homepage-mobile-375.png" alt="Homepage Mobile" loading="lazy">
+        <div class="screenshot-caption">Mobile view. App handles scheduling but zero billing features.</div>
+      </div>
+      <div class="screenshot-card rv rv-d2">
+        <img src="/v3/audit-assets/roto-rooter/financing-page-desktop-1440.png" alt="Financing Page" loading="lazy">
+        <div class="screenshot-caption">Synchrony financing promo page. 26.99% APR after promo period ends.</div>
+      </div>
+    </div>
+    <div class="portal-today-callout">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p>Your payment portal lives on a completely different domain (spectrumretailnet.com). Zero links from rotorooter.com. Your clients can't find it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: HOW YOUR CLIENTS PAY TODAY -->
+<section class="flow-section rv">
+  <div class="flow-container">
+    <h2 class="flow-title">How your clients pay today.</h2>
+    <p class="flow-sub">We mapped the journey. It takes 8 steps.</p>
+
+    <div class="flow-chart">
+      <!-- Current process - LEFT side, red-tinted -->
+      <div class="flow-current">
+        <div class="flow-step">&#127760; Go to rotorooter.com</div>
+        <div class="flow-arrow">&darr;</div>
+        <div class="flow-step warn">&#128683; No &ldquo;Pay Bill&rdquo; link visible</div>
+        <div class="flow-arrow">&darr;</div>
+        <div class="flow-step">&#128270; Search Google &ldquo;roto rooter pay bill&rdquo;</div>
+        <div class="flow-arrow">&darr;</div>
+        <div class="flow-step warn">&#128279; Find hidden portal on different domain (spectrumretailnet.com)</div>
+        <div class="flow-arrow">&darr;</div>
+        <div class="flow-step danger">&#128274; Create account (username + password)</div>
+        <div class="flow-arrow">&darr;</div>
+        <div class="flow-step danger">&#128196; Need ticket/invoice number</div>
+        <div class="flow-arrow">&darr;</div>
+        <div class="flow-step danger">&#128179; Enter payment info</div>
+        <div class="flow-arrow">&darr;</div>
+        <div class="flow-step fail">&#128176; Pay &mdash; if portal even works</div>
+      </div>
+
+      <!-- Divider -->
+      <div class="flow-vs">vs</div>
+
+      <!-- AgentCollect process - RIGHT side, green-tinted -->
+      <div class="flow-new">
+        <div class="flow-step">&#128241; Receive SMS with payment link</div>
+        <div class="flow-arrow">&darr;</div>
+        <div class="flow-step success">&#128179; Tap to pay (Apple Pay / Google Pay / Card)</div>
+        <div class="flow-arrow">&darr;</div>
+        <div class="flow-step success">&#9989; Done. 12 seconds.</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -543,19 +781,19 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
   <div class="cost-breakdown rv rv-d1">
     <div class="cost-row">
       <span class="cost-row-label">Revenue</span>
-      <span class="cost-row-value">~$700M</span>
+      <span class="cost-row-value">~$900M</span>
     </div>
     <div class="cost-row">
       <span class="cost-row-label">Industry bad debt rate</span>
-      <span class="cost-row-value">1-3%</span>
+      <span class="cost-row-value">2-5%</span>
     </div>
     <div class="cost-row">
       <span class="cost-row-label">Clients who attempt to pay but abandon</span>
-      <span class="cost-row-value">~10%</span>
+      <span class="cost-row-value">~15%</span>
     </div>
     <div class="cost-row total">
       <span class="cost-row-label">Estimated lost revenue</span>
-      <span class="cost-row-value">~$500K/yr</span>
+      <span class="cost-row-value">$2.7M&ndash;6.8M/yr</span>
     </div>
   </div>
 </section>
@@ -651,6 +889,36 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
   </div>
 </section>
 
+<!-- SECTION: INDUSTRY STATS -->
+<section class="stats-section rv">
+  <div class="stats-container">
+    <h2>The numbers don't lie.</h2>
+    <p class="stats-sub">Industry data on how consumers pay bills in 2025.</p>
+    <div class="stats-grid">
+      <div class="stat-card rv rv-d1">
+        <div class="stat-number">68%</div>
+        <div class="stat-label">of Americans paid a bill on their phone this year</div>
+        <div class="stat-source"><a href="https://www.federalreserve.gov/publications/mobile-financial-services.htm" target="_blank" rel="noopener">Federal Reserve, 2025</a></div>
+      </div>
+      <div class="stat-card rv rv-d2">
+        <div class="stat-number">41%</div>
+        <div class="stat-label">of bill payments happen outside business hours</div>
+        <div class="stat-source"><a href="https://home.paynearme.com/resources" target="_blank" rel="noopener">PayNearMe (n=2,500)</a></div>
+      </div>
+      <div class="stat-card rv rv-d3">
+        <div class="stat-number">53%</div>
+        <div class="stat-label">abandon pages loading over 3 seconds</div>
+        <div class="stat-source"><a href="https://www.thinkwithgoogle.com/marketing-strategies/app-and-mobile/mobile-page-speed-load-time/" target="_blank" rel="noopener">Google / SOASTA</a></div>
+      </div>
+      <div class="stat-card rv rv-d4">
+        <div class="stat-number">70.19%</div>
+        <div class="stat-label">average checkout abandonment rate</div>
+        <div class="stat-source"><a href="https://baymard.com/lists/cart-abandonment-rate" target="_blank" rel="noopener">Baymard Institute</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- SECTION 6: CTA -->
 <section class="cta-section">
   <div class="rv">
@@ -712,11 +980,11 @@ window.__RetellWebClient = RetellWebClient;
   setTimeout(function(){ els.forEach(function(el){ el.classList.add('v'); }); }, 2500);
 })();
 
-// Animated Cost Counter — rolls up to $500,000
+// Animated Cost Counter — rolls up to $6,800,000
 (function(){
   var costEl = document.getElementById('cost-number');
   if(!costEl) return;
-  var target = 500000;
+  var target = 6800000;
   var animated = false;
   var ro = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
