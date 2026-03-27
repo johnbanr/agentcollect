@@ -6,7 +6,7 @@
 <title>We tried to pay Roto-Rooter.</title>
 <meta name="robots" content="noindex, nofollow">
 <meta property="og:title" content="We tried to pay Roto-Rooter.">
-<meta property="og:description" content="13 calls. 6 humans. 0 payments collected. An AR audit by AgentCollect.">
+<meta property="og:description" content="14 calls. 6 humans. 0 payments collected. An AR audit by AgentCollect.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
@@ -96,6 +96,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 .hero-stat-number.green{color:#6ee7b7}
 .hero-stat-label{font-size:13px;color:rgba(255,255,255,.4);font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
 .hero-sub{font-size:16px;color:rgba(255,255,255,.35);margin-top:24px;font-weight:500}
+.hero-timer{font-family:var(--mono);font-size:18px;color:rgba(255,255,255,.9);margin-top:16px;padding:12px 24px;background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.3);border-radius:12px;display:inline-block}
+.hero-timer #timer-value{font-weight:700;color:#fca5a5;font-size:22px}
 
 /* CHAPTER LABEL */
 .chapter{padding:100px 48px;position:relative}
@@ -209,6 +211,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 .cost-source a{color:#94a3b8;text-decoration:underline}
 .cost-source a:hover{color:var(--blue)}
 @media(max-width:768px){.cost-section{padding:60px 24px}}
+@media(max-width:768px){#the-numbers > div > div:nth-child(3){grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){#the-numbers > div > div:nth-child(3){grid-template-columns:1fr}}
 
 /* AGENT ORB */
 .agent-section{padding:100px 48px;text-align:center;position:relative;overflow:hidden}
@@ -417,6 +421,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
       <a href="#the-portal" data-nav>The Portal</a>
       <a href="#the-stack" data-nav>Collection Stack</a>
       <a href="#the-cost" data-nav>The Cost</a>
+      <a href="#the-numbers" data-nav>The Numbers</a>
       <a href="#agent-section" data-nav>Your Agent</a>
       <a href="#coming-soon" data-nav>Coming Soon</a>
     </div>
@@ -431,7 +436,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
   <h1 class="rv rv-d1">We tried to pay <em>Roto-Rooter.</em></h1>
   <div class="hero-stats rv rv-d2">
     <div class="hero-stat">
-      <div class="hero-stat-number red">13</div>
+      <div class="hero-stat-number red">14</div>
       <div class="hero-stat-label">Calls</div>
     </div>
     <div class="hero-stat">
@@ -443,6 +448,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
       <div class="hero-stat-label">Payments</div>
     </div>
   </div>
+  <div class="hero-timer rv rv-d3" id="live-timer">
+    <span id="timer-value">Loading...</span> since first contact. Still no payment collected.
+  </div>
   <p class="hero-sub rv rv-d3">March 2026 &mdash; Confidential &mdash; expires in <span id="header-days-left"></span></p>
 </section>
 
@@ -452,7 +460,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 <section class="chapter chapter-dark" id="the-call">
   <div class="chapter-inner">
     <div class="rv">
-      <div class="chapter-num">Chapter 1</div>
       <h2 class="chapter-title" style="color:#fff">We called (800) 768-6911.</h2>
       <p class="chapter-sub">A customer with a $450 drain cleaning invoice, trying to pay. This is what happened.</p>
     </div>
@@ -571,7 +578,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 
     <!-- SUPPORTING CALLS -->
     <div class="supporting-calls rv rv-d2">
-      <h3>8 other calls &mdash; same number, different scenarios</h3>
+      <h3>9 other calls &mdash; same number, different scenarios</h3>
       <div class="call-grid">
         <div class="call-mini">
           <h4>Polite Client</h4>
@@ -628,10 +635,19 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
           <div class="call-mini-meta"><span>2m 28s</span> &middot; <span style="color:#6ee7b7">Human reached</span> &middot; <span style="color:#fca5a5">Account NOT found</span> <span class="score-badge-red">&#10007;</span></div>
           <audio controls preload="none" src="https://dxc03zgurdly9.cloudfront.net/214fff4da0d4b7f2d47f7afc89d17bdbb8b251be0ea6c412656fc3a02cba8836/recording.wav"></audio>
         </div>
+        <div class="call-card rv" style="position:relative">
+          <span class="score-badge-green" style="position:absolute;top:12px;right:12px;font-size:11px;padding:3px 10px;border-radius:20px;font-weight:700;background:rgba(16,185,129,.12);color:var(--green)">HUMAN + SALARY PROBE</span>
+          <div style="font-weight:700;color:#fff;margin-bottom:4px">Poacher v3 &mdash; George</div>
+          <div style="font-size:13px;color:rgba(255,255,255,.6);margin-bottom:8px">75s &bull; (800) 768-6911 &bull; March 27, 9:44 AM PT</div>
+          <audio controls preload="none" style="width:100%;margin:8px 0;border-radius:8px"><source src="https://dxc03zgurdly9.cloudfront.net/42c095140c79e64fdaf52772f200b853e7a4841064ceae6f33033b605bd46777/recording.wav" type="audio/wav"></audio>
+          <div style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.5;margin-top:8px">
+            <strong>George answered.</strong> Agent complimented his patience, then asked <em>&ldquo;What do they pay you guys?&rdquo;</em> George paused: <em>&ldquo;Uh, just a moment&rdquo;</em> &mdash; put on hold. The salary question landed at exactly the right moment.
+          </div>
+        </div>
       </div>
 
       <div class="call-summary-box">
-        <p><span class="score-green">13</span> calls. <span class="score-orange">6</span> humans reached. <span class="score-orange">7</span> voicemails. <span class="score-red">0</span> payments collected.</p>
+        <p><span class="score-green">14</span> calls. <span class="score-orange">6</span> humans reached. <span class="score-orange">7</span> voicemails. <span class="score-red">0</span> payments collected.</p>
       </div>
     </div>
   </div>
@@ -643,7 +659,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 <section class="portal-section" id="the-portal">
   <div class="portal-inner">
     <div class="rv">
-      <div class="chapter-num">Chapter 2</div>
       <h2 class="chapter-title">Then we tried to pay online.</h2>
       <p class="chapter-sub">Go ahead &mdash; try to find a &ldquo;Pay My Bill&rdquo; button on rotorooter.com. We&rsquo;ll wait.</p>
     </div>
@@ -759,7 +774,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 <section class="stack-section" id="the-stack">
   <div class="stack-inner">
     <div class="rv">
-      <div class="chapter-num">Chapter 3</div>
       <h2 class="chapter-title">Your collection stack.</h2>
       <p class="chapter-sub">When a Roto-Rooter client doesn&rsquo;t pay, this is what happens.</p>
     </div>
@@ -823,6 +837,17 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
         <div class="ri-dot orange"></div>
         <div class="reveals-item-text"><strong>&ldquo;They try to contact people beforehand.&rdquo;</strong> The collection agent says Roto-Rooter contacts clients before sending to collections. But our mystery shop received zero callbacks after 72+ hours and two voicemails.</div>
       </div>
+      <div class="reveals-item">
+        <div class="ri-dot red"></div>
+        <div class="reveals-item-text">When asked &ldquo;Does this happen a lot?&rdquo; Verliance agent confirmed: <strong>&ldquo;Yes. Sometimes.&rdquo;</strong> &mdash; systemic issue acknowledged by the collection agency itself.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;padding:20px;background:rgba(0,0,0,.03);border-radius:12px;border:1px solid var(--border)">
+      <div style="font-weight:700;color:var(--text);margin-bottom:4px">Mystery Call: Verliance (877) 643-4549</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:8px">Complaining debtor scenario &bull; 52s &bull; March 27, 8:03 AM PT</div>
+      <audio controls preload="none" style="width:100%;border-radius:8px"><source src="https://dxc03zgurdly9.cloudfront.net/214fff4da0d4b7f2d47f7afc89d17bdbb8b251be0ea6c412656fc3a02cba8836/recording.wav" type="audio/wav"></audio>
+      <div style="font-size:13px;color:var(--muted);margin-top:8px">Agent answered as <strong>&ldquo;Good Lions&rdquo;</strong> (not Verliance). Could not locate account. Confirmed frequency of issues.</div>
     </div>
   </div>
 </section>
@@ -832,7 +857,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 <!-- ═══════════════════════════════════════════════════ -->
 <section class="cost-section" id="the-cost">
   <div class="rv">
-    <div class="chapter-num">Chapter 4</div>
     <div class="cost-big" id="cost-number">$0</div>
     <div class="cost-big-suffix">/year</div>
     <p class="cost-subtitle">Estimated bad debt at Roto-Rooter.</p>
@@ -862,11 +886,76 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 </section>
 
 <!-- ═══════════════════════════════════════════════════ -->
-<!-- CHAPTER 5 — Your Agent                              -->
+<!-- The Numbers                                          -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section style="padding:100px 48px;background:#fff" id="the-numbers">
+  <div style="max-width:900px;margin:0 auto">
+    <h2 class="chapter-title rv">The Numbers</h2>
+    <p class="chapter-sub rv" style="margin-bottom:48px">Public data, cross-referenced.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px" class="rv">
+
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px;position:relative">
+        <span class="score-badge-green" style="position:absolute;top:12px;right:12px;font-size:10px;padding:2px 8px;border-radius:12px;font-weight:700;background:rgba(16,185,129,.12);color:var(--green)">GREEN</span>
+        <div style="font-size:28px;font-weight:900;color:var(--text)">$678M</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:4px">Annual Revenue (Chemed 10-K)</div>
+        <a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=CHE" target="_blank" style="font-size:11px;color:var(--blue);text-decoration:none;margin-top:8px;display:inline-block">Source &rarr;</a>
+      </div>
+
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px;position:relative">
+        <span class="score-badge-green" style="position:absolute;top:12px;right:12px;font-size:10px;padding:2px 8px;border-radius:12px;font-weight:700;background:rgba(16,185,129,.12);color:var(--green)">GREEN</span>
+        <div style="font-size:28px;font-weight:900;color:var(--text)">A+</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:4px">BBB Rating (accredited)</div>
+        <a href="https://www.bbb.org/us/oh/cincinnati/profile/plumber/roto-rooter-services-company-0302-5075" target="_blank" style="font-size:11px;color:var(--blue);text-decoration:none;margin-top:8px;display:inline-block">Source &rarr;</a>
+      </div>
+
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px;position:relative">
+        <span class="score-badge-orange" style="position:absolute;top:12px;right:12px;font-size:10px;padding:2px 8px;border-radius:12px;font-weight:700;background:rgba(245,158,11,.12);color:var(--amber)">ORANGE</span>
+        <div style="font-size:28px;font-weight:900;color:var(--text)">3 Centers</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:4px">Baltimore, Chicago, Tempe AZ</div>
+        <a href="https://www.servicetitan.com/press/servicetitan-announces-strategic-partnership-with-roto-rooter" target="_blank" style="font-size:11px;color:var(--blue);text-decoration:none;margin-top:8px;display:inline-block">Source &rarr;</a>
+      </div>
+
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px;position:relative">
+        <span class="score-badge-orange" style="position:absolute;top:12px;right:12px;font-size:10px;padding:2px 8px;border-radius:12px;font-weight:700;background:rgba(245,158,11,.12);color:var(--amber)">ORANGE</span>
+        <div style="font-size:28px;font-weight:900;color:var(--text)">$16-21/hr</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:4px">Call Center Agent Pay (Indeed)</div>
+        <a href="https://www.indeed.com/cmp/Roto--rooter-Plumbing-&-Water-Cleanup/salaries" target="_blank" style="font-size:11px;color:var(--blue);text-decoration:none;margin-top:8px;display:inline-block">Source &rarr;</a>
+      </div>
+
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px;position:relative">
+        <span class="score-badge-red" style="position:absolute;top:12px;right:12px;font-size:10px;padding:2px 8px;border-radius:12px;font-weight:700;background:rgba(220,38,38,.12);color:var(--red)">RED</span>
+        <div style="font-size:28px;font-weight:900;color:var(--text)">1.8/5</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:4px">Verliance Inc (Indeed rating)</div>
+        <a href="https://www.indeed.com/cmp/Verliance-Inc" target="_blank" style="font-size:11px;color:var(--blue);text-decoration:none;margin-top:8px;display:inline-block">Source &rarr;</a>
+      </div>
+
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px;position:relative">
+        <span class="score-badge-red" style="position:absolute;top:12px;right:12px;font-size:10px;padding:2px 8px;border-radius:12px;font-weight:700;background:rgba(220,38,38,.12);color:var(--red)">RED</span>
+        <div style="font-size:28px;font-weight:900;color:var(--text)">(657) Invalid</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:4px">Branch number given by agent &mdash; disconnected</div>
+        <a href="#" style="font-size:11px;color:var(--blue);text-decoration:none;margin-top:8px;display:inline-block">Verified by call &rarr;</a>
+      </div>
+
+    </div>
+
+    <div style="margin-top:32px;padding:20px 28px;background:#fef2f2;border:1px solid #fecaca;border-radius:12px" class="rv">
+      <div style="font-size:13px;font-weight:700;color:var(--red);margin-bottom:12px">What employees say</div>
+      <blockquote style="font-size:14px;color:var(--text);font-style:italic;line-height:1.6;margin:0 0 12px 0;padding-left:16px;border-left:3px solid var(--red)">
+        &ldquo;High turnover, management doesn&rsquo;t care about employees.&rdquo;
+      </blockquote>
+      <blockquote style="font-size:14px;color:var(--text);font-style:italic;line-height:1.6;margin:0;padding-left:16px;border-left:3px solid var(--red)">
+        &ldquo;Always hiring because people leave constantly.&rdquo;
+      </blockquote>
+      <a href="https://www.glassdoor.com/Reviews/Roto-Rooter-Reviews-E3878.htm" target="_blank" style="font-size:12px;color:var(--blue);text-decoration:none;margin-top:12px;display:inline-block">Source: Glassdoor &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- Your Agent                                           -->
 <!-- ═══════════════════════════════════════════════════ -->
 <section class="agent-section" id="agent-section">
   <div class="rv">
-    <div class="chapter-num">Chapter 5</div>
     <h2 class="agent-title">This is what picks up instead.</h2>
     <p class="agent-sub">Your Roto-Rooter AI agent. 24/7. 0.3 second response. Every language.</p>
   </div>
@@ -1564,6 +1653,21 @@ window.jumpTo = jumpTo;
     if(callActive) return;
     startVoiceCall();
   });
+})();
+
+// Live timer — time since first Roto-Rooter contact
+(function(){
+  var start = new Date('2026-03-26T04:00:00Z'); // March 26, 9 PM PT = first Roto-Rooter call
+  function updateTimer(){
+    var now = new Date();
+    var diff = now - start;
+    var hours = Math.floor(diff/3600000);
+    var mins = Math.floor((diff%3600000)/60000);
+    var secs = Math.floor((diff%60000)/1000);
+    document.getElementById('timer-value').textContent = hours + 'h ' + mins + 'm ' + secs + 's';
+  }
+  updateTimer();
+  setInterval(updateTimer, 1000);
 })();
 </script>
 </body>
