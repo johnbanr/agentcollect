@@ -317,6 +317,19 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 .score-detail{font-size:13px;color:#94a3b8}
 .scorecard-comparison{text-align:center;margin-top:40px;font-size:18px;color:var(--text)}
 
+/* PORTAL TODAY (screenshots) */
+.portal-today{padding:80px 48px;background:#fff}
+.portal-today-inner{max-width:960px;margin:0 auto;text-align:center}
+.portal-today-inner h2{font-size:clamp(24px,3vw,36px);font-weight:900;letter-spacing:-.03em;line-height:1.1;margin-bottom:8px;color:var(--text)}
+.portal-today-sub{color:#64748b;margin-bottom:40px;font-size:16px;line-height:1.5}
+.screenshot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:40px}
+.screenshot-card{background:#fff;border-radius:12px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow)}
+.screenshot-card img{width:100%;height:220px;object-fit:cover;object-position:top;display:block;border-bottom:1px solid var(--border)}
+.screenshot-caption{padding:14px 16px;font-size:13px;color:var(--muted);font-weight:500;line-height:1.4;text-align:left}
+.portal-today-callout{background:#fef2f2;border:1px solid #fca5a5;border-radius:12px;padding:20px 28px;max-width:720px;margin:0 auto;display:flex;align-items:flex-start;gap:12px}
+.portal-today-callout svg{flex-shrink:0;width:20px;height:20px;color:var(--red);margin-top:2px}
+.portal-today-callout p{font-size:15px;color:var(--red);font-weight:600;line-height:1.5;text-align:left}
+
 @media(max-width:768px){
   .flow-section{padding:60px 24px}
   .flow-chart{flex-direction:column;gap:32px;align-items:center}
@@ -325,6 +338,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
   .findings-section{padding:60px 24px}
   .finding-grid{grid-template-columns:1fr}
   .portal-section{padding:60px 24px}
+  .portal-today{padding:60px 24px}
+  .portal-today .screenshot-grid{grid-template-columns:1fr}
   .language-section{padding:60px 24px}
   .language-title{font-size:28px}
   .language-stats{flex-direction:column}
@@ -509,6 +524,44 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
         <div class="finding-label">surcharge on credit card payments</div>
         <div class="finding-detail">Clients who want to pay by card get penalized. This discourages payment.</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3C: YOUR PAYMENT PORTAL TODAY -->
+<section class="portal-today rv">
+  <div class="portal-today-inner">
+    <h2>Your payment portal today</h2>
+    <p class="portal-today-sub">This is what your clients see when they try to pay.</p>
+    <div class="screenshot-grid">
+      <div class="screenshot-card rv rv-d1">
+        <img src="/v3/audit-assets/prudential/desktop-login.png" alt="Desktop login page" loading="lazy">
+        <div class="screenshot-caption">Third-party portal. Email + password required.</div>
+      </div>
+      <div class="screenshot-card rv rv-d2">
+        <img src="/v3/audit-assets/prudential/mobile-login.png" alt="Mobile login page" loading="lazy">
+        <div class="screenshot-caption">Registration button cut off on mobile.</div>
+      </div>
+      <div class="screenshot-card rv rv-d3">
+        <img src="/v3/audit-assets/prudential/homepage-paynow-button.png" alt="Homepage pay now button" loading="lazy">
+        <div class="screenshot-caption">Step 1: Click 'Pay Now'</div>
+      </div>
+      <div class="screenshot-card rv rv-d1">
+        <img src="/v3/audit-assets/prudential/online-payment-page-top.png" alt="Online payment page top" loading="lazy">
+        <div class="screenshot-caption">Step 2: Read filler page. Click again.</div>
+      </div>
+      <div class="screenshot-card rv rv-d2">
+        <img src="/v3/audit-assets/prudential/online-payment-page-middle.png" alt="Online payment page middle" loading="lazy">
+        <div class="screenshot-caption">3.25% credit card surcharge disclosed.</div>
+      </div>
+      <div class="screenshot-card rv rv-d3">
+        <img src="/v3/audit-assets/prudential/online-payment-page-paynow-buttons.png" alt="Pay now buttons" loading="lazy">
+        <div class="screenshot-caption">Two different phone numbers. Which one?</div>
+      </div>
+    </div>
+    <div class="portal-today-callout">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p>First-time payers must call (949) 876-7388 to "become eligible" before they can create an account.</p>
     </div>
   </div>
 </section>
