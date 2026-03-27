@@ -191,6 +191,47 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 .review-score-source{font-size:11px;margin-top:4px}
 .review-score-source a{color:#94a3b8;text-decoration:underline}
 .review-score-source a:hover{color:var(--blue)}
+/* COMPARISON TABLE */
+.comp-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -8px;padding:0 8px}
+.comp-table{width:100%;border-collapse:collapse;font-size:14px;border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.comp-table th{background:var(--text);color:#fff;font-weight:700;padding:14px 16px;text-align:center;font-size:13px;letter-spacing:.02em}
+.comp-table th:first-child{text-align:left}
+.comp-table td{padding:12px 16px;text-align:center;border-bottom:1px solid var(--border);font-weight:600}
+.comp-table td:first-child{text-align:left;font-weight:500;color:var(--muted)}
+.comp-table tr:nth-child(even) td{background:rgba(0,0,0,.015)}
+.comp-table tr:last-child td{border-bottom:none}
+.comp-table .cell-red{background:rgba(220,38,38,.06);color:var(--red)}
+.comp-table .cell-green{background:rgba(16,185,129,.06);color:var(--green-dark)}
+.comp-table .cell-amber{background:rgba(245,158,11,.06);color:#b45309}
+.comp-table .th-sf{background:var(--red)}
+@media(max-width:600px){.comp-table{font-size:12px}.comp-table th,.comp-table td{padding:10px 8px}}
+
+/* IRONY SECTION */
+.irony-section{padding:100px 48px;background:#fff;position:relative}
+.irony-section::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:120px;height:1px;background:linear-gradient(90deg,transparent,var(--red),transparent);opacity:.3}
+.irony-inner{max-width:900px;margin:0 auto}
+.irony-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:40px 0}
+.irony-col{border-radius:16px;padding:28px;position:relative}
+.irony-col-sells{background:rgba(16,185,129,.04);border:2px solid rgba(16,185,129,.2)}
+.irony-col-does{background:rgba(220,38,38,.04);border:2px solid rgba(220,38,38,.2)}
+.irony-col-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.irony-col-sells .irony-col-label{color:var(--green-dark)}
+.irony-col-does .irony-col-label{color:var(--red)}
+.irony-col h4{font-size:16px;font-weight:800;color:var(--text);margin-bottom:12px}
+.irony-item{font-size:14px;color:var(--muted);line-height:1.6;padding:8px 0;border-bottom:1px solid rgba(0,0,0,.04)}
+.irony-item:last-child{border-bottom:none}
+.irony-item em{font-style:italic;color:var(--text);font-weight:600}
+.irony-agentforce{margin-top:32px;padding:24px 28px;background:rgba(220,38,38,.04);border-left:4px solid var(--red);border-radius:0 12px 12px 0}
+.irony-agentforce h4{font-size:15px;font-weight:800;color:var(--text);margin-bottom:8px}
+.irony-agentforce p{font-size:14px;color:var(--muted);line-height:1.6}
+.irony-agentforce .irony-vs{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;margin-top:12px}
+.irony-agentforce .irony-vs-side{font-size:13px;line-height:1.5}
+.irony-agentforce .irony-vs-arrow{font-size:20px;color:var(--red);font-weight:900}
+.irony-source{font-size:12px;color:#94a3b8;text-align:center;margin-top:24px}
+.irony-source a{color:#94a3b8;text-decoration:underline}
+.irony-source a:hover{color:var(--blue)}
+@media(max-width:768px){.irony-grid{grid-template-columns:1fr}.irony-section{padding:60px 24px}}
+
 @media(max-width:768px){.screenshot-grid{grid-template-columns:1fr}.portal-section{padding:60px 24px}}
 
 /* COLLECTION STACK */
@@ -413,6 +454,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
       <a href="#the-portal" data-nav>The Cancellation Trap</a>
       <a href="#the-stack" data-nav>Collection Stack</a>
       <a href="#the-cost" data-nav>The Cost</a>
+      <a href="#the-irony" data-nav>The Irony</a>
       <a href="#agent-section" data-nav>Your Agent</a>
       <a href="#coming-soon" data-nav>Coming Soon</a>
     </div>
@@ -585,6 +627,30 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
           </div>
         </div>
       </div>
+
+      <!-- Card 5: Active Legal Exposure -->
+      <div class="screenshot-card rv" style="border:2px solid var(--red)">
+        <div style="position:absolute;top:12px;right:12px;background:var(--red);color:#fff;font-size:10px;font-weight:800;padding:4px 10px;border-radius:100px;letter-spacing:.06em;text-transform:uppercase;z-index:2">RED</div>
+        <div class="screenshot-caption" style="padding:24px 28px">
+          <div style="display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap">
+            <div style="font-size:32px;flex-shrink:0">&#9878;&#65039;</div>
+            <div style="flex:1;min-width:240px">
+              <strong style="font-size:17px;color:var(--text)">Active Legal Exposure</strong>
+              <p style="margin-top:8px;font-size:14px;color:var(--muted);line-height:1.6">Class action filed: <em style="font-style:italic;color:var(--text)">Lira v. Salesforce</em>, Case No. BC651386, Los Angeles Superior Court. Alleges Salesforce&rsquo;s auto-renewal practices violate California law.</p>
+              <div style="margin-top:12px;padding:12px 16px;background:rgba(220,38,38,.04);border-left:3px solid var(--red);border-radius:0 8px 8px 0">
+                <p style="font-size:13px;color:var(--text);line-height:1.5"><strong>California&rsquo;s Automatic Renewal Law</strong> (amended July 2025) now requires companies to offer <em style="font-style:italic">online cancellation</em> if the customer signed up online. Salesforce has no online cancel button.</p>
+                <p style="font-size:13px;color:var(--red);font-weight:700;margin-top:8px">Penalties: up to $2,500 per violation.</p>
+                <p style="font-size:12px;color:var(--muted);margin-top:8px">FTC continues enforcement under ROSCA despite Click-to-Cancel rule struck down.</p>
+              </div>
+              <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
+                <a href="https://topclassactions.com/lawsuit-settlements/lawsuit-news/salesforce-class-action-says-automatic-renewal-violates-california-law/" target="_blank" rel="noopener" style="font-size:12px;color:#94a3b8;text-decoration:underline">&#128279; Top Class Actions</a>
+                <a href="https://oag.ca.gov/news/press-releases/attorney-general-bonta-issues-consumer-alert-california%E2%80%99s-automatic-renewal-law" target="_blank" rel="noopener" style="font-size:12px;color:#94a3b8;text-decoration:underline">&#128279; CA Attorney General</a>
+                <a href="https://www.cooley.com/news/insight/2025/2025-06-04-california-automatic-renewal-law-amendments-take-effect-on-july-1-2025" target="_blank" rel="noopener" style="font-size:12px;color:#94a3b8;text-decoration:underline">&#128279; Cooley LLP</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Review Scores -->
@@ -603,6 +669,61 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
         <div class="review-score-number" style="font-size:28px;color:var(--red)">F</div>
         <div class="review-score-label">BBB Grade</div>
         <div class="review-score-source"><a href="https://www.bbb.org/us/ca/san-francisco/profile/computer-software/salesforcecom-inc-1116-64709" target="_blank" rel="noopener">Not accredited</a></div>
+      </div>
+    </div>
+
+    <!-- Competitive Comparison Table -->
+    <div style="margin-top:40px" class="rv">
+      <h3 style="font-size:16px;font-weight:800;text-align:center;margin-bottom:20px;color:var(--text)">How competitors handle cancellation</h3>
+      <div class="comp-table-wrap">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th class="th-sf">Salesforce</th>
+              <th>HubSpot</th>
+              <th>Zoho</th>
+              <th>Microsoft</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Self-service cancel</td>
+              <td class="cell-red">&#128308; NO</td>
+              <td class="cell-green">&#128994; YES</td>
+              <td class="cell-green">&#128994; YES</td>
+              <td class="cell-green">&#128994; YES</td>
+            </tr>
+            <tr>
+              <td>Online cancellation</td>
+              <td class="cell-red">&#128308; NO &mdash; call AE</td>
+              <td class="cell-green">&#128994; YES</td>
+              <td class="cell-green">&#128994; YES</td>
+              <td class="cell-green">&#128994; YES</td>
+            </tr>
+            <tr>
+              <td>Month-to-month</td>
+              <td class="cell-red">&#128308; NO (annual min)</td>
+              <td class="cell-green">&#128994; YES</td>
+              <td class="cell-green">&#128994; YES</td>
+              <td class="cell-green">&#128994; YES</td>
+            </tr>
+            <tr>
+              <td>Refund on cancel</td>
+              <td class="cell-red">&#128308; Non-refundable</td>
+              <td class="cell-amber">&#128992; At term end</td>
+              <td class="cell-green">&#128994; 5-day window</td>
+              <td class="cell-green">&#128994; 7-day prorated</td>
+            </tr>
+            <tr>
+              <td>Sent to collections</td>
+              <td class="cell-red">&#128308; YES (documented)</td>
+              <td class="cell-green">&#128994; No reports</td>
+              <td class="cell-green">&#128994; No reports</td>
+              <td class="cell-green">&#128994; No reports</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
@@ -682,11 +803,19 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
     </div>
     <div class="cost-row">
       <span class="cost-row-label">Accounts receivable</span>
-      <span class="cost-row-value">$11.4B</span>
+      <span class="cost-row-value">$11.95B</span>
     </div>
     <div class="cost-row">
-      <span class="cost-row-label">Credit loss allowance</span>
-      <span class="cost-row-value">~$233M</span>
+      <span class="cost-row-label">Deferred revenue (prepaid, locked in)</span>
+      <span class="cost-row-value">$20.74B</span>
+    </div>
+    <div class="cost-row">
+      <span class="cost-row-label">Remaining performance obligations</span>
+      <span class="cost-row-value">$63.4B <span style="font-size:11px;color:var(--green);font-weight:600">+11% YoY</span></span>
+    </div>
+    <div class="cost-row">
+      <span class="cost-row-label">Operating cash flow</span>
+      <span class="cost-row-value">$13B <span style="font-size:11px;color:var(--green);font-weight:600">+28% YoY</span></span>
     </div>
     <div class="cost-row">
       <span class="cost-row-label">Trustpilot score</span>
@@ -698,8 +827,66 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
     </div>
   </div>
   <div class="cost-source rv rv-d2">
-    <a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=CRM&type=10-K" target="_blank" rel="noopener">Salesforce 10-K (NYSE: CRM)</a> &middot;
+    <a href="https://investor.salesforce.com/news/news-details/2025/Salesforce-Announces-Fourth-Quarter-and-Fiscal-Year-2025-Results/default.aspx" target="_blank" rel="noopener">Salesforce FY25 Results (NYSE: CRM)</a> &middot;
     <a href="https://www.trustpilot.com/review/www.salesforce.com" target="_blank" rel="noopener">Trustpilot</a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- CHAPTER 4.5 — The Irony                              -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="irony-section" id="the-irony">
+  <div class="irony-inner">
+    <div class="rv">
+      <div class="chapter-num">The Irony</div>
+      <h2 class="chapter-title">Salesforce sells billing software.<br>Here&rsquo;s what they promise vs what they do.</h2>
+      <p class="chapter-sub">Revenue Cloud Billing is a $X00M/year product. The irony writes itself.</p>
+    </div>
+
+    <div class="irony-grid rv rv-d1">
+      <!-- LEFT: What they SELL -->
+      <div class="irony-col irony-col-sells">
+        <div class="irony-col-label">&#128994; What Salesforce SELLS (Revenue Cloud Billing)</div>
+        <div class="irony-item"><em>&ldquo;Unify selling and billing for a seamless customer experience&rdquo;</em></div>
+        <div class="irony-item"><em>&ldquo;Enable customers to handle invoice requests independently&rdquo;</em></div>
+        <div class="irony-item"><em>&ldquo;Automatically apply credit memos, process refunds&rdquo;</em></div>
+        <div class="irony-item" style="border-bottom:none;padding-top:12px">
+          <a href="https://www.salesforce.com/sales/revenue-cloud-billing/" target="_blank" rel="noopener" style="font-size:12px;color:#94a3b8;text-decoration:underline">&#128279; salesforce.com/sales/revenue-cloud-billing</a>
+        </div>
+      </div>
+
+      <!-- RIGHT: What they DO -->
+      <div class="irony-col irony-col-does">
+        <div class="irony-col-label">&#128308; What Salesforce DOES (their own billing)</div>
+        <div class="irony-item"><em>Press 3 for billing</em> &rarr; recorded message &rarr; &ldquo;have a great day&rdquo; &rarr; hung up</div>
+        <div class="irony-item">No self-service cancellation &mdash; must call your Account Executive</div>
+        <div class="irony-item"><strong style="color:var(--red)">1.2/5</strong> Trustpilot for billing &middot; <strong style="color:var(--red)">F</strong> BBB grade</div>
+        <div class="irony-item" style="border-bottom:none">Sends customers to collections for contracts they tried to cancel</div>
+      </div>
+    </div>
+
+    <!-- Agentforce Irony -->
+    <div class="irony-agentforce rv rv-d2">
+      <h4>And then there&rsquo;s Agentforce.</h4>
+      <p>Salesforce&rsquo;s flagship AI product, launched 2024. Here&rsquo;s what they promise vs what happens on their own billing line:</p>
+      <div class="irony-vs">
+        <div class="irony-vs-side" style="color:var(--green-dark)">
+          <strong>Agentforce promises:</strong><br>
+          &ldquo;Deflecting 30% of service cases, accelerating resolution by 88%, 24/7 support&rdquo;
+        </div>
+        <div class="irony-vs-arrow">&rarr;</div>
+        <div class="irony-vs-side" style="color:var(--red)">
+          <strong>Agentforce reality on billing line:</strong><br>
+          Plays a recorded message and disconnects. Zero AI. Zero humans.
+        </div>
+      </div>
+    </div>
+
+    <div class="irony-source rv rv-d3">
+      <a href="https://www.salesforce.com/sales/revenue-cloud-billing/" target="_blank" rel="noopener">Revenue Cloud Billing</a> &middot;
+      <a href="https://www.salesforce.com/agentforce/" target="_blank" rel="noopener">Agentforce</a> &middot;
+      <a href="https://www.trustpilot.com/review/www.salesforce.com" target="_blank" rel="noopener">Trustpilot 1.2/5</a>
+    </div>
   </div>
 </section>
 
