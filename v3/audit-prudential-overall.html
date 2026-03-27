@@ -59,6 +59,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 .rv-d1{transition-delay:.12s}
 .rv-d2{transition-delay:.24s}
 .rv-d3{transition-delay:.36s}
+.rv-d4{transition-delay:.48s}
 
 /* NAV */
 .nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(250,251,255,.88);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(0,0,0,.04)}
@@ -577,26 +578,62 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
       <div class="call-transcript">
         <div class="ct-msg agent">
           <div class="ct-msg-role">Agent</div>
-          Called Kimble Companies HQ.
+          Hi, my name is&mdash;
         </div>
         <div class="ct-msg system">
           <div class="ct-msg-role">System</div>
-          IVR offers 3 options: gas emergency, refuse/recycling, mining.
-        </div>
-        <div class="ct-msg system">
-          <div class="ct-msg-role">System</div>
-          No billing or accounts receivable option available.
+          Thank you for calling the Kimble Company. For Red Hill development or a gas emergency, press one. For refuse and recycling services, press two. For mining or landfill operations, press three.
         </div>
         <div class="ct-msg agent">
           <div class="ct-msg-role">Agent</div>
-          Cycled through IVR 3 times. No path to billing department. Hung up.
+          It seems none of these options directly relate to billing...
+        </div>
+        <div class="ct-msg system">
+          <div class="ct-msg-role">System</div>
+          [IVR repeats 3 times]
+        </div>
+        <div class="ct-msg agent">
+          <div class="ct-msg-role">Agent</div>
+          It seems like none of these options are related to billing. I might have the wrong number. I'll end the call.
+        </div>
+      </div>
+    </div>
+
+    <!-- Call 4: Automation Personnel Services -->
+    <div class="call-card rv rv-d4">
+      <div class="call-card-header">
+        <div class="call-card-info">
+          <h3>Automation Personnel Services</h3>
+          <span class="call-number">(205) 733-3700</span>
+        </div>
+        <div class="call-card-meta">
+          <span class="call-card-date">Mar 26, 2026 &middot; 7:29 PM PT</span>
+          <span class="call-badge duration">11s</span>
+          <span class="call-badge result">CLOSED &mdash; NO VOICEMAIL</span>
+        </div>
+      </div>
+      <div class="call-audio">
+        <audio controls preload="none" src="https://dxc03zgurdly9.cloudfront.net/e4340c471a941ab6f385d9ed7e61875ed22c65ec5408f03995bf91498e7d6777/recording.wav"></audio>
+      </div>
+      <button class="call-transcript-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        View transcript
+      </button>
+      <div class="call-transcript">
+        <div class="ct-msg agent">
+          <div class="ct-msg-role">Agent</div>
+          Hi, my name is Mike. I have an outstanding balance&mdash;
+        </div>
+        <div class="ct-msg system">
+          <div class="ct-msg-role">System</div>
+          Thank you for calling. Corporate office. We are currently closed. Please call back during our regular business hours. Thank you for calling. Goodbye.
         </div>
       </div>
     </div>
 
     <!-- Summary -->
     <div class="mystery-summary rv">
-      <div class="mystery-summary-stat">3 calls. 0 humans reached. 0 payments collected.</div>
+      <div class="mystery-summary-stat">4 calls. 0 humans reached. 0 payments collected.</div>
     </div>
   </div>
 </section>
