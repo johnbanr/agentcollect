@@ -198,6 +198,7 @@ details[open] summary::before{content:'- '}
 .confetti-container.active{opacity:1}
 .confetti-dot{position:absolute;border-radius:50%;animation:confettiFall linear forwards}
 .confetti-square{position:absolute;animation:confettiFall linear forwards}
+@keyframes awSpin{to{transform:rotate(360deg)}}
 @keyframes confettiFall{
   0%{transform:translateY(-20px) rotate(0deg);opacity:1}
   80%{opacity:1}
@@ -490,7 +491,7 @@ details[open] summary::before{content:'- '}
         </div>
         <span class="outcome-badge outcome-voicemail">Voicemail</span>
       </div>
-      <p class="quote"><span style="color:#F97316;font-weight:600">IVR:</span> &ldquo;Thank you for calling Reliance Incorporated. Our office is closed.&rdquo;<br>&ldquo;Hi, my name is Mike from Summit Auto Repair. I have an outstanding balance I would like to pay.&rdquo;<br><span style="color:#F97316;font-weight:600">IVR:</span> &ldquo;The person at extension 2201 is unavailable.&rdquo;</p>
+      <p class="quote"><span style="color:#F97316;font-weight:600">IVR:</span> &ldquo;Thank you for calling Reliance Incorporated. Our office is closed.&rdquo;<br>&ldquo;Hi, my name is Mike from Salesforce. I have an outstanding balance I would like to pay.&rdquo;<br><span style="color:#F97316;font-weight:600">IVR:</span> &ldquo;The person at extension 2201 is unavailable.&rdquo;</p>
       <audio controls preload="none"><source src="https://dxc03zgurdly9.cloudfront.net/45a2d188ea41f288e0707fe191d3cd079c3fa22d3b500c48d2c9d68f138b1ad5/recording.wav" type="audio/wav"></audio>
     </div>
 
@@ -693,6 +694,36 @@ details[open] summary::before{content:'- '}
       </div>
     </div>
 
+    <!-- VOICE AGENT WIDGET -->
+    <div class="rv" style="margin-bottom:32px">
+      <p style="text-align:center;font-size:15px;color:var(--muted);margin-bottom:20px;font-weight:500">Try it yourself. Call the Salesforce agent.</p>
+      <div id="agent-widget" style="max-width:420px;margin:0 auto;background:#0f0f1a;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.15)">
+        <!-- Idle state -->
+        <div id="aw-idle" style="display:flex;flex-direction:column;align-items:center;padding:28px 20px 24px;gap:14px">
+          <div id="aw-orb" style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#4F46E5,#7C3AED);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;box-shadow:0 0 32px rgba(79,70,229,.4)" onclick="startAuditCall()">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          </div>
+          <div style="color:rgba(255,255,255,.6);font-size:14px;font-weight:500" id="aw-label">Talk to the Salesforce agent</div>
+        </div>
+        <!-- Connecting -->
+        <div id="aw-connecting" style="display:none;flex-direction:column;align-items:center;padding:28px 20px;gap:12px">
+          <div style="width:32px;height:32px;border:3px solid rgba(255,255,255,.1);border-top-color:#4F46E5;border-radius:50%;animation:awSpin .8s linear infinite"></div>
+          <div style="color:rgba(255,255,255,.6);font-size:13px">Connecting to Salesforce agent...</div>
+        </div>
+        <!-- Active call -->
+        <div id="aw-active" style="display:none;flex-direction:column;align-items:center;padding:20px;gap:12px">
+          <div id="aw-status" style="color:rgba(255,255,255,.5);font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase">Listening...</div>
+          <div id="aw-waveform" style="display:flex;align-items:center;justify-content:center;gap:3px;height:48px"></div>
+          <div id="aw-transcript" style="width:100%;max-height:80px;overflow-y:auto;scrollbar-width:none"></div>
+          <button id="aw-end" onclick="endAuditCall()" style="padding:10px 24px;background:rgba(239,68,68,.12);color:#ef4444;border:1px solid rgba(239,68,68,.25);border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3.68 16.07l3.92-3.11V9.59c2.85-.93 5.94-.93 8.8 0v3.38l3.91 3.1c.46.36.2 1.11-.39 1.11h-3.79c-.26 0-.5-.11-.68-.28l-2.38-2.25c-.87.17-1.76.17-2.63 0L8.06 17c-.18.17-.42.28-.68.28H3.99c-.49 0-.76-.65-.31-1.11z"/></svg>
+            End call
+          </button>
+        </div>
+        <div style="text-align:center;padding:4px 12px 12px;font-size:11px;color:rgba(255,255,255,.2)">Powered by AgentCollect</div>
+      </div>
+    </div>
+
     <!-- PAYMENT MOCKUP -->
     <div class="payment-mockup rv" id="paymentMockup">
       <div class="pm-header">
@@ -702,7 +733,7 @@ details[open] summary::before{content:'- '}
       <div class="pm-body">
         <div class="pm-row">
           <span class="pm-label">Customer</span>
-          <span class="pm-value">Summit Auto Repair</span>
+          <span class="pm-value">Salesforce</span>
         </div>
         <div class="pm-row">
           <span class="pm-label">Service</span>
@@ -766,6 +797,87 @@ details[open] summary::before{content:'- '}
   els.forEach(function(el){ ro.observe(el); });
   setTimeout(function(){ els.forEach(function(el){ el.classList.add('v'); }); }, 3000);
 })();
+
+// Agent voice call widget
+var awCallActive = false;
+var awRetellClient = null;
+
+async function startAuditCall() {
+  if (awCallActive) return;
+  awCallActive = true;
+  document.getElementById('aw-idle').style.display = 'none';
+  document.getElementById('aw-connecting').style.display = 'flex';
+  document.getElementById('aw-active').style.display = 'none';
+
+  try {
+    var response = await fetch('https://backend.widr.app/api/v1/demo/web-call', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        company_name: 'Salesforce',
+        product: 'CRM Subscription',
+        amount: '$450',
+        company_context: 'Salesforce is a cloud-based CRM platform. The customer has an outstanding balance for their CRM subscription renewal.',
+        dispute_playbook: ''
+      })
+    });
+    if (!response.ok) throw new Error('API error');
+    var result = await response.json();
+    if (!result.success || !result.access_token) throw new Error('No token');
+
+    var module = await import('https://cdn.jsdelivr.net/npm/retell-client-js-sdk@2.0.7/+esm');
+    awRetellClient = new module.RetellWebClient();
+
+    awRetellClient.on('call_started', function() {
+      document.getElementById('aw-connecting').style.display = 'none';
+      document.getElementById('aw-active').style.display = 'flex';
+      document.getElementById('aw-status').textContent = 'Your turn \u2014 speak now';
+      try{gtag('event','audit_call_started',{page:'audit-salesforce'})}catch(e){}
+    });
+
+    awRetellClient.on('call_ended', function() { endAuditCall(); });
+
+    awRetellClient.on('agent_start_talking', function() {
+      document.getElementById('aw-status').textContent = 'Salesforce Agent speaking...';
+    });
+    awRetellClient.on('agent_stop_talking', function() {
+      document.getElementById('aw-status').textContent = 'Your turn \u2014 speak now';
+    });
+
+    awRetellClient.on('update', function(update) {
+      if (update && update.transcript && update.transcript.length) {
+        var last = update.transcript[update.transcript.length - 1];
+        if (last && last.content) {
+          var role = last.role === 'agent' ? 'agent' : 'user';
+          var tc = document.getElementById('aw-transcript');
+          tc.innerHTML = '<div style="padding:8px 12px;border-radius:12px;font-size:13px;line-height:1.5;' + (role === 'agent' ? 'background:rgba(79,70,229,.15);color:rgba(255,255,255,.9)' : 'background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);text-align:right') + '">' + last.content + '</div>';
+        }
+      }
+    });
+
+    awRetellClient.on('error', function() { endAuditCall(); });
+
+    await awRetellClient.startCall({ accessToken: result.access_token });
+  } catch (err) {
+    console.error('Audit call error:', err);
+    awCallActive = false;
+    document.getElementById('aw-connecting').style.display = 'none';
+    document.getElementById('aw-idle').style.display = 'flex';
+    var lbl = document.getElementById('aw-label');
+    lbl.textContent = 'Connection failed \u2014 try again';
+    lbl.style.color = '#ef4444';
+    setTimeout(function() { lbl.textContent = 'Talk to the Salesforce agent'; lbl.style.color = ''; }, 3000);
+  }
+}
+
+function endAuditCall() {
+  awCallActive = false;
+  if (awRetellClient) { try { awRetellClient.stopCall(); } catch(e) {} awRetellClient = null; }
+  document.getElementById('aw-active').style.display = 'none';
+  document.getElementById('aw-connecting').style.display = 'none';
+  document.getElementById('aw-idle').style.display = 'flex';
+  document.getElementById('aw-label').textContent = 'Call ended \u2014 tap to try again';
+}
 
 // Confetti on payoff section reveal
 (function(){
