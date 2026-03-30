@@ -402,7 +402,8 @@
 { "source": "/blog/predictive-cash-flow-forecasting", "destination": "/blog/predictive-cash-flow-forecasting.html" },
 { "source": "/blog/ar-automation-saas", "destination": "/blog/ar-automation-saas.html" },
 { "source": "/blog/collection-software-sap", "destination": "/blog/collection-software-sap.html" },
-{ "source": "/blog/collection-software-oracle", "destination": "/blog/collection-software-oracle.html" }
+{ "source": "/blog/collection-software-oracle", "destination": "/blog/collection-software-oracle.html" },
+{ "source": "/fr", "destination": "/index-fr.html" }
   ],
   "headers": [
     {
