@@ -180,6 +180,18 @@
         .dossier-line-key{font-size:13px;font-weight:700;color:var(--text);min-width:100px;flex-shrink:0;font-family:var(--display);letter-spacing:-.02em}
         .dossier-line-val{flex:1}
 
+        /* Skeleton shimmer for loading state */
+        .skeleton{background:linear-gradient(90deg,rgba(79,70,229,.06) 25%,rgba(79,70,229,.12) 50%,rgba(79,70,229,.06) 75%);background-size:200% 100%;animation:shimmer 1.5s ease-in-out infinite;border-radius:6px;height:18px;width:100%}
+        .skeleton.short{width:40%}.skeleton.med{width:65%}.skeleton.long{width:85%}
+        .skeleton-kv{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid rgba(0,0,0,.04)}
+        .skeleton-kv .skeleton:first-child{width:80px;flex-shrink:0}
+        .skeleton-kv .skeleton:last-child{flex:1}
+        @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+        .dossier-line.replacing{transition:opacity .2s ease;opacity:0}
+        .dossier-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+        .dossier-meta-chip{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--text-muted);background:rgba(79,70,229,.04);padding:3px 10px;border-radius:8px;letter-spacing:-.01em}
+        .dossier-meta-chip svg{width:12px;height:12px;opacity:.6}
+
         .dossier-tag{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;opacity:0;transform:translateY(6px);transition:all .4s cubic-bezier(.16,1,.3,1)}
         .dossier-tag.visible{opacity:1;transform:translateY(0)}
         .dossier-tag.green{background:rgba(16,185,129,.08);color:var(--green-dark);border:1px solid rgba(16,185,129,.15)}
@@ -780,22 +792,23 @@
 
         <!-- DOSSIER: intelligence report that fills line by line -->
         <div class="dossier" id="dossier">
-            <!-- Brand header (logo + name + industry) -->
+            <!-- Brand header (logo + name + industry + meta chips) -->
             <div class="dossier-brand" id="dossier-brand">
                 <img class="dossier-brand-logo" id="dossier-logo" src="" alt="">
                 <div class="dossier-brand-info">
                     <div class="dossier-brand-name" id="dossier-name"></div>
                     <div class="dossier-brand-industry" id="dossier-industry"></div>
+                    <div class="dossier-meta" id="dossier-meta"></div>
                 </div>
             </div>
 
-            <!-- Products/Services section -->
+            <!-- Section 1: Business Intelligence -->
             <div class="dossier-section" id="dossier-products-section">
-                <div class="dossier-section-label"><span class="ds-dot green"></span> Produits &amp; Services</div>
+                <div class="dossier-section-label"><span class="ds-dot green"></span> Intelligence commerciale</div>
                 <div id="dossier-products"></div>
             </div>
 
-            <!-- Why they delay section -->
+            <!-- Section 2: Payment Risk Analysis -->
             <div class="dossier-section" id="dossier-risks-section">
                 <div class="dossier-section-label"><span class="ds-dot amber"></span> Analyse des risques de paiement</div>
                 <div id="dossier-risks"></div>
@@ -1860,13 +1873,17 @@
             }
             if (company.industry) updated.industry = company.industry;
             if (company.products) updated.product = company.products;
-            if (company.size) updated.clients = (updated.clients || '') + ' (' + company.size + ')';
+            if (company.size) updated.employeeSize = company.size;
             // Rich company intel from Claude analysis
             if (company.flagship_product) updated.flagshipProduct = company.flagship_product;
             if (company.client_segments) updated.clientSegments = company.client_segments;
             if (company.client_count) updated.clientCount = company.client_count;
             if (company.avg_invoice_amount) updated.avgInvoiceAmount = company.avg_invoice_amount;
             if (company.voice_invoice_description) updated.voiceInvoiceDescription = company.voice_invoice_description;
+            // Apollo enrichment data for meta chips
+            if (company.founded_year) updated.foundedYear = company.founded_year;
+            if (company.hq_location) updated.hqLocation = company.hq_location;
+            if (company.estimated_revenue) updated.estimatedRevenue = company.estimated_revenue;
             if (company.logo_url) {
                 buildLogo.src = company.logo_url;
             }
@@ -1976,7 +1993,7 @@
     }
 
     function updateDemoWithAPIData(data) {
-        // Update dossier risks if visible
+        // Update dossier risks — replace skeletons with real data
         var risksEl = document.getElementById('dossier-risks');
         if (risksEl && data.analysis && data.analysis.length > 0) {
             risksEl.innerHTML = '';
@@ -1986,35 +2003,25 @@
             });
         }
 
-        // Update dossier products if visible — use rich intel when available
+        // Update dossier products — replace skeletons with real intel
         var productsEl = document.getElementById('dossier-products');
         if (productsEl) {
-            productsEl.innerHTML = '';
-            // Rich data: flagship product + client segments + client count
-            if (data.flagshipProduct) {
-                addDossierKVLine(productsEl, 'Flagship', data.flagshipProduct);
-            } else if (data.product) {
-                var productLines = data.product.split(/,\s*/);
-                productLines.slice(0, 3).forEach(function(p) {
-                    addDossierLine(productsEl, p.trim(), 'green');
-                });
-            }
-            if (data.clientSegments) {
-                addDossierKVLine(productsEl, 'Clients', data.clientSegments);
-            } else if (data.clients) {
-                addDossierKVLine(productsEl, 'Clients', data.clients.length > 80 ? data.clients.substring(0, 77) + '...' : data.clients);
-            }
-            if (data.clientCount) {
-                addDossierKVLine(productsEl, 'Scale', data.clientCount);
-            }
-            if (data.avgInvoiceAmount) {
-                addDossierKVLine(productsEl, 'Avg. invoice', data.avgInvoiceAmount);
-            }
+            renderProductsSection(productsEl, data);
         }
 
-        // Update dossier name and industry
+        // Update dossier name and industry (replace skeleton)
         if (data.name) dossierName.textContent = data.name;
         if (data.industry) dossierIndustry.textContent = data.industry;
+
+        // Render meta chips (founded, HQ, size, revenue)
+        if (dossierMeta) {
+            renderMetaChips(dossierMeta, {
+                foundedYear: data.foundedYear || null,
+                hqLocation: data.hqLocation || null,
+                employeeSize: data.employeeSize || null,
+                estimatedRevenue: data.estimatedRevenue || null
+            });
+        }
 
         // Update decision makers tag
         var dmTag = document.getElementById('dossier-dm-tag');
@@ -2199,6 +2206,7 @@
     var dossierLogo = document.getElementById('dossier-logo');
     var dossierName = document.getElementById('dossier-name');
     var dossierIndustry = document.getElementById('dossier-industry');
+    var dossierMeta = document.getElementById('dossier-meta');
     var dossierProductsSection = document.getElementById('dossier-products-section');
     var dossierProducts = document.getElementById('dossier-products');
     var dossierRisksSection = document.getElementById('dossier-risks-section');
@@ -2235,6 +2243,67 @@
         container.appendChild(line);
         setTimeout(function() { line.classList.add('visible'); }, 50);
         return line;
+    }
+
+    // Skeleton loading lines
+    function addSkeletonKV(container, widthClass) {
+        var line = document.createElement('div');
+        line.className = 'skeleton-kv';
+        line.innerHTML = '<div class="skeleton short"></div><div class="skeleton ' + (widthClass || 'med') + '"></div>';
+        container.appendChild(line);
+        return line;
+    }
+
+    function addSkeletonLine(container, widthClass) {
+        var line = document.createElement('div');
+        line.className = 'dossier-line visible';
+        line.innerHTML = '<span class="dossier-line-dot green" style="opacity:.3"></span><span class="skeleton ' + (widthClass || 'long') + '" style="display:inline-block"></span>';
+        container.appendChild(line);
+        return line;
+    }
+
+    // Add meta chips under brand name (founded, HQ, size, revenue)
+    function renderMetaChips(container, data) {
+        container.innerHTML = '';
+        var chips = [];
+        if (data.foundedYear) chips.push({icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg>',text:'Fond. '+data.foundedYear});
+        if (data.hqLocation) chips.push({icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>',text:data.hqLocation});
+        if (data.employeeSize) chips.push({icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>',text:data.employeeSize});
+        if (data.estimatedRevenue) chips.push({icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>',text:data.estimatedRevenue+' CA'});
+        chips.forEach(function(c, i) {
+            var chip = document.createElement('span');
+            chip.className = 'dossier-meta-chip';
+            chip.innerHTML = c.icon + ' ' + c.text;
+            chip.style.opacity = '0';
+            chip.style.transform = 'translateY(4px)';
+            chip.style.transition = 'all .3s ease ' + (i * 100) + 'ms';
+            container.appendChild(chip);
+            setTimeout(function() { chip.style.opacity = '1'; chip.style.transform = 'translateY(0)'; }, 50);
+        });
+    }
+
+    // Render business intel section with real data
+    function renderProductsSection(container, data) {
+        container.innerHTML = '';
+        if (data.flagshipProduct) {
+            addDossierKVLine(container, 'Produit', data.flagshipProduct);
+        } else if (data.product && data.product !== 'professional services') {
+            var productLines = data.product.split(/,\s*/);
+            productLines.slice(0, 2).forEach(function(p) {
+                addDossierLine(container, p.trim(), 'green');
+            });
+        }
+        if (data.clientSegments) {
+            addDossierKVLine(container, 'Clients', data.clientSegments.length > 80 ? data.clientSegments.substring(0, 77) + '...' : data.clientSegments);
+        } else if (data.clients && data.clients !== 'Enterprise and mid-market companies') {
+            addDossierKVLine(container, 'Clients', data.clients.length > 80 ? data.clients.substring(0, 77) + '...' : data.clients);
+        }
+        if (data.clientCount) {
+            addDossierKVLine(container, 'Volume', data.clientCount);
+        }
+        if (data.avgInvoiceAmount) {
+            addDossierKVLine(container, 'Facture moy.', data.avgInvoiceAmount);
+        }
     }
 
     function compactDossier() {
@@ -2296,71 +2365,71 @@
                 buildProgressWrapEl.classList.add('visible');
             }, 100);
 
-            // === DOSSIER LINE-BY-LINE FILL ===
+            // === DOSSIER LINE-BY-LINE FILL (skeleton → real data) ===
 
-            // Step 1: 0→25% — Brand reveal (logo + name + industry)
-            animateProgressTo(25, 2000, 'Analyse de ' + data.name + '...', function() {
+            // Step 1: 0→30% — Brand reveal (logo + name, industry skeleton)
+            animateProgressTo(30, 1800, 'Analyse de ' + data.name + '...', function() {
                 dossierName.textContent = data.name;
-                dossierIndustry.textContent = data.industry || 'Services aux entreprises';
+                var hasHardcoded = !!COMPANY_DATA[domain];
+                if (hasHardcoded && data.industry) {
+                    dossierIndustry.textContent = data.industry;
+                } else {
+                    dossierIndustry.innerHTML = '<span class="skeleton short" style="height:14px;display:inline-block;vertical-align:middle"></span>';
+                }
                 dossierBrand.classList.add('visible');
 
-                // Step 2: 25→50% — Products/services lines appear
+                // Step 2: 30→60% — Business Intelligence section (skeletons or real)
                 setTimeout(function() {
-                    animateProgressTo(50, 2200, 'Analyse de leur activite...', function() {
+                    animateProgressTo(60, 2000, 'Recherche de leur activite...', function() {
                         dossierProductsSection.classList.add('visible');
-                        var products = data.product || 'Professional services';
-                        // Split by comma or show as single line
-                        var productLines = products.split(/,\s*/);
-                        var lineDelay = 0;
-                        productLines.slice(0, 3).forEach(function(p) {
-                            setTimeout(function() {
-                                addDossierLine(dossierProducts, p.trim(), 'green');
-                            }, lineDelay);
-                            lineDelay += 400;
-                        });
-                        // Also add clients line
-                        setTimeout(function() {
-                            if (data.clients) {
-                                addDossierKVLine(dossierProducts, 'Clients', data.clients.length > 80 ? data.clients.substring(0, 77) + '...' : data.clients);
-                            }
-                        }, lineDelay);
+                        if (hasHardcoded) {
+                            renderProductsSection(dossierProducts, data);
+                        } else {
+                            addSkeletonKV(dossierProducts, 'long');
+                            addSkeletonKV(dossierProducts, 'med');
+                            addSkeletonKV(dossierProducts, 'short');
+                        }
 
-                        // Step 3: 50→75% — Risk analysis lines
+                        // Step 3: 60→85% — Payment Risk section (skeletons or real)
                         setTimeout(function() {
-                            animateProgressTo(75, 2000, 'Analyse des risques de paiement...', function() {
+                            animateProgressTo(85, 1800, 'Analyse des risques de paiement...', function() {
                                 dossierRisksSection.classList.add('visible');
-                                var dotColors = ['amber', 'red', 'green'];
-                                var riskDelay = 0;
-                                (data.analysis || []).forEach(function(item, i) {
-                                    setTimeout(function() {
-                                        addDossierLine(dossierRisks, item, dotColors[i % 3]);
-                                    }, riskDelay);
-                                    riskDelay += 500;
-                                });
+                                if (hasHardcoded && data.analysis && data.analysis.length > 0) {
+                                    var dotColors = ['amber', 'red', 'green'];
+                                    var riskDelay = 0;
+                                    data.analysis.forEach(function(item, i) {
+                                        setTimeout(function() {
+                                            addDossierLine(dossierRisks, item, dotColors[i % 3]);
+                                        }, riskDelay);
+                                        riskDelay += 400;
+                                    });
+                                } else {
+                                    addSkeletonLine(dossierRisks, 'long');
+                                    addSkeletonLine(dossierRisks, 'med');
+                                    addSkeletonLine(dossierRisks, 'long');
+                                }
 
                                 trackEvent('cards_shown');
 
-                                // Step 4: 75→100% — Tags + email gate OR straight to demo
+                                // Step 4: 85→100% — Agent ready + tags
                                 setTimeout(function() {
                                     animateProgressTo(100, 1500, 'Agent ' + data.name + ' pret.', function() {
                                         buildTitle.textContent = 'Agent de recouvrement ' + data.name;
                                         try { gtag('event', 'demo_ready', { domain: currentDomain, company: data.name }); } catch(e) {}
                                         trackEvent('demo_ready');
 
-                                        // Show tags (decision makers + full intelligence)
                                         showDossierTags(data);
 
-                                        // Show demo after short pause
                                         setTimeout(function() {
                                             compactDossier();
                                             setTimeout(function() { showDemo(data); }, 600);
                                         }, 1500);
                                     });
-                                }, riskDelay + 400);
+                                }, 600);
                             });
-                        }, lineDelay + 600);
+                        }, 500);
                     });
-                }, 500);
+                }, 400);
             });
         }, 500);
     }
