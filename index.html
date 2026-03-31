@@ -2043,7 +2043,8 @@
 
         // Update dossier name and industry (replace skeleton)
         if (data.name) dossierName.textContent = data.name;
-        if (data.industry && data.industry !== 'default' && data.industry !== 'General Business') dossierIndustry.textContent = data.industry;
+        var cleaned = cleanIndustry(data.industry);
+        if (cleaned) dossierIndustry.textContent = cleaned;
 
         // Render meta chips (founded, HQ, size, revenue)
         if (dossierMeta) {
@@ -2287,13 +2288,19 @@
     }
 
     // Add meta chips under brand name (founded, HQ, size, revenue)
+    // Clean industry slugs from Apollo (e.g. "ecommerce_retail" → "E-commerce & Retail")
+    function cleanIndustry(raw) {
+        if (!raw || raw === 'default' || raw === 'General Business') return null;
+        return raw.replace(/_/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); }).replace('And ', '& ');
+    }
+
     function renderMetaChips(container, data) {
         container.innerHTML = '';
         var chips = [];
-        if (data.foundedYear) chips.push({icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg>',text:'Est. '+data.foundedYear});
+        if (data.foundedYear) chips.push({icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg>',text:data.foundedYear});
         if (data.hqLocation) chips.push({icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>',text:data.hqLocation});
         if (data.employeeSize) chips.push({icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>',text:data.employeeSize});
-        if (data.estimatedRevenue) chips.push({icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>',text:data.estimatedRevenue+' rev'});
+        if (data.estimatedRevenue) chips.push({icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>',text:data.estimatedRevenue});
         chips.forEach(function(c, i) {
             var chip = document.createElement('span');
             chip.className = 'dossier-meta-chip';
@@ -2372,8 +2379,9 @@
                 dossierName.textContent = data.name;
                 // Show industry only if we have it from hardcoded data, otherwise skeleton
                 var hasHardcoded = !!COMPANY_DATA[domain];
-                if (hasHardcoded && data.industry) {
-                    dossierIndustry.textContent = data.industry;
+                var hardcodedIndustry = hasHardcoded ? cleanIndustry(data.industry) : null;
+                if (hardcodedIndustry) {
+                    dossierIndustry.textContent = hardcodedIndustry;
                 } else {
                     dossierIndustry.textContent = '';
                 }
@@ -2451,10 +2459,10 @@
             hasContent = true;
         }
         if (data.clientSegments) {
-            addDossierKVLine(container, 'Clients', data.clientSegments.length > 80 ? data.clientSegments.substring(0, 77) + '...' : data.clientSegments);
+            addDossierKVLine(container, 'Clients', data.clientSegments.length > 60 ? data.clientSegments.substring(0, 57) + '...' : data.clientSegments);
             hasContent = true;
         } else if (data.clients && data.clients !== 'Enterprise and mid-market companies') {
-            addDossierKVLine(container, 'Clients', data.clients.length > 80 ? data.clients.substring(0, 77) + '...' : data.clients);
+            addDossierKVLine(container, 'Clients', data.clients.length > 60 ? data.clients.substring(0, 57) + '...' : data.clients);
             hasContent = true;
         }
         if (data.clientCount) {
