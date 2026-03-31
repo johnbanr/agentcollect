@@ -159,61 +159,45 @@
         .bci-badge.verified{background:rgba(79,70,229,.08);color:var(--indigo)}
         @keyframes skeletonPulse{0%,100%{opacity:.4}50%{opacity:1}}
 
-        /* ========== DOSSIER (2-in-1: loading IS the content) ========== */
-        .dossier{padding:0;max-width:680px;margin:0 auto}
-        .dossier-brand{display:flex;align-items:center;gap:16px;margin-bottom:28px;opacity:0;transform:translateY(12px);transition:all .6s cubic-bezier(.16,1,.3,1)}
+        /* ========== DOSSIER — scan checklist style ========== */
+        .dossier{padding:0;max-width:520px;margin:0 auto}
+        .dossier-brand{display:flex;align-items:center;gap:14px;margin-bottom:20px;opacity:0;transform:translateY(10px);transition:all .5s cubic-bezier(.16,1,.3,1)}
         .dossier-brand.visible{opacity:1;transform:translateY(0)}
         .dossier-brand-logo{display:none}
         .dossier-brand-info{flex:1}
-        .dossier-brand-name{font-family:var(--display);font-size:28px;font-weight:900;color:var(--text);letter-spacing:-.04em;line-height:1.15}
-        .dossier-brand-industry{font-size:15px;color:var(--text-muted);margin-top:2px}
+        .dossier-brand-name{font-family:var(--display);font-size:22px;font-weight:800;color:var(--text);letter-spacing:-.03em;line-height:1.2}
+        .dossier-brand-industry{font-size:13px;color:var(--text-muted);margin-top:1px}
 
-        .dossier-section{margin-bottom:20px;opacity:0;transform:translateY(10px);transition:all .5s cubic-bezier(.16,1,.3,1)}
-        .dossier-section.visible{opacity:1;transform:translateY(0)}
-        .dossier-section-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--text-dim);margin-bottom:8px;display:flex;align-items:center;gap:6px}
-        .dossier-section-label .ds-dot{width:6px;height:6px;border-radius:50%;animation:pulse-dot 1.5s ease-in-out infinite}
-        .dossier-section-label .ds-dot.green{background:var(--green)}
-        .dossier-section-label .ds-dot.amber{background:var(--amber)}
-        .dossier-section-label .ds-dot.indigo{background:var(--indigo)}
+        .dossier-scan{display:flex;flex-direction:column;gap:0}
+        .dossier-scan-line{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid rgba(0,0,0,.04);font-size:15px;color:var(--text-mid);line-height:1.4;opacity:0;transform:translateY(6px);transition:all .35s cubic-bezier(.16,1,.3,1)}
+        .dossier-scan-line.visible{opacity:1;transform:translateY(0)}
+        .dossier-scan-line:last-child{border-bottom:none}
+        .dossier-scan-line .scan-icon{width:18px;height:18px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+        .dossier-scan-line .scan-icon.done{color:var(--green)}
+        .dossier-scan-line .scan-icon.done svg{width:16px;height:16px}
+        .dossier-scan-line .scan-icon.loading{color:var(--indigo);animation:spin .8s linear infinite}
+        .dossier-scan-line .scan-icon.loading svg{width:14px;height:14px}
+        .dossier-scan-line .scan-text{flex:1}
+        .dossier-scan-line .scan-text strong{font-weight:700;color:var(--text)}
 
-        .dossier-line{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid rgba(0,0,0,.04);font-size:16px;color:var(--text-mid);line-height:1.55;opacity:0;transform:translateX(-8px);transition:all .4s cubic-bezier(.16,1,.3,1)}
-        .dossier-line.visible{opacity:1;transform:translateX(0)}
-        .dossier-line:last-child{border-bottom:none}
-        .dossier-line-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:8px}
-        .dossier-line-dot.amber{background:var(--amber)}
-        .dossier-line-dot.red{background:var(--red)}
-        .dossier-line-dot.green{background:var(--green)}
-        .dossier-line-key{font-size:13px;font-weight:700;color:var(--text);min-width:100px;flex-shrink:0;font-family:var(--display);letter-spacing:-.02em}
-        .dossier-line-val{flex:1}
+        .dossier-section{display:none}
+        .dossier-line{display:none}
+        .dossier-loading-line{display:none}
+        .dossier-meta{display:none}
+        .dossier-section-label{display:none}
 
-        /* Loading placeholder lines */
-        .dossier-loading-line{font-size:14px;color:var(--text-dim);padding:6px 0;border-bottom:1px solid rgba(0,0,0,.03);font-style:italic}
-        .dossier-loading-line .typing-dots{display:inline-block}
-        .dossier-loading-line .typing-dots::after{content:'...';animation:dotpulse 1.4s steps(4,end) infinite}
-        @keyframes dotpulse{0%{content:''}25%{content:'.'}50%{content:'..'}75%{content:'...'}}
-        .dossier-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
-        .dossier-meta-chip{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--text-muted);background:rgba(79,70,229,.04);padding:3px 10px;border-radius:8px;letter-spacing:-.01em}
-        .dossier-meta-chip svg{width:12px;height:12px;opacity:.6}
-
-        .dossier-tag{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;opacity:0;transform:translateY(6px);transition:all .4s cubic-bezier(.16,1,.3,1)}
+        .dossier-tag{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;opacity:0;transform:translateY(6px);transition:all .4s cubic-bezier(.16,1,.3,1)}
         .dossier-tag.visible{opacity:1;transform:translateY(0)}
         .dossier-tag.green{background:rgba(16,185,129,.08);color:var(--green-dark);border:1px solid rgba(16,185,129,.15)}
         .dossier-tag.green:hover{background:rgba(16,185,129,.14);border-color:rgba(16,185,129,.3)}
         .dossier-tag.indigo{background:rgba(79,70,229,.06);color:var(--indigo);border:1px solid rgba(79,70,229,.12)}
         .dossier-tag.indigo:hover{background:rgba(79,70,229,.1);border-color:rgba(79,70,229,.2)}
         .dossier-tag svg{width:14px;height:14px}
+        .dossier-tags-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
 
-        .dossier-tags-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-
-        /* Dossier compact state (after loading, before player appears) */
-        .dossier.compacted{max-width:680px}
-        .dossier.compacted .dossier-brand{margin-bottom:16px}
-        .dossier.compacted .dossier-brand-name{font-size:20px}
-        .dossier.compacted .dossier-brand-logo{width:40px;height:40px;border-radius:10px}
-        .dossier.compacted .dossier-brand-industry{font-size:13px}
-        .dossier.compacted .dossier-section{margin-bottom:12px}
-        .dossier.compacted .dossier-line{font-size:14px;padding:5px 0}
-        .dossier.compacted .dossier-line-dot{width:5px;height:5px;margin-top:7px}
+        .dossier.compacted .dossier-brand-name{font-size:18px}
+        .dossier.compacted .dossier-scan-line{font-size:13px;padding:5px 0}
+        .dossier.compacted .dossier-scan-line .scan-icon svg{width:12px;height:12px}
 
         /* ========== INTELLIGENCE DRAWER (sidebar) ========== */
         .intel-drawer-overlay{position:fixed;inset:0;z-index:9500;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .3s}
@@ -792,31 +776,22 @@
         <!-- Legacy cards container (hidden, kept for JS compat) -->
         <div class="build-card-list" id="build-card-list"></div>
 
-        <!-- DOSSIER: intelligence report that fills line by line -->
+        <!-- DOSSIER: scan-style checklist -->
         <div class="dossier" id="dossier">
-            <!-- Brand header (logo + name + industry + meta chips) -->
             <div class="dossier-brand" id="dossier-brand">
                 <img class="dossier-brand-logo" id="dossier-logo" src="" alt="">
                 <div class="dossier-brand-info">
                     <div class="dossier-brand-name" id="dossier-name"></div>
                     <div class="dossier-brand-industry" id="dossier-industry"></div>
-                    <div class="dossier-meta" id="dossier-meta"></div>
                 </div>
             </div>
 
-            <!-- Section 1: Business Intelligence -->
-            <div class="dossier-section" id="dossier-products-section">
-                <div class="dossier-section-label"><span class="ds-dot green"></span> Business Intelligence</div>
-                <div id="dossier-products"></div>
-            </div>
+            <div class="dossier-scan" id="dossier-scan"></div>
 
-            <!-- Section 2: Payment Risk Analysis -->
-            <div class="dossier-section" id="dossier-risks-section">
-                <div class="dossier-section-label"><span class="ds-dot amber"></span> Payment Risk Analysis</div>
-                <div id="dossier-risks"></div>
-            </div>
+            <div id="dossier-meta" style="display:none"></div>
+            <div id="dossier-products-section" style="display:none"><div id="dossier-products"></div></div>
+            <div id="dossier-risks-section" style="display:none"><div id="dossier-risks"></div></div>
 
-            <!-- Tags row (decision makers + see intelligence) -->
             <div class="dossier-tags-row" id="dossier-tags-row"></div>
 
             <!-- Email gate (inline) -->
@@ -2025,7 +2000,21 @@
     }
 
     function updateDemoWithAPIData(data) {
-        // Update dossier risks — replace skeletons with real data
+        // Update name + industry
+        if (data.name) dossierName.textContent = data.name;
+        var cleaned = cleanIndustry(data.industry);
+        if (cleaned) dossierIndustry.textContent = cleaned;
+
+        // Mark all scan spinners as done (API data arrived)
+        var scanEl = document.getElementById('dossier-scan');
+        if (scanEl) {
+            var checkSvg = '<span class="scan-icon done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span>';
+            scanEl.querySelectorAll('.scan-icon.loading').forEach(function(icon) {
+                icon.outerHTML = checkSvg;
+            });
+        }
+
+        // Legacy hidden containers (for intel drawer + voice context)
         var risksEl = document.getElementById('dossier-risks');
         if (risksEl && data.analysis && data.analysis.length > 0) {
             risksEl.innerHTML = '';
@@ -2034,27 +2023,8 @@
                 addDossierLine(risksEl, item, dotColors[i % 3]);
             });
         }
-
-        // Update dossier products — replace skeletons with real intel
         var productsEl = document.getElementById('dossier-products');
-        if (productsEl) {
-            renderProductsSection(productsEl, data);
-        }
-
-        // Update dossier name and industry (replace skeleton)
-        if (data.name) dossierName.textContent = data.name;
-        var cleaned = cleanIndustry(data.industry);
-        if (cleaned) dossierIndustry.textContent = cleaned;
-
-        // Render meta chips (founded, HQ, size, revenue)
-        if (dossierMeta) {
-            renderMetaChips(dossierMeta, {
-                foundedYear: data.foundedYear || null,
-                hqLocation: data.hqLocation || null,
-                employeeSize: data.employeeSize || null,
-                estimatedRevenue: data.estimatedRevenue || null
-            });
-        }
+        if (productsEl) { renderProductsSection(productsEl, data); }
 
         // Update decision makers tag
         var dmTag = document.getElementById('dossier-dm-tag');
@@ -2372,72 +2342,82 @@
                 buildProgressWrapEl.classList.add('visible');
             }, 100);
 
-            // === DOSSIER LINE-BY-LINE FILL (skeleton → real data) ===
+            // === SCAN-STYLE CHECKLIST ===
+            var scanEl = document.getElementById('dossier-scan');
+            var hasHardcoded = !!COMPANY_DATA[domain];
+            var industry = hasHardcoded ? cleanIndustry(data.industry) : null;
 
-            // Step 1: 0→30% — Brand reveal (logo + name, industry skeleton)
-            animateProgressTo(30, 1800, 'Scanning ' + data.name + '...', function() {
+            var checkSvg = '<span class="scan-icon done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span>';
+            var spinSvg = '<span class="scan-icon loading"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></span>';
+
+            function addScanLine(text, done) {
+                var line = document.createElement('div');
+                line.className = 'dossier-scan-line';
+                line.innerHTML = (done ? checkSvg : spinSvg) + '<span class="scan-text">' + text + '</span>';
+                scanEl.appendChild(line);
+                setTimeout(function() { line.classList.add('visible'); }, 30);
+                return line;
+            }
+
+            function markDone(line) {
+                var icon = line.querySelector('.scan-icon');
+                if (icon) { icon.outerHTML = checkSvg; }
+            }
+
+            animateProgressTo(20, 1200, 'Scanning ' + data.name + '...', function() {
                 dossierName.textContent = data.name;
-                // Show industry only if we have it from hardcoded data, otherwise skeleton
-                var hasHardcoded = !!COMPANY_DATA[domain];
-                var hardcodedIndustry = hasHardcoded ? cleanIndustry(data.industry) : null;
-                if (hardcodedIndustry) {
-                    dossierIndustry.textContent = hardcodedIndustry;
-                } else {
-                    dossierIndustry.textContent = '';
-                }
+                if (industry) dossierIndustry.textContent = industry;
                 dossierBrand.classList.add('visible');
 
-                // Step 2: 30→60% — Business Intelligence section (skeletons or real)
                 setTimeout(function() {
-                    animateProgressTo(60, 2000, 'Researching their business...', function() {
-                        dossierProductsSection.classList.add('visible');
-                        if (hasHardcoded) {
-                            // Hardcoded companies: show real data immediately
-                            renderProductsSection(dossierProducts, data);
-                        } else {
-                            // Unknown company: show skeletons (API will replace)
-                            addLoadingLine(dossierProducts, 'Researching products & clients');
-                        }
+                    var line1 = addScanLine('<strong>' + data.name + '</strong>' + (industry ? ' — ' + industry : ''), true);
+                    animateProgressTo(40, 1000, 'Analyzing market...', function() {
 
-                        // Step 3: 60→85% — Payment Risk section (skeletons or real)
                         setTimeout(function() {
-                            animateProgressTo(85, 1800, 'Analyzing payment risks...', function() {
-                                dossierRisksSection.classList.add('visible');
-                                if (hasHardcoded && data.analysis && data.analysis.length > 0) {
-                                    var dotColors = ['amber', 'red', 'green'];
-                                    var riskDelay = 0;
-                                    data.analysis.forEach(function(item, i) {
-                                        setTimeout(function() {
-                                            addDossierLine(dossierRisks, item, dotColors[i % 3]);
-                                        }, riskDelay);
-                                        riskDelay += 400;
-                                    });
-                                } else {
-                                    // Skeletons for risks
-                                    addLoadingLine(dossierRisks, 'Identifying payment risks');
-                                }
+                            var productText = data.flagshipProduct || data.product || 'Products and services';
+                            if (productText.length > 50) productText = productText.substring(0, 47) + '...';
+                            var line2 = addScanLine('Product: <strong>' + productText + '</strong>', hasHardcoded);
+                            animateProgressTo(60, 1000, 'Identifying clients...', function() {
 
-                                trackEvent('cards_shown');
-
-                                // Step 4: 85→100% — Agent ready + tags
                                 setTimeout(function() {
-                                    animateProgressTo(100, 1500, data.name + ' agent ready.', function() {
-                                        buildTitle.textContent = data.name + ' collection agent';
-                                        try { gtag('event', 'demo_ready', { domain: currentDomain, company: data.name }); } catch(e) {}
-                                        trackEvent('demo_ready');
+                                    var clientText = data.clientCount || data.clientSegments || data.clients || '';
+                                    if (clientText.length > 45) clientText = clientText.substring(0, 42) + '...';
+                                    var line3 = clientText ? addScanLine(clientText + ' analyzed', hasHardcoded) : null;
+                                    animateProgressTo(75, 800, 'Payment risks...', function() {
 
-                                        // Show tags (decision makers + full intelligence)
-                                        showDossierTags(data);
-
-                                        // Show demo after short pause
                                         setTimeout(function() {
-                                            compactDossier();
-                                            setTimeout(function() { showDemo(data); }, 600);
-                                        }, 1500);
+                                            var riskCount = (data.analysis && data.analysis.length) || 0;
+                                            var line4 = addScanLine(riskCount > 0 ? riskCount + ' payment risks detected' : 'Analyzing payment risks', riskCount > 0);
+                                            animateProgressTo(90, 800, 'Finding decision makers...', function() {
+
+                                                setTimeout(function() {
+                                                    var dmCount = (data._apiContacts && data._apiContacts.length) || 0;
+                                                    var line5 = addScanLine(dmCount > 0 ? dmCount + ' decision maker' + (dmCount > 1 ? 's' : '') + ' identified' : 'Searching decision makers...', dmCount > 0);
+                                                    animateProgressTo(100, 1000, data.name + ' agent ready.', function() {
+                                                        if (line2 && !hasHardcoded) markDone(line2);
+                                                        if (line3 && !hasHardcoded) markDone(line3);
+                                                        if (!riskCount) markDone(line4);
+                                                        if (!dmCount) markDone(line5);
+
+                                                        buildTitle.textContent = data.name + ' collection agent';
+                                                        try { gtag('event', 'demo_ready', { domain: currentDomain, company: data.name }); } catch(e) {}
+                                                        trackEvent('demo_ready');
+                                                        trackEvent('cards_shown');
+
+                                                        showDossierTags(data);
+
+                                                        setTimeout(function() {
+                                                            compactDossier();
+                                                            setTimeout(function() { showDemo(data); }, 600);
+                                                        }, 1200);
+                                                    });
+                                                }, 300);
+                                            });
+                                        }, 300);
                                     });
-                                }, 600);
+                                }, 300);
                             });
-                        }, 500);
+                        }, 300);
                     });
                 }, 400);
             });
