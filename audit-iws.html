@@ -161,6 +161,44 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 .transcript-word.past{color:rgba(255,255,255,.7)}
 .transcript-moment{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;background:rgba(220,38,38,.15);color:#f87171;border-radius:6px;font-size:11px;font-weight:700;margin:0 4px;vertical-align:baseline;letter-spacing:.02em}
 
+/* JOURNEY SCORECARD */
+.journey-section{padding:80px 32px;background:#0f0f1a;color:#fff;position:relative;overflow:hidden}
+.journey-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(79,70,229,.08),transparent 70%);pointer-events:none}
+.journey-inner{max-width:780px;margin:0 auto;position:relative;z-index:2}
+.journey-inner h2{font-family:var(--display);font-size:clamp(26px,3.5vw,36px);font-weight:900;letter-spacing:-.03em;color:#fff;margin-bottom:8px;text-align:center}
+.journey-sub{text-align:center;font-size:16px;color:rgba(255,255,255,.4);margin-bottom:40px}
+.journey-flow{display:flex;align-items:stretch;gap:0;margin-bottom:40px;position:relative}
+.journey-step{flex:1;padding:20px 16px;text-align:center;position:relative;border-right:1px solid rgba(255,255,255,.06)}
+.journey-step:last-child{border-right:none}
+.journey-step .step-time{font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.3);margin-bottom:8px}
+.journey-step .step-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:18px}
+.journey-step .step-icon.green{background:rgba(16,185,129,.15);color:var(--green)}
+.journey-step .step-icon.red{background:rgba(220,38,38,.15);color:var(--red)}
+.journey-step .step-icon.amber{background:rgba(245,158,11,.15);color:var(--amber)}
+.journey-step .step-label{font-size:13px;font-weight:600;color:rgba(255,255,255,.8);margin-bottom:4px}
+.journey-step .step-detail{font-size:11px;color:rgba(255,255,255,.3);line-height:1.4}
+.journey-arrow{position:absolute;top:50%;transform:translateY(-50%);font-size:16px;color:rgba(255,255,255,.15)}
+.journey-vs{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center;margin-top:32px}
+.journey-score{padding:24px;border-radius:16px;text-align:center}
+.journey-score.bad{background:rgba(220,38,38,.08);border:1px solid rgba(220,38,38,.15)}
+.journey-score.good{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.15)}
+.journey-score .score-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.journey-score.bad .score-label{color:rgba(220,38,38,.6)}
+.journey-score.good .score-label{color:rgba(16,185,129,.6)}
+.journey-score .score-num{font-family:var(--mono);font-size:36px;font-weight:700;line-height:1}
+.journey-score.bad .score-num{color:var(--red)}
+.journey-score.good .score-num{color:var(--green)}
+.journey-score .score-detail{font-size:12px;color:rgba(255,255,255,.35);margin-top:8px;line-height:1.4}
+.journey-vs-divider{font-size:13px;font-weight:700;color:rgba(255,255,255,.15);text-transform:uppercase;letter-spacing:.1em}
+.live-counter{font-family:var(--mono);font-size:14px;color:var(--red);font-weight:600;opacity:0;transition:opacity .3s}
+.live-counter.visible{opacity:1}
+@media(max-width:768px){
+  .journey-flow{flex-direction:column;gap:0}
+  .journey-step{border-right:none;border-bottom:1px solid rgba(255,255,255,.06);padding:16px}
+  .journey-vs{grid-template-columns:1fr;gap:12px}
+  .journey-vs-divider{text-align:center}
+}
+
 /* PULL STAT */
 .pull-stat{font-family:var(--display);font-size:clamp(22px,3vw,32px);font-weight:800;color:var(--text);text-align:center;padding:48px 0;letter-spacing:-.02em;line-height:1.3}
 .pull-stat em{font-style:normal;color:var(--red)}
@@ -364,6 +402,84 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
           <div class="tl-title">Tried online portal</div>
           <div class="tl-duration">All links broken</div>
           <div class="tl-badge red">Domain for sale</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================= -->
+<!-- CUSTOMER JOURNEY SCORECARD              -->
+<!-- ======================================= -->
+<section class="journey-section">
+  <div class="journey-inner">
+    <h2 class="rv">The customer experience.</h2>
+    <div class="journey-sub rv">What happens when an IWS customer calls about their bill.</div>
+
+    <div class="journey-flow rv">
+      <div class="journey-step">
+        <div class="step-time">0:00</div>
+        <div class="step-icon amber">&#128222;</div>
+        <div class="step-label">Call (866) 342-5497</div>
+        <div class="step-detail">IVR plays for 2 minutes.<br>"Use the MyIWS portal."</div>
+      </div>
+      <div class="journey-step">
+        <div class="step-time">2:15</div>
+        <div class="step-icon amber">&#9203;</div>
+        <div class="step-label">Hold</div>
+        <div class="step-detail">Hold music.<br>No estimated wait time.</div>
+      </div>
+      <div class="journey-step">
+        <div class="step-time">3:20</div>
+        <div class="step-icon green">&#128100;</div>
+        <div class="step-label">Human answers</div>
+        <div class="step-detail">Charlene picks up.<br>No identity check.</div>
+      </div>
+      <div class="journey-step">
+        <div class="step-time">4:32</div>
+        <div class="step-icon red">&#128275;</div>
+        <div class="step-label">Data disclosed</div>
+        <div class="step-detail">Balance, email, contacts.<br>$34,818 in AR data.</div>
+      </div>
+      <div class="journey-step">
+        <div class="step-time">15:25</div>
+        <div class="step-icon red">&#10060;</div>
+        <div class="step-label">No payment collected</div>
+        <div class="step-detail">Portal is dead.<br>"Use BuildTrust."</div>
+      </div>
+    </div>
+
+    <div class="journey-vs rv">
+      <div class="journey-score bad">
+        <div class="score-label">Today</div>
+        <div class="score-num">15:25</div>
+        <div class="score-detail">Time on call.<br>0 payments collected.<br>$48K in data leaked.</div>
+      </div>
+      <div class="journey-vs-divider">vs</div>
+      <div class="journey-score good">
+        <div class="score-label">With AgentCollect</div>
+        <div class="score-num">0:30</div>
+        <div class="score-detail">AI answers in 2 seconds.<br>Identity verified. Payment link sent.<br>Collected in 30 seconds.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:40px;text-align:center" class="rv">
+      <div style="display:inline-grid;grid-template-columns:repeat(4,1fr);gap:24px">
+        <div style="text-align:center">
+          <div style="font-family:var(--mono);font-size:28px;font-weight:700;color:var(--red)">0/10</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:4px">Identity<br>Verification</div>
+        </div>
+        <div style="text-align:center">
+          <div style="font-family:var(--mono);font-size:28px;font-weight:700;color:var(--amber)">3/10</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:4px">Empathy &<br>Helpfulness</div>
+        </div>
+        <div style="text-align:center">
+          <div style="font-family:var(--mono);font-size:28px;font-weight:700;color:var(--red)">0/10</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:4px">Dispute<br>Resolution</div>
+        </div>
+        <div style="text-align:center">
+          <div style="font-family:var(--mono);font-size:28px;font-weight:700;color:var(--red)">0/10</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:4px">Payment<br>Collection</div>
         </div>
       </div>
     </div>
