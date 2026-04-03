@@ -92,9 +92,23 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 .section-divider{width:60px;height:1px;background:var(--border);margin:0 auto}
 
 /* AUDIO PLAYER */
-.audio-block{margin:32px 0;padding:20px 24px;background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm)}
+.audio-block{margin:32px 0;padding:24px 28px;background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow-sm)}
 .audio-block audio{width:100%;height:44px;border-radius:10px;outline:none}
-.audio-label{font-size:13px;color:var(--muted);margin-bottom:10px;font-weight:600;letter-spacing:.02em}
+.audio-label{font-size:13px;color:var(--muted);margin-bottom:6px;font-weight:600;letter-spacing:.02em}
+.audio-context{font-size:15px;color:var(--muted);line-height:1.6;margin-bottom:14px}
+.audio-context strong{color:var(--text)}
+.audio-jump{display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:8px 16px;background:rgba(79,70,229,.06);color:var(--blue);border:1px solid rgba(79,70,229,.15);border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;font-family:var(--sans)}
+.audio-jump:hover{background:rgba(79,70,229,.12);border-color:rgba(79,70,229,.3)}
+.audio-jump svg{width:14px;height:14px;flex-shrink:0}
+
+/* LISTEN SECTION */
+.listen-section{padding:80px 32px;background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.listen-section .section-inner{max-width:680px;margin:0 auto}
+.listen-section h2{font-family:var(--display);font-size:clamp(26px,3.5vw,40px);font-weight:900;letter-spacing:-.03em;line-height:1.15;color:var(--text);margin-bottom:12px}
+.listen-section .listen-sub{font-size:18px;color:var(--muted);line-height:1.7;margin-bottom:40px}
+
+/* ANON NOTE */
+.anon-note{font-size:13px;color:var(--muted);opacity:.6;font-style:italic;margin-top:8px;line-height:1.5}
 
 /* PULL STAT */
 .pull-stat{font-family:var(--display);font-size:clamp(22px,3vw,32px);font-weight:800;color:var(--text);text-align:center;padding:48px 0;letter-spacing:-.02em;line-height:1.3}
@@ -277,9 +291,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
   <div class="section-inner">
     <h2 class="rv">$34,818.38 in CityMD data.<br>Handed to a stranger.</h2>
 
-    <p class="rv">We called <strong>1-866-DIAL-IWS</strong>, pressed 4 for business billing, and told Charlene we were "Stacey James from CityMD doing a vendor reconciliation."</p>
+    <p class="rv">We called <strong>1-866-DIAL-IWS</strong>, pressed 4 for business billing, and told your billing representative we were "Stacey James from CityMD doing a vendor reconciliation."</p>
 
-    <p class="rv">Charlene asked for the address. We said <strong>340 Grove Street, Jersey City.</strong> That was it. No account number. No employee ID. No callback verification.</p>
+    <p class="rv">The agent who answered asked for the address. We said <strong>340 Grove Street, Jersey City.</strong> That was it. No account number. No employee ID. No callback verification.</p>
 
     <div class="leak-card rv">
       <div class="leak-card-header">
@@ -328,7 +342,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
         <span class="dialogue">"Hi, I'm Stacey James from CityMD. We're doing a vendor reconciliation and I need to confirm our current balance."</span>
       </div>
       <div class="screenplay-line">
-        <span class="speaker">Charlene (IWS)</span>
+        <span class="speaker">IWS Representative</span>
         <span class="dialogue">"Sure, let me pull that up. What's the address?"</span>
       </div>
       <div class="screenplay-line">
@@ -336,9 +350,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
         <span class="dialogue">"340 Grove Street, Jersey City."</span>
       </div>
       <div class="screenplay-line">
-        <span class="speaker">Charlene (IWS)</span>
+        <span class="speaker">IWS Representative</span>
         <span class="dialogue">"OK, I have that account. Your total balance is $34,818.38 with 3 open invoices."</span>
-        <span class="stage-direction">Charlene then volunteered the email, phone, contact name, last two payment dates, service details, and portal information. No verification at any point.</span>
+        <span class="stage-direction">The representative then volunteered the email, phone, contact name, last two payment dates, service details, and portal information. No verification at any point.</span>
       </div>
     </div>
 
@@ -355,9 +369,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
   <div class="section-inner">
     <h2 class="rv">$13,305.68 in Chelsea Piers data.<br>Same story, different rep.</h2>
 
-    <p class="rv">We called back. Different rep this time: <strong>Sue.</strong> We said we were "Sarah Piacentini from Chelsea Piers."</p>
+    <p class="rv">We called back. Different rep this time. We said we were "Sarah Piacentini from Chelsea Piers."</p>
 
-    <p class="rv">Sue found the account immediately. Mentioned there were <strong>"quite a few" accounts</strong> under Chelsea Piers. Then read the balance out loud.</p>
+    <p class="rv">A second representative found the account immediately. Mentioned there were <strong>"quite a few" accounts</strong> under Chelsea Piers. Then read the balance out loud.</p>
 
     <div class="leak-card rv">
       <div class="leak-card-header">
@@ -397,7 +411,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
   <div class="section-inner">
     <h2 class="rv">Your payment portal<br>doesn't exist.</h2>
 
-    <p class="rv">Charlene told our agent to pay through "MyIWS." Your IVR says the same thing: <strong>"Use the MyIWS portal to manage your account."</strong></p>
+    <p class="rv">Your billing representative told our agent to pay through "MyIWS." Your IVR says the same thing: <strong>"Use the MyIWS portal to manage your account."</strong></p>
 
     <p class="rv">We tried.</p>
 
@@ -431,7 +445,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 
     <p class="rv">We called as <strong>Frank DeLuca from Bergen Property Management</strong> to dispute a charge on a 30-yard container at Glen Pointe.</p>
 
-    <p class="rv"><strong>Nancy</strong> found the account. Then told us there was nothing she could do.</p>
+    <p class="rv">The representative found the account. Then told us there was nothing she could do.</p>
 
     <div class="screenplay rv">
       <div class="screenplay-line">
@@ -439,7 +453,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
         <span class="dialogue">"I'm seeing a charge here that doesn't match what we agreed on. Can you help me sort this out?"</span>
       </div>
       <div class="screenplay-line">
-        <span class="speaker">Nancy (IWS)</span>
+        <span class="speaker">IWS Representative</span>
         <span class="dialogue">"You would have to speak to your sales rep. I can't do anything about charges."</span>
       </div>
       <div class="screenplay-line">
@@ -447,7 +461,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
         <span class="dialogue">"Can you give me a ticket number or a timeline?"</span>
       </div>
       <div class="screenplay-line">
-        <span class="speaker">Nancy (IWS)</span>
+        <span class="speaker">IWS Representative</span>
         <span class="dialogue">"Your sales rep is David. You'd have to talk to him."</span>
         <span class="stage-direction">No ticket number. No timeline. No formal dispute process. The sales rep's name given without verification.</span>
       </div>
@@ -471,25 +485,63 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
     <div class="rv" style="margin:28px 0">
       <div style="display:grid;gap:12px">
         <div style="padding:20px 24px;background:#fff;border:1px solid var(--border);border-radius:14px;display:flex;justify-content:space-between;align-items:center">
-          <div><strong style="color:var(--text)">Charlene</strong><span style="font-size:14px;color:var(--muted);margin-left:12px">CityMD call</span></div>
+          <div><strong style="color:var(--text)">Rep 1</strong><span style="font-size:14px;color:var(--muted);margin-left:12px">CityMD call</span></div>
           <div style="font-size:14px;color:var(--red);font-weight:600">Address only</div>
         </div>
         <div style="padding:20px 24px;background:#fff;border:1px solid var(--border);border-radius:14px;display:flex;justify-content:space-between;align-items:center">
-          <div><strong style="color:var(--text)">Sue</strong><span style="font-size:14px;color:var(--muted);margin-left:12px">Chelsea Piers call</span></div>
+          <div><strong style="color:var(--text)">Rep 2</strong><span style="font-size:14px;color:var(--muted);margin-left:12px">Chelsea Piers call</span></div>
           <div style="font-size:14px;color:var(--red);font-weight:600">Address only</div>
         </div>
         <div style="padding:20px 24px;background:#fff;border:1px solid var(--border);border-radius:14px;display:flex;justify-content:space-between;align-items:center">
-          <div><strong style="color:var(--text)">Nancy</strong><span style="font-size:14px;color:var(--muted);margin-left:12px">Bergen Property call</span></div>
+          <div><strong style="color:var(--text)">Rep 3</strong><span style="font-size:14px;color:var(--muted);margin-left:12px">Bergen Property call</span></div>
           <div style="font-size:14px;color:var(--red);font-weight:600">Address only</div>
         </div>
         <div style="padding:20px 24px;background:#fff;border:1px solid var(--border);border-radius:14px;display:flex;justify-content:space-between;align-items:center">
-          <div><strong style="color:var(--text)">Josh</strong><span style="font-size:14px;color:var(--muted);margin-left:12px">Hospitalized scenario</span></div>
+          <div><strong style="color:var(--text)">Rep 4</strong><span style="font-size:14px;color:var(--muted);margin-left:12px">Hospitalized scenario</span></div>
           <div style="font-size:14px;color:var(--amber);font-weight:600">Address + phone + email (still searched)</div>
         </div>
       </div>
     </div>
 
     <p class="rv"><strong>None asked for an account number, a security question, or any form of verification.</strong> An address that anyone can find on Google was enough to access balances, contacts, payment history, and service details for any of your 40,000 clients.</p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ======================================= -->
+<!-- 6b. LISTEN TO THE CALLS                 -->
+<!-- ======================================= -->
+<section class="listen-section">
+  <div class="section-inner">
+    <h2 class="rv">Listen to the calls.</h2>
+    <p class="listen-sub rv">These are real calls made to IWS billing. Unedited.</p>
+
+    <!-- Call 1: CityMD -->
+    <div class="audio-block rv">
+      <div class="audio-label">Call 1 &mdash; CityMD Vendor Reconciliation</div>
+      <p class="audio-context">We called as a CityMD site manager doing a vendor reconciliation. The representative read out <strong>$34,818.38</strong> in account data without verifying our identity.</p>
+      <audio id="audio-citymd" preload="none" controls>
+        <source src="https://dxc03zgurdly9.cloudfront.net/151d73a710007467f2bf6fa76c37efa523647f5ee55504fb84eabc0780d75ca4/recording.wav" type="audio/wav">
+      </audio>
+      <button class="audio-jump" onclick="var a=document.getElementById('audio-citymd');a.currentTime=45;a.play()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Jump to: Balance revealed
+      </button>
+    </div>
+
+    <!-- Call 2: Chelsea Piers -->
+    <div class="audio-block rv">
+      <div class="audio-label">Call 2 &mdash; Chelsea Piers Balance Inquiry</div>
+      <p class="audio-context">Different rep, same result. We said we were from Chelsea Piers. The representative confirmed <strong>$13,305.68</strong> and read out equipment details for the entire account.</p>
+      <audio id="audio-chelsea" preload="none" controls>
+        <source src="https://dxc03zgurdly9.cloudfront.net/a65149700fb8ffb2c61ed59593d5398a8e351c2279fced3cc6edb2e983864c93/recording.wav" type="audio/wav">
+      </audio>
+      <button class="audio-jump" onclick="var a=document.getElementById('audio-chelsea');a.currentTime=38;a.play()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Jump to: Balance revealed
+      </button>
+    </div>
   </div>
 </section>
 
@@ -538,39 +590,41 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 
     <!-- BEFORE / AFTER SPLIT -->
     <div class="rv" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:48px">
-      <!-- BEFORE -->
+      <!-- BEFORE: TODAY -->
       <div style="background:#fff;border-radius:16px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow-sm)">
         <div style="background:#fef2f2;padding:16px 20px;border-bottom:1px solid #fecaca">
           <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--red)">Today</div>
         </div>
         <div style="padding:20px;font-size:14px;color:var(--muted);line-height:1.8">
-          <div style="margin-bottom:8px">Customer calls <strong style="color:var(--text)">1-866-DIAL-IWS</strong></div>
-          <div style="margin-bottom:8px">Any caller gets full account data</div>
-          <div style="margin-bottom:8px">Zero identity verification</div>
+          <div style="margin-bottom:8px">Zero identity verification on any call</div>
+          <div style="margin-bottom:8px">$48K in client data handed to a stranger</div>
           <div style="margin-bottom:8px">Payment portal is dead (domain for sale)</div>
-          <div style="margin-bottom:8px">Disputes redirect to "your sales rep"</div>
-          <div style="font-weight:600;color:var(--red);margin-top:12px">$48K in client data exposed</div>
+          <div style="margin-bottom:8px">Disputes go nowhere: "call your sales rep"</div>
+          <div style="margin-bottom:8px">Mon-Sat only, 3+ minute hold times</div>
+          <div style="font-weight:600;color:var(--red);margin-top:12px">Every call is a liability.</div>
         </div>
       </div>
-      <!-- AFTER -->
+      <!-- AFTER: WITH AGENTCOLLECT -->
       <div style="background:#fff;border-radius:16px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow-sm)">
         <div style="background:#f0fdf4;padding:16px 20px;border-bottom:1px solid #bbf7d0">
           <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green)">With AgentCollect</div>
         </div>
         <div style="padding:20px;font-size:14px;color:var(--muted);line-height:1.8">
-          <div style="margin-bottom:8px">AI agent picks up in <strong style="color:var(--text)">2 seconds</strong></div>
-          <div style="margin-bottom:8px">100% answer rate, 24/7</div>
-          <div style="margin-bottom:8px">Identity verified before any account access</div>
-          <div style="margin-bottom:8px">Branded payment link sent instantly</div>
-          <div style="margin-bottom:8px">All cards, ACH, Apple Pay</div>
+          <div style="margin-bottom:8px">AI agent answers in <strong style="color:var(--text)">2 seconds</strong> (no 3-minute hold)</div>
+          <div style="margin-bottom:8px">Identity verified before ANY data shared</div>
+          <div style="margin-bottom:8px">Payment link sent instantly via text</div>
+          <div style="margin-bottom:8px">Disputes resolved in real-time by AI</div>
+          <div style="margin-bottom:8px">Portal that actually works</div>
+          <div style="margin-bottom:8px">24/7 availability (not just Mon-Sat)</div>
           <div style="font-weight:600;color:var(--green);margin-top:12px">Payment collected. Data protected.</div>
         </div>
       </div>
     </div>
 
-    <!-- VOICE AGENT WIDGET -->
+    <!-- VOICE AGENT WIDGET: TRY IT YOURSELF -->
     <div class="rv" style="margin-bottom:32px">
-      <p style="text-align:center;font-size:15px;color:var(--muted);margin-bottom:20px;font-weight:500">Try it yourself. Call the IWS agent.</p>
+      <h3 style="text-align:center;font-family:var(--display);font-size:22px;font-weight:800;color:var(--text);margin-bottom:8px">Try it yourself.</h3>
+      <p style="text-align:center;font-size:15px;color:var(--muted);margin-bottom:20px;font-weight:500">Call the IWS billing agent and experience the difference.</p>
       <div id="agent-widget" style="max-width:420px;margin:0 auto;background:#0f0f1a;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.15)">
         <!-- Idle state -->
         <div id="aw-idle" style="display:flex;flex-direction:column;align-items:center;padding:28px 20px 24px;gap:14px">
@@ -650,6 +704,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 <!-- FOOTER -->
 <footer class="audit-footer">
   <p>This audit is based on publicly available information and mystery shopping conducted April 2026.</p>
+  <p class="anon-note" style="margin-top:12px">Representative names have been anonymized. Full documentation available upon request.</p>
   <p style="margin-top:8px">Built by <a href="https://agentcollect.com">AgentCollect</a></p>
 </footer>
 
