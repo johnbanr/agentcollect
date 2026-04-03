@@ -48,26 +48,24 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#0a0a14;--bg-card:#12121f;--bg-card-hover:#16162a;
-  --border:rgba(255,255,255,.06);--border-hover:rgba(255,255,255,.1);
-  --red:#ef4444;--red-dim:rgba(239,68,68,.15);--red-border:rgba(239,68,68,.25);
-  --amber:#f59e0b;--amber-dim:rgba(245,158,11,.12);--amber-border:rgba(245,158,11,.2);
-  --green:#10b981;--green-dim:rgba(16,185,129,.12);--green-border:rgba(16,185,129,.2);
-  --blue:#4F46E5;--blue-dim:rgba(79,70,229,.12);
-  --text:#e8e8f0;--text-muted:rgba(255,255,255,.45);--text-dim:rgba(255,255,255,.25);
+  --bg:#FAFBFF;--bg-card:#ffffff;--bg-card-hover:#ffffff;
+  --border:rgba(0,0,0,.06);--border-hover:rgba(0,0,0,.12);
+  --red:#dc2626;--red-dim:rgba(220,38,38,.06);--red-border:rgba(220,38,38,.15);
+  --amber:#d97706;--amber-dim:rgba(217,119,6,.06);--amber-border:rgba(217,119,6,.12);
+  --green:#059669;--green-dim:rgba(5,150,105,.06);--green-border:rgba(5,150,105,.12);
+  --blue:#4F46E5;--blue-dim:rgba(79,70,229,.06);
+  --text:#0B1B3D;--text-muted:rgba(11,27,61,.5);--text-dim:rgba(11,27,61,.3);
   --mono:'JetBrains Mono',monospace;
   --sans:'Inter','Plus Jakarta Sans',system-ui,sans-serif;
   --display:'Plus Jakarta Sans',system-ui,sans-serif;
 }
 html{scroll-behavior:smooth;overflow-x:hidden}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.6}
-::selection{background:rgba(239,68,68,.2)}
-
-/* Dot grid background */
-body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(rgba(255,255,255,.03) 1px,transparent 1px);background-size:24px 24px;pointer-events:none;z-index:0}
+::selection{background:rgba(79,70,229,.12)}
 
 /* ==================== HEADER BAR ==================== */
-.dash-header{position:sticky;top:0;z-index:100;background:rgba(10,10,20,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 32px}
+.dash-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 32px}
+.dash-accent-line{height:3px;background:linear-gradient(90deg,#4F46E5,#7C3AED,#4F46E5);position:sticky;top:0;z-index:101}
 .dash-header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px;gap:24px}
 .dash-header-left{display:flex;align-items:center;gap:16px}
 .dash-title{font-family:var(--display);font-weight:800;font-size:15px;color:var(--text);letter-spacing:-.02em;white-space:nowrap}
@@ -78,19 +76,19 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 .dash-header-right{display:flex;align-items:center;gap:12px}
 .risk-badge{display:flex;align-items:center;gap:8px;padding:8px 16px;background:var(--red-dim);border:1px solid var(--red-border);border-radius:10px}
 .risk-amount{font-family:var(--mono);font-size:18px;font-weight:700;color:var(--red)}
-.risk-label{font-size:11px;color:rgba(239,68,68,.6);font-weight:600;letter-spacing:.02em}
+.risk-label{font-size:11px;color:rgba(220,38,38,.6);font-weight:600;letter-spacing:.02em}
 .pulse-dot{width:8px;height:8px;border-radius:50%;background:var(--red);animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
 
 /* Subtitle bar */
-.dash-subtitle{background:rgba(255,255,255,.02);border-bottom:1px solid var(--border);padding:10px 32px;text-align:center;font-size:13px;color:var(--text-muted);font-weight:500}
+.dash-subtitle{background:rgba(79,70,229,.03);border-bottom:1px solid var(--border);padding:10px 32px;text-align:center;font-size:13px;color:var(--text-muted);font-weight:500}
 .dash-subtitle strong{color:var(--text);font-weight:600}
 
 /* ==================== FINDING CARDS GRID ==================== */
 .cards-section{max-width:1200px;margin:0 auto;padding:32px 32px 0}
 .cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.finding-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:border-color .2s,background .2s;position:relative}
-.finding-card:hover{border-color:var(--border-hover);background:var(--bg-card-hover)}
+.finding-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:border-color .2s,box-shadow .2s;position:relative;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.finding-card:hover{border-color:var(--border-hover);box-shadow:0 4px 16px rgba(0,0,0,.06)}
 .card-accent{position:absolute;top:0;left:0;bottom:0;width:4px;border-radius:16px 0 0 16px}
 .card-accent.red{background:var(--red)}
 .card-accent.amber{background:var(--amber)}
@@ -100,7 +98,7 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 .card-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
 .card-icon.red{background:var(--red-dim)}
 .card-score{font-family:var(--mono);font-size:28px;font-weight:700;color:var(--red);line-height:1}
-.card-score-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(239,68,68,.5);text-align:right}
+.card-score-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(220,38,38,.6);text-align:right}
 .card-score-wrap{text-align:right}
 .card-category{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin-bottom:4px}
 
@@ -110,19 +108,19 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 .card-detail{font-size:13px;color:var(--text-muted);line-height:1.6;margin-bottom:16px}
 
 /* Mini audio player */
-.mini-player{display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;margin-bottom:14px}
+.mini-player{display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(79,70,229,.03);border:1px solid rgba(79,70,229,.1);border-radius:10px;margin-bottom:14px}
 .mini-play-btn{width:32px;height:32px;border-radius:50%;background:var(--blue);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s}
-.mini-play-btn:hover{background:#5a3fc0;transform:scale(1.08)}
+.mini-play-btn:hover{background:#3730a3;transform:scale(1.08)}
 .mini-play-btn svg{width:12px;height:12px;fill:#fff}
 .mini-progress-wrap{flex:1;display:flex;flex-direction:column;gap:4px}
-.mini-bar{width:100%;height:3px;background:rgba(255,255,255,.08);border-radius:2px;cursor:pointer;position:relative;overflow:hidden}
+.mini-bar{width:100%;height:3px;background:rgba(0,0,0,.06);border-radius:2px;cursor:pointer;position:relative;overflow:hidden}
 .mini-bar-fill{height:100%;background:var(--blue);border-radius:2px;width:0%;transition:width .1s linear}
 .mini-time{font-family:var(--mono);font-size:10px;color:var(--text-dim);display:flex;justify-content:space-between}
 .mini-label{font-size:11px;color:var(--text-dim);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px}
 
 /* Expand/collapse */
 .card-expand-btn{display:flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);color:var(--text-muted);font-size:12px;font-weight:600;padding:6px 12px;border-radius:8px;cursor:pointer;transition:all .15s;font-family:var(--sans)}
-.card-expand-btn:hover{background:rgba(255,255,255,.04);color:var(--text);border-color:var(--border-hover)}
+.card-expand-btn:hover{background:rgba(0,0,0,.02);color:var(--text);border-color:var(--border-hover)}
 .card-expand-btn svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;transition:transform .2s}
 .card-expand-btn.open svg{transform:rotate(180deg)}
 .card-evidence{max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.4,0,.2,1)}
@@ -130,24 +128,24 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 .card-evidence-inner{padding:0 24px 20px 28px}
 
 /* Screenplay mini */
-.mini-screenplay{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:10px;padding:14px 16px;font-size:13px;line-height:1.7}
+.mini-screenplay{background:#f8f9fc;border:1px solid var(--border);border-radius:10px;padding:14px 16px;font-size:13px;line-height:1.7}
 .mini-screenplay .sp-speaker{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-dim);margin-bottom:2px}
-.mini-screenplay .sp-speaker.agent{color:rgba(79,70,229,.6)}
-.mini-screenplay .sp-line{color:rgba(255,255,255,.6);margin-bottom:10px}
+.mini-screenplay .sp-speaker.agent{color:rgba(79,70,229,.7)}
+.mini-screenplay .sp-line{color:rgba(11,27,61,.6);margin-bottom:10px}
 .mini-screenplay .sp-line:last-child{margin-bottom:0}
-.mini-screenplay .sp-note{font-size:11px;color:rgba(239,68,68,.5);font-style:italic;margin-top:2px}
+.mini-screenplay .sp-note{font-size:11px;color:rgba(220,38,38,.7);font-style:italic;margin-top:2px}
 
 /* Portal URLs list */
 .url-list{list-style:none;padding:0}
 .url-list li{display:flex;align-items:center;gap:8px;padding:6px 0;font-size:13px;border-bottom:1px solid var(--border)}
 .url-list li:last-child{border-bottom:none}
-.url-domain{color:rgba(255,255,255,.5);font-family:var(--mono);font-size:12px}
+.url-domain{color:rgba(11,27,61,.5);font-family:var(--mono);font-size:12px}
 .url-result{color:var(--red);font-weight:600;font-size:12px}
 .url-arrow{color:var(--text-dim);font-size:11px}
 
 /* ==================== BOTTOM LINE ==================== */
 .bottom-section{max-width:1200px;margin:0 auto;padding:40px 32px}
-.bottom-card{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;overflow:hidden}
+.bottom-card{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04)}
 .bottom-header{padding:24px 32px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
 .bottom-header h3{font-family:var(--display);font-size:20px;font-weight:800;color:var(--text);letter-spacing:-.02em}
 .bottom-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
@@ -159,7 +157,13 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 .bottom-col-label .dot{width:6px;height:6px;border-radius:50%}
 .bottom-col-label.bad .dot{background:var(--red)}
 .bottom-col-label.good .dot{background:var(--green)}
-.bottom-item{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:rgba(255,255,255,.55);padding:6px 0;line-height:1.5}
+
+/* Today side */
+.bottom-col.today-col{background:#FEF2F2}
+/* AgentCollect side */
+.bottom-col.ac-col{background:#F0FDF4}
+
+.bottom-item{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:rgba(11,27,61,.55);padding:6px 0;line-height:1.5}
 .bottom-item .bi-icon{font-size:14px;flex-shrink:0;margin-top:2px}
 .bottom-item strong{color:var(--text);font-weight:600}
 
@@ -169,7 +173,7 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 .widget-label{font-size:13px;color:var(--text-muted);font-weight:500;text-align:center}
 
 /* Payment mockup */
-.pm{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.3);max-width:340px;width:100%;margin:0 auto}
+.pm{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.1);max-width:340px;width:100%;margin:0 auto;border:1px solid rgba(0,0,0,.06)}
 .pm-header{background:linear-gradient(135deg,#1a3a2a,#0f2a1c);padding:20px;text-align:center}
 .pm-brand{font-family:var(--display);font-weight:800;font-size:15px;color:#fff;letter-spacing:-.02em}
 .pm-sub{font-size:12px;color:rgba(255,255,255,.5);margin-top:2px}
@@ -186,7 +190,7 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 .cta-section{text-align:center;padding:60px 32px 40px}
 .cta-section h2{font-family:var(--display);font-size:clamp(22px,3vw,32px);font-weight:900;color:var(--text);letter-spacing:-.03em;margin-bottom:24px}
 .cta-btn{display:inline-flex;align-items:center;gap:10px;padding:16px 32px;background:var(--blue);color:#fff;text-decoration:none;border-radius:14px;font-size:16px;font-weight:700;font-family:var(--display);transition:all .2s;letter-spacing:-.01em}
-.cta-btn:hover{background:#5a3fc0;transform:translateY(-1px);box-shadow:0 8px 24px rgba(79,70,229,.3)}
+.cta-btn:hover{background:#3730a3;transform:translateY(-1px);box-shadow:0 8px 24px rgba(79,70,229,.2)}
 .cta-btn svg{width:18px;height:18px}
 .cta-brand{margin-top:24px}
 .cta-brand a{font-family:var(--display);font-weight:900;font-size:15px;color:var(--text-muted);text-decoration:none;letter-spacing:-.03em;transition:color .2s}
@@ -225,6 +229,9 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 </head>
 <body>
 
+<!-- ==================== INDIGO ACCENT LINE ==================== -->
+<div class="dash-accent-line"></div>
+
 <!-- ==================== STICKY HEADER ==================== -->
 <header class="dash-header">
   <div class="dash-header-inner">
@@ -233,7 +240,7 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
     </div>
     <div class="dash-header-center">
       <div style="text-align:center">
-        <div class="score-badge">2.1<span style="font-size:16px;color:rgba(239,68,68,.5)">/10</span></div>
+        <div class="score-badge">2.1<span style="font-size:16px;color:rgba(220,38,38,.45)">/10</span></div>
         <div class="score-label">Overall Score</div>
       </div>
     </div>
@@ -479,14 +486,14 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
     <div class="bottom-header">
       <h3>The Bottom Line</h3>
       <div style="margin-left:auto;display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--red-dim);border:1px solid var(--red-border);border-radius:8px">
-        <span style="font-size:12px;color:rgba(239,68,68,.6)">Since you opened this page:</span>
+        <span style="font-size:12px;color:rgba(220,38,38,.6)">Since you opened this page:</span>
         <span id="liveCounter" style="font-family:var(--mono);font-size:16px;font-weight:700;color:var(--red)">$0</span>
-        <span style="font-size:12px;color:rgba(239,68,68,.6)">lost</span>
+        <span style="font-size:12px;color:rgba(220,38,38,.6)">lost</span>
       </div>
     </div>
     <div class="bottom-grid">
       <!-- TODAY -->
-      <div class="bottom-col">
+      <div class="bottom-col today-col">
         <div class="bottom-col-label bad"><div class="dot"></div>Today at IWS</div>
         <div class="bottom-item"><span class="bi-icon">&#x1F6AB;</span>Portal broken &mdash; domain for sale</div>
         <div class="bottom-item"><span class="bi-icon">&#x23F3;</span><strong>3 min hold</strong> before a human answers</div>
@@ -496,7 +503,7 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
         <div class="bottom-item"><span class="bi-icon">&#x1F4B0;</span>Customer hangs up. <strong style="color:var(--red)">$0 collected.</strong></div>
       </div>
       <!-- WITH AGENTCOLLECT -->
-      <div class="bottom-col">
+      <div class="bottom-col ac-col">
         <div class="bottom-col-label good"><div class="dot"></div>With AgentCollect</div>
         <div class="bottom-item"><span class="bi-icon">&#x26A1;</span>AI picks up in <strong>2 seconds</strong></div>
         <div class="bottom-item"><span class="bi-icon">&#x1F512;</span>Identity verified before any data shared</div>
@@ -512,7 +519,7 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
       <!-- Voice Agent Widget -->
       <div class="widget-center">
         <div class="widget-label">Try it. Call the IWS collection agent.</div>
-        <div id="agent-widget" style="max-width:380px;width:100%;background:#0f0f1a;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.06)">
+        <div id="agent-widget" style="max-width:380px;width:100%;background:#0f0f1a;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.15);border:1px solid rgba(0,0,0,.08)">
           <div id="aw-idle" style="display:flex;flex-direction:column;align-items:center;padding:24px 20px 20px;gap:12px">
             <div id="aw-orb" style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#4F46E5,#7C3AED);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;box-shadow:0 0 32px rgba(79,70,229,.4)" onclick="startAuditCall()">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
