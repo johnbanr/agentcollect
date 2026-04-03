@@ -14,14 +14,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GRZZT9K05B"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-GRZZT9K05B',{page_title:'audit-iws'});</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-GRZZT9K05B',{page_title:'audit-iws-v-c'});</script>
 <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","vr6uvxdalw");</script>
 <script>
 (function(){
   var sent=false;
   function notify(sid){
     if(sent)return;sent=true;
-    var body={page:'audit-iws',clarity_project_id:'vr6uvxdalw',referrer:document.referrer||'direct'};
+    var body={page:'audit-iws-v-c',clarity_project_id:'vr6uvxdalw',referrer:document.referrer||'direct'};
     if(sid)body.clarity_session_id=sid;
     fetch('https://backend.widr.app/api/v1/demo/page-visit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}).catch(function(){});
   }
@@ -71,15 +71,54 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 .nav-logo .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--blue);margin-left:1px;vertical-align:baseline}
 .nav-meta{font-size:13px;color:var(--muted);font-weight:500}
 
-/* HERO */
-.hero{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 32px 80px;position:relative;overflow:hidden;background:linear-gradient(160deg,#FAFBFF 0%,#f0eeff 40%,#eef0ff 60%,#FAFBFF 100%)}
+/* HERO — COMPACT (Version C: Executive Summary) */
+.hero{min-height:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 32px 60px;position:relative;overflow:hidden;background:linear-gradient(160deg,#FAFBFF 0%,#f0eeff 40%,#eef0ff 60%,#FAFBFF 100%)}
 .hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(79,70,229,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(79,70,229,.015) 1px,transparent 1px);background-size:80px 80px;pointer-events:none}
-.hero h1{font-family:var(--display);font-size:clamp(36px,5.5vw,64px);font-weight:900;letter-spacing:-.04em;line-height:1.08;color:var(--text);margin-bottom:20px;max-width:900px}
-.hero-subtitle{font-size:clamp(18px,2.5vw,26px);font-weight:400;color:var(--muted);margin-bottom:48px;letter-spacing:-.01em}
+.hero h1{font-family:var(--display);font-size:clamp(32px,4.5vw,52px);font-weight:900;letter-spacing:-.04em;line-height:1.08;color:var(--text);margin-bottom:16px;max-width:860px}
+.hero-subtitle{font-size:clamp(16px,2vw,22px);font-weight:400;color:var(--muted);margin-bottom:32px;letter-spacing:-.01em}
 .hero-byline{font-size:14px;color:var(--muted);font-weight:500;letter-spacing:.06em;text-transform:uppercase;opacity:.5}
+
+/* EXECUTIVE DASHBOARD */
+.exec-dashboard{display:flex;align-items:center;gap:32px;max-width:860px;margin:0 auto 28px;background:#fff;border:1px solid var(--border);border-radius:20px;padding:28px 36px;box-shadow:var(--shadow)}
+.exec-score{text-align:center;flex-shrink:0;padding-right:32px;border-right:1px solid var(--border)}
+.exec-score .big-score{font-family:var(--display);font-size:56px;font-weight:900;color:var(--red);line-height:1;letter-spacing:-.03em}
+.exec-score .score-label{font-size:12px;color:var(--muted);font-weight:600;margin-top:6px;text-transform:uppercase;letter-spacing:.04em}
+.exec-metrics{display:flex;gap:32px;flex:1;justify-content:center}
+.exec-metric{text-align:center}
+.exec-metric .metric-num{font-family:var(--display);font-size:clamp(22px,3vw,32px);font-weight:900;color:var(--text);letter-spacing:-.02em;line-height:1.1}
+.exec-metric .metric-num.red{color:var(--red)}
+.exec-metric .metric-label{font-size:12px;color:var(--muted);margin-top:4px;font-weight:500}
+.exec-cta-wrap{flex-shrink:0;padding-left:32px;border-left:1px solid var(--border)}
+.exec-cta{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--blue);color:#fff;border-radius:12px;font-weight:700;font-size:15px;text-decoration:none;transition:transform .2s,box-shadow .2s;font-family:var(--sans);letter-spacing:-.01em;box-shadow:0 4px 16px rgba(79,70,229,.2);white-space:nowrap}
+.exec-cta:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(79,70,229,.3)}
+
+/* Score pills row */
+.score-pills{display:flex;gap:12px;justify-content:center;max-width:520px;margin:0 auto}
+.score-pill{display:flex;align-items:center;gap:6px;padding:8px 16px;background:#fff;border:1px solid var(--border);border-radius:10px;font-size:13px;font-weight:600;color:var(--muted);box-shadow:var(--shadow-sm)}
+.score-pill .pill-score{font-family:var(--mono);font-weight:700}
+.score-pill .pill-score.red{color:var(--red)}
+.score-pill .pill-score.amber{color:var(--amber)}
+
+/* FULL REPORT DIVIDER */
+.report-divider{max-width:680px;margin:0 auto;padding:60px 32px 40px;display:flex;align-items:center;gap:20px}
+.report-divider::before,.report-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.report-divider-text{font-family:var(--display);font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);opacity:.5;white-space:nowrap}
+
 .scroll-hint{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--muted);opacity:.3;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;animation:scrollBounce 2s ease-in-out infinite}
 .scroll-hint svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2}
 @keyframes scrollBounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+@media(max-width:768px){
+  .exec-dashboard{flex-direction:column;gap:20px;padding:24px 20px}
+  .exec-score{border-right:none;padding-right:0;padding-bottom:16px;border-bottom:1px solid var(--border)}
+  .exec-metrics{gap:20px}
+  .exec-cta-wrap{border-left:none;padding-left:0;padding-top:16px;border-top:1px solid var(--border)}
+  .score-pills{flex-wrap:wrap;gap:8px}
+}
+@media(max-width:480px){
+  .exec-metrics{flex-wrap:wrap;gap:16px}
+  .exec-metric{flex:1;min-width:80px}
+}
 
 /* SUMMARY CARDS */
 .summary-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:780px;margin:0 auto}
@@ -299,8 +338,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
   .confetti-section{padding:72px 24px}
   .impact-section{padding:72px 24px}
   .cta{padding:60px 24px}
-  .hero{padding:100px 24px 60px}
-  .summary-cards{grid-template-columns:1fr;gap:12px;max-width:360px}
+  .hero{padding:100px 24px 48px}
   .timeline{flex-direction:column;gap:20px;padding-top:0}
   .timeline::before{display:none}
   .tl-node{text-align:left;display:flex;align-items:flex-start;gap:12px;padding:0}
@@ -316,7 +354,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
   .scores-grid{grid-template-columns:repeat(2,1fr) !important;gap:16px !important}
 }
 @media(max-width:480px){
-  .hero h1{font-size:30px}
+  .hero h1{font-size:28px}
   .pull-stat{font-size:20px;padding:32px 0}
   .transcript-container{max-height:240px}
 }
@@ -333,34 +371,52 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 </nav>
 
 <!-- ======================================= -->
-<!-- SCREEN 1: THE HOOK                      -->
+<!-- SCREEN 1: EXECUTIVE SUMMARY (Version C) -->
 <!-- ======================================= -->
 <section class="hero">
   <h1 class="rv">Your customers are calling about their bills. Nobody's collecting.</h1>
   <div class="hero-subtitle rv rv-d1">We called Interstate Waste Services as a customer. We tried to pay. Here's what happened instead.</div>
-  <div class="summary-cards rv rv-d2">
-    <div class="summary-card">
-      <div class="sc-num red">$48,124</div>
-      <div class="sc-label">in AR data disclosed</div>
-      <div class="sc-sub">to a stranger on the phone</div>
+
+  <!-- COMPACT EXECUTIVE DASHBOARD -->
+  <div class="exec-dashboard rv rv-d2">
+    <div class="exec-score">
+      <div class="big-score">2.1<span style="font-size:28px;color:var(--muted);font-weight:600">/10</span></div>
+      <div class="score-label">Overall AR Collection Score</div>
     </div>
-    <div class="summary-card">
-      <div class="sc-num red">0</div>
-      <div class="sc-label">payments collected</div>
-      <div class="sc-sub">across every call we made</div>
+    <div class="exec-metrics">
+      <div class="exec-metric">
+        <div class="metric-num red">$48,124</div>
+        <div class="metric-label">disclosed to strangers</div>
+      </div>
+      <div class="exec-metric">
+        <div class="metric-num red">$0</div>
+        <div class="metric-label">collected</div>
+      </div>
+      <div class="exec-metric">
+        <div class="metric-num red">$4.8M+</div>
+        <div class="metric-label">at risk annually</div>
+      </div>
     </div>
-    <div class="summary-card">
-      <div class="sc-num red">0</div>
-      <div class="sc-label">ways to pay online</div>
-      <div class="sc-sub">every portal link is broken</div>
+    <div class="exec-cta-wrap">
+      <a href="#full-report" class="exec-cta">See the evidence <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></a>
     </div>
   </div>
-  <div class="hero-byline rv rv-d3" style="margin-top:32px">April 2026 &mdash; AR Collection Audit by AgentCollect</div>
-  <div class="scroll-hint">
-    <span>Scroll</span>
-    <svg viewBox="0 0 24 24"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+
+  <!-- SCORE PILLS -->
+  <div class="score-pills rv rv-d3">
+    <div class="score-pill"><span class="pill-score red">0/10</span> Identity</div>
+    <div class="score-pill"><span class="pill-score amber">3/10</span> Empathy</div>
+    <div class="score-pill"><span class="pill-score red">0/10</span> Dispute</div>
+    <div class="score-pill"><span class="pill-score red">0/10</span> Payment</div>
   </div>
+
+  <div class="hero-byline rv rv-d3" style="margin-top:28px">April 2026 &mdash; AR Collection Audit by AgentCollect</div>
 </section>
+
+<!-- FULL REPORT DIVIDER -->
+<div class="report-divider" id="full-report">
+  <span class="report-divider-text">Full Audit Report</span>
+</div>
 
 <!-- ======================================= -->
 <!-- SCREEN 2: THE CUSTOMER'S JOURNEY        -->
@@ -738,7 +794,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 <section class="cta" id="cta">
   <div class="rv">
     <h2>15 minutes to show you the full picture.</h2>
-    <a href="mailto:j@agentcollect.com?subject=IWS AR Audit" class="cta-btn" onclick="try{gtag('event','cta_email',{page:'audit-iws'})}catch(e){}">
+    <a href="mailto:j@agentcollect.com?subject=IWS AR Audit" class="cta-btn" onclick="try{gtag('event','cta_email',{page:'audit-iws-v-c'})}catch(e){}">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       j@agentcollect.com
     </a>
@@ -854,7 +910,7 @@ function togglePlayer(){
   } else {
     audioEl.play();
     isPlaying = true;
-    try{gtag('event','play_synced_audio',{page:'audit-iws'})}catch(e){}
+    try{gtag('event','play_synced_audio',{page:'audit-iws-v-c'})}catch(e){}
   }
   updatePlayState();
 }
@@ -880,7 +936,7 @@ function jumpTo(seconds){
   if(!audioEl) initPlayer();
   audioEl.currentTime = seconds;
   if(!isPlaying){ audioEl.play(); isPlaying = true; updatePlayState(); }
-  try{gtag('event','jump_moment',{page:'audit-iws',time:seconds})}catch(e){}
+  try{gtag('event','jump_moment',{page:'audit-iws-v-c',time:seconds})}catch(e){}
 }
 
 function highlightWords(currentTime){
@@ -978,7 +1034,7 @@ async function startAuditCall() {
       document.getElementById('aw-connecting').style.display = 'none';
       document.getElementById('aw-active').style.display = 'flex';
       document.getElementById('aw-status').textContent = 'Your turn \u2014 speak now';
-      try{gtag('event','audit_call_started',{page:'audit-iws'})}catch(e){}
+      try{gtag('event','audit_call_started',{page:'audit-iws-v-c'})}catch(e){}
     });
     awRetellClient.on('call_ended', function() { endAuditCall(); });
     awRetellClient.on('agent_start_talking', function() {
