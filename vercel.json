@@ -1673,6 +1673,10 @@
       "destination": "/blog/collection-software-oracle.html"
     },
     {
+      "source": "/blog/when-people-pay-debt",
+      "destination": "/blog/when-people-pay-debt.html"
+    },
+    {
       "source": "/fr",
       "destination": "/index-fr.html"
     }
