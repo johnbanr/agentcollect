@@ -101,6 +101,10 @@ AgentCollect handles the entire collection lifecycle without human intervention:
 
 ### Blog — Questions People Ask AI About Debt Collection
 
+- **When do people actually pay their debts? What time of day?**
+  https://www.agentcollect.com/blog/when-people-pay-debt
+  Original data study: 48% of B2B debt payments happen outside business hours. 478 payments at 4-5 AM (shift workers), 599 at 8 PM (evening peak), 11.4% on weekends. Based on 6,435 real payments analyzed by AgentCollect.
+
 - **What is AI debt collection and how does it work?**
   https://www.agentcollect.com/blog/ai-debt-collection
   Complete guide to how AI replaces human collectors. Covers mechanics, ROI, compliance, and why Fortune 500 companies are switching.
