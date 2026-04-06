@@ -83,6 +83,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 
 /* SUMMARY CARDS */
 .summary-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:780px;margin:0 auto}
+.summary-cards-4{grid-template-columns:repeat(4,1fr);max-width:920px}
 .summary-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:28px 20px;text-align:center;box-shadow:var(--shadow-sm);transition:transform .2s}
 .summary-card:hover{transform:translateY(-2px)}
 .summary-card .sc-num{font-family:var(--display);font-size:clamp(28px,4vw,42px);font-weight:900;letter-spacing:-.03em;line-height:1}
@@ -250,7 +251,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
   .impact-section{padding:72px 24px}
   .cta{padding:60px 24px}
   .hero{padding:100px 24px 60px}
-  .summary-cards{grid-template-columns:1fr;gap:12px;max-width:360px}
+  .summary-cards,.summary-cards-4{grid-template-columns:1fr;gap:12px;max-width:360px}
   .email-msg{padding:18px 20px}
   .payment-mockup{margin-left:auto;margin-right:auto;max-width:360px}
 }
@@ -279,7 +280,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font
 <section class="hero">
   <h1 class="rv">Salesforce has no billing phone line.</h1>
   <div class="hero-subtitle rv rv-d1">30+ calls. 1.5 stars. Their own sales team knows.</div>
-  <div class="summary-cards rv rv-d2" style="grid-template-columns:repeat(4,1fr);max-width:920px">
+  <div class="summary-cards summary-cards-4 rv rv-d2">
     <div class="summary-card">
       <div class="sc-num red">30+</div>
       <div class="sc-label">billing calls</div>
