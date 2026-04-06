@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>IWS AR Collection Audit — Le Narratif | AgentCollect</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --blue:#4F46E5;
+  --text:#0B1B3D;
+  --muted:#6B7280;
+  --border:#E5E7EB;
+  --red:#DC2626;
+  --amber:#F59E0B;
+  --display:'Plus Jakarta Sans',system-ui,sans-serif;
+  --sans:'Inter','Plus Jakarta Sans',system-ui,sans-serif;
+}
+
+html{overflow-x:hidden}
+body{
+  background:#FFFFFF;
+  color:var(--text);
+  font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  font-size:16px;
+  line-height:1.5;
+}
+
+/* SLIDE SYSTEM */
+.slide{
+  width:100vw;
+  height:100vh;
+  overflow:hidden;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  padding:56px 72px;
+  background:#FFFFFF;
+}
+
+/* PRINT */
+@media print{
+  .slide{
+    page-break-after:always;
+    width:100vw;
+    height:100vh;
+  }
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
+/* =========================================
+   SLIDE 1: COVER
+   ========================================= */
+.slide-cover{
+  justify-content:center;
+  padding:72px 88px;
+}
+.cover-confidential{
+  position:absolute;
+  top:48px;
+  right:88px;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--muted);
+  opacity:.6;
+}
+.cover-company{
+  font-family:var(--display);
+  font-size:54px;
+  font-weight:900;
+  letter-spacing:-.04em;
+  line-height:1.05;
+  color:var(--text);
+  margin-bottom:20px;
+}
+.cover-subtitle{
+  font-size:20px;
+  font-weight:400;
+  color:var(--muted);
+  letter-spacing:-.01em;
+  margin-bottom:6px;
+}
+.cover-date{
+  font-size:15px;
+  color:var(--muted);
+  opacity:.7;
+}
+.cover-divider{
+  width:64px;
+  height:3px;
+  background:var(--red);
+  margin:32px 0;
+  border-radius:2px;
+}
+.cover-bottom{
+  position:absolute;
+  bottom:48px;
+  left:88px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.cover-logo{
+  font-family:var(--display);
+  font-weight:900;
+  font-size:16px;
+  color:var(--text);
+  letter-spacing:-.03em;
+  display:inline-flex;
+  align-items:baseline;
+}
+.cover-logo .dot{
+  display:inline-block;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--blue);
+  margin-left:1px;
+}
+.cover-contact{
+  font-size:12px;
+  color:var(--muted);
+  padding-left:12px;
+  border-left:1px solid var(--border);
+}
+
+/* =========================================
+   SLIDE 2: YOUR CUSTOMER CALLS
+   ========================================= */
+.slide-calls{
+  padding:52px 72px 48px;
+}
+.slide-title{
+  font-family:var(--display);
+  font-size:36px;
+  font-weight:900;
+  letter-spacing:-.035em;
+  line-height:1.1;
+  color:var(--text);
+  margin-bottom:6px;
+}
+.slide-subtitle{
+  font-size:16px;
+  color:var(--muted);
+  font-weight:400;
+  margin-bottom:36px;
+}
+
+/* Timeline */
+.timeline{
+  display:flex;
+  align-items:center;
+  gap:0;
+  margin-bottom:40px;
+  padding:0 16px;
+}
+.timeline-node{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  position:relative;
+  z-index:2;
+}
+.timeline-circle{
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:11px;
+  font-weight:700;
+  color:#fff;
+}
+.timeline-circle.red{background:var(--red)}
+.timeline-circle.amber{background:var(--amber)}
+.timeline-label{
+  font-size:10px;
+  color:var(--muted);
+  margin-top:6px;
+  text-align:center;
+  max-width:90px;
+  line-height:1.25;
+  font-weight:500;
+}
+.timeline-label.red-text{color:var(--red);font-weight:600}
+.timeline-label.amber-text{color:#B45309;font-weight:600}
+.timeline-line{
+  flex:1;
+  height:2px;
+  background:var(--border);
+  position:relative;
+  min-width:40px;
+}
+.timeline-line.red-line{background:rgba(220,38,38,.25)}
+.timeline-line.amber-line{background:rgba(245,158,11,.35)}
+
+/* Stat cards row */
+.stat-row{
+  display:flex;
+  gap:24px;
+  margin-bottom:32px;
+}
+.stat-card{
+  flex:1;
+  background:#FAFBFC;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:24px 28px;
+  text-align:center;
+}
+.stat-card-num{
+  font-family:var(--display);
+  font-size:36px;
+  font-weight:900;
+  letter-spacing:-.03em;
+  line-height:1;
+  margin-bottom:6px;
+}
+.stat-card-num.red{color:var(--red)}
+.stat-card-label{
+  font-size:13px;
+  font-weight:600;
+  color:var(--text);
+}
+.stat-card-sub{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:2px;
+}
+
+/* Score badge */
+.score-row{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  gap:12px;
+}
+.score-badge{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:#FEF2F2;
+  border:1px solid rgba(220,38,38,.15);
+  border-radius:10px;
+  padding:10px 20px;
+}
+.score-num{
+  font-family:var(--display);
+  font-size:32px;
+  font-weight:900;
+  color:var(--red);
+  letter-spacing:-.03em;
+  line-height:1;
+}
+.score-label{
+  font-size:11px;
+  color:var(--red);
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  line-height:1.3;
+}
+.score-bar{
+  width:120px;
+  height:6px;
+  background:#E5E7EB;
+  border-radius:3px;
+  overflow:hidden;
+}
+.score-bar-fill{
+  height:100%;
+  width:21%;
+  background:var(--red);
+  border-radius:3px;
+}
+
+/* =========================================
+   SLIDE 3: THE ONE THAT CONNECTED
+   ========================================= */
+.slide-connected{
+  padding:48px 72px 44px;
+}
+.connected-grid{
+  display:grid;
+  grid-template-columns:1.5fr 1fr;
+  gap:28px;
+  margin-bottom:20px;
+}
+
+/* Data card */
+.data-card{
+  background:#FAFBFC;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:28px 32px;
+  position:relative;
+}
+.data-card-tag{
+  position:absolute;
+  top:-1px;
+  left:24px;
+  background:var(--red);
+  color:#fff;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  padding:4px 12px;
+  border-radius:0 0 6px 6px;
+}
+.data-card-title{
+  font-family:var(--display);
+  font-size:15px;
+  font-weight:800;
+  color:var(--text);
+  margin-bottom:16px;
+  margin-top:8px;
+  letter-spacing:-.02em;
+}
+.data-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  padding:7px 0;
+  border-bottom:1px solid rgba(0,0,0,.04);
+}
+.data-row:last-child{border-bottom:none}
+.data-row-label{
+  font-size:12px;
+  color:var(--muted);
+  font-weight:500;
+}
+.data-row-value{
+  font-size:13px;
+  font-weight:600;
+  color:var(--text);
+  text-align:right;
+}
+.data-row-value.red{color:var(--red);font-size:18px;font-weight:800}
+.data-row-value.mono{font-family:'JetBrains Mono',monospace;font-size:12px}
+
+/* Secondary card */
+.secondary-card{
+  background:#FAFBFC;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:28px 28px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.secondary-card-title{
+  font-family:var(--display);
+  font-size:18px;
+  font-weight:800;
+  color:var(--text);
+  letter-spacing:-.02em;
+  margin-bottom:4px;
+}
+.secondary-card-sub{
+  font-size:14px;
+  color:var(--muted);
+  margin-bottom:16px;
+  line-height:1.5;
+}
+.secondary-card-detail{
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.7;
+  margin-bottom:16px;
+}
+.secondary-card-amount{
+  font-family:var(--display);
+  font-size:24px;
+  font-weight:900;
+  color:var(--red);
+  letter-spacing:-.02em;
+}
+.secondary-card-note{
+  font-size:11px;
+  color:var(--muted);
+  margin-top:4px;
+}
+
+/* Bottom total bar */
+.total-bar{
+  background:#FEF2F2;
+  border:1px solid rgba(220,38,38,.12);
+  border-radius:12px;
+  padding:14px 28px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.total-bar-text{
+  font-size:14px;
+  font-weight:600;
+  color:var(--text);
+}
+.total-bar-amount{
+  font-family:var(--display);
+  font-size:22px;
+  font-weight:900;
+  color:var(--red);
+  letter-spacing:-.02em;
+}
+.total-bar-collected{
+  font-size:13px;
+  color:var(--muted);
+  font-weight:500;
+}
+.listen-link{
+  font-size:12px;
+  color:var(--blue);
+  text-decoration:none;
+  font-weight:600;
+  margin-top:12px;
+  display:inline-block;
+}
+.listen-link:hover{text-decoration:underline}
+
+/* =========================================
+   SLIDE 4: EVERYTHING ELSE IS BROKEN
+   ========================================= */
+.slide-broken{
+  padding:48px 72px 44px;
+}
+.story-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+  margin-bottom:32px;
+}
+.story-card{
+  background:#FFFFFF;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:0;
+  overflow:hidden;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+}
+.story-card-accent{
+  width:4px;
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  background:var(--red);
+  border-radius:14px 0 0 14px;
+}
+.story-card-inner{
+  padding:28px 28px 24px 32px;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+}
+.story-card-icon{
+  width:36px;
+  height:36px;
+  border-radius:10px;
+  background:#FEF2F2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:16px;
+  flex-shrink:0;
+}
+.story-card-icon svg{
+  width:18px;
+  height:18px;
+  color:var(--red);
+  stroke:currentColor;
+  fill:none;
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.story-card-name{
+  font-family:var(--display);
+  font-size:15px;
+  font-weight:800;
+  color:var(--text);
+  letter-spacing:-.02em;
+  margin-bottom:14px;
+}
+.story-line{
+  font-size:13px;
+  line-height:1.6;
+  color:var(--muted);
+  margin-bottom:8px;
+  padding-left:0;
+}
+.story-line em{
+  font-style:normal;
+  color:var(--text);
+  font-weight:600;
+}
+.story-line-arrow{
+  color:var(--muted);
+  font-size:11px;
+  margin:2px 0 6px;
+  opacity:.5;
+}
+.story-quote{
+  font-size:13px;
+  color:var(--red);
+  font-weight:600;
+  font-style:italic;
+  margin-top:auto;
+  padding-top:8px;
+}
+
+/* AR risk bar */
+.risk-bar{
+  text-align:center;
+  padding:18px 0 0;
+}
+.risk-bar-text{
+  font-family:var(--display);
+  font-size:24px;
+  font-weight:900;
+  color:var(--text);
+  letter-spacing:-.02em;
+}
+.risk-bar-text span{color:var(--red)}
+.risk-bar-sub{
+  font-size:13px;
+  color:var(--muted);
+  margin-top:4px;
+}
+
+/* =========================================
+   SLIDE 5: CTA
+   ========================================= */
+.slide-cta{
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:72px 88px;
+}
+.cta-title{
+  font-family:var(--display);
+  font-size:32px;
+  font-weight:900;
+  letter-spacing:-.035em;
+  color:var(--text);
+  margin-bottom:16px;
+}
+.cta-link{
+  font-size:20px;
+  font-weight:700;
+  color:var(--blue);
+  text-decoration:none;
+  margin-bottom:8px;
+  display:inline-block;
+}
+.cta-link:hover{text-decoration:underline}
+.cta-detail{
+  font-size:15px;
+  color:var(--muted);
+  margin-bottom:36px;
+  line-height:1.6;
+}
+.cta-divider{
+  width:48px;
+  height:2px;
+  background:var(--border);
+  margin:0 auto 36px;
+  border-radius:1px;
+}
+.cta-meeting{
+  font-size:17px;
+  font-weight:600;
+  color:var(--text);
+  margin-bottom:32px;
+}
+.cta-contact{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+}
+.cta-name{
+  font-family:var(--display);
+  font-size:17px;
+  font-weight:800;
+  color:var(--text);
+  letter-spacing:-.02em;
+}
+.cta-role{
+  font-size:13px;
+  color:var(--muted);
+  font-weight:500;
+}
+.cta-info{
+  font-size:13px;
+  color:var(--muted);
+  margin-top:4px;
+}
+.cta-info a{
+  color:var(--blue);
+  text-decoration:none;
+  font-weight:600;
+}
+
+/* Footer on every slide */
+.slide-footer{
+  position:absolute;
+  bottom:28px;
+  left:72px;
+  right:72px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:10px;
+  color:var(--muted);
+  opacity:.45;
+}
+.slide-footer-logo{
+  font-family:var(--display);
+  font-weight:900;
+  font-size:11px;
+  color:var(--text);
+  opacity:.35;
+  display:inline-flex;
+  align-items:baseline;
+  letter-spacing:-.02em;
+}
+.slide-footer-logo .dot{
+  display:inline-block;
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  background:var(--blue);
+  margin-left:1px;
+}
+</style>
+</head>
+<body>
+
+<!-- =======================================
+     SLIDE 1 — COVER
+     ======================================= -->
+<div class="slide slide-cover">
+  <span class="cover-confidential">Confidential</span>
+
+  <div class="cover-company">Interstate Waste<br>Services</div>
+  <div class="cover-divider"></div>
+  <div class="cover-subtitle">AR Collection Audit</div>
+  <div class="cover-date">April 2026</div>
+
+  <div class="cover-bottom">
+    <span class="cover-logo">AgentCollect<span class="dot"></span></span>
+    <span class="cover-contact">j@agentcollect.com &middot; (415) 867-4010</span>
+  </div>
+</div>
+
+<!-- =======================================
+     SLIDE 2 — YOUR CUSTOMER CALLS
+     ======================================= -->
+<div class="slide slide-calls">
+  <div class="slide-title">Your customer calls.</div>
+  <div class="slide-subtitle">We called (866) 342-5497 eight times on April 4, 2026.</div>
+
+  <!-- Timeline -->
+  <div class="timeline">
+    <div class="timeline-node">
+      <div class="timeline-circle red">1</div>
+      <div class="timeline-label red-text">Closed</div>
+    </div>
+    <div class="timeline-line red-line"></div>
+    <div class="timeline-node">
+      <div class="timeline-circle red">2</div>
+      <div class="timeline-label red-text">Closed</div>
+    </div>
+    <div class="timeline-line red-line"></div>
+    <div class="timeline-node">
+      <div class="timeline-circle red">3</div>
+      <div class="timeline-label red-text">Closed</div>
+    </div>
+    <div class="timeline-line red-line"></div>
+    <div class="timeline-node">
+      <div class="timeline-circle red">4</div>
+      <div class="timeline-label red-text">Closed</div>
+    </div>
+    <div class="timeline-line red-line"></div>
+    <div class="timeline-node">
+      <div class="timeline-circle red">5</div>
+      <div class="timeline-label red-text">Closed</div>
+    </div>
+    <div class="timeline-line red-line"></div>
+    <div class="timeline-node">
+      <div class="timeline-circle red">6</div>
+      <div class="timeline-label red-text">Closed</div>
+    </div>
+    <div class="timeline-line red-line"></div>
+    <div class="timeline-node">
+      <div class="timeline-circle red">7</div>
+      <div class="timeline-label red-text">Closed</div>
+    </div>
+    <div class="timeline-line amber-line"></div>
+    <div class="timeline-node">
+      <div class="timeline-circle amber">8</div>
+      <div class="timeline-label amber-text">Dropped during routing</div>
+    </div>
+  </div>
+
+  <!-- Stat cards -->
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="stat-card-num red">7 / 8</div>
+      <div class="stat-card-label">Unanswered</div>
+      <div class="stat-card-sub">Office closed or no pickup</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-num red">$0</div>
+      <div class="stat-card-label">Payments collected</div>
+      <div class="stat-card-sub">Across all 8 attempts</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-num red">13.5h</div>
+      <div class="stat-card-label">Daily blackout</div>
+      <div class="stat-card-sub">No billing agent available</div>
+    </div>
+  </div>
+
+  <!-- Score -->
+  <div class="score-row">
+    <div class="score-bar"><div class="score-bar-fill"></div></div>
+    <div class="score-badge">
+      <div class="score-num">2.1</div>
+      <div class="score-label">Overall<br>Score /10</div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <span class="slide-footer-logo">AgentCollect<span class="dot"></span></span>
+    <span>Page 2 of 5 &middot; Confidential</span>
+  </div>
+</div>
+
+<!-- =======================================
+     SLIDE 3 — THE ONE THAT CONNECTED
+     ======================================= -->
+<div class="slide slide-connected">
+  <div class="slide-title">The one that connected.</div>
+  <div class="slide-subtitle">Call #8 reached Charlene. No ID check. Here's what she gave us.</div>
+
+  <div class="connected-grid">
+    <!-- Primary data card -->
+    <div class="data-card">
+      <div class="data-card-tag">Disclosed without verification</div>
+      <div class="data-card-title">CityMD &mdash; 340 Grove St</div>
+
+      <div class="data-row">
+        <span class="data-row-label">Outstanding balance</span>
+        <span class="data-row-value red">$34,818.38</span>
+      </div>
+      <div class="data-row">
+        <span class="data-row-label">AP email</span>
+        <span class="data-row-value mono">ap@citymd.net</span>
+      </div>
+      <div class="data-row">
+        <span class="data-row-label">Contact</span>
+        <span class="data-row-value">Lizbeth Rutherford</span>
+      </div>
+      <div class="data-row">
+        <span class="data-row-label">Open invoices</span>
+        <span class="data-row-value">3 invoices</span>
+      </div>
+      <div class="data-row">
+        <span class="data-row-label">Services</span>
+        <span class="data-row-value">Cardboard 2x/wk, Trash 6x/wk</span>
+      </div>
+      <div class="data-row">
+        <span class="data-row-label">Verification</span>
+        <span class="data-row-value" style="color:var(--red);font-weight:700">None performed</span>
+      </div>
+    </div>
+
+    <!-- Secondary card -->
+    <div class="secondary-card">
+      <div class="secondary-card-title">We called again.</div>
+      <div class="secondary-card-sub">Sarah Piacentini, Chelsea Piers.<br>Different rep (Sue). Same result.</div>
+
+      <div class="secondary-card-detail">
+        Equipment details, contact names,<br>
+        pickup schedule &mdash; all disclosed<br>
+        without any identity verification.
+      </div>
+
+      <div class="secondary-card-amount">$13,305.68</div>
+      <div class="secondary-card-note">Disclosed on second call</div>
+    </div>
+  </div>
+
+  <!-- Total bar -->
+  <div class="total-bar">
+    <div>
+      <div class="total-bar-text">Total disclosed across two calls</div>
+    </div>
+    <div style="text-align:right">
+      <div class="total-bar-amount">$48,124.06 disclosed</div>
+      <div class="total-bar-collected">$0 collected.</div>
+    </div>
+  </div>
+  <a href="https://agentcollect.com/audit-iws" target="_blank" class="listen-link" style="margin-top:10px">&#9654; agentcollect.com/audit-iws &mdash; hear both calls</a>
+
+  <div class="slide-footer">
+    <span class="slide-footer-logo">AgentCollect<span class="dot"></span></span>
+    <span>Page 3 of 5 &middot; Confidential</span>
+  </div>
+</div>
+
+<!-- =======================================
+     SLIDE 4 — EVERYTHING ELSE IS BROKEN
+     ======================================= -->
+<div class="slide slide-broken">
+  <div class="slide-title">Everything else is broken.</div>
+  <div class="slide-subtitle" style="margin-bottom:28px">Three more things we found.</div>
+
+  <div class="story-grid">
+    <!-- Card 1: The Portal -->
+    <div class="story-card">
+      <div class="story-card-accent"></div>
+      <div class="story-card-inner">
+        <div class="story-card-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+        </div>
+        <div class="story-card-name">The Portal</div>
+        <div class="story-line"><em>Your IVR says "use MyIWS.com."</em></div>
+        <div class="story-line-arrow">&darr;</div>
+        <div class="story-line"><em>We tried.</em></div>
+        <div class="story-line-arrow">&darr;</div>
+        <div class="story-line">myiws.com is <em>for sale. $2,695.</em></div>
+        <div class="story-line-arrow">&darr;</div>
+        <div class="story-quote">Every URL variation: 404.</div>
+      </div>
+    </div>
+
+    <!-- Card 2: The Dispute -->
+    <div class="story-card">
+      <div class="story-card-accent"></div>
+      <div class="story-card-inner">
+        <div class="story-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div class="story-card-name">The Dispute</div>
+        <div class="story-line"><em>A customer calls about a missed pickup.</em></div>
+        <div class="story-line-arrow">&darr;</div>
+        <div class="story-line">"I want a credit."</div>
+        <div class="story-line-arrow">&darr;</div>
+        <div class="story-line">Nancy: <em>"Call your sales rep David."</em></div>
+        <div class="story-line-arrow">&darr;</div>
+        <div class="story-quote">No resolution. No escalation path.</div>
+      </div>
+    </div>
+
+    <!-- Card 3: The Hours -->
+    <div class="story-card">
+      <div class="story-card-accent"></div>
+      <div class="story-card-inner">
+        <div class="story-card-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="story-card-name">The Hours</div>
+        <div class="story-line"><em>Billing closes at 6 PM ET.</em></div>
+        <div class="story-line-arrow">&darr;</div>
+        <div class="story-line">48% of payments happen <em>after 6 PM.</em></div>
+        <div class="story-line-arrow">&darr;</div>
+        <div class="story-line">7 of 8 calls: <em>"office closed."</em></div>
+        <div class="story-line-arrow">&darr;</div>
+        <div class="story-quote">13.5 hours per day with no agent.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AR Risk -->
+  <div class="risk-bar">
+    <div class="risk-bar-text"><span>$4.8M+</span> estimated annual AR at risk</div>
+    <div class="risk-bar-sub">Based on disclosed balances, call volumes, and industry benchmarks</div>
+  </div>
+
+  <div class="slide-footer">
+    <span class="slide-footer-logo">AgentCollect<span class="dot"></span></span>
+    <span>Page 4 of 5 &middot; Confidential</span>
+  </div>
+</div>
+
+<!-- =======================================
+     SLIDE 5 — CTA
+     ======================================= -->
+<div class="slide slide-cta">
+  <div class="cta-title">Hear your team on the phone.</div>
+
+  <a href="https://agentcollect.com/audit-iws" target="_blank" class="cta-link">agentcollect.com/audit-iws</a>
+  <div class="cta-detail">3 recorded calls. 35 minutes. Word-by-word transcripts.</div>
+
+  <div class="cta-divider"></div>
+
+  <div class="cta-meeting">15 minutes to walk you through what we found.</div>
+
+  <div class="cta-contact">
+    <div class="cta-name">John Banner</div>
+    <div class="cta-role">Founder, AgentCollect (YC S23)</div>
+    <div class="cta-info"><a href="mailto:j@agentcollect.com">j@agentcollect.com</a> &middot; (415) 867-4010</div>
+  </div>
+
+  <div class="slide-footer">
+    <span class="slide-footer-logo">AgentCollect<span class="dot"></span></span>
+    <span>Page 5 of 5 &middot; Confidential</span>
+  </div>
+</div>
+
+</body>
+</html>

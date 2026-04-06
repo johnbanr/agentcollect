@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<meta name="robots" content="noindex, nofollow">
+<title>AR Collection Audit — Interstate Waste Services — April 2026</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+@page {
+  size: landscape;
+  margin: 0;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #0B1B3D;
+  background: #FFFFFF;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── SLIDE SYSTEM ── */
+.slide {
+  width: 100vw;
+  height: 100vh;
+  min-height: 720px;
+  padding: 56px 72px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  page-break-after: always;
+}
+
+.slide:last-child {
+  page-break-after: avoid;
+}
+
+/* ── HEADER BAR (slides 2-4) ── */
+.slide-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #E5E7EB;
+  margin-bottom: 32px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9CA3AF;
+  flex-shrink: 0;
+}
+
+/* ── TYPOGRAPHY ── */
+.heading-xl {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 900;
+  font-size: 64px;
+  line-height: 1.05;
+  color: #0B1B3D;
+  letter-spacing: -0.02em;
+}
+
+.heading-lg {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 900;
+  font-size: 28px;
+  line-height: 1.2;
+  color: #0B1B3D;
+}
+
+.heading-md {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 1.2;
+  color: #0B1B3D;
+}
+
+.text-muted {
+  color: #6B7280;
+}
+
+.text-light {
+  color: #9CA3AF;
+}
+
+/* ── CARDS ── */
+.card {
+  background: #F9FAFB;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.card-red {
+  background: #FEF2F2;
+  border: 1px solid #FECACA;
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+
+.card-blue {
+  background: #EEF2FF;
+  border: 1px solid #C7D2FE;
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+
+/* ── BADGES ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.badge-critical {
+  background: #FEE2E2;
+  color: #DC2626;
+}
+
+.badge-low {
+  background: #FEF3C7;
+  color: #D97706;
+}
+
+.badge-broken {
+  background: #FEE2E2;
+  color: #DC2626;
+}
+
+/* ── PROGRESS BAR ── */
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background: #E5E7EB;
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 100px;
+  transition: width 0.3s ease;
+}
+
+.progress-fill-red { background: #DC2626; }
+.progress-fill-amber { background: #D97706; }
+
+/* ── AGENTCOLLECT LOGO ── */
+.ac-logo {
+  display: inline-flex;
+  align-items: baseline;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 900;
+  color: #0B1B3D;
+}
+
+.ac-logo .dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: #4F46E5;
+  border-radius: 50%;
+  margin-left: 1px;
+  position: relative;
+  top: -1px;
+}
+
+/* ── PRINT OVERRIDES ── */
+@media print {
+  body { background: #FFFFFF; }
+  .slide {
+    page-break-after: always;
+    page-break-inside: avoid;
+    width: 100vw;
+    height: 100vh;
+  }
+  .slide:last-child { page-break-after: avoid; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 1 — COVER
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="slide" style="padding: 0;">
+  <!-- Top accent bar -->
+  <div style="height: 4px; background: #4F46E5; flex-shrink: 0;"></div>
+
+  <div style="flex: 1; display: flex; padding: 56px 72px;">
+    <!-- Left vertical accent bar -->
+    <div style="width: 3px; background: #4F46E5; border-radius: 2px; margin-right: 40px; align-self: stretch; max-height: 200px; margin-top: auto; margin-bottom: auto;"></div>
+
+    <!-- Title block -->
+    <div style="display: flex; flex-direction: column; justify-content: center; flex: 1;">
+      <div class="heading-xl">Interstate</div>
+      <div class="heading-xl">Waste Services</div>
+      <div style="margin-top: 20px; font-size: 24px; color: #6B7280; font-weight: 500;">AR Collection Audit</div>
+      <div style="margin-top: 8px; font-size: 16px; color: #9CA3AF;">April 2026</div>
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div style="display: flex; justify-content: space-between; align-items: flex-end; padding: 0 72px 40px 72px; flex-shrink: 0;">
+    <div style="font-size: 11px; color: #9CA3AF; letter-spacing: 0.06em; text-transform: uppercase;">Confidential</div>
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <span class="ac-logo" style="font-size: 16px;">AgentCollect<span class="dot"></span></span>
+      <span style="font-size: 13px; color: #6B7280;">j@agentcollect.com &middot; (415) 867-4010</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 2 — EXECUTIVE SUMMARY
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="slide-header">
+    <span>Interstate Waste Services &nbsp;|&nbsp; AR Collection Audit</span>
+    <span>Page 2 of 5</span>
+  </div>
+
+  <!-- Title -->
+  <div class="heading-lg" style="margin-bottom: 28px;">Executive Summary</div>
+
+  <!-- Score + metrics row -->
+  <div style="display: flex; gap: 28px; margin-bottom: 28px; flex-shrink: 0;">
+    <!-- Big score card -->
+    <div class="card" style="flex: 0 0 220px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 28px;">
+      <div style="display: flex; align-items: baseline; gap: 4px;">
+        <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 72px; color: #DC2626; line-height: 1;">2.1</span>
+        <span style="font-size: 24px; color: #9CA3AF; font-weight: 600;">/10</span>
+      </div>
+      <div style="width: 100%; margin-top: 16px;">
+        <div class="progress-track" style="height: 10px;">
+          <div class="progress-fill progress-fill-red" style="width: 21%;"></div>
+        </div>
+      </div>
+      <div style="font-size: 12px; color: #9CA3AF; margin-top: 10px; font-weight: 500;">Overall Score</div>
+    </div>
+
+    <!-- 3 metric cards -->
+    <div style="flex: 1; display: flex; gap: 16px;">
+      <div class="card" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+        <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 32px; color: #DC2626;">$48,124</div>
+        <div style="font-size: 13px; color: #6B7280; margin-top: 6px; font-weight: 500;">disclosed to strangers</div>
+      </div>
+      <div class="card" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+        <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 32px; color: #DC2626;">$0</div>
+        <div style="font-size: 13px; color: #6B7280; margin-top: 6px; font-weight: 500;">collected</div>
+      </div>
+      <div class="card" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+        <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 32px; color: #DC2626;">$4.8M+</div>
+        <div style="font-size: 13px; color: #6B7280; margin-top: 6px; font-weight: 500;">at risk annually</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Category scores: 2 columns of 3 -->
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; flex: 1;">
+    <!-- Identity Verification -->
+    <div class="card" style="display: flex; align-items: center; gap: 16px; padding: 16px 20px;">
+      <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 28px; color: #DC2626; min-width: 40px;">0</div>
+      <div style="flex: 1;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+          <span style="font-size: 13px; font-weight: 600;">Identity Verification</span>
+          <span class="badge badge-critical">Critical</span>
+        </div>
+        <div class="progress-track" style="height: 5px;">
+          <div class="progress-fill progress-fill-red" style="width: 0%;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empathy & Helpfulness -->
+    <div class="card" style="display: flex; align-items: center; gap: 16px; padding: 16px 20px;">
+      <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 28px; color: #D97706; min-width: 40px;">3</div>
+      <div style="flex: 1;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+          <span style="font-size: 13px; font-weight: 600;">Empathy & Helpfulness</span>
+          <span class="badge badge-low">Low</span>
+        </div>
+        <div class="progress-track" style="height: 5px;">
+          <div class="progress-fill progress-fill-amber" style="width: 30%;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dispute Resolution -->
+    <div class="card" style="display: flex; align-items: center; gap: 16px; padding: 16px 20px;">
+      <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 28px; color: #DC2626; min-width: 40px;">0</div>
+      <div style="flex: 1;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+          <span style="font-size: 13px; font-weight: 600;">Dispute Resolution</span>
+          <span class="badge badge-critical">Critical</span>
+        </div>
+        <div class="progress-track" style="height: 5px;">
+          <div class="progress-fill progress-fill-red" style="width: 0%;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment Collection -->
+    <div class="card" style="display: flex; align-items: center; gap: 16px; padding: 16px 20px;">
+      <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 28px; color: #DC2626; min-width: 40px;">0</div>
+      <div style="flex: 1;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+          <span style="font-size: 13px; font-weight: 600;">Payment Collection</span>
+          <span class="badge badge-critical">Critical</span>
+        </div>
+        <div class="progress-track" style="height: 5px;">
+          <div class="progress-fill progress-fill-red" style="width: 0%;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- After-Hours Coverage -->
+    <div class="card" style="display: flex; align-items: center; gap: 16px; padding: 16px 20px;">
+      <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 28px; color: #DC2626; min-width: 40px;">0</div>
+      <div style="flex: 1;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+          <span style="font-size: 13px; font-weight: 600;">After-Hours Coverage</span>
+          <span class="badge badge-critical">Critical</span>
+        </div>
+        <div class="progress-track" style="height: 5px;">
+          <div class="progress-fill progress-fill-red" style="width: 0%;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Online Portal -->
+    <div class="card" style="display: flex; align-items: center; gap: 16px; padding: 16px 20px;">
+      <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 28px; color: #DC2626; min-width: 40px;">0</div>
+      <div style="flex: 1;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+          <span style="font-size: 13px; font-weight: 600;">Online Portal</span>
+          <span class="badge badge-broken">Broken</span>
+        </div>
+        <div class="progress-track" style="height: 5px;">
+          <div class="progress-fill progress-fill-red" style="width: 0%;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Methodology footer -->
+  <div style="margin-top: auto; padding-top: 16px; border-top: 1px solid #E5E7EB; font-size: 12px; color: #9CA3AF; flex-shrink: 0;">
+    8 calls &middot; 3 personas &middot; 4 portal tests &middot; April 4, 2026 &middot; (866) 342-5497
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 3 — FINDING: THE CALL
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="slide-header">
+    <span>Interstate Waste Services &nbsp;|&nbsp; AR Collection Audit</span>
+    <span>Page 3 of 5</span>
+  </div>
+
+  <!-- Finding header -->
+  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-shrink: 0;">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #6B7280;">Finding</span>
+      <span class="badge badge-critical">Critical</span>
+    </div>
+    <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 20px; color: #DC2626;">0/10</span>
+  </div>
+
+  <!-- Title -->
+  <div class="heading-lg" style="margin-bottom: 6px;">No Identity Verification</div>
+  <div style="font-size: 16px; color: #6B7280; margin-bottom: 24px; flex-shrink: 0; line-height: 1.5;">
+    $34,818 in account data disclosed to an unverified caller in a single phone call.
+  </div>
+
+  <!-- Divider -->
+  <div style="height: 1px; background: #E5E7EB; margin-bottom: 24px; flex-shrink: 0;"></div>
+
+  <!-- Data table -->
+  <div class="card" style="margin-bottom: 20px; padding: 0; overflow: hidden; flex-shrink: 0;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+      <tr style="border-bottom: 1px solid #E5E7EB;">
+        <td style="padding: 12px 20px; width: 24px; color: #DC2626; font-weight: 700; font-size: 16px;">+</td>
+        <td style="padding: 12px 0; color: #6B7280; font-weight: 600; width: 140px;">Balance</td>
+        <td style="padding: 12px 20px; font-weight: 700;">$34,818.38</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #E5E7EB;">
+        <td style="padding: 12px 20px; color: #DC2626; font-weight: 700; font-size: 16px;">+</td>
+        <td style="padding: 12px 0; color: #6B7280; font-weight: 600;">AP Email</td>
+        <td style="padding: 12px 20px; font-weight: 700;">ap@citymd.net</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #E5E7EB;">
+        <td style="padding: 12px 20px; color: #DC2626; font-weight: 700; font-size: 16px;">+</td>
+        <td style="padding: 12px 0; color: #6B7280; font-weight: 600;">Contact</td>
+        <td style="padding: 12px 20px; font-weight: 700;">Lizbeth Rutherford</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #E5E7EB;">
+        <td style="padding: 12px 20px; color: #DC2626; font-weight: 700; font-size: 16px;">+</td>
+        <td style="padding: 12px 0; color: #6B7280; font-weight: 600;">History</td>
+        <td style="padding: 12px 20px; font-weight: 700;">3 open invoices</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #E5E7EB;">
+        <td style="padding: 12px 20px; color: #DC2626; font-weight: 700; font-size: 16px;">+</td>
+        <td style="padding: 12px 0; color: #6B7280; font-weight: 600;">Services</td>
+        <td style="padding: 12px 20px; font-weight: 700;">Cardboard 2x/wk, trash 6x/wk</td>
+      </tr>
+      <tr>
+        <td style="padding: 12px 20px; color: #DC2626; font-weight: 700; font-size: 16px;">+</td>
+        <td style="padding: 12px 0; color: #6B7280; font-weight: 600;">Address</td>
+        <td style="padding: 12px 20px; font-weight: 700;">340 Grove St, Jersey City NJ</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Second call callout -->
+  <div style="font-size: 15px; font-weight: 600; color: #0B1B3D; margin-bottom: 16px; flex-shrink: 0;">
+    We called again as Chelsea Piers. Same result. $13,305 disclosed. Same zero verification.
+  </div>
+
+  <!-- Red summary card -->
+  <div class="card-red" style="margin-bottom: 16px; flex-shrink: 0;">
+    <div style="font-size: 15px; font-weight: 700; color: #DC2626;">
+      Combined: $48,124 in account data. Zero questions asked.
+    </div>
+  </div>
+
+  <!-- Blue link card -->
+  <div class="card-blue" style="flex-shrink: 0;">
+    <a href="https://agentcollect.com/audit-iws" style="font-size: 14px; font-weight: 600; color: #4F46E5; text-decoration: none;">
+      &#9654;&ensp;Hear both recordings: agentcollect.com/audit-iws
+    </a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 4 — WHAT ELSE WE FOUND
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="slide-header">
+    <span>Interstate Waste Services &nbsp;|&nbsp; AR Collection Audit</span>
+    <span>Page 4 of 5</span>
+  </div>
+
+  <!-- Title -->
+  <div class="heading-lg" style="margin-bottom: 32px;">What Else We Found</div>
+
+  <!-- 3 cards -->
+  <div style="display: flex; gap: 24px; flex: 1;">
+    <!-- PORTAL -->
+    <div style="flex: 1; background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column;">
+      <div style="height: 3px; background: #DC2626;"></div>
+      <div style="padding: 28px 24px; flex: 1; display: flex; flex-direction: column;">
+        <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #DC2626; margin-bottom: 24px;">PORTAL</div>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 20px;">
+          <li style="font-size: 15px; line-height: 1.5; color: #0B1B3D;">
+            <span style="font-weight: 600;">IVR says</span> "use MyIWS.com to pay your bill online."
+          </li>
+          <li style="font-size: 15px; line-height: 1.5; color: #0B1B3D;">
+            <span style="font-weight: 700; color: #DC2626;">myiws.com is for sale. $2,695.</span>
+          </li>
+          <li style="font-size: 15px; line-height: 1.5; color: #0B1B3D;">
+            Every portal URL returns <span style="font-weight: 600;">404</span>.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- DISPUTES -->
+    <div style="flex: 1; background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column;">
+      <div style="height: 3px; background: #DC2626;"></div>
+      <div style="padding: 28px 24px; flex: 1; display: flex; flex-direction: column;">
+        <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #DC2626; margin-bottom: 24px;">DISPUTES</div>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 20px;">
+          <li style="font-size: 15px; line-height: 1.5; color: #0B1B3D;">
+            Customer calls about <span style="font-weight: 600;">missed pickup</span>.
+          </li>
+          <li style="font-size: 15px; line-height: 1.5; color: #0B1B3D;">
+            Billing response: <span style="font-weight: 600;">"Call your sales rep David."</span>
+          </li>
+          <li style="font-size: 15px; line-height: 1.5; color: #0B1B3D;">
+            No resolution. No credit. <span style="font-weight: 600;">No follow-up.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- COVERAGE -->
+    <div style="flex: 1; background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column;">
+      <div style="height: 3px; background: #DC2626;"></div>
+      <div style="padding: 28px 24px; flex: 1; display: flex; flex-direction: column;">
+        <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #DC2626; margin-bottom: 24px;">COVERAGE</div>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 20px;">
+          <li style="font-size: 15px; line-height: 1.5; color: #0B1B3D;">
+            Billing: <span style="font-weight: 600;">M-F 7:30 AM - 6 PM ET</span>.
+          </li>
+          <li style="font-size: 15px; line-height: 1.5; color: #0B1B3D;">
+            <span style="font-weight: 700; color: #DC2626;">48% of payments happen after 6 PM.</span>
+          </li>
+          <li style="font-size: 15px; line-height: 1.5; color: #0B1B3D;">
+            7 of 8 calls: <span style="font-weight: 600;">"office is currently closed."</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 5 — CTA
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="slide" style="justify-content: center; align-items: center; text-align: center;">
+  <!-- Top spacer to push content slightly above center -->
+  <div style="flex: 1;"></div>
+
+  <div>
+    <div class="heading-md" style="margin-bottom: 16px;">Hear the full recordings.</div>
+    <a href="https://agentcollect.com/audit-iws" style="font-size: 24px; color: #4F46E5; font-weight: 600; text-decoration: underline; text-underline-offset: 4px;">
+      agentcollect.com/audit-iws
+    </a>
+    <div style="font-size: 16px; color: #9CA3AF; margin-top: 12px;">
+      3 calls. 35 minutes. Synced transcripts.
+    </div>
+
+    <!-- Divider -->
+    <div style="width: 80px; height: 1px; background: #E5E7EB; margin: 40px auto;"></div>
+
+    <div style="font-size: 20px; color: #0B1B3D; font-weight: 500; margin-bottom: 32px;">
+      15 minutes to walk you through the findings.
+    </div>
+
+    <!-- Contact block -->
+    <div style="font-size: 16px; line-height: 2;">
+      <div style="font-weight: 700; color: #0B1B3D;">John Banner</div>
+      <div style="color: #6B7280;">Founder, AgentCollect (YC S23)</div>
+      <div style="color: #6B7280;">j@agentcollect.com &middot; (415) 867-4010</div>
+    </div>
+  </div>
+
+  <div style="flex: 1.2;"></div>
+
+  <!-- Bottom disclaimer -->
+  <div style="font-size: 11px; color: #9CA3AF; padding-bottom: 8px;">
+    This audit was conducted April 2026 using publicly available information and recorded phone calls.
+  </div>
+</div>
+
+</body>
+</html>

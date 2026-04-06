@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=1280">
+<title>AR Collection Audit — Interstate Waste Services — Le Comparatif</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+@page {
+  size: landscape;
+  margin: 0;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #0B1B3D;
+  background: #FFFFFF;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ===== SLIDE SYSTEM ===== */
+.slide {
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  max-height: 100vh;
+  padding: 56px 72px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  page-break-after: always;
+}
+
+.slide:last-child {
+  page-break-after: avoid;
+}
+
+@media print {
+  .slide {
+    page-break-after: always;
+    height: 100vh;
+    width: 100vw;
+  }
+  .slide:last-child {
+    page-break-after: avoid;
+  }
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3 {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.slide-title {
+  font-size: 32px;
+  margin-bottom: 32px;
+  color: #0B1B3D;
+}
+
+.slide-subtitle {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* ===== COLORS ===== */
+.red { color: #DC2626; }
+.green { color: #059669; }
+.blue { color: #4F46E5; }
+.muted { color: #6b7280; }
+
+.bg-red-light { background: #FEF2F2; }
+.bg-green-light { background: #F0FDF4; }
+
+/* ===== FOOTER ===== */
+.slide-footer {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+.slide-footer .logo-mark {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 900;
+  font-size: 13px;
+  color: #4F46E5;
+  letter-spacing: -0.02em;
+}
+
+.slide-footer .logo-mark .dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  background: #4F46E5;
+  border-radius: 50%;
+  margin-left: 1px;
+  vertical-align: super;
+  position: relative;
+  top: -4px;
+}
+
+/* ===== SLIDE 1: COVER ===== */
+.cover {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 80px;
+}
+
+.cover .company-name {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 900;
+  font-size: 56px;
+  letter-spacing: -0.03em;
+  color: #0B1B3D;
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.cover .report-type {
+  font-size: 22px;
+  font-weight: 600;
+  color: #6b7280;
+  margin-bottom: 40px;
+  letter-spacing: 0.02em;
+}
+
+.cover .report-date {
+  font-size: 15px;
+  color: #9ca3af;
+  margin-bottom: 8px;
+}
+
+.cover .cover-divider {
+  width: 80px;
+  height: 3px;
+  background: #4F46E5;
+  border-radius: 2px;
+  margin: 0 auto 40px;
+}
+
+.cover .cover-logo {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 900;
+  font-size: 18px;
+  color: #4F46E5;
+  letter-spacing: -0.02em;
+}
+
+.cover .cover-logo .dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: #4F46E5;
+  border-radius: 50%;
+  margin-left: 1px;
+  vertical-align: super;
+  position: relative;
+  top: -6px;
+}
+
+/* ===== SLIDE 2: THE GAP ===== */
+.gap-container {
+  display: flex;
+  gap: 0;
+  flex: 1;
+  min-height: 0;
+}
+
+.gap-col {
+  padding: 36px 40px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.gap-col-today {
+  width: 55%;
+  background: #FEF2F2;
+  border: 2px solid #FECACA;
+  margin-right: 20px;
+}
+
+.gap-col-standard {
+  width: 45%;
+  background: #F0FDF4;
+  border: 2px solid #BBF7D0;
+}
+
+.gap-header {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 900;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid currentColor;
+}
+
+.gap-score {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 900;
+  font-size: 52px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.gap-score-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+.gap-bar {
+  height: 10px;
+  border-radius: 5px;
+  margin-bottom: 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.gap-bar-bg {
+  position: absolute;
+  inset: 0;
+  background: #e5e7eb;
+  border-radius: 5px;
+}
+
+.gap-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  border-radius: 5px;
+}
+
+.gap-stats {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.gap-stat {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.gap-stat-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.gap-stat-icon.bad { background: #FEE2E2; color: #DC2626; }
+.gap-stat-icon.good { background: #D1FAE5; color: #059669; }
+
+.gap-stat-text {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.gap-stat-text span {
+  font-weight: 800;
+}
+
+.gap-source {
+  margin-top: auto;
+  font-size: 11px;
+  color: #9ca3af;
+  padding-top: 16px;
+}
+
+.gap-vs {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  width: 56px;
+  height: 56px;
+  background: #0B1B3D;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 900;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.gap-bottom {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: #0B1B3D;
+  padding: 14px 24px;
+  background: #F8FAFC;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.gap-bottom .highlight-red {
+  color: #DC2626;
+  font-weight: 800;
+}
+
+/* ===== SLIDE 3: THE CALL ===== */
+.call-container {
+  display: flex;
+  gap: 0;
+  flex: 1;
+  min-height: 0;
+}
+
+.call-col {
+  width: 50%;
+  padding: 32px 36px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.call-col-bad {
+  background: #FEF2F2;
+  border: 2px solid #FECACA;
+  margin-right: 16px;
+}
+
+.call-col-good {
+  background: #F0FDF4;
+  border: 2px solid #BBF7D0;
+}
+
+.call-header {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 900;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid currentColor;
+}
+
+.call-steps {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.call-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.call-step-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.call-step-num.bad { background: #FEE2E2; color: #DC2626; }
+.call-step-num.good { background: #D1FAE5; color: #059669; }
+
+.call-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 900;
+  font-size: 14px;
+  margin-top: auto;
+  width: fit-content;
+}
+
+.call-badge.bad { background: #DC2626; color: #fff; }
+.call-badge.good { background: #059669; color: #fff; }
+
+.call-bottom {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b7280;
+  padding: 12px 24px;
+  background: #F8FAFC;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+/* ===== SLIDE 4: THREE MORE GAPS ===== */
+.gaps-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+  min-height: 0;
+}
+
+.gap-row {
+  display: flex;
+  gap: 16px;
+  flex: 1;
+  min-height: 0;
+}
+
+.gap-row-label {
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.gap-row-label-inner {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 900;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #0B1B3D;
+  writing-mode: horizontal-tb;
+  text-align: center;
+}
+
+.gap-row-left, .gap-row-right {
+  flex: 1;
+  padding: 20px 28px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.gap-row-left {
+  background: #FEF2F2;
+  border: 1.5px solid #FECACA;
+}
+
+.gap-row-right {
+  background: #F0FDF4;
+  border: 1.5px solid #BBF7D0;
+}
+
+.gap-row-title {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+.gap-row-text {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.gaps-bottom {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 800;
+  color: #DC2626;
+  padding: 16px 24px;
+  background: #FEF2F2;
+  border-radius: 10px;
+  border: 2px solid #FECACA;
+}
+
+/* ===== SLIDE 5: CTA ===== */
+.cta-slide {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.cta-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 900;
+  font-size: 40px;
+  color: #0B1B3D;
+  margin-bottom: 24px;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.cta-link {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 700;
+  color: #4F46E5;
+  text-decoration: none;
+  margin-bottom: 12px;
+  padding: 12px 32px;
+  background: #EEF2FF;
+  border-radius: 10px;
+  transition: background 0.2s;
+}
+
+.cta-link:hover {
+  background: #E0E7FF;
+}
+
+.cta-subtitle {
+  font-size: 16px;
+  color: #6b7280;
+  margin-bottom: 40px;
+  font-weight: 500;
+}
+
+.cta-divider {
+  width: 60px;
+  height: 2px;
+  background: #e5e7eb;
+  margin: 0 auto 40px;
+  border-radius: 1px;
+}
+
+.cta-meeting {
+  font-size: 18px;
+  font-weight: 600;
+  color: #0B1B3D;
+  margin-bottom: 32px;
+}
+
+.cta-contact {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.8;
+}
+
+.cta-contact strong {
+  color: #0B1B3D;
+  font-weight: 700;
+}
+
+.cta-contact a {
+  color: #4F46E5;
+  text-decoration: none;
+}
+
+/* ===== UTILITIES ===== */
+.relative { position: relative; }
+.flex-1 { flex: 1; }
+</style>
+</head>
+<body>
+
+<!-- ============================================ -->
+<!-- SLIDE 1: COVER                               -->
+<!-- ============================================ -->
+<section class="slide cover">
+  <div>
+    <div class="cover-logo">AgentCollect<span class="dot"></span></div>
+    <div style="height: 48px;"></div>
+    <div class="company-name">Interstate Waste Services</div>
+    <div class="report-type">AR Collection Audit</div>
+    <div class="cover-divider"></div>
+    <div class="report-date">April 4, 2026</div>
+    <div class="report-date muted" style="font-size: 12px; margin-top: 4px;">RPT-2026-0404-IWS-D</div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SLIDE 2: THE GAP                             -->
+<!-- ============================================ -->
+<section class="slide">
+  <h2 class="slide-title">The Gap</h2>
+
+  <div class="gap-container relative" style="position: relative;">
+    <!-- TODAY column -->
+    <div class="gap-col gap-col-today">
+      <div class="gap-header red">Today</div>
+      <div class="gap-score red">2.1<span style="font-size: 22px; color: #6b7280;">/10</span></div>
+      <div class="gap-score-label">Overall Score</div>
+      <div class="gap-bar">
+        <div class="gap-bar-bg"></div>
+        <div class="gap-bar-fill" style="width: 21%; background: #DC2626;"></div>
+      </div>
+      <ul class="gap-stats">
+        <li class="gap-stat">
+          <div class="gap-stat-icon bad">$</div>
+          <div class="gap-stat-text"><span>$48,124</span> disclosed to unverified callers</div>
+        </li>
+        <li class="gap-stat">
+          <div class="gap-stat-icon bad">&times;</div>
+          <div class="gap-stat-text"><span>$0</span> collected across all calls</div>
+        </li>
+        <li class="gap-stat">
+          <div class="gap-stat-icon bad">!</div>
+          <div class="gap-stat-text"><span>0/10</span> identity verification performed</div>
+        </li>
+      </ul>
+      <div class="gap-source">Based on 8 calls, April 4, 2026</div>
+    </div>
+
+    <!-- VS badge -->
+    <div class="gap-vs">VS</div>
+
+    <!-- INDUSTRY STANDARD column -->
+    <div class="gap-col gap-col-standard">
+      <div class="gap-header green">Industry Standard</div>
+      <div class="gap-score green">8+<span style="font-size: 22px; color: #6b7280;">/10</span></div>
+      <div class="gap-score-label">Target Score</div>
+      <div class="gap-bar">
+        <div class="gap-bar-bg"></div>
+        <div class="gap-bar-fill" style="width: 80%; background: #059669;"></div>
+      </div>
+      <ul class="gap-stats">
+        <li class="gap-stat">
+          <div class="gap-stat-icon good">$</div>
+          <div class="gap-stat-text"><span>$0 disclosed</span> without identity verification</div>
+        </li>
+        <li class="gap-stat">
+          <div class="gap-stat-icon good">&check;</div>
+          <div class="gap-stat-text">Payment <span>collected on the call</span></div>
+        </li>
+        <li class="gap-stat">
+          <div class="gap-stat-icon good">&check;</div>
+          <div class="gap-stat-text"><span>Full ID verification</span> required before any disclosure</div>
+        </li>
+      </ul>
+      <div class="gap-source">Based on FDCPA and industry best practices</div>
+    </div>
+  </div>
+
+  <div class="gap-bottom">
+    Gap score: <span class="highlight-red">2.1 vs 8.0</span> &mdash; your customer experience is <span class="highlight-red">74% below standard</span>.
+  </div>
+
+  <div class="slide-footer">
+    <span class="logo-mark">AgentCollect<span class="dot"></span></span>
+    <span>Confidential &mdash; Interstate Waste Services</span>
+    <span>2 / 5</span>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SLIDE 3: THE CALL                            -->
+<!-- ============================================ -->
+<section class="slide">
+  <h2 class="slide-title">The Call &mdash; What Happened vs What Should Happen</h2>
+
+  <div class="call-container">
+    <!-- WHAT HAPPENED -->
+    <div class="call-col call-col-bad">
+      <div class="call-header red">What Happened</div>
+      <ol class="call-steps">
+        <li class="call-step">
+          <span class="call-step-num bad">1</span>
+          <span><strong>Stacey James</strong> calls as CityMD</span>
+        </li>
+        <li class="call-step">
+          <span class="call-step-num bad">2</span>
+          <span><strong>Charlene</strong> answers, no verification</span>
+        </li>
+        <li class="call-step">
+          <span class="call-step-num bad">3</span>
+          <span>Looks up account by <strong>address only</strong></span>
+        </li>
+        <li class="call-step">
+          <span class="call-step-num bad">4</span>
+          <span>Discloses <strong>$34,818.38</strong> balance</span>
+        </li>
+        <li class="call-step">
+          <span class="call-step-num bad">5</span>
+          <span>Discloses AP email, contact name, payment history</span>
+        </li>
+        <li class="call-step">
+          <span class="call-step-num bad">6</span>
+          <span>Customer hangs up. <strong>$0 collected.</strong></span>
+        </li>
+      </ol>
+      <div class="call-badge bad">0/10 IDENTITY</div>
+    </div>
+
+    <!-- WHAT SHOULD HAPPEN -->
+    <div class="call-col call-col-good">
+      <div class="call-header green">What Should Happen</div>
+      <ol class="call-steps">
+        <li class="call-step">
+          <span class="call-step-num good">1</span>
+          <span>Customer calls</span>
+        </li>
+        <li class="call-step">
+          <span class="call-step-num good">2</span>
+          <span>Agent verifies identity (account # + last 4 SSN or callback)</span>
+        </li>
+        <li class="call-step">
+          <span class="call-step-num good">3</span>
+          <span>Confirms limited info <strong>after verification</strong></span>
+        </li>
+        <li class="call-step">
+          <span class="call-step-num good">4</span>
+          <span>Sends <strong>secure payment link</strong></span>
+        </li>
+        <li class="call-step">
+          <span class="call-step-num good">5</span>
+          <span>Customer pays <strong>$34,818.38</strong></span>
+        </li>
+        <li class="call-step">
+          <span class="call-step-num good">6</span>
+          <span>Dispute? <strong>Resolved on the call.</strong></span>
+        </li>
+      </ol>
+      <div class="call-badge good">10/10 IDENTITY</div>
+    </div>
+  </div>
+
+  <div class="call-bottom">
+    Second call (Chelsea Piers, $13,305): identical result. Zero verification.
+  </div>
+
+  <div class="slide-footer">
+    <span class="logo-mark">AgentCollect<span class="dot"></span></span>
+    <span>Confidential &mdash; Interstate Waste Services</span>
+    <span>3 / 5</span>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SLIDE 4: THREE MORE GAPS                     -->
+<!-- ============================================ -->
+<section class="slide">
+  <h2 class="slide-title">Three More Gaps</h2>
+
+  <div class="gaps-rows">
+    <!-- ROW 1: PORTAL -->
+    <div class="gap-row">
+      <div class="gap-row-label">
+        <div class="gap-row-label-inner">Portal</div>
+      </div>
+      <div class="gap-row-left">
+        <div class="gap-row-title red">Today</div>
+        <div class="gap-row-text">IVR says "use MyIWS.com" &mdash; domain is <strong>for sale ($2,695)</strong>. All referenced URLs return <strong>404</strong>.</div>
+      </div>
+      <div class="gap-row-right">
+        <div class="gap-row-title green">Standard</div>
+        <div class="gap-row-text">Secure online portal. Pay by card or ACH. <strong>24/7 access.</strong> Self-service dispute resolution.</div>
+      </div>
+    </div>
+
+    <!-- ROW 2: DISPUTES -->
+    <div class="gap-row">
+      <div class="gap-row-label">
+        <div class="gap-row-label-inner">Disputes</div>
+      </div>
+      <div class="gap-row-left">
+        <div class="gap-row-title red">Today</div>
+        <div class="gap-row-text">Customer calls about missed pickup. Response: <strong>"Call your sales rep David."</strong> No resolution.</div>
+      </div>
+      <div class="gap-row-right">
+        <div class="gap-row-title green">Standard</div>
+        <div class="gap-row-text">Dispute logged on the call. <strong>Credit issued within 48h.</strong> Customer notified automatically.</div>
+      </div>
+    </div>
+
+    <!-- ROW 3: COVERAGE -->
+    <div class="gap-row">
+      <div class="gap-row-label">
+        <div class="gap-row-label-inner">Coverage</div>
+      </div>
+      <div class="gap-row-left">
+        <div class="gap-row-title red">Today</div>
+        <div class="gap-row-text">M-F 7:30-6 PM only. <strong>7/8 calls: "office closed."</strong> 48% of payments happen after 6 PM.</div>
+      </div>
+      <div class="gap-row-right">
+        <div class="gap-row-title green">Standard</div>
+        <div class="gap-row-text"><strong>24/7 coverage.</strong> AI agent picks up in 2 seconds. Every call answered.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gaps-bottom">$4.8M+ annual AR at risk</div>
+
+  <div class="slide-footer">
+    <span class="logo-mark">AgentCollect<span class="dot"></span></span>
+    <span>Confidential &mdash; Interstate Waste Services</span>
+    <span>4 / 5</span>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SLIDE 5: CTA                                 -->
+<!-- ============================================ -->
+<section class="slide cta-slide">
+  <div>
+    <div class="cta-title">See what it looks like fixed.</div>
+    <a href="https://agentcollect.com/audit-iws" class="cta-link" target="_blank">agentcollect.com/audit-iws</a>
+    <div class="cta-subtitle">Hear the recordings. See the before and after.</div>
+    <div class="cta-divider"></div>
+    <div class="cta-meeting">15 minutes to show you the full picture.</div>
+    <div class="cta-contact">
+      <strong>John Banner</strong><br>
+      Founder, AgentCollect (YC S23)<br>
+      <a href="mailto:j@agentcollect.com">j@agentcollect.com</a> &middot; (415) 867-4010
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <span class="logo-mark">AgentCollect<span class="dot"></span></span>
+    <span>Confidential &mdash; Interstate Waste Services</span>
+    <span>5 / 5</span>
+  </div>
+</section>
+
+</body>
+</html>

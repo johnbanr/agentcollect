@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1280">
+    <title>Interstate Waste Services — AR Collection Audit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            background: #FFFFFF;
+            color: #0B1B3D;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .font-heading {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 900;
+        }
+
+        .font-body {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+        }
+
+        .font-body-semi {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+
+        .muted {
+            color: #6B7280;
+        }
+
+        .light-muted {
+            color: #9CA3AF;
+        }
+
+        .red {
+            color: #DC2626;
+        }
+
+        .blue {
+            color: #4F46E5;
+        }
+
+        /* ─── SLIDE 1: COVER ─── */
+
+        .slide-cover .company-name {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 900;
+            font-size: 48px;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .slide-cover .subtitle {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            color: #6B7280;
+            margin-top: 16px;
+        }
+
+        .slide-cover .date {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            color: #9CA3AF;
+            margin-top: 8px;
+        }
+
+        .slide-cover .logo-mark {
+            position: absolute;
+            bottom: 40px;
+            right: 48px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 900;
+            font-size: 13px;
+            color: #9CA3AF;
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+
+        .slide-cover .logo-mark .dot {
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            background: #4F46E5;
+            border-radius: 50%;
+            margin-left: 1px;
+            position: relative;
+            top: -4px;
+        }
+
+        /* ─── SLIDE 2: THE FACT ─── */
+
+        .slide-fact .fact-block {
+            text-align: center;
+            max-width: 700px;
+        }
+
+        .slide-fact .fact-line {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 20px;
+            color: #6B7280;
+            line-height: 1.6;
+        }
+
+        .slide-fact .fact-number {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 900;
+            font-size: 96px;
+            color: #DC2626;
+            letter-spacing: -0.03em;
+            margin: 40px 0;
+            line-height: 1;
+        }
+
+        .slide-fact .fact-footnote {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            color: #9CA3AF;
+            line-height: 1.8;
+        }
+
+        .slide-fact .spacer {
+            height: 32px;
+        }
+
+        /* ─── SLIDE 3: THE PROOF ─── */
+
+        .slide-proof {
+            padding: 0 120px;
+        }
+
+        .slide-proof .card {
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 48px 56px;
+            max-width: 640px;
+            width: 100%;
+        }
+
+        .slide-proof .card-header {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #DC2626;
+            margin-bottom: 32px;
+        }
+
+        .slide-proof .card-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 10px 0;
+            border-bottom: 1px solid #F3F4F6;
+        }
+
+        .slide-proof .card-row:last-child {
+            border-bottom: none;
+        }
+
+        .slide-proof .card-label {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            color: #9CA3AF;
+            flex-shrink: 0;
+            min-width: 100px;
+        }
+
+        .slide-proof .card-value {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: #0B1B3D;
+            text-align: right;
+        }
+
+        .slide-proof .aftershocks {
+            margin-top: 40px;
+            max-width: 640px;
+            width: 100%;
+        }
+
+        .slide-proof .aftershock {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            color: #9CA3AF;
+            line-height: 2.2;
+        }
+
+        .slide-proof .aftershock.red-line {
+            color: #DC2626;
+        }
+
+        /* ─── SLIDE 4: THE NUMBER ─── */
+
+        .slide-number .big-number {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 900;
+            font-size: 120px;
+            color: #DC2626;
+            letter-spacing: -0.03em;
+            line-height: 1;
+        }
+
+        .slide-number .big-caption {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            color: #6B7280;
+            margin-top: 20px;
+        }
+
+        /* ─── SLIDE 5: CTA ─── */
+
+        .slide-cta {
+            justify-content: center;
+            gap: 0;
+        }
+
+        .slide-cta .cta-headline {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 900;
+            font-size: 36px;
+            letter-spacing: -0.01em;
+        }
+
+        .slide-cta .cta-link {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 20px;
+            color: #4F46E5;
+            text-decoration: none;
+            margin-top: 16px;
+        }
+
+        .slide-cta .cta-link:hover {
+            text-decoration: underline;
+        }
+
+        .slide-cta .divider {
+            width: 60px;
+            height: 1px;
+            background: #D1D5DB;
+            margin: 80px auto 32px;
+        }
+
+        .slide-cta .contact-name {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            color: #0B1B3D;
+        }
+
+        .slide-cta .contact-title {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            color: #9CA3AF;
+            margin-top: 6px;
+        }
+
+        .slide-cta .contact-info {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            color: #9CA3AF;
+            margin-top: 4px;
+        }
+
+        /* ─── PRINT ─── */
+
+        @media print {
+            .slide {
+                page-break-after: always;
+                width: 100vw;
+                height: 100vh;
+            }
+
+            .slide:last-child {
+                page-break-after: avoid;
+            }
+
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SLIDE 1: COVER -->
+    <div class="slide slide-cover">
+        <div class="company-name">Interstate Waste Services</div>
+        <div class="subtitle">AR Collection Audit</div>
+        <div class="date">April 2026</div>
+        <div class="logo-mark">AgentCollect<span class="dot"></span></div>
+    </div>
+
+    <!-- SLIDE 2: THE FACT -->
+    <div class="slide slide-fact">
+        <div class="fact-block">
+            <div class="fact-line">We called (866) 342-5497</div>
+            <div class="fact-line">as a CityMD office manager.</div>
+            <div class="spacer"></div>
+            <div class="fact-line">Your rep gave us</div>
+            <div class="fact-number">$34,818</div>
+            <div class="fact-line">in account data.</div>
+            <div class="spacer"></div>
+            <div class="fact-footnote">No ID check. No verification.</div>
+            <div class="fact-footnote">Just a name and an address.</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: THE PROOF -->
+    <div class="slide slide-proof">
+        <div class="card">
+            <div class="card-header">Disclosed Without Verification</div>
+            <div class="card-row">
+                <span class="card-label">Balance</span>
+                <span class="card-value">$34,818.38</span>
+            </div>
+            <div class="card-row">
+                <span class="card-label">AP Email</span>
+                <span class="card-value">ap@citymd.net</span>
+            </div>
+            <div class="card-row">
+                <span class="card-label">Contact</span>
+                <span class="card-value">Lizbeth Rutherford</span>
+            </div>
+            <div class="card-row">
+                <span class="card-label">Invoices</span>
+                <span class="card-value">3 open</span>
+            </div>
+            <div class="card-row">
+                <span class="card-label">Services</span>
+                <span class="card-value">Cardboard 2x/wk, trash 6x/wk</span>
+            </div>
+            <div class="card-row">
+                <span class="card-label">Address</span>
+                <span class="card-value">340 Grove St, Jersey City NJ</span>
+            </div>
+        </div>
+        <div class="aftershocks">
+            <div class="aftershock">We called again as Chelsea Piers. Same result. $13,305.</div>
+            <div class="aftershock red-line">Your portal myiws.com is for sale. $2,695.</div>
+            <div class="aftershock">Disputes are referred to "your sales rep David."</div>
+            <div class="aftershock">7 of 8 calls went to "office closed."</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: THE NUMBER -->
+    <div class="slide slide-number">
+        <div class="big-number">$4.8M+</div>
+        <div class="big-caption">estimated annual AR at risk</div>
+    </div>
+
+    <!-- SLIDE 5: CTA -->
+    <div class="slide slide-cta">
+        <div class="cta-headline">Hear the call.</div>
+        <a href="https://agentcollect.com/audit-iws" class="cta-link">agentcollect.com/audit-iws</a>
+        <div class="divider"></div>
+        <div class="contact-name">John Banner</div>
+        <div class="contact-title">Founder, AgentCollect (YC S23)</div>
+        <div class="contact-info">j@agentcollect.com &middot; (415) 867-4010</div>
+    </div>
+
+</body>
+</html>
