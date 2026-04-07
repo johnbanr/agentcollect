@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A 12:35 call with Ooma billing</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#FAFAF7;--card:#fff;--ink:#0B1B3D;--muted:#6b7280;--line:#e5e7eb;
+  --red:#dc2626;--red-soft:#fee2e2;--amber:#F59E0B;--green:#10B981;--blue:#4F46E5;
+  --sans:'Inter',system-ui,-apple-system,sans-serif;
+  --display:'Plus Jakarta Sans',system-ui,sans-serif;
+}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;padding-top:34px}
+
+.draft{position:fixed;top:0;left:0;right:0;z-index:500;background:#F59E0B;color:#0B1B3D;padding:8px 20px;text-align:center;font-size:11.5px;font-weight:700}
+
+.doc{max-width:960px;margin:0 auto;padding:32px 28px 80px}
+
+/* Header — real JB photo */
+.head{display:flex;align-items:center;gap:20px;padding-bottom:22px;border-bottom:1px solid var(--line);margin-bottom:36px}
+.head .avatar{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid var(--line);flex-shrink:0;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.head .meta{flex:1}
+.head .meta .label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);margin-bottom:4px}
+.head .meta h1{font-family:var(--display);font-size:22px;font-weight:900;line-height:1.2;color:var(--ink);letter-spacing:-.01em}
+.head .meta .sub{font-size:13px;color:var(--muted);margin-top:3px}
+.head .right{font-size:11px;color:var(--muted);text-align:right}
+.head .right strong{color:var(--ink)}
+
+/* The big opening */
+.opener{margin-bottom:40px}
+.opener h2{font-family:var(--display);font-size:clamp(26px,3.5vw,40px);font-weight:900;line-height:1.1;letter-spacing:-.02em;color:var(--ink);margin-bottom:14px}
+.opener h2 .accent{color:var(--red)}
+.opener p{font-size:17px;color:var(--muted);max-width:640px;line-height:1.55}
+
+/* TIMELINE — the hero visual */
+.timeline-wrap{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:34px 32px 28px;margin-bottom:36px;box-shadow:0 4px 18px rgba(0,0,0,.04)}
+.timeline-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+.timeline-header .t{font-family:var(--display);font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.timeline-header .d{font-size:12px;color:var(--muted)}
+.timeline-header .d strong{color:var(--ink);font-weight:700}
+
+/* The bar itself */
+.tl{position:relative;height:56px;margin:12px 0 14px}
+.tl-bar{position:absolute;top:24px;left:0;right:0;height:8px;background:linear-gradient(90deg,#f1f5f9 0%,#e5e7eb 100%);border-radius:4px}
+.tl-labels{position:absolute;top:40px;left:0;right:0;display:flex;justify-content:space-between;font-size:10px;color:var(--muted);font-weight:600;font-variant-numeric:tabular-nums}
+.tl-marker{position:absolute;top:14px;width:28px;height:28px;border-radius:50%;border:3px solid #fff;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:800;font-family:var(--display);z-index:2}
+.tl-marker.red{background:var(--red);box-shadow:0 2px 8px rgba(220,38,38,.4)}
+.tl-marker.amber{background:var(--amber);box-shadow:0 2px 8px rgba(245,158,11,.4)}
+.tl-marker.blue{background:var(--blue);box-shadow:0 2px 8px rgba(79,70,229,.4)}
+.tl-marker.slate{background:#334155;box-shadow:0 2px 8px rgba(51,65,85,.4)}
+.tl-marker:hover{transform:translate(-50%,-2px) scale(1.12)}
+.tl-marker{transform:translate(-50%,0)}
+.tl-marker.playing{animation:pulse 1.2s infinite}
+@keyframes pulse{0%,100%{transform:translate(-50%,0) scale(1)}50%{transform:translate(-50%,-3px) scale(1.15)}}
+
+/* Moment list */
+.moments{border-top:1px solid var(--line);padding-top:22px;margin-top:8px;display:flex;flex-direction:column;gap:2px}
+.moment{display:flex;align-items:flex-start;gap:16px;padding:12px 14px;border-radius:10px;transition:background .15s;cursor:pointer;border:1px solid transparent}
+.moment:hover{background:#F9F9F4;border-color:var(--line)}
+.moment .dot{width:20px;height:20px;border-radius:50%;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:9px;font-weight:800;font-family:var(--display)}
+.moment .dot.red{background:var(--red)}
+.moment .dot.amber{background:var(--amber)}
+.moment .dot.blue{background:var(--blue)}
+.moment .dot.slate{background:#334155}
+.moment .content{flex:1}
+.moment .ts{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;font-weight:600;letter-spacing:.02em}
+.moment .text{font-size:15px;color:var(--ink);line-height:1.45;margin-top:2px}
+.moment .text strong{font-weight:700}
+.moment .play{font-size:11px;color:var(--blue);font-weight:700;display:inline-flex;align-items:center;gap:5px;margin-top:4px}
+.moment .play::before{content:'▶';font-size:9px}
+.moment .duration{font-size:11px;color:var(--muted);white-space:nowrap;align-self:flex-start;margin-top:4px}
+
+/* Second visual — the annotated portal screenshot */
+.portal{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:34px 32px 32px;margin-bottom:36px;box-shadow:0 4px 18px rgba(0,0,0,.04)}
+.portal-head{margin-bottom:20px}
+.portal-head h3{font-family:var(--display);font-size:clamp(22px,2.8vw,32px);font-weight:900;line-height:1.1;letter-spacing:-.015em;color:var(--ink);margin-bottom:8px}
+.portal-head h3 .accent{color:var(--red)}
+.portal-head p{font-size:14px;color:var(--muted)}
+
+.shot-wrap{position:relative;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+.shot-wrap img{display:block;width:100%;height:auto}
+/* Red highlight circle overlaid on the screenshot */
+.shot-wrap .highlight{position:absolute;border:3px solid var(--red);border-radius:12px;box-shadow:0 0 0 4px rgba(220,38,38,.15),0 0 20px rgba(220,38,38,.3);pointer-events:none;animation:pulseRing 2s infinite}
+@keyframes pulseRing{0%,100%{box-shadow:0 0 0 4px rgba(220,38,38,.15),0 0 20px rgba(220,38,38,.3)}50%{box-shadow:0 0 0 8px rgba(220,38,38,.25),0 0 30px rgba(220,38,38,.45)}}
+.shot-wrap .arrow{position:absolute;font-size:14px;font-weight:700;color:var(--red);background:#fff;padding:6px 12px;border-radius:20px;border:2px solid var(--red);box-shadow:0 4px 12px rgba(220,38,38,.25);white-space:nowrap}
+.shot-wrap .arrow::after{content:'';position:absolute;width:0;height:0}
+
+/* Fake "highlight" on the current screenshot — bottom area where footer would be */
+.shot-wrap .highlight.footer-hl{bottom:6%;left:4%;right:4%;height:16%}
+.shot-wrap .arrow.footer-arrow{bottom:30%;left:50%;transform:translateX(-50%)}
+
+.links-list{margin-top:20px;background:#fef2f2;border:1px solid #fecaca;border-radius:10px;padding:16px 20px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}
+.links-list .link-row{display:flex;align-items:center;gap:12px;padding:4px 0;color:var(--ink)}
+.links-list .link-row .tag{display:inline-block;background:var(--red);color:#fff;font-size:9px;font-weight:800;letter-spacing:.05em;padding:2px 7px;border-radius:3px;text-transform:uppercase;flex-shrink:0;font-family:var(--sans)}
+.links-list .link-row .label{font-family:var(--sans);font-size:12px;color:var(--muted);font-weight:600}
+
+/* Closing */
+.closing{padding:28px 32px;background:var(--card);border:1px solid var(--line);border-radius:18px;margin-bottom:36px;box-shadow:0 4px 18px rgba(0,0,0,.04)}
+.closing h3{font-family:var(--display);font-size:22px;font-weight:900;line-height:1.2;color:var(--ink);margin-bottom:10px}
+.closing p{font-size:15px;color:var(--muted);line-height:1.6;margin-bottom:10px}
+.closing p strong{color:var(--ink);font-weight:700}
+.closing .cta-line{margin-top:16px;font-size:15px;color:var(--ink)}
+.closing .cta-line a{color:var(--blue);font-weight:700;text-decoration:none}
+.closing .cta-line a:hover{text-decoration:underline}
+.closing .signature{margin-top:22px;font-size:14px;color:var(--muted)}
+.closing .signature strong{color:var(--ink);font-weight:700}
+
+/* Footer */
+.footer{margin-top:28px;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--muted);flex-wrap:wrap;gap:10px;padding-top:20px;border-top:1px solid var(--line)}
+.footer a{color:var(--ink);text-decoration:none;font-weight:600}
+.footer a:hover{text-decoration:underline}
+
+/* Currently playing indicator */
+.playing-indicator{display:inline-flex;align-items:center;gap:6px;background:#fef2f2;color:var(--red);padding:3px 9px;border-radius:10px;font-size:11px;font-weight:700;margin-left:8px}
+.playing-indicator::before{content:'';width:7px;height:7px;background:var(--red);border-radius:50%;animation:pulse-dot 1s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.3}}
+
+@media(max-width:680px){
+  .doc{padding:24px 18px 60px}
+  .head{gap:14px;padding-bottom:18px;margin-bottom:28px}
+  .head .avatar{width:56px;height:56px}
+  .head .right{display:none}
+  .timeline-wrap{padding:24px 20px}
+  .portal{padding:24px 20px}
+  .closing{padding:22px 20px}
+  .moment{padding:10px 8px;gap:12px}
+  .moment .text{font-size:14px}
+}
+</style>
+</head>
+<body>
+
+<div class="draft">⚠ DRAFT · Internal review · Not for outbound</div>
+
+<audio id="callRec" preload="metadata" src="https://dxc03zgurdly9.cloudfront.net/6b3c3e457b2860a29b052bf0302b05b398d9ce9b315ff19ebb3a84f112731765/recording.wav"></audio>
+
+<div class="doc">
+
+  <!-- Header with real JB photo -->
+  <header class="head">
+    <img class="avatar" src="audit-assets/team/jb-headshot.jpg" alt="John Banner">
+    <div class="meta">
+      <div class="label">A private note for Eric Stang</div>
+      <h1>I called your billing line as a customer.</h1>
+      <div class="sub">Here's what I heard — in 2 visuals.</div>
+    </div>
+    <div class="right">
+      <strong>April 6, 2026</strong><br>
+      Report #OOMA-001
+    </div>
+  </header>
+
+  <!-- The opener -->
+  <div class="opener">
+    <h2>One customer. One $310 bill. <span class="accent">12 minutes and 35 seconds.</span></h2>
+    <p>Click any dot on the timeline below to hear that exact moment of the call.</p>
+  </div>
+
+  <!-- VISUAL 1: The timeline -->
+  <section class="timeline-wrap">
+    <div class="timeline-header">
+      <div class="t">The call · 12:35 total <span id="playingNow"></span></div>
+      <div class="d"><strong>1-866-939-6662</strong> · Ooma billing line · April 6 2026</div>
+    </div>
+
+    <div class="tl">
+      <div class="tl-bar"></div>
+      <!-- Markers: 4 menu fails (red) clustered early, then human (blue), then keypad moment (amber), then end (slate) -->
+      <!-- Positions as % of total 755 seconds -->
+      <!-- Menu fail 1: ~185s = 24.5% -->
+      <button class="tl-marker red" style="left:24.5%" onclick="playMoment(this, 185, 198)" title="Menu fail 1 of 4">1</button>
+      <!-- Menu fail 2: ~252s = 33.4% -->
+      <button class="tl-marker red" style="left:33.4%" onclick="playMoment(this, 233, 252)" title="Menu fail 2 of 4">2</button>
+      <!-- Menu fail 3: ~307s = 40.7% -->
+      <button class="tl-marker red" style="left:40.7%" onclick="playMoment(this, 307, 327)" title="Menu fail 3 of 4">3</button>
+      <!-- Menu fail 4: ~327s = 43.3% -->
+      <button class="tl-marker red" style="left:46.3%" onclick="playMoment(this, 316, 327)" title="Menu fail 4 of 4">4</button>
+      <!-- Human answers: ~347s = 46% -->
+      <button class="tl-marker blue" style="left:51%" onclick="playMoment(this, 347, 360)" title="Human answers">✓</button>
+      <!-- Keypad reveal: ~647s = 85.7% -->
+      <button class="tl-marker amber" style="left:85.7%" onclick="playMoment(this, 647, 658)" title="Card = keypad only">!</button>
+      <!-- End: 755s = 100% -->
+      <div class="tl-marker slate" style="left:100%;cursor:default">⊗</div>
+
+      <div class="tl-labels">
+        <span>0:00</span>
+        <span style="padding-left:20%">3:00</span>
+        <span>6:00</span>
+        <span>9:00</span>
+        <span>12:35</span>
+      </div>
+    </div>
+
+    <!-- Moment list -->
+    <div class="moments">
+      <div class="moment" onclick="playMoment(this.querySelector('.dot'), 185, 198)">
+        <div class="dot red">1</div>
+        <div class="content">
+          <div class="ts">3:05</div>
+          <div class="text">Automated menu told Megan her account didn't exist. <strong>Attempt 1.</strong></div>
+          <div class="play">Hear it</div>
+        </div>
+        <div class="duration">13 sec</div>
+      </div>
+      <div class="moment" onclick="playMoment(this.querySelector('.dot'), 233, 252)">
+        <div class="dot red">2</div>
+        <div class="content">
+          <div class="ts">3:53</div>
+          <div class="text">Same message. <strong>Attempt 2.</strong></div>
+          <div class="play">Hear it</div>
+        </div>
+        <div class="duration">19 sec</div>
+      </div>
+      <div class="moment" onclick="playMoment(this.querySelector('.dot'), 307, 327)">
+        <div class="dot red">3</div>
+        <div class="content">
+          <div class="ts">5:07</div>
+          <div class="text">Same message. <strong>Attempt 3.</strong></div>
+          <div class="play">Hear it</div>
+        </div>
+        <div class="duration">20 sec</div>
+      </div>
+      <div class="moment" onclick="playMoment(this.querySelector('.dot'), 316, 327)">
+        <div class="dot red">4</div>
+        <div class="content">
+          <div class="ts">5:16</div>
+          <div class="text">Same message. <strong>Attempt 4.</strong> Call finally transfers.</div>
+          <div class="play">Hear it</div>
+        </div>
+        <div class="duration">11 sec</div>
+      </div>
+      <div class="moment" onclick="playMoment(this.querySelector('.dot'), 347, 360)">
+        <div class="dot blue">✓</div>
+        <div class="content">
+          <div class="ts">5:47</div>
+          <div class="text">A human finally answers. Polite, patient. Verifies Megan by email.</div>
+          <div class="play">Hear it</div>
+        </div>
+        <div class="duration">13 sec</div>
+      </div>
+      <div class="moment" onclick="playMoment(this.querySelector('.dot'), 647, 658)">
+        <div class="dot amber">!</div>
+        <div class="content">
+          <div class="ts">10:47</div>
+          <div class="text">Megan asks to pay by credit card. The agent says: <strong>"We are not allowed to get your card number or security code. You need to enter the card number and security code using your phone's keypad."</strong></div>
+          <div class="play">Hear it</div>
+        </div>
+        <div class="duration">11 sec</div>
+      </div>
+      <div class="moment" style="cursor:default;background:#f9fafb">
+        <div class="dot slate">⊗</div>
+        <div class="content">
+          <div class="ts">12:35</div>
+          <div class="text">Call ends. <strong>$310 invoice still unpaid.</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISUAL 2: The annotated portal -->
+  <section class="portal">
+    <div class="portal-head">
+      <h3>And here's what your customer login page looks like. <span class="accent">Right now.</span></h3>
+      <p>office.ooma.com · captured April 6, 2026 · see the highlighted area below the login form</p>
+    </div>
+
+    <div class="shot-wrap">
+      <img src="audit-assets/ooma-portals/ooma-login.png" alt="office.ooma.com login page">
+      <div class="highlight footer-hl"></div>
+      <div class="arrow footer-arrow">↓ Insecure links in this footer</div>
+    </div>
+
+    <div class="links-list">
+      <div class="link-row">
+        <span class="tag">NOT SECURE</span>
+        <span class="label">Terms of Use →</span>
+        <span>http://www.ooma.com/terms</span>
+      </div>
+      <div class="link-row">
+        <span class="tag">NOT SECURE</span>
+        <span class="label">Privacy Policy →</span>
+        <span>http://www.ooma.com/privacy-policy</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing — short, personal -->
+  <section class="closing">
+    <h3>That's it. One call, one login page.</h3>
+    <p>I'm not sending this to sell you. I built an AI collection agent that handles exactly this type of workflow — <strong>Microsoft, Dell, Plaid, Vanta, and Checkr</strong> use it on their long-tail receivables.</p>
+    <p>If you'd like to hear what the same call should have sounded like — same customer, same card, same $310 — handled in <strong>34 seconds</strong>, my calendar is open.</p>
+    <div class="cta-line"><a href="https://cal.com/johnb/30" target="_blank">cal.com/johnb/30</a> · 15 minutes · or just reply to this note.</div>
+    <div class="signature">
+      <strong>John Banner</strong> · Founder · AgentCollect (Y Combinator S23)<br>
+      j@agentcollect.com · +1 (415) 867-4010
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div>Based on 1 live mystery-shopped call · full recording retained</div>
+    <div>Report #OOMA-001 · DRAFT</div>
+  </footer>
+
+</div>
+
+<script>
+let activeMarker = null;
+function playMoment(markerEl, start, end) {
+  const audio = document.getElementById('callRec');
+  audio.pause();
+  // Clear previous playing state
+  document.querySelectorAll('.tl-marker.playing, .dot.playing').forEach(e => e.classList.remove('playing'));
+  // Set new playing state
+  markerEl.classList.add('playing');
+  const indicator = document.getElementById('playingNow');
+  indicator.innerHTML = '<span class="playing-indicator">Playing moment</span>';
+  audio.currentTime = start;
+  audio.play();
+  activeMarker = markerEl;
+  clearTimeout(window._jumpTimer);
+  window._jumpTimer = setTimeout(() => {
+    audio.pause();
+    markerEl.classList.remove('playing');
+    if (indicator) indicator.innerHTML = '';
+    activeMarker = null;
+  }, (end - start) * 1000 + 200);
+}
+</script>
+
+</body>
+</html>
