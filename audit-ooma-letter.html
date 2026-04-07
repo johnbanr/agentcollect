@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A letter to Eric Stang — about Ooma's billing</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Caveat:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --cream:#FAF8F1;
+  --paper:#FEFCF5;
+  --ink:#1a1a1a;
+  --muted:#666;
+  --line:#e5dfc8;
+  --accent:#b91c1c;
+  --blue:#4F46E5;
+  --serif:'Lora',Georgia,serif;
+  --hand:'Caveat',cursive;
+  --sans:'Inter',system-ui,sans-serif;
+}
+html,body{height:100%}
+body{background:var(--cream);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.68;-webkit-font-smoothing:antialiased;padding:36px 20px 60px;display:flex;justify-content:center}
+
+.draft{position:fixed;top:0;left:0;right:0;background:#F59E0B;color:#0B1B3D;padding:7px 20px;text-align:center;font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.01em;z-index:500}
+
+/* Letter paper */
+.letter{background:var(--paper);max-width:680px;width:100%;padding:56px 64px 48px;margin-top:24px;box-shadow:0 4px 24px rgba(0,0,0,.06),0 1px 3px rgba(0,0,0,.04);position:relative;border-radius:2px}
+/* Subtle paper texture */
+.letter::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(ellipse at 20% 15%, rgba(180,140,50,.025) 0%, transparent 40%),
+  radial-gradient(ellipse at 80% 75%, rgba(180,140,50,.02) 0%, transparent 35%);
+  pointer-events:none;border-radius:2px}
+
+/* Letterhead */
+.letterhead{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:24px;border-bottom:1px solid var(--line);margin-bottom:32px;font-family:var(--sans)}
+.letterhead-left .brand{font-weight:900;font-size:15px;color:var(--ink);letter-spacing:-.01em}
+.letterhead-left .brand .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--blue);margin-left:1px;vertical-align:super}
+.letterhead-left .tag{font-size:11px;color:var(--muted);margin-top:2px;letter-spacing:.02em}
+.letterhead-right{text-align:right;font-size:11px;color:var(--muted);line-height:1.5}
+.letterhead-right strong{color:var(--ink)}
+
+/* Date + addressee */
+.date{font-size:13px;color:var(--muted);margin-bottom:28px;font-family:var(--sans)}
+.addressee{font-family:var(--serif);font-size:18px;margin-bottom:24px}
+
+/* Body */
+.body-text{font-family:var(--serif);font-size:17px;line-height:1.72;color:var(--ink)}
+.body-text p{margin-bottom:20px}
+.body-text p strong{font-weight:600;color:var(--ink)}
+.body-text p.lede{font-size:19px;line-height:1.6;margin-bottom:22px}
+
+/* Pull quote block */
+.pullquote{margin:28px 0;padding:20px 24px;background:#fffef8;border-left:3px solid var(--accent);border-radius:0 4px 4px 0;font-style:italic;font-size:16px;line-height:1.55;color:var(--ink);position:relative}
+.pullquote::before{content:'"';position:absolute;left:8px;top:2px;font-size:38px;color:var(--line);font-family:Georgia,serif;line-height:1}
+.pullquote .attr{font-style:normal;font-size:12px;color:var(--muted);margin-top:10px;font-family:var(--sans);font-weight:500}
+.pullquote .play{display:inline-flex;align-items:center;gap:7px;background:var(--ink);color:#fff;padding:6px 12px;border:none;border-radius:6px;font-family:var(--sans);font-size:11px;font-weight:600;cursor:pointer;margin-top:10px;transition:all .15s}
+.pullquote .play:hover{background:#000;transform:translateY(-1px)}
+.pullquote .play .dot{width:7px;height:7px;background:var(--accent);border-radius:50%}
+.pullquote .play.playing .dot{animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* Inline facts row */
+.facts{display:flex;gap:24px;padding:18px 0;margin:24px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--sans);flex-wrap:wrap}
+.facts .fact{flex:1;min-width:110px}
+.facts .fact .n{font-size:22px;font-weight:800;color:var(--ink);line-height:1}
+.facts .fact .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:4px;font-weight:600}
+
+/* Signature */
+.signoff{margin-top:42px}
+.signoff .closing{font-family:var(--serif);font-size:17px;margin-bottom:6px}
+.signoff .sign-name{font-family:var(--hand);font-size:42px;line-height:1;color:var(--blue);margin:6px 0 8px;letter-spacing:-.01em}
+.signoff .printed{font-family:var(--sans);font-size:13px;color:var(--ink);font-weight:600}
+.signoff .role{font-family:var(--sans);font-size:12px;color:var(--muted);margin-top:2px}
+
+/* Footer contact */
+.contact{margin-top:40px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-family:var(--sans);font-size:12px;color:var(--muted);flex-wrap:wrap;gap:12px}
+.contact a{color:var(--ink);text-decoration:none;font-weight:600}
+.contact a:hover{text-decoration:underline}
+.contact .proof{font-size:11px;color:var(--muted)}
+.contact .proof strong{color:var(--ink);font-weight:600}
+
+@media(max-width:680px){
+  .letter{padding:36px 28px 36px}
+  .body-text{font-size:16px}
+  .body-text p.lede{font-size:17px}
+  .facts{gap:14px}
+}
+</style>
+</head>
+<body>
+
+<div class="draft">⚠ DRAFT · Internal review · Not for outbound</div>
+
+<audio id="callRec" preload="metadata" src="https://dxc03zgurdly9.cloudfront.net/6b3c3e457b2860a29b052bf0302b05b398d9ce9b315ff19ebb3a84f112731765/recording.wav"></audio>
+
+<article class="letter">
+
+  <div class="letterhead">
+    <div class="letterhead-left">
+      <div class="brand">AgentCollect<span class="dot"></span></div>
+      <div class="tag">An AI collection agent, built by a founder</div>
+    </div>
+    <div class="letterhead-right">
+      <strong>Private note</strong><br>
+      From: John Banner<br>
+      Re: Ooma billing workflow
+    </div>
+  </div>
+
+  <div class="date">April 6, 2026</div>
+
+  <div class="addressee">Dear Eric,</div>
+
+  <div class="body-text">
+
+    <p class="lede">I called your billing line today as one of your customers. I wanted to pay a $310 invoice by credit card. It took <strong>12 minutes and 35 seconds</strong> — and I still couldn't read my card out loud to your agent.</p>
+
+    <p>The automated phone menu couldn't find my account on four consecutive tries. When a human finally answered, she was kind. She verified me by email, pulled up my record, and then told me something that stopped me:</p>
+
+    <div class="pullquote">
+      We are not allowed to get your card number or security code. You need to enter the card number and security code using your phone's keypad.
+      <div class="attr">— your customer care agent, 10:47 into the call</div>
+      <br>
+      <button class="play" onclick="playMoment(this, 647, 658)"><span class="dot"></span>Hear it · 11 sec</button>
+    </div>
+
+    <p>I understand why — your agents are trained to protect customer data. But from where I was sitting, I had a card in my hand, I wanted to pay you, and your system made me punch 16 digits and a CVV into a touch-tone keypad. In 2026.</p>
+
+    <div class="facts">
+      <div class="fact"><div class="n">12:35</div><div class="l">My call</div></div>
+      <div class="fact"><div class="n">4×</div><div class="l">Menu fails</div></div>
+      <div class="fact"><div class="n">16+</div><div class="l">Keypad digits</div></div>
+    </div>
+
+    <p>I'm writing because I built an AI collection agent for companies exactly your size. <strong>Microsoft, Dell, Plaid, Vanta, and Checkr</strong> use it on their long-tail receivables. Average resolution: ~49% in 20 days. Zero upfront. You only pay on what we collect.</p>
+
+    <p>I'm not asking for a meeting to pitch you. I'm asking for 15 minutes to show you what the exact same call should have sounded like — same customer, same card, same $310 — handled by our agent. It takes 34 seconds.</p>
+
+    <p>If that's worth your time, my calendar is <a href="https://cal.com/johnb/30" target="_blank" style="color:var(--blue);font-weight:600">cal.com/johnb/30</a>. Or just reply to this note.</p>
+
+    <p style="margin-top:28px">Either way, I thought you should hear the recording.</p>
+
+  </div>
+
+  <div class="signoff">
+    <div class="closing">Sincerely,</div>
+    <div class="sign-name">John Banner</div>
+    <div class="printed">John Banner</div>
+    <div class="role">Founder · AgentCollect (Y Combinator S23)</div>
+  </div>
+
+  <div class="contact">
+    <div>
+      <a href="mailto:j@agentcollect.com">j@agentcollect.com</a> · <a href="https://cal.com/johnb/30" target="_blank">cal.com/johnb/30</a> · +1 (415) 867-4010
+    </div>
+    <div class="proof">
+      <strong>Report #OOMA-001</strong> · Based on 1 live call, April 6 2026 · recording retained
+    </div>
+  </div>
+
+</article>
+
+<script>
+let activeBtn = null;
+function playMoment(btn, start, end) {
+  const audio = document.getElementById('callRec');
+  audio.pause();
+  if (activeBtn && activeBtn !== btn) activeBtn.classList.remove('playing');
+  audio.currentTime = start;
+  audio.play();
+  btn.classList.add('playing');
+  activeBtn = btn;
+  clearTimeout(window._jumpTimer);
+  window._jumpTimer = setTimeout(() => {
+    audio.pause();
+    btn.classList.remove('playing');
+    activeBtn = null;
+  }, (end - start) * 1000 + 200);
+}
+</script>
+
+</body>
+</html>

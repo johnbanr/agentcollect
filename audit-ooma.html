@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Receivables Benchmark — Ooma</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   Receivables Benchmark — Ooma · Dashboard 1-page (ruthless)
+   Target: fits in 900px height on 1280 desktop. No scroll.
+   ============================================================ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --blue:#4F46E5;--text:#0B1B3D;--ink:#0B1B3D;--muted:#6b7280;--line:#e5e7eb;
+  --paper:#FAFAF7;--card:#ffffff;
+  --red:#b91c1c;--amber:#B45309;--slate:#334155;--green:#047857;
+  --sans:'Inter',system-ui,-apple-system,sans-serif;
+  --display:'Plus Jakarta Sans',system-ui,sans-serif;
+  --serif:'Instrument Serif',Georgia,serif;
+}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:13.5px;line-height:1.5;-webkit-font-smoothing:antialiased;padding-top:34px}
+
+/* DRAFT banner — slimmer */
+.draft-banner{position:fixed;top:0;left:0;right:0;z-index:500;background:#F59E0B;color:#0B1B3D;padding:8px 20px;text-align:center;font-size:11.5px;font-weight:700;letter-spacing:.01em;line-height:1.3}
+
+/* Document — single viewport */
+.doc{max-width:1440px;margin:0 auto;padding:18px 28px 16px;display:flex;flex-direction:column;gap:14px;min-height:calc(100vh - 34px)}
+
+/* ROW 1 — Header bar (40px) */
+.header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.header-left{display:flex;align-items:center;gap:14px;font-size:12px;color:var(--muted)}
+.header-left .ac-logo{font-family:var(--display);font-weight:900;font-size:14px;color:var(--ink);text-decoration:none}
+.header-left .ac-logo .dot{display:inline-block;width:5.5px;height:5.5px;border-radius:50%;background:var(--blue);margin-left:1px}
+.header-left .sep{opacity:.4}
+.header-left .label{font-size:10.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+.header-right{font-size:11px;color:var(--muted);display:flex;gap:14px;font-weight:500}
+.header-right strong{color:var(--ink);font-weight:700}
+
+/* ROW 2 — Title row + metadata pills (~70px) */
+.title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.title-row h1{font-family:var(--serif);font-size:clamp(32px,3.5vw,46px);font-weight:400;line-height:1;letter-spacing:-.015em;color:var(--ink)}
+.title-row h1 em{font-style:italic;color:var(--blue)}
+.title-row .pills{display:flex;gap:8px;flex-wrap:wrap}
+.pill{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:6px 12px;font-size:11px;color:var(--muted);font-weight:500;white-space:nowrap}
+.pill strong{color:var(--ink);font-weight:700}
+
+/* ROW 3 — Verdict + stats (~110px) */
+.verdict-row{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 26px;display:flex;align-items:center;gap:32px;flex-wrap:wrap}
+.verdict-row .verdict{flex:1;min-width:320px}
+.verdict-row .verdict .eyebrow{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--blue);margin-bottom:8px}
+.verdict-row .verdict h2{font-family:var(--serif);font-size:clamp(20px,2.2vw,30px);font-weight:400;line-height:1.15;letter-spacing:-.01em;color:var(--ink)}
+.verdict-row .stats{display:flex;gap:22px;padding-left:28px;border-left:1px solid var(--line);align-items:center}
+.verdict-row .stats .s{text-align:center;min-width:64px}
+.verdict-row .stats .s .n{font-family:var(--display);font-size:26px;font-weight:900;line-height:1;color:var(--ink)}
+.verdict-row .stats .s .l{font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:4px;font-weight:600}
+
+/* ROW 4 — 3 Findings grid (~400px) */
+.findings{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;flex:1;min-height:0}
+.finding{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:10px}
+.finding::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px}
+.finding.gold::before{background:var(--red)}
+.finding.friction::before{background:var(--amber)}
+.finding.security::before{background:var(--slate)}
+
+.finding-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.finding-tag{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;padding:3px 8px;border-radius:3px}
+.finding.gold .finding-tag{background:#fee2e2;color:var(--red)}
+.finding.friction .finding-tag{background:#fef3c7;color:var(--amber)}
+.finding.security .finding-tag{background:#e2e8f0;color:var(--slate)}
+.finding-num{font-family:var(--display);font-size:10px;font-weight:800;color:var(--muted);letter-spacing:.06em}
+
+.finding h3{font-family:var(--display);font-size:15px;font-weight:800;line-height:1.3;color:var(--ink);letter-spacing:-.005em}
+
+.exhibit{background:#F9F9F4;border-left:2px solid var(--ink);padding:9px 13px;border-radius:0 4px 4px 0}
+.exhibit .quote{font-family:var(--serif);font-style:italic;font-size:13.5px;line-height:1.35;color:var(--ink)}
+.exhibit .source{font-size:10px;color:var(--muted);margin-top:4px;font-weight:500}
+
+.jump{display:inline-flex;align-items:center;gap:7px;background:var(--ink);color:#fff;padding:6px 12px;border:none;border-radius:6px;font-family:var(--sans);font-size:11px;font-weight:600;cursor:pointer;transition:all .15s;align-self:flex-start}
+.jump:hover{background:#1e293b;transform:translateY(-1px)}
+.jump .play-icon{width:12px;height:12px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:7px;color:#fff}
+.jump .play-icon.playing{animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+
+.compare{margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.compare .col{padding:8px 10px}
+.compare .col.you{background:#fef2f2}
+.compare .col.benchmark{background:#f0fdf4;border-left:1px solid var(--line)}
+.compare .col .k{font-size:8.5px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
+.compare .col.you .k{color:var(--red)}
+.compare .col.benchmark .k{color:var(--green)}
+.compare .col .v{font-size:11px;font-weight:700;line-height:1.3;color:var(--ink)}
+.compare .col .src{font-size:9px;color:var(--muted);margin-top:2px;font-weight:500}
+
+.tbd{display:inline-block;background:#fef3c7;color:#92400e;padding:1px 5px;border-radius:3px;font-size:8.5px;font-weight:700;text-transform:uppercase}
+
+.finding .evidence-mini{margin-top:2px;border:1px solid var(--line);border-radius:6px;overflow:hidden;max-height:92px;position:relative}
+.finding .evidence-mini img{display:block;width:100%;height:92px;object-fit:cover;object-position:top}
+.finding .evidence-mini .cap-overlay{position:absolute;bottom:0;left:0;right:0;background:rgba(11,27,61,.85);color:#fff;padding:4px 8px;font-size:9.5px;font-weight:500;letter-spacing:.01em}
+.finding .evidence-mini .cap-overlay strong{color:#fca5a5;font-weight:700}
+
+/* ROW 5 — Signature bar (~60px) */
+.sig{display:flex;align-items:center;gap:16px;padding:14px 20px;background:var(--card);border:1px solid var(--line);border-radius:12px;flex-wrap:wrap}
+.sig-photo{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#433196,#4F46E5);display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--display);font-weight:900;font-size:16px;flex-shrink:0}
+.sig-body{flex:1;min-width:220px}
+.sig-body .name{font-family:var(--display);font-size:14px;font-weight:900;color:var(--ink);line-height:1.2}
+.sig-body .role{font-size:11px;color:var(--muted)}
+.sig-body .note{font-size:10.5px;color:var(--muted);margin-top:2px;line-height:1.3}
+.sig-body .note strong{color:var(--ink);font-weight:600}
+.sig-contact{display:flex;gap:16px;font-size:11px;color:var(--muted);flex-wrap:wrap}
+.sig-contact a{color:var(--ink);text-decoration:none;font-weight:600}
+.sig-contact a:hover{text-decoration:underline}
+
+/* Responsive */
+@media(max-width:1100px){
+  .findings{grid-template-columns:1fr 1fr}
+}
+@media(max-width:800px){
+  body{font-size:13px}
+  .findings{grid-template-columns:1fr}
+  .verdict-row{flex-direction:column;align-items:flex-start}
+  .verdict-row .stats{padding-left:0;border-left:none;padding-top:14px;border-top:1px solid var(--line);width:100%;justify-content:space-around}
+  .header-right{display:none}
+}
+
+</style>
+</head>
+<body>
+
+<div class="draft-banner">
+  ⚠ <strong>DRAFT</strong> · Benchmark citations pending · Internal review · Not for outbound
+</div>
+
+<audio id="callRec" preload="metadata" src="https://dxc03zgurdly9.cloudfront.net/6b3c3e457b2860a29b052bf0302b05b398d9ce9b315ff19ebb3a84f112731765/recording.wav"></audio>
+
+<div class="doc">
+
+  <!-- ROW 1 — Header -->
+  <header class="header">
+    <div class="header-left">
+      <a href="https://agentcollect.com" class="ac-logo">AgentCollect<span class="dot"></span></a>
+      <span class="sep">·</span>
+      <span class="label">Confidential · Internal review</span>
+    </div>
+    <div class="header-right">
+      <span><strong>Report</strong> #OOMA-001</span>
+      <span><strong>Date</strong> April 6, 2026</span>
+    </div>
+  </header>
+
+  <!-- ROW 2 — Title + metadata pills -->
+  <div class="title-row">
+    <h1>Receivables Benchmark — <em>Ooma</em></h1>
+    <div class="pills">
+      <span class="pill"><strong>Sample</strong> 1 live call</span>
+      <span class="pill"><strong>Duration</strong> 12:35</span>
+      <span class="pill"><strong>Channel</strong> 1-866-939-6662</span>
+      <span class="pill"><strong>Recorded</strong> Apr 6, 2026</span>
+    </div>
+  </div>
+
+  <!-- ROW 3 — Verdict + stats -->
+  <div class="verdict-row">
+    <div class="verdict">
+      <div class="eyebrow">Verdict</div>
+      <h2>In 2026, Ooma customers still update their card using their phone's touch-tone keypad.</h2>
+    </div>
+    <div class="stats">
+      <div class="s"><div class="n">12:35</div><div class="l">Call duration</div></div>
+      <div class="s"><div class="n">4×</div><div class="l">Menu fails</div></div>
+      <div class="s"><div class="n">16+</div><div class="l">Digits on keypad</div></div>
+    </div>
+  </div>
+
+  <!-- ROW 4 — 3 Findings in grid -->
+  <div class="findings">
+
+    <!-- FINDING 01 — GOLD -->
+    <article class="finding gold">
+      <div class="finding-head">
+        <span class="finding-tag">01 · Gold</span>
+        <span class="finding-num">PAYMENT</span>
+      </div>
+      <h3>Card digits cannot be spoken to an Ooma agent.</h3>
+      <div class="exhibit">
+        <div class="quote">"We are not allowed to get your card number or security code. You need to enter the card number and security code using your phone's keypad."</div>
+        <div class="source">— Ooma agent · 10:47 into call</div>
+      </div>
+      <button class="jump" onclick="playMoment(this, 647, 658)">
+        <span class="play-icon">▶</span> Hear it · 11 sec
+      </button>
+      <div class="compare">
+        <div class="col you">
+          <div class="k">Ooma</div>
+          <div class="v">Keypad entry only</div>
+          <div class="src">Live call, Apr 6 2026</div>
+        </div>
+        <div class="col benchmark">
+          <div class="k">Industry standard</div>
+          <div class="v">Online self-service + voice</div>
+          <div class="src">JP Morgan 2025 B2B payments report</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- FINDING 02 — FRICTION -->
+    <article class="finding friction">
+      <div class="finding-head">
+        <span class="finding-tag">02 · Friction</span>
+        <span class="finding-num">FINDING THE ACCOUNT</span>
+      </div>
+      <h3>The automated phone menu told our caller her account didn't exist. Four times.</h3>
+      <div class="exhibit">
+        <div class="quote">"Either you have not entered a phone number, or the phone number is not valid. Please enter your ten digit Ooma telephone number…"</div>
+        <div class="source">— Ooma's automated phone menu · repeated 4 times, starting 3 minutes into the call</div>
+      </div>
+      <button class="jump" onclick="playMoment(this, 185, 198)">
+        <span class="play-icon">▶</span> Hear it · 13 sec
+      </button>
+      <div class="compare">
+        <div class="col you">
+          <div class="k">Ooma</div>
+          <div class="v">4 failed attempts before a human answered</div>
+          <div class="src">Live call, April 6 2026</div>
+        </div>
+        <div class="col benchmark">
+          <div class="k">Industry benchmark</div>
+          <div class="v">"Effortless" = 1 or 2 steps</div>
+          <div class="src">Gartner customer effort benchmark</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- FINDING 03 — SECURITY -->
+    <article class="finding security">
+      <div class="finding-head">
+        <span class="finding-tag">03 · Security</span>
+        <span class="finding-num">LOGIN PAGE</span>
+      </div>
+      <h3>Legal links on your customer login page aren't secure.</h3>
+      <div class="evidence-mini">
+        <img src="audit-assets/ooma-portals/ooma-login.png" alt="office.ooma.com login page">
+        <div class="cap-overlay">office.ooma.com · <strong>bad links in the footer — see below</strong></div>
+      </div>
+      <div class="exhibit">
+        <div class="quote">Terms of Use → <code>http://www.ooma.com/terms</code><br>Privacy Policy → <code>http://www.ooma.com/privacy-policy</code></div>
+        <div class="source">— office.ooma.com footer · captured April 6, 2026</div>
+      </div>
+      <div class="compare">
+        <div class="col you">
+          <div class="k">Ooma</div>
+          <div class="v">Unsecured legal links (http://)</div>
+          <div class="src">Live page, April 6 2026</div>
+        </div>
+        <div class="col benchmark">
+          <div class="k">Industry standard</div>
+          <div class="v">All links secured (https://)</div>
+          <div class="src">Payment industry security rules · 2024</div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- ROW 5 — Signature -->
+  <div class="sig">
+    <div class="sig-photo">JB</div>
+    <div class="sig-body">
+      <div class="name">John Banner · <span style="font-weight:500;color:var(--muted);font-size:11px">Founder · AgentCollect (YC S23)</span></div>
+      <div class="note">AI collection agent trusted by <strong>Microsoft, Dell, Plaid, Vanta, Checkr</strong> · ~49% recovered in 20 days · zero upfront</div>
+    </div>
+    <div class="sig-contact">
+      <a href="https://cal.com/johnb/30" target="_blank">cal.com/johnb/30</a>
+      <a href="mailto:j@agentcollect.com">j@agentcollect.com</a>
+      <span>+1 (415) 867-4010</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+let activeBtn = null;
+function playMoment(btn, start, end) {
+  const audio = document.getElementById('callRec');
+  audio.pause();
+  if (activeBtn && activeBtn !== btn) {
+    activeBtn.querySelector('.play-icon').classList.remove('playing');
+  }
+  audio.currentTime = start;
+  audio.play();
+  btn.querySelector('.play-icon').classList.add('playing');
+  activeBtn = btn;
+  const durationMs = (end - start) * 1000 + 200;
+  clearTimeout(window._jumpTimer);
+  window._jumpTimer = setTimeout(() => {
+    audio.pause();
+    btn.querySelector('.play-icon').classList.remove('playing');
+    activeBtn = null;
+  }, durationMs);
+}
+</script>
+
+</body>
+</html>

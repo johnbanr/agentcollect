@@ -1,0 +1,63 @@
+{
+  "weave": {
+    "login_url": "https://app.getweave.com/sign-in",
+    "login_url_actual": "https://auth.getweave.com/ (redirects from app.getweave.com)",
+    "billing_url": "https://app.getweave.com/payments/invoices (requires auth, redirects to login)",
+    "load_time_ms": 1757,
+    "https_valid": true,
+    "ux_issues": [],
+    "accepts_card_online": true,
+    "screenshots": ["weave-login.png", "weave-billing.png"],
+    "notes": "Clean login page. Supports email/password, passkey, SSO. Has 'Remember me' and passkey setup options. Billing portal at /payments/invoices requires auth. Weave Payments accepts credit/debit cards, ACH, Apple Pay, Google Pay, Affirm, Link by Stripe. Text-to-pay and online bill pay features. Also has auth.getweave.com and app2.getweave.com/sign-in portals."
+  },
+  "solutionreach": {
+    "login_url": "https://login.solutionreach.com/signin",
+    "billing_url": "[behind auth - no public billing portal found]",
+    "load_time_ms": 8882,
+    "https_valid": true,
+    "ux_issues": ["Very slow page load (8.8s)"],
+    "accepts_card_online": true,
+    "screenshots": ["solutionreach-login.png"],
+    "notes": "Simple username/password login with 'Remember me'. Extremely slow load time (8882ms). SR Pay product accepts debit/credit/HSA/FSA cards via text message payment links. Uses Singular Payments for credit processing. CareCredit integration for financing. Also has app.solutionreach.com/login (SR Health) and prweb.solutionreach.com (PatientReach Mobile)."
+  },
+  "tebra": {
+    "login_url": "https://www.tebra.com/sign-in",
+    "login_url_kareo": "https://app.kareo.com/v2/#/sign-in",
+    "login_url_patientpop": "https://app.patientpop.com/sign-in",
+    "billing_url": "[behind auth - billing managed within Kareo PM app]",
+    "load_time_ms": 1445,
+    "https_valid": true,
+    "ux_issues": ["Hub page, not direct login - must click through to Kareo or PatientPop sub-apps", "Copyright says 2024 (outdated)"],
+    "accepts_card_online": true,
+    "screenshots": ["tebra-login.png", "tebra-kareo-login.png"],
+    "notes": "Sign-in page is a hub linking to two separate apps: Practice Operations (Kareo) and Practice Growth (PatientPop). Tebra Payments accepts credit/debit cards, ACH transfers, mobile wallets, and recurring payments. Billing management via My Account in Kareo PM. Has Qualified Messenger chat widget embedded on login page."
+  },
+  "ooma": {
+    "login_url": "https://office.ooma.com/",
+    "login_url_account": "https://account.ooma.com/login",
+    "billing_url": "https://account.ooma.com/ (requires auth, redirects to login)",
+    "load_time_ms": 1591,
+    "https_valid": true,
+    "ux_issues": ["Terms of Use link uses HTTP instead of HTTPS (http://www.ooma.com/terms)", "Privacy Policy link also HTTP (http://www.ooma.com/privacy-policy)"],
+    "accepts_card_online": true,
+    "screenshots": ["ooma-login.png", "ooma-billing.png"],
+    "notes": "Login page has Admin/User tabs. Accepts phone number + password or email-based login. Has referral program banner ($5,000). PC Magazine winner badge displayed. Billing managed via Account page in Office Manager. Accepts credit cards, debit cards, internet banking. account.ooma.com is separate billing/account portal. Also has manage.oomaenterprise.com for enterprise."
+  },
+  "spoton": {
+    "login_url": "https://pos.spoton.com/",
+    "login_url_actual": "https://login.retail.genius.io/ (Azure B2C, redirects from pos.spoton.com)",
+    "login_url_restaurant": "https://client.restaurantpos.spoton.com/",
+    "billing_url": "[behind auth - billing managed within SpotOn dashboard]",
+    "load_time_ms": 840,
+    "https_valid": true,
+    "ux_issues": ["Help link uses HTTP (http://poshelp.spoton.com/)", "Login hosted on third-party domain (genius.io via Azure B2C) - may confuse users"],
+    "accepts_card_online": true,
+    "screenshots": ["spoton-login.png"],
+    "notes": "Fastest load time (840ms). POS login redirects to Azure B2C on login.retail.genius.io domain. Simple email/password form. SpotOn offers templated invoicing, secure payment portal, recurring payments, virtual terminal. Integrated payment processing across POS, online ordering, and invoicing. Also has client.restaurantpos.spoton.com for restaurant FOH."
+  },
+  "_metadata": {
+    "scraped_at": "2026-04-06T18:08:00-07:00",
+    "tool_used": "Chrome DevTools MCP",
+    "notes": "All billing portals require authentication. No credentials were used. Screenshots captured of login pages only. Billing/payment capability data sourced from web search of help docs and marketing pages."
+  }
+}
