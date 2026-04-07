@@ -309,22 +309,22 @@ body{background:var(--bone);color:var(--ink);font-family:var(--sans);font-size:1
         <!-- Faux waveform bars -->
         <div class="wave" id="waveBars"></div>
 
-        <!-- Markers overlaid on the wave. Total 1115s = 18:35 -->
+        <!-- Markers overlaid on the wave. Total 1115s = 18:35. Timestamps from transcript_object word-level data. -->
         <div class="wave-markers">
-          <!-- 35s = 3.1% : first rep refuses card -->
-          <button class="marker red" style="left:3.1%" onclick="playMoment(this, 35, 48)" title="Refusal 1">1</button>
-          <!-- 170s = 15.2% : transferred -->
-          <button class="marker amber" style="left:15.2%" onclick="playMoment(this, 170, 185)" title="Transferred">!</button>
-          <!-- 270s = 24.2% : Tanya refuses card too -->
-          <button class="marker red" style="left:24.2%" onclick="playMoment(this, 270, 285)" title="Refusal 2">2</button>
-          <!-- 450s = 40.4% : "Hodge Foster" mishear -->
-          <button class="marker red" style="left:40.4%" onclick="playMoment(this, 450, 470)" title="Hodge Foster">3</button>
-          <!-- 620s = 55.6% : wrong names on account -->
-          <button class="marker red" style="left:55.6%" onclick="playMoment(this, 620, 645)" title="Wrong names">4</button>
-          <!-- 820s = 73.5% : fifty billion ways -->
-          <button class="marker red" style="left:73.5%" onclick="playMoment(this, 820, 840)" title="Fifty billion ways">5</button>
-          <!-- 1000s = 89.7% : email instead -->
-          <button class="marker amber" style="left:89.7%" onclick="playMoment(this, 1000, 1020)" title="Email instead">6</button>
+          <!-- 38s = 3.4% : first rep refuses card -->
+          <button class="marker red" style="left:3.4%" onclick="playMoment(this, 36, 50)" title="Refusal 1">1</button>
+          <!-- 81s = 7.3% : transferred -->
+          <button class="marker amber" style="left:7.3%" onclick="playMoment(this, 79, 92)" title="Transferred">!</button>
+          <!-- 177s = 15.9% : Tanya picks up -->
+          <button class="marker amber" style="left:15.9%" onclick="playMoment(this, 175, 188)" title="Tanya picks up">2</button>
+          <!-- 269s = 24.1% : Hodge Foster mishear -->
+          <button class="marker red" style="left:24.1%" onclick="playMoment(this, 267, 283)" title="Hodge Foster">3</button>
+          <!-- 464s = 41.6% : list of wrong Fosters -->
+          <button class="marker red" style="left:41.6%" onclick="playMoment(this, 462, 482)" title="Wrong Fosters">4</button>
+          <!-- 932s = 83.6% : fifty billion ways -->
+          <button class="marker red" style="left:83.6%" onclick="playMoment(this, 930, 950)" title="Fifty billion ways">5</button>
+          <!-- 1066s = 95.6% : send email to billing -->
+          <button class="marker amber" style="left:95.6%" onclick="playMoment(this, 1064, 1084)" title="Email instead">6</button>
           <!-- End -->
           <div class="marker end" style="left:100%">·</div>
         </div>
@@ -343,71 +343,71 @@ body{background:var(--bone);color:var(--ink);font-family:var(--sans);font-size:1
       <div class="moments">
         <div class="moments-title">The seven moments, in order</div>
 
-        <div class="moment" onclick="playMoment(this.querySelector('.m-badge'), 35, 48)">
+        <div class="moment" onclick="playMoment(this.querySelector('.m-badge'), 36, 50)">
           <div class="m-badge red">1</div>
-          <div class="m-time">00:35</div>
+          <div class="m-time">00:38</div>
           <div class="m-body">
             Mike Foster, a paying Buildertrend customer, asks to pay his $1,247 invoice by credit card. The first rep answers: <strong>"Unfortunately no. We cannot do payments over the phone."</strong>
+            <div class="play-hint">Hear it</div>
+          </div>
+          <div class="m-dur">14 sec</div>
+        </div>
+
+        <div class="moment" onclick="playMoment(this.querySelector('.m-badge'), 79, 92)">
+          <div class="m-badge amber">!</div>
+          <div class="m-time">01:21</div>
+          <div class="m-body">
+            The first rep offers the only path forward: <strong>"I can transfer you over to our billing department. They can help assist with that."</strong>
             <div class="play-hint">Hear it</div>
           </div>
           <div class="m-dur">13 sec</div>
         </div>
 
-        <div class="moment" onclick="playMoment(this.querySelector('.m-badge'), 170, 185)">
-          <div class="m-badge amber">!</div>
-          <div class="m-time">02:50</div>
+        <div class="moment" onclick="playMoment(this.querySelector('.m-badge'), 175, 188)">
+          <div class="m-badge amber">2</div>
+          <div class="m-time">02:57</div>
           <div class="m-body">
-            Transferred to billing. A second rep picks up: "Good morning, this is Tanya. How can I help you?" Mike asks the same question. <strong>"No. Unfortunately we cannot do that."</strong>
+            Tanya picks up in billing: <strong>"Good morning. Thank you for calling Buildertrend. This is Tanya. How can I help you?"</strong> Mike repeats his request. She also says no to the credit card.
             <div class="play-hint">Hear it</div>
           </div>
-          <div class="m-dur">15 sec</div>
+          <div class="m-dur">13 sec</div>
         </div>
 
-        <div class="moment" onclick="playMoment(this.querySelector('.m-badge'), 270, 285)">
-          <div class="m-badge red">2</div>
-          <div class="m-time">04:30</div>
-          <div class="m-body">
-            Tanya asks for the company name. Mike says "Foster Construction LLC." She can't find it. She asks him to spell it letter by letter.
-            <div class="play-hint">Hear it</div>
-          </div>
-          <div class="m-dur">15 sec</div>
-        </div>
-
-        <div class="moment" onclick="playMoment(this.querySelector('.m-badge'), 450, 470)">
+        <div class="moment" onclick="playMoment(this.querySelector('.m-badge'), 267, 283)">
           <div class="m-badge red">3</div>
-          <div class="m-time">07:30</div>
+          <div class="m-time">04:29</div>
           <div class="m-body">
-            She asks his name. Mike says "Mike Foster." She hears <strong>"Hodge Foster"</strong> and repeats it back three times. Mike corrects her three times.
+            Tanya asks for his name. Mike says "Mike Foster." She hears <strong>"Hodge Foster"</strong> and reads it back out loud three times. Mike corrects her each time. The confusion lasts three minutes.
             <div class="play-hint">Hear it</div>
           </div>
-          <div class="m-dur">20 sec</div>
+          <div class="m-dur">16 sec</div>
         </div>
 
-        <div class="moment" onclick="playMoment(this.querySelector('.m-badge'), 620, 645)">
+        <div class="moment" onclick="playMoment(this.querySelector('.m-badge'), 462, 482)">
           <div class="m-badge red">4</div>
-          <div class="m-time">10:20</div>
+          <div class="m-time">07:44</div>
           <div class="m-body">
-            Reading from her screen: <strong>"I'm finding something with Hodge Foster, Lindsey Shaw, Richard Foster, and Ben Foster. But I am not finding Mike Foster."</strong>
-            <div class="play-hint">Hear it</div>
-          </div>
-          <div class="m-dur">25 sec</div>
-        </div>
-
-        <div class="moment" onclick="playMoment(this.querySelector('.m-badge'), 820, 840)">
-          <div class="m-badge red">5</div>
-          <div class="m-time">13:40</div>
-          <div class="m-body">
-            Thirteen minutes in, she gives up: <strong>"I've typed it in too many times. Fifty billion ways. And I cannot find a Mike Foster related to Foster Construction."</strong>
+            Reading from her screen: <strong>"I'm finding something with Hodge Foster, Lindsey Shaw, Richard Foster, and Ben Foster, but I am not finding Mike Foster on the account."</strong>
             <div class="play-hint">Hear it</div>
           </div>
           <div class="m-dur">20 sec</div>
         </div>
 
-        <div class="moment" onclick="playMoment(this.querySelector('.m-badge'), 1000, 1020)">
-          <div class="m-badge amber">6</div>
-          <div class="m-time">16:40</div>
+        <div class="moment" onclick="playMoment(this.querySelector('.m-badge'), 930, 950)">
+          <div class="m-badge red">5</div>
+          <div class="m-time">15:30</div>
           <div class="m-body">
-            Her last resort: <strong>"Can you send an email to billing@buildertrend.com? We can try to help you that way because I cannot pull it up."</strong>
+            Fifteen minutes in, Tanya gives up: <strong>"I've typed it in too many times. Fifty billion ways. And I cannot find a Mike Foster related to Foster Construction."</strong>
+            <div class="play-hint">Hear it</div>
+          </div>
+          <div class="m-dur">20 sec</div>
+        </div>
+
+        <div class="moment" onclick="playMoment(this.querySelector('.m-badge'), 1064, 1084)">
+          <div class="m-badge amber">6</div>
+          <div class="m-time">17:46</div>
+          <div class="m-body">
+            Her last resort: <strong>"Can you send a email to billing at buildertrend dot com? We can try to help you that way because I cannot pull it up."</strong>
             <div class="play-hint">Hear it</div>
           </div>
           <div class="m-dur">20 sec</div>
