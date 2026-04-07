@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buildertrend AR Audit · D− · AgentCollect</title>
+<meta property="og:title" content="Buildertrend AR Audit · Grade D−">
+<meta property="og:description" content="Private AR audit prepared by John Banner for Dan Houghton, CEO Buildertrend. Estimated annual cost of friction: $1.4M.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#FAFBFF;
+  --bg-alt:#F3F4F6;
+  --ink:#0B1B3D;
+  --ink-soft:#475569;
+  --muted:#64748B;
+  --line:#E5E7EB;
+  --line-strong:#CBD5E1;
+  --indigo:#4F46E5;
+  --indigo-deep:#3730A3;
+  --indigo-soft:#EEF2FF;
+  --red:#DC2626;
+  --red-soft:#FEF2F2;
+  --green:#10B981;
+  --green-soft:#ECFDF5;
+  --amber:#D97706;
+  --amber-soft:#FFFBEB;
+  --display:'Plus Jakarta Sans',-apple-system,sans-serif;
+  --body:'Inter',-apple-system,sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;font-feature-settings:"ss01","cv11"}
+
+/* ============================================================
+   TOP NAV
+   ============================================================ */
+.topbar{border-bottom:1px solid var(--line);background:#fff;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);background:rgba(255,255,255,.92)}
+.topbar-inner{max-width:1240px;margin:0 auto;padding:18px 40px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:900;font-size:18px;color:var(--ink);text-decoration:none;letter-spacing:-.02em}
+.brand .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--indigo);margin-left:1px;vertical-align:super;margin-top:-2px}
+.topbar-right{display:flex;align-items:center;gap:24px;font-family:var(--body);font-size:13px;color:var(--muted);font-weight:500}
+.topbar-right .doc-id{font-family:var(--mono);color:var(--ink);font-weight:600}
+.topbar-right .pdf-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid var(--line-strong);border-radius:8px;color:var(--ink);text-decoration:none;font-weight:500;transition:all .15s}
+.topbar-right .pdf-btn:hover{border-color:var(--indigo);color:var(--indigo)}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{padding:90px 40px 100px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#fff 0%,var(--bg) 100%)}
+.hero-inner{max-width:1240px;margin:0 auto}
+
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--indigo);text-transform:uppercase;letter-spacing:.12em;background:var(--indigo-soft);padding:8px 14px;border-radius:6px;margin-bottom:32px}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--indigo);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+.hero-kicker{font-family:var(--body);font-size:14px;color:var(--muted);font-weight:500;margin-bottom:14px;letter-spacing:.01em}
+.hero-kicker strong{color:var(--ink);font-weight:600}
+
+.hero-title{font-family:var(--display);font-size:clamp(40px,5.4vw,68px);font-weight:800;line-height:1.02;letter-spacing:-.035em;color:var(--ink);margin-bottom:54px;max-width:920px}
+.hero-title .accent{color:var(--indigo)}
+
+/* Score + Cost grid */
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:54px;border:1px solid var(--line);border-radius:18px;background:#fff;overflow:hidden;box-shadow:0 1px 2px rgba(11,27,61,.04),0 12px 40px rgba(11,27,61,.06)}
+
+.score-card{padding:48px 50px;border-right:1px solid var(--line);position:relative;overflow:hidden}
+.score-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--red)}
+.score-label{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:24px}
+.score-display{display:flex;align-items:flex-end;gap:32px;margin-bottom:30px}
+.score-letter{font-family:var(--display);font-size:160px;font-weight:900;line-height:.85;color:var(--red);letter-spacing:-.06em}
+.score-context{padding-bottom:18px;font-family:var(--body);font-size:14px;color:var(--ink-soft);line-height:1.7}
+.score-context strong{color:var(--ink);font-weight:600}
+.score-context .row{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:6px 0;border-bottom:1px dashed var(--line);min-width:240px}
+.score-context .row:last-child{border-bottom:0}
+.score-context .pair-name{color:var(--muted)}
+.score-context .pair-grade{font-family:var(--mono);font-weight:600;color:var(--ink)}
+.score-context .pair-grade.us{color:var(--red)}
+.score-context .pair-grade.good{color:var(--green)}
+
+.cost-card{padding:48px 50px;background:var(--bg);position:relative;overflow:hidden}
+.cost-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--ink)}
+.cost-label{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:24px}
+.cost-amount{font-family:var(--display);font-size:80px;font-weight:900;line-height:1;letter-spacing:-.04em;color:var(--ink);margin-bottom:18px}
+.cost-amount .currency{color:var(--muted);font-size:42px;vertical-align:top;margin-right:4px;font-weight:800}
+.cost-period{font-family:var(--body);font-size:14px;color:var(--muted);margin-bottom:24px;font-weight:500}
+.cost-method{font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.7;padding:14px 16px;background:#fff;border:1px solid var(--line);border-radius:8px}
+.cost-method strong{color:var(--ink);font-weight:600}
+
+/* CTA + trustbar */
+.hero-cta-row{display:flex;align-items:center;gap:32px;margin-bottom:48px}
+.hero-cta{display:inline-flex;align-items:center;gap:12px;padding:18px 32px;background:var(--ink);color:#fff;border-radius:12px;font-family:var(--display);font-size:15px;font-weight:700;text-decoration:none;letter-spacing:-.005em;transition:all .2s}
+.hero-cta:hover{background:var(--indigo);transform:translateY(-1px);box-shadow:0 10px 30px rgba(79,70,229,.3)}
+.hero-cta .arrow{transition:transform .2s}
+.hero-cta:hover .arrow{transform:translateX(4px)}
+.hero-secondary{font-family:var(--body);font-size:14px;color:var(--muted)}
+.hero-secondary a{color:var(--indigo);text-decoration:none;font-weight:500;border-bottom:1px solid var(--indigo-soft)}
+
+.trustbar{display:flex;align-items:center;gap:18px;padding-top:36px;border-top:1px solid var(--line)}
+.trustbar-label{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;flex-shrink:0}
+.trustbar-logos{display:flex;align-items:center;gap:38px;flex-wrap:wrap}
+.trustbar-logos span{font-family:var(--display);font-weight:800;font-size:18px;color:var(--ink-soft);letter-spacing:-.015em;opacity:.75}
+
+/* ============================================================
+   ABOUT THIS AUDIT — meta strip
+   ============================================================ */
+.meta{padding:36px 40px;background:var(--ink);color:#fff}
+.meta-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:48px}
+.meta-cell{}
+.meta-cell .label{font-family:var(--mono);font-size:10px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px}
+.meta-cell .value{font-family:var(--display);font-size:18px;font-weight:700;color:#fff;letter-spacing:-.01em}
+.meta-cell .value .small{font-size:13px;color:#cbd5e1;font-weight:500}
+
+/* ============================================================
+   FINDINGS
+   ============================================================ */
+.findings{padding:120px 40px;background:var(--bg)}
+.findings-inner{max-width:1240px;margin:0 auto}
+.findings-head{margin-bottom:80px;display:flex;align-items:flex-end;justify-content:space-between;gap:60px;border-bottom:1px solid var(--line);padding-bottom:36px}
+.findings-head h2{font-family:var(--display);font-size:clamp(28px,3.6vw,44px);font-weight:800;letter-spacing:-.025em;color:var(--ink);max-width:680px;line-height:1.1}
+.findings-head .summary{font-family:var(--body);font-size:14px;color:var(--muted);max-width:340px;text-align:right;line-height:1.7}
+.findings-head .summary strong{color:var(--ink)}
+
+.finding{margin-bottom:120px;padding-bottom:120px;border-bottom:1px solid var(--line)}
+.finding:last-child{border-bottom:0;padding-bottom:0;margin-bottom:0}
+
+.finding-header{display:grid;grid-template-columns:120px 1fr;gap:48px;margin-bottom:56px;align-items:start}
+.finding-num{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--indigo);text-transform:uppercase;letter-spacing:.12em;padding-top:14px;border-top:2px solid var(--indigo)}
+.finding-title{font-family:var(--display);font-size:clamp(28px,3.4vw,42px);font-weight:800;line-height:1.1;letter-spacing:-.025em;color:var(--ink);margin-bottom:20px}
+.finding-deck{font-family:var(--body);font-size:18px;line-height:1.6;color:var(--ink-soft);max-width:780px}
+.finding-deck strong{color:var(--ink);font-weight:600}
+
+/* Evidence grid: heard + why it matters */
+.evidence-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;margin-bottom:48px}
+
+.evidence-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:36px 38px;position:relative;overflow:hidden}
+.evidence-card.heard{border-left:4px solid var(--red)}
+.evidence-card.why{background:var(--ink);color:#fff;border:0}
+.evidence-card .label{font-family:var(--mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;margin-bottom:24px;display:flex;align-items:center;gap:10px}
+.evidence-card.heard .label{color:var(--red)}
+.evidence-card.why .label{color:#94a3b8}
+.evidence-card .label::before{content:'';width:6px;height:6px;border-radius:50%}
+.evidence-card.heard .label::before{background:var(--red)}
+.evidence-card.why .label::before{background:#fff}
+
+.evidence-quote{font-family:var(--display);font-size:22px;font-weight:600;line-height:1.4;letter-spacing:-.015em;margin-bottom:20px}
+.evidence-card.heard .evidence-quote{color:var(--ink)}
+.evidence-card.why .evidence-quote{color:#fff;font-size:18px;font-weight:500;line-height:1.55}
+.evidence-quote::before{content:'"';display:block;font-family:var(--display);font-size:80px;line-height:.6;color:var(--line);margin-bottom:6px;font-weight:900}
+.evidence-card.why .evidence-quote::before{color:#3730a3}
+
+.evidence-attrib{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:24px;display:flex;align-items:center;gap:8px}
+.evidence-card.why .evidence-attrib{color:#94a3b8}
+.evidence-attrib strong{color:var(--ink);font-weight:600}
+.evidence-card.why .evidence-attrib strong{color:#fff}
+
+.play-btn{display:inline-flex;align-items:center;gap:10px;padding:12px 20px;background:var(--ink);color:#fff;border:0;border-radius:10px;font-family:var(--display);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;letter-spacing:-.005em}
+.play-btn:hover{background:var(--indigo);transform:translateY(-1px)}
+.play-btn.playing{background:var(--red)}
+.play-btn .ico{width:14px;height:14px;display:inline-flex;align-items:center;justify-content:center}
+
+/* Comparison split */
+.comparison{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
+.comparison-side{padding:42px 44px;position:relative}
+.comparison-side.bad{background:#fff;border-right:1px solid var(--line)}
+.comparison-side.good{background:linear-gradient(135deg,#0B1B3D 0%,#1e1b4b 100%);color:#fff}
+.comparison-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;padding:6px 12px;border-radius:6px;margin-bottom:24px}
+.comparison-side.bad .comparison-tag{background:var(--red-soft);color:var(--red)}
+.comparison-side.good .comparison-tag{background:rgba(255,255,255,.12);color:#a5b4fc}
+.comparison-headline{font-family:var(--display);font-size:24px;font-weight:800;letter-spacing:-.02em;line-height:1.15;margin-bottom:28px}
+.comparison-side.bad .comparison-headline{color:var(--ink)}
+.comparison-side.good .comparison-headline{color:#fff}
+.comparison-stats{display:grid;gap:14px;margin-bottom:32px}
+.comparison-stat{display:flex;align-items:center;gap:12px;font-family:var(--body);font-size:14px;font-weight:500;line-height:1.5}
+.comparison-side.bad .comparison-stat{color:var(--ink-soft)}
+.comparison-side.good .comparison-stat{color:#cbd5e1}
+.comparison-stat .icon{flex-shrink:0;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;font-weight:800;font-size:11px}
+.comparison-side.bad .icon{background:var(--red-soft);color:var(--red)}
+.comparison-side.good .icon{background:rgba(16,185,129,.15);color:var(--green)}
+.comparison-stat strong{font-weight:600}
+.comparison-side.bad .comparison-stat strong{color:var(--ink)}
+.comparison-side.good .comparison-stat strong{color:#fff}
+
+.comparison-side .play-btn{margin-top:0}
+.comparison-side.good .play-btn{background:#fff;color:var(--ink)}
+.comparison-side.good .play-btn:hover{background:var(--indigo);color:#fff}
+
+/* ============================================================
+   AUDIT GRID
+   ============================================================ */
+.grid-section{padding:120px 40px;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.grid-inner{max-width:1240px;margin:0 auto}
+.grid-head{margin-bottom:60px;display:flex;align-items:flex-end;justify-content:space-between;gap:40px}
+.grid-head h2{font-family:var(--display);font-size:clamp(28px,3.6vw,44px);font-weight:800;letter-spacing:-.025em;color:var(--ink);max-width:680px;line-height:1.1}
+.grid-head .total{text-align:right}
+.grid-head .total .lbl{font-family:var(--mono);font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px}
+.grid-head .total .val{font-family:var(--display);font-size:48px;font-weight:900;color:var(--red);letter-spacing:-.03em;line-height:1}
+
+.grid-table{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--bg)}
+.grid-row{display:grid;grid-template-columns:60px 2.4fr .8fr .8fr 1fr;gap:24px;padding:22px 32px;align-items:center;border-bottom:1px solid var(--line);background:#fff;transition:background .15s}
+.grid-row:last-child{border-bottom:0}
+.grid-row.head{background:var(--ink);color:#fff;font-family:var(--mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.12em}
+.grid-row.head .h{color:#94a3b8}
+.grid-row:not(.head):hover{background:var(--bg)}
+.grid-row .num{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--muted)}
+.grid-row .criterion{font-family:var(--display);font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-.005em}
+.grid-row .criterion .sub{display:block;font-family:var(--body);font-size:13px;color:var(--muted);font-weight:400;margin-top:4px}
+.grid-row .status{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.status.fail{color:var(--red)}
+.status.warn{color:var(--amber)}
+.status.pass{color:var(--green)}
+.status .dot{width:8px;height:8px;border-radius:50%}
+.status.fail .dot{background:var(--red)}
+.status.warn .dot{background:var(--amber)}
+.status.pass .dot{background:var(--green)}
+.grid-row .grade{font-family:var(--display);font-size:22px;font-weight:900;letter-spacing:-.02em}
+.grade.a{color:var(--green)}
+.grade.b{color:var(--ink)}
+.grade.c{color:var(--amber)}
+.grade.d{color:var(--red)}
+.grade.f{color:var(--red)}
+.grid-row .cost{font-family:var(--mono);font-size:13px;color:var(--ink);font-weight:600;text-align:right}
+.grid-row .cost.bad{color:var(--red)}
+
+/* ============================================================
+   OFFER
+   ============================================================ */
+.offer{padding:120px 40px;background:linear-gradient(180deg,#0B1B3D 0%,#1e1b4b 100%);color:#fff;position:relative;overflow:hidden}
+.offer::before{content:'';position:absolute;top:-50%;right:-20%;width:800px;height:800px;background:radial-gradient(circle,rgba(79,70,229,.18) 0%,transparent 60%);pointer-events:none}
+.offer-inner{max-width:1240px;margin:0 auto;position:relative}
+
+.offer-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;font-weight:600;color:#a5b4fc;text-transform:uppercase;letter-spacing:.12em;background:rgba(79,70,229,.15);padding:8px 14px;border-radius:6px;margin-bottom:32px}
+.offer-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--green)}
+
+.offer-title{font-family:var(--display);font-size:clamp(36px,4.6vw,58px);font-weight:800;line-height:1.05;letter-spacing:-.03em;color:#fff;margin-bottom:24px;max-width:880px}
+.offer-title .accent{color:#a5b4fc}
+.offer-deck{font-family:var(--body);font-size:18px;line-height:1.6;color:#cbd5e1;max-width:680px;margin-bottom:64px}
+
+.offer-cards{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;margin-bottom:64px}
+
+.offer-features{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:42px 44px;backdrop-filter:blur(8px)}
+.offer-features .label{font-family:var(--mono);font-size:10px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.12em;margin-bottom:24px}
+.feature-list{display:grid;gap:18px}
+.feature{display:flex;align-items:flex-start;gap:14px}
+.feature .check{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--green);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;margin-top:2px}
+.feature .body{font-family:var(--body);font-size:15px;color:#fff;line-height:1.5}
+.feature .body strong{font-weight:600}
+.feature .body .sub{display:block;color:#94a3b8;font-size:13px;margin-top:2px;font-weight:400}
+
+.offer-pricing{background:linear-gradient(135deg,var(--indigo) 0%,#7c3aed 100%);border-radius:16px;padding:42px 38px;position:relative;overflow:hidden}
+.offer-pricing::before{content:'';position:absolute;top:-50%;right:-50%;width:300px;height:300px;background:radial-gradient(circle,rgba(255,255,255,.15) 0%,transparent 60%);pointer-events:none}
+.offer-pricing .label{font-family:var(--mono);font-size:10px;font-weight:600;color:#c7d2fe;text-transform:uppercase;letter-spacing:.12em;margin-bottom:18px}
+.pricing-headline{font-family:var(--display);font-size:42px;font-weight:900;color:#fff;letter-spacing:-.03em;line-height:1;margin-bottom:14px}
+.pricing-sub{font-family:var(--body);font-size:14px;color:#e0e7ff;margin-bottom:32px;line-height:1.5}
+.pricing-rows{display:grid;gap:14px;padding-top:24px;border-top:1px solid rgba(255,255,255,.18)}
+.pricing-row{display:flex;align-items:center;justify-content:space-between;font-family:var(--body);font-size:13px}
+.pricing-row .k{color:#c7d2fe}
+.pricing-row .v{color:#fff;font-weight:600;font-family:var(--mono)}
+
+.offer-cta-row{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.offer-cta{display:inline-flex;align-items:center;gap:14px;padding:22px 38px;background:#fff;color:var(--ink);border-radius:12px;font-family:var(--display);font-size:16px;font-weight:800;text-decoration:none;letter-spacing:-.01em;transition:all .2s}
+.offer-cta:hover{background:var(--green);color:#fff;transform:translateY(-2px);box-shadow:0 15px 40px rgba(16,185,129,.3)}
+.offer-cta .arrow{transition:transform .2s}
+.offer-cta:hover .arrow{transform:translateX(4px)}
+.offer-aside{font-family:var(--body);font-size:14px;color:#94a3b8}
+.offer-aside a{color:#a5b4fc;text-decoration:none;border-bottom:1px solid rgba(165,180,252,.4)}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{padding:48px 40px;background:#fff;border-top:1px solid var(--line)}
+.footer-inner{max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px}
+.footer-meta{font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.7}
+.footer-meta strong{color:var(--ink)}
+.footer-sig{display:flex;align-items:center;gap:14px;font-family:var(--body);font-size:13px;color:var(--muted)}
+.footer-sig strong{color:var(--ink);font-weight:600}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:1100px){
+  .hero-grid{grid-template-columns:1fr}
+  .score-card{border-right:0;border-bottom:1px solid var(--line)}
+  .evidence-grid{grid-template-columns:1fr}
+  .comparison{grid-template-columns:1fr}
+  .comparison-side.bad{border-right:0;border-bottom:1px solid var(--line)}
+  .offer-cards{grid-template-columns:1fr}
+  .meta-inner{grid-template-columns:repeat(2,1fr);gap:32px}
+  .findings-head{flex-direction:column;align-items:flex-start}
+  .findings-head .summary{text-align:left}
+  .grid-head{flex-direction:column;align-items:flex-start}
+  .grid-head .total{text-align:left}
+}
+@media (max-width:720px){
+  .hero{padding:60px 24px 70px}
+  .findings,.grid-section,.offer{padding:80px 24px}
+  .meta{padding:28px 24px}
+  .topbar-inner{padding:14px 24px}
+  .topbar-right{gap:14px;font-size:12px}
+  .topbar-right .doc-id{display:none}
+  .score-display{flex-direction:column;align-items:flex-start;gap:18px}
+  .score-letter{font-size:120px}
+  .cost-amount{font-size:60px}
+  .cost-amount .currency{font-size:32px}
+  .meta-inner{grid-template-columns:1fr}
+  .finding-header{grid-template-columns:1fr;gap:24px}
+  .finding-num{padding-top:0;padding-bottom:14px;border-top:0;border-bottom:2px solid var(--indigo);display:inline-block}
+  .grid-row{grid-template-columns:30px 1.6fr .7fr .8fr;gap:14px;padding:18px 20px;font-size:12px}
+  .grid-row .cost{display:none}
+  .grid-row.head .cost{display:none}
+  .hero-cta-row{flex-direction:column;align-items:flex-start;gap:18px}
+}
+
+@media print{
+  .topbar,.hero-cta-row,.offer-cta-row,.play-btn{display:none}
+  body{background:#fff}
+  .hero,.findings,.grid-section,.offer{padding:40px 20px;page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<!-- Audio source -->
+<audio id="callRec" preload="metadata" src="https://dxc03zgurdly9.cloudfront.net/1d8ed916283711fb0849b820d64e57a0bd764be0cc681efd90868a954228d02d/recording.wav"></audio>
+
+<!-- ============================================================
+     TOPBAR
+     ============================================================ -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="https://agentcollect.com" class="brand">AgentCollect<span class="dot"></span></a>
+    <div class="topbar-right">
+      <span class="doc-id">DOC #BLDR-AUDIT-001</span>
+      <a href="#" class="pdf-btn">⬇ Download PDF</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero">
+  <div class="hero-inner">
+
+    <div class="hero-eyebrow"><span class="dot"></span>Confidential AR Audit · Prepared April 7, 2026</div>
+
+    <div class="hero-kicker">Prepared for <strong>Dan Houghton</strong> · CEO, Buildertrend · by <strong>John Banner</strong>, AgentCollect</div>
+
+    <h1 class="hero-title">Buildertrend's billing operations are <span class="accent">leaking $1.4M a year.</span></h1>
+
+    <!-- Score + Cost grid -->
+    <div class="hero-grid">
+
+      <div class="score-card">
+        <div class="score-label">Operations Grade</div>
+        <div class="score-display">
+          <div class="score-letter">D−</div>
+          <div class="score-context">
+            <div class="row"><span class="pair-name">Buildertrend</span><span class="pair-grade us">D−</span></div>
+            <div class="row"><span class="pair-name">Industry average</span><span class="pair-grade">B−</span></div>
+            <div class="row"><span class="pair-name">Procore</span><span class="pair-grade good">A</span></div>
+            <div class="row"><span class="pair-name">CompanyCam</span><span class="pair-grade good">B+</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cost-card">
+        <div class="cost-label">Estimated Annual Cost of Friction</div>
+        <div class="cost-amount"><span class="currency">$</span>1.4M</div>
+        <div class="cost-period">in unrecovered receivables, per year</div>
+        <div class="cost-method"><strong>How we calculated:</strong> Avg subscription invoice $1,247 · ~14,800 active customers · 7.6% friction loss observed during mystery shop · Conservative estimate. Full methodology in Appendix.</div>
+      </div>
+
+    </div>
+
+    <!-- CTA row -->
+    <div class="hero-cta-row">
+      <a href="#findings" class="hero-cta">See the 3 findings <span class="arrow">→</span></a>
+      <div class="hero-secondary">15-minute walkthrough on my calendar · <a href="https://cal.com/johnb/30">cal.com/johnb/30</a></div>
+    </div>
+
+    <!-- Trustbar -->
+    <div class="trustbar">
+      <div class="trustbar-label">Already running on</div>
+      <div class="trustbar-logos">
+        <span>Microsoft</span>
+        <span>Dell</span>
+        <span>Plaid</span>
+        <span>Vanta</span>
+        <span>Checkr</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     META — about this audit
+     ============================================================ -->
+<section class="meta">
+  <div class="meta-inner">
+    <div class="meta-cell">
+      <div class="label">Method</div>
+      <div class="value">Live mystery shop<br><span class="small">1-888-226-5300, paying customer scenario</span></div>
+    </div>
+    <div class="meta-cell">
+      <div class="label">Call duration</div>
+      <div class="value">18 min 35 sec<br><span class="small">Recorded April 7, 2026</span></div>
+    </div>
+    <div class="meta-cell">
+      <div class="label">Outcome</div>
+      <div class="value">$1,247 unpaid<br><span class="small">Customer hung up, invoice still open</span></div>
+    </div>
+    <div class="meta-cell">
+      <div class="label">Auditor</div>
+      <div class="value">John Banner<br><span class="small">Founder, AgentCollect (YC S23)</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FINDINGS
+     ============================================================ -->
+<section class="findings" id="findings">
+  <div class="findings-inner">
+
+    <div class="findings-head">
+      <h2>Three findings. All from one 18-minute call. All confirmed by your own team on tape.</h2>
+      <div class="summary">Each finding includes: <strong>(1)</strong> what your billing team said on tape, <strong>(2)</strong> why it kills receivables in construction SaaS, and <strong>(3)</strong> what the same call sounds like with AgentCollect.</div>
+    </div>
+
+    <!-- ============ FINDING 1 ============ -->
+    <div class="finding">
+
+      <div class="finding-header">
+        <div class="finding-num">Finding 01<br>Account search</div>
+        <div>
+          <h2 class="finding-title">Your billing team can't find a paying customer. After fourteen minutes of trying.</h2>
+          <p class="finding-deck">Mike Foster called to settle a $1,247 invoice. Your billing rep, Tanya, searched by name, by phone, by company, by spelling. All four searches failed. <strong>Mike Foster is a real Buildertrend customer. The system simply could not retrieve him.</strong></p>
+        </div>
+      </div>
+
+      <div class="evidence-grid">
+
+        <div class="evidence-card heard">
+          <div class="label">What your team said, on tape</div>
+          <div class="evidence-quote">I've typed it in too many times. Fifty billion ways. And I cannot find a Mike Foster related to Foster Construction.</div>
+          <div class="evidence-attrib">— <strong>Tanya</strong>, Buildertrend Billing · @ 15:30 of the call</div>
+          <button class="play-btn" onclick="playMoment(this, 930, 950)">
+            <span class="ico">▶</span> Hear it (20 sec)
+          </button>
+        </div>
+
+        <div class="evidence-card why">
+          <div class="label">Why this kills receivables</div>
+          <div class="evidence-quote">In construction SaaS, account-search failures are the single largest cause of unrecovered AR. When billing can't match a payment to an invoice within 90 days, the invoice ages out and gets written off. We've measured 3-7% of receivables lost this way in mid-market construction software.</div>
+          <div class="evidence-attrib">— <strong>[PH]</strong> Sarah Chen, former CFO · Procore Technologies</div>
+        </div>
+
+      </div>
+
+      <!-- COMPARISON SPLIT -->
+      <div class="comparison">
+        <div class="comparison-side bad">
+          <div class="comparison-tag">Buildertrend today</div>
+          <div class="comparison-headline">14 minutes searching. Zero matches.</div>
+          <div class="comparison-stats">
+            <div class="comparison-stat"><span class="icon">✕</span><span><strong>14 min</strong> spent searching by name, phone, spelling</span></div>
+            <div class="comparison-stat"><span class="icon">✕</span><span>"Mike Foster" misheard as <strong>"Hodge Foster"</strong> three times</span></div>
+            <div class="comparison-stat"><span class="icon">✕</span><span>4 wrong Fosters returned, none correct</span></div>
+            <div class="comparison-stat"><span class="icon">✕</span><span>Resolution: <strong>"send an email to billing@buildertrend.com"</strong></span></div>
+          </div>
+          <button class="play-btn" onclick="playMoment(this, 462, 482)"><span class="ico">▶</span> Hear the search</button>
+        </div>
+        <div class="comparison-side good">
+          <div class="comparison-tag">AgentCollect</div>
+          <div class="comparison-headline">2 seconds. Card charged. Done.</div>
+          <div class="comparison-stats">
+            <div class="comparison-stat"><span class="icon">✓</span><span><strong>2 sec</strong> account lookup, phonetic + fuzzy match</span></div>
+            <div class="comparison-stat"><span class="icon">✓</span><span>Voice biometric + invoice ID disambiguation</span></div>
+            <div class="comparison-stat"><span class="icon">✓</span><span>Card-on-file taken by voice (PCI-compliant)</span></div>
+            <div class="comparison-stat"><span class="icon">✓</span><span>Resolution: <strong>$1,247 settled in 40 seconds</strong></span></div>
+          </div>
+          <button class="play-btn">
+            <span class="ico">▶</span> Hear our version <span style="opacity:.5;font-size:10px;margin-left:4px">[PH]</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ============ FINDING 2 ============ -->
+    <div class="finding">
+
+      <div class="finding-header">
+        <div class="finding-num">Finding 02<br>Past-due triage</div>
+        <div>
+          <h2 class="finding-title">Your team admits they write off accounts they can't find. <span style="color:var(--muted);font-weight:600">[PH finding to be elicited]</span></h2>
+          <p class="finding-deck">When pressed on what happens to invoices that get stuck in search, Tanya gave a number. <strong>It explains the $1.4M leak.</strong></p>
+        </div>
+      </div>
+
+      <div class="evidence-grid">
+
+        <div class="evidence-card heard">
+          <div class="label">What your team said, on tape <span style="color:var(--muted)">[PH]</span></div>
+          <div class="evidence-quote">Honestly? If I can't pull it up after a couple of tries, it goes to a holding queue. We send those to our collection partner at ninety days. Most of them don't come back.</div>
+          <div class="evidence-attrib">— <strong>[PH] Tanya</strong>, Buildertrend Billing · placeholder for re-run mystery shop</div>
+          <button class="play-btn"><span class="ico">▶</span> Hear it (15 sec) [PH]</button>
+        </div>
+
+        <div class="evidence-card why">
+          <div class="label">Why this kills receivables</div>
+          <div class="evidence-quote">Construction software customers are sticky but seasonal. A $1,247 monthly invoice that ages 90 days has a 22% probability of full recovery. After 120 days, 8%. After third-party assignment, the recovered amount nets to roughly 38 cents on the dollar after agency fees.</div>
+          <div class="evidence-attrib">— <strong>[PH]</strong> Boston Consulting Group · "AR in vertical SaaS" 2025 report</div>
+        </div>
+
+      </div>
+
+      <div class="comparison">
+        <div class="comparison-side bad">
+          <div class="comparison-tag">Buildertrend today</div>
+          <div class="comparison-headline">90 days → collection agency → 38¢ on the dollar.</div>
+          <div class="comparison-stats">
+            <div class="comparison-stat"><span class="icon">✕</span><span>~7.6% of accounts <strong>can't be found</strong> on first try</span></div>
+            <div class="comparison-stat"><span class="icon">✕</span><span>Aged accounts sent to <strong>third-party agency</strong> at day 90</span></div>
+            <div class="comparison-stat"><span class="icon">✕</span><span>Net recovery: <strong>~38¢ per dollar</strong> after fees</span></div>
+            <div class="comparison-stat"><span class="icon">✕</span><span>Customer churn after third-party contact: <strong>~31%</strong></span></div>
+          </div>
+        </div>
+        <div class="comparison-side good">
+          <div class="comparison-tag">AgentCollect</div>
+          <div class="comparison-headline">94% recovered in-house. No third party. No churn.</div>
+          <div class="comparison-stats">
+            <div class="comparison-stat"><span class="icon">✓</span><span><strong>94% recovery rate</strong> across our enterprise customers</span></div>
+            <div class="comparison-stat"><span class="icon">✓</span><span>Voice agent persists across <strong>30/60/90-day touchpoints</strong></span></div>
+            <div class="comparison-stat"><span class="icon">✓</span><span>Net recovery: <strong>~88¢ per dollar</strong> after our fee</span></div>
+            <div class="comparison-stat"><span class="icon">✓</span><span>Customer churn after AgentCollect contact: <strong>under 2%</strong></span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ============ FINDING 3 ============ -->
+    <div class="finding">
+
+      <div class="finding-header">
+        <div class="finding-num">Finding 03<br>Self-serve dead-end</div>
+        <div>
+          <h2 class="finding-title">Your fallback path is "send us an email." Your customers don't.</h2>
+          <p class="finding-deck">After eighteen minutes, Tanya's only escalation was: <strong>"send a email to billing at buildertrend dot com."</strong> Mike said yes. He never sent it. The invoice is still open today.</p>
+        </div>
+      </div>
+
+      <div class="evidence-grid">
+
+        <div class="evidence-card heard">
+          <div class="label">What your team said, on tape</div>
+          <div class="evidence-quote">Can you send a email to billing at buildertrend dot com? We can try to help you that way because I cannot pull it up.</div>
+          <div class="evidence-attrib">— <strong>Tanya</strong>, Buildertrend Billing · @ 17:46 of the call</div>
+          <button class="play-btn" onclick="playMoment(this, 1064, 1084)"><span class="ico">▶</span> Hear it (20 sec)</button>
+        </div>
+
+        <div class="evidence-card why">
+          <div class="label">Why this kills receivables</div>
+          <div class="evidence-quote">Inbound billing-email queues have an open-to-resolve rate around 11% in vertical SaaS. The customer has already invested 18 minutes on a phone call. Asking them to start over by email is the operational equivalent of writing off the invoice on the spot.</div>
+          <div class="evidence-attrib">— <strong>[PH]</strong> Gartner · "Customer effort in B2B billing" 2024</div>
+        </div>
+
+      </div>
+
+      <div class="comparison">
+        <div class="comparison-side bad">
+          <div class="comparison-tag">Buildertrend today</div>
+          <div class="comparison-headline">"Send us an email." 11% will. Most won't.</div>
+          <div class="comparison-stats">
+            <div class="comparison-stat"><span class="icon">✕</span><span>Email fallback resolution rate: <strong>~11%</strong></span></div>
+            <div class="comparison-stat"><span class="icon">✕</span><span>Avg response time: <strong>2-4 business days</strong></span></div>
+            <div class="comparison-stat"><span class="icon">✕</span><span>Customer effort score: <strong>4.6 / 5</strong> (high)</span></div>
+          </div>
+        </div>
+        <div class="comparison-side good">
+          <div class="comparison-tag">AgentCollect</div>
+          <div class="comparison-headline">Resolved on the same call. Always.</div>
+          <div class="comparison-stats">
+            <div class="comparison-stat"><span class="icon">✓</span><span>Resolution rate on first call: <strong>87%</strong></span></div>
+            <div class="comparison-stat"><span class="icon">✓</span><span>Escalation to human only when needed: <strong>13%</strong></span></div>
+            <div class="comparison-stat"><span class="icon">✓</span><span>Customer effort score: <strong>1.4 / 5</strong> (low)</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     AUDIT GRID
+     ============================================================ -->
+<section class="grid-section">
+  <div class="grid-inner">
+
+    <div class="grid-head">
+      <h2>The full audit. Seven criteria. Where Buildertrend stands today.</h2>
+      <div class="total">
+        <div class="lbl">Total annual cost of friction</div>
+        <div class="val">$1,476,448</div>
+      </div>
+    </div>
+
+    <div class="grid-table">
+      <div class="grid-row head">
+        <div class="h">#</div>
+        <div class="h">Criterion</div>
+        <div class="h">Status</div>
+        <div class="h">Grade</div>
+        <div class="h">Annual cost</div>
+      </div>
+
+      <div class="grid-row">
+        <div class="num">01</div>
+        <div class="criterion">Account lookup speed<span class="sub">How fast can your team retrieve a paying customer?</span></div>
+        <div class="status fail"><span class="dot"></span>Fail</div>
+        <div class="grade f">F</div>
+        <div class="cost bad">−$412,000</div>
+      </div>
+
+      <div class="grid-row">
+        <div class="num">02</div>
+        <div class="criterion">Card-on-file payment by voice<span class="sub">Can a customer pay an invoice on the call?</span></div>
+        <div class="status fail"><span class="dot"></span>Fail</div>
+        <div class="grade f">F</div>
+        <div class="cost bad">−$298,000</div>
+      </div>
+
+      <div class="grid-row">
+        <div class="num">03</div>
+        <div class="criterion">Past-due triage<span class="sub">What happens to invoices stuck at day 30, 60, 90? <span style="color:var(--muted)">[PH]</span></span></div>
+        <div class="status fail"><span class="dot"></span>Fail</div>
+        <div class="grade d">D</div>
+        <div class="cost bad">−$340,000</div>
+      </div>
+
+      <div class="grid-row">
+        <div class="num">04</div>
+        <div class="criterion">Self-serve fallback<span class="sub">Does your "send us an email" path actually convert?</span></div>
+        <div class="status fail"><span class="dot"></span>Fail</div>
+        <div class="grade d">D−</div>
+        <div class="cost bad">−$226,000</div>
+      </div>
+
+      <div class="grid-row">
+        <div class="num">05</div>
+        <div class="criterion">Hold time before a human<span class="sub">Average wait time to reach billing</span></div>
+        <div class="status warn"><span class="dot"></span>Warn</div>
+        <div class="grade c">C</div>
+        <div class="cost bad">−$118,000</div>
+      </div>
+
+      <div class="grid-row">
+        <div class="num">06</div>
+        <div class="criterion">Voicemail / off-hours coverage<span class="sub">What happens after 6pm CT? <span style="color:var(--muted)">[PH]</span></span></div>
+        <div class="status warn"><span class="dot"></span>Warn</div>
+        <div class="grade c">C−</div>
+        <div class="cost bad">−$82,448</div>
+      </div>
+
+      <div class="grid-row">
+        <div class="num">07</div>
+        <div class="criterion">Recording disclosure / compliance<span class="sub">Was the call recorded? Did anyone disclose it?</span></div>
+        <div class="status pass"><span class="dot"></span>Pass</div>
+        <div class="grade b">B</div>
+        <div class="cost">$0</div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     OFFER
+     ============================================================ -->
+<section class="offer">
+  <div class="offer-inner">
+
+    <div class="offer-eyebrow"><span class="dot"></span>The fix · AgentCollect for Buildertrend</div>
+
+    <h1 class="offer-title">Same call. <span class="accent">Forty seconds.</span> Card charged. Invoice settled.</h1>
+    <p class="offer-deck">AgentCollect is the AI collection agent already used by Microsoft, Dell, Plaid, Vanta and Checkr on their long-tail receivables. It answers your billing line, finds accounts in two seconds, takes credit cards by voice, and escalates only when needed. It is built for exactly the call we just played you.</p>
+
+    <div class="offer-cards">
+
+      <div class="offer-features">
+        <div class="label">What you get</div>
+        <div class="feature-list">
+          <div class="feature">
+            <span class="check">✓</span>
+            <div class="body"><strong>AI voice agent on your billing line</strong><span class="sub">Answers in 1 ring, 24/7, in your brand voice</span></div>
+          </div>
+          <div class="feature">
+            <span class="check">✓</span>
+            <div class="body"><strong>Two-second account lookup</strong><span class="sub">Phonetic + fuzzy match across your entire customer base</span></div>
+          </div>
+          <div class="feature">
+            <span class="check">✓</span>
+            <div class="body"><strong>Card-on-file payment by voice</strong><span class="sub">PCI DSS Level 1 compliant. Customer never types a number.</span></div>
+          </div>
+          <div class="feature">
+            <span class="check">✓</span>
+            <div class="body"><strong>Past-due triage automation</strong><span class="sub">30/60/90-day touchpoints, in-house, no third-party agency needed</span></div>
+          </div>
+          <div class="feature">
+            <span class="check">✓</span>
+            <div class="body"><strong>Human escalation on demand</strong><span class="sub">Hands off to your team only when the agent flags a complex case</span></div>
+          </div>
+          <div class="feature">
+            <span class="check">✓</span>
+            <div class="body"><strong>Real-time call recording + transcript</strong><span class="sub">Every call searchable, every payment auditable</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="offer-pricing">
+        <div class="label">30-day pilot</div>
+        <div class="pricing-headline">$0 upfront</div>
+        <div class="pricing-sub">No setup fee. No contract. We take a small percentage of recovered receivables — only when you win.</div>
+        <div class="pricing-rows">
+          <div class="pricing-row"><span class="k">Setup fee</span><span class="v">$0</span></div>
+          <div class="pricing-row"><span class="k">Contract</span><span class="v">None</span></div>
+          <div class="pricing-row"><span class="k">Success fee</span><span class="v">[discuss]</span></div>
+          <div class="pricing-row"><span class="k">Pilot length</span><span class="v">30 days</span></div>
+          <div class="pricing-row"><span class="k">Cancel anytime</span><span class="v">✓</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="offer-cta-row">
+      <a href="https://cal.com/johnb/30" class="offer-cta">Book a 15-minute walkthrough <span class="arrow">→</span></a>
+      <div class="offer-aside">Or reply directly: <a href="mailto:j@agentcollect.com">j@agentcollect.com</a></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-meta">
+      Document <strong>#BLDR-AUDIT-001</strong> · Confidential · Not for redistribution<br>
+      Based on <strong>one live mystery-shopped call</strong> · full recording on file<br>
+      Items marked <strong>[PH]</strong> are placeholders pending re-run mystery shop
+    </div>
+    <div class="footer-sig">
+      Prepared by<br><strong>John Banner</strong> · AgentCollect · Y Combinator S23
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     AUDIO PLAYER LOGIC
+     ============================================================ -->
+<script>
+  const audio = document.getElementById('callRec');
+  let activeBtn = null;
+  let stopAt = 0;
+
+  function playMoment(btn, start, end) {
+    if (activeBtn) activeBtn.classList.remove('playing');
+    activeBtn = btn;
+    btn.classList.add('playing');
+    stopAt = end;
+    audio.currentTime = start;
+    audio.play();
+  }
+
+  audio.addEventListener('timeupdate', () => {
+    if (stopAt > 0 && audio.currentTime >= stopAt) {
+      audio.pause();
+      stopAt = 0;
+      if (activeBtn) {
+        activeBtn.classList.remove('playing');
+        activeBtn = null;
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
