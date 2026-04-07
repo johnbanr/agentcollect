@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voice Memo · Ooma billing · 12:35</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0c;
+  --bg-2:#15151a;
+  --ink:#fff;
+  --ink-dim:rgba(255,255,255,.6);
+  --ink-mute:rgba(255,255,255,.35);
+  --line:rgba(255,255,255,.08);
+  --line-2:rgba(255,255,255,.15);
+  --red:#ff453a;
+  --red-glow:#ff6961;
+  --amber:#ff9f0a;
+  --green:#30d158;
+  --blue:#0a84ff;
+  --sf:-apple-system,'SF Pro Display',BlinkMacSystemFont,'Inter',system-ui,sans-serif;
+  --sf-mono:'SF Mono',ui-monospace,Menlo,monospace;
+  --serif:'Instrument Serif',Georgia,serif;
+}
+html,body{height:100%;background:var(--bg)}
+body{color:var(--ink);font-family:var(--sf);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;padding-top:34px}
+
+.draft{position:fixed;top:0;left:0;right:0;z-index:500;background:#F59E0B;color:#0a0e1a;padding:8px 20px;text-align:center;font-size:11px;font-weight:700;letter-spacing:.03em;text-transform:uppercase}
+
+/* Subtle radial glow background */
+.bg-fx{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 20% 10%,rgba(255,69,58,.06) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(255,159,10,.05) 0%,transparent 55%)}
+
+.doc{max-width:980px;margin:0 auto;padding:48px 24px 80px;position:relative;z-index:1}
+
+/* Masthead */
+.masthead{display:flex;justify-content:space-between;align-items:center;padding-bottom:28px;margin-bottom:48px;border-bottom:1px solid var(--line);font-family:var(--sf);font-size:12px;color:var(--ink-dim)}
+.masthead .logo{font-weight:900;font-size:14px;color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+.masthead .logo .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--amber);margin-left:1px;vertical-align:super}
+.masthead .label{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--amber)}
+.masthead .date{font-family:var(--sf-mono);font-size:11px}
+
+/* Hero */
+.hero{text-align:center;margin-bottom:56px}
+.hero .kicker{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--amber);margin-bottom:18px}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(38px,5.5vw,68px);line-height:1.02;letter-spacing:-.025em;color:var(--ink);max-width:780px;margin:0 auto 14px}
+.hero h1 em{font-style:italic;color:var(--amber)}
+.hero .deck{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(17px,1.7vw,21px);color:var(--ink-dim);max-width:600px;margin:0 auto;line-height:1.4}
+
+/* ========================================================
+   THE PHONE — iPhone 15 Pro frame, centered
+   ======================================================== */
+.phone-stage{display:flex;justify-content:center;padding:28px 0 64px;position:relative}
+.phone{
+  width:380px;max-width:100%;
+  background:#000;
+  border-radius:48px;
+  padding:14px;
+  box-shadow:
+    0 0 0 2px #1a1a1f,
+    0 0 0 8px #2a2a30,
+    0 30px 80px rgba(0,0,0,.6),
+    0 60px 120px rgba(255,69,58,.08);
+  position:relative;
+}
+.phone::before{
+  /* Side button highlights */
+  content:'';position:absolute;left:-10px;top:120px;width:4px;height:60px;background:#3a3a40;border-radius:2px 0 0 2px
+}
+.phone-screen{
+  background:#000;
+  border-radius:36px;
+  overflow:hidden;
+  position:relative;
+  min-height:680px;
+  display:flex;
+  flex-direction:column;
+}
+
+/* Dynamic Island */
+.island{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:120px;height:34px;background:#000;border-radius:20px;z-index:10;border:1px solid #0a0a0a}
+
+/* Status bar */
+.status-bar{padding:18px 28px 6px;display:flex;justify-content:space-between;align-items:center;font-family:var(--sf);font-size:13px;font-weight:600;color:#fff;z-index:5;position:relative}
+.status-bar .time{font-variant-numeric:tabular-nums}
+.status-bar .icons{display:flex;align-items:center;gap:6px;font-size:11px}
+.status-bar .icons .signal{display:inline-flex;gap:1.5px;align-items:flex-end}
+.status-bar .icons .signal span{display:inline-block;width:3px;background:#fff;border-radius:1px}
+.status-bar .icons .signal span:nth-child(1){height:4px}
+.status-bar .icons .signal span:nth-child(2){height:6px}
+.status-bar .icons .signal span:nth-child(3){height:8px}
+.status-bar .icons .signal span:nth-child(4){height:10px}
+.status-bar .icons .battery{display:inline-flex;align-items:center;gap:1px;border:1px solid #fff;border-radius:3px;padding:1px 2px;width:24px;height:11px}
+.status-bar .icons .battery::after{content:'';display:block;width:18px;height:5px;background:#fff;border-radius:1px}
+
+/* App header — Voice Memos style */
+.app-header{padding:28px 24px 16px}
+.app-header .nav{display:flex;justify-content:space-between;align-items:center;font-family:var(--sf);font-size:15px;color:var(--amber);font-weight:500}
+.app-header .nav .back{display:flex;align-items:center;gap:4px}
+.app-header h2{font-family:var(--sf);font-size:32px;font-weight:700;color:#fff;letter-spacing:-.025em;margin-top:14px}
+.app-header .meta{font-family:var(--sf);font-size:12px;color:rgba(255,255,255,.55);font-weight:400;margin-top:4px}
+
+/* Recording card */
+.recording{margin:18px 16px 0;background:#1c1c1f;border-radius:14px;padding:18px 18px 22px}
+.recording-title{font-family:var(--sf);font-size:17px;font-weight:600;color:#fff;margin-bottom:2px}
+.recording-meta{font-family:var(--sf);font-size:13px;color:rgba(255,255,255,.55);margin-bottom:18px}
+.recording-meta .red-dot{display:inline-block;width:6px;height:6px;background:var(--red);border-radius:50%;margin-right:5px;animation:rec-pulse 1.6s infinite}
+@keyframes rec-pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* Voice Memos style horizontal waveform */
+.vm-wave{display:flex;align-items:center;justify-content:space-between;height:72px;gap:1px;padding:0 4px;position:relative;cursor:pointer;margin:0 -4px}
+.vm-wave .vbar{flex:1;min-width:1.5px;background:rgba(255,255,255,.45);border-radius:1px;transition:background .2s}
+.vm-wave .vbar.played{background:var(--amber)}
+.vm-wave .vbar.peak{background:rgba(255,255,255,.85)}
+.vm-wave .vbar.peak.played{background:#ff6961}
+
+/* Markers overlaid on waveform */
+.vm-markers{position:absolute;top:-6px;left:4px;right:4px;bottom:-6px;pointer-events:none}
+.vm-mark{position:absolute;top:-2px;width:14px;height:14px;border-radius:50%;border:2px solid #1c1c1f;cursor:pointer;pointer-events:auto;transform:translateX(-50%);transition:all .2s;display:flex;align-items:center;justify-content:center;font-family:var(--sf);font-size:8px;font-weight:800;color:#fff}
+.vm-mark.red{background:var(--red);box-shadow:0 0 0 0 rgba(255,69,58,.6)}
+.vm-mark.blue{background:var(--blue)}
+.vm-mark.amber{background:var(--amber);box-shadow:0 0 12px rgba(255,159,10,.5)}
+.vm-mark.end{background:#48484a;cursor:default}
+.vm-mark:hover{transform:translateX(-50%) scale(1.4);z-index:5}
+.vm-mark.playing{animation:mark-pulse 1.2s infinite}
+@keyframes mark-pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,69,58,.6)}50%{box-shadow:0 0 0 8px rgba(255,69,58,0)}}
+
+/* Time scrubber */
+.vm-scrub{display:flex;justify-content:space-between;font-family:var(--sf-mono);font-size:11px;color:rgba(255,255,255,.6);margin-top:14px;font-weight:500}
+
+/* Play controls */
+.vm-controls{display:flex;justify-content:center;align-items:center;gap:36px;margin-top:24px}
+.vm-btn{background:none;border:none;color:#fff;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.vm-btn svg{width:28px;height:28px;fill:#fff}
+.vm-btn.play{width:64px;height:64px;background:#fff;border-radius:50%}
+.vm-btn.play svg{fill:#000;width:24px;height:24px}
+.vm-btn.play:hover{background:#f5f5f5}
+.vm-btn:hover svg{fill:#fff}
+
+/* Transcript section inside the phone */
+.transcript-list{margin:24px 16px 0;border-top:1px solid rgba(255,255,255,.08);padding-top:18px}
+.tl-title{font-family:var(--sf);font-size:11px;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;padding:0 8px}
+.tl-row{display:grid;grid-template-columns:auto 56px 1fr;gap:12px;align-items:flex-start;padding:11px 12px;border-radius:10px;cursor:pointer;transition:background .2s;margin-bottom:2px}
+.tl-row:hover{background:rgba(255,255,255,.04)}
+.tl-row .badge{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--sf);font-size:11px;font-weight:700;color:#fff;flex-shrink:0;margin-top:1px}
+.tl-row .badge.red{background:var(--red)}
+.tl-row .badge.blue{background:var(--blue)}
+.tl-row .badge.amber{background:var(--amber)}
+.tl-row .badge.end{background:#48484a}
+.tl-row .ts{font-family:var(--sf-mono);font-size:11px;color:rgba(255,255,255,.5);font-weight:500;padding-top:3px}
+.tl-row .body{font-family:var(--sf);font-size:13.5px;line-height:1.4;color:rgba(255,255,255,.85)}
+.tl-row .body strong{font-weight:600;color:#fff}
+.tl-row.end-row{cursor:default;opacity:.6}
+
+/* Bottom safe area */
+.phone-bottom{padding:16px 0 12px;display:flex;justify-content:center}
+.phone-bottom .home-bar{width:100px;height:4px;background:rgba(255,255,255,.4);border-radius:2px}
+
+/* ========================================================
+   SECOND PHONE — Safari portal screenshot
+   ======================================================== */
+.safari-section{margin-top:80px}
+.safari-intro{text-align:center;margin-bottom:36px}
+.safari-intro h3{font-family:var(--serif);font-size:clamp(28px,3.4vw,40px);font-weight:400;line-height:1.1;letter-spacing:-.02em;color:#fff;margin-bottom:10px}
+.safari-intro h3 em{font-style:italic;color:var(--amber)}
+.safari-intro p{font-family:var(--serif);font-style:italic;color:var(--ink-dim);font-size:17px}
+
+.phone-stage-2{display:flex;justify-content:center;padding:14px 0 0}
+
+/* Smaller phone for the Safari shot */
+.phone.small{width:340px}
+.phone.small .phone-screen{min-height:600px}
+
+.safari-bar{padding:42px 12px 8px;background:#1c1c1f}
+.safari-url{background:rgba(255,255,255,.12);border-radius:10px;padding:8px 14px;display:flex;align-items:center;gap:8px;font-family:var(--sf);font-size:13px;color:#fff}
+.safari-url .lock{color:var(--red);font-size:12px}
+.safari-url .domain{flex:1;color:rgba(255,255,255,.95);font-weight:500}
+
+.safari-warning{background:rgba(255,69,58,.15);border:1px solid rgba(255,69,58,.4);border-radius:12px;margin:14px 12px;padding:14px 16px;color:#fff;display:flex;align-items:flex-start;gap:10px}
+.safari-warning .icon{flex-shrink:0;width:22px;height:22px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff}
+.safari-warning .text{font-family:var(--sf);font-size:12.5px;line-height:1.4}
+.safari-warning .text strong{display:block;color:var(--red-glow);font-weight:700;margin-bottom:2px}
+
+.safari-screenshot{margin:0 12px 14px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.1);background:#fff}
+.safari-screenshot img{display:block;width:100%;height:auto}
+
+.http-list{margin:0 12px 16px;padding:14px 16px;background:#1c1c1f;border-radius:10px;font-family:var(--sf-mono);font-size:11px;line-height:1.7}
+.http-list .row{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.85)}
+.http-list .row .tag{display:inline-block;background:var(--red);color:#fff;font-size:8px;font-weight:800;padding:2px 6px;border-radius:3px;text-transform:uppercase;font-family:var(--sf);letter-spacing:.05em;flex-shrink:0}
+.http-list .row .url{color:#ff9f5a}
+
+/* ========================================================
+   CLOSING — outside the phone
+   ======================================================== */
+.closing{margin-top:96px;text-align:center;padding:0 24px}
+.closing h3{font-family:var(--serif);font-size:clamp(28px,3.4vw,42px);font-weight:400;line-height:1.1;letter-spacing:-.02em;color:#fff;margin-bottom:18px}
+.closing h3 em{font-style:italic;color:var(--amber)}
+.closing p{font-family:var(--serif);font-size:17px;line-height:1.55;color:var(--ink-dim);max-width:580px;margin:0 auto 14px}
+.closing p strong{color:#fff;font-weight:600}
+
+.cta-row{margin-top:32px;display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#000;padding:14px 24px;border-radius:999px;font-family:var(--sf);font-size:14px;font-weight:600;text-decoration:none;letter-spacing:-.005em;transition:all .2s}
+.cta-btn:hover{background:var(--amber);color:#000;transform:translateY(-1px)}
+.cta-aside{font-family:var(--sf);font-size:13px;color:var(--ink-mute)}
+.cta-aside a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line-2)}
+
+.signature{margin-top:48px;display:flex;justify-content:center;align-items:center;gap:14px}
+.signature img{width:48px;height:48px;border-radius:50%;object-fit:cover;object-position:center top;border:1px solid var(--line-2)}
+.signature .info{text-align:left}
+.signature .info .name{font-family:var(--sf);font-weight:600;font-size:14px;color:#fff}
+.signature .info .role{font-family:var(--sf);font-size:12px;color:var(--ink-mute);margin-top:1px}
+
+.footer{margin-top:80px;padding:24px 0;border-top:1px solid var(--line);text-align:center;font-family:var(--sf);font-size:11px;color:var(--ink-mute)}
+
+@media(max-width:480px){
+  .doc{padding:32px 16px 60px}
+  .phone{width:100%;max-width:360px}
+  .phone.small{width:100%;max-width:340px}
+  .closing{padding:0 12px}
+}
+</style>
+</head>
+<body>
+
+<div class="draft">⚠ Draft · Internal review · Not for outbound</div>
+<div class="bg-fx"></div>
+
+<audio id="callRec" preload="metadata" src="https://dxc03zgurdly9.cloudfront.net/6b3c3e457b2860a29b052bf0302b05b398d9ce9b315ff19ebb3a84f112731765/recording.wav"></audio>
+
+<div class="doc">
+
+  <header class="masthead">
+    <a href="https://agentcollect.com" class="logo">AgentCollect<span class="dot"></span></a>
+    <span class="label">Private Note</span>
+    <span class="date">April 6, 2026</span>
+  </header>
+
+  <section class="hero">
+    <div class="kicker">For Eric Stang · CEO, Ooma</div>
+    <h1>I called your billing line.<br>Here's the <em>voice memo</em>.</h1>
+    <p class="deck">One paying customer. One $310 invoice. Twelve minutes and thirty-five seconds. Tap any moment on the call to hear it.</p>
+  </section>
+
+  <!-- ============ THE PHONE ============ -->
+  <div class="phone-stage">
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="island"></div>
+
+        <div class="status-bar">
+          <span class="time">3:42</span>
+          <span class="icons">
+            <span class="signal"><span></span><span></span><span></span><span></span></span>
+            <span style="font-weight:700">5G</span>
+            <span class="battery"></span>
+          </span>
+        </div>
+
+        <div class="app-header">
+          <div class="nav">
+            <span class="back">‹ All Recordings</span>
+            <span>Edit</span>
+          </div>
+          <h2>Ooma billing line</h2>
+          <div class="meta">April 6, 2026 at 3:42 PM · 1‑866‑939‑6662</div>
+        </div>
+
+        <div class="recording">
+          <div class="recording-title">New Recording</div>
+          <div class="recording-meta"><span class="red-dot"></span>12:35 · Ooma customer service</div>
+
+          <div class="vm-wave" id="vmWave"></div>
+          <div class="vm-markers" id="vmMarkers" style="position:relative;height:0">
+            <button class="vm-mark red" style="left:24.5%;top:-46px" onclick="playMoment(this, 185, 198)" title="Menu fail 1"></button>
+            <button class="vm-mark red" style="left:33.4%;top:-46px" onclick="playMoment(this, 233, 252)" title="Menu fail 2"></button>
+            <button class="vm-mark red" style="left:40.7%;top:-46px" onclick="playMoment(this, 307, 327)" title="Menu fail 3"></button>
+            <button class="vm-mark red" style="left:46.3%;top:-46px" onclick="playMoment(this, 316, 327)" title="Menu fail 4"></button>
+            <button class="vm-mark blue" style="left:51%;top:-46px" onclick="playMoment(this, 347, 360)" title="Human"></button>
+            <button class="vm-mark amber" style="left:85.7%;top:-46px" onclick="playMoment(this, 647, 658)" title="Keypad reveal"></button>
+            <div class="vm-mark end" style="left:100%;top:-46px"></div>
+          </div>
+
+          <div class="vm-scrub">
+            <span>0:00</span>
+            <span>12:35</span>
+          </div>
+
+          <div class="vm-controls">
+            <button class="vm-btn" onclick="playMoment(this, 0, 30)" title="Play from start"><svg viewBox="0 0 24 24"><path d="M5 4h3v16H5zM10 4l11 8-11 8z"/></svg></button>
+            <button class="vm-btn play" onclick="playMoment(this, 0, 755)" title="Play full"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+            <button class="vm-btn" title="Skip"><svg viewBox="0 0 24 24"><path d="M16 4h3v16h-3zM4 4l11 8-11 8z" transform="scale(-1,1) translate(-24,0)"/></svg></button>
+          </div>
+        </div>
+
+        <div class="transcript-list">
+          <div class="tl-title">Transcript · 7 moments</div>
+
+          <div class="tl-row" onclick="playMoment(this.querySelector('.badge'), 185, 198)">
+            <div class="badge red">1</div>
+            <div class="ts">03:05</div>
+            <div class="body">Automated menu told her her account didn't exist. <strong>Try one.</strong></div>
+          </div>
+          <div class="tl-row" onclick="playMoment(this.querySelector('.badge'), 233, 252)">
+            <div class="badge red">2</div>
+            <div class="ts">03:53</div>
+            <div class="body">Same message. <strong>Try two.</strong></div>
+          </div>
+          <div class="tl-row" onclick="playMoment(this.querySelector('.badge'), 307, 327)">
+            <div class="badge red">3</div>
+            <div class="ts">05:07</div>
+            <div class="body">Same message. <strong>Try three.</strong></div>
+          </div>
+          <div class="tl-row" onclick="playMoment(this.querySelector('.badge'), 316, 327)">
+            <div class="badge red">4</div>
+            <div class="ts">05:16</div>
+            <div class="body">Fourth time. Call finally routed to a human.</div>
+          </div>
+          <div class="tl-row" onclick="playMoment(this.querySelector('.badge'), 347, 360)">
+            <div class="badge blue">✓</div>
+            <div class="ts">05:47</div>
+            <div class="body">A human answered. Polite, patient.</div>
+          </div>
+          <div class="tl-row" onclick="playMoment(this.querySelector('.badge'), 647, 658)">
+            <div class="badge amber">!</div>
+            <div class="ts">10:47</div>
+            <div class="body"><strong>"We are not allowed to get your card number or security code. You need to enter the card number and security code using your phone's keypad."</strong></div>
+          </div>
+          <div class="tl-row end-row">
+            <div class="badge end">·</div>
+            <div class="ts">12:35</div>
+            <div class="body">Call ended. <strong>$310 invoice still unpaid.</strong></div>
+          </div>
+        </div>
+
+        <div class="phone-bottom">
+          <div class="home-bar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SAFARI PORTAL ============ -->
+  <section class="safari-section">
+    <div class="safari-intro">
+      <h3>And here's what your <em>login page</em> looks like.</h3>
+      <p>office.ooma.com · captured April 6 on Safari.</p>
+    </div>
+
+    <div class="phone-stage-2">
+      <div class="phone small">
+        <div class="phone-screen">
+          <div class="island"></div>
+          <div class="status-bar">
+            <span class="time">3:51</span>
+            <span class="icons">
+              <span class="signal"><span></span><span></span><span></span><span></span></span>
+              <span style="font-weight:700">5G</span>
+              <span class="battery"></span>
+            </span>
+          </div>
+
+          <div class="safari-bar">
+            <div class="safari-url">
+              <span class="lock">⚠</span>
+              <span class="domain">office.ooma.com</span>
+              <span>↻</span>
+            </div>
+          </div>
+
+          <div class="safari-warning">
+            <div class="icon">!</div>
+            <div class="text">
+              <strong>Connection is not fully secure</strong>
+              Two legal links on this page load over an unencrypted connection.
+            </div>
+          </div>
+
+          <div class="safari-screenshot">
+            <img src="audit-assets/ooma-portals/ooma-login.png" alt="office.ooma.com">
+          </div>
+
+          <div class="http-list">
+            <div class="row">
+              <span class="tag">insecure</span>
+              <span>Terms →</span>
+              <span class="url">http://www.ooma.com/terms</span>
+            </div>
+            <div class="row">
+              <span class="tag">insecure</span>
+              <span>Privacy →</span>
+              <span class="url">http://www.ooma.com/privacy-policy</span>
+            </div>
+          </div>
+
+          <div class="phone-bottom">
+            <div class="home-bar"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CLOSING ============ -->
+  <section class="closing">
+    <h3>Same call. <em>Thirty-four seconds.</em></h3>
+    <p>I built an AI collection agent that handles exactly this workflow. <strong>Microsoft, Dell, Plaid, Vanta, Checkr</strong> use it.</p>
+    <p>I'd like to play you what Megan's call should have sounded like — same customer, same card, same $310 — handled by our agent in thirty-four seconds.</p>
+
+    <div class="cta-row">
+      <a href="https://cal.com/johnb/30" target="_blank" class="cta-btn">15 minutes on my calendar →</a>
+      <span class="cta-aside">or reply to <a href="mailto:j@agentcollect.com">j@agentcollect.com</a></span>
+    </div>
+
+    <div class="signature">
+      <img src="audit-assets/team/jb-headshot.jpg" alt="John Banner">
+      <div class="info">
+        <div class="name">John Banner</div>
+        <div class="role">Founder · AgentCollect (YC S23)</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    Based on one live mystery-shopped call · full recording on file · Report #OOMA-001 D4 · Draft
+  </footer>
+
+</div>
+
+<script>
+// Voice Memos style waveform — generate 70 vertical bars
+(function() {
+  const wave = document.getElementById('vmWave');
+  if (!wave) return;
+  const bars = 70;
+  let html = '';
+  for (let i = 0; i < bars; i++) {
+    const pct = i / bars;
+    let h = 30 + Math.abs(Math.sin(i * 0.7) * 30) + Math.random() * 12;
+    // Peak around fails (24-50%) and keypad (80-90%)
+    if (pct > 0.22 && pct < 0.5) h += 25 + Math.random() * 12;
+    if (pct > 0.8 && pct < 0.9) h += 20 + Math.random() * 12;
+    // Quieter middle
+    if (pct > 0.55 && pct < 0.78) h = 18 + Math.random() * 20;
+    h = Math.min(95, Math.max(8, h));
+    const peak = h > 60 ? ' peak' : '';
+    html += `<div class="vbar${peak}" style="height:${h}%"></div>`;
+  }
+  wave.innerHTML = html;
+})();
+
+let activeEl = null;
+function playMoment(el, start, end) {
+  const audio = document.getElementById('callRec');
+  audio.pause();
+  if (activeEl && activeEl !== el) activeEl.classList.remove('playing');
+  el.classList.add('playing');
+  audio.currentTime = start;
+  audio.play().catch(()=>{});
+  activeEl = el;
+  clearTimeout(window._jt);
+  window._jt = setTimeout(() => {
+    audio.pause();
+    el.classList.remove('playing');
+    activeEl = null;
+  }, (end - start) * 1000 + 200);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ooma · 12:35 customer recording</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg-0:#06070b;
+  --bg-1:#0b0d14;
+  --bg-2:#101320;
+  --ink:#fafafa;
+  --ink-dim:rgba(250,250,250,.7);
+  --ink-mute:rgba(250,250,250,.4);
+  --line:rgba(255,255,255,.06);
+  --line-2:rgba(255,255,255,.12);
+  --violet:#7c5cff;
+  --violet-glow:#9d83ff;
+  --amber:#ffaa3a;
+  --amber-glow:#ffc46e;
+  --red:#ff5269;
+  --red-glow:#ff7a8a;
+  --blue:#4ec5ff;
+  --green:#3ddca3;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --serif:'Instrument Serif',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+html{scroll-behavior:smooth}
+html,body{height:100%;background:var(--bg-0)}
+body{color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;padding-top:36px;overflow-x:hidden}
+
+.draft{position:fixed;top:0;left:0;right:0;z-index:500;background:#F59E0B;color:#0a0e1a;padding:8px 20px;text-align:center;font-size:11px;font-weight:700;letter-spacing:.03em;text-transform:uppercase}
+
+/* ============================
+   Animated gradient mesh background
+   ============================ */
+.mesh{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.mesh::before{
+  content:'';position:absolute;
+  top:-10%;left:-10%;width:60%;height:60%;
+  background:radial-gradient(circle at center,rgba(124,92,255,.18) 0%,transparent 60%);
+  filter:blur(40px);
+  animation:float-1 22s ease-in-out infinite;
+}
+.mesh::after{
+  content:'';position:absolute;
+  bottom:-10%;right:-10%;width:55%;height:55%;
+  background:radial-gradient(circle at center,rgba(255,170,58,.13) 0%,transparent 60%);
+  filter:blur(50px);
+  animation:float-2 26s ease-in-out infinite;
+}
+@keyframes float-1{0%,100%{transform:translate(0,0)}50%{transform:translate(8%,12%)}}
+@keyframes float-2{0%,100%{transform:translate(0,0)}50%{transform:translate(-8%,-10%)}}
+
+/* Subtle grain noise overlay */
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.6;mix-blend-mode:overlay}
+
+/* ============================
+   Layout
+   ============================ */
+.doc{max-width:1080px;margin:0 auto;padding:48px 28px 100px;position:relative;z-index:2}
+
+/* Masthead */
+.masthead{display:flex;justify-content:space-between;align-items:center;padding-bottom:28px;margin-bottom:64px;border-bottom:1px solid var(--line)}
+.masthead .logo{font-family:var(--sans);font-weight:900;font-size:14px;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
+.masthead .logo .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--violet);margin-left:1px;vertical-align:super;box-shadow:0 0 12px var(--violet-glow)}
+.masthead .label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--violet-glow);padding:5px 12px;border:1px solid var(--line-2);border-radius:99px;background:rgba(124,92,255,.06)}
+.masthead .date{font-family:var(--mono);font-size:11px;color:var(--ink-mute)}
+
+/* HERO */
+.hero{margin-bottom:80px;position:relative}
+.hero .kicker{font-family:var(--mono);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--violet-glow);margin-bottom:24px;display:inline-flex;align-items:center;gap:8px}
+.hero .kicker::before{content:'';width:24px;height:1px;background:linear-gradient(90deg,var(--violet) 0%,transparent 100%)}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(46px,7vw,96px);line-height:.97;letter-spacing:-.038em;color:var(--ink);max-width:920px;margin-bottom:30px}
+.hero h1 em{font-style:italic;background:linear-gradient(135deg,var(--violet-glow) 0%,var(--amber-glow) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero .deck{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(18px,2vw,24px);color:var(--ink-dim);max-width:660px;line-height:1.45;margin-bottom:48px}
+
+/* Glass byline */
+.byline{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.025);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--line-2);border-radius:999px;padding:14px 22px 14px 14px;width:fit-content;box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.byline img{width:50px;height:50px;border-radius:50%;object-fit:cover;object-position:center top;border:1px solid var(--line-2)}
+.byline .info .name{font-family:var(--sans);font-weight:600;font-size:14px;color:var(--ink);line-height:1.2}
+.byline .info .role{font-family:var(--sans);font-size:12px;color:var(--ink-mute);margin-top:2px}
+.byline .sep{width:1px;height:32px;background:var(--line-2);margin:0 4px}
+.byline .meta{font-family:var(--mono);font-size:11px;color:var(--ink-mute);text-align:left}
+.byline .meta strong{color:var(--ink-dim);font-weight:500}
+
+/* ============================
+   Section labels
+   ============================ */
+.section-label{display:flex;align-items:baseline;gap:18px;margin:80px 0 32px}
+.section-label .num{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--violet-glow);background:rgba(124,92,255,.12);padding:5px 10px;border-radius:6px;border:1px solid rgba(124,92,255,.25)}
+.section-label .text{flex:1}
+.section-label .text .tag{font-family:var(--mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-mute);margin-bottom:6px}
+.section-label .text h2{font-family:var(--serif);font-size:clamp(28px,3.4vw,42px);font-weight:400;line-height:1.05;letter-spacing:-.02em;color:var(--ink)}
+.section-label .text h2 em{font-style:italic;color:var(--violet-glow)}
+
+/* ============================
+   Glass card — the main visual primitive
+   ============================ */
+.glass{background:linear-gradient(180deg,rgba(255,255,255,.04) 0%,rgba(255,255,255,.015) 100%);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid var(--line-2);border-radius:24px;box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 24px 60px rgba(0,0,0,.55);position:relative;overflow:hidden}
+.glass::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.16) 50%,transparent 100%)}
+
+/* ============================
+   Waveform card
+   ============================ */
+.wave-card{padding:42px 44px 36px;margin-bottom:40px}
+
+.wave-meta{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-bottom:34px;padding-bottom:22px;border-bottom:1px solid var(--line)}
+.wave-meta .left{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
+.wave-meta .left strong{color:var(--ink);font-weight:600}
+.wave-meta .left .sep{color:var(--line-2)}
+.wave-meta .right{display:flex;align-items:center;gap:8px}
+.wave-meta .right .live-dot{width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 12px var(--red-glow);animation:pulse-dot 1.6s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
+.wave-meta .right .total{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--ink)}
+
+/* The waveform */
+.wave-stage{position:relative;height:140px;margin:24px 0 18px}
+.wave{display:flex;align-items:center;justify-content:space-between;height:100%;gap:2px;padding:0 4px}
+.wave .bar{flex:1;min-width:2px;background:linear-gradient(180deg,rgba(124,92,255,.25) 0%,rgba(255,170,58,.4) 50%,rgba(124,92,255,.25) 100%);border-radius:2px;transition:all .3s}
+
+.wave-markers{position:absolute;top:0;left:4px;right:4px;bottom:0;pointer-events:none}
+.marker{position:absolute;top:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;cursor:pointer;border:2px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:500;font-size:17px;color:#fff;pointer-events:auto;transition:all .25s cubic-bezier(.34,1.56,.64,1);z-index:3;backdrop-filter:blur(10px)}
+.marker.red{background:radial-gradient(circle at 30% 30%,var(--red-glow),var(--red));box-shadow:0 0 0 1px rgba(255,82,105,.3),0 8px 24px rgba(255,82,105,.45),0 0 30px rgba(255,82,105,.25)}
+.marker.blue{background:radial-gradient(circle at 30% 30%,#7dd0ff,var(--blue));box-shadow:0 0 0 1px rgba(78,197,255,.3),0 8px 24px rgba(78,197,255,.45),0 0 30px rgba(78,197,255,.25)}
+.marker.amber{background:radial-gradient(circle at 30% 30%,var(--amber-glow),var(--amber));box-shadow:0 0 0 1px rgba(255,170,58,.3),0 8px 24px rgba(255,170,58,.5),0 0 36px rgba(255,170,58,.35)}
+.marker.end{background:radial-gradient(circle at 30% 30%,#5a5e6f,#2a2e3a);box-shadow:0 8px 24px rgba(0,0,0,.4);cursor:default}
+.marker:hover{transform:translate(-50%,-50%) scale(1.15)}
+.marker.end:hover{transform:translate(-50%,-50%)}
+.marker.playing{animation:m-pulse 1.4s infinite}
+@keyframes m-pulse{0%,100%{box-shadow:0 0 0 1px rgba(255,82,105,.3),0 8px 24px rgba(255,82,105,.45),0 0 0 0 rgba(255,82,105,.5)}50%{box-shadow:0 0 0 1px rgba(255,82,105,.3),0 8px 24px rgba(255,82,105,.45),0 0 0 18px rgba(255,82,105,0)}}
+
+.wave-ruler{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-top:16px;font-weight:500}
+
+/* Moments list */
+.moments{margin-top:42px;padding-top:30px;border-top:1px solid var(--line)}
+.moments-title{font-family:var(--mono);font-size:10px;font-weight:600;color:var(--ink-mute);text-transform:uppercase;letter-spacing:.14em;margin-bottom:22px}
+.moment{display:grid;grid-template-columns:auto 80px 1fr auto;align-items:flex-start;gap:20px;padding:18px 18px;border-radius:14px;cursor:pointer;border:1px solid transparent;transition:all .25s;margin-bottom:6px}
+.moment:hover{background:rgba(255,255,255,.025);border-color:var(--line-2);transform:translateX(2px)}
+.moment .m-badge{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--serif);font-size:14px;font-weight:500;flex-shrink:0;margin-top:2px}
+.moment .m-badge.red{background:radial-gradient(circle at 30% 30%,var(--red-glow),var(--red));box-shadow:0 4px 16px rgba(255,82,105,.4)}
+.moment .m-badge.blue{background:radial-gradient(circle at 30% 30%,#7dd0ff,var(--blue));box-shadow:0 4px 16px rgba(78,197,255,.4)}
+.moment .m-badge.amber{background:radial-gradient(circle at 30% 30%,var(--amber-glow),var(--amber));box-shadow:0 4px 16px rgba(255,170,58,.5)}
+.moment .m-badge.end{background:radial-gradient(circle at 30% 30%,#5a5e6f,#2a2e3a)}
+.moment .m-time{font-family:var(--mono);font-size:11px;color:var(--ink-mute);font-weight:500;padding-top:8px}
+.moment .m-body{font-family:var(--serif);font-size:18px;line-height:1.45;color:var(--ink-dim)}
+.moment .m-body strong{color:var(--ink);font-weight:500}
+.moment .m-body .play-hint{display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-family:var(--mono);font-size:10px;color:var(--amber);font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+.moment .m-body .play-hint::before{content:'▶';font-size:8px}
+.moment .m-dur{font-family:var(--mono);font-size:10px;color:var(--ink-mute);padding-top:10px;white-space:nowrap}
+.moment.end-moment{cursor:default;opacity:.55}
+.moment.end-moment:hover{background:none;border-color:transparent;transform:none}
+
+/* ============================
+   Portal card
+   ============================ */
+.portal-card{padding:42px 44px 44px;margin-bottom:40px}
+.portal-frame{position:relative;margin-top:28px;border-radius:18px;overflow:hidden;border:1px solid var(--line-2);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.portal-frame img{display:block;width:100%;height:auto;opacity:.95}
+.portal-frame::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 0%,rgba(6,7,11,.2) 70%,rgba(6,7,11,.6) 100%);pointer-events:none}
+
+.spotlight{position:absolute;bottom:6%;left:4%;right:4%;height:18%;border:2px solid var(--red-glow);border-radius:14px;background:rgba(255,82,105,.08);box-shadow:0 0 0 4px rgba(255,82,105,.18),0 0 50px rgba(255,82,105,.4);animation:spot-pulse 2.5s ease-in-out infinite;pointer-events:none}
+@keyframes spot-pulse{0%,100%{box-shadow:0 0 0 4px rgba(255,82,105,.18),0 0 50px rgba(255,82,105,.4)}50%{box-shadow:0 0 0 8px rgba(255,82,105,.28),0 0 70px rgba(255,82,105,.55)}}
+
+.spotlight-label{position:absolute;bottom:30%;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--red),var(--red-glow));color:#fff;padding:9px 18px;border-radius:99px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;box-shadow:0 8px 28px rgba(255,82,105,.55);pointer-events:none;z-index:2}
+
+.link-exhibit{margin-top:24px;padding:24px 28px;background:rgba(255,255,255,.02);border:1px solid var(--line-2);border-radius:14px;font-family:var(--mono);font-size:13px;line-height:2}
+.link-exhibit .row{display:flex;align-items:center;gap:14px}
+.link-exhibit .tag{display:inline-block;background:linear-gradient(135deg,var(--red),var(--red-glow));color:#fff;font-size:9px;font-weight:800;letter-spacing:.08em;padding:4px 9px;border-radius:4px;text-transform:uppercase;font-family:var(--sans);line-height:1;flex-shrink:0}
+.link-exhibit .label{font-family:var(--sans);font-size:12px;color:var(--ink-mute);font-weight:500}
+.link-exhibit .url{color:var(--amber-glow)}
+
+/* ============================
+   Closing
+   ============================ */
+.closing-card{padding:60px 56px}
+.closing-card h3{font-family:var(--serif);font-size:clamp(28px,3.4vw,42px);font-weight:400;line-height:1.1;letter-spacing:-.02em;color:var(--ink);margin-bottom:24px;max-width:680px}
+.closing-card h3 em{font-style:italic;background:linear-gradient(135deg,var(--violet-glow) 0%,var(--amber-glow) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.closing-card p{font-family:var(--serif);font-size:19px;line-height:1.6;color:var(--ink-dim);margin-bottom:18px;max-width:680px}
+.closing-card p strong{color:var(--ink);font-weight:500}
+
+.cta-row{margin-top:40px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;padding-top:32px;border-top:1px solid var(--line)}
+.cta-btn{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--violet) 0%,var(--violet-glow) 100%);color:#fff;padding:16px 30px;border-radius:14px;font-family:var(--sans);font-size:14px;font-weight:600;text-decoration:none;letter-spacing:.005em;transition:all .25s;border:1px solid rgba(255,255,255,.2);box-shadow:0 8px 28px rgba(124,92,255,.4),inset 0 1px 0 rgba(255,255,255,.18)}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(124,92,255,.55),inset 0 1px 0 rgba(255,255,255,.18)}
+.cta-btn .arrow{font-size:14px;transition:transform .2s}
+.cta-btn:hover .arrow{transform:translateX(4px)}
+.cta-aside{font-family:var(--sans);font-size:13px;color:var(--ink-mute)}
+.cta-aside a{color:var(--ink);text-decoration:none;font-weight:600;border-bottom:1px solid var(--line-2)}
+
+.signature{margin-top:42px;display:flex;align-items:center;gap:16px}
+.signature img{width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:center top;border:1px solid var(--line-2);box-shadow:0 6px 20px rgba(0,0,0,.4)}
+.signature .info .name{font-family:var(--serif);font-size:19px;font-weight:500;color:var(--ink);line-height:1.2}
+.signature .info .role{font-family:var(--sans);font-size:12px;color:var(--ink-mute);margin-top:3px}
+
+/* Footer */
+.footer{margin-top:80px;padding-top:30px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:10px;color:var(--ink-mute);flex-wrap:wrap;gap:14px}
+.footer strong{color:var(--ink-dim);font-weight:500}
+
+/* Responsive */
+@media(max-width:780px){
+  .doc{padding:32px 20px 60px}
+  .wave-card,.portal-card,.closing-card{padding:28px 24px}
+  .closing-card{padding:36px 24px}
+  .marker{width:36px;height:36px;font-size:14px;border-width:2px}
+  .moment{grid-template-columns:auto 64px 1fr;padding:14px 12px}
+  .moment .m-dur{display:none}
+  .moment .m-body{font-size:15px}
+  .wave-stage{height:100px;margin:18px 0 14px}
+  .byline{flex-wrap:wrap;border-radius:18px;padding:14px}
+  .byline .sep{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="draft">⚠ Draft · Internal review · Not for outbound</div>
+<div class="mesh"></div>
+<div class="grain"></div>
+
+<audio id="callRec" preload="metadata" src="https://dxc03zgurdly9.cloudfront.net/6b3c3e457b2860a29b052bf0302b05b398d9ce9b315ff19ebb3a84f112731765/recording.wav"></audio>
+
+<div class="doc">
+
+  <header class="masthead">
+    <a href="https://agentcollect.com" class="logo">AgentCollect<span class="dot"></span></a>
+    <span class="label">Private Note · #OOMA-001</span>
+    <span class="date">April 6, 2026</span>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="kicker">For Eric Stang · CEO, Ooma</div>
+    <h1>I called your billing line.<br>Here's what <em>I heard</em>.</h1>
+    <p class="deck">One paying customer. One $310 bill. Twelve minutes and thirty-five seconds. Click any moment on the call to hear it exactly as it happened.</p>
+
+    <div class="byline">
+      <img src="audit-assets/team/jb-headshot.jpg" alt="John Banner">
+      <div class="info">
+        <div class="name">John Banner</div>
+        <div class="role">Founder · AgentCollect (YC S23)</div>
+      </div>
+      <div class="sep"></div>
+      <div class="meta"><strong>Recorded</strong> April 6, 2026<br><strong>Duration</strong> 12:35</div>
+    </div>
+  </section>
+
+  <!-- SECTION 1 — Waveform -->
+  <div class="section-label">
+    <div class="num">01</div>
+    <div class="text">
+      <div class="tag">The call</div>
+      <h2>One customer, from <em>hello to hang up</em>.</h2>
+    </div>
+  </div>
+
+  <div class="glass wave-card">
+    <div class="wave-meta">
+      <div class="left">
+        <strong>1‑866‑939‑6662</strong>
+        <span class="sep">·</span>
+        <span>Ooma billing line</span>
+        <span class="sep">·</span>
+        <span>recorded April 6, 2026</span>
+      </div>
+      <div class="right">
+        <span class="live-dot"></span>
+        <span class="total">12:35</span>
+      </div>
+    </div>
+
+    <div class="wave-stage">
+      <div class="wave" id="waveBars"></div>
+      <div class="wave-markers">
+        <button class="marker red" style="left:24.5%" onclick="playMoment(this, 185, 198)" title="Menu fail 1">1</button>
+        <button class="marker red" style="left:33.4%" onclick="playMoment(this, 233, 252)" title="Menu fail 2">2</button>
+        <button class="marker red" style="left:40.7%" onclick="playMoment(this, 307, 327)" title="Menu fail 3">3</button>
+        <button class="marker red" style="left:46.3%" onclick="playMoment(this, 316, 327)" title="Menu fail 4">4</button>
+        <button class="marker blue" style="left:51%" onclick="playMoment(this, 347, 360)" title="Human">✓</button>
+        <button class="marker amber" style="left:85.7%" onclick="playMoment(this, 647, 658)" title="Keypad">!</button>
+        <div class="marker end" style="left:100%">·</div>
+      </div>
+    </div>
+
+    <div class="wave-ruler">
+      <span>00:00</span>
+      <span>02:30</span>
+      <span>05:00</span>
+      <span>07:30</span>
+      <span>10:00</span>
+      <span>12:35</span>
+    </div>
+
+    <div class="moments">
+      <div class="moments-title">Seven moments, in order</div>
+
+      <div class="moment" onclick="playMoment(this.querySelector('.m-badge'), 185, 198)">
+        <div class="m-badge red">1</div>
+        <div class="m-time">03:05</div>
+        <div class="m-body">The automated menu told our caller, Megan, that her account didn't exist. <strong>Attempt one.</strong><div class="play-hint">Hear it</div></div>
+        <div class="m-dur">13s</div>
+      </div>
+      <div class="moment" onclick="playMoment(this.querySelector('.m-badge'), 233, 252)">
+        <div class="m-badge red">2</div>
+        <div class="m-time">03:53</div>
+        <div class="m-body">Same recorded message, played in full. <strong>Attempt two.</strong><div class="play-hint">Hear it</div></div>
+        <div class="m-dur">19s</div>
+      </div>
+      <div class="moment" onclick="playMoment(this.querySelector('.m-badge'), 307, 327)">
+        <div class="m-badge red">3</div>
+        <div class="m-time">05:07</div>
+        <div class="m-body">Same recorded message, again. <strong>Attempt three.</strong><div class="play-hint">Hear it</div></div>
+        <div class="m-dur">20s</div>
+      </div>
+      <div class="moment" onclick="playMoment(this.querySelector('.m-badge'), 316, 327)">
+        <div class="m-badge red">4</div>
+        <div class="m-time">05:16</div>
+        <div class="m-body">A fourth time before the call was finally routed to a person. <strong>Attempt four.</strong><div class="play-hint">Hear it</div></div>
+        <div class="m-dur">11s</div>
+      </div>
+      <div class="moment" onclick="playMoment(this.querySelector('.m-badge'), 347, 360)">
+        <div class="m-badge blue">✓</div>
+        <div class="m-time">05:47</div>
+        <div class="m-body">A human answered. Patient, polite, tried to help. She verified Megan by email.<div class="play-hint">Hear it</div></div>
+        <div class="m-dur">13s</div>
+      </div>
+      <div class="moment" onclick="playMoment(this.querySelector('.m-badge'), 647, 658)">
+        <div class="m-badge amber">!</div>
+        <div class="m-time">10:47</div>
+        <div class="m-body">Megan asked to pay by credit card. The agent had to explain: <strong>"We are not allowed to get your card number or security code. You need to enter the card number and security code using your phone's keypad."</strong><div class="play-hint">Hear it</div></div>
+        <div class="m-dur">11s</div>
+      </div>
+      <div class="moment end-moment">
+        <div class="m-badge end">·</div>
+        <div class="m-time">12:35</div>
+        <div class="m-body">The call ended. <strong>The $310 invoice was still unpaid.</strong></div>
+        <div class="m-dur"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 — Portal -->
+  <div class="section-label">
+    <div class="num">02</div>
+    <div class="text">
+      <div class="tag">The login page</div>
+      <h2>And this is where your customers <em>sign in</em>.</h2>
+    </div>
+  </div>
+
+  <div class="glass portal-card">
+    <div class="portal-frame">
+      <img src="audit-assets/ooma-portals/ooma-login.png" alt="office.ooma.com login page">
+      <div class="spotlight"></div>
+      <div class="spotlight-label">↓ These footer links aren't secure</div>
+    </div>
+
+    <div class="link-exhibit">
+      <div class="row">
+        <span class="tag">insecure</span>
+        <span class="label">Terms of Use →</span>
+        <span class="url">http://www.ooma.com/terms</span>
+      </div>
+      <div class="row">
+        <span class="tag">insecure</span>
+        <span class="label">Privacy Policy →</span>
+        <span class="url">http://www.ooma.com/privacy-policy</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 — Closing -->
+  <div class="section-label">
+    <div class="num">03</div>
+    <div class="text">
+      <div class="tag">The reason I'm writing</div>
+      <h2>Same call. <em>Thirty-four seconds.</em></h2>
+    </div>
+  </div>
+
+  <div class="glass closing-card">
+    <h3>I built what that same call should have sounded like.</h3>
+    <p>I'm a founder, not a salesperson. AgentCollect is an AI collection agent I built for mid-market US companies. <strong>Microsoft, Dell, Plaid, Vanta and Checkr</strong> use it on their long-tail receivables.</p>
+    <p>I'd like to play you what Megan's call should have sounded like. Same customer, same $310, the card accepted by voice, the invoice settled, the call over in <strong>thirty-four seconds</strong>.</p>
+
+    <div class="cta-row">
+      <a href="https://cal.com/johnb/30" target="_blank" class="cta-btn">Fifteen minutes on my calendar <span class="arrow">→</span></a>
+      <span class="cta-aside">or reply directly to <a href="mailto:j@agentcollect.com">j@agentcollect.com</a></span>
+    </div>
+
+    <div class="signature">
+      <img src="audit-assets/team/jb-headshot.jpg" alt="John Banner">
+      <div class="info">
+        <div class="name">John Banner</div>
+        <div class="role">Founder · AgentCollect (Y Combinator S23) · +1 (415) 867-4010</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div>Based on <strong>one live mystery-shopped call</strong> · full recording on file</div>
+    <div><strong>Report #OOMA-001 · D3</strong> · Draft · Not for outbound</div>
+  </footer>
+
+</div>
+
+<script>
+// Generate gradient waveform bars
+(function() {
+  const c = document.getElementById('waveBars');
+  if (!c) return;
+  const bars = 130;
+  let html = '';
+  for (let i = 0; i < bars; i++) {
+    const pct = i / bars;
+    let h = 20 + Math.abs(Math.sin(i * 0.5) * 26) + Math.abs(Math.cos(i * 0.23) * 14);
+    if (pct > 0.22 && pct < 0.5) h += 22 + Math.random() * 14;
+    if (pct > 0.5 && pct < 0.6) h = 18 + Math.random() * 18;
+    if (pct > 0.8 && pct < 0.9) h += 22 + Math.random() * 16;
+    h += (Math.random() - 0.5) * 12;
+    h = Math.max(8, Math.min(96, h));
+    html += `<div class="bar" style="height:${h}%"></div>`;
+  }
+  c.innerHTML = html;
+})();
+
+let activeEl = null;
+function playMoment(el, start, end) {
+  const audio = document.getElementById('callRec');
+  audio.pause();
+  if (activeEl && activeEl !== el) activeEl.classList.remove('playing');
+  el.classList.add('playing');
+  audio.currentTime = start;
+  audio.play().catch(()=>{});
+  activeEl = el;
+  clearTimeout(window._jt);
+  window._jt = setTimeout(() => {
+    audio.pause();
+    el.classList.remove('playing');
+    activeEl = null;
+  }, (end - start) * 1000 + 200);
+}
+</script>
+
+</body>
+</html>
