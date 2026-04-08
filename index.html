@@ -3272,13 +3272,14 @@
     function startInlineVoiceCall() {
         if (callActive) return;
         callActive = true;
-        var data = currentCompany;
 
         // Show connecting state
         uwVoiceIdle.style.display = 'none';
         uwConnecting.style.display = 'flex';
         uwVoiceActive.classList.remove('visible');
-        document.getElementById('uw-connecting-text').textContent = 'Connecting to ' + (data ? data.name : 'your') + ' agent...';
+        var connectingTextEl = document.getElementById('uw-connecting-text');
+        var initialName = (currentCompany && currentCompany.name) || 'your';
+        connectingTextEl.textContent = 'Connecting to ' + initialName + ' agent...';
 
         // Pulse the orb
         var orb = document.getElementById('orb-main');
@@ -3286,6 +3287,21 @@
 
         (async function() {
             try {
+                // Wait for /analyze-company enrichment to finish before starting the call
+                // so the agent uses real company-specific data (flagship product, amount,
+                // dispute playbook) instead of generic DEFAULT_DATA placeholders.
+                // Cap the wait at 15s — after that, proceed with whatever we have.
+                if (apiPending) {
+                    connectingTextEl.textContent = 'Personalizing ' + initialName + ' agent...';
+                    var waitStart = Date.now();
+                    while (apiPending && (Date.now() - waitStart) < 15000) {
+                        await new Promise(function(r) { setTimeout(r, 200); });
+                    }
+                }
+                // Re-read currentCompany — fetchCompanyFromAPI may have replaced it
+                var data = currentCompany;
+                connectingTextEl.textContent = 'Connecting to ' + (data ? data.name : 'your') + ' agent...';
+
                 var response = await fetch('https://backend.widr.app/api/v1/demo/web-call', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
