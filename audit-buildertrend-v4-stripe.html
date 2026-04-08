@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buildertrend Billing — A Field Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#FAF7F2;
+  --bg-2:#F2EDE5;
+  --ink:#1A1815;
+  --ink-soft:#3F3B36;
+  --muted:#7C766D;
+  --line:#E8E1D5;
+  --accent:#B8341B;
+  --gold:#A67C2E;
+  --display:'Fraunces',Georgia,serif;
+  --body:'Inter',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+
+/* COVER PAGE */
+.cover{min-height:100vh;display:flex;flex-direction:column;padding:48px 64px;position:relative;border-bottom:1px solid var(--line)}
+
+.cover-top{display:flex;align-items:center;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
+.cover-top .brand{display:inline-flex;align-items:center;gap:6px;font-family:var(--display);font-weight:900;font-size:17px;color:var(--ink);text-decoration:none;letter-spacing:-.02em;text-transform:none}
+.cover-top .brand .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);margin-left:2px;vertical-align:super;margin-top:-2px;display:inline-block}
+
+.cover-mid{flex:1;display:flex;flex-direction:column;justify-content:center;max-width:920px;margin:0 auto;text-align:center;padding:60px 0}
+
+.field-report{font-family:var(--mono);font-size:12px;color:var(--accent);text-transform:uppercase;letter-spacing:.18em;margin-bottom:48px;font-weight:500}
+.field-report::before,.field-report::after{content:'—';margin:0 14px;color:var(--line)}
+
+.title{font-family:var(--display);font-size:clamp(56px,8.4vw,128px);font-weight:500;line-height:.95;letter-spacing:-.025em;color:var(--ink);margin-bottom:32px;font-variation-settings:"opsz" 144}
+.title em{font-style:italic;font-weight:400}
+
+.subtitle{font-family:var(--display);font-size:clamp(20px,2.2vw,28px);font-weight:400;line-height:1.4;color:var(--ink-soft);max-width:720px;margin:0 auto 64px;font-style:italic;letter-spacing:-.005em}
+
+.cover-divider{width:80px;height:1px;background:var(--ink);margin:0 auto 48px;opacity:.4}
+
+.cover-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;max-width:680px;margin:0 auto 64px;font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.cover-meta-cell{text-align:center}
+.cover-meta-cell .label{margin-bottom:8px;display:block;font-weight:500}
+.cover-meta-cell .value{font-family:var(--display);font-size:16px;color:var(--ink);font-weight:500;text-transform:none;letter-spacing:0;line-height:1.3}
+
+.cover-bottom{display:flex;align-items:center;justify-content:space-between;font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;border-top:1px solid var(--line);padding-top:24px}
+.cover-bottom .recipient{font-family:var(--display);text-transform:none;font-size:14px;color:var(--ink);letter-spacing:0;font-weight:500}
+.cover-bottom .recipient strong{font-weight:600}
+
+/* PAGE 2 — THE QUOTE */
+.page{padding:120px 64px;border-bottom:1px solid var(--line);max-width:1100px;margin:0 auto}
+.page-num{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:60px;text-align:center;font-weight:500}
+.page-num span{color:var(--ink);font-weight:600}
+
+.quote-page{text-align:center;max-width:880px;margin:0 auto}
+.quote-mark{font-family:var(--display);font-size:200px;line-height:.4;color:var(--line);font-weight:900;margin-bottom:24px;font-style:italic}
+.big-quote{font-family:var(--display);font-size:clamp(36px,5vw,68px);font-weight:400;line-height:1.1;letter-spacing:-.02em;color:var(--ink);margin-bottom:48px;font-style:italic;font-variation-settings:"opsz" 144}
+.quote-source{font-family:var(--mono);font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:48px;font-weight:500}
+.quote-source strong{color:var(--ink);font-weight:600}
+
+.play-btn{display:inline-flex;align-items:center;gap:12px;padding:18px 32px;background:var(--ink);color:var(--bg);border:1px solid var(--ink);border-radius:0;font-family:var(--display);font-size:14px;font-weight:500;cursor:pointer;transition:all .2s;letter-spacing:0;font-style:italic}
+.play-btn:hover{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.play-btn.playing{background:var(--accent);border-color:var(--accent)}
+
+/* PAGE 3 — THE NUMBER */
+.number-page{text-align:center;max-width:880px;margin:0 auto}
+.number-eyebrow{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.15em;margin-bottom:32px;font-weight:500}
+.big-number{font-family:var(--display);font-size:clamp(140px,22vw,320px);font-weight:500;line-height:.85;letter-spacing:-.05em;color:var(--accent);margin-bottom:24px;font-variation-settings:"opsz" 144}
+.big-number .currency{font-size:.5em;vertical-align:top;color:var(--ink-soft);margin-right:6px}
+.number-caption{font-family:var(--display);font-size:clamp(22px,2.6vw,32px);font-weight:400;font-style:italic;line-height:1.3;color:var(--ink);max-width:640px;margin:0 auto 24px;letter-spacing:-.01em}
+.number-method{font-family:var(--mono);font-size:11px;color:var(--muted);max-width:520px;margin:0 auto;line-height:1.7;letter-spacing:.02em}
+.number-method strong{color:var(--ink-soft)}
+
+/* PAGE 4 — THE OFFER */
+.offer-page{text-align:center;max-width:780px;margin:0 auto}
+.offer-eyebrow{font-family:var(--mono);font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:.18em;margin-bottom:32px;font-weight:600}
+.offer-title{font-family:var(--display);font-size:clamp(40px,5.6vw,80px);font-weight:500;line-height:1;letter-spacing:-.025em;color:var(--ink);margin-bottom:36px;font-variation-settings:"opsz" 144}
+.offer-title em{font-style:italic;font-weight:400}
+.offer-body{font-family:var(--display);font-size:clamp(18px,2vw,24px);font-weight:400;line-height:1.55;color:var(--ink-soft);max-width:640px;margin:0 auto 56px;letter-spacing:-.005em}
+.offer-body strong{color:var(--ink);font-weight:600}
+.offer-cta{display:inline-flex;align-items:center;gap:14px;padding:22px 44px;background:var(--ink);color:var(--bg);border-radius:0;font-family:var(--display);font-size:16px;font-weight:500;text-decoration:none;letter-spacing:0;font-style:italic;transition:all .2s;border:1px solid var(--ink)}
+.offer-cta:hover{background:var(--accent);border-color:var(--accent)}
+.offer-aside{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:32px;text-transform:uppercase;letter-spacing:.1em}
+.offer-aside a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent)}
+
+/* COLOPHON / TRUSTBAR */
+.colophon{padding:64px 64px;text-align:center;max-width:1100px;margin:0 auto}
+.colophon-label{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.15em;margin-bottom:32px;font-weight:500}
+.colophon-logos{display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;margin-bottom:48px}
+.colophon-logos span{font-family:var(--display);font-weight:600;font-size:22px;color:var(--ink);letter-spacing:-.015em;font-style:italic;font-variation-settings:"opsz" 72}
+.colophon-divider{width:60px;height:1px;background:var(--ink);margin:0 auto 32px;opacity:.4}
+.colophon-credit{font-family:var(--display);font-size:14px;color:var(--ink-soft);font-style:italic;line-height:1.6}
+.colophon-credit strong{color:var(--ink);font-weight:600;font-style:normal}
+
+/* FOOTER */
+.footer{padding:32px 64px;border-top:1px solid var(--line);max-width:1100px;margin:0 auto;font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.footer strong{color:var(--ink)}
+
+@media (max-width:780px){
+  .cover{padding:32px 28px}
+  .cover-mid{padding:30px 0}
+  .cover-meta{grid-template-columns:1fr;gap:28px}
+  .field-report::before,.field-report::after{display:none}
+  .page{padding:60px 28px}
+  .quote-mark{font-size:120px}
+  .colophon{padding:40px 28px}
+  .colophon-logos{gap:24px}
+  .colophon-logos span{font-size:18px}
+  .footer{padding:24px 28px;flex-direction:column;align-items:flex-start;text-align:left}
+  .cover-bottom{flex-direction:column;gap:14px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<audio id="callRec" preload="metadata" src="https://dxc03zgurdly9.cloudfront.net/1d8ed916283711fb0849b820d64e57a0bd764be0cc681efd90868a954228d02d/recording.wav"></audio>
+
+<!-- ============================================
+     COVER PAGE
+     ============================================ -->
+<section class="cover">
+
+  <div class="cover-top">
+    <a href="https://agentcollect.com" class="brand">AgentCollect<span class="dot"></span></a>
+    <div>Field Report N° 001</div>
+  </div>
+
+  <div class="cover-mid">
+    <div class="field-report">A FIELD REPORT</div>
+
+    <h1 class="title">Buildertrend<br>Billing<br>Operations<em>.</em></h1>
+
+    <p class="subtitle">An eighteen-minute call. A paying customer with a credit card in hand. The card never charged. Here is what we heard.</p>
+
+    <div class="cover-divider"></div>
+
+    <div class="cover-meta">
+      <div class="cover-meta-cell">
+        <span class="label">Method</span>
+        <span class="value">Live mystery shop</span>
+      </div>
+      <div class="cover-meta-cell">
+        <span class="label">Date</span>
+        <span class="value">April 7, 2026</span>
+      </div>
+      <div class="cover-meta-cell">
+        <span class="label">Auditor</span>
+        <span class="value">John Banner</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-bottom">
+    <div>Confidential</div>
+    <div class="recipient">Prepared for <strong>Dan Houghton</strong></div>
+    <div>AgentCollect · YC S23</div>
+  </div>
+</section>
+
+<!-- ============================================
+     PAGE 2 — THE QUOTE
+     ============================================ -->
+<section class="page">
+  <div class="page-num">— <span>I.</span> WHAT WE HEARD —</div>
+  <div class="quote-page">
+    <div class="quote-mark">"</div>
+    <div class="big-quote">I've typed it in fifty billion ways. And I cannot find a Mike Foster related to Foster Construction.</div>
+    <div class="quote-source">— <strong>Tanya</strong>, Buildertrend Billing · 1-888-226-5300 · @ 15:30 of an 18-minute call</div>
+    <button class="play-btn" onclick="playMoment(this, 930, 950)">▶ Listen — twenty seconds</button>
+  </div>
+</section>
+
+<!-- ============================================
+     PAGE 3 — THE NUMBER
+     ============================================ -->
+<section class="page">
+  <div class="page-num">— <span>II.</span> WHAT IT COSTS —</div>
+  <div class="number-page">
+    <div class="number-eyebrow">Estimated annual cost of friction</div>
+    <div class="big-number"><span class="currency">$</span>1.4M</div>
+    <p class="number-caption">In unrecovered receivables, every year, leaking out the side of an otherwise excellent company.</p>
+    <div class="number-method"><strong>Method:</strong> Average subscription invoice $1,247 · approximately 14,800 active customers · 7.6% friction loss observed during the mystery shop · Conservative estimate.</div>
+  </div>
+</section>
+
+<!-- ============================================
+     PAGE 4 — THE OFFER
+     ============================================ -->
+<section class="page">
+  <div class="page-num">— <span>III.</span> WHAT WE PROPOSE —</div>
+  <div class="offer-page">
+    <div class="offer-eyebrow">A reply, in forty seconds</div>
+    <h2 class="offer-title">The same call,<br><em>handled.</em></h2>
+    <p class="offer-body">Same customer. Same invoice. Same Visa. Account found in two seconds, card taken by voice, receipt emailed before the call ended. <strong>Forty seconds, start to finish.</strong> Already running for Microsoft, Dell, Plaid, Vanta and Checkr.</p>
+    <a href="https://cal.com/johnb/30" class="offer-cta">Hear it for yourself — 15 minutes</a>
+    <div class="offer-aside">Or write directly: <a href="mailto:j@agentcollect.com">j@agentcollect.com</a></div>
+  </div>
+</section>
+
+<!-- ============================================
+     COLOPHON
+     ============================================ -->
+<section class="colophon">
+  <div class="colophon-label">— Already running on —</div>
+  <div class="colophon-logos">
+    <span>Microsoft</span>
+    <span>Dell</span>
+    <span>Plaid</span>
+    <span>Vanta</span>
+    <span>Checkr</span>
+  </div>
+  <div class="colophon-divider"></div>
+  <div class="colophon-credit">A Field Report by <strong>John Banner</strong>, founder of AgentCollect.<br>Y Combinator S23. Based on one live mystery-shopped call.</div>
+</section>
+
+<footer class="footer">
+  <div>DOC <strong>#BLDR-FR-001</strong> · Confidential</div>
+  <div>AgentCollect &copy; 2026</div>
+</footer>
+
+<script>
+  const audio=document.getElementById('callRec');let activeBtn=null;let stopAt=0;
+  function playMoment(btn,start,end){if(activeBtn)activeBtn.classList.remove('playing');activeBtn=btn;btn.classList.add('playing');stopAt=end;audio.currentTime=start;audio.play();}
+  audio.addEventListener('timeupdate',()=>{if(stopAt>0&&audio.currentTime>=stopAt){audio.pause();stopAt=0;if(activeBtn){activeBtn.classList.remove('playing');activeBtn=null;}}});
+</script>
+
+</body>
+</html>

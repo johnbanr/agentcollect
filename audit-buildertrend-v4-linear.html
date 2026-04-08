@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buildertrend Billing — Listened</title>
+<meta property="og:title" content="Buildertrend Billing — We Listened">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#08090a;
+  --bg-elev:#101113;
+  --ink:#f7f8f8;
+  --muted:#8a8f98;
+  --line:rgba(255,255,255,.08);
+  --line-strong:rgba(255,255,255,.14);
+  --accent:#7170ff;
+  --accent-soft:#5e6ad2;
+  --red:#ff5c5c;
+  --green:#4cb782;
+  --display:'Inter Tight',-apple-system,sans-serif;
+  --body:'Inter',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* GRADIENT BLOB */
+.blob{position:fixed;top:-20%;left:50%;transform:translateX(-50%);width:1400px;height:900px;background:radial-gradient(ellipse at center,rgba(113,112,255,.18) 0%,rgba(113,112,255,.06) 30%,transparent 60%);pointer-events:none;z-index:0;filter:blur(40px)}
+.blob-2{position:fixed;bottom:-30%;right:-10%;width:900px;height:900px;background:radial-gradient(circle at center,rgba(255,92,92,.08) 0%,transparent 60%);pointer-events:none;z-index:0;filter:blur(60px)}
+
+/* TOPBAR */
+.topbar{position:relative;z-index:10;border-bottom:1px solid var(--line);background:rgba(8,9,10,.7);backdrop-filter:blur(20px);position:sticky;top:0}
+.topbar-inner{max-width:1100px;margin:0 auto;padding:18px 32px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:inline-flex;align-items:center;gap:6px;font-family:var(--display);font-weight:800;font-size:17px;color:var(--ink);text-decoration:none;letter-spacing:-.02em}
+.brand .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);margin-left:1px;vertical-align:super;margin-top:-2px;display:inline-block}
+.topbar-meta{font-family:var(--mono);font-size:11px;color:var(--muted);font-weight:500}
+
+/* PAGE */
+.page{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:120px 32px 60px}
+
+/* EYEBROW */
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;padding:8px 14px;border:1px solid var(--line-strong);border-radius:100px;margin-bottom:32px;background:rgba(255,255,255,.02)}
+.eyebrow .pulse{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+
+/* HERO HEADLINE */
+.headline{font-family:var(--display);font-size:clamp(48px,6.8vw,92px);font-weight:700;line-height:1;letter-spacing:-.04em;color:var(--ink);margin-bottom:32px;max-width:980px}
+.headline .accent{background:linear-gradient(135deg,#a5a4ff 0%,#7170ff 50%,#ff5c5c 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.headline .strike{position:relative;display:inline-block}
+.headline .strike::after{content:'';position:absolute;left:0;right:0;top:55%;height:6px;background:var(--red);transform:rotate(-2deg);border-radius:3px}
+
+.deck{font-family:var(--body);font-size:21px;line-height:1.55;color:var(--muted);max-width:680px;margin-bottom:80px;font-weight:400}
+.deck strong{color:var(--ink);font-weight:500}
+
+/* AUDIO PLAYER CARD */
+.player{background:var(--bg-elev);border:1px solid var(--line-strong);border-radius:16px;padding:36px 40px;margin-bottom:80px;max-width:780px;position:relative;overflow:hidden}
+.player::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--red)}
+.player-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.player-meta .left{display:flex;align-items:center;gap:14px}
+.player-meta .live{display:inline-flex;align-items:center;gap:6px;color:var(--red);font-weight:600}
+.player-meta .live::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 12px var(--red);animation:livepulse 1.5s ease-in-out infinite}
+@keyframes livepulse{0%,100%{opacity:1}50%{opacity:.4}}
+.player-quote{font-family:var(--display);font-size:clamp(22px,2.6vw,30px);font-weight:600;line-height:1.25;letter-spacing:-.02em;color:var(--ink);margin-bottom:24px}
+.player-attrib{font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:32px}
+.player-attrib strong{color:var(--ink);font-weight:600}
+
+.play-btn{display:inline-flex;align-items:center;gap:14px;padding:16px 28px;background:var(--ink);color:var(--bg);border:0;border-radius:100px;font-family:var(--display);font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;letter-spacing:-.005em}
+.play-btn:hover{background:var(--accent);color:var(--ink);transform:translateY(-1px)}
+.play-btn.playing{background:var(--red);color:var(--ink)}
+.play-btn .ico{width:14px;height:14px;display:inline-flex;align-items:center;justify-content:center}
+
+/* STATS BAR */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line-strong);border-radius:16px;overflow:hidden;margin-bottom:80px;max-width:980px}
+.stat{background:var(--bg-elev);padding:36px 40px}
+.stat .label{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px;font-weight:500}
+.stat .value{font-family:var(--display);font-size:clamp(36px,4.4vw,56px);font-weight:700;letter-spacing:-.03em;line-height:1;margin-bottom:10px;color:var(--ink)}
+.stat .value.red{color:var(--red)}
+.stat .value.gradient{background:linear-gradient(135deg,#a5a4ff 0%,#7170ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat .sub{font-family:var(--body);font-size:13px;color:var(--muted);font-weight:400}
+
+/* CTA */
+.cta-block{margin-bottom:80px;max-width:780px}
+.cta-headline{font-family:var(--display);font-size:clamp(28px,3.2vw,40px);font-weight:600;line-height:1.15;letter-spacing:-.025em;color:var(--ink);margin-bottom:18px}
+.cta-sub{font-family:var(--body);font-size:16px;color:var(--muted);margin-bottom:32px;line-height:1.6;max-width:580px}
+.cta-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.cta-primary{display:inline-flex;align-items:center;gap:10px;padding:18px 30px;background:var(--ink);color:var(--bg);border-radius:10px;font-family:var(--display);font-size:15px;font-weight:600;text-decoration:none;letter-spacing:-.005em;transition:all .2s}
+.cta-primary:hover{background:var(--accent);color:var(--ink);transform:translateY(-1px)}
+.cta-primary .arrow{transition:transform .2s}
+.cta-primary:hover .arrow{transform:translateX(3px)}
+.cta-secondary{font-family:var(--body);font-size:14px;color:var(--muted)}
+.cta-secondary a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(113,112,255,.3)}
+
+/* TRUSTBAR */
+.trustbar{padding-top:48px;border-top:1px solid var(--line);display:flex;align-items:center;gap:32px;flex-wrap:wrap}
+.trust-label{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:500}
+.trust-logos{display:flex;align-items:center;gap:38px;flex-wrap:wrap;opacity:.6}
+.trust-logos span{font-family:var(--display);font-weight:700;font-size:18px;color:var(--ink);letter-spacing:-.015em}
+
+/* FOOTER */
+.footer{position:relative;z-index:1;padding:32px;border-top:1px solid var(--line);max-width:1100px;margin:60px auto 0;font-family:var(--mono);font-size:11px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.footer strong{color:var(--ink);font-weight:600}
+
+@media (max-width:780px){
+  .page{padding:60px 24px 40px}
+  .topbar-inner{padding:14px 24px}
+  .stats{grid-template-columns:1fr}
+  .player{padding:28px 26px}
+  .cta-row{flex-direction:column;align-items:flex-start;gap:14px}
+}
+</style>
+</head>
+<body>
+
+<div class="blob"></div>
+<div class="blob-2"></div>
+
+<audio id="callRec" preload="metadata" src="https://dxc03zgurdly9.cloudfront.net/1d8ed916283711fb0849b820d64e57a0bd764be0cc681efd90868a954228d02d/recording.wav"></audio>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="https://agentcollect.com" class="brand">AgentCollect<span class="dot"></span></a>
+    <div class="topbar-meta">FOR DAN HOUGHTON · APRIL 7, 2026</div>
+  </div>
+</header>
+
+<main class="page">
+
+  <div class="eyebrow"><span class="pulse"></span>We listened to your billing line</div>
+
+  <h1 class="headline">Buildertrend's billing line is <span class="accent">leaking $1.4M a year.</span> One eighteen-minute call proved it.</h1>
+
+  <p class="deck">A real paying customer called to settle a $1,247 invoice with a Visa in his hand. Eighteen minutes and thirty-five seconds later, the card was still in his pocket. <strong>This is the 20-second clip you need to hear.</strong></p>
+
+  <!-- AUDIO PLAYER -->
+  <div class="player">
+    <div class="player-meta">
+      <div class="left">
+        <span class="live">LIVE RECORDING</span>
+        <span>·</span>
+        <span>April 7, 2026 — 14:22 CT</span>
+        <span>·</span>
+        <span>1-888-226-5300</span>
+      </div>
+      <span>18:35 total</span>
+    </div>
+    <div class="player-quote">"I've typed it in fifty billion ways. And I cannot find a Mike Foster related to Foster Construction."</div>
+    <div class="player-attrib">— <strong>Tanya</strong>, your billing line · @ 15:30 of the call</div>
+    <button class="play-btn" onclick="playMoment(this, 930, 950)">
+      <span class="ico">▶</span> Hear it (20 sec)
+    </button>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <div class="label">Annual leak</div>
+      <div class="value gradient">$1.4M</div>
+      <div class="sub">in unrecovered AR</div>
+    </div>
+    <div class="stat">
+      <div class="label">That call</div>
+      <div class="value red">18:35</div>
+      <div class="sub">Card never charged</div>
+    </div>
+    <div class="stat">
+      <div class="label">AgentCollect version</div>
+      <div class="value">0:40</div>
+      <div class="sub">Card charged. Receipt sent.</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h2 class="cta-headline">Want to hear the AgentCollect version of that exact same call?</h2>
+    <p class="cta-sub">Same customer, same invoice, same Visa. Card taken by voice in forty seconds, receipt emailed before the call ended. Fifteen minutes on my calendar — I'll play you both recordings, side by side.</p>
+    <div class="cta-row">
+      <a href="https://cal.com/johnb/30" class="cta-primary">Book 15 minutes <span class="arrow">→</span></a>
+      <div class="cta-secondary">Or reply: <a href="mailto:j@agentcollect.com">j@agentcollect.com</a></div>
+    </div>
+  </div>
+
+  <!-- TRUSTBAR -->
+  <div class="trustbar">
+    <div class="trust-label">Already running on</div>
+    <div class="trust-logos">
+      <span>Microsoft</span>
+      <span>Dell</span>
+      <span>Plaid</span>
+      <span>Vanta</span>
+      <span>Checkr</span>
+    </div>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div>DOC <strong>#BLDR-001</strong> · Confidential · Based on one live mystery-shopped call</div>
+  <div>By <strong>John Banner</strong> · AgentCollect · Y Combinator S23</div>
+</footer>
+
+<script>
+  const audio=document.getElementById('callRec');let activeBtn=null;let stopAt=0;
+  function playMoment(btn,start,end){if(activeBtn)activeBtn.classList.remove('playing');activeBtn=btn;btn.classList.add('playing');stopAt=end;audio.currentTime=start;audio.play();}
+  audio.addEventListener('timeupdate',()=>{if(stopAt>0&&audio.currentTime>=stopAt){audio.pause();stopAt=0;if(activeBtn){activeBtn.classList.remove('playing');activeBtn=null;}}});
+</script>
+
+</body>
+</html>

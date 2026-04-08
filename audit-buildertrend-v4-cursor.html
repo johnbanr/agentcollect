@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buildertrend Billing — One Call, Eighteen Minutes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#ffffff;
+  --bg-soft:#fafafa;
+  --ink:#0a0a0a;
+  --ink-2:#171717;
+  --muted:#737373;
+  --line:#e5e5e5;
+  --accent:#0a0a0a;
+  --red:#dc2626;
+  --display:'Inter',-apple-system,sans-serif;
+  --body:'Inter',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+
+/* TOPBAR — minimal */
+.topbar{padding:24px 36px;display:flex;align-items:center;justify-content:space-between;max-width:1320px;margin:0 auto}
+.brand{display:inline-flex;align-items:center;gap:6px;font-family:var(--display);font-weight:900;font-size:18px;color:var(--ink);text-decoration:none;letter-spacing:-.025em}
+.brand .dot{width:7px;height:7px;border-radius:50%;background:var(--ink);margin-left:1px;vertical-align:super;margin-top:-2px;display:inline-block}
+.topbar-right{font-family:var(--mono);font-size:11px;color:var(--muted);font-weight:500;letter-spacing:.02em}
+.topbar-right strong{color:var(--ink)}
+
+/* HERO — massive claim */
+.hero{padding:120px 36px 80px;max-width:1320px;margin:0 auto;text-align:center}
+
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;padding:8px 16px;border:1px solid var(--line);border-radius:100px;margin-bottom:48px}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--red);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+.headline{font-family:var(--display);font-size:clamp(56px,9vw,128px);font-weight:900;line-height:.92;letter-spacing:-.05em;color:var(--ink);margin-bottom:32px;max-width:1100px;margin-left:auto;margin-right:auto}
+.headline .red{color:var(--red)}
+
+.deck{font-family:var(--body);font-size:clamp(18px,1.6vw,22px);line-height:1.5;color:var(--muted);max-width:680px;margin:0 auto 64px;font-weight:400}
+.deck strong{color:var(--ink);font-weight:600}
+
+/* AUDIO PLAYER — center stage */
+.player-wrap{max-width:780px;margin:0 auto 80px}
+.player{background:var(--ink);color:#fff;border-radius:20px;padding:48px 56px;position:relative;overflow:hidden;text-align:left;box-shadow:0 1px 2px rgba(0,0,0,.05),0 30px 80px rgba(0,0,0,.18)}
+
+.player-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:36px;font-family:var(--mono);font-size:11px;color:#a3a3a3}
+.player-meta .live{display:inline-flex;align-items:center;gap:6px;color:#fca5a5;font-weight:600}
+.player-meta .live::before{content:'';width:7px;height:7px;border-radius:50%;background:#dc2626;box-shadow:0 0 14px #dc2626;animation:pulse 1.5s ease-in-out infinite}
+
+.player-quote{font-family:var(--display);font-size:clamp(24px,3vw,36px);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#fff;margin-bottom:32px}
+.player-quote::before{content:'"';display:block;font-size:80px;line-height:.5;color:#404040;margin-bottom:14px;font-weight:900}
+
+.player-attrib{font-family:var(--mono);font-size:12px;color:#a3a3a3;margin-bottom:36px}
+.player-attrib strong{color:#fff;font-weight:600}
+
+.play-btn{display:inline-flex;align-items:center;gap:14px;padding:18px 32px;background:#fff;color:var(--ink);border:0;border-radius:100px;font-family:var(--display);font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:-.005em}
+.play-btn:hover{background:#fca5a5;transform:translateY(-1px);box-shadow:0 12px 30px rgba(252,165,165,.4)}
+.play-btn.playing{background:var(--red);color:#fff}
+
+/* COMPARISON — 2 big cards */
+.comparison{max-width:1100px;margin:0 auto 80px;padding:0 36px}
+.comparison-title{font-family:var(--display);font-size:clamp(28px,3.4vw,44px);font-weight:800;letter-spacing:-.025em;text-align:center;margin-bottom:14px;color:var(--ink);line-height:1.1}
+.comparison-sub{font-family:var(--body);font-size:16px;color:var(--muted);text-align:center;margin-bottom:48px;max-width:560px;margin-left:auto;margin-right:auto}
+.comparison-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.comp-card{padding:48px 44px;border-radius:20px;border:1px solid var(--line);position:relative}
+.comp-card.bad{background:var(--bg-soft)}
+.comp-card.good{background:var(--ink);color:#fff;border-color:var(--ink)}
+.comp-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;padding:6px 12px;border-radius:100px;margin-bottom:24px}
+.comp-card.bad .comp-tag{background:#fee2e2;color:var(--red)}
+.comp-card.good .comp-tag{background:rgba(255,255,255,.1);color:#fca5a5}
+.comp-time{font-family:var(--display);font-size:clamp(56px,7vw,88px);font-weight:900;letter-spacing:-.04em;line-height:1;margin-bottom:18px}
+.comp-card.bad .comp-time{color:var(--red)}
+.comp-card.good .comp-time{color:#fff}
+.comp-desc{font-family:var(--body);font-size:15px;line-height:1.55;font-weight:400}
+.comp-card.bad .comp-desc{color:var(--ink-2)}
+.comp-card.good .comp-desc{color:#d4d4d4}
+.comp-desc strong{font-weight:600}
+.comp-card.bad .comp-desc strong{color:var(--ink)}
+.comp-card.good .comp-desc strong{color:#fff}
+
+/* CTA */
+.cta{text-align:center;padding:60px 36px 80px;max-width:780px;margin:0 auto}
+.cta-title{font-family:var(--display);font-size:clamp(32px,4vw,48px);font-weight:800;letter-spacing:-.03em;line-height:1.1;color:var(--ink);margin-bottom:18px}
+.cta-sub{font-family:var(--body);font-size:17px;color:var(--muted);margin-bottom:36px;line-height:1.6}
+.cta-btn{display:inline-flex;align-items:center;gap:12px;padding:22px 40px;background:var(--ink);color:#fff;border-radius:100px;font-family:var(--display);font-size:16px;font-weight:700;text-decoration:none;letter-spacing:-.01em;transition:all .2s}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(0,0,0,.18)}
+.cta-btn .arrow{transition:transform .2s}
+.cta-btn:hover .arrow{transform:translateX(4px)}
+
+/* TRUSTBAR */
+.trustbar{border-top:1px solid var(--line);padding:48px 36px;text-align:center;max-width:1320px;margin:0 auto}
+.trust-label{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:24px;font-weight:500}
+.trust-logos{display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;opacity:.5}
+.trust-logos span{font-family:var(--display);font-weight:800;font-size:20px;color:var(--ink);letter-spacing:-.02em}
+
+/* FOOTER */
+.footer{padding:32px 36px;border-top:1px solid var(--line);max-width:1320px;margin:0 auto;font-family:var(--mono);font-size:11px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.footer strong{color:var(--ink)}
+
+@media (max-width:780px){
+  .hero{padding:60px 24px 40px}
+  .topbar{padding:18px 24px}
+  .player{padding:32px 28px}
+  .comparison-grid{grid-template-columns:1fr;gap:16px}
+  .comp-card{padding:32px 28px}
+  .comparison{padding:0 24px}
+  .cta{padding:30px 24px 50px}
+  .trustbar{padding:32px 24px}
+  .trust-logos{gap:28px}
+  .trust-logos span{font-size:16px}
+}
+</style>
+</head>
+<body>
+
+<audio id="callRec" preload="metadata" src="https://dxc03zgurdly9.cloudfront.net/1d8ed916283711fb0849b820d64e57a0bd764be0cc681efd90868a954228d02d/recording.wav"></audio>
+
+<header class="topbar">
+  <a href="https://agentcollect.com" class="brand">AgentCollect<span class="dot"></span></a>
+  <div class="topbar-right">For <strong>Dan Houghton</strong></div>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow"><span class="dot"></span>Live audit · April 7, 2026</div>
+
+  <h1 class="headline">Your billing line<br>is leaking <span class="red">$1.4M.</span></h1>
+
+  <p class="deck">A real Buildertrend customer called to settle a $1,247 invoice with a Visa in his hand. <strong>Eighteen minutes and thirty-five seconds later, the card was still in his pocket.</strong> Press play.</p>
+
+  <!-- AUDIO -->
+  <div class="player-wrap">
+    <div class="player">
+      <div class="player-meta">
+        <span class="live">LIVE RECORDING</span>
+        <span>18:35 total · 1-888-226-5300</span>
+      </div>
+      <div class="player-quote">I've typed it in fifty billion ways. And I cannot find a Mike Foster related to Foster Construction.</div>
+      <div class="player-attrib">— <strong>Tanya</strong>, your billing line · @ 15:30</div>
+      <button class="play-btn" onclick="playMoment(this, 930, 950)">▶  Hear it (20 sec)</button>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="comparison">
+  <h2 class="comparison-title">Same call. Two outcomes.</h2>
+  <p class="comparison-sub">One is what your billing line did this morning. The other is what AgentCollect does for Microsoft, Dell and Plaid.</p>
+  <div class="comparison-grid">
+    <div class="comp-card bad">
+      <div class="comp-tag">Buildertrend today</div>
+      <div class="comp-time">18:35</div>
+      <p class="comp-desc">Two reps refused the credit card. Tanya in billing searched fifty billion ways. Resolution: <strong>"send us an email."</strong> The $1,247 invoice is still open.</p>
+    </div>
+    <div class="comp-card good">
+      <div class="comp-tag">AgentCollect</div>
+      <div class="comp-time">0:40</div>
+      <p class="comp-desc">Account found in 2 seconds. Card taken by voice (PCI Level 1). Receipt emailed before the call ended. <strong>$1,247 settled.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2 class="cta-title">Want to hear our version?</h2>
+  <p class="cta-sub">Fifteen minutes on my calendar. I'll play you both recordings, side by side, and walk you through the seven other findings the audit surfaced.</p>
+  <a href="https://cal.com/johnb/30" class="cta-btn">Book 15 minutes <span class="arrow">→</span></a>
+</section>
+
+<!-- TRUSTBAR -->
+<div class="trustbar">
+  <div class="trust-label">Already running on</div>
+  <div class="trust-logos">
+    <span>Microsoft</span>
+    <span>Dell</span>
+    <span>Plaid</span>
+    <span>Vanta</span>
+    <span>Checkr</span>
+  </div>
+</div>
+
+<footer class="footer">
+  <div>DOC <strong>#BLDR-001</strong> · Confidential · Based on one live mystery-shopped call</div>
+  <div>By <strong>John Banner</strong> · AgentCollect · Y Combinator S23</div>
+</footer>
+
+<script>
+  const audio=document.getElementById('callRec');let activeBtn=null;let stopAt=0;
+  function playMoment(btn,start,end){if(activeBtn)activeBtn.classList.remove('playing');activeBtn=btn;btn.classList.add('playing');stopAt=end;audio.currentTime=start;audio.play();}
+  audio.addEventListener('timeupdate',()=>{if(stopAt>0&&audio.currentTime>=stopAt){audio.pause();stopAt=0;if(activeBtn){activeBtn.classList.remove('playing');activeBtn=null;}}});
+</script>
+
+</body>
+</html>
