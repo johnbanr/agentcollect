@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Housecall Pro AR Operations Audit · April 2026</title>
+<meta property="og:title" content="Housecall Pro AR Operations Audit">
+<meta property="og:description" content="We called Housecall Pro's billing line. Your own AI assistant said the same sentence four times and then dumped me to voicemail.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#FAFBFF;
+  --bg-card:#ffffff;
+  --bg-soft:#F4F5FB;
+  --ink:#0B1B3D;
+  --ink-2:#1E2856;
+  --muted:#64748B;
+  --line:#E5E7EB;
+  --indigo:#4F46E5;
+  --indigo-soft:#EEF2FF;
+  --green:#10B981;
+  --red:#DC2626;
+  --display:'Plus Jakarta Sans',-apple-system,sans-serif;
+  --body:'Inter',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+
+.topbar{padding:18px 36px;display:flex;align-items:center;justify-content:space-between;max-width:1320px;margin:0 auto;border-bottom:1px solid var(--line)}
+.brand-block{display:flex;align-items:center;gap:14px}
+.brand{display:inline-flex;align-items:center;gap:6px;font-family:var(--display);font-weight:900;font-size:18px;color:var(--ink);text-decoration:none;letter-spacing:-.02em}
+.brand .dot{width:7px;height:7px;border-radius:50%;background:var(--indigo);margin-left:1px;vertical-align:super;margin-top:-2px;display:inline-block}
+.brand-tagline{font-family:var(--body);font-size:12px;color:var(--muted);font-weight:500;padding-left:14px;border-left:1px solid var(--line);letter-spacing:-.005em}
+.topbar-meta{font-family:var(--mono);font-size:11px;color:var(--muted);font-weight:500;letter-spacing:.02em}
+.topbar-meta strong{color:var(--ink)}
+
+.hero{padding:64px 36px 50px;max-width:1320px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:80px;align-items:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--indigo);text-transform:uppercase;letter-spacing:.12em;background:var(--indigo-soft);padding:8px 14px;border-radius:6px;margin-bottom:24px}
+.hero-eyebrow .pulse{width:6px;height:6px;border-radius:50%;background:var(--indigo);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.audit-title{font-family:var(--display);font-size:13px;font-weight:600;color:var(--muted);margin-bottom:12px;letter-spacing:.08em;text-transform:uppercase}
+.headline{font-family:var(--display);font-size:clamp(38px,5.4vw,68px);font-weight:800;line-height:1;letter-spacing:-.035em;color:var(--ink);margin-bottom:24px}
+.headline .accent{background:linear-gradient(135deg,var(--indigo) 0%,#7c3aed 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.headline .red{color:var(--red)}
+.deck{font-family:var(--body);font-size:17px;line-height:1.6;color:var(--muted);max-width:560px;margin-bottom:28px}
+.deck strong{color:var(--ink);font-weight:600}
+.method-strip{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;margin-bottom:32px;font-family:var(--mono);font-size:11px;color:var(--ink-2);max-width:620px;line-height:1.6}
+.method-strip strong{color:var(--ink);font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+.method-strip .sep{color:var(--line)}
+.cta-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:14px}
+.cta-primary{display:inline-flex;align-items:center;gap:10px;padding:18px 30px;background:var(--ink);color:#fff;border-radius:12px;font-family:var(--display);font-size:15px;font-weight:700;text-decoration:none;letter-spacing:-.005em;transition:all .2s}
+.cta-primary:hover{background:var(--indigo);transform:translateY(-1px);box-shadow:0 12px 32px rgba(79,70,229,.3)}
+.cta-primary .arrow{transition:transform .2s}
+.cta-primary:hover .arrow{transform:translateX(3px)}
+.cta-secondary{font-family:var(--body);font-size:13px;color:var(--muted);margin-bottom:28px}
+.cta-secondary strong{color:var(--ink-2);font-weight:600}
+.hero-trust{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.hero-trust strong{color:var(--ink);font-weight:600;font-family:var(--display)}
+
+.hero-card{background:var(--ink);color:#fff;border-radius:24px;padding:36px 40px;position:relative;overflow:hidden;box-shadow:0 1px 2px rgba(11,27,61,.05),0 30px 60px rgba(11,27,61,.18)}
+.hero-card::before{content:'';position:absolute;top:0;right:0;width:300px;height:300px;background:radial-gradient(circle,rgba(99,102,241,.25) 0%,transparent 60%);pointer-events:none}
+.card-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;font-family:var(--mono);font-size:11px;color:#94a3b8;position:relative;z-index:1}
+.card-live{display:inline-flex;align-items:center;gap:6px;color:#fca5a5;font-weight:600}
+.card-live::before{content:'';width:7px;height:7px;border-radius:50%;background:#dc2626;box-shadow:0 0 12px #dc2626;animation:pulse 1.5s ease-in-out infinite}
+.card-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;font-weight:600;color:#a5b4fc;text-transform:uppercase;letter-spacing:.12em;padding:5px 10px;background:rgba(99,102,241,.15);border-radius:6px;margin-bottom:18px;position:relative;z-index:1}
+.card-quote{font-family:var(--display);font-size:22px;font-weight:600;line-height:1.25;letter-spacing:-.015em;color:#fff;margin-bottom:24px;position:relative;z-index:1}
+.card-attrib{font-family:var(--mono);font-size:11px;color:#94a3b8;margin-bottom:28px;position:relative;z-index:1}
+.card-attrib strong{color:#fff;font-weight:600}
+.play-btn{display:inline-flex;align-items:center;gap:12px;padding:14px 24px;background:#fff;color:var(--ink);border:0;border-radius:100px;font-family:var(--display);font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:-.005em;position:relative;z-index:1}
+.play-btn:hover{background:var(--indigo);color:#fff}
+.play-btn.playing{background:var(--red);color:#fff}
+
+.stats-band{background:var(--ink);color:#fff;padding:60px 36px;position:relative;overflow:hidden}
+.stats-band::before{content:'';position:absolute;top:-50%;left:50%;transform:translateX(-50%);width:1200px;height:600px;background:radial-gradient(ellipse at center,rgba(99,102,241,.18) 0%,transparent 60%);pointer-events:none}
+.stats-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:48px;position:relative;z-index:1}
+.stat-cell{text-align:left}
+.stat-label{font-family:var(--mono);font-size:10px;color:#94a3b8;text-transform:uppercase;letter-spacing:.12em;margin-bottom:14px;font-weight:500}
+.stat-value{font-family:var(--display);font-size:clamp(36px,4.2vw,52px);font-weight:900;letter-spacing:-.035em;line-height:1;margin-bottom:10px}
+.stat-value.gradient{background:linear-gradient(135deg,#a5b4fc 0%,#7c3aed 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-value.red{color:#fca5a5}
+.stat-value.green{color:#6ee7b7}
+.stat-sub{font-family:var(--body);font-size:13px;color:#cbd5e1;font-weight:400}
+
+.confession{padding:80px 36px;max-width:1100px;margin:0 auto}
+.confession-card{background:linear-gradient(135deg,#7f1d1d 0%,#450a0a 100%);color:#fff;border-radius:24px;padding:56px 64px;position:relative;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.05),0 40px 100px rgba(127,29,29,.25)}
+.confession-card::before{content:'';position:absolute;top:0;right:0;width:500px;height:500px;background:radial-gradient(circle,rgba(220,38,38,.3) 0%,transparent 60%);pointer-events:none}
+.confession-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;font-weight:700;color:#fca5a5;text-transform:uppercase;letter-spacing:.14em;padding:8px 14px;background:rgba(220,38,38,.25);border-radius:100px;margin-bottom:32px;position:relative;z-index:1}
+.confession-tag::before{content:'';width:7px;height:7px;border-radius:50%;background:#fca5a5;animation:pulse 1.5s ease-in-out infinite}
+.confession-quote{font-family:var(--display);font-size:clamp(26px,3.8vw,46px);font-weight:600;line-height:1.18;letter-spacing:-.025em;color:#fff;margin-bottom:36px;position:relative;z-index:1;max-width:920px}
+.confession-quote::before{content:'"';display:block;font-size:80px;line-height:.5;color:rgba(252,165,165,.4);margin-bottom:14px;font-weight:900}
+.confession-attrib{font-family:var(--mono);font-size:12px;color:#fca5a5;margin-bottom:28px;position:relative;z-index:1;letter-spacing:.02em}
+.confession-attrib strong{color:#fff;font-weight:600}
+.confession-loop{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:36px;position:relative;z-index:1}
+.loop-step{background:rgba(0,0,0,.25);border:1px solid rgba(252,165,165,.2);border-radius:10px;padding:16px;text-align:center}
+.loop-step .num{font-family:var(--mono);font-size:9px;color:#fca5a5;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.loop-step .text{font-family:var(--display);font-size:13px;color:#fff;font-weight:600;line-height:1.3}
+.confession-play{display:inline-flex;align-items:center;gap:12px;padding:16px 28px;background:#fff;color:#7f1d1d;border:0;border-radius:100px;font-family:var(--display);font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:-.005em;position:relative;z-index:1}
+.confession-play:hover{background:#fca5a5;color:#fff}
+.confession-play.playing{background:#fca5a5}
+
+.section{padding:90px 36px;max-width:1320px;margin:0 auto}
+.section-head{margin-bottom:48px;text-align:center;max-width:780px;margin-left:auto;margin-right:auto}
+.section-eyebrow{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--indigo);text-transform:uppercase;letter-spacing:.12em;margin-bottom:14px}
+.section-title{font-family:var(--display);font-size:clamp(28px,3.6vw,44px);font-weight:800;letter-spacing:-.025em;color:var(--ink);line-height:1.1;margin-bottom:14px}
+.section-deck{font-family:var(--body);font-size:16px;color:var(--muted);line-height:1.6}
+.section-deck strong{color:var(--ink);font-weight:600}
+
+.tp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.tp-card{background:var(--bg-card);border:1px solid var(--line);border-radius:14px;padding:28px 22px;text-align:center;position:relative;transition:all .15s}
+.tp-card:hover{transform:translateY(-3px);box-shadow:0 1px 2px rgba(11,27,61,.04),0 14px 32px rgba(11,27,61,.08)}
+.tp-card.fail::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--red);border-radius:14px 14px 0 0}
+.tp-icon{width:56px;height:56px;margin:0 auto 18px;border-radius:14px;background:#FEF2F2;display:flex;align-items:center;justify-content:center;font-size:28px}
+.tp-label{font-family:var(--mono);font-size:9px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.tp-name{font-family:var(--display);font-size:15px;font-weight:700;color:var(--ink);margin-bottom:10px;letter-spacing:-.01em;line-height:1.2}
+.tp-finding{font-family:var(--body);font-size:12px;color:var(--ink-2);line-height:1.5;margin-bottom:14px;min-height:60px}
+.tp-status{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.08em}
+.tp-status .x{display:inline-flex;width:14px;height:14px;border-radius:50%;background:var(--red);color:#fff;align-items:center;justify-content:center;font-size:9px;font-weight:900}
+
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;text-align:left;max-width:1100px;margin:0 auto}
+.compare-card{padding:48px 44px;border-radius:20px;border:1px solid var(--line);position:relative}
+.compare-card.bad{background:var(--bg-card)}
+.compare-card.good{background:linear-gradient(135deg,var(--ink) 0%,#1e1b4b 100%);color:#fff;border:0}
+.compare-card-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;padding:6px 12px;border-radius:6px;margin-bottom:24px}
+.compare-card.bad .compare-card-tag{background:#FEF2F2;color:var(--red)}
+.compare-card.good .compare-card-tag{background:rgba(99,102,241,.2);color:#a5b4fc}
+.compare-card-time{font-family:var(--display);font-size:clamp(48px,6.4vw,80px);font-weight:900;letter-spacing:-.035em;line-height:1;margin-bottom:16px}
+.compare-card.bad .compare-card-time{color:var(--red)}
+.compare-card.good .compare-card-time{color:#fff}
+.compare-card-desc{font-family:var(--body);font-size:15px;line-height:1.55;margin-bottom:24px}
+.compare-card.bad .compare-card-desc{color:var(--ink-2)}
+.compare-card.good .compare-card-desc{color:#cbd5e1}
+.compare-card-desc strong{font-weight:600}
+.compare-card.bad .compare-card-desc strong{color:var(--ink)}
+.compare-card.good .compare-card-desc strong{color:#fff}
+.compare-card .play-btn{margin-top:8px}
+.compare-card.good .play-btn{background:#fff;color:var(--ink)}
+.compare-card.good .play-btn:hover{background:var(--indigo);color:#fff}
+
+.what-is{padding:80px 36px;max-width:1100px;margin:0 auto;text-align:center}
+.what-is-eyebrow{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--indigo);text-transform:uppercase;letter-spacing:.12em;margin-bottom:18px}
+.what-is-title{font-family:var(--display);font-size:clamp(28px,3.6vw,42px);font-weight:800;letter-spacing:-.025em;color:var(--ink);line-height:1.1;margin-bottom:24px;max-width:780px;margin-left:auto;margin-right:auto}
+.what-is-title .accent{background:linear-gradient(135deg,var(--indigo) 0%,#7c3aed 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.what-is-body{font-family:var(--body);font-size:18px;line-height:1.65;color:var(--ink-2);max-width:720px;margin:0 auto 36px}
+.what-is-body strong{color:var(--ink);font-weight:600}
+.what-is-tags{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.what-is-tag{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:var(--bg-soft);border:1px solid var(--line);border-radius:100px;font-family:var(--mono);font-size:12px;color:var(--ink-2);font-weight:500}
+.what-is-tag .check{width:16px;height:16px;border-radius:50%;background:var(--green);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:900}
+
+.cta-band{padding:90px 36px;background:linear-gradient(135deg,var(--ink) 0%,#1e1b4b 100%);color:#fff;text-align:center;position:relative;overflow:hidden;margin-top:60px}
+.cta-band::before{content:'';position:absolute;top:-50%;right:-20%;width:800px;height:800px;background:radial-gradient(circle,rgba(99,102,241,.18) 0%,transparent 60%);pointer-events:none}
+.cta-band-inner{max-width:780px;margin:0 auto;position:relative;z-index:1}
+.cta-band-title{font-family:var(--display);font-size:clamp(32px,4.4vw,52px);font-weight:800;letter-spacing:-.03em;line-height:1.05;color:#fff;margin-bottom:18px}
+.cta-band-title .accent{color:#a5b4fc}
+.cta-band-deck{font-family:var(--body);font-size:17px;color:#cbd5e1;margin-bottom:36px;line-height:1.6;max-width:580px;margin-left:auto;margin-right:auto}
+.cta-band-btn{display:inline-flex;align-items:center;gap:14px;padding:22px 40px;background:#fff;color:var(--ink);border-radius:14px;font-family:var(--display);font-size:16px;font-weight:800;text-decoration:none;letter-spacing:-.01em;transition:all .2s}
+.cta-band-btn:hover{background:#a5b4fc;transform:translateY(-2px);box-shadow:0 18px 40px rgba(165,180,252,.3)}
+.cta-band-arrow{transition:transform .2s}
+.cta-band-btn:hover .cta-band-arrow{transform:translateX(4px)}
+.cta-band-terms{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:24px;font-family:var(--mono);font-size:11px;color:#94a3b8;flex-wrap:wrap}
+.cta-band-terms .check{color:#6ee7b7}
+
+.trustbar{padding:48px 36px;text-align:center;border-top:1px solid var(--line);max-width:1320px;margin:0 auto}
+.trust-label{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:24px;font-weight:500}
+.trust-logos{display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;opacity:.55}
+.trust-logos span{font-family:var(--display);font-weight:800;font-size:20px;color:var(--ink);letter-spacing:-.02em}
+
+.about-audit{max-width:980px;margin:0 auto;padding:36px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.7;letter-spacing:.02em;border-top:1px dashed var(--line)}
+.about-audit strong{color:var(--ink);font-weight:600}
+
+.footer{padding:32px 36px;border-top:1px solid var(--line);max-width:1320px;margin:0 auto;font-family:var(--mono);font-size:11px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.footer strong{color:var(--ink)}
+
+@media (max-width:980px){
+  .hero{grid-template-columns:1fr;gap:48px;padding:50px 24px 30px}
+  .stats-inner{grid-template-columns:repeat(2,1fr);gap:36px}
+  .tp-grid{grid-template-columns:repeat(2,1fr);gap:14px}
+  .confession-loop{grid-template-columns:repeat(2,1fr)}
+  .compare-grid{grid-template-columns:1fr;gap:16px}
+  .section,.confession,.what-is,.cta-band{padding:60px 24px}
+  .stats-band{padding:48px 24px}
+  .topbar{padding:14px 20px}
+  .brand-tagline{display:none}
+  .trust-logos{gap:24px}
+  .trust-logos span{font-size:16px}
+  .confession-card{padding:36px 28px}
+}
+</style>
+</head>
+<body>
+
+<audio id="callRec" preload="metadata" src="https://dxc03zgurdly9.cloudfront.net/8759104d234defa99ac1659886f2a6c0583b065112313b436b8092ff5f114f5e/recording.wav"></audio>
+
+<header class="topbar">
+  <div class="brand-block">
+    <a href="https://agentcollect.com" class="brand">AgentCollect<span class="dot"></span></a>
+    <span class="brand-tagline">Your billing line, answered by AI</span>
+  </div>
+  <div class="topbar-meta">DOC <strong>#HCP-AUDIT-001</strong> · CONFIDENTIAL · APRIL 7, 2026</div>
+</header>
+
+<section class="hero">
+  <div>
+    <div class="hero-eyebrow"><span class="pulse"></span>Confidential AR Audit · Prepared for Michael Beaudoin</div>
+    <div class="audit-title">AR Operations Audit · Housecall Pro · April 2026</div>
+    <h1 class="headline">Your billing AI said the same sentence <span class="red">four times in a row,</span> then hung up.</h1>
+    <p class="deck">We called Housecall Pro's billing line this morning as a paying customer with a $389 invoice and a Visa ready. <strong>Your own AI assistant answered. It said "Sorry. Tell me again what you would like to do." four times in a row, then transferred us to voicemail.</strong> Total time: 1 minute 57 seconds.</p>
+
+    <div class="method-strip">
+      <strong>Method:</strong>&nbsp;Live mystery shop&nbsp;<span class="sep">·</span>&nbsp;1-877-944-9010 (your published billing line)&nbsp;<span class="sep">·</span>&nbsp;Past-due invoice scenario&nbsp;<span class="sep">·</span>&nbsp;Recorded in full
+    </div>
+
+    <div class="cta-row">
+      <a href="https://cal.com/johnb/30" class="cta-primary">Replace your billing AI with AgentCollect <span class="arrow">→</span></a>
+    </div>
+    <div class="cta-secondary"><strong>30-day pilot</strong>&nbsp;·&nbsp;$0 upfront&nbsp;·&nbsp;Live in 7 days&nbsp;·&nbsp;Cancel anytime</div>
+    <div class="hero-trust">
+      Trusted by <strong>Microsoft</strong> · <strong>Dell</strong> · <strong>Plaid</strong> · <strong>Vanta</strong> · <strong>Checkr</strong>
+    </div>
+  </div>
+
+  <div class="hero-card">
+    <div class="card-meta">
+      <span class="card-live">LIVE RECORDING</span>
+      <span>1:57 total</span>
+    </div>
+    <div class="card-tag">Repeated 4 times in a row</div>
+    <div class="card-quote">"Sorry. Tell me again what you would like to do."</div>
+    <div class="card-attrib">— Your <strong>Housecall Pro AI</strong> · 1-877-944-9010 · before transferring to voicemail</div>
+    <button class="play-btn" onclick="playMoment(this, 16, 117)">▶ Hear the loop (full call)</button>
+  </div>
+</section>
+
+<section class="stats-band">
+  <div class="stats-inner">
+    <div class="stat-cell">
+      <div class="stat-label">Total call</div>
+      <div class="stat-value red">1:57</div>
+      <div class="stat-sub">$389 still unpaid</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">Same sentence repeated</div>
+      <div class="stat-value gradient">4×</div>
+      <div class="stat-sub">"Sorry. Tell me again..."</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">Humans on the line</div>
+      <div class="stat-value red">0</div>
+      <div class="stat-sub">Voicemail dead-end</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">AgentCollect version</div>
+      <div class="stat-value green">0:40</div>
+      <div class="stat-sub">Card charged · receipt sent</div>
+    </div>
+  </div>
+</section>
+
+<section class="confession">
+  <div class="confession-card">
+    <div class="confession-tag">★ THE LOOP · 4× IN 90 SECONDS</div>
+    <div class="confession-quote">Sorry. Tell me again what you would like to do.</div>
+    <div class="confession-attrib">— Your <strong>Housecall Pro AI assistant</strong>, repeated four times before voicemail</div>
+    <div class="confession-loop">
+      <div class="loop-step">
+        <div class="num">Attempt 01 · 0:16</div>
+        <div class="text">"Sorry. Tell me again..."</div>
+      </div>
+      <div class="loop-step">
+        <div class="num">Attempt 02 · 0:36</div>
+        <div class="text">"Sorry. Tell me again..."</div>
+      </div>
+      <div class="loop-step">
+        <div class="num">Attempt 03 · 0:69</div>
+        <div class="text">"Sorry. Tell me again..."</div>
+      </div>
+      <div class="loop-step">
+        <div class="num">Attempt 04 · 0:99</div>
+        <div class="text">"Sorry. Tell me again..."</div>
+      </div>
+    </div>
+    <button class="confession-play" onclick="playMoment(this, 16, 117)">▶ Hear all four (full 1:57)</button>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <div class="section-eyebrow">— What we tested —</div>
+    <h2 class="section-title">Four touchpoints. Four failures.</h2>
+    <p class="section-deck">Beyond the AI loop, we audited Housecall Pro's billing operations. Every touchpoint failed.</p>
+  </div>
+  <div class="tp-grid">
+    <div class="tp-card fail">
+      <div class="tp-icon">🤖</div>
+      <div class="tp-label">Touchpoint 01</div>
+      <div class="tp-name">AI assistant</div>
+      <div class="tp-finding">Same sentence "Sorry. Tell me again." repeated 4 times. Zero comprehension.</div>
+      <div class="tp-status"><span class="x">✕</span>Fail</div>
+    </div>
+    <div class="tp-card fail">
+      <div class="tp-icon">🤝</div>
+      <div class="tp-label">Touchpoint 02</div>
+      <div class="tp-name">Human escalation</div>
+      <div class="tp-finding">No human path. AI never offered to transfer to a person. Voicemail only.</div>
+      <div class="tp-status"><span class="x">✕</span>Fail</div>
+    </div>
+    <div class="tp-card fail">
+      <div class="tp-icon">💳</div>
+      <div class="tp-label">Touchpoint 03</div>
+      <div class="tp-name">Payment path</div>
+      <div class="tp-finding">No way to pay by voice, by IVR, or by callback. Customer must email or use the portal.</div>
+      <div class="tp-status"><span class="x">✕</span>Fail</div>
+    </div>
+    <div class="tp-card fail">
+      <div class="tp-icon">📞</div>
+      <div class="tp-label">Touchpoint 04</div>
+      <div class="tp-name">Voicemail callback</div>
+      <div class="tp-finding">Caller dumped to voicemail with no SLA, no callback promise, no ticket number.</div>
+      <div class="tp-status"><span class="x">✕</span>Fail</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <div class="section-eyebrow">— The same exact call —</div>
+    <h2 class="section-title">Same customer.<br>Two completely different outcomes.</h2>
+  </div>
+  <div class="compare-grid">
+    <div class="compare-card bad">
+      <div class="compare-card-tag">Housecall Pro today</div>
+      <div class="compare-card-time">1:57</div>
+      <p class="compare-card-desc">Your AI said the same sentence four times, then transferred to voicemail. Zero humans, zero escalation, zero payment path. <strong>The $389 invoice is still open.</strong></p>
+      <button class="play-btn" onclick="playMoment(this, 16, 117)">▶ Hear the loop</button>
+    </div>
+    <div class="compare-card good">
+      <div class="compare-card-tag">AgentCollect</div>
+      <div class="compare-card-time">0:40</div>
+      <p class="compare-card-desc">Account found in 2 seconds. Card taken by voice. Receipt emailed before the call ended. <strong>$389 settled, customer thanked, account clean.</strong> No loops. No voicemail.</p>
+    </div>
+  </div>
+</section>
+
+<section class="what-is">
+  <div class="what-is-eyebrow">— So what is AgentCollect, exactly? —</div>
+  <h2 class="what-is-title">An AI voice agent that <span class="accent">actually understands customers.</span></h2>
+  <p class="what-is-body">Housecall Pro builds software for service contractors, including an AI assistant of your own. The irony of this audit is that <strong>your billing line is the part of your product most exposed to your own customers, and it runs a worse version of the technology you sell.</strong> AgentCollect answers in one ring, finds accounts in two seconds, takes credit cards by voice, and never loops. We escalate to your team only when a human is actually needed.</p>
+  <div class="what-is-tags">
+    <span class="what-is-tag"><span class="check">✓</span>Live in 7 days</span>
+    <span class="what-is-tag"><span class="check">✓</span>PCI DSS Level 1</span>
+    <span class="what-is-tag"><span class="check">✓</span>Zero loops</span>
+    <span class="what-is-tag"><span class="check">✓</span>Already on Microsoft, Dell, Plaid</span>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="cta-band-inner">
+    <h2 class="cta-band-title">Replace your billing AI with <span class="accent">an AI that listens.</span></h2>
+    <p class="cta-band-deck">30-day pilot. We deploy on your billing number, handle real calls, and you watch every transcript live. Same scenario, same customer, no four-times loop.</p>
+    <a href="https://cal.com/johnb/30" class="cta-band-btn">Start the 30-day pilot <span class="cta-band-arrow">→</span></a>
+    <div class="cta-band-terms">
+      <span><span class="check">✓</span> $0 upfront</span>
+      <span><span class="check">✓</span> No contract</span>
+      <span><span class="check">✓</span> Cancel anytime</span>
+      <span><span class="check">✓</span> Live in 7 days</span>
+    </div>
+  </div>
+</section>
+
+<div class="trustbar">
+  <div class="trust-label">Already running on</div>
+  <div class="trust-logos">
+    <span>Microsoft</span>
+    <span>Dell</span>
+    <span>Plaid</span>
+    <span>Vanta</span>
+    <span>Checkr</span>
+  </div>
+</div>
+
+<div class="about-audit">
+  <strong>About this audit:</strong> Housecall Pro's billing line (1-877-944-9010) was called April 7, 2026 by an AI mystery shopper posing as a paying customer with a $389 invoice. The call was answered by your own AI assistant, which repeated "Sorry. Tell me again what you would like to do." four times in 90 seconds before transferring to voicemail. Full 1:57 recording on file. All quotes verbatim from the live transcript.
+</div>
+
+<footer class="footer">
+  <div>DOC <strong>#HCP-AUDIT-001</strong> · Confidential · 1 live mystery-shopped call · April 7, 2026</div>
+  <div>By <strong>John Banner</strong> · AgentCollect · Y Combinator S23</div>
+</footer>
+
+<script>
+  const audio=document.getElementById('callRec');let activeBtn=null;let stopAt=0;
+  function playMoment(btn,start,end){if(activeBtn)activeBtn.classList.remove('playing');activeBtn=btn;btn.classList.add('playing');stopAt=end;audio.currentTime=start;audio.play();}
+  audio.addEventListener('timeupdate',()=>{if(stopAt>0&&audio.currentTime>=stopAt){audio.pause();stopAt=0;if(activeBtn){activeBtn.classList.remove('playing');activeBtn=null;}}});
+</script>
+
+</body>
+</html>
