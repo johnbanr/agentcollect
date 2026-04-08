@@ -241,10 +241,6 @@
       "destination": "/v3/konica.html"
     },
     {
-      "source": "/konica-minolta",
-      "destination": "/v3/konica-v11c.html"
-    },
-    {
       "source": "/analyze",
       "destination": "/v3/konica-v7-intel.html"
     },
@@ -1639,10 +1635,6 @@
     {
       "source": "/audit/test-roto-rooter",
       "destination": "/v3/audit-test-roto-rooter.html"
-    },
-    {
-      "source": "/salesforce-hack",
-      "destination": "/v3/salesforce-hack.html"
     },
     {
       "source": "/v3/components/:path*",
