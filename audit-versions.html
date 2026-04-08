@@ -19,50 +19,60 @@
   --green:#10B981;
 }
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
-.page{max-width:1320px;margin:0 auto;padding:60px 36px}
+.page{max-width:1440px;margin:0 auto;padding:50px 36px}
 
-.brand{display:inline-flex;align-items:center;gap:6px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;font-size:18px;color:var(--ink);text-decoration:none;letter-spacing:-.02em;margin-bottom:32px}
+.brand{display:inline-flex;align-items:center;gap:6px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;font-size:18px;color:var(--ink);text-decoration:none;letter-spacing:-.02em;margin-bottom:28px}
 .brand .dot{width:7px;height:7px;border-radius:50%;background:var(--indigo);margin-left:1px;vertical-align:super;margin-top:-2px}
 
 .kicker{display:inline-flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--indigo);text-transform:uppercase;letter-spacing:.12em;background:var(--indigo-soft);padding:8px 14px;border-radius:6px;margin-bottom:18px}
 
-h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(36px,4.6vw,56px);font-weight:800;line-height:1.05;letter-spacing:-.03em;color:var(--ink);margin-bottom:14px;max-width:780px}
-.deck{font-family:'Inter',sans-serif;font-size:17px;color:var(--muted);max-width:680px;margin-bottom:60px;line-height:1.6}
+h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(36px,4.6vw,56px);font-weight:800;line-height:1.05;letter-spacing:-.03em;color:var(--ink);margin-bottom:14px;max-width:880px}
+.deck{font-family:'Inter',sans-serif;font-size:17px;color:var(--muted);max-width:780px;margin-bottom:50px;line-height:1.6}
 .deck strong{color:var(--ink)}
 
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.section-label{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+.section-label span{color:var(--ink)}
 
-.card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:all .2s;box-shadow:0 1px 2px rgba(11,27,61,.04)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:50px}
+
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:all .2s;box-shadow:0 1px 2px rgba(11,27,61,.04)}
 .card:hover{transform:translateY(-4px);box-shadow:0 1px 2px rgba(11,27,61,.04),0 18px 40px rgba(11,27,61,.1);border-color:var(--indigo)}
+.card.recommended{border-color:var(--green);box-shadow:0 0 0 1px var(--green),0 1px 2px rgba(11,27,61,.04),0 18px 40px rgba(11,27,61,.08)}
 
-.preview{aspect-ratio:16/10;background:var(--bg);position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
-.preview iframe{position:absolute;top:0;left:0;width:200%;height:200%;transform:scale(.5);transform-origin:0 0;border:0;pointer-events:none}
+.preview{aspect-ratio:16/11;background:var(--bg);position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.preview iframe{position:absolute;top:0;left:0;width:300%;height:300%;transform:scale(.333);transform-origin:0 0;border:0;pointer-events:none}
 
-.body{padding:28px 30px;display:flex;flex-direction:column;flex:1}
-.tag{display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;padding:5px 10px;border-radius:5px;margin-bottom:14px;align-self:flex-start}
+.body{padding:22px 24px;display:flex;flex-direction:column;flex:1}
+.tag{display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;padding:5px 9px;border-radius:5px;margin-bottom:12px;align-self:flex-start}
 .tag.v1{background:#FEF3C7;color:#92400E}
 .tag.v2{background:#DBEAFE;color:#1E40AF}
 .tag.v3{background:#D1FAE5;color:#065F46}
+.tag.v4-linear{background:#1e1b4b;color:#a5b4fc}
+.tag.v4-cursor{background:#0a0a0a;color:#fff}
+.tag.v4-stripe{background:#FAF7F2;color:#B8341B;border:1px solid #B8341B}
+.tag.v4-product{background:#EEF2FF;color:#4F46E5}
 
-.card h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:800;letter-spacing:-.015em;color:var(--ink);margin-bottom:8px;line-height:1.2}
-.card .desc{font-family:'Inter',sans-serif;font-size:14px;color:var(--muted);margin-bottom:18px;line-height:1.55;flex:1}
+.tag-reco{display:inline-flex;align-items:center;gap:4px;font-family:'IBM Plex Mono',monospace;font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:4px 8px;border-radius:4px;background:var(--green);color:#fff;margin-left:6px}
 
-.meta-row{display:flex;align-items:center;gap:16px;margin-bottom:18px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted)}
+.card h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:17px;font-weight:800;letter-spacing:-.015em;color:var(--ink);margin-bottom:6px;line-height:1.2}
+.card .desc{font-family:'Inter',sans-serif;font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.55;flex:1}
+
+.meta-row{display:flex;align-items:center;gap:8px;margin-bottom:14px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);flex-wrap:wrap}
 .meta-row strong{color:var(--ink);font-weight:600}
 .meta-row .dot{width:3px;height:3px;border-radius:50%;background:var(--line)}
 
-.btn-row{display:flex;gap:8px}
-.btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:12px 14px;border:1px solid var(--line);border-radius:9px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;text-decoration:none;color:var(--ink);transition:all .15s}
-.btn:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
-.btn.primary{background:var(--ink);color:#fff;border-color:var(--ink)}
-.btn.primary:hover{background:var(--indigo);border-color:var(--indigo)}
+.btn{display:flex;align-items:center;justify-content:center;gap:6px;padding:11px 14px;border:0;background:var(--ink);color:#fff;border-radius:8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;text-decoration:none;transition:all .15s;letter-spacing:-.005em}
+.btn:hover{background:var(--indigo)}
 
-.footer{margin-top:60px;padding-top:30px;border-top:1px solid var(--line);font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
 .footer strong{color:var(--ink)}
 
-@media (max-width:900px){
+@media (max-width:1180px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:680px){
   .grid{grid-template-columns:1fr}
-  .page{padding:40px 24px}
+  .page{padding:32px 20px}
 }
 </style>
 </head>
@@ -72,77 +82,117 @@ h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(36px,4.6vw,56px);f
 
   <a href="https://agentcollect.com" class="brand">AgentCollect<span class="dot"></span></a>
 
-  <div class="kicker"><span>•</span>Internal · Design comparison</div>
+  <div class="kicker"><span>•</span>Internal · Design comparison · 7 versions</div>
 
-  <h1>Buildertrend audit · 3 versions side by side.</h1>
-  <p class="deck">Same call (18:35 with Tanya), same data (Mike Foster, $1,247), <strong>three completely different design philosophies</strong>. Pick the one we ship — or the one we kill.</p>
+  <h1>Buildertrend audit · 7 versions side by side.</h1>
+  <p class="deck">Same call (18:35 with Tanya), same data (Mike Foster, $1,247), <strong>seven completely different design philosophies</strong>. Click any to open in a new tab. Pick one — I propagate to the 6 other prospects.</p>
+
+  <!-- ============ V4 ROUND ============ -->
+  <div class="section-label">
+    <span>★ V4 ROUND · Inspired by known reference sites</span>
+    <span>4 versions</span>
+  </div>
 
   <div class="grid">
 
-    <!-- V1 — Timeline editorial -->
+    <!-- V4 LINEAR -->
     <div class="card">
-      <div class="preview">
-        <iframe src="https://www.agentcollect.com/audit-buildertrend-timeline.html" loading="lazy"></iframe>
-      </div>
+      <div class="preview"><iframe src="https://www.agentcollect.com/audit-buildertrend-v4-linear.html" loading="lazy"></iframe></div>
       <div class="body">
-        <div class="tag v1">V1 · TIMELINE EDITORIAL</div>
-        <h2>The cinematic story</h2>
-        <p class="desc">Long-form editorial with Fraunces serif, dark hero, audio waveform with 7 jump-to-event markers, moment list. Feels like a New York Times Sunday investigation. Built first.</p>
-        <div class="meta-row">
-          <span><strong>~600</strong> lines</span><span class="dot"></span>
-          <span><strong>3-4 min</strong> read</span><span class="dot"></span>
-          <span><strong>Editorial</strong></span>
-        </div>
-        <div class="btn-row">
-          <a href="https://www.agentcollect.com/audit-buildertrend-timeline.html" target="_blank" class="btn primary">Open V1 →</a>
-        </div>
+        <div class="tag v4-linear">V4 · LINEAR</div>
+        <h2>Linear.app vibe</h2>
+        <p class="desc">Dark + Inter Tight + gradient blob + 1 audio card + 3 stats. Premium tech startup feel.</p>
+        <div class="meta-row"><span>Dark</span><span class="dot"></span><span>Tech</span><span class="dot"></span><span>1 screen</span></div>
+        <a href="https://www.agentcollect.com/audit-buildertrend-v4-linear.html" target="_blank" class="btn">Open V4-Linear →</a>
       </div>
     </div>
 
-    <!-- V2 — McKinsey dense -->
-    <div class="card">
-      <div class="preview">
-        <iframe src="https://www.agentcollect.com/audit-buildertrend-v2.html" loading="lazy"></iframe>
-      </div>
+    <!-- V4 CURSOR (RECOMMENDED) -->
+    <div class="card recommended">
+      <div class="preview"><iframe src="https://www.agentcollect.com/audit-buildertrend-v4-cursor.html" loading="lazy"></iframe></div>
       <div class="body">
-        <div class="tag v2">V2 · McKINSEY DENSE</div>
-        <h2>The full audit deck</h2>
-        <p class="desc">Hero with score D− + cost $1.4M, 3 findings cards (heard / why it matters / split comparison), full audit grid 7 criteria, offer card with pricing. Feels like a Bain deliverable.</p>
-        <div class="meta-row">
-          <span><strong>~800</strong> lines</span><span class="dot"></span>
-          <span><strong>4-5 min</strong> read</span><span class="dot"></span>
-          <span><strong>Audit</strong></span>
-        </div>
-        <div class="btn-row">
-          <a href="https://www.agentcollect.com/audit-buildertrend-v2.html" target="_blank" class="btn primary">Open V2 →</a>
-        </div>
+        <div class="tag v4-cursor">V4 · CURSOR<span class="tag-reco">MY PICK 🥇</span></div>
+        <h2>Cursor.com vibe</h2>
+        <p class="desc">Massive black claim "$1.4M" in red. Black audio card center stage. 2-card comparison. Most violent visually.</p>
+        <div class="meta-row"><span>White</span><span class="dot"></span><span>Bold</span><span class="dot"></span><span>1.5 screens</span></div>
+        <a href="https://www.agentcollect.com/audit-buildertrend-v4-cursor.html" target="_blank" class="btn">Open V4-Cursor →</a>
       </div>
     </div>
 
-    <!-- V3 — Minimalist -->
+    <!-- V4 STRIPE -->
     <div class="card">
-      <div class="preview">
-        <iframe src="https://www.agentcollect.com/audit-buildertrend-v3.html" loading="lazy"></iframe>
-      </div>
+      <div class="preview"><iframe src="https://www.agentcollect.com/audit-buildertrend-v4-stripe.html" loading="lazy"></iframe></div>
       <div class="body">
-        <div class="tag v3">V3 · MINIMALIST 1-SCREEN</div>
-        <h2>The 30-second hit</h2>
-        <p class="desc">Hero + score + cost + 1 quote choc + audio + side-by-side comparison + CTA. ~1 screen. Designed to be scannable in 30 seconds by a CEO who won't scroll.</p>
-        <div class="meta-row">
-          <span><strong>~248</strong> lines</span><span class="dot"></span>
-          <span><strong>30 sec</strong> scan</span><span class="dot"></span>
-          <span><strong>Cold outreach</strong></span>
-        </div>
-        <div class="btn-row">
-          <a href="https://www.agentcollect.com/audit-buildertrend-v3.html" target="_blank" class="btn primary">Open V3 →</a>
-        </div>
+        <div class="tag v4-stripe">V4 · STRIPE PRESS<span class="tag-reco">MY PICK 🥈</span></div>
+        <h2>Field Report (book cover)</h2>
+        <p class="desc">Cream + Fraunces serif italic + 4 "pages" in a field report layout. Feels like a published Bloomberg piece.</p>
+        <div class="meta-row"><span>Cream</span><span class="dot"></span><span>Editorial</span><span class="dot"></span><span>4 scrolls</span></div>
+        <a href="https://www.agentcollect.com/audit-buildertrend-v4-stripe.html" target="_blank" class="btn">Open V4-Stripe →</a>
+      </div>
+    </div>
+
+    <!-- V4 PRODUCT -->
+    <div class="card">
+      <div class="preview"><iframe src="https://www.agentcollect.com/audit-buildertrend-v4-product.html" loading="lazy"></iframe></div>
+      <div class="body">
+        <div class="tag v4-product">V4 · PRODUCT PAGE</div>
+        <h2>"AgentCollect for Buildertrend"</h2>
+        <p class="desc">Branded product page: hero asymétrique + audio card right + features grid + 2 dark bands. "It's a product, not an audit".</p>
+        <div class="meta-row"><span>Indigo</span><span class="dot"></span><span>SaaS</span><span class="dot"></span><span>3 screens</span></div>
+        <a href="https://www.agentcollect.com/audit-buildertrend-v4-product.html" target="_blank" class="btn">Open V4-Product →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============ EARLIER ROUNDS ============ -->
+  <div class="section-label">
+    <span>EARLIER ROUNDS · For reference</span>
+    <span>3 versions</span>
+  </div>
+
+  <div class="grid">
+
+    <!-- V1 -->
+    <div class="card">
+      <div class="preview"><iframe src="https://www.agentcollect.com/audit-buildertrend-timeline.html" loading="lazy"></iframe></div>
+      <div class="body">
+        <div class="tag v1">V1 · TIMELINE</div>
+        <h2>Cinematic editorial</h2>
+        <p class="desc">Long-form Fraunces serif + dark hero + audio waveform with 7 jump-to-event markers. NYT Sunday investigation feel.</p>
+        <div class="meta-row"><span>~600 lines</span><span class="dot"></span><span>3-4 min read</span></div>
+        <a href="https://www.agentcollect.com/audit-buildertrend-timeline.html" target="_blank" class="btn">Open V1 →</a>
+      </div>
+    </div>
+
+    <!-- V2 -->
+    <div class="card">
+      <div class="preview"><iframe src="https://www.agentcollect.com/audit-buildertrend-v2.html" loading="lazy"></iframe></div>
+      <div class="body">
+        <div class="tag v2">V2 · DENSE</div>
+        <h2>McKinsey deck (TROP DENSE)</h2>
+        <p class="desc">Hero + score + 3 findings cards + audit grid 7 criteria + offer card. JB feedback: "trop de contenu putain".</p>
+        <div class="meta-row"><span>~800 lines</span><span class="dot"></span><span>4-5 min read</span></div>
+        <a href="https://www.agentcollect.com/audit-buildertrend-v2.html" target="_blank" class="btn">Open V2 →</a>
+      </div>
+    </div>
+
+    <!-- V3 -->
+    <div class="card">
+      <div class="preview"><iframe src="https://www.agentcollect.com/audit-buildertrend-v3.html" loading="lazy"></iframe></div>
+      <div class="body">
+        <div class="tag v3">V3 · MINIMALIST</div>
+        <h2>30-second hit</h2>
+        <p class="desc">First "stripped down" attempt. Hero + score + 1 quote + audio + comparison + CTA. Better but generic.</p>
+        <div class="meta-row"><span>~248 lines</span><span class="dot"></span><span>30 sec scan</span></div>
+        <a href="https://www.agentcollect.com/audit-buildertrend-v3.html" target="_blank" class="btn">Open V3 →</a>
       </div>
     </div>
 
   </div>
 
   <div class="footer">
-    <div>3 versions · Same data · Same call · <strong>Pick one before propagating to 6 other prospects</strong></div>
+    <div>7 versions live · Same data · Same call · <strong>Pick one before propagating to 6 other prospects</strong></div>
     <div>By <strong>John Banner</strong> · AgentCollect · YC S23</div>
   </div>
 
