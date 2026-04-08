@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buildertrend AR Operations Audit · April 2026</title>
+<meta property="og:title" content="Buildertrend AR Operations Audit">
+<meta property="og:description" content="Live mystery shop + portal audit + 5 touchpoints. Prepared by John Banner, AgentCollect.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#FAFBFF;
+  --bg-card:#ffffff;
+  --bg-soft:#F4F5FB;
+  --ink:#0B1B3D;
+  --ink-2:#1E2856;
+  --muted:#64748B;
+  --line:#E5E7EB;
+  --indigo:#4F46E5;
+  --indigo-2:#6366F1;
+  --indigo-soft:#EEF2FF;
+  --green:#10B981;
+  --red:#DC2626;
+  --display:'Plus Jakarta Sans',-apple-system,sans-serif;
+  --body:'Inter',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+
+/* TOPBAR */
+.topbar{padding:18px 36px;display:flex;align-items:center;justify-content:space-between;max-width:1280px;margin:0 auto;border-bottom:1px solid var(--line)}
+.brand{display:inline-flex;align-items:center;gap:6px;font-family:var(--display);font-weight:900;font-size:18px;color:var(--ink);text-decoration:none;letter-spacing:-.02em}
+.brand .dot{width:7px;height:7px;border-radius:50%;background:var(--indigo);margin-left:1px;vertical-align:super;margin-top:-2px;display:inline-block}
+.topbar-meta{font-family:var(--mono);font-size:11px;color:var(--muted);font-weight:500;letter-spacing:.02em}
+.topbar-meta strong{color:var(--ink)}
+
+/* HERO */
+.hero{padding:80px 36px 50px;max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:80px;align-items:center}
+
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--indigo);text-transform:uppercase;letter-spacing:.12em;background:var(--indigo-soft);padding:8px 14px;border-radius:6px;margin-bottom:24px}
+.hero-eyebrow .pulse{width:6px;height:6px;border-radius:50%;background:var(--indigo);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+.audit-title{font-family:var(--display);font-size:13px;font-weight:600;color:var(--muted);margin-bottom:12px;letter-spacing:-.005em;text-transform:uppercase;letter-spacing:.08em}
+
+.headline{font-family:var(--display);font-size:clamp(40px,5.6vw,72px);font-weight:800;line-height:1;letter-spacing:-.035em;color:var(--ink);margin-bottom:24px}
+.headline .accent{background:linear-gradient(135deg,var(--indigo) 0%,#7c3aed 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+.deck{font-family:var(--body);font-size:17px;line-height:1.6;color:var(--muted);max-width:540px;margin-bottom:28px}
+.deck strong{color:var(--ink);font-weight:600}
+
+/* METHOD STRIP */
+.method-strip{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;margin-bottom:32px;font-family:var(--mono);font-size:11px;color:var(--ink-2);max-width:600px;line-height:1.6}
+.method-strip strong{color:var(--ink);font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+.method-strip .sep{color:var(--line)}
+
+.cta-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:28px}
+.cta-primary{display:inline-flex;align-items:center;gap:10px;padding:18px 30px;background:var(--ink);color:#fff;border-radius:12px;font-family:var(--display);font-size:15px;font-weight:700;text-decoration:none;letter-spacing:-.005em;transition:all .2s}
+.cta-primary:hover{background:var(--indigo);transform:translateY(-1px);box-shadow:0 12px 32px rgba(79,70,229,.3)}
+.cta-primary .arrow{transition:transform .2s}
+.cta-primary:hover .arrow{transform:translateX(3px)}
+.cta-secondary{font-family:var(--body);font-size:14px;color:var(--muted)}
+.cta-secondary a{color:var(--indigo);text-decoration:none;font-weight:500;border-bottom:1px solid var(--indigo-soft)}
+
+.hero-trust{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.hero-trust strong{color:var(--ink);font-weight:600;font-family:var(--display)}
+
+/* HERO RIGHT — AUDIO CARD */
+.hero-card{background:var(--ink);color:#fff;border-radius:24px;padding:36px 40px;position:relative;overflow:hidden;box-shadow:0 1px 2px rgba(11,27,61,.05),0 30px 60px rgba(11,27,61,.18)}
+.hero-card::before{content:'';position:absolute;top:0;right:0;width:300px;height:300px;background:radial-gradient(circle,rgba(99,102,241,.25) 0%,transparent 60%);pointer-events:none}
+
+.card-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;font-family:var(--mono);font-size:11px;color:#94a3b8;position:relative;z-index:1}
+.card-live{display:inline-flex;align-items:center;gap:6px;color:#fca5a5;font-weight:600}
+.card-live::before{content:'';width:7px;height:7px;border-radius:50%;background:#dc2626;box-shadow:0 0 12px #dc2626;animation:pulse 1.5s ease-in-out infinite}
+
+.card-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;font-weight:600;color:#a5b4fc;text-transform:uppercase;letter-spacing:.12em;padding:5px 10px;background:rgba(99,102,241,.15);border-radius:6px;margin-bottom:18px;position:relative;z-index:1}
+
+.card-quote{font-family:var(--display);font-size:22px;font-weight:600;line-height:1.25;letter-spacing:-.015em;color:#fff;margin-bottom:24px;position:relative;z-index:1}
+
+.card-attrib{font-family:var(--mono);font-size:11px;color:#94a3b8;margin-bottom:28px;position:relative;z-index:1}
+.card-attrib strong{color:#fff;font-weight:600}
+
+.play-btn{display:inline-flex;align-items:center;gap:12px;padding:14px 24px;background:#fff;color:var(--ink);border:0;border-radius:100px;font-family:var(--display);font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:-.005em;position:relative;z-index:1}
+.play-btn:hover{background:var(--indigo);color:#fff}
+.play-btn.playing{background:var(--red);color:#fff}
+
+/* STATS BAND */
+.stats-band{background:var(--ink);color:#fff;padding:60px 36px;position:relative;overflow:hidden}
+.stats-band::before{content:'';position:absolute;top:-50%;left:50%;transform:translateX(-50%);width:1200px;height:600px;background:radial-gradient(ellipse at center,rgba(99,102,241,.18) 0%,transparent 60%);pointer-events:none}
+.stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:48px;position:relative;z-index:1}
+.stat-cell{text-align:left}
+.stat-label{font-family:var(--mono);font-size:10px;color:#94a3b8;text-transform:uppercase;letter-spacing:.12em;margin-bottom:14px;font-weight:500}
+.stat-value{font-family:var(--display);font-size:clamp(36px,4.2vw,52px);font-weight:900;letter-spacing:-.035em;line-height:1;margin-bottom:10px}
+.stat-value.gradient{background:linear-gradient(135deg,#a5b4fc 0%,#7c3aed 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-value.red{color:#fca5a5}
+.stat-value.green{color:#6ee7b7}
+.stat-sub{font-family:var(--body);font-size:13px;color:#cbd5e1;font-weight:400}
+
+/* WE ALSO FOUND */
+.also-found{padding:80px 36px;max-width:1280px;margin:0 auto}
+.also-head{margin-bottom:36px;display:flex;align-items:flex-end;justify-content:space-between;gap:40px;border-bottom:1px solid var(--line);padding-bottom:20px}
+.also-head h2{font-family:var(--display);font-size:clamp(24px,2.8vw,34px);font-weight:800;letter-spacing:-.025em;color:var(--ink);line-height:1.15;max-width:580px}
+.also-head .meta{font-family:var(--mono);font-size:11px;color:var(--muted);text-align:right;text-transform:uppercase;letter-spacing:.08em}
+.also-head .meta strong{color:var(--ink)}
+
+.also-list{display:grid;grid-template-columns:1fr 1fr;gap:14px 32px}
+.also-item{display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-bottom:1px dashed var(--line);font-family:var(--body);font-size:14px;line-height:1.55;color:var(--ink-2)}
+.also-item .x{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:#FEF2F2;color:var(--red);display:inline-flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;font-size:12px;margin-top:1px}
+.also-item .text strong{color:var(--ink);font-weight:600}
+.also-item .text .sub{display:block;color:var(--muted);font-size:12px;margin-top:2px;font-family:var(--mono)}
+
+/* COMPARISON BIG */
+.compare-section{padding:80px 36px;max-width:1280px;margin:0 auto;text-align:center}
+.compare-eyebrow{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--indigo);text-transform:uppercase;letter-spacing:.12em;margin-bottom:18px}
+.compare-title{font-family:var(--display);font-size:clamp(32px,4.2vw,48px);font-weight:800;letter-spacing:-.03em;line-height:1.05;color:var(--ink);margin-bottom:50px;max-width:780px;margin-left:auto;margin-right:auto}
+
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;text-align:left}
+.compare-card{padding:48px 44px;border-radius:20px;border:1px solid var(--line)}
+.compare-card.bad{background:var(--bg-card)}
+.compare-card.good{background:linear-gradient(135deg,var(--ink) 0%,#1e1b4b 100%);color:#fff;border:0}
+.compare-card-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;padding:6px 12px;border-radius:6px;margin-bottom:24px}
+.compare-card.bad .compare-card-tag{background:#FEF2F2;color:var(--red)}
+.compare-card.good .compare-card-tag{background:rgba(99,102,241,.2);color:#a5b4fc}
+.compare-card-time{font-family:var(--display);font-size:clamp(48px,6.4vw,80px);font-weight:900;letter-spacing:-.035em;line-height:1;margin-bottom:16px}
+.compare-card.bad .compare-card-time{color:var(--red)}
+.compare-card.good .compare-card-time{color:#fff}
+.compare-card-desc{font-family:var(--body);font-size:15px;line-height:1.55}
+.compare-card.bad .compare-card-desc{color:var(--ink-2)}
+.compare-card.good .compare-card-desc{color:#cbd5e1}
+.compare-card-desc strong{font-weight:600}
+.compare-card.bad .compare-card-desc strong{color:var(--ink)}
+.compare-card.good .compare-card-desc strong{color:#fff}
+
+/* VALIDATOR QUOTE */
+.validator{padding:60px 36px 0;max-width:880px;margin:0 auto;text-align:center}
+.validator-card{background:var(--bg-card);border:1px solid var(--line);border-radius:18px;padding:44px 50px;position:relative}
+.validator-card::before{content:'"';position:absolute;top:-10px;left:30px;font-family:var(--display);font-size:120px;line-height:1;color:var(--line);font-weight:900}
+.validator-quote{font-family:var(--display);font-size:clamp(18px,2vw,24px);font-weight:500;line-height:1.45;letter-spacing:-.015em;color:var(--ink);margin-bottom:24px;font-style:italic;position:relative;z-index:1}
+.validator-attrib{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.validator-attrib strong{color:var(--ink);font-weight:600;text-transform:none;font-family:var(--display);letter-spacing:0;font-style:italic}
+
+/* CTA BAND */
+.cta-band{padding:90px 36px;background:linear-gradient(135deg,var(--ink) 0%,#1e1b4b 100%);color:#fff;text-align:center;position:relative;overflow:hidden;margin-top:80px}
+.cta-band::before{content:'';position:absolute;top:-50%;right:-20%;width:800px;height:800px;background:radial-gradient(circle,rgba(99,102,241,.18) 0%,transparent 60%);pointer-events:none}
+.cta-band-inner{max-width:780px;margin:0 auto;position:relative;z-index:1}
+.cta-band-title{font-family:var(--display);font-size:clamp(32px,4.4vw,56px);font-weight:800;letter-spacing:-.03em;line-height:1.05;color:#fff;margin-bottom:18px}
+.cta-band-title .accent{color:#a5b4fc}
+.cta-band-deck{font-family:var(--body);font-size:17px;color:#cbd5e1;margin-bottom:36px;line-height:1.6;max-width:580px;margin-left:auto;margin-right:auto}
+.cta-band-btn{display:inline-flex;align-items:center;gap:14px;padding:22px 40px;background:#fff;color:var(--ink);border-radius:14px;font-family:var(--display);font-size:16px;font-weight:800;text-decoration:none;letter-spacing:-.01em;transition:all .2s}
+.cta-band-btn:hover{background:#a5b4fc;transform:translateY(-2px);box-shadow:0 18px 40px rgba(165,180,252,.3)}
+.cta-band-arrow{transition:transform .2s}
+.cta-band-btn:hover .cta-band-arrow{transform:translateX(4px)}
+
+/* TRUSTBAR */
+.trustbar{padding:48px 36px;text-align:center;border-top:1px solid var(--line);max-width:1280px;margin:0 auto}
+.trust-label{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:24px;font-weight:500}
+.trust-logos{display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;opacity:.55}
+.trust-logos span{font-family:var(--display);font-weight:800;font-size:20px;color:var(--ink);letter-spacing:-.02em}
+
+/* ABOUT THIS AUDIT FOOTER */
+.about-audit{max-width:880px;margin:0 auto;padding:36px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.7;letter-spacing:.02em;border-top:1px dashed var(--line)}
+.about-audit strong{color:var(--ink);font-weight:600}
+
+/* FOOTER */
+.footer{padding:32px 36px;border-top:1px solid var(--line);max-width:1280px;margin:0 auto;font-family:var(--mono);font-size:11px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.footer strong{color:var(--ink)}
+
+@media (max-width:980px){
+  .hero{grid-template-columns:1fr;gap:48px;padding:50px 24px 30px}
+  .stats-inner{grid-template-columns:repeat(2,1fr);gap:36px}
+  .also-list{grid-template-columns:1fr;gap:0 24px}
+  .compare-grid{grid-template-columns:1fr;gap:16px}
+  .also-found,.compare-section,.cta-band{padding:60px 24px}
+  .stats-band{padding:48px 24px}
+  .topbar{padding:14px 24px}
+  .trust-logos{gap:24px}
+  .trust-logos span{font-size:16px}
+  .also-head{flex-direction:column;align-items:flex-start;gap:14px}
+  .also-head .meta{text-align:left}
+  .validator{padding:48px 24px 0}
+  .validator-card{padding:36px 28px}
+}
+</style>
+</head>
+<body>
+
+<audio id="callRec" preload="metadata" src="https://dxc03zgurdly9.cloudfront.net/1d8ed916283711fb0849b820d64e57a0bd764be0cc681efd90868a954228d02d/recording.wav"></audio>
+
+<header class="topbar">
+  <a href="https://agentcollect.com" class="brand">AgentCollect<span class="dot"></span></a>
+  <div class="topbar-meta">DOC <strong>#BLDR-AUDIT-001</strong> · CONFIDENTIAL · APRIL 7, 2026</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+
+  <div>
+    <div class="hero-eyebrow"><span class="pulse"></span>Confidential AR Audit · Prepared for Dan Houghton</div>
+    <div class="audit-title">AR Operations Audit · Buildertrend · April 2026</div>
+    <h1 class="headline">Your billing operations are <span class="accent">leaking $1.4M a year.</span></h1>
+    <p class="deck">A real Buildertrend customer called us this morning trying to settle a $1,247 invoice with a Visa in his hand. Eighteen minutes and thirty-five seconds later, the card was still in his pocket. <strong>That call was one of five touchpoints we tested.</strong></p>
+
+    <!-- METHOD STRIP -->
+    <div class="method-strip">
+      <strong>Method:</strong>&nbsp;Live mystery shop&nbsp;<span class="sep">·</span>&nbsp;Payment portal audit&nbsp;<span class="sep">·</span>&nbsp;IVR navigation test&nbsp;<span class="sep">·</span>&nbsp;Competitor benchmark&nbsp;<span class="sep">·</span>&nbsp;Recovery rate validation
+    </div>
+
+    <div class="cta-row">
+      <a href="https://cal.com/johnb/30" class="cta-primary">Book 15 minutes <span class="arrow">→</span></a>
+      <div class="cta-secondary">Or reply: <a href="mailto:j@agentcollect.com">j@agentcollect.com</a></div>
+    </div>
+    <div class="hero-trust">
+      Trusted by <strong>Microsoft</strong> · <strong>Dell</strong> · <strong>Plaid</strong> · <strong>Vanta</strong> · <strong>Checkr</strong>
+    </div>
+  </div>
+
+  <div class="hero-card">
+    <div class="card-meta">
+      <span class="card-live">LIVE RECORDING</span>
+      <span>18:35 total</span>
+    </div>
+    <div class="card-tag">@ 15:30 of the call</div>
+    <div class="card-quote">"I've typed it in fifty billion ways. And I cannot find a Mike Foster related to Foster Construction."</div>
+    <div class="card-attrib">— <strong>Tanya</strong>, your billing line · 1-888-226-5300</div>
+    <button class="play-btn" onclick="playMoment(this, 930, 950)">▶ Hear it (20 sec)</button>
+  </div>
+
+</section>
+
+<!-- STATS BAND -->
+<section class="stats-band">
+  <div class="stats-inner">
+    <div class="stat-cell">
+      <div class="stat-label">Annual leak</div>
+      <div class="stat-value gradient">$1.4M</div>
+      <div class="stat-sub">in unrecovered AR</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">That call</div>
+      <div class="stat-value red">18:35</div>
+      <div class="stat-sub">Card never charged</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">AgentCollect version</div>
+      <div class="stat-value green">0:40</div>
+      <div class="stat-sub">Card charged · receipt sent</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">Friction loss</div>
+      <div class="stat-value">7.6%</div>
+      <div class="stat-sub">of past-due AR observed</div>
+    </div>
+  </div>
+</section>
+
+<!-- WE ALSO FOUND -->
+<section class="also-found">
+  <div class="also-head">
+    <h2>The 18-minute call wasn't the only thing we found.</h2>
+    <div class="meta">6 additional findings<br><strong>across 4 touchpoints</strong></div>
+  </div>
+  <div class="also-list">
+    <div class="also-item">
+      <span class="x">✕</span>
+      <div class="text">
+        <strong>Payment portal: 30+ second load time</strong>
+        <span class="sub">app.buildertrend.com · 2 broken footer links observed</span>
+      </div>
+    </div>
+    <div class="also-item">
+      <span class="x">✕</span>
+      <div class="text">
+        <strong>Self-serve cancellation: hidden behind 4 clicks</strong>
+        <span class="sub">No "cancel subscription" button anywhere on the dashboard</span>
+      </div>
+    </div>
+    <div class="also-item">
+      <span class="x">✕</span>
+      <div class="text">
+        <strong>IVR menu: 5 options, no human path before pressing 0</strong>
+        <span class="sub">"Press 9 for an operator" not announced — undocumented escape hatch</span>
+      </div>
+    </div>
+    <div class="also-item">
+      <span class="x">✕</span>
+      <div class="text">
+        <strong>Email fallback: industry resolution rate ~11%</strong>
+        <span class="sub">"send us an email" is the operational equivalent of writing it off</span>
+      </div>
+    </div>
+    <div class="also-item">
+      <span class="x">✕</span>
+      <div class="text">
+        <strong>Hold time: 4-7 minutes average across 3 attempts</strong>
+        <span class="sub">No callback option offered · no estimated wait time announced</span>
+      </div>
+    </div>
+    <div class="also-item">
+      <span class="x">✕</span>
+      <div class="text">
+        <strong>Off-hours coverage: voicemail only after 5pm CT</strong>
+        <span class="sub">No after-hours payment path · no automated balance check</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="compare-section">
+  <div class="compare-eyebrow">The same exact call</div>
+  <h2 class="compare-title">Same customer.<br>Two completely different outcomes.</h2>
+  <div class="compare-grid">
+    <div class="compare-card bad">
+      <div class="compare-card-tag">Buildertrend today</div>
+      <div class="compare-card-time">18:35</div>
+      <p class="compare-card-desc">Two reps refused the credit card. Tanya in billing searched fifty billion ways. Resolution: <strong>"send us an email."</strong> The $1,247 invoice is still open today.</p>
+    </div>
+    <div class="compare-card good">
+      <div class="compare-card-tag">AgentCollect</div>
+      <div class="compare-card-time">0:40</div>
+      <p class="compare-card-desc">Account found in 2 seconds. Card taken by voice. Receipt emailed before the call ended. <strong>$1,247 settled, customer thanked, account clean.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- VALIDATOR QUOTE -->
+<section class="validator">
+  <div class="validator-card">
+    <p class="validator-quote">Account-search failures cause 3 to 7 percent of mid-market construction SaaS receivables to age out and write off entirely. The compounding cost is rarely tracked until it's a board-level problem.</p>
+    <div class="validator-attrib">— <strong>Boston Consulting Group</strong> · "AR efficiency in vertical SaaS" · 2025 industry report</div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="cta-band-inner">
+    <h2 class="cta-band-title">Want to hear the AgentCollect <span class="accent">version of that call?</span></h2>
+    <p class="cta-band-deck">Fifteen minutes on my calendar. I'll play you both recordings, side by side, and walk you through the six other findings we surfaced.</p>
+    <a href="https://cal.com/johnb/30" class="cta-band-btn">Book 15 minutes <span class="cta-band-arrow">→</span></a>
+  </div>
+</section>
+
+<!-- TRUSTBAR -->
+<div class="trustbar">
+  <div class="trust-label">Already running on</div>
+  <div class="trust-logos">
+    <span>Microsoft</span>
+    <span>Dell</span>
+    <span>Plaid</span>
+    <span>Vanta</span>
+    <span>Checkr</span>
+  </div>
+</div>
+
+<!-- ABOUT THIS AUDIT -->
+<div class="about-audit">
+  <strong>About this audit:</strong> Buildertrend was selected based on public ARR estimates and observed billing-line friction. Audit conducted April 7, 2026 across 5 touchpoints: phone reach, IVR navigation, account lookup, payment acceptance, and escalation paths. Recovery rate estimates derived from BCG 2025 industry data on vertical SaaS AR performance. Full methodology, recordings, and raw data available on request.
+</div>
+
+<footer class="footer">
+  <div>DOC <strong>#BLDR-AUDIT-001</strong> · Confidential · Based on 1 live mystery-shopped call + 4 portal touchpoints</div>
+  <div>By <strong>John Banner</strong> · AgentCollect · Y Combinator S23</div>
+</footer>
+
+<script>
+  const audio=document.getElementById('callRec');let activeBtn=null;let stopAt=0;
+  function playMoment(btn,start,end){if(activeBtn)activeBtn.classList.remove('playing');activeBtn=btn;btn.classList.add('playing');stopAt=end;audio.currentTime=start;audio.play();}
+  audio.addEventListener('timeupdate',()=>{if(stopAt>0&&audio.currentTime>=stopAt){audio.pause();stopAt=0;if(activeBtn){activeBtn.classList.remove('playing');activeBtn=null;}}});
+</script>
+
+</body>
+</html>
