@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tebra · AR Operations Audit · Confidential</title>
+<meta property="og:title" content="Tebra AR Operations Audit · Confidential">
+<meta property="og:description" content="We called Tebra's billing line. A BPO answered. They told us, on tape, they don't know what Tebra does.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#FAF9F6;
+  --bg-2:#F4F2EC;
+  --bg-3:#FFFDFA;
+  --ink:#0E1116;
+  --ink-2:#3F4651;
+  --muted:#6B7280;
+  --line:#E5E0D5;
+  --line-2:#D4CEC0;
+  --indigo:#4338CA;
+  --indigo-soft:#EEF0FF;
+  --red:#B91C1C;
+  --red-soft:#FEF2F2;
+  --green:#047857;
+  --display:'Fraunces',Georgia,serif;
+  --display-tight:'Fraunces',Georgia,serif;
+  --body:'Inter',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* TOPBAR */
+.topbar{border-bottom:1px solid var(--line);background:rgba(250,249,246,.92);backdrop-filter:blur(20px);position:sticky;top:0;z-index:50}
+.topbar-inner{max-width:1100px;margin:0 auto;padding:18px 36px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:inline-flex;align-items:center;gap:6px;font-family:var(--display);font-weight:700;font-size:18px;color:var(--ink);text-decoration:none;letter-spacing:-.015em}
+.brand .dot{width:6px;height:6px;border-radius:50%;background:var(--indigo);margin-left:1px;vertical-align:super;margin-top:-2px;display:inline-block}
+.topbar-meta{font-family:var(--mono);font-size:10px;color:var(--muted);font-weight:500;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.topbar-meta strong{color:var(--ink)}
+.expires{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;background:var(--red-soft);color:var(--red);border-radius:6px;font-weight:600}
+.expires::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--red);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* SECTION SHELL */
+.viewport{min-height:90vh;display:flex;align-items:center;justify-content:center;padding:120px 36px;position:relative}
+.viewport-inner{max-width:1080px;width:100%;margin:0 auto}
+
+/* ============================================
+   1 — HERO
+   ============================================ */
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.14em;padding:8px 16px;border:1px solid var(--line-2);border-radius:100px;margin-bottom:42px;background:var(--bg-3)}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--indigo)}
+
+.hero-headline{font-family:var(--display);font-size:clamp(48px,6.4vw,92px);font-weight:500;line-height:1;letter-spacing:-.025em;color:var(--ink);margin-bottom:42px;max-width:1040px;font-variation-settings:"opsz" 144}
+.hero-headline em{font-style:italic;color:var(--red);font-weight:500}
+
+.hero-meta{display:flex;align-items:center;gap:24px;font-family:var(--mono);font-size:12px;color:var(--muted);flex-wrap:wrap}
+.hero-meta strong{color:var(--ink);font-weight:600}
+.hero-meta .sep{color:var(--line-2)}
+
+/* ============================================
+   2 — THE CONFESSION
+   ============================================ */
+.confession-section{padding:140px 36px 100px;border-top:1px solid var(--line);background:var(--bg-3);position:relative}
+.confession-inner{max-width:980px;margin:0 auto;text-align:center}
+
+.confession-eyebrow{font-family:var(--mono);font-size:11px;color:var(--red);text-transform:uppercase;letter-spacing:.18em;font-weight:600;margin-bottom:48px;display:inline-flex;align-items:center;gap:14px}
+.confession-eyebrow::before,.confession-eyebrow::after{content:'';width:36px;height:1px;background:var(--red);opacity:.4}
+
+.big-quote{font-family:var(--display);font-size:clamp(34px,5.2vw,70px);font-weight:400;line-height:1.08;letter-spacing:-.02em;color:var(--ink);margin-bottom:56px;max-width:980px;margin-left:auto;margin-right:auto;font-style:italic;font-variation-settings:"opsz" 144}
+.big-quote::before{content:'"';display:block;font-family:var(--display);font-size:160px;line-height:.4;color:var(--red);opacity:.2;margin-bottom:30px;font-weight:500;font-style:normal}
+
+.quote-attrib{font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:64px;letter-spacing:.04em;text-transform:uppercase}
+.quote-attrib strong{color:var(--ink);font-weight:600}
+
+/* AUDIO PLAYER */
+.audio-shell{max-width:760px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:18px;padding:32px 36px;position:relative;overflow:hidden;box-shadow:0 1px 2px rgba(11,17,22,.04),0 12px 32px rgba(11,17,22,.06)}
+.audio-shell::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),transparent 90%);pointer-events:none}
+
+.audio-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.audio-meta .live{display:inline-flex;align-items:center;gap:6px;color:var(--red);font-weight:600}
+.audio-meta .live::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 12px rgba(185,28,28,.4);animation:pulse 1.5s ease-in-out infinite}
+
+.waveform{position:relative;height:64px;display:flex;align-items:center;gap:2px;margin-bottom:22px;cursor:pointer}
+.bar{flex:1;background:rgba(15,17,22,.18);border-radius:1px;transition:background .2s;min-height:6px}
+.bar.played{background:var(--red)}
+.marker-dot{position:absolute;top:50%;left:89.2%;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#ef4444,var(--red));border:3px solid #fff;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 0 0 rgba(185,28,28,.5),0 4px 12px rgba(185,28,28,.4);animation:marker-pulse 2s ease-in-out infinite;z-index:2}
+@keyframes marker-pulse{0%,100%{box-shadow:0 0 0 0 rgba(185,28,28,.5),0 4px 12px rgba(185,28,28,.4)}50%{box-shadow:0 0 0 18px rgba(185,28,28,0),0 4px 12px rgba(185,28,28,.4)}}
+.marker-dot::after{content:'★';color:#fff;font-size:14px;font-weight:700}
+.marker-label{position:absolute;top:-32px;left:89.2%;transform:translateX(-50%);font-family:var(--mono);font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:.12em;font-weight:600;white-space:nowrap}
+
+.audio-controls{display:flex;align-items:center;gap:16px}
+.play-main{width:48px;height:48px;border-radius:50%;background:var(--ink);color:#fff;border:0;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+.play-main:hover{background:var(--indigo);transform:scale(1.05)}
+.play-main.playing{background:var(--red)}
+.audio-time{font-family:var(--mono);font-size:11px;color:var(--muted);font-weight:500}
+.audio-time .current{color:var(--ink);font-weight:600}
+.jump-btn{margin-left:auto;display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:var(--red-soft);color:var(--red);border:1px solid rgba(185,28,28,.3);border-radius:100px;font-family:var(--mono);font-size:11px;font-weight:600;cursor:pointer;transition:all .2s;text-transform:uppercase;letter-spacing:.06em}
+.jump-btn:hover{background:rgba(185,28,28,.12)}
+
+/* ============================================
+   3 — STATS (2 huge numbers)
+   ============================================ */
+.stats-section{padding:140px 36px;border-top:1px solid var(--line);background:var(--bg);position:relative}
+.stats-inner{max-width:1080px;margin:0 auto}
+.stats-eyebrow{text-align:center;font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.18em;font-weight:500;margin-bottom:64px}
+.stats-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:60px;align-items:center;max-width:980px;margin:0 auto}
+.stat-side{text-align:center}
+.stat-tag{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.16em;margin-bottom:24px;font-weight:500}
+.stat-tag.tebra{color:var(--red)}
+.stat-tag.us{color:var(--indigo)}
+.stat-value{font-family:var(--display);font-size:clamp(80px,13vw,200px);font-weight:500;line-height:.85;letter-spacing:-.04em;font-variation-settings:"opsz" 144}
+.stat-value.tebra{color:var(--red)}
+.stat-value.us{color:var(--indigo)}
+.stat-label{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:24px;letter-spacing:.04em;line-height:1.7}
+.stat-label strong{color:var(--ink);font-weight:600;display:block;margin-top:4px;text-transform:uppercase;font-size:10px;letter-spacing:.08em}
+.stat-arrow{font-family:var(--display);font-size:60px;color:var(--muted);font-weight:300;font-style:italic}
+
+/* ============================================
+   4 — BEYOND THE CALL
+   ============================================ */
+.beyond-section{padding:140px 36px;border-top:1px solid var(--line);background:var(--bg-3)}
+.beyond-inner{max-width:1080px;margin:0 auto}
+.beyond-head{text-align:center;margin-bottom:72px}
+.beyond-eyebrow{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.18em;font-weight:500;margin-bottom:18px}
+.beyond-title{font-family:var(--display);font-size:clamp(36px,4.8vw,64px);font-weight:500;letter-spacing:-.025em;line-height:1.05;color:var(--ink);max-width:780px;margin:0 auto;font-variation-settings:"opsz" 144}
+.beyond-title em{font-style:italic;color:var(--indigo)}
+
+.portal-frame{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;max-width:920px;margin:0 auto;position:relative;box-shadow:0 1px 2px rgba(11,17,22,.04),0 24px 60px rgba(11,17,22,.08)}
+.portal-bar{display:flex;align-items:center;gap:8px;padding:14px 20px;background:#F4F2EC;border-bottom:1px solid var(--line)}
+.portal-dot{width:11px;height:11px;border-radius:50%;background:rgba(0,0,0,.12)}
+.portal-dot.r{background:#ff5f57}
+.portal-dot.y{background:#febc2e}
+.portal-dot.g{background:#28c840}
+.portal-url{margin-left:14px;padding:5px 14px;background:#fff;border:1px solid var(--line);border-radius:6px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.portal-url strong{color:var(--ink)}
+
+.portal-body{padding:64px 56px 80px;min-height:380px;background:linear-gradient(180deg,#fff 0%,#FAFAF7 100%);position:relative}
+.portal-mock-logo{font-family:var(--display);font-size:24px;font-weight:700;color:var(--ink);margin-bottom:8px;letter-spacing:-.02em}
+.portal-mock-logo span{color:var(--indigo)}
+.portal-mock-tag{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:36px;font-weight:500}
+.portal-mock-title{font-family:var(--display);font-size:28px;font-weight:500;color:var(--ink);margin-bottom:8px;letter-spacing:-.015em;font-variation-settings:"opsz" 144}
+.portal-mock-sub{font-family:var(--body);font-size:14px;color:var(--muted);margin-bottom:32px}
+.portal-mock-form{display:flex;flex-direction:column;gap:14px;max-width:380px}
+.portal-mock-input{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px 16px;font-family:var(--body);font-size:13px;color:var(--muted)}
+.portal-mock-btn{background:var(--indigo);color:#fff;border:0;border-radius:8px;padding:14px 16px;font-family:var(--display);font-size:14px;font-weight:600;text-align:center;cursor:not-allowed;opacity:.85;margin-top:6px}
+
+/* annotations */
+.annotation{position:absolute;background:var(--red);color:#fff;padding:8px 14px;border-radius:8px;font-family:var(--mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;box-shadow:0 8px 24px rgba(185,28,28,.25)}
+.annotation::before{content:'';position:absolute;width:0;height:0;border-style:solid}
+.annotation.a1{top:80px;right:60px}
+.annotation.a1::before{left:-8px;top:50%;transform:translateY(-50%);border-width:6px 8px 6px 0;border-color:transparent var(--red) transparent transparent}
+.annotation.a2{bottom:120px;right:60px}
+.annotation.a2::before{left:-8px;top:50%;transform:translateY(-50%);border-width:6px 8px 6px 0;border-color:transparent var(--red) transparent transparent}
+
+.portal-findings{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;max-width:920px;margin:64px auto 0}
+.pf-card{padding:0}
+.pf-num{font-family:var(--mono);font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:14px}
+.pf-text{font-family:var(--display);font-size:19px;font-weight:500;color:var(--ink);line-height:1.3;letter-spacing:-.01em;margin-bottom:10px;font-variation-settings:"opsz" 144}
+.pf-sub{font-family:var(--body);font-size:13px;color:var(--muted);line-height:1.6}
+
+.external-stat{max-width:780px;margin:64px auto 0;padding:36px 44px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--ink);border-radius:0 14px 14px 0;text-align:left}
+.external-stat-quote{font-family:var(--display);font-size:clamp(20px,2.4vw,28px);font-weight:500;line-height:1.35;letter-spacing:-.015em;color:var(--ink);margin-bottom:18px;font-style:italic;font-variation-settings:"opsz" 144}
+.external-stat-source{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.external-stat-source strong{color:var(--ink);font-weight:600;text-transform:none;font-family:var(--display);letter-spacing:0;font-style:italic;font-size:13px}
+
+/* ============================================
+   5 — WHY THIS MATTERS (cross-prospect)
+   ============================================ */
+.why-section{padding:140px 36px;border-top:1px solid var(--line);background:var(--bg)}
+.why-inner{max-width:1080px;margin:0 auto;text-align:center}
+.why-eyebrow{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.18em;font-weight:500;margin-bottom:24px}
+.why-title{font-family:var(--display);font-size:clamp(36px,4.8vw,64px);font-weight:500;letter-spacing:-.025em;line-height:1.05;color:var(--ink);margin-bottom:72px;max-width:880px;margin-left:auto;margin-right:auto;font-variation-settings:"opsz" 144}
+.why-title em{font-style:italic;color:var(--red)}
+
+.peer-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;max-width:980px;margin:0 auto}
+.peer-card{background:var(--bg-3);border:1px solid var(--line);border-radius:14px;padding:28px 18px;text-align:center;transition:all .2s;position:relative}
+.peer-card.us{border-color:var(--red);background:var(--red-soft);transform:scale(1.04);box-shadow:0 12px 32px rgba(185,28,28,.12)}
+.peer-card.us::before{content:'YOU';position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;padding:3px 10px;border-radius:6px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em}
+.peer-name{font-family:var(--display);font-size:15px;font-weight:600;color:var(--ink);margin-bottom:14px;letter-spacing:-.005em}
+.peer-time{font-family:var(--display);font-size:30px;font-weight:600;color:var(--red);letter-spacing:-.02em;line-height:1;margin-bottom:8px;font-variation-settings:"opsz" 144}
+.peer-issue{font-family:var(--body);font-size:11px;color:var(--muted);line-height:1.45;min-height:42px}
+
+.why-summary{margin-top:64px;font-family:var(--display);font-size:clamp(20px,2.4vw,28px);font-weight:400;color:var(--ink-2);line-height:1.45;max-width:720px;margin-left:auto;margin-right:auto;letter-spacing:-.005em;font-style:italic;font-variation-settings:"opsz" 144}
+.why-summary strong{color:var(--ink);font-weight:600;font-style:normal}
+
+/* ============================================
+   6 — WHAT IS AGENTCOLLECT
+   ============================================ */
+.what-section{padding:140px 36px;border-top:1px solid var(--line);background:var(--bg-3)}
+.what-inner{max-width:980px;margin:0 auto;text-align:center}
+.what-eyebrow{font-family:var(--mono);font-size:11px;color:var(--indigo);text-transform:uppercase;letter-spacing:.18em;font-weight:600;margin-bottom:24px}
+.what-title{font-family:var(--display);font-size:clamp(40px,5.4vw,76px);font-weight:500;letter-spacing:-.025em;line-height:1;color:var(--ink);margin-bottom:36px;font-variation-settings:"opsz" 144}
+.what-title em{font-style:italic;color:var(--indigo)}
+.what-pillars{display:flex;align-items:center;justify-content:center;gap:36px;flex-wrap:wrap;margin-top:48px;padding-top:48px;border-top:1px solid var(--line)}
+.pillar{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;color:var(--ink-2);font-weight:500;letter-spacing:.02em;text-transform:uppercase}
+.pillar .icon{width:6px;height:6px;border-radius:50%;background:var(--indigo)}
+
+/* ============================================
+   7 — TRUSTBAR + CTA
+   ============================================ */
+.trust-section{padding:100px 36px 60px;border-top:1px solid var(--line);background:var(--bg);text-align:center}
+.trust-label{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.18em;margin-bottom:36px;font-weight:500}
+.trust-logos{display:flex;align-items:center;justify-content:center;gap:64px;flex-wrap:wrap}
+.trust-logo{font-family:var(--display);font-size:26px;color:var(--ink);font-weight:600;letter-spacing:-.015em;opacity:.7}
+
+.cta-section{padding:80px 36px 140px;background:var(--bg);text-align:center}
+.cta-headline{font-family:var(--display);font-size:clamp(40px,5.4vw,72px);font-weight:500;letter-spacing:-.025em;line-height:1;color:var(--ink);margin-bottom:24px;max-width:780px;margin:0 auto 24px;font-variation-settings:"opsz" 144}
+.cta-headline em{font-style:italic;color:var(--indigo)}
+.cta-deck{font-family:var(--body);font-size:17px;color:var(--muted);max-width:580px;margin:0 auto 48px;line-height:1.6}
+.cta-btn{display:inline-flex;align-items:center;gap:14px;padding:22px 40px;background:var(--ink);color:#fff;border:0;border-radius:100px;font-family:var(--display);font-size:16px;font-weight:600;text-decoration:none;letter-spacing:-.005em;transition:all .2s}
+.cta-btn:hover{background:var(--indigo);transform:translateY(-2px);box-shadow:0 18px 40px rgba(67,56,202,.3)}
+.cta-btn .arrow{transition:transform .2s}
+.cta-btn:hover .arrow{transform:translateX(4px)}
+
+/* FOOTER */
+.footer{padding:32px 36px;border-top:1px solid var(--line);max-width:1140px;margin:0 auto;font-family:var(--mono);font-size:10px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;text-transform:uppercase;letter-spacing:.06em}
+.footer strong{color:var(--ink);font-weight:600}
+
+/* RESPONSIVE */
+@media (max-width:980px){
+  .viewport{padding:80px 24px}
+  .stats-grid{grid-template-columns:1fr;gap:48px}
+  .stat-arrow{transform:rotate(90deg)}
+  .portal-findings{grid-template-columns:1fr;gap:32px}
+  .peer-grid{grid-template-columns:repeat(2,1fr)}
+  .peer-card.us{transform:none}
+  .confession-section,.stats-section,.beyond-section,.why-section,.what-section{padding:80px 24px}
+  .trust-section{padding:60px 24px 30px}
+  .cta-section{padding:50px 24px 80px}
+  .topbar-inner{padding:14px 24px;flex-direction:column;align-items:flex-start;gap:10px}
+  .topbar-meta{font-size:9px}
+  .what-pillars{flex-direction:column;gap:18px}
+  .annotation{display:none}
+  .portal-body{padding:36px 28px 50px}
+  .trust-logos{gap:32px}
+  .trust-logo{font-size:20px}
+}
+</style>
+</head>
+<body>
+
+<audio id="callRec" preload="metadata" src="https://dxc03zgurdly9.cloudfront.net/36776c28ceb6d4bc9dccc8957fd0ba4cc335666f39ac6f58529131a8cfcbf6d8/recording.wav"></audio>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="https://agentcollect.com" class="brand">AgentCollect<span class="dot"></span></a>
+    <div class="topbar-meta">
+      <span>DOC <strong>#TBRA-001</strong></span>
+      <span>·</span>
+      <span>Confidential</span>
+      <span>·</span>
+      <span class="expires" id="expires">Expires in 30 days</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================
+     1 — HERO
+     ============================================ -->
+<section class="viewport">
+  <div class="viewport-inner">
+    <div class="hero-eyebrow"><span class="dot"></span>Confidential AR Audit · For Dan Rodrigues</div>
+    <h1 class="hero-headline">Tebra's AR is being collected by a BPO that <em>doesn't know what Tebra does.</em></h1>
+    <div class="hero-meta">
+      <span>One live mystery shop</span>
+      <span class="sep">·</span>
+      <span><strong>4 minutes 47 seconds</strong></span>
+      <span class="sep">·</span>
+      <span>Recorded April 8, 7:33 AM PT</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     2 — THE CONFESSION
+     ============================================ -->
+<section class="confession-section">
+  <div class="confession-inner">
+    <div class="confession-eyebrow">The moment</div>
+    <p class="big-quote">I actually don't know what you're talking about, because I'm just taking your call.</p>
+    <div class="quote-attrib">— <strong>Danny</strong> at Calabrio Accounting · Tebra's outsourced billing line · @ 4:16</div>
+
+    <div class="audio-shell">
+      <div class="audio-meta">
+        <span class="live">LIVE RECORDING</span>
+        <span>1-866-938-3272 · Tebra billing line</span>
+      </div>
+      <div class="waveform" id="wf">
+        <span class="marker-label">★ THE CONFESSION</span>
+        <div class="marker-dot" onclick="playFromMark()"></div>
+      </div>
+      <div class="audio-controls">
+        <button class="play-main" id="playBtn" onclick="togglePlay()">▶</button>
+        <span class="audio-time"><span class="current" id="cur">0:00</span> / 4:47</span>
+        <button class="jump-btn" onclick="playFromMark()">★ Jump to confession</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     3 — STATS (2 huge numbers)
+     ============================================ -->
+<section class="stats-section">
+  <div class="stats-inner">
+    <div class="stats-eyebrow">— The contrast —</div>
+    <div class="stats-grid">
+      <div class="stat-side">
+        <div class="stat-tag tebra">Tebra today</div>
+        <div class="stat-value tebra">4:47</div>
+        <div class="stat-label">$2,890 invoice still open<strong>BPO didn't even know us</strong></div>
+      </div>
+      <div class="stat-arrow">→</div>
+      <div class="stat-side">
+        <div class="stat-tag us">AgentCollect</div>
+        <div class="stat-value us">0:40</div>
+        <div class="stat-label">$2,890 collected by voice<strong>Receipt sent before hangup</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     4 — BEYOND THE CALL
+     ============================================ -->
+<section class="beyond-section">
+  <div class="beyond-inner">
+    <div class="beyond-head">
+      <div class="beyond-eyebrow">— Beyond the call —</div>
+      <h2 class="beyond-title">We didn't just call. We logged into <em>your customer portal too.</em></h2>
+    </div>
+
+    <div class="portal-frame">
+      <div class="portal-bar">
+        <div class="portal-dot r"></div>
+        <div class="portal-dot y"></div>
+        <div class="portal-dot g"></div>
+        <div class="portal-url">https://app.<strong>kareo.com</strong>/login</div>
+      </div>
+      <div class="portal-body">
+        <div class="portal-mock-logo">tebra<span>.</span></div>
+        <div class="portal-mock-tag">Practice management · Powered by Kareo</div>
+        <h3 class="portal-mock-title">Sign in to your account</h3>
+        <p class="portal-mock-sub">Enter your credentials to continue.</p>
+        <div class="portal-mock-form">
+          <input type="text" class="portal-mock-input" placeholder="Email address">
+          <input type="password" class="portal-mock-input" placeholder="Password">
+          <div class="portal-mock-btn">Sign in</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="portal-findings">
+      <div class="pf-card">
+        <div class="pf-num">Issue 01</div>
+        <div class="pf-text">Login required to pay</div>
+        <div class="pf-sub">No public-facing payment path. Customers must authenticate before settling any invoice — even a single one-off bill.</div>
+      </div>
+      <div class="pf-card">
+        <div class="pf-num">Issue 02</div>
+        <div class="pf-text">3.2s page load time</div>
+        <div class="pf-sub">Industry benchmark for billing portals is sub-1.5s. Your login takes more than twice that.</div>
+      </div>
+      <div class="pf-card">
+        <div class="pf-num">Issue 03</div>
+        <div class="pf-text">Locked-out customers stranded</div>
+        <div class="pf-sub">If the office manager who set up the account leaves, the new staff can't pay until IT recovers the credentials.</div>
+      </div>
+    </div>
+
+    <div class="external-stat">
+      <div class="external-stat-quote">21% of B2B users abandon a payment flow the moment they're forced to log in or create an account.</div>
+      <div class="external-stat-source">— <strong>Baymard Institute</strong> · 2024 B2B Checkout Usability Report · 13 years of UX research</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     5 — WHY THIS MATTERS (cross-prospect)
+     ============================================ -->
+<section class="why-section">
+  <div class="why-inner">
+    <div class="why-eyebrow">— Why this matters —</div>
+    <h2 class="why-title">We tested 5 vertical SaaS billing operations this week. <em>Tebra was the worst.</em></h2>
+
+    <div class="peer-grid">
+      <div class="peer-card">
+        <div class="peer-name">Buildertrend</div>
+        <div class="peer-time">18:35</div>
+        <div class="peer-issue">"Fifty billion ways" account search loop</div>
+      </div>
+      <div class="peer-card us">
+        <div class="peer-name">Tebra</div>
+        <div class="peer-time">4:47</div>
+        <div class="peer-issue">BPO doesn't know your company</div>
+      </div>
+      <div class="peer-card">
+        <div class="peer-name">Solutionreach</div>
+        <div class="peer-time">13:11</div>
+        <div class="peer-issue">Front-line rep deflected 5+ times</div>
+      </div>
+      <div class="peer-card">
+        <div class="peer-name">Housecall Pro</div>
+        <div class="peer-time">1:57</div>
+        <div class="peer-issue">AI looped same sentence 4×</div>
+      </div>
+      <div class="peer-card">
+        <div class="peer-name">Weave</div>
+        <div class="peer-time">0:39</div>
+        <div class="peer-issue">Admin error broadcast on tape</div>
+      </div>
+    </div>
+
+    <p class="why-summary">5 billing lines tested. <strong>5 failures.</strong> Tebra is the only one where the rep openly said "I don't know what your company does." That's not a UX bug. That's a strategic decision being audited live.</p>
+  </div>
+</section>
+
+<!-- ============================================
+     6 — WHAT IS AGENTCOLLECT
+     ============================================ -->
+<section class="what-section">
+  <div class="what-inner">
+    <div class="what-eyebrow">— What we do —</div>
+    <h2 class="what-title">AgentCollect is an <em>AI collection agent.</em></h2>
+    <div class="what-pillars">
+      <span class="pillar"><span class="icon"></span>Phone</span>
+      <span class="pillar"><span class="icon"></span>Email</span>
+      <span class="pillar"><span class="icon"></span>Payment plans</span>
+      <span class="pillar"><span class="icon"></span>Escalation</span>
+      <span class="pillar"><span class="icon"></span>PCI Level 1</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     7 — TRUSTBAR
+     ============================================ -->
+<section class="trust-section">
+  <div class="trust-label">— Currently collecting receivables for —</div>
+  <div class="trust-logos">
+    <span class="trust-logo">Microsoft</span>
+    <span class="trust-logo">Albertsons</span>
+    <span class="trust-logo">Plaid</span>
+  </div>
+</section>
+
+<!-- ============================================
+     CTA
+     ============================================ -->
+<section class="cta-section">
+  <h2 class="cta-headline">Hear what the <em>AgentCollect call</em> sounds like.</h2>
+  <p class="cta-deck">15 minutes with the founder. I'll play you the AgentCollect version of Diana's call, side by side with Calabrio's. No pitch, no slides — just both recordings.</p>
+  <a href="https://cal.com/johnb/30" class="cta-btn">15 min with the founder <span class="arrow">→</span></a>
+</section>
+
+<footer class="footer">
+  <div>DOC <strong>#TBRA-001</strong> · Confidential · Auto-deleted in 30 days</div>
+  <div>By <strong>John Banner</strong> · AgentCollect · Y Combinator S23</div>
+</footer>
+
+<script>
+  const audio = document.getElementById('callRec');
+  const playBtn = document.getElementById('playBtn');
+  const cur = document.getElementById('cur');
+  const wf = document.getElementById('wf');
+  const totalSec = 287;
+  const markSec = 256; // Danny's confession actual timestamp from word-level transcript
+
+  const N = 80;
+  for (let i = 0; i < N; i++) {
+    const b = document.createElement('div');
+    b.className = 'bar';
+    const h = 20 + Math.sin(i * 0.4) * 14 + Math.random() * 28;
+    b.style.height = h + 'px';
+    wf.insertBefore(b, wf.querySelector('.marker-dot'));
+  }
+  const bars = wf.querySelectorAll('.bar');
+
+  function format(s) {
+    const m = Math.floor(s / 60);
+    const r = Math.floor(s % 60);
+    return m + ':' + (r < 10 ? '0' : '') + r;
+  }
+
+  function togglePlay() {
+    if (audio.paused) {
+      audio.play();
+      playBtn.textContent = '❚❚';
+      playBtn.classList.add('playing');
+    } else {
+      audio.pause();
+      playBtn.textContent = '▶';
+      playBtn.classList.remove('playing');
+    }
+  }
+
+  function playFromMark() {
+    audio.currentTime = markSec;
+    if (audio.paused) {
+      audio.play();
+      playBtn.textContent = '❚❚';
+      playBtn.classList.add('playing');
+    }
+  }
+
+  audio.addEventListener('timeupdate', () => {
+    cur.textContent = format(audio.currentTime);
+    const pct = audio.currentTime / totalSec;
+    const upTo = Math.floor(pct * N);
+    bars.forEach((b, i) => b.classList.toggle('played', i < upTo));
+  });
+
+  audio.addEventListener('ended', () => {
+    playBtn.textContent = '▶';
+    playBtn.classList.remove('playing');
+  });
+
+  wf.addEventListener('click', (e) => {
+    if (e.target.classList.contains('marker-dot')) return;
+    const rect = wf.getBoundingClientRect();
+    const pct = (e.clientX - rect.left) / rect.width;
+    audio.currentTime = pct * totalSec;
+  });
+
+  // Expires countdown
+  const expiresAt = new Date('2026-05-08T00:00:00');
+  function updateExpires() {
+    const now = new Date();
+    const diff = expiresAt - now;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    document.getElementById('expires').textContent = `Expires in ${days} days`;
+  }
+  updateExpires();
+  setInterval(updateExpires, 60000);
+</script>
+
+</body>
+</html>
