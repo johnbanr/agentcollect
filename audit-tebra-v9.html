@@ -203,9 +203,11 @@ body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1
    7 — TRUSTBAR + CTA
    ============================================ */
 .trust-section{padding:100px 36px 60px;border-top:1px solid var(--line);background:var(--bg);text-align:center}
-.trust-label{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.18em;margin-bottom:36px;font-weight:500}
+.trust-label{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.18em;margin-bottom:40px;font-weight:500}
 .trust-logos{display:flex;align-items:center;justify-content:center;gap:64px;flex-wrap:wrap}
-.trust-logo{font-family:var(--display);font-size:26px;color:var(--ink);font-weight:600;letter-spacing:-.015em;opacity:.7}
+.trust-logo{height:32px;width:auto;opacity:.6;filter:grayscale(100%);transition:all .2s}
+.trust-logo:hover{opacity:1;filter:grayscale(0%)}
+.trust-logo.tall{height:38px}
 
 .cta-section{padding:80px 36px 140px;background:var(--bg);text-align:center}
 .cta-headline{font-family:var(--display);font-size:clamp(40px,5.4vw,72px);font-weight:800;letter-spacing:-.025em;line-height:1;color:var(--ink);margin-bottom:24px;max-width:780px;margin:0 auto 24px;}
@@ -237,7 +239,8 @@ body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1
   .annotation{display:none}
   .portal-body{padding:36px 28px 50px}
   .trust-logos{gap:32px}
-  .trust-logo{font-size:20px}
+  .trust-logo{height:24px}
+  .trust-logo.tall{height:28px}
 }
 </style>
 </head>
@@ -331,44 +334,24 @@ body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1
   <div class="beyond-inner">
     <div class="beyond-head">
       <div class="beyond-eyebrow">— Beyond the call —</div>
-      <h2 class="beyond-title">We didn't just call. We logged into <em>your customer portal too.</em></h2>
-    </div>
-
-    <div class="portal-frame">
-      <div class="portal-bar">
-        <div class="portal-dot r"></div>
-        <div class="portal-dot y"></div>
-        <div class="portal-dot g"></div>
-        <div class="portal-url">https://app.<strong>kareo.com</strong>/login</div>
-      </div>
-      <div class="portal-body">
-        <div class="portal-mock-logo">tebra<span>.</span></div>
-        <div class="portal-mock-tag">Practice management · Powered by Kareo</div>
-        <h3 class="portal-mock-title">Sign in to your account</h3>
-        <p class="portal-mock-sub">Enter your credentials to continue.</p>
-        <div class="portal-mock-form">
-          <input type="text" class="portal-mock-input" placeholder="Email address">
-          <input type="password" class="portal-mock-input" placeholder="Password">
-          <div class="portal-mock-btn">Sign in</div>
-        </div>
-      </div>
+      <h2 class="beyond-title">We also visited <em>tebra.com/sign-in</em>. There is no way to pay an invoice from that page.</h2>
     </div>
 
     <div class="portal-findings">
       <div class="pf-card">
-        <div class="pf-num">Issue 01</div>
-        <div class="pf-text">Login required to pay</div>
-        <div class="pf-sub">No public-facing payment path. Customers must authenticate before settling any invoice — even a single one-off bill.</div>
+        <div class="pf-num">Live finding 01</div>
+        <div class="pf-text">No "pay invoice" button</div>
+        <div class="pf-sub">The customer-facing sign-in page contains zero references to "pay," "billing," or "invoice." A customer trying to settle a bill has no clear path forward.</div>
       </div>
       <div class="pf-card">
-        <div class="pf-num">Issue 02</div>
-        <div class="pf-text">3.2s page load time</div>
-        <div class="pf-sub">Industry benchmark for billing portals is sub-1.5s. Your login takes more than twice that.</div>
+        <div class="pf-num">Live finding 02</div>
+        <div class="pf-text">2 separate login silos</div>
+        <div class="pf-sub">Customers must choose between "Practice Operations (previously Kareo)" and "Practice Growth (previously PatientPop)" — two years after the merger — before they can even log in.</div>
       </div>
       <div class="pf-card">
-        <div class="pf-num">Issue 03</div>
-        <div class="pf-text">Locked-out customers stranded</div>
-        <div class="pf-sub">If the office manager who set up the account leaves, the new staff can't pay until IT recovers the credentials.</div>
+        <div class="pf-num">Live finding 03</div>
+        <div class="pf-text">Footer says "Copyright 2024"</div>
+        <div class="pf-sub">The page hasn't been updated in over a year. The CTA for non-customers reads "Don't have an account? Request a demo." There is no separate path for billing.</div>
       </div>
     </div>
 
@@ -442,9 +425,9 @@ body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1
 <section class="trust-section">
   <div class="trust-label">— Currently collecting receivables for —</div>
   <div class="trust-logos">
-    <span class="trust-logo">Microsoft</span>
-    <span class="trust-logo">Albertsons</span>
-    <span class="trust-logo">Plaid</span>
+    <img src="audit-assets/logos/microsoft.svg" alt="Microsoft" class="trust-logo">
+    <img src="audit-assets/logos/uber.svg" alt="Uber Freight" class="trust-logo">
+    <img src="audit-assets/logos/plaid.svg" alt="Plaid" class="trust-logo tall">
   </div>
 </section>
 
