@@ -1,6 +1,26 @@
 {
   "rewrites": [
     {
+      "source": "/audit/tebra",
+      "destination": "/audit-tebra.html"
+    },
+    {
+      "source": "/audit/buildertrend",
+      "destination": "/audit-buildertrend.html"
+    },
+    {
+      "source": "/audit/housecallpro",
+      "destination": "/audit-housecallpro.html"
+    },
+    {
+      "source": "/audit/solutionreach",
+      "destination": "/audit-solutionreach.html"
+    },
+    {
+      "source": "/audit/weave",
+      "destination": "/audit-weave.html"
+    },
+    {
       "source": "/362b5d3139875f061ee4cf02c3c2d63a.txt",
       "destination": "/362b5d3139875f061ee4cf02c3c2d63a.txt"
     },
