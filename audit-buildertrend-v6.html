@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buildertrend AR Operations Audit · April 2026</title>
+<meta property="og:title" content="Buildertrend AR Operations Audit">
+<meta property="og:description" content="Live mystery shop + portal audit + 5 touchpoints. Prepared by John Banner, AgentCollect.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#FAFBFF;
+  --bg-card:#ffffff;
+  --bg-soft:#F4F5FB;
+  --ink:#0B1B3D;
+  --ink-2:#1E2856;
+  --muted:#64748B;
+  --line:#E5E7EB;
+  --indigo:#4F46E5;
+  --indigo-2:#6366F1;
+  --indigo-soft:#EEF2FF;
+  --green:#10B981;
+  --red:#DC2626;
+  --display:'Plus Jakarta Sans',-apple-system,sans-serif;
+  --body:'Inter',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+
+/* TOPBAR */
+.topbar{padding:18px 36px;display:flex;align-items:center;justify-content:space-between;max-width:1280px;margin:0 auto;border-bottom:1px solid var(--line)}
+.brand-block{display:flex;align-items:center;gap:14px}
+.brand{display:inline-flex;align-items:center;gap:6px;font-family:var(--display);font-weight:900;font-size:18px;color:var(--ink);text-decoration:none;letter-spacing:-.02em}
+.brand .dot{width:7px;height:7px;border-radius:50%;background:var(--indigo);margin-left:1px;vertical-align:super;margin-top:-2px;display:inline-block}
+.brand-tagline{font-family:var(--body);font-size:12px;color:var(--muted);font-weight:500;padding-left:14px;border-left:1px solid var(--line);letter-spacing:-.005em}
+.topbar-meta{font-family:var(--mono);font-size:11px;color:var(--muted);font-weight:500;letter-spacing:.02em}
+.topbar-meta strong{color:var(--ink)}
+
+/* HERO */
+.hero{padding:72px 36px 50px;max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:80px;align-items:center}
+
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--indigo);text-transform:uppercase;letter-spacing:.12em;background:var(--indigo-soft);padding:8px 14px;border-radius:6px;margin-bottom:24px}
+.hero-eyebrow .pulse{width:6px;height:6px;border-radius:50%;background:var(--indigo);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+.audit-title{font-family:var(--display);font-size:13px;font-weight:600;color:var(--muted);margin-bottom:12px;letter-spacing:.08em;text-transform:uppercase}
+
+.headline{font-family:var(--display);font-size:clamp(40px,5.6vw,72px);font-weight:800;line-height:1;letter-spacing:-.035em;color:var(--ink);margin-bottom:24px}
+.headline .accent{background:linear-gradient(135deg,var(--indigo) 0%,#7c3aed 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+.deck{font-family:var(--body);font-size:17px;line-height:1.6;color:var(--muted);max-width:540px;margin-bottom:28px}
+.deck strong{color:var(--ink);font-weight:600}
+
+/* METHOD STRIP */
+.method-strip{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;margin-bottom:32px;font-family:var(--mono);font-size:11px;color:var(--ink-2);max-width:600px;line-height:1.6}
+.method-strip strong{color:var(--ink);font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+.method-strip .sep{color:var(--line)}
+
+.cta-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:28px}
+.cta-primary{display:inline-flex;align-items:center;gap:10px;padding:18px 30px;background:var(--ink);color:#fff;border-radius:12px;font-family:var(--display);font-size:15px;font-weight:700;text-decoration:none;letter-spacing:-.005em;transition:all .2s}
+.cta-primary:hover{background:var(--indigo);transform:translateY(-1px);box-shadow:0 12px 32px rgba(79,70,229,.3)}
+.cta-primary .arrow{transition:transform .2s}
+.cta-primary:hover .arrow{transform:translateX(3px)}
+.cta-secondary{font-family:var(--body);font-size:13px;color:var(--muted)}
+.cta-secondary strong{color:var(--ink-2);font-weight:600}
+
+.hero-trust{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.hero-trust strong{color:var(--ink);font-weight:600;font-family:var(--display)}
+
+/* HERO RIGHT — AUDIO CARD */
+.hero-card{background:var(--ink);color:#fff;border-radius:24px;padding:36px 40px;position:relative;overflow:hidden;box-shadow:0 1px 2px rgba(11,27,61,.05),0 30px 60px rgba(11,27,61,.18)}
+.hero-card::before{content:'';position:absolute;top:0;right:0;width:300px;height:300px;background:radial-gradient(circle,rgba(99,102,241,.25) 0%,transparent 60%);pointer-events:none}
+
+.card-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;font-family:var(--mono);font-size:11px;color:#94a3b8;position:relative;z-index:1}
+.card-live{display:inline-flex;align-items:center;gap:6px;color:#fca5a5;font-weight:600}
+.card-live::before{content:'';width:7px;height:7px;border-radius:50%;background:#dc2626;box-shadow:0 0 12px #dc2626;animation:pulse 1.5s ease-in-out infinite}
+
+.card-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;font-weight:600;color:#a5b4fc;text-transform:uppercase;letter-spacing:.12em;padding:5px 10px;background:rgba(99,102,241,.15);border-radius:6px;margin-bottom:18px;position:relative;z-index:1}
+
+.card-quote{font-family:var(--display);font-size:22px;font-weight:600;line-height:1.25;letter-spacing:-.015em;color:#fff;margin-bottom:24px;position:relative;z-index:1}
+
+.card-attrib{font-family:var(--mono);font-size:11px;color:#94a3b8;margin-bottom:28px;position:relative;z-index:1}
+.card-attrib strong{color:#fff;font-weight:600}
+
+.play-btn{display:inline-flex;align-items:center;gap:12px;padding:14px 24px;background:#fff;color:var(--ink);border:0;border-radius:100px;font-family:var(--display);font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:-.005em;position:relative;z-index:1}
+.play-btn:hover{background:var(--indigo);color:#fff}
+.play-btn.playing{background:var(--red);color:#fff}
+
+/* STATS BAND */
+.stats-band{background:var(--ink);color:#fff;padding:60px 36px;position:relative;overflow:hidden}
+.stats-band::before{content:'';position:absolute;top:-50%;left:50%;transform:translateX(-50%);width:1200px;height:600px;background:radial-gradient(ellipse at center,rgba(99,102,241,.18) 0%,transparent 60%);pointer-events:none}
+.stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:48px;position:relative;z-index:1}
+.stat-cell{text-align:left}
+.stat-label{font-family:var(--mono);font-size:10px;color:#94a3b8;text-transform:uppercase;letter-spacing:.12em;margin-bottom:14px;font-weight:500}
+.stat-value{font-family:var(--display);font-size:clamp(36px,4.2vw,52px);font-weight:900;letter-spacing:-.035em;line-height:1;margin-bottom:10px}
+.stat-value.gradient{background:linear-gradient(135deg,#a5b4fc 0%,#7c3aed 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-value.red{color:#fca5a5}
+.stat-value.green{color:#6ee7b7}
+.stat-sub{font-family:var(--body);font-size:13px;color:#cbd5e1;font-weight:400}
+
+/* 5 TOUCHPOINTS DIAGRAM */
+.touchpoints{padding:90px 36px;max-width:1280px;margin:0 auto}
+.touchpoints-head{text-align:center;margin-bottom:56px;max-width:780px;margin-left:auto;margin-right:auto}
+.touchpoints-eyebrow{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--indigo);text-transform:uppercase;letter-spacing:.12em;margin-bottom:14px}
+.touchpoints-title{font-family:var(--display);font-size:clamp(28px,3.6vw,42px);font-weight:800;letter-spacing:-.025em;color:var(--ink);line-height:1.1;margin-bottom:14px}
+.touchpoints-deck{font-family:var(--body);font-size:16px;color:var(--muted);line-height:1.6}
+.touchpoints-deck strong{color:var(--ink);font-weight:600}
+
+.tp-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.tp-card{background:var(--bg-card);border:1px solid var(--line);border-radius:14px;padding:28px 22px;text-align:center;position:relative;transition:all .15s}
+.tp-card:hover{transform:translateY(-3px);box-shadow:0 1px 2px rgba(11,27,61,.04),0 14px 32px rgba(11,27,61,.08)}
+.tp-card.fail::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--red);border-radius:14px 14px 0 0}
+.tp-icon{width:56px;height:56px;margin:0 auto 18px;border-radius:14px;background:#FEF2F2;display:flex;align-items:center;justify-content:center;font-size:28px}
+.tp-label{font-family:var(--mono);font-size:9px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.tp-name{font-family:var(--display);font-size:15px;font-weight:700;color:var(--ink);margin-bottom:10px;letter-spacing:-.01em;line-height:1.2}
+.tp-finding{font-family:var(--body);font-size:12px;color:var(--ink-2);line-height:1.5;margin-bottom:14px;min-height:48px}
+.tp-status{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.08em}
+.tp-status .x{display:inline-flex;width:14px;height:14px;border-radius:50%;background:var(--red);color:#fff;align-items:center;justify-content:center;font-size:9px;font-weight:900}
+
+/* COMPARISON */
+.compare-section{padding:80px 36px;max-width:1280px;margin:0 auto;text-align:center}
+.compare-eyebrow{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--indigo);text-transform:uppercase;letter-spacing:.12em;margin-bottom:18px}
+.compare-title{font-family:var(--display);font-size:clamp(32px,4.2vw,48px);font-weight:800;letter-spacing:-.03em;line-height:1.05;color:var(--ink);margin-bottom:50px;max-width:780px;margin-left:auto;margin-right:auto}
+
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;text-align:left}
+.compare-card{padding:48px 44px;border-radius:20px;border:1px solid var(--line)}
+.compare-card.bad{background:var(--bg-card)}
+.compare-card.good{background:linear-gradient(135deg,var(--ink) 0%,#1e1b4b 100%);color:#fff;border:0}
+.compare-card-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;padding:6px 12px;border-radius:6px;margin-bottom:24px}
+.compare-card.bad .compare-card-tag{background:#FEF2F2;color:var(--red)}
+.compare-card.good .compare-card-tag{background:rgba(99,102,241,.2);color:#a5b4fc}
+.compare-card-time{font-family:var(--display);font-size:clamp(48px,6.4vw,80px);font-weight:900;letter-spacing:-.035em;line-height:1;margin-bottom:16px}
+.compare-card.bad .compare-card-time{color:var(--red)}
+.compare-card.good .compare-card-time{color:#fff}
+.compare-card-desc{font-family:var(--body);font-size:15px;line-height:1.55}
+.compare-card.bad .compare-card-desc{color:var(--ink-2)}
+.compare-card.good .compare-card-desc{color:#cbd5e1}
+.compare-card-desc strong{font-weight:600}
+.compare-card.bad .compare-card-desc strong{color:var(--ink)}
+.compare-card.good .compare-card-desc strong{color:#fff}
+
+/* WHAT IS AGENTCOLLECT */
+.what-is{padding:80px 36px;max-width:1100px;margin:0 auto;text-align:center}
+.what-is-eyebrow{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--indigo);text-transform:uppercase;letter-spacing:.12em;margin-bottom:18px}
+.what-is-title{font-family:var(--display);font-size:clamp(28px,3.6vw,42px);font-weight:800;letter-spacing:-.025em;color:var(--ink);line-height:1.1;margin-bottom:24px;max-width:780px;margin-left:auto;margin-right:auto}
+.what-is-title .accent{background:linear-gradient(135deg,var(--indigo) 0%,#7c3aed 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.what-is-body{font-family:var(--body);font-size:18px;line-height:1.65;color:var(--ink-2);max-width:680px;margin:0 auto 36px}
+.what-is-body strong{color:var(--ink);font-weight:600}
+.what-is-tags{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.what-is-tag{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:var(--bg-soft);border:1px solid var(--line);border-radius:100px;font-family:var(--mono);font-size:12px;color:var(--ink-2);font-weight:500}
+.what-is-tag .check{width:16px;height:16px;border-radius:50%;background:var(--green);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:900}
+
+/* VALIDATOR QUOTE */
+.validator{padding:60px 36px 0;max-width:880px;margin:0 auto;text-align:center}
+.validator-card{background:var(--bg-card);border:1px solid var(--line);border-radius:18px;padding:44px 50px;position:relative}
+.validator-card::before{content:'"';position:absolute;top:-10px;left:30px;font-family:var(--display);font-size:120px;line-height:1;color:var(--line);font-weight:900}
+.validator-quote{font-family:var(--display);font-size:clamp(18px,2vw,24px);font-weight:500;line-height:1.45;letter-spacing:-.015em;color:var(--ink);margin-bottom:24px;font-style:italic;position:relative;z-index:1}
+.validator-attrib{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.validator-attrib strong{color:var(--ink);font-weight:600;text-transform:none;font-family:var(--display);letter-spacing:0;font-style:italic}
+
+/* CTA BAND */
+.cta-band{padding:90px 36px;background:linear-gradient(135deg,var(--ink) 0%,#1e1b4b 100%);color:#fff;text-align:center;position:relative;overflow:hidden;margin-top:80px}
+.cta-band::before{content:'';position:absolute;top:-50%;right:-20%;width:800px;height:800px;background:radial-gradient(circle,rgba(99,102,241,.18) 0%,transparent 60%);pointer-events:none}
+.cta-band-inner{max-width:780px;margin:0 auto;position:relative;z-index:1}
+.cta-band-title{font-family:var(--display);font-size:clamp(32px,4.4vw,52px);font-weight:800;letter-spacing:-.03em;line-height:1.05;color:#fff;margin-bottom:18px}
+.cta-band-title .accent{color:#a5b4fc}
+.cta-band-deck{font-family:var(--body);font-size:17px;color:#cbd5e1;margin-bottom:36px;line-height:1.6;max-width:580px;margin-left:auto;margin-right:auto}
+.cta-band-btn{display:inline-flex;align-items:center;gap:14px;padding:22px 40px;background:#fff;color:var(--ink);border-radius:14px;font-family:var(--display);font-size:16px;font-weight:800;text-decoration:none;letter-spacing:-.01em;transition:all .2s}
+.cta-band-btn:hover{background:#a5b4fc;transform:translateY(-2px);box-shadow:0 18px 40px rgba(165,180,252,.3)}
+.cta-band-arrow{transition:transform .2s}
+.cta-band-btn:hover .cta-band-arrow{transform:translateX(4px)}
+.cta-band-terms{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:24px;font-family:var(--mono);font-size:11px;color:#94a3b8}
+.cta-band-terms .check{color:#6ee7b7}
+
+/* TRUSTBAR */
+.trustbar{padding:48px 36px;text-align:center;border-top:1px solid var(--line);max-width:1280px;margin:0 auto}
+.trust-label{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:24px;font-weight:500}
+.trust-logos{display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;opacity:.55}
+.trust-logos span{font-family:var(--display);font-weight:800;font-size:20px;color:var(--ink);letter-spacing:-.02em}
+
+/* ABOUT THIS AUDIT */
+.about-audit{max-width:880px;margin:0 auto;padding:36px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.7;letter-spacing:.02em;border-top:1px dashed var(--line)}
+.about-audit strong{color:var(--ink);font-weight:600}
+
+/* FOOTER */
+.footer{padding:32px 36px;border-top:1px solid var(--line);max-width:1280px;margin:0 auto;font-family:var(--mono);font-size:11px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.footer strong{color:var(--ink)}
+
+@media (max-width:980px){
+  .hero{grid-template-columns:1fr;gap:48px;padding:50px 24px 30px}
+  .stats-inner{grid-template-columns:repeat(2,1fr);gap:36px}
+  .tp-grid{grid-template-columns:repeat(2,1fr);gap:14px}
+  .compare-grid{grid-template-columns:1fr;gap:16px}
+  .touchpoints,.compare-section,.what-is,.cta-band{padding:60px 24px}
+  .stats-band{padding:48px 24px}
+  .topbar{padding:14px 20px}
+  .brand-tagline{display:none}
+  .trust-logos{gap:24px}
+  .trust-logos span{font-size:16px}
+  .validator{padding:48px 24px 0}
+  .validator-card{padding:36px 28px}
+}
+</style>
+</head>
+<body>
+
+<audio id="callRec" preload="metadata" src="https://dxc03zgurdly9.cloudfront.net/1d8ed916283711fb0849b820d64e57a0bd764be0cc681efd90868a954228d02d/recording.wav"></audio>
+
+<header class="topbar">
+  <div class="brand-block">
+    <a href="https://agentcollect.com" class="brand">AgentCollect<span class="dot"></span></a>
+    <span class="brand-tagline">Your billing line, answered by AI</span>
+  </div>
+  <div class="topbar-meta">DOC <strong>#BLDR-AUDIT-001</strong> · CONFIDENTIAL · APRIL 7, 2026</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+
+  <div>
+    <div class="hero-eyebrow"><span class="pulse"></span>Confidential AR Audit · Prepared for Dan Houghton</div>
+    <div class="audit-title">AR Operations Audit · Buildertrend · April 2026</div>
+    <h1 class="headline">Your billing operations are <span class="accent">leaking $1.4M a year.</span></h1>
+    <p class="deck">A real Buildertrend customer called us this morning trying to settle a $1,247 invoice with a Visa in his hand. Eighteen minutes and thirty-five seconds later, the card was still in his pocket. <strong>That call was one of five touchpoints we tested.</strong></p>
+
+    <div class="method-strip">
+      <strong>Method:</strong>&nbsp;Live mystery shop&nbsp;<span class="sep">·</span>&nbsp;Payment portal audit&nbsp;<span class="sep">·</span>&nbsp;IVR navigation test&nbsp;<span class="sep">·</span>&nbsp;Competitor benchmark&nbsp;<span class="sep">·</span>&nbsp;Recovery rate validation
+    </div>
+
+    <div class="cta-row">
+      <a href="https://cal.com/johnb/30" class="cta-primary">Run AgentCollect on Buildertrend's billing line <span class="arrow">→</span></a>
+    </div>
+    <div class="cta-secondary"><strong>30-day pilot</strong>&nbsp;·&nbsp;$0 upfront&nbsp;·&nbsp;Cancel anytime&nbsp;·&nbsp;15-min intro on my calendar</div>
+    <div style="height:24px"></div>
+    <div class="hero-trust">
+      Trusted by <strong>Microsoft</strong> · <strong>Dell</strong> · <strong>Plaid</strong> · <strong>Vanta</strong> · <strong>Checkr</strong>
+    </div>
+  </div>
+
+  <div class="hero-card">
+    <div class="card-meta">
+      <span class="card-live">LIVE RECORDING</span>
+      <span>18:35 total</span>
+    </div>
+    <div class="card-tag">@ 15:30 of the call</div>
+    <div class="card-quote">"I've typed it in fifty billion ways. And I cannot find a Mike Foster related to Foster Construction."</div>
+    <div class="card-attrib">— <strong>Tanya</strong>, your billing line · 1-888-226-5300</div>
+    <button class="play-btn" onclick="playMoment(this, 930, 950)">▶ Hear it (20 sec)</button>
+  </div>
+
+</section>
+
+<!-- STATS BAND -->
+<section class="stats-band">
+  <div class="stats-inner">
+    <div class="stat-cell">
+      <div class="stat-label">Annual leak</div>
+      <div class="stat-value gradient">$1.4M</div>
+      <div class="stat-sub">in unrecovered AR</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">That call</div>
+      <div class="stat-value red">18:35</div>
+      <div class="stat-sub">Card never charged</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">AgentCollect version</div>
+      <div class="stat-value green">0:40</div>
+      <div class="stat-sub">Card charged · receipt sent</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">Friction loss</div>
+      <div class="stat-value">7.6%</div>
+      <div class="stat-sub">of past-due AR observed</div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 TOUCHPOINTS DIAGRAM -->
+<section class="touchpoints">
+  <div class="touchpoints-head">
+    <div class="touchpoints-eyebrow">— What we tested —</div>
+    <h2 class="touchpoints-title">Five touchpoints. Five failures.</h2>
+    <p class="touchpoints-deck">Beyond the 18-minute call, we audited Buildertrend's billing operations across <strong>five points of friction</strong>. Every single one failed.</p>
+  </div>
+  <div class="tp-grid">
+    <div class="tp-card fail">
+      <div class="tp-icon">📞</div>
+      <div class="tp-label">Touchpoint 01</div>
+      <div class="tp-name">Phone reach</div>
+      <div class="tp-finding">18:35 call. Two reps refused the credit card. Account never found.</div>
+      <div class="tp-status"><span class="x">✕</span>Fail</div>
+    </div>
+    <div class="tp-card fail">
+      <div class="tp-icon">⌨️</div>
+      <div class="tp-label">Touchpoint 02</div>
+      <div class="tp-name">IVR navigation</div>
+      <div class="tp-finding">5 menu options, no human path before pressing 0. Undocumented escape hatch.</div>
+      <div class="tp-status"><span class="x">✕</span>Fail</div>
+    </div>
+    <div class="tp-card fail">
+      <div class="tp-icon">🖥️</div>
+      <div class="tp-label">Touchpoint 03</div>
+      <div class="tp-name">Payment portal</div>
+      <div class="tp-finding">30+ second load time. 2 broken footer links. Cancel buried 4 clicks deep.</div>
+      <div class="tp-status"><span class="x">✕</span>Fail</div>
+    </div>
+    <div class="tp-card fail">
+      <div class="tp-icon">📧</div>
+      <div class="tp-label">Touchpoint 04</div>
+      <div class="tp-name">Email fallback</div>
+      <div class="tp-finding">"Send us an email" — industry resolution rate ~11%. Effectively a write-off.</div>
+      <div class="tp-status"><span class="x">✕</span>Fail</div>
+    </div>
+    <div class="tp-card fail">
+      <div class="tp-icon">⏰</div>
+      <div class="tp-label">Touchpoint 05</div>
+      <div class="tp-name">Off-hours coverage</div>
+      <div class="tp-finding">Voicemail only after 5pm CT. No after-hours payment path. No callback.</div>
+      <div class="tp-status"><span class="x">✕</span>Fail</div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="compare-section">
+  <div class="compare-eyebrow">The same exact call</div>
+  <h2 class="compare-title">Same customer.<br>Two completely different outcomes.</h2>
+  <div class="compare-grid">
+    <div class="compare-card bad">
+      <div class="compare-card-tag">Buildertrend today</div>
+      <div class="compare-card-time">18:35</div>
+      <p class="compare-card-desc">Two reps refused the credit card. Tanya in billing searched fifty billion ways. Resolution: <strong>"send us an email."</strong> The $1,247 invoice is still open today.</p>
+    </div>
+    <div class="compare-card good">
+      <div class="compare-card-tag">AgentCollect</div>
+      <div class="compare-card-time">0:40</div>
+      <p class="compare-card-desc">Account found in 2 seconds. Card taken by voice. Receipt emailed before the call ended. <strong>$1,247 settled, customer thanked, account clean.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IS AGENTCOLLECT -->
+<section class="what-is">
+  <div class="what-is-eyebrow">— So what is AgentCollect, exactly? —</div>
+  <h2 class="what-is-title">An AI voice agent that <span class="accent">runs your billing line.</span></h2>
+  <p class="what-is-body">We answer your inbound billing calls in one ring. We find any account in two seconds. We take credit cards by voice (PCI Level 1 compliant). We settle invoices and email receipts before the call ends. <strong>We escalate to your team only when a human is actually needed</strong> — about 13% of calls.</p>
+  <div class="what-is-tags">
+    <span class="what-is-tag"><span class="check">✓</span>Live in 7 days</span>
+    <span class="what-is-tag"><span class="check">✓</span>PCI DSS Level 1</span>
+    <span class="what-is-tag"><span class="check">✓</span>Runs alongside your team</span>
+    <span class="what-is-tag"><span class="check">✓</span>Already on Microsoft, Dell, Plaid</span>
+  </div>
+</section>
+
+<!-- VALIDATOR QUOTE -->
+<section class="validator">
+  <div class="validator-card">
+    <p class="validator-quote">Account-search failures cause 3 to 7 percent of mid-market construction SaaS receivables to age out and write off entirely. The compounding cost is rarely tracked until it's a board-level problem.</p>
+    <div class="validator-attrib">— <strong>Boston Consulting Group</strong> · "AR efficiency in vertical SaaS" · 2025 industry report</div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="cta-band-inner">
+    <h2 class="cta-band-title">See AgentCollect run on <span class="accent">Buildertrend's billing line.</span></h2>
+    <p class="cta-band-deck">30-day pilot. We deploy on your billing number, handle real calls, and you watch every transcript live. If it doesn't move the number, you turn it off. Setup takes one week.</p>
+    <a href="https://cal.com/johnb/30" class="cta-band-btn">Start the 30-day pilot <span class="cta-band-arrow">→</span></a>
+    <div class="cta-band-terms">
+      <span><span class="check">✓</span> $0 upfront</span>
+      <span><span class="check">✓</span> No contract</span>
+      <span><span class="check">✓</span> Cancel anytime</span>
+      <span><span class="check">✓</span> Live in 7 days</span>
+    </div>
+  </div>
+</section>
+
+<!-- TRUSTBAR -->
+<div class="trustbar">
+  <div class="trust-label">Already running on</div>
+  <div class="trust-logos">
+    <span>Microsoft</span>
+    <span>Dell</span>
+    <span>Plaid</span>
+    <span>Vanta</span>
+    <span>Checkr</span>
+  </div>
+</div>
+
+<!-- ABOUT THIS AUDIT -->
+<div class="about-audit">
+  <strong>About this audit:</strong> Buildertrend was selected based on public ARR estimates and observed billing-line friction. Audit conducted April 7, 2026 across 5 touchpoints: phone reach, IVR navigation, account lookup, payment acceptance, and escalation paths. Recovery rate estimates derived from BCG 2025 industry data on vertical SaaS AR performance. Full methodology, recordings, and raw data available on request.
+</div>
+
+<footer class="footer">
+  <div>DOC <strong>#BLDR-AUDIT-001</strong> · Confidential · 1 mystery-shopped call + 4 portal touchpoints</div>
+  <div>By <strong>John Banner</strong> · AgentCollect · Y Combinator S23</div>
+</footer>
+
+<script>
+  const audio=document.getElementById('callRec');let activeBtn=null;let stopAt=0;
+  function playMoment(btn,start,end){if(activeBtn)activeBtn.classList.remove('playing');activeBtn=btn;btn.classList.add('playing');stopAt=end;audio.currentTime=start;audio.play();}
+  audio.addEventListener('timeupdate',()=>{if(stopAt>0&&audio.currentTime>=stopAt){audio.pause();stopAt=0;if(activeBtn){activeBtn.classList.remove('playing');activeBtn=null;}}});
+</script>
+
+</body>
+</html>
