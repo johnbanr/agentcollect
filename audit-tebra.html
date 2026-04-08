@@ -213,26 +213,34 @@ body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1
 .trust-logo:hover{opacity:1;filter:grayscale(0%)}
 .trust-logo.tall{height:38px}
 
-.cta-section{padding:120px 36px 140px;background:var(--bg);text-align:center;border-top:1px solid var(--line);position:relative;overflow:hidden}
-.cta-section::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;background:radial-gradient(circle,rgba(67,56,202,.05) 0%,transparent 60%);pointer-events:none}
-.cta-eyebrow{font-family:var(--mono);font-size:11px;color:var(--indigo);text-transform:uppercase;letter-spacing:.18em;font-weight:600;margin-bottom:24px;position:relative}
-.cta-headline{font-family:var(--display);font-size:clamp(40px,5.4vw,72px);font-weight:800;letter-spacing:-.025em;line-height:1;color:var(--ink);margin-bottom:20px;max-width:780px;margin:0 auto 20px;position:relative}
-.cta-headline em{color:var(--indigo);font-style:normal}
-.cta-deck{font-family:var(--body);font-size:17px;color:var(--muted);max-width:620px;margin:0 auto 56px;line-height:1.6;position:relative}
+.bridge-section{padding:140px 36px;background:var(--bg);text-align:center;border-top:1px solid var(--line);position:relative;overflow:hidden}
+.bridge-section::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;background:radial-gradient(circle,rgba(67,56,202,.06) 0%,transparent 60%);pointer-events:none}
+.bridge-eyebrow{font-family:var(--mono);font-size:11px;color:var(--indigo);text-transform:uppercase;letter-spacing:.18em;font-weight:600;margin-bottom:24px;position:relative}
+.bridge-headline{font-family:var(--display);font-size:clamp(36px,4.8vw,64px);font-weight:800;letter-spacing:-.025em;line-height:1.05;color:var(--ink);margin-bottom:20px;max-width:880px;margin:0 auto 20px;position:relative}
+.bridge-headline em{color:var(--indigo);font-style:normal}
+.bridge-deck{font-family:var(--body);font-size:17px;color:var(--muted);max-width:620px;margin:0 auto 64px;line-height:1.6;position:relative}
 
 /* ORB WIDGET */
-.orb-wrap{position:relative;display:flex;flex-direction:column;align-items:center;cursor:pointer;margin:0 auto 32px;width:200px;z-index:2}
-.orb-rings{position:absolute;top:0;left:50%;transform:translateX(-50%);width:160px;height:160px;pointer-events:none}
+.orb-wrap{position:relative;display:flex;flex-direction:column;align-items:center;cursor:pointer;margin:0 auto 24px;width:240px;z-index:2}
+.orb-bubble{position:absolute;top:6px;right:-72px;background:rgba(67,56,202,.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:12px 18px;font-family:var(--body);font-size:14px;font-weight:600;color:#fff;white-space:nowrap;animation:orbBubble 3s ease-in-out infinite;text-shadow:0 1px 4px rgba(0,0,0,.3);z-index:15;box-shadow:0 12px 32px rgba(67,56,202,.3)}
+.orb-bubble::before{content:'';position:absolute;left:-7px;top:18px;width:0;height:0;border-style:solid;border-width:7px 9px 7px 0;border-color:transparent rgba(67,56,202,.95) transparent transparent}
+@keyframes orbBubble{0%,100%{opacity:.85;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+.orb-rings{position:absolute;top:20px;left:50%;transform:translateX(-50%);width:160px;height:160px;pointer-events:none}
 .orb-ring{position:absolute;inset:0;border-radius:50%;border:2px solid var(--indigo);opacity:0;animation:orb-ring-pulse 3s ease-out infinite}
 .orb-ring.r2{animation-delay:1s}
 .orb-ring.r3{animation-delay:2s}
 @keyframes orb-ring-pulse{0%{transform:scale(.8);opacity:.6}100%{transform:scale(1.6);opacity:0}}
-.orb-main{width:160px;height:160px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#6366F1,#4338CA);display:flex;align-items:center;justify-content:center;box-shadow:0 20px 60px rgba(67,56,202,.35),0 0 0 0 rgba(67,56,202,.4);transition:all .3s;position:relative;z-index:2}
+.orb-main{width:160px;height:160px;margin-top:20px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#6366F1,#4338CA);display:flex;align-items:center;justify-content:center;box-shadow:0 20px 60px rgba(67,56,202,.35),0 0 0 0 rgba(67,56,202,.4);transition:all .3s;position:relative;z-index:2}
 .orb-wrap:hover .orb-main{transform:scale(1.05);box-shadow:0 30px 80px rgba(67,56,202,.5)}
 .orb-main.speaking{animation:orb-speaking 1.5s ease-in-out infinite}
 @keyframes orb-speaking{0%,100%{box-shadow:0 20px 60px rgba(67,56,202,.35),0 0 0 0 rgba(67,56,202,.4)}50%{box-shadow:0 20px 60px rgba(67,56,202,.5),0 0 0 22px rgba(67,56,202,0)}}
 .orb-icon{font-size:54px;color:#fff;line-height:1}
-.orb-label{margin-top:24px;font-family:var(--display);font-size:14px;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.08em}
+
+/* ORB META (calling label / title / hint) */
+.orb-meta{position:relative;z-index:2;margin-bottom:32px}
+.orb-calling-label{font-family:var(--mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--indigo);opacity:.7;margin-bottom:6px}
+.orb-title{font-family:var(--display);font-size:18px;font-weight:800;color:var(--ink);letter-spacing:-.015em;margin-bottom:4px}
+.orb-hint{font-family:var(--body);font-size:14px;color:var(--green);opacity:.85;font-weight:600}
 
 /* ORB STATUS */
 .orb-status{position:relative;z-index:2;max-width:520px;margin:0 auto 32px;padding:32px 36px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 1px 2px rgba(11,17,22,.04),0 24px 60px rgba(11,17,22,.08)}
@@ -242,8 +250,8 @@ body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1
 .orb-end-btn{padding:10px 22px;background:var(--red);color:#fff;border:0;border-radius:100px;font-family:var(--display);font-size:12px;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:.06em;transition:all .2s}
 .orb-end-btn:hover{background:#991b1b}
 
-.orb-fallback{position:relative;z-index:2;font-family:var(--body);font-size:14px;color:var(--muted);margin-top:20px}
-.orb-fallback span{margin-right:8px}
+.orb-fallback{position:relative;z-index:2;font-family:var(--body);font-size:13px;color:var(--muted);margin-top:24px}
+.orb-fallback span{margin-right:6px}
 .orb-fallback a{color:var(--indigo);text-decoration:none;border-bottom:1px solid var(--indigo);font-weight:500}
 
 /* FOOTER */
@@ -258,9 +266,12 @@ body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1
   .portal-findings{grid-template-columns:1fr;gap:32px}
   .peer-grid{grid-template-columns:repeat(2,1fr)}
   .peer-card.us{transform:none}
-  .confession-section,.stats-section,.beyond-section,.why-section,.what-section{padding:80px 24px}
+  .confession-section,.stats-section,.beyond-section,.why-section,.what-section,.bridge-section{padding:80px 24px}
   .trust-section{padding:60px 24px 30px}
-  .cta-section{padding:50px 24px 80px}
+  .orb-bubble{position:static;margin-bottom:18px;display:inline-block}
+  .orb-bubble::before{display:none}
+  .orb-rings,.orb-main{margin-top:0}
+  .bridge-headline{font-size:28px}
   .topbar-inner{padding:14px 24px;flex-direction:column;align-items:flex-start;gap:10px}
   .topbar-meta{font-size:9px}
   .what-pillars{flex-direction:column;gap:18px}
@@ -351,6 +362,46 @@ body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1
         <div class="stat-label">$2,890 collected by voice<strong>Receipt sent before hangup</strong></div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============================================
+     3.5 — BRIDGE WIDGET (live AgentCollect call)
+     ============================================ -->
+<section class="bridge-section">
+  <div class="bridge-eyebrow">— Hear it for yourself —</div>
+  <h2 class="bridge-headline">This is the call <em>Diana should have reached.</em></h2>
+  <p class="bridge-deck">We pre-configured an AgentCollect agent for Tebra's billing line. Click the orb, give us mic permission, and you'll be talking to it live. Try to settle the $2,890 invoice. Same scenario, in 30 seconds.</p>
+
+  <div class="orb-wrap" id="orb-wrap">
+    <div class="orb-bubble" id="orb-bubble">Hi, I'm Sarah from Tebra. Do you have a quick moment?</div>
+    <div class="orb-rings">
+      <span class="orb-ring r1"></span>
+      <span class="orb-ring r2"></span>
+      <span class="orb-ring r3"></span>
+    </div>
+    <div class="orb-main" id="orb-main">
+      <span class="orb-icon" id="orb-icon">📞</span>
+    </div>
+  </div>
+
+  <div class="orb-meta">
+    <div class="orb-calling-label">Incoming call</div>
+    <div class="orb-title">AgentCollect for Tebra</div>
+    <div class="orb-hint">Tap to answer</div>
+  </div>
+
+  <div class="orb-status" id="orb-status" style="display:none">
+    <div class="orb-status-line" id="orb-status-line">Connecting...</div>
+    <div class="orb-waveform" id="orb-waveform">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <button class="orb-end-btn" id="orb-end-btn">End call</button>
+  </div>
+
+  <div class="orb-fallback">
+    <span>Mic blocked? </span>
+    <a href="https://cal.com/johnb/30">Talk to the founder instead →</a>
   </div>
 </section>
 
@@ -458,40 +509,6 @@ body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1
   </div>
 </section>
 
-<!-- ============================================
-     CTA
-     ============================================ -->
-<section class="cta-section">
-  <div class="cta-eyebrow">— What if your billing line answered like this? —</div>
-  <h2 class="cta-headline">Talk to <em>AgentCollect for Tebra.</em></h2>
-  <p class="cta-deck">We pre-configured an AgentCollect agent for your billing line. Click the orb, give us mic permission, and you'll be talking to the version Diana Martinez should have reached this morning. Try to settle the $2,890 invoice. Same scenario.</p>
-
-  <div class="orb-wrap" id="orb-wrap">
-    <div class="orb-rings">
-      <span class="orb-ring r1"></span>
-      <span class="orb-ring r2"></span>
-      <span class="orb-ring r3"></span>
-    </div>
-    <div class="orb-main" id="orb-main">
-      <span class="orb-icon" id="orb-icon">📞</span>
-    </div>
-    <div class="orb-label" id="orb-label">Tap to call AgentCollect for Tebra</div>
-  </div>
-
-  <div class="orb-status" id="orb-status" style="display:none">
-    <div class="orb-status-line" id="orb-status-line">Connecting...</div>
-    <div class="orb-waveform" id="orb-waveform">
-      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-    </div>
-    <button class="orb-end-btn" id="orb-end-btn">End call</button>
-  </div>
-
-  <div class="orb-fallback">
-    <span>or</span>
-    <a href="https://cal.com/johnb/30">book 15 min with the founder →</a>
-  </div>
-</section>
-
 <footer class="footer">
   <div>DOC <strong>#TBRA-001</strong> · Confidential · Auto-deleted in 30 days</div>
   <div>By <strong>John Banner</strong> · AgentCollect · Y Combinator S23</div>
@@ -584,13 +601,14 @@ body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1
 (function(){
   const orbWrap = document.getElementById('orb-wrap');
   const orbMain = document.getElementById('orb-main');
-  const orbLabel = document.getElementById('orb-label');
-  const orbIcon = document.getElementById('orb-icon');
+  const orbBubble = document.getElementById('orb-bubble');
   const orbStatus = document.getElementById('orb-status');
   const orbStatusLine = document.getElementById('orb-status-line');
   const orbWaveform = document.getElementById('orb-waveform');
   const orbEndBtn = document.getElementById('orb-end-btn');
+  const orbMeta = document.querySelector('.orb-meta');
   const waveformBars = orbWaveform ? orbWaveform.querySelectorAll('span') : [];
+  const orbHint = document.querySelector('.orb-hint');
 
   let retellClient = null;
   let callActive = false;
@@ -624,95 +642,123 @@ body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1
     waveformBars.forEach(b => { b.style.height = '8px'; });
   }
 
-  async function startVoiceCall() {
+  function showCallingState() {
+    if (orbWrap) orbWrap.style.display = 'none';
+    if (orbBubble) orbBubble.style.display = 'none';
+    if (orbMeta) orbMeta.style.display = 'none';
+    if (orbStatus) orbStatus.style.display = 'block';
+    document.querySelectorAll('.orb-ring').forEach(r => r.style.display = 'none');
+  }
+
+  function showIdleState() {
+    if (orbWrap) orbWrap.style.display = 'flex';
+    if (orbBubble) orbBubble.style.display = '';
+    if (orbMeta) orbMeta.style.display = '';
+    if (orbStatus) orbStatus.style.display = 'none';
+    document.querySelectorAll('.orb-ring').forEach(r => r.style.display = '');
+    if (orbMain) orbMain.classList.remove('speaking');
+  }
+
+  function startVoiceCall() {
     if (callActive) return;
     callActive = true;
     callStartTime = Date.now();
 
-    // Hide orb, show status
-    orbWrap.style.display = 'none';
-    orbStatus.style.display = 'block';
+    showCallingState();
     orbStatusLine.textContent = 'Connecting...';
     startWaveformAnim('idle');
+    if (orbMain) orbMain.classList.add('speaking');
 
-    try {
-      // Mic permission
-      const micStream = await navigator.mediaDevices.getUserMedia({
-        audio: {
-          echoCancellation: true,
-          noiseSuppression: true,
-          autoGainControl: true,
-          sampleRate: { ideal: 48000 },
-          channelCount: { ideal: 1 }
+    (async function() {
+      try {
+        // PARALLEL: mic + API token + SDK load (csc-leasing pattern)
+        const micPromise = navigator.mediaDevices.getUserMedia({
+          audio: {
+            echoCancellation: true,
+            noiseSuppression: true,
+            autoGainControl: true,
+            sampleRate: { ideal: 48000 },
+            channelCount: { ideal: 1 }
+          }
+        }).then(s => { window.__micStream = s; })
+          .catch(() => { throw new Error('Microphone access required'); });
+
+        const apiPromise = fetch('https://backend.widr.app/api/v1/demo/web-call', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            company_name: 'Tebra',
+            product: 'practice management software',
+            amount: '$2,890'
+          })
+        }).then(async response => {
+          if (!response.ok) {
+            let errBody = '';
+            try { errBody = await response.text(); } catch(e){}
+            console.error('web-call error:', response.status, errBody);
+            throw new Error('API returned ' + response.status);
+          }
+          return response.json();
+        });
+
+        const sdkPromise = Promise.resolve(window.__RetellWebClient).then(RWC => {
+          if (RWC) return RWC;
+          return import('https://cdn.jsdelivr.net/npm/retell-client-js-sdk@2.0.7/+esm')
+            .then(m => m.RetellWebClient)
+            .catch(() => import('https://unpkg.com/retell-client-js-sdk@2.0.7/dist/index.js')
+              .then(m => m.RetellWebClient));
+        });
+
+        const results = await Promise.all([micPromise, apiPromise, sdkPromise]);
+        const result = results[1];
+        const RetellWebClient = results[2];
+
+        if (!result.success || !result.access_token) throw new Error('No access token');
+
+        retellClient = new RetellWebClient();
+
+        retellClient.on('call_started', function() {
+          callStartTime = Date.now();
+          orbStatusLine.textContent = 'Your turn — speak now';
+          startWaveformAnim('idle');
+        });
+
+        retellClient.on('call_ended', function() {
+          const duration = callStartTime ? Math.round((Date.now() - callStartTime) / 1000) : 0;
+          endCall(duration);
+        });
+
+        retellClient.on('agent_start_talking', function() {
+          startWaveformAnim('agent');
+          orbStatusLine.textContent = 'AgentCollect speaking...';
+        });
+
+        retellClient.on('agent_stop_talking', function() {
+          startWaveformAnim('user');
+          orbStatusLine.textContent = 'Your turn — speak now';
+        });
+
+        retellClient.on('error', function(err) {
+          console.error('RetellAI error:', err);
+          endCall(0);
+        });
+
+        await retellClient.startCall({ accessToken: result.access_token });
+
+      } catch (err) {
+        console.error('Voice call error:', err);
+        callActive = false;
+        showIdleState();
+        if (orbHint) {
+          orbHint.textContent = 'Connection failed — tap to retry';
+          orbHint.style.color = '#dc2626';
+          setTimeout(() => {
+            orbHint.textContent = 'Tap to answer';
+            orbHint.style.color = '';
+          }, 5000);
         }
-      });
-      window.__micStream = micStream;
-
-      // Get access token from backend
-      const response = await fetch('https://backend.widr.app/api/v1/demo/web-call', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          company_name: 'Tebra',
-          product: 'practice management software',
-          amount: '$2,890'
-        })
-      });
-
-      if (!response.ok) throw new Error('API ' + response.status);
-      const result = await response.json();
-      if (!result.success || !result.access_token) throw new Error('No access token');
-
-      // Wait for SDK
-      const RWC = await new Promise((resolve) => {
-        const check = () => {
-          if (window.__RetellWebClient) resolve(window.__RetellWebClient);
-          else setTimeout(check, 100);
-        };
-        check();
-      });
-
-      retellClient = new RWC();
-
-      retellClient.on('call_started', function() {
-        orbStatusLine.textContent = 'Your turn — speak now';
-        startWaveformAnim('idle');
-      });
-
-      retellClient.on('call_ended', function() {
-        const duration = callStartTime ? Math.round((Date.now() - callStartTime) / 1000) : 0;
-        endCall(duration);
-      });
-
-      retellClient.on('agent_start_talking', function() {
-        startWaveformAnim('agent');
-        orbStatusLine.textContent = 'AgentCollect speaking...';
-      });
-
-      retellClient.on('agent_stop_talking', function() {
-        startWaveformAnim('user');
-        orbStatusLine.textContent = 'Your turn — speak now';
-      });
-
-      retellClient.on('error', function(err) {
-        console.error('RetellAI error:', err);
-        endCall(0);
-      });
-
-      await retellClient.startCall({ accessToken: result.access_token });
-
-    } catch (err) {
-      console.error('Voice call error:', err);
-      callActive = false;
-      orbStatus.style.display = 'none';
-      orbWrap.style.display = 'flex';
-      orbLabel.textContent = 'Connection failed — tap to retry';
-      orbLabel.style.color = '#dc2626';
-      setTimeout(() => {
-        orbLabel.textContent = 'Tap to call AgentCollect for Tebra';
-        orbLabel.style.color = '';
-      }, 5000);
-    }
+      }
+    })();
   }
 
   function endCall(duration) {
@@ -728,16 +774,15 @@ body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1
     stopWaveformAnim();
 
     if (duration > 0) {
-      orbStatusLine.textContent = `Call ended (${duration}s). Want to talk to the founder?`;
+      orbStatusLine.textContent = `Call ended (${duration}s). Talk to the founder next?`;
     } else {
       orbStatusLine.textContent = 'Call ended.';
     }
 
     setTimeout(() => {
-      orbStatus.style.display = 'none';
-      orbWrap.style.display = 'flex';
-      orbLabel.textContent = 'Tap to call again';
-    }, 4000);
+      showIdleState();
+      if (orbHint) orbHint.textContent = 'Tap to answer again';
+    }, 3000);
   }
 
   if (orbEndBtn) orbEndBtn.addEventListener('click', function(e) {
