@@ -13,7 +13,7 @@
       "destination": "/audit-github.html"
     },
     {
-      "source": "/microsoft",
+      "source": "/microsoft-audit",
       "destination": "/audit-microsoft.html"
     },
     {
