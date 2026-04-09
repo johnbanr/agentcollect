@@ -1133,6 +1133,10 @@
       "destination": "/blog/best-debt-collection-software.html"
     },
     {
+      "source": "/blog/best-ai-debt-collection-software",
+      "destination": "/blog/best-ai-debt-collection-software.html"
+    },
+    {
       "source": "/blog/accounts-receivable-outsourcing",
       "destination": "/blog/accounts-receivable-outsourcing.html"
     },
@@ -1383,6 +1387,18 @@
     {
       "source": "/compare/upflow-alternatives",
       "destination": "/compare/upflow-alternatives.html"
+    },
+    {
+      "source": "/compare/skit-ai",
+      "destination": "/compare/skit-ai.html"
+    },
+    {
+      "source": "/compare/altur",
+      "destination": "/compare/altur.html"
+    },
+    {
+      "source": "/compare/prodigal",
+      "destination": "/compare/prodigal.html"
     },
     {
       "source": "/glossary/dso",

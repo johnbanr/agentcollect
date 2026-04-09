@@ -181,6 +181,7 @@
   <url><loc>https://www.agentcollect.com/blog/when-to-hire-collection-agency</loc><lastmod>2026-03-25</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.agentcollect.com/blog/b2b-debt-collection</loc><lastmod>2026-03-25</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.agentcollect.com/blog/best-debt-collection-software</loc><lastmod>2026-03-25</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.agentcollect.com/blog/best-ai-debt-collection-software</loc><lastmod>2026-04-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.agentcollect.com/blog/accounts-receivable-outsourcing</loc><lastmod>2026-03-25</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.agentcollect.com/blog/accounts-receivable-best-practices</loc><lastmod>2026-03-25</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.agentcollect.com/blog/ai-vs-traditional-debt-collection</loc><lastmod>2026-03-25</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -300,6 +301,11 @@
   <url><loc>https://www.agentcollect.com/compare/chaser-alternatives</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agentcollect.com/compare/upflow-alternatives</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agentcollect.com/compare/highradius-alternatives</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+
+  <!-- New compare pages — AI competitors (2026-04-09) -->
+  <url><loc>https://www.agentcollect.com/compare/skit-ai</loc><lastmod>2026-04-09</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agentcollect.com/compare/altur</loc><lastmod>2026-04-09</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agentcollect.com/compare/prodigal</loc><lastmod>2026-04-09</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
   <!-- About: John Banner -->
   <url><loc>https://www.agentcollect.com/about/john-banner</loc><lastmod>2026-03-25</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
