@@ -1,6 +1,26 @@
 {
   "rewrites": [
     {
+      "source": "/uber-freight",
+      "destination": "/audit-uber-freight.html"
+    },
+    {
+      "source": "/uber-for-business",
+      "destination": "/audit-uber-for-business.html"
+    },
+    {
+      "source": "/github",
+      "destination": "/audit-github.html"
+    },
+    {
+      "source": "/microsoft",
+      "destination": "/audit-microsoft.html"
+    },
+    {
+      "source": "/nuance",
+      "destination": "/audit-nuance.html"
+    },
+    {
       "source": "/audit/tebra",
       "destination": "/audit-tebra.html"
     },
