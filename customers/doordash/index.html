@@ -16,293 +16,33 @@
 
   <!-- Schema.org structured data -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "AI collections for marketplace logistics — the DoorDash challenge",
-    "description": "How AI-powered collections adapts to the unique challenges of marketplace logistics: high churn, small balances, diverse operators, and seasonal cash flow.",
-    "author": { "@type": "Organization", "name": "AgentCollect" },
-    "publisher": { "@type": "Organization", "name": "AgentCollect", "url": "https://agentcollect.com" },
-    "about": { "@type": "Organization", "name": "DoorDash", "url": "https://doordash.com" }
-  }
-  </script>
-
-  <!-- Microsoft Clarity -->
-  <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","vtpmvp6kvr");</script>
-
-  <!-- GA4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GRZZT9K05B"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-GRZZT9K05B');</script>
-
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
-
-  <style>
-/* Case Study V3 — Self-contained for AgentCollect */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;900&display=swap');
-
-:root {
-  --bg: #f6f3ef;
-  --bg-subtle: #eeebe6;
-  --bg-warm: #faf8f5;
-  --bg-dark: #121826;
-  --text: #121826;
-  --text-secondary: #525266;
-  --text-muted: #8e8ea0;
-  --accent: #4F46E5;
-  --font-display: 'Plus Jakarta Sans', sans-serif;
-  --accent-light: rgba(79,70,229,.06);
-  --accent-purple: #4F46E5;
-  --border: #e0ddd8;
-  --radius: 8px;
-  --radius-lg: 12px;
-  --max-width: 1200px;
-  --sidebar-width: 300px;
-  --green: #0d9488;
-  --green-bg: #f0fdfa;
-  --red: #dc2626;
-  --orange: #ea580c;
-  --blue: #3b82f6;
-  --indigo: #6366f1;
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.agentcollect.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Case Studies",
+      "item": "https://www.agentcollect.com/customers"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "DoorDash"
+    }
+  ]
 }
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
-}
-
-.container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
-
-/* ── Progress Bar ── */
-.progress-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  width: 0%;
-  background: linear-gradient(90deg, var(--accent), #6366f1);
-  z-index: 200;
-  transition: width 0.1s linear;
-  border-radius: 0 2px 2px 0;
-}
-
-/* ── Nav ── */
-.nav {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(246,243,239,0.95);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-}
-.nav-inner {
-  max-width: var(--max-width); margin: 0 auto; padding: 0 24px;
-  display: flex; align-items: center; justify-content: space-between;
-  height: 56px;
-}
-.nav-logo {
-  font-family: var(--font-display);
-  font-size: 18px; font-weight: 900; color: var(--text);
-  text-decoration: none; letter-spacing: -0.5px;
-}
-.dot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #4F46E5;
-  margin-left: 1px;
-  vertical-align: super;
-}
-.nav-links { display: flex; align-items: center; gap: 28px; }
-.nav-links a {
-  font-size: 14px; color: var(--text-secondary); text-decoration: none;
-  font-weight: 500; transition: color 0.15s;
-}
-.nav-links a:hover { color: var(--text); }
-.nav-cta {
-  background: var(--accent) !important; color: #fff !important;
-  padding: 8px 16px; border-radius: 6px; font-weight: 600 !important;
-  font-size: 13px !important; transition: opacity 0.15s;
-}
-.nav-cta:hover { opacity: 0.9; }
-
-/* ── Breadcrumb ── */
-.breadcrumb {
-  border-bottom: 1px solid var(--border);
-  padding: 12px 0;
-}
-.breadcrumb .container {
-  display: flex; align-items: center; gap: 8px;
-  font-size: 14px; color: var(--text-muted);
-}
-.breadcrumb a { color: var(--accent); text-decoration: none; font-weight: 500; }
-.breadcrumb a:hover { text-decoration: underline; }
-
-/* ── Layout: content + sidebar ── */
-.cs-layout {
-  display: grid;
-  grid-template-columns: 1fr var(--sidebar-width);
-  gap: 64px;
-  padding-top: 48px;
-  padding-bottom: 80px;
-  align-items: start;
-}
-
-/* ── Main content ── */
-.cs-main { max-width: 780px; min-width: 0; }
-
-.cs-main h1 {
-  font-family: var(--font-display);
-  font-size: 36px; font-weight: 700; line-height: 1.2;
-  letter-spacing: -0.5px; margin-bottom: 24px;
-}
-
-.cs-intro {
-  font-size: 17px; line-height: 1.7; color: var(--text-secondary);
-  margin-bottom: 40px;
-}
-
-/* Section labels */
-.cs-label {
-  font-size: 11px; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 2px; color: var(--accent); margin-bottom: 16px; display: block;
-}
-
-/* Sections */
-.cs-section { margin-bottom: 48px; }
-.cs-section h2 {
-  font-family: var(--font-display);
-  font-size: 24px; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.3px;
-}
-.cs-section p {
-  font-size: 16px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 16px;
-}
-.cs-section p strong { color: var(--text); }
-
-/* Features list */
-.cs-features { display: flex; flex-direction: column; gap: 20px; margin-top: 24px; }
-.cs-feature { display: flex; gap: 16px; align-items: flex-start; }
-.cs-feature-icon {
-  flex-shrink: 0; width: 40px; height: 40px; border-radius: 8px;
-  background: var(--accent-light);
-  display: flex; align-items: center; justify-content: center; color: var(--accent);
-}
-.cs-feature strong { display: block; font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
-.cs-feature p { font-size: 14px; color: var(--text-secondary); margin: 0; line-height: 1.5; }
-
-/* CTA section */
-.cs-cta {
-  background: var(--bg-subtle); border: 1px solid var(--border);
-  border-radius: var(--radius-lg); padding: 40px; text-align: center;
-  margin-top: 48px;
-}
-.cs-cta h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
-.cs-cta p { font-size: 15px; color: var(--text-secondary); margin-bottom: 20px; }
-.cs-cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-.cs-cta-btn {
-  display: inline-block; background: var(--accent); color: #fff;
-  padding: 12px 28px; border-radius: 8px; font-weight: 600; font-size: 15px;
-  text-decoration: none; transition: opacity 0.15s;
-}
-.cs-cta-btn:hover { opacity: 0.9; }
-.cs-trust-row {
-  display: flex; gap: 24px; justify-content: center; margin-top: 20px; flex-wrap: wrap;
-}
-.cs-trust-row span {
-  font-size: 12px; color: var(--text-muted); font-weight: 500;
-  display: flex; align-items: center; gap: 6px;
-}
-.cs-trust-row span::before { content: '\2713'; color: var(--green); font-weight: 700; }
-
-/* ── Sidebar ── */
-.cs-sidebar { position: sticky; top: 72px; }
-.cs-sidebar-inner { display: flex; flex-direction: column; gap: 20px; }
-.cs-company-card {
-  border: 1px solid var(--border); border-radius: var(--radius-lg);
-  padding: 24px; background: #fff;
-}
-.cs-company-logo { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
-.cs-sidebar-section { margin-bottom: 16px; }
-.cs-sidebar-section:last-child { margin-bottom: 0; }
-.cs-sidebar-label {
-  font-size: 12px; font-weight: 600; color: var(--text-muted);
-  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;
-}
-.cs-sidebar-value { font-size: 14px; font-weight: 500; color: var(--text); }
-.cs-product-list { display: flex; flex-wrap: wrap; gap: 6px; }
-.cs-product-tag {
-  display: inline-block; background: var(--accent-light); color: var(--accent);
-  padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;
-}
-.cs-sidebar-cta {
-  display: block; text-align: center; background: var(--accent); color: #fff;
-  padding: 12px 20px; border-radius: 8px; font-weight: 600; font-size: 14px;
-  text-decoration: none; transition: opacity 0.15s;
-}
-.cs-sidebar-cta:hover { opacity: 0.9; }
-
-/* ── Footer ── */
-.cs-footer {
-  border-top: 1px solid var(--border);
-  padding: 48px 0 32px;
-}
-.cs-footer-inner {
-  display: flex; justify-content: space-between; align-items: flex-start;
-  margin-bottom: 32px;
-}
-.cs-footer-brand p { font-size: 14px; color: var(--text-muted); margin-top: 8px; max-width: 300px; }
-.cs-footer-links-grid { display: flex; gap: 48px; }
-.cs-footer-links-grid div { display: flex; flex-direction: column; gap: 8px; }
-.cs-footer-links-grid h4 {
-  font-size: 11px; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 1px; color: var(--text); margin-bottom: 4px;
-}
-.cs-footer-links-grid a { font-size: 13px; color: var(--text-secondary); text-decoration: none; }
-.cs-footer-links-grid a:hover { color: var(--text); }
-.cs-footer-bottom {
-  display: flex; justify-content: space-between; align-items: center;
-  padding-top: 24px; border-top: 1px solid var(--border);
-}
-.cs-footer-bottom p { font-size: 13px; color: var(--text-muted); }
-.cs-footer-badges { display: flex; gap: 16px; }
-.cs-footer-badges span {
-  font-size: 12px; color: var(--text-muted); font-weight: 500;
-  padding: 4px 10px; border: 1px solid var(--border); border-radius: 4px;
-}
-
-/* ── Scroll animations ── */
-.fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
-
-/* ── Responsive ── */
-@media (max-width: 1100px) {
-  .cs-layout { grid-template-columns: 1fr; gap: 32px; overflow: hidden; }
-  .cs-sidebar { position: static; order: 1; min-width: 0; }
-  .cs-sidebar-inner { flex-direction: row; flex-wrap: wrap; gap: 12px; }
-  .cs-company-card { flex: 1; min-width: 280px; }
-  .cs-sidebar-cta { flex: 0; white-space: nowrap; align-self: center; }
-  .cs-main h1 { font-size: 28px; }
-  .cs-footer-inner { flex-direction: column; gap: 24px; }
-  .cs-footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
-}
-
-@media (max-width: 600px) {
-  .nav-links a:not(.nav-cta) { display: none; }
-  .cs-main h1 { font-size: 24px; }
-  .breadcrumb { display: none; }
-  .cs-sidebar-inner { flex-direction: column; }
-  .cs-company-card { min-width: 0; }
-  .cs-sidebar-cta { white-space: normal; }
-  .cs-footer-links-grid { flex-direction: column; gap: 24px; }
-  .cs-section h2 { font-size: 20px; word-break: break-word; }
-  .cs-section p { word-break: break-word; }
-}
-  </style>
-    <!-- RB2B -->
-    <script>!function(key) {if (window.reb2b) return;window.reb2b = {loaded: true};var s = document.createElement("script");s.async = true;s.src = "https://ddwl4m2hdecbv.cloudfront.net/b/" + key + "/" + key + ".js.gz";document.getElementsByTagName("script")[0].parentNode.insertBefore(s, document.getElementsByTagName("script")[0]);}("LNKLDHEDW9OJ");</script>
+</script>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How AI collections solves marketplace logistics challenges | DoorDash | AgentCollect">
+<meta name="twitter:description" content="When 1 in 3 restaurants close within a year, every day of delay in collections is money that vanishes permanently. Here's how AI changes the math.">
 </head>
 <body>
 
