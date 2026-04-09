@@ -21,6 +21,10 @@
       "destination": "/audit-weave.html"
     },
     {
+      "source": "/audit/cgm",
+      "destination": "/audit-cgm.html"
+    },
+    {
       "source": "/362b5d3139875f061ee4cf02c3c2d63a.txt",
       "destination": "/362b5d3139875f061ee4cf02c3c2d63a.txt"
     },
