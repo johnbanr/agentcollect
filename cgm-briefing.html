@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CGM + AgentCollect | Patient AR Recovery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: #0B1B3D; color: #FAFBFF; }
+
+  /* Slide system */
+  .slide { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 60px 80px; position: relative; overflow: hidden; }
+  .slide:nth-child(odd) { background: #0B1B3D; }
+  .slide:nth-child(even) { background: #FAFBFF; color: #0B1B3D; }
+
+  /* Nav dots */
+  .slide-nav { position: fixed; right: 24px; top: 50%; transform: translateY(-50%); z-index: 100; display: flex; flex-direction: column; gap: 10px; }
+  .slide-nav a { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.3); display: block; transition: all 0.3s; }
+  .slide-nav a:hover, .slide-nav a.active { background: #4F46E5; transform: scale(1.4); }
+
+  /* Typography */
+  h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 56px; line-height: 1.1; margin-bottom: 24px; }
+  h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 42px; line-height: 1.15; margin-bottom: 20px; }
+  h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 24px; margin-bottom: 16px; }
+  .subtitle { font-size: 20px; opacity: 0.7; line-height: 1.5; max-width: 700px; }
+  .tag { display: inline-block; background: #4F46E5; color: white; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 8px 20px; border-radius: 100px; margin-bottom: 24px; }
+  .slide:nth-child(even) .tag { background: #4F46E5; color: white; }
+
+  /* Big stat */
+  .big-stat { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 96px; line-height: 1; color: #4F46E5; }
+  .big-stat-label { font-size: 18px; font-weight: 600; opacity: 0.6; margin-top: 8px; text-transform: uppercase; letter-spacing: 1px; }
+  .stat-row { display: flex; gap: 64px; margin: 40px 0; }
+  .stat-item { }
+  .stat-item .num { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 52px; color: #4F46E5; line-height: 1; }
+  .stat-item .lbl { font-size: 14px; font-weight: 600; opacity: 0.5; margin-top: 8px; text-transform: uppercase; letter-spacing: 1px; }
+  .slide:nth-child(odd) .stat-item .num { color: #818CF8; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .slide:nth-child(odd) th { background: rgba(79,70,229,0.3); color: #C7D2FE; padding: 12px 16px; text-align: left; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid rgba(79,70,229,0.5); }
+  .slide:nth-child(odd) td { padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.08); color: #E2E8F0; }
+  .slide:nth-child(even) th { background: #0B1B3D; color: white; padding: 12px 16px; text-align: left; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  .slide:nth-child(even) td { padding: 12px 16px; border-bottom: 1px solid #E2E8F0; color: #334155; }
+  .money { font-variant-numeric: tabular-nums; font-weight: 700; }
+  .red { color: #F87171; font-weight: 700; }
+  .green { color: #34D399; font-weight: 700; }
+  .slide:nth-child(even) .red { color: #DC2626; }
+  .slide:nth-child(even) .green { color: #059669; }
+  tr.total td { font-weight: 800; background: rgba(79,70,229,0.1); border-top: 2px solid #4F46E5; }
+
+  /* Comparison */
+  .comparison { display: grid; grid-template-columns: 1fr 80px 1fr; gap: 0; align-items: center; margin: 40px 0; }
+  .comp-box { border-radius: 16px; padding: 40px 32px; }
+  .comp-before { background: rgba(239,68,68,0.1); border: 2px solid rgba(239,68,68,0.3); }
+  .comp-after { background: rgba(16,185,129,0.1); border: 2px solid rgba(16,185,129,0.3); }
+  .comp-arrow { text-align: center; font-size: 40px; color: #4F46E5; }
+  .comp-box h3 { font-size: 16px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
+  .comp-before h3 { color: #F87171; }
+  .comp-after h3 { color: #34D399; }
+  .comp-num { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 64px; line-height: 1; }
+  .comp-before .comp-num { color: #F87171; }
+  .comp-after .comp-num { color: #34D399; }
+  .comp-detail { font-size: 15px; opacity: 0.7; margin-top: 12px; line-height: 1.6; }
+
+  /* Timeline */
+  .timeline { display: flex; gap: 0; margin: 40px 0; position: relative; }
+  .timeline::before { content: ''; position: absolute; top: 28px; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #4F46E5, #10B981); }
+  .timeline-item { flex: 1; text-align: center; position: relative; padding-top: 48px; }
+  .timeline-item::before { content: ''; position: absolute; top: 20px; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; border-radius: 50%; background: #4F46E5; border: 3px solid #0B1B3D; z-index: 1; }
+  .timeline-item:last-child::before { background: #10B981; }
+  .timeline-item h4 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 18px; color: #C7D2FE; margin-bottom: 8px; }
+  .timeline-item p { font-size: 14px; opacity: 0.6; line-height: 1.5; padding: 0 12px; }
+
+  /* Logos bar */
+  .logos { display: flex; gap: 48px; align-items: center; margin: 40px 0; opacity: 0.5; }
+  .logos span { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.5px; }
+
+  /* CTA */
+  .cta-section { text-align: center; }
+  .cta-button { display: inline-block; background: #4F46E5; color: white; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 18px; padding: 20px 48px; border-radius: 12px; text-decoration: none; margin-top: 32px; transition: transform 0.2s; }
+  .cta-button:hover { transform: scale(1.05); }
+
+  /* Pricing card */
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 40px 0; }
+  .price-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 32px; text-align: center; }
+  .price-card .price { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 36px; color: #818CF8; margin: 16px 0 8px; }
+  .price-card .price-label { font-size: 13px; opacity: 0.5; text-transform: uppercase; letter-spacing: 1px; }
+  .price-card .price-desc { font-size: 14px; opacity: 0.7; margin-top: 12px; line-height: 1.5; }
+  .price-card.featured { border-color: #4F46E5; background: rgba(79,70,229,0.15); }
+  .price-card.featured .price { color: #4F46E5; }
+
+  /* Footer */
+  .footer-bar { padding: 24px 80px; background: #060F1F; text-align: center; font-size: 13px; opacity: 0.4; }
+
+  /* Brand dot */
+  .brand { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 18px; position: absolute; top: 32px; left: 80px; }
+  .brand .dot { display: inline-block; width: 8px; height: 8px; background: #4F46E5; border-radius: 50%; margin-left: 2px; vertical-align: super; }
+  .slide:nth-child(even) .brand { color: #0B1B3D; }
+
+  /* Insight box */
+  .insight { background: rgba(79,70,229,0.12); border-left: 4px solid #4F46E5; padding: 20px 24px; border-radius: 0 12px 12px 0; margin-top: 24px; max-width: 800px; }
+  .insight p { font-size: 16px; line-height: 1.6; }
+  .insight strong { color: #818CF8; }
+  .slide:nth-child(even) .insight strong { color: #4F46E5; }
+
+  @media (max-width: 768px) {
+    .slide { padding: 40px 24px; }
+    h1 { font-size: 36px; }
+    h2 { font-size: 28px; }
+    .big-stat { font-size: 56px; }
+    .stat-row { flex-direction: column; gap: 24px; }
+    .stat-item .num { font-size: 36px; }
+    .comparison { grid-template-columns: 1fr; }
+    .comp-arrow { transform: rotate(90deg); padding: 16px 0; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .timeline { flex-direction: column; gap: 24px; }
+    .timeline::before { display: none; }
+    .timeline-item { padding-top: 0; }
+    .timeline-item::before { display: none; }
+  }
+
+  @media print {
+    .slide { min-height: auto; page-break-after: always; padding: 40px; }
+    .slide-nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1: Title -->
+<div class="slide" id="s1">
+  <div class="brand">AgentCollect<span class="dot"></span></div>
+  <div class="tag">Patient AR Recovery</div>
+  <h1>Recover 3x more<br>patient revenue.</h1>
+  <p class="subtitle">A proposal for CompuGroup Medical, built on your real data.<br>Prepared for Mike Liter, Andrew Tunnell &amp; team.</p>
+  <div class="logos" style="margin-top:48px">
+    <span>Microsoft</span>
+    <span>Amazon</span>
+    <span>Dell</span>
+    <span>FedEx</span>
+  </div>
+</div>
+
+<!-- SLIDE 2: The Opportunity -->
+<div class="slide" id="s2">
+  <div class="brand">AgentCollect<span class="dot"></span></div>
+  <div class="tag">Your Data</div>
+  <h2>$4.9M in patient AR.<br>$814K flowing in every month.</h2>
+  <div class="stat-row">
+    <div class="stat-item">
+      <div class="num">32,888</div>
+      <div class="lbl">Open accounts</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">$148</div>
+      <div class="lbl">Avg invoice</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">5,481</div>
+      <div class="lbl">New claims / month</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">$814K</div>
+      <div class="lbl">Monthly inflow</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3: The Problem -->
+<div class="slide" id="s3">
+  <div class="brand">AgentCollect<span class="dot"></span></div>
+  <div class="tag">The Gap</div>
+  <h2>67% of your patients<br>have no email on file.</h2>
+  <p class="subtitle">Your team can only reach a third of the pool. The rest goes untouched.</p>
+  <table style="margin-top:40px;max-width:800px">
+    <tr><th>Product</th><th>Accounts</th><th>Have Email</th><th>Coverage</th></tr>
+    <tr><td>POX</td><td>18,837</td><td>3,077</td><td class="red">16%</td></tr>
+    <tr><td>HST</td><td>21,292</td><td>8,691</td><td style="color:#FBBF24;font-weight:700">41%</td></tr>
+    <tr><td>EEG</td><td>670</td><td>569</td><td class="green">85%</td></tr>
+    <tr><td>MCT</td><td>1,789</td><td>1,576</td><td class="green">88%</td></tr>
+    <tr class="total"><td>Total</td><td>42,588</td><td>13,913</td><td class="red">33%</td></tr>
+  </table>
+  <div class="insight">
+    <p>Our enrichment pipeline finds valid emails for <strong>60-70% of missing contacts within 48 hours</strong>. That doubles your contactable pool from Day 1.</p>
+  </div>
+</div>
+
+<!-- SLIDE 4: Current Recovery -->
+<div class="slide" id="s4">
+  <div class="brand">AgentCollect<span class="dot"></span></div>
+  <div class="tag">Current Performance</div>
+  <h2>Your team recovers 8%.</h2>
+  <p class="subtitle">$244K collected on $3M worked in March. The team is improving, but the ceiling is structural.</p>
+  <table style="margin-top:40px;max-width:900px">
+    <tr><th>Month</th><th>FTEs</th><th>Collected</th><th>Per FTE</th><th>Recovery Rate</th></tr>
+    <tr><td>Sep '25</td><td>8</td><td class="money">$92,253</td><td class="money">$11,532</td><td>~5%</td></tr>
+    <tr><td>Oct '25</td><td>16</td><td class="money">$183,267</td><td class="money">$11,454</td><td>~6%</td></tr>
+    <tr><td>Jan '26</td><td>7</td><td class="money">$155,702</td><td class="money">$22,243</td><td>~7%</td></tr>
+    <tr><td>Feb '26</td><td>10</td><td class="money">$202,187</td><td class="money">$20,219</td><td>7%</td></tr>
+    <tr class="total"><td>Mar '26</td><td>10</td><td class="money">$243,986</td><td class="money">$24,399</td><td>8%</td></tr>
+  </table>
+  <div class="insight">
+    <p>Revenue per FTE tripled since September. Your team is good. But <strong>phone-only, business-hours-only, 33% email coverage</strong> creates a hard ceiling that more headcount won't break.</p>
+  </div>
+</div>
+
+<!-- SLIDE 5: Before / After -->
+<div class="slide" id="s5">
+  <div class="brand">AgentCollect<span class="dot"></span></div>
+  <div class="tag">The Projection</div>
+  <h2>What changes with AgentCollect.</h2>
+  <div class="comparison">
+    <div class="comp-box comp-before">
+      <h3>Today</h3>
+      <div class="comp-num">8%</div>
+      <div class="comp-detail">
+        $244K/mo collected<br>
+        33% contactable<br>
+        Phone only, business hours<br>
+        10 FTEs at $750/head
+      </div>
+    </div>
+    <div class="comp-arrow">&#8594;</div>
+    <div class="comp-box comp-after">
+      <h3>With AgentCollect</h3>
+      <div class="comp-num">20%+</div>
+      <div class="comp-detail">
+        $600-750K/mo projected<br>
+        70%+ contactable (enrichment)<br>
+        Email + SMS + Voice, 24/7<br>
+        AI agent, zero headcount
+      </div>
+    </div>
+  </div>
+  <div class="insight">
+    <p><strong>$350-500K/mo in additional recovery</strong> that's currently going uncollected. Your existing team keeps working. AgentCollect runs in parallel with zero disruption.</p>
+  </div>
+</div>
+
+<!-- SLIDE 6: Aging Strategy -->
+<div class="slide" id="s6">
+  <div class="brand">AgentCollect<span class="dot"></span></div>
+  <div class="tag">Strategy</div>
+  <h2>Start where the money is.</h2>
+  <p class="subtitle">$2.4M in the 0-60 day buckets alone. Highest recovery probability, fastest results.</p>
+  <table style="margin-top:40px;max-width:800px">
+    <tr><th>Aging Bucket</th><th>Accounts</th><th>Patient AR</th><th>Recovery Potential</th></tr>
+    <tr><td>0-30 days</td><td>7,158</td><td class="money">$1,352,313</td><td class="green">Highest</td></tr>
+    <tr><td>31-60 days</td><td>5,001</td><td class="money">$1,071,713</td><td class="green">Strong</td></tr>
+    <tr><td>61-90 days</td><td>5,003</td><td class="money">$795,217</td><td style="color:#FBBF24;font-weight:600">Moderate</td></tr>
+    <tr><td>91-120 days</td><td>6,394</td><td class="money">$733,436</td><td style="color:#FBBF24;font-weight:600">Multi-touch</td></tr>
+    <tr><td>120+ days</td><td>9,332</td><td class="money">$930,069</td><td class="red">Deep recovery</td></tr>
+    <tr class="total"><td>Total</td><td>32,888</td><td class="money">$4,882,748</td><td></td></tr>
+  </table>
+</div>
+
+<!-- SLIDE 7: How It Works -->
+<div class="slide" id="s7">
+  <div class="brand">AgentCollect<span class="dot"></span></div>
+  <div class="tag">How It Works</div>
+  <h2>White-label. Multi-channel.<br>Fully managed.</h2>
+  <div class="stat-row" style="margin-top:40px">
+    <div class="stat-item">
+      <div class="num" style="font-size:36px">01</div>
+      <div class="lbl" style="font-size:15px;opacity:0.8;margin-top:12px;text-transform:none;letter-spacing:0">
+        <strong>Your brand, your voice.</strong><br>
+        The agent calls and emails patients as "Healthy Connections" or whatever clinic brand you choose. Patients never see AgentCollect.
+      </div>
+    </div>
+    <div class="stat-item">
+      <div class="num" style="font-size:36px">02</div>
+      <div class="lbl" style="font-size:15px;opacity:0.8;margin-top:12px;text-transform:none;letter-spacing:0">
+        <strong>Email + SMS + Voice.</strong><br>
+        Multi-channel sequences customized per aging bucket. Fresh accounts get a gentle email. Older accounts get a call. Patients pay via a branded portal.
+      </div>
+    </div>
+    <div class="stat-item">
+      <div class="num" style="font-size:36px">03</div>
+      <div class="lbl" style="font-size:15px;opacity:0.8;margin-top:12px;text-transform:none;letter-spacing:0">
+        <strong>SFTP in, results out.</strong><br>
+        Daily file sync. Same format your team already exports. We ingest, enrich contacts, run campaigns, report back. Dashboard in real time.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8: Pricing -->
+<div class="slide" id="s8">
+  <div class="brand">AgentCollect<span class="dot"></span></div>
+  <div class="tag">Pricing</div>
+  <h2>Less than the cost of one FTE.</h2>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <h3 style="opacity:0.5;font-size:14px">Platform</h3>
+      <div class="price">$5K<span style="font-size:18px;opacity:0.5">/mo</span></div>
+      <div class="price-label">Per clinic brand</div>
+      <div class="price-desc">White-label agent, patient portal, contact enrichment, reporting dashboard.</div>
+    </div>
+    <div class="price-card featured">
+      <h3 style="opacity:0.5;font-size:14px">Success Fee</h3>
+      <div class="price">12%</div>
+      <div class="price-label">On collected amounts</div>
+      <div class="price-desc">You only pay when patients pay. Fully aligned incentives. Zero risk.</div>
+    </div>
+    <div class="price-card">
+      <h3 style="opacity:0.5;font-size:14px">Setup</h3>
+      <div class="price" style="color:#34D399">$0</div>
+      <div class="price-label">Waived for launch</div>
+      <div class="price-desc">SFTP integration, agent training, brand configuration. All included.</div>
+    </div>
+  </div>
+  <div class="insight">
+    <p>Your current team: <strong>$7,500/mo for 10 FTEs recovering 8%</strong>. Add AgentCollect at $5K/mo. Total $12,500/mo for 3x the recovery. Keep your team. We run in parallel.</p>
+  </div>
+</div>
+
+<!-- SLIDE 9: Rollout Plan -->
+<div class="slide" id="s9">
+  <div class="brand">AgentCollect<span class="dot"></span></div>
+  <div class="tag">Rollout</div>
+  <h2>Three phases. First results in 30 days.</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <h4>Phase 1: EEG</h4>
+      <p>670 accounts, 85% email coverage. Smallest product line, fastest proof. 30-day trial.</p>
+    </div>
+    <div class="timeline-item">
+      <h4>Phase 2: HST</h4>
+      <p>21,292 accounts. The big one. Enrichment takes coverage from 41% to 75%+. Month 2.</p>
+    </div>
+    <div class="timeline-item">
+      <h4>Phase 3: Full Rollout</h4>
+      <p>All 4 product lines. 42,588 accounts. Proven results, projected annual recovery.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 10: Reference -->
+<div class="slide" id="s10">
+  <div class="brand">AgentCollect<span class="dot"></span></div>
+  <div class="tag">Proof</div>
+  <h2>Who else runs on AgentCollect.</h2>
+  <table style="margin-top:40px;max-width:800px">
+    <tr><th>Client</th><th>Result</th><th>Timeline</th></tr>
+    <tr><td><strong>Microsoft</strong></td><td class="green">$512K recovered, 3.2x previous rate</td><td>2.5 months</td></tr>
+    <tr><td><strong>Amazon</strong></td><td class="green">White-label voice agent deployed</td><td>Live</td></tr>
+    <tr><td><strong>Dell</strong></td><td class="green">$640K in sequences reactivated</td><td>Rolling out</td></tr>
+    <tr><td><strong>FedEx</strong></td><td class="green">Onboarding complete</td><td>Launching</td></tr>
+  </table>
+  <div class="insight" style="margin-top:32px">
+    <p>CGM would be our <strong>flagship healthcare deployment</strong>. Same SFTP integration proven with Microsoft. Same white-label architecture built for Amazon.</p>
+  </div>
+</div>
+
+<!-- SLIDE 11: CTA -->
+<div class="slide cta-section" id="s11" style="text-align:center">
+  <div class="brand">AgentCollect<span class="dot"></span></div>
+  <div class="tag">Next Step</div>
+  <h1 style="max-width:700px;margin:0 auto 24px">Start with EEG.<br>670 accounts.<br>30 days. Zero risk.</h1>
+  <p class="subtitle" style="margin:0 auto;text-align:center">Your team keeps working. We run in parallel. First results within the month.</p>
+  <div style="margin-top:48px">
+    <div style="font-size:15px;opacity:0.5;margin-bottom:24px">NEXT MILESTONES</div>
+    <div style="display:flex;gap:48px;justify-content:center;flex-wrap:wrap">
+      <div>
+        <div style="font-family:'Plus Jakarta Sans';font-weight:800;font-size:20px;color:#818CF8">Today</div>
+        <div style="font-size:14px;opacity:0.6;margin-top:4px">Agree on EEG trial scope</div>
+      </div>
+      <div>
+        <div style="font-family:'Plus Jakarta Sans';font-weight:800;font-size:20px;color:#818CF8">This Week</div>
+        <div style="font-size:14px;opacity:0.6;margin-top:4px">SFTP Phase 1 live (B2B sync)</div>
+      </div>
+      <div>
+        <div style="font-family:'Plus Jakarta Sans';font-weight:800;font-size:20px;color:#818CF8">April 20</div>
+        <div style="font-size:14px;opacity:0.6;margin-top:4px">Advisor interview with Benedikt</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">
+  AgentCollect | The end of manual collection. | Confidential
+</div>
+
+<!-- Smooth scroll -->
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+
+</body>
+</html>

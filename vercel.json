@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/cgm",
+      "destination": "/cgm-briefing.html"
+    },
+    {
+      "source": "/cgm-internal",
+      "destination": "/cgm-internal.html"
+    },
+    {
       "source": "/uber-freight",
       "destination": "/audit-uber-freight.html"
     },

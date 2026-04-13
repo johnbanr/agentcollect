@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CGM Internal Briefing | JB Only</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: #FAFBFF; color: #0B1B3D; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 40px 24px; }
+
+  .header { text-align: center; margin-bottom: 48px; }
+  .header .tag { display: inline-block; background: #DC2626; color: white; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 16px; border-radius: 100px; margin-bottom: 16px; }
+  .header h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 32px; color: #0B1B3D; margin-bottom: 8px; }
+  .header .subtitle { font-size: 16px; color: #64748B; }
+
+  .section { margin-bottom: 40px; }
+  .section-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 18px; color: #4F46E5; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #E0E7FF; }
+
+  table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 14px; }
+  th { background: #0B1B3D; color: white; padding: 10px 14px; text-align: left; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  td { padding: 10px 14px; border-bottom: 1px solid #E2E8F0; }
+  tr:nth-child(even) td { background: #F8FAFC; }
+  .highlight { background: #FEF3C7 !important; font-weight: 700; }
+  .money { font-variant-numeric: tabular-nums; font-weight: 600; }
+  .red { color: #DC2626; font-weight: 700; }
+  .green { color: #059669; font-weight: 700; }
+
+  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+  .stat-card { background: white; border: 1px solid #E2E8F0; border-radius: 12px; padding: 20px; text-align: center; }
+  .stat-card .number { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 28px; color: #4F46E5; }
+  .stat-card .label { font-size: 12px; color: #64748B; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 24px 0; }
+  .comparison .box { border-radius: 12px; padding: 24px; }
+  .comparison .before { background: #FEE2E2; border: 2px solid #FECACA; }
+  .comparison .after { background: #D1FAE5; border: 2px solid #A7F3D0; }
+  .comparison .box-title { font-weight: 700; font-size: 14px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  .comparison .before .box-title { color: #DC2626; }
+  .comparison .after .box-title { color: #059669; }
+  .comparison .box-stat { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 36px; }
+  .comparison .before .box-stat { color: #991B1B; }
+  .comparison .after .box-stat { color: #065F46; }
+  .comparison .box-detail { font-size: 13px; color: #64748B; margin-top: 8px; }
+
+  .talking-point { background: white; border-left: 4px solid #4F46E5; padding: 16px 20px; margin-bottom: 12px; border-radius: 0 8px 8px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+  .talking-point .label { font-size: 11px; font-weight: 700; color: #4F46E5; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .talking-point p { font-size: 14px; color: #334155; }
+  .talking-point strong { color: #0B1B3D; }
+
+  .warning { background: #FEF3C7; border-left: 4px solid #F59E0B; padding: 16px 20px; margin-bottom: 12px; border-radius: 0 8px 8px 0; }
+  .warning .label { font-size: 11px; font-weight: 700; color: #D97706; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .warning p { font-size: 14px; color: #92400E; }
+
+  .pricing-table { background: white; border-radius: 12px; border: 2px solid #4F46E5; overflow: hidden; }
+  .pricing-table th { background: #4F46E5; }
+
+  .cta-box { background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%); color: white; border-radius: 16px; padding: 32px; text-align: center; margin-top: 40px; }
+  .cta-box h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 22px; margin-bottom: 8px; }
+  .cta-box p { font-size: 14px; opacity: 0.9; }
+
+  .footnote { font-size: 12px; color: #94A3B8; text-align: center; margin-top: 32px; }
+
+  @media (max-width: 640px) {
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .comparison { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="tag">JB Only - Do Not Share</div>
+  <h1>CGM Patient AR - Internal Briefing</h1>
+  <div class="subtitle">Call with Mike Liter (CRO) &amp; Andrew Tunnell | Mon April 13, 10:45 AM PT</div>
+</div>
+
+<!-- Key Stats -->
+<div class="section">
+  <div class="section-title">Their Numbers (from Mike, today 6:10 AM)</div>
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="number">$4.9M</div>
+      <div class="label">Total Patient AR</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">32,888</div>
+      <div class="label">Open Accounts</div>
+    </div>
+    <div class="stat-card">
+      <div class="number" style="color: #DC2626;">7-8%</div>
+      <div class="label">Current Recovery</div>
+    </div>
+    <div class="stat-card">
+      <div class="number" style="color: #DC2626;">33%</div>
+      <div class="label">Have Email</div>
+    </div>
+  </div>
+</div>
+
+<!-- Monthly Inflow -->
+<div class="section">
+  <div class="section-title">Monthly Inflow (Mike's Data)</div>
+  <table>
+    <tr><th>Month</th><th>Claims</th><th>$ Value</th><th>Avg Invoice</th></tr>
+    <tr><td>Oct '25</td><td>3,781</td><td class="money">$313,340</td><td class="money">$83</td></tr>
+    <tr><td>Nov '25</td><td>3,914</td><td class="money">$431,502</td><td class="money">$110</td></tr>
+    <tr><td>Dec '25</td><td>5,584</td><td class="money">$573,469</td><td class="money">$103</td></tr>
+    <tr><td>Jan '26</td><td>6,858</td><td class="money">$1,004,784</td><td class="money">$147</td></tr>
+    <tr><td>Feb '26</td><td>3,355</td><td class="money">$705,614</td><td class="money">$210</td></tr>
+    <tr class="highlight"><td>Mar '26</td><td>9,396</td><td class="money">$1,854,038</td><td class="money">$197</td></tr>
+    <tr style="font-weight:700;background:#E0E7FF"><td>Average</td><td>5,481</td><td class="money">$813,791</td><td class="money">$148</td></tr>
+  </table>
+</div>
+
+<!-- Email Coverage Gap -->
+<div class="section">
+  <div class="section-title">Email Coverage Gap (Our Enrichment Opportunity)</div>
+  <table>
+    <tr><th>Product</th><th>Accounts</th><th>Have Email</th><th>Coverage</th><th>Gap</th></tr>
+    <tr><td>POX</td><td>18,837</td><td>3,077</td><td class="red">16%</td><td class="red">15,760 unreachable</td></tr>
+    <tr><td>HST</td><td>21,292</td><td>8,691</td><td style="color:#D97706;font-weight:700">41%</td><td style="color:#D97706;font-weight:700">12,601 unreachable</td></tr>
+    <tr><td>EEG</td><td>670</td><td>569</td><td class="green">85%</td><td>101</td></tr>
+    <tr><td>MCT</td><td>1,789</td><td>1,576</td><td class="green">88%</td><td>213</td></tr>
+    <tr style="font-weight:700;background:#FEE2E2"><td>Total</td><td>42,588</td><td>13,913</td><td class="red">33%</td><td class="red">28,675 unreachable</td></tr>
+  </table>
+  <div class="talking-point">
+    <div class="label">What to say</div>
+    <p>"67% of your patients have NO email. Your team can only call them. <strong>We find emails for 60-70% of those within 48 hours.</strong> That alone doubles your contactable pool from Day 1."</p>
+  </div>
+</div>
+
+<!-- Their Manual Team -->
+<div class="section">
+  <div class="section-title">Their Manual Team (India, 10 FTEs at $750/head)</div>
+  <table>
+    <tr><th>Month</th><th>FTEs</th><th>Collected</th><th>Per FTE</th><th>Revenue/FTE</th><th>Cost/Head</th></tr>
+    <tr><td>Sep '25</td><td>8</td><td class="money">$92,253</td><td class="money">$11,532</td><td class="money">$686</td><td class="money">$750</td></tr>
+    <tr><td>Oct '25</td><td>16</td><td class="money">$183,267</td><td class="money">$11,454</td><td class="money">$682</td><td class="money">$750</td></tr>
+    <tr><td>Nov '25</td><td>10</td><td class="money">$129,124</td><td class="money">$12,912</td><td class="money">$768</td><td class="money">$750</td></tr>
+    <tr><td>Dec '25</td><td>10</td><td class="money">$143,208</td><td class="money">$14,321</td><td class="money">$852</td><td class="money">$750</td></tr>
+    <tr><td>Jan '26</td><td>7</td><td class="money">$155,702</td><td class="money">$22,243</td><td class="money">$1,323</td><td class="money">$750</td></tr>
+    <tr><td>Feb '26</td><td>10</td><td class="money">$202,187</td><td class="money">$20,219</td><td class="money">$1,203</td><td class="money">$750</td></tr>
+    <tr class="highlight"><td>Mar '26</td><td>10</td><td class="money">$243,986</td><td class="money">$24,399</td><td class="money">$1,452</td><td class="money">$750</td></tr>
+  </table>
+  <div class="talking-point">
+    <div class="label">What to say</div>
+    <p>"Your team is improving, $686 to $1,452 revenue per FTE. But at $750/head they're barely breaking even. <strong>The ceiling is structural: phone-only, business-hours-only, 33% coverage.</strong> More headcount won't fix that."</p>
+  </div>
+  <div class="warning">
+    <div class="label">Do NOT say</div>
+    <p>"Replace your India team." Always frame as: "We run in parallel. Your team keeps working. Zero disruption." They'll naturally reduce headcount in 6 months when they see the results.</p>
+  </div>
+</div>
+
+<!-- Before / After -->
+<div class="section">
+  <div class="section-title">Before / After Projection</div>
+  <div class="comparison">
+    <div class="box before">
+      <div class="box-title">Today (10 India FTEs)</div>
+      <div class="box-stat">8%</div>
+      <div class="box-detail">$244K/mo on $3M worked</div>
+      <div class="box-detail">33% contactable (email only)</div>
+      <div class="box-detail">Phone only, business hours India</div>
+      <div class="box-detail" style="margin-top:12px;font-weight:600;color:#991B1B">$7,500/mo team cost = 3% cost ratio</div>
+    </div>
+    <div class="box after">
+      <div class="box-title">With AgentCollect</div>
+      <div class="box-stat">20-25%</div>
+      <div class="box-detail">$600-750K/mo projected (3x)</div>
+      <div class="box-detail">70%+ contactable (enrichment)</div>
+      <div class="box-detail">Email + SMS + Voice, 24/7</div>
+      <div class="box-detail" style="margin-top:12px;font-weight:600;color:#065F46">$5K/mo platform + 10% success fee</div>
+    </div>
+  </div>
+  <div class="talking-point">
+    <div class="label">The Math (for JB only)</div>
+    <p>Delta = <strong>$350-500K/mo in additional recovery</strong>. At 10% success fee = $35-50K/mo + $5K platform = <strong>$40-55K/mo for us</strong>. CGM nets $300-450K/mo they're currently losing. ROI: 30-50x their platform cost. At full rollout (4 products): <strong>$480-660K/year revenue for us.</strong></p>
+  </div>
+</div>
+
+<!-- Aging Buckets -->
+<div class="section">
+  <div class="section-title">Patient AR Aging ($4.88M total)</div>
+  <table>
+    <tr><th>Bucket</th><th>Count</th><th>Patient AR</th><th>% of Total</th><th>Our Strategy</th></tr>
+    <tr><td>0-30 days</td><td>7,158</td><td class="money">$1,352,313</td><td>28%</td><td class="green">Start here - highest recovery</td></tr>
+    <tr><td>31-60 days</td><td>5,001</td><td class="money">$1,071,713</td><td>22%</td><td class="green">Strong recovery</td></tr>
+    <tr><td>61-90 days</td><td>5,003</td><td class="money">$795,217</td><td>16%</td><td style="color:#D97706;font-weight:600">Moderate - multi-touch</td></tr>
+    <tr><td>91-120 days</td><td>6,394</td><td class="money">$733,436</td><td>15%</td><td style="color:#D97706;font-weight:600">Needs escalation path</td></tr>
+    <tr><td>120+ days</td><td>9,332</td><td class="money">$930,069</td><td>19%</td><td class="red">Hard but $930K pool</td></tr>
+    <tr style="font-weight:700;background:#E0E7FF"><td>Total</td><td>32,888</td><td class="money">$4,882,748</td><td>100%</td><td></td></tr>
+  </table>
+</div>
+
+<!-- Pricing Strategy -->
+<div class="section">
+  <div class="section-title">Pricing Strategy (What to Propose)</div>
+  <div class="pricing-table">
+    <table style="margin:0">
+      <tr><th>Component</th><th>Price</th><th>Rationale (JB only)</th></tr>
+      <tr><td><strong>Platform Fee</strong></td><td class="money" style="font-size:16px;color:#4F46E5">$5,000/mo per product line</td><td>Starts at $5K (EEG trial), scales to $20K (all 4 products). Less than 7 India FTEs.</td></tr>
+      <tr><td><strong>Success Fee</strong></td><td class="money" style="font-size:16px;color:#4F46E5">10% on collected</td><td>Their India cost ratio = 3%. 10% feels high but on 3x volume, their NET is way better. 12% = too aggressive for patient AR ($148 avg).</td></tr>
+      <tr><td><strong>Setup</strong></td><td class="money" style="font-size:16px;color:#059669">$0 (waived)</td><td>Launch partner positioning. Real cost to us is minimal (SFTP already built).</td></tr>
+      <tr><td><strong>Enrichment</strong></td><td class="money" style="font-size:16px;color:#059669">Included</td><td>Secret weapon. Don't charge separately - it's what makes us 3x better.</td></tr>
+    </table>
+  </div>
+  <div class="warning" style="margin-top:16px">
+    <div class="label">If Mike pushes back on 10%</div>
+    <p>Fallback: "8% success fee + $7,500/mo platform (= same as your current team cost)." He keeps the same budget line, we deliver 3x the output. Frame as budget-neutral.</p>
+  </div>
+  <div class="talking-point">
+    <div class="label">Revenue projection for us</div>
+    <p><strong>Trial (month 1):</strong> $5K platform + ~$6K success = $11K/mo<br>
+    <strong>Phase 2 - HST (month 2):</strong> $10K platform + ~$30K success = $40K/mo<br>
+    <strong>Full rollout (month 3+):</strong> $20K platform + ~$60K success = $80K/mo = <strong>$960K/year</strong></p>
+  </div>
+</div>
+
+<!-- Trial Recommendation -->
+<div class="section">
+  <div class="section-title">Trial Recommendation</div>
+  <div class="talking-point">
+    <div class="label">Phase 1: EEG (30 days)</div>
+    <p><strong>670 accounts, 85% email coverage, $148 avg invoice.</strong> Smallest product line, lowest risk, fastest proof. If we beat 8% recovery (we will), we roll out to HST.</p>
+  </div>
+  <div class="talking-point">
+    <div class="label">Phase 2: HST (month 2)</div>
+    <p><strong>21,292 accounts, 41% email coverage.</strong> This is the money. With enrichment we take coverage from 41% to 75%+. At 20% recovery on $814K/mo avg inflow = $163K/mo collected.</p>
+  </div>
+  <div class="talking-point">
+    <div class="label">Phase 3: POX + MCT (month 3)</div>
+    <p><strong>Full rollout. 42,588 accounts.</strong> By now we have proven results and can project annual recovery for Benedikt.</p>
+  </div>
+</div>
+
+<!-- Reference Deployments -->
+<div class="section">
+  <div class="section-title">Reference Deployments (What to Name-Drop)</div>
+  <table>
+    <tr><th>Client</th><th>Recovery</th><th>Timeline</th><th>What to Say</th></tr>
+    <tr><td><strong>Microsoft</strong></td><td class="green">$512K recovered</td><td>2.5 months</td><td>"Same SFTP setup we're proposing for you. 3.2x their previous rate."</td></tr>
+    <tr><td><strong>Amazon</strong></td><td class="green">$2M+ setup</td><td>Live</td><td>"White-label voice agent as Amazon Business. Same architecture."</td></tr>
+    <tr><td><strong>Dell</strong></td><td class="green">$640K reactivated</td><td>Rolling out</td><td>"23 sequences, enterprise SFTP."</td></tr>
+    <tr><td><strong>FedEx</strong></td><td class="green">Onboarding</td><td>Launching</td><td>"Just signed. CGM would be our healthcare flagship."</td></tr>
+  </table>
+</div>
+
+<!-- SFTP Status -->
+<div class="section">
+  <div class="section-title">B2B SFTP (Separate Track - Don't Mix with Patient AR)</div>
+  <div class="talking-point">
+    <div class="label">Phase 1 - Ready NOW</div>
+    <p><strong>We send CGM a daily CSV with all B2B recovery progress.</strong> Their SAP updates automatically. Zero risk. Need: IT contact name.</p>
+  </div>
+  <div class="talking-point">
+    <div class="label">Phase 2 - Need from them</div>
+    <p><strong>Nightly SAP export to our SFTP.</strong> Same format Lacy runs manually. Need: exclusion logic fields.</p>
+  </div>
+  <div class="warning">
+    <div class="label">Strategy note</div>
+    <p>B2B SFTP is the EASY win. Push this to close TODAY. Patient AR trial is the bigger deal but takes longer to set up. Get SFTP live this week, Patient AR trial starts next week.</p>
+  </div>
+</div>
+
+<!-- People -->
+<div class="section">
+  <div class="section-title">People on the Call</div>
+  <table>
+    <tr><th>Name</th><th>Title</th><th>Role</th><th>Notes</th></tr>
+    <tr><td><strong>Mike Liter</strong></td><td>Chief Revenue Cycle Officer</td><td>Decision maker for Patient AR</td><td>In India, may join late. Mobile: 317-771-2513. Thinks in FTEs and cost per head.</td></tr>
+    <tr><td><strong>Andrew Tunnell</strong></td><td>Collections team lead</td><td>Manages India FTEs</td><td>Will be on for sure. His team = 10 India FTEs. He's the one who'll feel "threatened."</td></tr>
+    <tr><td><strong>Benedikt Brueckle</strong></td><td>CEO, CGM US</td><td>Final sign-off</td><td>NOT on today's call. Advisor interview April 20. Phoenix AZ.</td></tr>
+    <tr><td><strong>Connor Crum</strong></td><td>Accounting Manager, Lab</td><td>Our existing B2B contact</td><td>NOT on this call. Manages the accounts we already work (Lab + eMDs portals).</td></tr>
+  </table>
+</div>
+
+<!-- Call Script -->
+<div class="cta-box">
+  <h3>Call Script (10:45 AM PT)</h3>
+  <p style="margin-top:16px;text-align:left;max-width:650px;margin-left:auto;margin-right:auto;line-height:1.8">
+    1. "Mike, Andrew, thanks for the data. Let me share what jumped out."<br>
+    2. <strong>The 67% gap:</strong> "67% of your patients have no email. That's 28,675 accounts your team literally can't reach digitally."<br>
+    3. <strong>The enrichment hook:</strong> "We find emails for 60-70% of those within 48 hours."<br>
+    4. <strong>The projection:</strong> "Your team does 8% on $3M. With multi-channel + enrichment, we project 20%+. That's $600K/mo vs $244K."<br>
+    5. <strong>The pricing:</strong> "$5K/mo platform + 10% on collected. Less than the cost of one FTE."<br>
+    6. <strong>The ask:</strong> "Start with EEG. 670 accounts, 30 days, zero setup. Your team keeps working. We run in parallel."<br>
+    7. <strong>The SFTP close:</strong> "Separately, we can start sending you B2B updates tonight. Who's the IT contact?"<br>
+    8. <strong>Next step:</strong> "Benedikt advisor interview April 20."
+  </p>
+</div>
+
+<div class="footnote">
+  INTERNAL - JB ONLY - Do not share or screenshare<br>
+  Updated April 13, 2026
+</div>
+
+</body>
+</html>
