@@ -370,6 +370,48 @@ z-index:1}
   .tip::after,.tip::before{display:none}
   .tip{border-bottom:none;cursor:default}
 }
+
+/* ===== MYSTERY SHOP SECTION ===== */
+.mystery-section{background:linear-gradient(135deg,#0B1B3D 0%,#0f2247 50%,#132a52 100%);padding:80px 32px;position:relative;overflow:hidden}
+.mystery-section::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(ellipse 800px 500px at 20% 80%,rgba(220,38,38,.06),transparent),
+  radial-gradient(ellipse 600px 400px at 80% 20%,rgba(79,70,229,.08),transparent)}
+.mystery-section *{position:relative;z-index:1}
+.mystery-inner{max-width:1120px;margin:0 auto}
+.mystery-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--amber);margin-bottom:12px}
+.mystery-title{font-family:var(--sans);font-size:clamp(24px,3.5vw,36px);font-weight:900;color:#fff;letter-spacing:-.03em;line-height:1.12;margin-bottom:8px}
+.mystery-subtitle{font-size:16px;color:rgba(255,255,255,.5);max-width:650px;line-height:1.6;margin-bottom:40px}
+.mystery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:40px}
+.mystery-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:28px 24px;transition:transform .2s,background .2s}
+.mystery-card:hover{transform:translateY(-3px);background:rgba(255,255,255,.06)}
+.mystery-card-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.mystery-card-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mystery-card-icon.icon-ivr{background:rgba(220,38,38,.15)}
+.mystery-card-icon.icon-closed{background:rgba(245,158,11,.15)}
+.mystery-card-icon.icon-dead{background:rgba(148,163,184,.2)}
+.mystery-card-line{font-size:12px;font-weight:600;color:rgba(255,255,255,.5);line-height:1.3}
+.mystery-card-line strong{color:rgba(255,255,255,.8);font-weight:700}
+.mystery-card-duration{font-family:var(--sans);font-size:32px;font-weight:900;color:#fff;letter-spacing:-.02em;margin-bottom:4px}
+.mystery-card-duration-label{font-size:11px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-bottom:16px}
+.mystery-card-quote{font-size:13px;color:rgba(255,255,255,.55);font-style:italic;line-height:1.6;margin-bottom:16px;padding-left:12px;border-left:2px solid rgba(255,255,255,.12)}
+.mystery-card-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:.04em;background:rgba(220,38,38,.12);color:#f87171;border:1px solid rgba(220,38,38,.2)}
+.mystery-compare{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:28px}
+.mystery-compare-card{border-radius:14px;padding:24px 28px}
+.mystery-compare-card.compare-dell{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}
+.mystery-compare-card.compare-ac{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.15)}
+.mystery-compare-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.mystery-compare-card.compare-dell .mystery-compare-label{color:rgba(255,255,255,.35)}
+.mystery-compare-card.compare-ac .mystery-compare-label{color:var(--green)}
+.mystery-compare-text{font-size:15px;line-height:1.6;font-weight:600}
+.mystery-compare-card.compare-dell .mystery-compare-text{color:rgba(255,255,255,.6)}
+.mystery-compare-card.compare-ac .mystery-compare-text{color:#fff}
+.mystery-compare-card.compare-ac .mystery-compare-text strong{color:var(--green)}
+.mystery-note{text-align:center;font-size:12px;color:rgba(255,255,255,.3);font-style:italic}
+@media(max-width:900px){
+  .mystery-grid{grid-template-columns:1fr}
+  .mystery-compare{grid-template-columns:1fr}
+  .mystery-section{padding:56px 20px}
+}
 </style>
 </head>
 <body>
@@ -713,6 +755,85 @@ z-index:1}
     <div style="font-size:14px;color:var(--text);line-height:1.7">
       <strong style="color:#92400E">Weldaloy Products &mdash; $31K:</strong> 12 email opens since launch. Last open: March 6. Last phone call: November 2025. This account is reading every email we send but hasn't been called in 4 months. A single AI call with an invoice could close this.
     </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- MYSTERY SHOP: WHAT YOUR CUSTOMERS EXPERIENCE TODAY            -->
+<!-- ============================================================ -->
+<section class="mystery-section" id="mystery-shop">
+  <div class="mystery-inner">
+    <div class="mystery-label rv">Customer Experience Audit</div>
+    <h2 class="mystery-title rv rv-d1">What Your Customers Experience Today</h2>
+    <p class="mystery-subtitle rv rv-d2">We called Dell Financial Services on a Saturday evening. Here's what happened.</p>
+
+    <div class="mystery-grid">
+      <!-- Card 1: DFS Main Line -->
+      <div class="mystery-card rv rv-d1">
+        <div class="mystery-card-header">
+          <div class="mystery-card-icon icon-ivr">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 11.47 11.47 0 0 0 3.53.59 2 2 0 0 1 2 2v3.12a2 2 0 0 1-1.99 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3.09a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+          </div>
+          <div class="mystery-card-line"><strong>DFS Main Line</strong><br>1-800-283-2210</div>
+        </div>
+        <div class="mystery-card-duration">3:24</div>
+        <div class="mystery-card-duration-label">Total duration</div>
+        <div class="mystery-card-quote">"Please enter your 16-digit credit card number." IVR demanded a credit card number from a B2B customer. After two failed attempts: "Sorry. I'm having trouble." Transferred to hold, then disconnected.</div>
+        <div class="mystery-card-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          No Human Reached
+        </div>
+      </div>
+
+      <!-- Card 2: Enterprise Leases -->
+      <div class="mystery-card rv rv-d2">
+        <div class="mystery-card-header">
+          <div class="mystery-card-icon icon-closed">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="mystery-card-line"><strong>Enterprise Leases</strong><br>1-877-663-3355</div>
+        </div>
+        <div class="mystery-card-duration">0:30</div>
+        <div class="mystery-card-duration-label">Total duration</div>
+        <div class="mystery-card-quote">"Our customer service center is currently closed. Representatives are available Monday to Friday, 8 AM to 5 PM Central." No option to leave a message. No callback request. Hung up automatically.</div>
+        <div class="mystery-card-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          No Human Reached
+        </div>
+      </div>
+
+      <!-- Card 3: DFS Local Round Rock -->
+      <div class="mystery-card rv rv-d3">
+        <div class="mystery-card-header">
+          <div class="mystery-card-icon icon-dead">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 5.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg>
+          </div>
+          <div class="mystery-card-line"><strong>DFS Local (Round Rock)</strong><br>512-513-9022</div>
+        </div>
+        <div class="mystery-card-duration">0:00</div>
+        <div class="mystery-card-duration-label">Total duration</div>
+        <div class="mystery-card-quote">No answer. No ring. No voicemail. Dead silence. A customer with a billing question reaches nothing.</div>
+        <div class="mystery-card-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          No Human Reached
+        </div>
+      </div>
+    </div>
+
+    <!-- Comparison Row -->
+    <div class="mystery-compare rv rv-d3">
+      <div class="mystery-compare-card compare-dell">
+        <div class="mystery-compare-label">Dell DFS Today</div>
+        <div class="mystery-compare-text">3 lines called. 0 humans reached. Best case: 3 min 24 sec in an IVR loop that asks a B2B customer for a credit card number.</div>
+      </div>
+      <div class="mystery-compare-card compare-ac">
+        <div class="mystery-compare-label">With AgentCollect</div>
+        <div class="mystery-compare-text">Answers in <strong>3 seconds</strong>. 24/7. 28 languages. Every question answered. Every dispute resolved on the first call.</div>
+      </div>
+    </div>
+
+    <div class="mystery-note rv rv-d4">Business hours calls scheduled for Monday, April 14. Results will be added here.</div>
   </div>
 </section>
 
