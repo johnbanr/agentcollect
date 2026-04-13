@@ -3,22 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dell x AgentCollect — What the Pilot Revealed</title>
+<title>Dell x AgentCollect — 4 Things the Pilot Revealed</title>
 <meta name="robots" content="noindex, nofollow">
-<meta property="og:title" content="Dell x AgentCollect — What the Pilot Revealed">
-<meta property="og:description" content="3 batches. 650 accounts. $2.1M analyzed. Here's what Natalie's pilot uncovered.">
+<meta property="og:title" content="Dell x AgentCollect — 4 Things the Pilot Revealed">
+<meta property="og:description" content="650 accounts. $2.1M analyzed. Here's what we found — and how to fix it.">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
   --blue:#4F46E5;--blue-dark:#4338CA;--blue-light:#818CF8;
   --text:#0B1B3D;--muted:#475569;--muted-light:#94A3B8;--border:#E8ECF2;--bg:#FAFBFF;
   --green:#10B981;--green-dark:#059669;--green-light:#D1FAE5;
-  --amber:#F59E0B;--amber-light:#FEF3C7;
+  --amber:#F59E0B;--amber-dark:#D97706;--amber-light:#FEF3C7;
+  --red:#EF4444;--red-light:#FEE2E2;
   --purple:#8B5CF6;--purple-light:rgba(139,92,246,.08);
   --navy:#0B1B3D;--navy-mid:#0f2247;--navy-light:#132a52;
   --mono:'JetBrains Mono',monospace;
@@ -33,10 +34,18 @@ html{scroll-behavior:smooth;overflow-x:hidden}
 body{background:var(--bg);color:var(--text);font-family:var(--body);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-size:16px;line-height:1.6;overflow-x:hidden}
 ::selection{background:rgba(79,70,229,.12)}
 
-/* Reveal animation */
+/* Reveal animations */
 .rv{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
 .rv.v{opacity:1;transform:none}
 .rv-d1{transition-delay:.1s}.rv-d2{transition-delay:.2s}.rv-d3{transition-delay:.3s}.rv-d4{transition-delay:.4s}
+
+/* Slide animations for findings */
+.slide-left{opacity:0;transform:translateX(-40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.slide-right{opacity:0;transform:translateX(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.slide-left.v,.slide-right.v{opacity:1;transform:none}
+
+/* Counter animation */
+.counter-num{font-family:var(--mono);font-weight:700}
 
 /* ===== NAV ===== */
 .nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(250,251,255,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(0,0,0,.04);transition:box-shadow .3s}
@@ -50,9 +59,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);-webkit-font
 /* ===== HERO ===== */
 .hero{position:relative;overflow:visible;padding:140px 32px 80px;text-align:center}
 .hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,var(--navy) 0%,var(--navy-mid) 60%,var(--navy-light) 100%);z-index:0}
-.hero::after{content:'';position:absolute;inset:0;background:
-  radial-gradient(ellipse 600px 400px at 50% 30%, rgba(79,70,229,.06) 0%, transparent 70%);
-z-index:1}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 600px 400px at 50% 30%,rgba(79,70,229,.06) 0%,transparent 70%);z-index:1}
 .hero *{position:relative;z-index:2}
 
 .hero-partnership{display:inline-flex;align-items:center;gap:12px;margin-bottom:32px;padding:8px 20px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:100px}
@@ -62,71 +69,121 @@ z-index:1}
 .hero-partnership .ac-logo .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.5);margin-left:1px}
 
 .hero-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--green);margin-bottom:20px}
-.hero-title{font-family:var(--sans);font-size:clamp(28px,4vw,48px);font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1.12;margin-bottom:16px;max-width:700px;margin-left:auto;margin-right:auto}
-.hero-subtitle{font-size:18px;color:rgba(255,255,255,.55);max-width:620px;margin:0 auto 48px;line-height:1.6;font-weight:400}
-
-.hero-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;max-width:620px;margin:0 auto 32px;border-radius:16px;overflow:visible;background:rgba(255,255,255,.04)}
-.hero-metric{padding:28px 16px;background:rgba(255,255,255,.02);text-align:center;transition:background .3s}
-.hero-metric:hover{background:rgba(255,255,255,.05)}
-.hero-metric-num{font-family:var(--sans);font-size:clamp(24px,3vw,36px);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1}
-.hero-metric-label{font-size:13px;color:rgba(255,255,255,.45);margin-top:8px;font-weight:500;letter-spacing:.01em}
+.hero-title{font-family:var(--sans);font-size:clamp(32px,4.5vw,56px);font-weight:900;color:#fff;letter-spacing:-.03em;line-height:1.1;margin-bottom:16px;max-width:700px;margin-left:auto;margin-right:auto}
+.hero-subtitle{font-size:18px;color:rgba(255,255,255,.55);max-width:640px;margin:0 auto 20px;line-height:1.6;font-weight:400}
+.hero-proof{font-size:14px;color:rgba(255,255,255,.35);max-width:500px;margin:0 auto 48px;line-height:1.5}
+.hero-proof strong{color:rgba(255,255,255,.55)}
 
 .hero-conf-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:100px;font-size:11px;font-weight:600;color:rgba(255,255,255,.35);letter-spacing:.04em}
 
-/* ===== SECTIONS ===== */
-.section{padding:80px 32px;max-width:1120px;margin:0 auto;position:relative}
+/* ===== FINDING SECTIONS ===== */
+.finding{padding:100px 32px;position:relative;overflow:hidden}
+.finding-inner{max-width:1120px;margin:0 auto}
+
+/* Light finding */
+.finding-light{background:var(--bg)}
+.finding-light .finding-inner{position:relative;z-index:1}
+
+/* Dark finding */
+.finding-dark{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 50%,var(--navy-light) 100%)}
+.finding-dark::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 800px 500px at 20% 80%,rgba(79,70,229,.04),transparent),radial-gradient(ellipse 600px 400px at 80% 20%,rgba(79,70,229,.06),transparent)}
+.finding-dark *{position:relative;z-index:1}
+
+/* Finding header */
+.finding-num{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;margin-bottom:12px}
+.finding-light .finding-num{color:var(--blue)}
+.finding-dark .finding-num{color:var(--blue-light)}
+.finding-headline{font-family:var(--sans);font-size:clamp(24px,3vw,36px);font-weight:900;letter-spacing:-.03em;line-height:1.15;margin-bottom:48px}
+.finding-light .finding-headline{color:var(--text)}
+.finding-dark .finding-headline{color:#fff}
+
+/* 3-column grid: Problem | Proof | Solution */
+.finding-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;align-items:start}
+
+/* Problem column */
+.finding-problem{padding:32px;border-radius:20px;position:relative}
+.finding-light .finding-problem{background:rgba(239,68,68,.03);border:1px solid rgba(239,68,68,.1)}
+.finding-dark .finding-problem{background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.12)}
+.finding-problem-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:16px;display:flex;align-items:center;gap:6px}
+.finding-light .finding-problem-label{color:var(--red)}
+.finding-dark .finding-problem-label{color:var(--amber)}
+.finding-problem-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.finding-light .finding-problem-icon{background:rgba(239,68,68,.08)}
+.finding-dark .finding-problem-icon{background:rgba(245,158,11,.1)}
+.finding-problem-text{font-size:15px;line-height:1.7;font-weight:500}
+.finding-light .finding-problem-text{color:var(--text)}
+.finding-dark .finding-problem-text{color:rgba(255,255,255,.7)}
+.finding-problem-stat{font-family:var(--mono);font-size:13px;font-weight:600;margin-top:16px;padding:10px 14px;border-radius:10px}
+.finding-light .finding-problem-stat{background:rgba(239,68,68,.06);color:#991B1B}
+.finding-dark .finding-problem-stat{background:rgba(245,158,11,.08);color:var(--amber)}
+
+/* Proof column (center, BIG) */
+.finding-proof{text-align:center;padding:40px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:340px}
+.finding-proof-number{font-family:var(--mono);font-size:clamp(72px,10vw,128px);font-weight:700;line-height:1;letter-spacing:-.04em;margin-bottom:8px}
+.finding-light .finding-proof-number{color:var(--blue)}
+.finding-dark .finding-proof-number{color:var(--blue-light)}
+.finding-proof-suffix{font-family:var(--sans);font-size:clamp(36px,5vw,64px);font-weight:900}
+.finding-proof-label{font-family:var(--sans);font-size:18px;font-weight:800;margin-bottom:12px;line-height:1.3;max-width:280px}
+.finding-light .finding-proof-label{color:var(--text)}
+.finding-dark .finding-proof-label{color:#fff}
+.finding-proof-detail{font-size:14px;line-height:1.6;max-width:260px}
+.finding-light .finding-proof-detail{color:var(--muted)}
+.finding-dark .finding-proof-detail{color:rgba(255,255,255,.5)}
+
+/* Solution column */
+.finding-solution{padding:32px;border-radius:20px;position:relative}
+.finding-light .finding-solution{background:rgba(16,185,129,.03);border:1px solid rgba(16,185,129,.12)}
+.finding-dark .finding-solution{background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.12)}
+.finding-solution-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--green);margin-bottom:16px;display:flex;align-items:center;gap:6px}
+.finding-solution-icon{width:48px;height:48px;border-radius:14px;background:rgba(16,185,129,.1);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.finding-solution-title{font-family:var(--sans);font-size:17px;font-weight:800;margin-bottom:12px}
+.finding-light .finding-solution-title{color:var(--text)}
+.finding-dark .finding-solution-title{color:#fff}
+.finding-solution-text{font-size:15px;line-height:1.7;font-weight:500}
+.finding-light .finding-solution-text{color:var(--muted)}
+.finding-dark .finding-solution-text{color:rgba(255,255,255,.6)}
+.finding-solution-proof{font-size:13px;font-weight:600;margin-top:16px;padding:10px 14px;border-radius:10px;background:rgba(16,185,129,.08);color:var(--green-dark)}
+.finding-dark .finding-solution-proof{color:var(--green)}
+
+/* Mini cards for Finding 2 */
+.mini-cards{display:grid;grid-template-columns:1fr;gap:8px;margin-top:16px}
+.mini-card{padding:10px 14px;border-radius:10px;font-size:12px;font-weight:600;line-height:1.5}
+.finding-dark .mini-card{background:rgba(245,158,11,.06);color:rgba(255,255,255,.7);border:1px solid rgba(245,158,11,.1)}
+.mini-card strong{font-weight:700}
+.finding-dark .mini-card strong{color:var(--amber)}
+
+/* ===== COLLECTION INTELLIGENCE ===== */
+.ci-section{background:#f8fafc;padding:80px 32px}
+.ci-inner{max-width:1120px;margin:0 auto}
 .section-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--blue);margin-bottom:12px}
 .section-title{font-family:var(--sans);font-size:clamp(26px,3.5vw,40px);font-weight:900;letter-spacing:-.03em;line-height:1.12;margin-bottom:12px}
 .section-subtitle{font-size:17px;color:var(--muted);max-width:620px;line-height:1.6;margin-bottom:40px}
 .section-divider{width:80px;height:3px;background:linear-gradient(90deg,var(--blue),var(--green));border-radius:2px;margin-bottom:40px}
 
-/* ===== DARK SECTIONS ===== */
+.ci-chat{max-width:520px;margin:32px auto 0;background:#fff;border-radius:20px;box-shadow:var(--shadow-xl);border:1px solid rgba(0,0,0,.06);overflow:hidden}
+.ci-chat-header{padding:16px 20px;background:linear-gradient(135deg,var(--navy),#1a1a4e);display:flex;align-items:center;gap:10px}
+.ci-chat-header-dot{width:8px;height:8px;border-radius:50%;background:var(--green)}
+.ci-chat-header-text{font-size:13px;font-weight:700;color:rgba(255,255,255,.8);letter-spacing:.02em}
+.ci-chat-body{padding:20px}
+.ci-chat-msg{padding:12px 16px;border-radius:14px;font-size:13px;line-height:1.5;margin-bottom:10px;max-width:90%;animation:ciFadeIn .4s ease both}
+.ci-chat-msg:nth-child(1){animation-delay:.1s}
+.ci-chat-msg:nth-child(2){animation-delay:.3s}
+.ci-chat-msg:nth-child(3){animation-delay:.5s}
+.ci-chat-msg:nth-child(4){animation-delay:.7s}
+.ci-chat-msg.user-q{background:rgba(79,70,229,.08);color:var(--text);font-weight:600;margin-left:auto;text-align:right;border-bottom-right-radius:4px}
+.ci-chat-msg.ai-a{background:var(--bg);color:var(--muted);border:1px solid var(--border);border-bottom-left-radius:4px}
+.ci-chat-input{display:flex;align-items:center;gap:10px;padding:14px 20px;border-top:1px solid var(--border);background:#fafbff}
+.ci-chat-input-field{flex:1;background:transparent;border:none;outline:none;font-size:13px;color:var(--muted-light);font-family:var(--body)}
+.ci-chat-input-btn{width:32px;height:32px;border-radius:50%;background:var(--blue);border:none;display:flex;align-items:center;justify-content:center;cursor:default;opacity:.5}
+.ci-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;background:rgba(79,70,229,.06);border:1px solid rgba(79,70,229,.12);border-radius:100px;font-size:11px;font-weight:700;color:var(--blue);letter-spacing:.04em;margin-top:20px}
+@keyframes ciFadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== AGENT DELL SECTION (dark) ===== */
 .dark-section{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 50%,var(--navy-light) 100%);padding:80px 32px;position:relative;overflow:hidden}
-.dark-section::before{content:'';position:absolute;inset:0;background:
-  radial-gradient(ellipse 800px 500px at 20% 80%,rgba(79,70,229,.04),transparent),
-  radial-gradient(ellipse 600px 400px at 80% 20%,rgba(79,70,229,.06),transparent)}
+.dark-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 800px 500px at 20% 80%,rgba(79,70,229,.04),transparent),radial-gradient(ellipse 600px 400px at 80% 20%,rgba(79,70,229,.06),transparent)}
 .dark-section *{position:relative;z-index:1}
 .dark-inner{max-width:1120px;margin:0 auto}
 
-/* ===== DISCOVERY CARDS ===== */
-.disc-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px}
-.disc-card{background:#fff;border-radius:16px;padding:28px 24px;box-shadow:var(--shadow-lg);border:1px solid rgba(0,0,0,.04);position:relative;overflow:visible;transition:transform .2s,box-shadow .2s}
-.disc-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-xl)}
-.disc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:16px 16px 0 0}
-.disc-card.disc-amber::before{background:var(--amber)}
-.disc-card.disc-blue::before{background:var(--blue)}
-.disc-card.disc-green::before{background:var(--green)}
-.disc-card.disc-purple::before{background:var(--purple)}
-.disc-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:3px 10px;border-radius:100px;display:inline-block;margin-bottom:10px}
-.disc-amber .disc-tag{background:var(--amber-light);color:#92400E}
-.disc-blue .disc-tag{background:rgba(79,70,229,.08);color:var(--blue)}
-.disc-green .disc-tag{background:var(--green-light);color:var(--green-dark)}
-.disc-purple .disc-tag{background:var(--purple-light);color:var(--purple)}
-.disc-title{font-family:var(--sans);font-size:18px;font-weight:800;color:var(--text);margin-bottom:8px;line-height:1.3}
-.disc-stat{font-family:var(--sans);font-size:28px;font-weight:900;letter-spacing:-.02em;line-height:1;margin-bottom:6px}
-.disc-desc{font-size:14px;color:var(--muted);line-height:1.6}
-
-/* ===== OPPORTUNITY CARDS ===== */
-.opp-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px}
-.opp-card{background:#fff;border-radius:16px;padding:32px 28px;box-shadow:var(--shadow-lg);border:1px solid rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s}
-.opp-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-xl)}
-.opp-card-num{font-family:var(--sans);font-size:40px;font-weight:900;letter-spacing:-.03em;line-height:1;margin-bottom:4px}
-.opp-card-label{font-size:12px;color:var(--muted);font-weight:600;margin-bottom:16px}
-.opp-card-title{font-family:var(--sans);font-size:18px;font-weight:800;color:var(--text);margin-bottom:8px}
-.opp-card-desc{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:12px}
-.opp-card-proof{padding:10px 14px;background:var(--bg);border-radius:10px;border:1px solid var(--border);font-size:13px;color:var(--text);line-height:1.5;font-weight:600}
-
-/* ===== COVERAGE CARDS (dark) ===== */
-.coverage-test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}
-.coverage-test-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:20px;transition:background .2s}
-.coverage-test-card:hover{background:rgba(255,255,255,.06)}
-.coverage-test-line{font-size:12px;font-weight:700;color:rgba(255,255,255,.6);margin-bottom:6px}
-.coverage-test-line strong{color:rgba(255,255,255,.85)}
-.coverage-test-result{font-size:13px;color:rgba(255,255,255,.45);line-height:1.5}
-.coverage-test-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:.04em;margin-top:10px}
-.badge-amber{background:rgba(245,158,11,.12);color:var(--amber);border:1px solid rgba(245,158,11,.2)}
-
-/* ===== AGENT VISION CARDS ===== */
 .vision-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
 .vision-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:24px 20px;text-align:center;transition:transform .2s,background .2s}
 .vision-card:hover{transform:translateY(-3px);background:rgba(255,255,255,.06)}
@@ -134,7 +191,7 @@ z-index:1}
 .vision-card-title{font-family:var(--sans);font-size:15px;font-weight:800;color:#fff;margin-bottom:4px}
 .vision-card-desc{font-size:12px;color:rgba(255,255,255,.45);line-height:1.5}
 
-/* ===== AI AGENT DEMO ===== */
+/* ===== AGENT DEMO ===== */
 .agent-demo-section{min-height:auto;background:var(--bg);padding:48px 24px 32px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .agent-demo-section::before{content:'';position:absolute;width:800px;height:800px;top:40%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(0,118,206,.12) 0%,rgba(79,70,229,.05) 40%,transparent 70%);border-radius:50%;pointer-events:none;animation:demoHeroGlow 6s ease-in-out infinite}
 .agent-demo-section::after{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 700px 400px at 30% 0%,rgba(0,118,206,.08),transparent),radial-gradient(ellipse 500px 500px at 80% 80%,rgba(79,70,229,.06),transparent)}
@@ -225,39 +282,6 @@ z-index:1}
 .demo-retry-btn{background:none;border:1px solid var(--border);color:var(--muted);padding:8px 16px;border-radius:8px;font-size:12px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px;margin-top:2px;font-family:var(--sans)}
 .demo-retry-btn:hover{border-color:var(--blue);color:var(--blue)}
 
-/* ===== COLLECTION INTELLIGENCE ===== */
-.ci-section{background:#f8fafc;padding:80px 32px}
-.ci-inner{max-width:1120px;margin:0 auto}
-.ci-chat{max-width:520px;margin:32px auto 0;background:#fff;border-radius:20px;box-shadow:var(--shadow-xl);border:1px solid rgba(0,0,0,.06);overflow:hidden}
-.ci-chat-header{padding:16px 20px;background:linear-gradient(135deg,var(--navy),#1a1a4e);display:flex;align-items:center;gap:10px}
-.ci-chat-header-dot{width:8px;height:8px;border-radius:50%;background:var(--green)}
-.ci-chat-header-text{font-size:13px;font-weight:700;color:rgba(255,255,255,.8);letter-spacing:.02em}
-.ci-chat-body{padding:20px}
-.ci-chat-msg{padding:12px 16px;border-radius:14px;font-size:13px;line-height:1.5;margin-bottom:10px;max-width:90%;animation:ciFadeIn .4s ease both}
-.ci-chat-msg:nth-child(1){animation-delay:.1s}
-.ci-chat-msg:nth-child(2){animation-delay:.3s}
-.ci-chat-msg:nth-child(3){animation-delay:.5s}
-.ci-chat-msg:nth-child(4){animation-delay:.7s}
-.ci-chat-msg.user-q{background:rgba(79,70,229,.08);color:var(--text);font-weight:600;margin-left:auto;text-align:right;border-bottom-right-radius:4px}
-.ci-chat-msg.ai-a{background:var(--bg);color:var(--muted);border:1px solid var(--border);border-bottom-left-radius:4px}
-.ci-chat-input{display:flex;align-items:center;gap:10px;padding:14px 20px;border-top:1px solid var(--border);background:#fafbff}
-.ci-chat-input-field{flex:1;background:transparent;border:none;outline:none;font-size:13px;color:var(--muted-light);font-family:var(--body)}
-.ci-chat-input-btn{width:32px;height:32px;border-radius:50%;background:var(--blue);border:none;display:flex;align-items:center;justify-content:center;cursor:default;opacity:.5}
-.ci-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;background:rgba(79,70,229,.06);border:1px solid rgba(79,70,229,.12);border-radius:100px;font-size:11px;font-weight:700;color:var(--blue);letter-spacing:.04em;margin-top:20px}
-@keyframes ciFadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-
-/* ===== RE-ENGAGEMENT ===== */
-.reengage-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:24px}
-.reengage-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;transition:transform .2s,box-shadow .2s}
-.reengage-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
-.reengage-name{font-size:13px;font-weight:700;color:var(--text)}
-.reengage-amount{font-family:var(--sans);font-size:15px;font-weight:800;color:var(--amber)}
-.live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:6px;animation:livePulse 2s ease-in-out infinite}
-@keyframes livePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
-.reengage-placeholder{background:linear-gradient(135deg,rgba(79,70,229,.03),rgba(16,185,129,.03));border:2px dashed rgba(79,70,229,.15);border-radius:16px;padding:40px 32px;text-align:center;margin-top:20px}
-.reengage-placeholder-text{font-size:15px;color:var(--muted);font-weight:500}
-.reengage-placeholder-date{font-family:var(--sans);font-size:18px;font-weight:800;color:var(--blue);margin-top:8px}
-
 /* ===== CTA ===== */
 .cta-section{padding:48px 32px 60px;text-align:center;background:var(--bg)}
 .cta-inner{max-width:600px;margin:0 auto}
@@ -280,7 +304,7 @@ z-index:1}
 
 /* ===== TOOLTIPS ===== */
 .tip{position:relative;border-bottom:1px dotted rgba(11,27,61,.25);cursor:help;display:inline}
-.hero .tip,.dark-section .tip{border-bottom-color:rgba(255,255,255,.3)}
+.hero .tip,.finding-dark .tip,.dark-section .tip{border-bottom-color:rgba(255,255,255,.3)}
 .tip::after{content:attr(data-tip);position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%);background:#fff;color:#0B1B3D;padding:14px 20px;border-radius:12px;font-size:13px;font-weight:400;font-family:'Inter',sans-serif;line-height:1.6;white-space:normal;min-width:260px;max-width:380px;width:max-content;text-align:left;opacity:0;pointer-events:none;transition:opacity .15s ease;z-index:99999;box-shadow:0 12px 40px rgba(0,0,0,.12),0 4px 12px rgba(0,0,0,.08);border:1px solid rgba(0,0,0,.06)}
 .tip:hover::after{opacity:1}
 .tip::before{content:'';position:absolute;top:calc(100% + 6px);left:50%;transform:translateX(-50%);border:7px solid transparent;border-bottom-color:#fff;opacity:0;pointer-events:none;transition:opacity .15s ease;z-index:99999}
@@ -288,14 +312,16 @@ z-index:1}
 @media(max-width:768px){.tip::after,.tip::before{display:none}.tip{border-bottom:none;cursor:default}}
 
 /* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  .finding-grid{grid-template-columns:1fr;gap:24px}
+  .finding-proof{min-height:auto;padding:32px 24px}
+  .finding{padding:64px 24px}
+}
 @media(max-width:900px){
-  .hero-metrics{grid-template-columns:repeat(3,1fr)}
-  .disc-grid,.opp-grid{grid-template-columns:1fr}
   .hero{padding:120px 20px 60px}
-  .section,.dark-section,.cta-section,.ci-section{padding:48px 20px}
+  .finding,.ci-section,.dark-section,.cta-section{padding:48px 20px}
   .agent-demo-section{padding:36px 16px 24px}
   .nav-inner{padding:14px 20px}
-  .coverage-test-grid{grid-template-columns:1fr}
   .vision-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:768px){
@@ -312,10 +338,7 @@ z-index:1}
   .demo-hint-badge{display:none}
 }
 @media(max-width:600px){
-  .hero-metrics{grid-template-columns:1fr 1fr 1fr}
-  .hero-metric{padding:20px 12px}
-  .hero-metric-num{font-size:28px}
-  .disc-grid,.opp-grid{grid-template-columns:1fr}
+  .finding-grid{grid-template-columns:1fr}
   .vision-grid{grid-template-columns:1fr}
 }
 @media(max-width:480px){
@@ -326,7 +349,6 @@ z-index:1}
   .demo-orb-ring-2{inset:-22px}
   .demo-orb-ring-3{inset:-34px}
   .demo-title{font-size:15px}
-  .hero-metrics{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -355,23 +377,9 @@ z-index:1}
   </div>
 
   <div class="hero-label rv rv-d1">Pilot Results</div>
-  <h1 class="hero-title rv rv-d2">What the Pilot Revealed</h1>
-  <p class="hero-subtitle rv rv-d3">3 batches. 650 accounts. $2.1M analyzed. Here's what no internal tool has ever shown you.</p>
-
-  <div class="hero-metrics rv rv-d4">
-    <div class="hero-metric">
-      <div class="hero-metric-num">650</div>
-      <div class="hero-metric-label">Accounts Analyzed</div>
-    </div>
-    <div class="hero-metric">
-      <div class="hero-metric-num">$392K</div>
-      <div class="hero-metric-label">Recovered</div>
-    </div>
-    <div class="hero-metric">
-      <div class="hero-metric-num">4</div>
-      <div class="hero-metric-label">Hidden Opportunities</div>
-    </div>
-  </div>
+  <h1 class="hero-title rv rv-d2">4 Things the Pilot Revealed</h1>
+  <p class="hero-subtitle rv rv-d3">650 accounts. $2.1M analyzed. Here's what we found&mdash;and how to fix it.</p>
+  <p class="hero-proof rv rv-d3"><strong>$392K recovered.</strong> 29% rate. 43% improvement batch over batch.</p>
 
   <div class="hero-conf-badge rv rv-d4">
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
@@ -381,86 +389,50 @@ z-index:1}
 
 
 <!-- ============================================================ -->
-<!-- THE DISCOVERY                                                  -->
+<!-- FINDING 1: Your Customers Can't Reach You to Pay              -->
 <!-- ============================================================ -->
-<section class="section" id="discovery" style="background:var(--bg);padding-bottom:40px">
-  <div class="section-label rv">The Discovery</div>
-  <h2 class="section-title rv rv-d1">Four patterns that change everything.</h2>
-  <p class="section-subtitle rv rv-d2">Three batches of data revealed patterns that redefine Dell's approach to receivables.</p>
-  <div class="section-divider rv rv-d2"></div>
+<section class="finding finding-light" id="finding-1">
+  <div class="finding-inner">
+    <div class="finding-num rv">Finding 1</div>
+    <h2 class="finding-headline rv rv-d1">"Your Customers Can't Reach You to Pay"</h2>
 
-  <div class="disc-grid">
-    <!-- Discovery 1: Invoice requests -->
-    <div class="disc-card disc-amber rv rv-d1">
-      <span class="disc-tag">Discovery 1</span>
-      <div class="disc-title">59% of disputes are invoice requests</div>
-      <div class="disc-stat" style="color:#92400E">59%</div>
-      <div class="disc-desc">Your customers <strong>want</strong> to pay. They just need the invoice. This isn't resistance. It's a process signal. The most common response in every batch: "Can you send me a copy of the invoice?"</div>
-    </div>
-
-    <!-- Discovery 2: Warm accounts -->
-    <div class="disc-card disc-blue rv rv-d2">
-      <span class="disc-tag">Discovery 2</span>
-      <div class="disc-title">$760K in accounts that picked up the phone</div>
-      <div class="disc-stat" style="color:var(--blue)">238 accounts</div>
-      <div class="disc-desc">238 accounts had real conversations. They're reachable. They engaged. They asked questions. They need a second touch with the right information attached.</div>
-    </div>
-
-    <!-- Discovery 3: Invoice conversion -->
-    <div class="disc-card disc-green rv rv-d3">
-      <span class="disc-tag">Discovery 3</span>
-      <div class="disc-title">40% conversion when invoices are provided</div>
-      <div class="disc-stat" style="color:var(--green-dark)">40%</div>
-      <div class="disc-desc">In cases where Dell manually provided invoices during the pilot, 40% of those accounts paid within 48 hours. Proof that access equals recovery.</div>
-    </div>
-
-    <!-- Discovery 4: Smart timing -->
-    <div class="disc-card disc-purple rv rv-d4">
-      <span class="disc-tag">Discovery 4</span>
-      <div class="disc-title">Smart timing: 4.7x connect rate</div>
-      <div class="disc-stat" style="color:var(--purple)">56% vs 12%</div>
-      <div class="disc-desc">AI-optimized call timing connects at 56% compared to 12% for bulk calling. Timing matters more than volume. Each account gets called at its optimal window.</div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================================ -->
-<!-- THE OPPORTUNITY                                                -->
-<!-- ============================================================ -->
-<section class="section" id="opportunity" style="background:#f8fafc;padding-top:60px;padding-bottom:60px">
-  <div style="max-width:1120px;margin:0 auto">
-    <div class="section-label rv" style="color:var(--green)">The Opportunity</div>
-    <h2 class="section-title rv rv-d1">$960K recoverable with two changes.</h2>
-    <p class="section-subtitle rv rv-d2">The pilot identified two high-impact changes that unlock the majority of outstanding value.</p>
-    <div class="section-divider rv rv-d2"></div>
-
-    <div class="opp-grid rv rv-d2">
-      <!-- Change 1: Invoice Access -->
-      <div class="opp-card">
-        <div style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;background:var(--amber-light);border-radius:100px;font-size:10px;font-weight:700;color:#92400E;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px">Change 1</div>
-        <div class="opp-card-num" style="color:var(--amber)">$200K</div>
-        <div class="opp-card-label">Addressable immediately</div>
-        <div class="opp-card-title">Invoice Access (API/SFTP)</div>
-        <div class="opp-card-desc">44 accounts where invoice delivery unlocks payment. These customers asked for documentation and are waiting. Real-time invoice access during calls and emails removes the friction entirely.</div>
-        <div class="opp-card-proof">40% proven conversion rate when invoices are provided</div>
+    <div class="finding-grid">
+      <!-- PROBLEM -->
+      <div class="finding-problem slide-left rv-d2">
+        <div class="finding-problem-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          The Problem
+        </div>
+        <div class="finding-problem-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/><line x1="2" y1="6" x2="10" y2="13" opacity=".3"/></svg>
+        </div>
+        <div class="finding-problem-text">
+          Dell has no public AR email. No billing@dell.com. No ar@dell.com. The only path: Dell Premier portal, then account rep, then hope someone answers.
+        </div>
+        <div class="finding-problem-stat">0 direct AR contact channels found</div>
       </div>
 
-      <!-- Change 2: Re-engagement -->
-      <div class="opp-card">
-        <div style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;background:rgba(79,70,229,.08);border-radius:100px;font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px">Change 2</div>
-        <div class="opp-card-num" style="color:var(--blue)">$760K</div>
-        <div class="opp-card-label">In engaged but unconverted accounts</div>
-        <div class="opp-card-title">Re-engagement of Warm Accounts</div>
-        <div class="opp-card-desc">238 accounts that engaged but didn't convert. They had conversations. They opened emails. They know who we are. A second touch with invoice access and fresh messaging unlocks this segment.</div>
-        <div class="opp-card-proof">82% had phone conversations during the pilot</div>
+      <!-- PROOF -->
+      <div class="finding-proof rv rv-d3">
+        <div class="finding-proof-number" data-count="59">0<span class="finding-proof-suffix">%</span></div>
+        <div class="finding-proof-label">of all disputes were customers asking for an invoice</div>
+        <div class="finding-proof-detail">Not resistance. Not refusal. Just people who wanted to pay but couldn't get the document.</div>
       </div>
-    </div>
 
-    <!-- Batch 4 projection -->
-    <div style="max-width:900px;margin:0 auto;padding:24px 28px;background:linear-gradient(135deg,rgba(16,185,129,.06),rgba(79,70,229,.04));border-radius:16px;border:1px solid rgba(16,185,129,.15)" class="rv rv-d3">
-      <div style="font-size:15px;color:var(--text);line-height:1.7">
-        <strong style="color:var(--green-dark)">Batch 4 projection:</strong> With these two changes in place, projected recovery rate jumps to 40-45% (vs 29% today). That's the difference between good and exceptional.
+      <!-- SOLUTION -->
+      <div class="finding-solution slide-right rv-d4">
+        <div class="finding-solution-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          The Solution
+        </div>
+        <div class="finding-solution-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="finding-solution-title">Agent Dell creates ar@dell.com</div>
+        <div class="finding-solution-text">
+          A customer writes, gets a response in under 60 seconds. Invoice attached. Payment link included. Dispute resolved.
+        </div>
+        <div class="finding-solution-proof">86% of disputes resolved automatically. 40% zero human intervention. Avg resolution: 17 seconds.</div>
       </div>
     </div>
   </div>
@@ -468,62 +440,179 @@ z-index:1}
 
 
 <!-- ============================================================ -->
-<!-- THE COVERAGE QUESTION                                          -->
+<!-- FINDING 2: When They Call, Nobody Can Help                    -->
 <!-- ============================================================ -->
-<section class="dark-section" id="coverage">
-  <div class="dark-inner">
-    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--amber);margin-bottom:12px" class="rv">Insight from the Pilot</div>
-    <h2 style="font-family:var(--sans);font-size:clamp(24px,3.5vw,36px);font-weight:900;color:#fff;letter-spacing:-.03em;line-height:1.12;margin-bottom:8px" class="rv rv-d1">Timing Drives Everything</h2>
-    <p style="font-size:16px;color:rgba(255,255,255,.5);max-width:650px;line-height:1.6;margin-bottom:40px" class="rv rv-d2">One thing the pilot data highlighted: when you reach out matters as much as how. We tested what happens outside business hours.</p>
+<section class="finding finding-dark" id="finding-2">
+  <div class="finding-inner">
+    <div class="finding-num rv">Finding 2</div>
+    <h2 class="finding-headline rv rv-d1">"When They Call, Nobody Can Help"</h2>
 
-    <!-- Weekend test summary -->
-    <div style="max-width:800px;margin:0 auto 28px;padding:24px 28px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:16px" class="rv rv-d2">
-      <div style="font-size:13px;font-weight:700;color:rgba(255,255,255,.6);margin-bottom:14px;text-transform:uppercase;letter-spacing:.06em">Saturday Evening Test: 5 Dell Financial Services Lines</div>
-      <div style="font-size:15px;color:rgba(255,255,255,.55);line-height:1.7">All 5 lines reached automated systems or no answer. No live agent was available on any line tested.</div>
-    </div>
-
-    <div class="coverage-test-grid rv rv-d3">
-      <div class="coverage-test-card">
-        <div class="coverage-test-line"><strong>DFS Main Line</strong><br>1-800-283-2210</div>
-        <div class="coverage-test-result">Automated system requested 16-digit credit card. B2B customers with enterprise leases have no valid input path.</div>
-        <div class="coverage-test-badge badge-amber">
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          Automated system, 3+ min wait
+    <div class="finding-grid">
+      <!-- PROBLEM -->
+      <div class="finding-problem slide-left rv-d2">
+        <div class="finding-problem-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          The Problem
+        </div>
+        <div class="finding-problem-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div class="finding-problem-text">
+          We tested Dell's billing lines. The result: IVR loops, wrong departments, and dead ends.
+        </div>
+        <div class="mini-cards">
+          <div class="mini-card"><strong>Saturday evening:</strong> 5 lines called, 0 humans reached</div>
+          <div class="mini-card"><strong>Monday 10AM:</strong> DFS rep said "not my department, call another number"</div>
+          <div class="mini-card"><strong>Round Rock office:</strong> No answer, Saturday AND Monday</div>
         </div>
       </div>
-      <div class="coverage-test-card">
-        <div class="coverage-test-line"><strong>Enterprise Leases</strong><br>1-877-663-3355</div>
-        <div class="coverage-test-result">Closed message played. No option to leave a voicemail or request a callback.</div>
-        <div class="coverage-test-badge badge-amber">
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          Closed message, no callback option
-        </div>
-      </div>
-      <div class="coverage-test-card">
-        <div class="coverage-test-line"><strong>DFS Local (Round Rock)</strong><br>512-513-9022</div>
-        <div class="coverage-test-result">No answer, no voicemail, no automated greeting.</div>
-        <div class="coverage-test-badge badge-amber">
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          Automated, no live agent available
-        </div>
-      </div>
-    </div>
 
-    <!-- The gap = the opportunity -->
-    <div style="max-width:800px;margin:0 auto">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px" class="rv rv-d3">
-        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:20px 24px">
-          <div style="font-size:12px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">The gap</div>
-          <div style="font-size:14px;color:rgba(255,255,255,.6);line-height:1.6">Outside Mon-Fri 8-5 CT, customers with billing questions have no path to resolution. That's 73% of the week.</div>
+      <!-- PROOF -->
+      <div class="finding-proof rv rv-d3">
+        <div class="finding-proof-number" data-count="82">0<span class="finding-proof-suffix">%</span></div>
+        <div class="finding-proof-label">of unreachable accounts had phone calls that went nowhere</div>
+        <div class="finding-proof-detail">238 accounts ($760K) picked up the phone but couldn't close because the conversation stalled without billing details.</div>
+      </div>
+
+      <!-- SOLUTION -->
+      <div class="finding-solution slide-right rv-d4">
+        <div class="finding-solution-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          The Solution
         </div>
-        <div style="background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.15);border-radius:14px;padding:20px 24px">
-          <div style="font-size:12px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">Where Agent Dell fills in</div>
-          <div style="font-size:14px;color:rgba(255,255,255,.6);line-height:1.6">During these off-hours, AgentCollect handled 42 accounts that resulted in <strong style="color:#fff">$80K recovered</strong> via voicemail callbacks.</div>
+        <div class="finding-solution-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/><polyline points="20 6 9 17 4 12" stroke="#10B981" stroke-width="2" fill="none"/></svg>
         </div>
+        <div class="finding-solution-title">Agent Dell answers in 3 seconds. Every time.</div>
+        <div class="finding-solution-text">
+          24/7. 28 languages. Has the invoice. Can take the payment. No transfers, no hold music, no wrong department.
+        </div>
+        <div class="finding-solution-proof">Smart-timed calls connect at 56.1% vs 12% bulk calling. 4.7x more effective.</div>
       </div>
     </div>
+  </div>
+</section>
 
-    <div style="text-align:center;font-size:12px;color:rgba(255,255,255,.3);font-style:italic" class="rv rv-d4">Business hours tests scheduled for Monday, April 13. Results will be added here.</div>
+
+<!-- ============================================================ -->
+<!-- FINDING 3: You're Missing $248K in Dead Contacts              -->
+<!-- ============================================================ -->
+<section class="finding finding-light" id="finding-3">
+  <div class="finding-inner">
+    <div class="finding-num rv">Finding 3</div>
+    <h2 class="finding-headline rv rv-d1">"You're Missing $248K in Dead Contacts"</h2>
+
+    <div class="finding-grid">
+      <!-- PROBLEM -->
+      <div class="finding-problem slide-left rv-d2">
+        <div class="finding-problem-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          The Problem
+        </div>
+        <div class="finding-problem-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><line x1="9" y1="9" x2="15" y2="15" stroke-width="2"/><line x1="15" y1="9" x2="9" y2="15" stroke-width="2"/></svg>
+        </div>
+        <div class="finding-problem-text">
+          57 accounts were never reached on any channel. Wrong numbers, bounced emails, no response. $248K sitting in accounts we couldn't even touch.
+        </div>
+        <div class="finding-problem-stat">44% of accounts still had contact gaps after initial enrichment</div>
+      </div>
+
+      <!-- PROOF -->
+      <div class="finding-proof rv rv-d3">
+        <div class="finding-proof-number" data-count="57">0</div>
+        <div class="finding-proof-label">accounts with zero engagement from day one</div>
+        <div class="finding-proof-detail">Bad contact data. We enriched 56% of accounts with 659 new contacts, but 44% still had gaps.</div>
+      </div>
+
+      <!-- SOLUTION -->
+      <div class="finding-solution slide-right rv-d4">
+        <div class="finding-solution-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          The Solution
+        </div>
+        <div class="finding-solution-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div class="finding-solution-title">Pre-enrichment before every batch</div>
+        <div class="finding-solution-text">
+          Contact Finder scans LinkedIn, web, and parent entities to find the right person BEFORE outreach begins.
+        </div>
+        <div class="finding-solution-proof">659 new contacts found across 362 accounts. With pre-enrichment on batch 4, zero dead contacts.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- FINDING 4: One Payment Proved Re-Engagement Works             -->
+<!-- ============================================================ -->
+<section class="finding finding-dark" id="finding-4">
+  <div class="finding-inner">
+    <div class="finding-num rv">Finding 4</div>
+    <h2 class="finding-headline rv rv-d1">"One Payment Proved Re-Engagement Works"</h2>
+
+    <div class="finding-grid">
+      <!-- PROBLEM -->
+      <div class="finding-problem slide-left rv-d2">
+        <div class="finding-problem-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          The Problem
+        </div>
+        <div class="finding-problem-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        <div class="finding-problem-text">
+          After 3 batches, 410 accounts finished without recovery. Most were written off. But the pilot data said otherwise.
+        </div>
+        <div class="finding-problem-stat">410 accounts labeled "finished" with $1.3M+ outstanding</div>
+      </div>
+
+      <!-- PROOF -->
+      <div class="finding-proof rv rv-d3">
+        <div style="padding:20px 28px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:16px;margin-bottom:20px;width:100%">
+          <div style="font-family:var(--mono);font-size:clamp(28px,4vw,40px);font-weight:700;color:var(--green);line-height:1">$1,181</div>
+          <div style="font-family:var(--sans);font-size:15px;font-weight:800;color:#fff;margin-top:8px">Woodside Homes</div>
+          <div style="font-size:13px;color:rgba(255,255,255,.5);margin-top:4px">Paid April 13, 2026</div>
+        </div>
+        <div class="finding-proof-label" style="max-width:300px">23 accounts ($640K) re-activated this week</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;margin-top:12px">
+          <div style="padding:10px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;text-align:left">
+            <div style="font-size:12px;color:rgba(255,255,255,.8);font-weight:700">Inspirato</div>
+            <div style="font-family:var(--mono);font-size:14px;color:var(--amber);font-weight:600">$62K</div>
+          </div>
+          <div style="padding:10px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;text-align:left">
+            <div style="font-size:12px;color:rgba(255,255,255,.8);font-weight:700">Infoaxis</div>
+            <div style="font-family:var(--mono);font-size:14px;color:var(--amber);font-weight:600">$55K</div>
+          </div>
+          <div style="padding:10px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;text-align:left">
+            <div style="font-size:12px;color:rgba(255,255,255,.8);font-weight:700">Torch Networks</div>
+            <div style="font-family:var(--mono);font-size:14px;color:var(--amber);font-weight:600">$49K</div>
+          </div>
+          <div style="padding:10px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;text-align:left">
+            <div style="font-size:12px;color:rgba(255,255,255,.8);font-weight:700">Vision Business</div>
+            <div style="font-family:var(--mono);font-size:14px;color:var(--amber);font-weight:600">$39K</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SOLUTION -->
+      <div class="finding-solution slide-right rv-d4">
+        <div class="finding-solution-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          The Solution
+        </div>
+        <div class="finding-solution-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="1.8"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+        </div>
+        <div class="finding-solution-title">Continuous re-engagement, not one-and-done</div>
+        <div class="finding-solution-text">
+          Finished doesn't mean lost. Smart re-engagement at the right time, with the right context, converts accounts that traditional methods wrote off.
+        </div>
+        <div class="finding-solution-proof">40% conversion when invoices provided. Batch 4 projected: 40-45% recovery rate.</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -535,7 +624,6 @@ z-index:1}
   <div class="ci-inner">
     <div class="section-label rv" style="color:var(--blue)">Collection Intelligence</div>
     <h2 class="section-title rv rv-d1">Real-time AI analysis of your entire receivables portfolio.</h2>
-    <p class="section-subtitle rv rv-d2">During the March 25 review, Natalie identified this as a differentiator.</p>
     <div class="section-divider rv rv-d2"></div>
 
     <!-- Natalie quote -->
@@ -543,7 +631,7 @@ z-index:1}
       <div style="font-size:18px;color:var(--text);line-height:1.7;font-style:italic;font-weight:500">
         "That's unparalleled to what we have."
       </div>
-      <div style="font-size:13px;color:var(--muted);margin-top:8px;font-weight:600">Natalie Gilbert, VP Dell Financial Services &mdash; March 25 Review</div>
+      <div style="font-size:13px;color:var(--muted);margin-top:8px;font-weight:600">Natalie Gilbert, VP Dell Financial Services</div>
     </div>
 
     <!-- Chat mockup -->
@@ -557,8 +645,6 @@ z-index:1}
         <div class="ci-chat-msg ai-a">Based on email engagement and payment patterns, 16 accounts show high intent. Top 3: Weldaloy ($31K, 12 opens), CA Emergency Liquidation ($10.2K, 28 opens), Woman's Hospital ($988, 80 opens).</div>
         <div class="ci-chat-msg user-q">Show me all disputed invoices over $10K</div>
         <div class="ci-chat-msg ai-a">Found 8 disputed invoices over $10K totaling $142K. 5 are invoice requests (resolvable with API access), 2 claim already paid, 1 legitimacy check.</div>
-        <div class="ci-chat-msg user-q">What's our recovery rate by industry?</div>
-        <div class="ci-chat-msg ai-a">Tech/IT: 33.2% (28 of 84). Government: 31.3% (25 of 80). Non-profit: 29.3% (22 of 75). Manufacturing: 25.0% (15 of 60). Healthcare lagging at 19.0% due to complex AP processes.</div>
       </div>
       <div class="ci-chat-input">
         <span class="ci-chat-input-field">Ask anything about Dell's receivables...</span>
@@ -579,13 +665,13 @@ z-index:1}
 
 
 <!-- ============================================================ -->
-<!-- AGENT DELL: THE VISION                                         -->
+<!-- AGENT DELL                                                     -->
 <!-- ============================================================ -->
 <section class="dark-section" id="agent-dell">
   <div class="dark-inner" style="text-align:center">
-    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--blue-light);margin-bottom:12px" class="rv">The Next Step</div>
-    <h2 style="font-family:var(--sans);font-size:clamp(24px,3.5vw,36px);font-weight:900;color:#fff;letter-spacing:-.03em;line-height:1.12;margin-bottom:8px" class="rv rv-d1">Agent Dell: The Next Step in Dell's AR Evolution</h2>
-    <p style="font-size:16px;color:rgba(255,255,255,.5);max-width:560px;margin:0 auto 40px;line-height:1.6" class="rv rv-d2">Your brand. Your voice. Your agent.</p>
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--blue-light);margin-bottom:12px" class="rv">Agent Dell</div>
+    <h2 style="font-family:var(--sans);font-size:clamp(24px,3.5vw,36px);font-weight:900;color:#fff;letter-spacing:-.03em;line-height:1.12;margin-bottom:8px" class="rv rv-d1">Your brand. Your voice. Your agent.</h2>
+    <p style="font-size:16px;color:rgba(255,255,255,.5);max-width:560px;margin:0 auto 40px;line-height:1.6" class="rv rv-d2">A white-label AI agent that handles Dell's AR with Dell's tone, Dell's data, and Dell's standards.</p>
 
     <div class="vision-grid rv rv-d2">
       <div class="vision-card">
@@ -723,62 +809,6 @@ z-index:1}
 </section>
 
 
-<!-- ============================================================ -->
-<!-- THIS WEEK: 23 ACCOUNTS RE-ENGAGED                              -->
-<!-- ============================================================ -->
-<section class="section" id="reengagement" style="padding:56px 32px;background:#f8fafc">
-  <div style="max-width:1120px;margin:0 auto">
-    <div class="section-label rv" style="color:var(--green)"><span class="live-dot"></span>Happening Now</div>
-    <h2 class="section-title rv rv-d1">23 Accounts Re-Engaged This Week</h2>
-    <p class="section-subtitle rv rv-d2">We're not waiting. While this page was being prepared, we re-activated 23 high-value accounts ($640K outstanding) with contextualized outreach.</p>
-    <div class="section-divider rv rv-d2"></div>
-
-    <div class="reengage-grid rv rv-d3">
-      <div class="reengage-card">
-        <span class="reengage-name">Inspirato</span>
-        <span class="reengage-amount">$62K</span>
-      </div>
-      <div class="reengage-card">
-        <span class="reengage-name">Infoaxis</span>
-        <span class="reengage-amount">$55K</span>
-      </div>
-      <div class="reengage-card">
-        <span class="reengage-name">Torch Networks</span>
-        <span class="reengage-amount">$49K</span>
-      </div>
-      <div class="reengage-card">
-        <span class="reengage-name">Vision Business</span>
-        <span class="reengage-amount">$39K</span>
-      </div>
-      <div class="reengage-card">
-        <span class="reengage-name">Weldaloy</span>
-        <span class="reengage-amount">$32K</span>
-      </div>
-      <div class="reengage-card">
-        <span class="reengage-name">Brookfield</span>
-        <span class="reengage-amount">$31K</span>
-      </div>
-      <div class="reengage-card">
-        <span class="reengage-name">Community First Medical</span>
-        <span class="reengage-amount">$31K</span>
-      </div>
-    </div>
-
-    <div style="text-align:center;margin-top:14px;font-size:13px;color:var(--muted)" class="rv rv-d4">+ 16 more accounts in this week's re-engagement wave. <strong style="color:var(--text)">Total: $640K outstanding across 23 accounts.</strong></div>
-
-    <div class="reengage-placeholder rv rv-d4">
-      <div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:8px">
-        <span class="live-dot"></span>
-        <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--green)">Live</span>
-      </div>
-      <div class="reengage-placeholder-text">Results updating live</div>
-      <div class="reengage-placeholder-date">Monday April 13</div>
-      <div style="margin-top:12px;font-size:12px;color:var(--muted-light)">Call outcomes, responses, and payment confirmations will appear here as they come in.</div>
-    </div>
-  </div>
-</section>
-
-
 <!-- CTA -->
 <section class="cta-section" id="cta">
   <div class="cta-inner rv">
@@ -810,8 +840,8 @@ z-index:1}
     nav.classList.toggle('scrolled', window.scrollY > 40);
   });
 
-  // Reveal on scroll
-  var rvEls = document.querySelectorAll('.rv');
+  // Reveal on scroll (rv, slide-left, slide-right)
+  var rvEls = document.querySelectorAll('.rv,.slide-left,.slide-right');
   if ('IntersectionObserver' in window) {
     var obs = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
@@ -821,6 +851,32 @@ z-index:1}
     rvEls.forEach(function(el){ obs.observe(el); });
   }
   setTimeout(function(){ rvEls.forEach(function(el){ el.classList.add('v'); }); }, 1500);
+
+  // Counter animation
+  var counterEls = document.querySelectorAll('[data-count]');
+  if ('IntersectionObserver' in window) {
+    var counterObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          var el = e.target;
+          var target = parseInt(el.getAttribute('data-count'));
+          var suffix = el.innerHTML.indexOf('%') > -1 ? '<span class="finding-proof-suffix">%</span>' : '';
+          var duration = 1200;
+          var start = performance.now();
+          function tick(now){
+            var progress = Math.min((now - start) / duration, 1);
+            var eased = 1 - Math.pow(1 - progress, 3);
+            var current = Math.round(eased * target);
+            el.innerHTML = current + suffix;
+            if(progress < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+          counterObs.unobserve(el);
+        }
+      });
+    }, { threshold: 0.3 });
+    counterEls.forEach(function(el){ counterObs.observe(el); });
+  }
 })();
 
 // Preload RetellAI SDK
