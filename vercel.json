@@ -58,7 +58,7 @@
     },
     {
       "source": "/dell",
-      "destination": "/dell-v6.html"
+      "destination": "/dell-v7.html"
     },
     {
       "source": "/dell-v2",
@@ -79,6 +79,10 @@
     {
       "source": "/dell-v6",
       "destination": "/dell-v6.html"
+    },
+    {
+      "source": "/dell-v7",
+      "destination": "/dell-v7.html"
     },
     {
       "source": "/office-practicum",
