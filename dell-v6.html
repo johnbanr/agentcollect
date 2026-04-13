@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dell x AgentCollect — AR Pilot Analysis, Q1-Q2 2026</title>
+<title>Dell Financial Services — AR Operations Audit</title>
 <meta name="robots" content="noindex, nofollow">
-<meta property="og:title" content="Dell x AgentCollect — AR Pilot Analysis, Q1-Q2 2026">
-<meta property="og:description" content="650 accounts analyzed. 194 recovered. $395K collected. Full breakdown of the 70% that didn't pay — and what would change that.">
+<meta property="og:title" content="Dell Financial Services — AR Operations Audit">
+<meta property="og:description" content="What Dell doesn't know about its own AR operations. Public reputation data, downstream collection ecosystem, coverage gaps, and a path forward.">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,6 +20,7 @@
   --green:#10B981;--green-dark:#059669;--green-light:#D1FAE5;
   --amber:#F59E0B;--amber-light:#FEF3C7;
   --red:#dc2626;
+  --cream:#FAF9F6;--navy:#0B1B3D;--navy-mid:#0f2247;--navy-light:#132a52;
   --mono:'JetBrains Mono',monospace;
   --sans:'Plus Jakarta Sans',system-ui,sans-serif;
   --body:'Inter',system-ui,sans-serif;
@@ -29,7 +30,7 @@
   --shadow-xl:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1);
 }
 html{scroll-behavior:smooth;overflow-x:hidden}
-body{background:var(--bg);color:var(--text);font-family:var(--body);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-size:16px;line-height:1.6;overflow-x:hidden}
+body{background:var(--cream);color:var(--text);font-family:var(--body);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-size:16px;line-height:1.6;overflow-x:hidden}
 ::selection{background:rgba(79,70,229,.12)}
 
 /* Reveal animation */
@@ -38,7 +39,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);-webkit-font
 .rv-d1{transition-delay:.1s}.rv-d2{transition-delay:.2s}.rv-d3{transition-delay:.3s}.rv-d4{transition-delay:.4s}
 
 /* ===== NAV ===== */
-.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(250,251,255,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(0,0,0,.04);transition:box-shadow .3s}
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(250,249,246,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(0,0,0,.04);transition:box-shadow .3s}
 .nav.scrolled{box-shadow:0 1px 12px rgba(0,0,0,.06)}
 .nav-inner{max-width:1120px;margin:0 auto;padding:16px 32px;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{text-decoration:none;font-family:var(--sans);font-weight:900;font-size:17px;color:var(--text);letter-spacing:-.4px;display:inline-flex;align-items:baseline}
@@ -48,7 +49,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);-webkit-font
 
 /* ===== HERO ===== */
 .hero{position:relative;overflow:visible;padding:140px 32px 80px;text-align:center}
-.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,#0B1B3D 0%,#0f2347 60%,#132a52 100%);z-index:0}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,var(--navy) 0%,var(--navy-mid) 60%,var(--navy-light) 100%);z-index:0}
 .hero::after{content:'';position:absolute;inset:0;background:
   radial-gradient(ellipse 600px 400px at 50% 30%, rgba(79,70,229,.06) 0%, transparent 70%);
 z-index:1}
@@ -60,17 +61,15 @@ z-index:1}
 .hero-partnership .ac-logo{font-family:var(--sans);font-weight:800;font-size:15px;color:rgba(255,255,255,.6);letter-spacing:-.3px;display:inline-flex;align-items:baseline}
 .hero-partnership .ac-logo .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.5);margin-left:1px}
 
-.hero-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--green);margin-bottom:20px}
-.hero-title{font-family:var(--sans);font-size:clamp(28px,4vw,44px);font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1.12;margin-bottom:16px;max-width:650px;margin-left:auto;margin-right:auto}
-.hero-subtitle{font-size:18px;color:rgba(255,255,255,.55);max-width:540px;margin:0 auto 48px;line-height:1.6;font-weight:400}
+.hero-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--amber);margin-bottom:20px}
+.hero-title{font-family:var(--sans);font-size:clamp(28px,4vw,44px);font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1.12;margin-bottom:16px;max-width:700px;margin-left:auto;margin-right:auto}
+.hero-subtitle{font-size:18px;color:rgba(255,255,255,.55);max-width:580px;margin:0 auto 48px;line-height:1.6;font-weight:400}
 
-.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;max-width:750px;margin:0 auto;border-radius:16px;overflow:visible;background:rgba(255,255,255,.04)}
-.hero-stat{padding:28px 16px;background:rgba(255,255,255,.02);text-align:center;transition:background .3s}
-.hero-stat:hover{background:rgba(255,255,255,.05)}
-.hero-stat-num{font-family:var(--sans);font-size:clamp(24px,3vw,36px);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1}
-.hero-stat-num .pct{font-size:.55em;color:rgba(255,255,255,.5);font-weight:600}
-.hero-stat-num .dollar{font-size:.5em;color:rgba(255,255,255,.5);font-weight:600;vertical-align:super}
-.hero-stat-label{font-size:13px;color:rgba(255,255,255,.45);margin-top:8px;font-weight:500;letter-spacing:.01em}
+.hero-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;max-width:620px;margin:0 auto;border-radius:16px;overflow:visible;background:rgba(255,255,255,.04)}
+.hero-metric{padding:28px 16px;background:rgba(255,255,255,.02);text-align:center;transition:background .3s}
+.hero-metric:hover{background:rgba(255,255,255,.05)}
+.hero-metric-num{font-family:var(--sans);font-size:clamp(24px,3vw,36px);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1}
+.hero-metric-label{font-size:13px;color:rgba(255,255,255,.45);margin-top:8px;font-weight:500;letter-spacing:.01em}
 
 /* ===== SECTIONS ===== */
 .section{padding:80px 32px;max-width:1120px;margin:0 auto;position:relative}
@@ -79,7 +78,78 @@ z-index:1}
 .section-subtitle{font-size:17px;color:var(--muted);max-width:560px;line-height:1.6;margin-bottom:40px}
 .section-divider{width:80px;height:3px;background:linear-gradient(90deg,var(--blue),var(--green));border-radius:2px;margin-bottom:40px}
 
-/* ===== CATEGORY CARDS ===== */
+/* ===== DARK SECTIONS ===== */
+.dark-section{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 50%,var(--navy-light) 100%);padding:80px 32px;position:relative;overflow:hidden}
+.dark-section::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(ellipse 800px 500px at 20% 80%,rgba(220,38,38,.04),transparent),
+  radial-gradient(ellipse 600px 400px at 80% 20%,rgba(79,70,229,.06),transparent)}
+.dark-section *{position:relative;z-index:1}
+.dark-inner{max-width:1120px;margin:0 auto}
+
+/* ===== MYSTERY SHOP SECTION ===== */
+.mystery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:40px}
+.mystery-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:28px 24px;transition:transform .2s,background .2s}
+.mystery-card:hover{transform:translateY(-3px);background:rgba(255,255,255,.06)}
+.mystery-card-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.mystery-card-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mystery-card-icon.icon-ivr{background:rgba(220,38,38,.15)}
+.mystery-card-icon.icon-closed{background:rgba(245,158,11,.15)}
+.mystery-card-icon.icon-dead{background:rgba(148,163,184,.2)}
+.mystery-card-line{font-size:12px;font-weight:600;color:rgba(255,255,255,.5);line-height:1.3}
+.mystery-card-line strong{color:rgba(255,255,255,.8);font-weight:700}
+.mystery-card-duration{font-family:var(--sans);font-size:32px;font-weight:900;color:#fff;letter-spacing:-.02em;margin-bottom:4px}
+.mystery-card-duration-label{font-size:11px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-bottom:16px}
+.mystery-card-quote{font-size:13px;color:rgba(255,255,255,.55);font-style:italic;line-height:1.6;margin-bottom:16px;padding-left:12px;border-left:2px solid rgba(255,255,255,.12)}
+.mystery-card-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:.04em;background:rgba(220,38,38,.12);color:#f87171;border:1px solid rgba(220,38,38,.2)}
+
+/* ===== FINDING CARDS ===== */
+.finding-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:20px 24px;display:flex;align-items:flex-start;gap:14px;margin-bottom:12px;transition:background .2s}
+.finding-card:hover{background:rgba(255,255,255,.06)}
+.finding-num{width:32px;height:32px;border-radius:50%;background:rgba(245,158,11,.15);color:var(--amber);display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:14px;font-weight:800;flex-shrink:0}
+.finding-text{font-size:14px;color:rgba(255,255,255,.7);line-height:1.6}
+.finding-text strong{color:#fff}
+
+/* ===== REPUTATION CARDS ===== */
+.rep-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:28px}
+.rep-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:28px;transition:transform .2s}
+.rep-card:hover{transform:translateY(-3px)}
+.rep-card-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.rep-card-logo{font-family:var(--sans);font-weight:900;font-size:16px;color:#fff}
+.rep-card-rating{padding:4px 12px;border-radius:100px;font-size:12px;font-weight:800}
+.rep-card-score{font-family:var(--sans);font-size:48px;font-weight:900;color:#fff;letter-spacing:-.03em;line-height:1;margin-bottom:4px}
+.rep-card-score-label{font-size:12px;color:rgba(255,255,255,.35);margin-bottom:16px}
+.rep-complaint{padding:12px 16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;margin-bottom:8px;font-size:13px;color:rgba(255,255,255,.55);font-style:italic;line-height:1.5}
+.rep-complaint::before{content:'"';font-family:var(--sans);font-size:20px;font-weight:900;color:rgba(255,255,255,.15);margin-right:4px}
+
+/* ===== COLLECTOR CARDS ===== */
+.collector-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:28px}
+.collector-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:28px;position:relative;overflow:hidden}
+.collector-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.collector-card.midland::before{background:#ef4444}
+.collector-card.pra::before{background:var(--amber)}
+.collector-name{font-family:var(--sans);font-size:18px;font-weight:800;color:#fff;margin-bottom:4px}
+.collector-parent{font-size:12px;color:rgba(255,255,255,.4);margin-bottom:16px}
+.collector-stat{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.collector-stat:last-child{border-bottom:none}
+.collector-stat-label{font-size:13px;color:rgba(255,255,255,.45)}
+.collector-stat-value{font-size:13px;font-weight:700;color:#f87171}
+
+/* ===== COVERAGE CALENDAR ===== */
+.coverage-week{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;max-width:700px;margin:0 auto 28px}
+.coverage-day{border-radius:10px;padding:12px 8px;text-align:center;position:relative}
+.coverage-day.covered{background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.2)}
+.coverage-day.uncovered{background:rgba(220,38,38,.08);border:1px solid rgba(220,38,38,.15)}
+.coverage-day-name{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.coverage-day.covered .coverage-day-name{color:var(--green)}
+.coverage-day.uncovered .coverage-day-name{color:#f87171}
+.coverage-hours{font-size:11px;font-weight:600;line-height:1.4}
+.coverage-day.covered .coverage-hours{color:rgba(255,255,255,.6)}
+.coverage-day.uncovered .coverage-hours{color:rgba(255,255,255,.35)}
+.coverage-pct{font-family:var(--sans);font-size:16px;font-weight:900;margin-top:4px}
+.coverage-day.covered .coverage-pct{color:var(--green)}
+.coverage-day.uncovered .coverage-pct{color:#f87171}
+
+/* ===== CATEGORY CARDS (70% root cause) ===== */
 .cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px}
 .cat-card{background:#fff;border-radius:16px;padding:28px 24px;box-shadow:var(--shadow-lg);border:1px solid rgba(0,0,0,.04);position:relative;overflow:visible;transition:transform .2s,box-shadow .2s}
 .cat-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-xl)}
@@ -101,58 +171,8 @@ z-index:1}
 .cat-fix{margin-top:12px;padding:10px 14px;background:var(--bg);border-radius:10px;border:1px solid var(--border);font-size:12px;color:var(--text);line-height:1.5}
 .cat-fix strong{color:var(--green-dark)}
 
-/* ===== BATCH PROGRESSION ===== */
-.batch-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-bottom:32px}
-.batch-card{background:#fff;border-radius:16px;padding:24px 20px;box-shadow:var(--shadow-lg);border:1px solid rgba(0,0,0,.04);position:relative;overflow:visible;transition:transform .2s,box-shadow .2s}
-.batch-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-xl)}
-.batch-card.highlight{border:2px solid var(--green);box-shadow:0 0 0 4px rgba(16,185,129,.08),var(--shadow-lg)}
-.batch-card.highlight::before{content:'LATEST';position:absolute;top:12px;right:12px;font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--green);background:var(--green-light);padding:3px 10px;border-radius:100px}
-.batch-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted-light);margin-bottom:4px}
-.batch-date{font-size:14px;font-weight:600;color:var(--text);margin-bottom:12px}
-.batch-rate{font-family:var(--sans);font-size:38px;font-weight:900;letter-spacing:-.03em;line-height:1;margin-bottom:4px}
-.batch-rate .pct{font-size:.5em;color:var(--muted-light);font-weight:600}
-.batch-detail{font-size:13px;color:var(--muted);font-weight:500}
-.batch-bar-wrap{margin-top:12px;height:8px;background:rgba(79,70,229,.08);border-radius:4px;overflow:hidden}
-.batch-bar{height:100%;border-radius:4px;transition:width 1.5s cubic-bezier(.16,1,.3,1)}
-.batch-bar.b1{background:var(--blue-light);width:0}
-.batch-bar.b2{background:var(--blue);width:0}
-.batch-bar.b3{background:var(--green);width:0}
-
-/* ===== WARM LEADS TABLE ===== */
-.warm-table{width:100%;border-collapse:collapse;font-size:14px}
-.warm-table th{text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted-light);padding:10px 14px;border-bottom:2px solid var(--border)}
-.warm-table td{padding:12px 14px;border-bottom:1px solid var(--border);color:var(--text);font-weight:500}
-.warm-table tr:last-child td{border-bottom:none}
-.warm-table .highlight-row{background:rgba(245,158,11,.04)}
-.warm-table .amount{font-family:var(--sans);font-weight:700;color:var(--text)}
-.warm-table .opens{font-family:var(--mono);font-size:13px;color:var(--blue);font-weight:600}
-.warm-table .last-open{font-family:var(--mono);font-size:12px;color:var(--muted)}
-
-/* ===== INVOICE PROOF ===== */
-.invoice-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;margin-bottom:28px;align-items:start}
-.invoice-table-card{background:#fff;border-radius:16px;padding:24px;box-shadow:var(--shadow-lg);border:1px solid rgba(0,0,0,.04);overflow-x:auto}
-.invoice-table{width:100%;border-collapse:collapse;font-size:14px}
-.invoice-table th{text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted-light);padding:8px 12px;border-bottom:2px solid var(--border)}
-.invoice-table td{padding:10px 12px;border-bottom:1px solid var(--border);color:var(--text);font-weight:500}
-.invoice-table tr:last-child td{border-bottom:none}
-.invoice-table .result-paid{color:var(--green-dark);font-weight:700}
-
-.invoice-stat-card{background:#fff;border-radius:16px;padding:28px;box-shadow:var(--shadow-lg);border:2px solid var(--green);text-align:center}
-.invoice-stat-card .big-num{font-family:var(--sans);font-size:48px;font-weight:900;color:var(--green-dark);letter-spacing:-.03em;line-height:1}
-.invoice-stat-card .big-label{font-size:14px;color:var(--muted);margin-top:4px;margin-bottom:16px;font-weight:500}
-.invoice-stat-card .stat-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-top:1px solid var(--border)}
-.invoice-stat-card .stat-row-label{font-size:13px;color:var(--muted);font-weight:500}
-.invoice-stat-card .stat-row-value{font-family:var(--sans);font-size:16px;font-weight:800;color:var(--text)}
-.invoice-stat-card .stat-row-value.green{color:var(--green-dark)}
-
-.invoice-projection{background:linear-gradient(135deg,#0B1B3D,#1a1a4e);border-radius:16px;padding:28px 32px;color:#fff}
-.invoice-projection p{font-size:15px;line-height:1.7;color:rgba(255,255,255,.75);margin-bottom:16px}
-.invoice-projection p:last-child{margin-bottom:0}
-.invoice-projection strong{color:#fff}
-.invoice-projection .highlight-num{color:var(--green);font-weight:800}
-
 /* ===== AI AGENT DEMO ===== */
-.agent-demo-section{min-height:auto;background:#f6f3ef;padding:48px 24px 32px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.agent-demo-section{min-height:auto;background:var(--cream);padding:48px 24px 32px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .agent-demo-section::before{content:'';position:absolute;width:800px;height:800px;top:40%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(0,118,206,.12) 0%,rgba(79,70,229,.05) 40%,transparent 70%);border-radius:50%;pointer-events:none;animation:demoHeroGlow 6s ease-in-out infinite}
 .agent-demo-section::after{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 700px 400px at 30% 0%,rgba(0,118,206,.08),transparent),radial-gradient(ellipse 500px 500px at 80% 80%,rgba(79,70,229,.06),transparent)}
 @keyframes demoHeroGlow{0%,100%{opacity:.5;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.12)}}
@@ -242,67 +262,11 @@ z-index:1}
 .demo-retry-btn{background:none;border:1px solid var(--border);color:var(--muted);padding:8px 16px;border-radius:8px;font-size:12px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px;margin-top:2px;font-family:var(--sans)}
 .demo-retry-btn:hover{border-color:var(--blue);color:var(--blue)}
 
-@media(max-width:768px){
-  .demo-orb-wrap{width:140px;height:140px}
-  .demo-orb{width:140px;height:140px;border-radius:50%;-webkit-border-radius:50%;-webkit-mask-image:-webkit-radial-gradient(white,black)}
-  .demo-orb-phone svg{width:28px;height:28px}
-  .demo-orb-ring-1{inset:-12px}
-  .demo-orb-ring-2{inset:-28px}
-  .demo-orb-ring-3{inset:-44px}
-  .demo-title{font-size:16px}
-  .demo-orb-bubble{display:none}
-  .demo-hint-text{white-space:normal;text-align:left}
-  .demo-hint-pill{padding:8px 12px}
-  .demo-hint-badge{display:none}
-}
-@media(max-width:480px){
-  .demo-orb-wrap{width:120px;height:120px;aspect-ratio:1;margin:0 auto 12px}
-  .demo-orb{width:120px;height:120px;aspect-ratio:1;border-radius:50%;-webkit-border-radius:50%;-webkit-mask-image:-webkit-radial-gradient(white,black)}
-  .demo-orb-phone svg{width:24px;height:24px}
-  .demo-orb-ring-1{inset:-10px}
-  .demo-orb-ring-2{inset:-22px}
-  .demo-orb-ring-3{inset:-34px}
-  .demo-title{font-size:15px}
-}
-
-/* ===== READINESS + PROPOSAL ===== */
-.readiness-section{background:linear-gradient(135deg,#0B1B3D 0%,#0f2247 50%,#132a52 100%);padding:56px 32px;position:relative;overflow:visible}
-.readiness-section::before{content:'';position:absolute;inset:0;background:
-  radial-gradient(ellipse 800px 500px at 20% 80%,rgba(16,185,129,.08),transparent),
-  radial-gradient(ellipse 600px 400px at 80% 20%,rgba(79,70,229,.1),transparent)}
-.readiness-section *{position:relative;z-index:1}
-.readiness-inner{max-width:1120px;margin:0 auto}
-.readiness-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--green);margin-bottom:12px}
-.readiness-title{font-family:var(--sans);font-size:clamp(24px,3.5vw,36px);font-weight:900;color:#fff;letter-spacing:-.03em;line-height:1.12;margin-bottom:8px}
-.readiness-subtitle{font-size:16px;color:rgba(255,255,255,.5);max-width:600px;line-height:1.6;margin-bottom:28px}
-
-/* ===== CTA ===== */
-.cta-section{padding:48px 32px 60px;text-align:center}
-.cta-inner{max-width:600px;margin:0 auto}
-.cta-title{font-family:var(--sans);font-size:clamp(28px,4vw,40px);font-weight:900;color:var(--text);letter-spacing:-.03em;margin-bottom:12px}
-.cta-subtitle{font-size:16px;color:var(--muted);margin-bottom:28px;line-height:1.6}
-.cta-btn{display:inline-flex;align-items:center;gap:10px;padding:18px 48px;background:var(--blue);color:#fff;border-radius:14px;font-family:var(--sans);font-weight:800;font-size:18px;text-decoration:none;transition:all .2s;box-shadow:0 0 24px rgba(79,70,229,.25)}
-.cta-btn:hover{background:var(--blue-dark);transform:translateY(-2px);box-shadow:0 8px 32px rgba(79,70,229,.35)}
-.cta-btn svg{width:20px;height:20px}
-.cta-sub{margin-top:12px;font-size:13px;color:var(--muted-light)}
-
-/* ===== RE-ENGAGEMENT LIVE ===== */
-.reengage-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:24px}
-.reengage-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;transition:transform .2s,box-shadow .2s}
-.reengage-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
-.reengage-name{font-size:13px;font-weight:700;color:var(--text)}
-.reengage-amount{font-family:var(--sans);font-size:15px;font-weight:800;color:var(--amber)}
-.live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:6px;animation:livePulse 2s ease-in-out infinite}
-@keyframes livePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
-.reengage-placeholder{background:linear-gradient(135deg,rgba(79,70,229,.03),rgba(16,185,129,.03));border:2px dashed rgba(79,70,229,.15);border-radius:16px;padding:40px 32px;text-align:center;margin-top:20px}
-.reengage-placeholder-text{font-size:15px;color:var(--muted);font-weight:500}
-.reengage-placeholder-date{font-family:var(--sans);font-size:18px;font-weight:800;color:var(--blue);margin-top:8px}
-
 /* ===== COLLECTION INTELLIGENCE ===== */
 .ci-section{background:#f8fafc;padding:80px 32px}
 .ci-inner{max-width:1120px;margin:0 auto}
 .ci-chat{max-width:520px;margin:32px auto 0;background:#fff;border-radius:20px;box-shadow:var(--shadow-xl);border:1px solid rgba(0,0,0,.06);overflow:hidden}
-.ci-chat-header{padding:16px 20px;background:linear-gradient(135deg,#0B1B3D,#1a1a4e);display:flex;align-items:center;gap:10px}
+.ci-chat-header{padding:16px 20px;background:linear-gradient(135deg,var(--navy),#1a1a4e);display:flex;align-items:center;gap:10px}
 .ci-chat-header-dot{width:8px;height:8px;border-radius:50%;background:var(--green)}
 .ci-chat-header-text{font-size:13px;font-weight:700;color:rgba(255,255,255,.8);letter-spacing:.02em}
 .ci-chat-body{padding:20px}
@@ -319,6 +283,28 @@ z-index:1}
 .ci-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;background:rgba(79,70,229,.06);border:1px solid rgba(79,70,229,.12);border-radius:100px;font-size:11px;font-weight:700;color:var(--blue);letter-spacing:.04em;margin-top:20px}
 @keyframes ciFadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
+/* ===== RE-ENGAGEMENT ===== */
+.reengage-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:24px}
+.reengage-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;transition:transform .2s,box-shadow .2s}
+.reengage-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.reengage-name{font-size:13px;font-weight:700;color:var(--text)}
+.reengage-amount{font-family:var(--sans);font-size:15px;font-weight:800;color:var(--amber)}
+.live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:6px;animation:livePulse 2s ease-in-out infinite}
+@keyframes livePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+.reengage-placeholder{background:linear-gradient(135deg,rgba(79,70,229,.03),rgba(16,185,129,.03));border:2px dashed rgba(79,70,229,.15);border-radius:16px;padding:40px 32px;text-align:center;margin-top:20px}
+.reengage-placeholder-text{font-size:15px;color:var(--muted);font-weight:500}
+.reengage-placeholder-date{font-family:var(--sans);font-size:18px;font-weight:800;color:var(--blue);margin-top:8px}
+
+/* ===== CTA ===== */
+.cta-section{padding:48px 32px 60px;text-align:center;background:var(--cream)}
+.cta-inner{max-width:600px;margin:0 auto}
+.cta-title{font-family:var(--sans);font-size:clamp(28px,4vw,40px);font-weight:900;color:var(--text);letter-spacing:-.03em;margin-bottom:12px}
+.cta-subtitle{font-size:16px;color:var(--muted);margin-bottom:28px;line-height:1.6}
+.cta-btn{display:inline-flex;align-items:center;gap:10px;padding:18px 48px;background:var(--blue);color:#fff;border-radius:14px;font-family:var(--sans);font-weight:800;font-size:18px;text-decoration:none;transition:all .2s;box-shadow:0 0 24px rgba(79,70,229,.25)}
+.cta-btn:hover{background:var(--blue-dark);transform:translateY(-2px);box-shadow:0 8px 32px rgba(79,70,229,.35)}
+.cta-btn svg{width:20px;height:20px}
+.cta-sub{margin-top:12px;font-size:13px;color:var(--muted-light)}
+
 /* ===== FOOTER ===== */
 .footer{background:var(--text);padding:60px 32px;text-align:center;color:rgba(255,255,255,.5)}
 .footer-logo{font-family:var(--sans);font-weight:900;font-size:20px;color:#fff;letter-spacing:-.4px;display:inline-flex;align-items:baseline;margin-bottom:12px}
@@ -328,89 +314,55 @@ z-index:1}
 .footer-contact a{color:var(--blue-light);text-decoration:none}
 .footer-contact a:hover{text-decoration:underline}
 
-/* ===== RESPONSIVE ===== */
-@media(max-width:900px){
-  .hero-stats{grid-template-columns:repeat(2,1fr)}
-  .batch-grid,.cat-grid,.invoice-grid{grid-template-columns:1fr}
-  .hero{padding:120px 20px 60px}
-  .section,.readiness-section,.cta-section{padding:48px 20px}
-  .agent-demo-section{padding:36px 16px 24px}
-  .nav-inner{padding:14px 20px}
-}
-@media(max-width:768px){
-  .profile-grid{grid-template-columns:1fr !important}
-  .top5-grid{grid-template-columns:repeat(3,1fr) !important}
-  .warm-table .col-lastcall{display:none}
-  .warm-table th:nth-child(5),.warm-table td:nth-child(5){display:none}
-  .warm-table{font-size:12px}
-  .warm-table th{padding:8px 8px}
-  .warm-table td{padding:10px 8px}
-  .dispute-stat-grid{grid-template-columns:1fr !important}
-  .dispute-card-grid{grid-template-columns:1fr !important}
-}
-@media(max-width:600px){
-  .hero-stats{grid-template-columns:1fr 1fr;gap:1px}
-  .hero-stat{padding:20px 12px}
-  .hero-stat-num{font-size:28px}
-  .batch-rate{font-size:32px}
-  .cat-grid{grid-template-columns:1fr}
-  .invoice-grid{grid-template-columns:1fr}
-  .top5-grid{grid-template-columns:repeat(2,1fr) !important}
-}
-
-/* ===== HOVER TOOLTIPS ===== */
+/* ===== TOOLTIPS ===== */
 .tip{position:relative;border-bottom:1px dotted rgba(11,27,61,.25);cursor:help;display:inline}
-.hero .tip{border-bottom-color:rgba(255,255,255,.3)}
-.readiness-section .tip{border-bottom-color:rgba(255,255,255,.3)}
+.hero .tip,.dark-section .tip{border-bottom-color:rgba(255,255,255,.3)}
 .tip::after{content:attr(data-tip);position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%);background:#fff;color:#0B1B3D;padding:14px 20px;border-radius:12px;font-size:13px;font-weight:400;font-family:'Inter',sans-serif;line-height:1.6;white-space:normal;min-width:260px;max-width:380px;width:max-content;text-align:left;opacity:0;pointer-events:none;transition:opacity .15s ease;z-index:99999;box-shadow:0 12px 40px rgba(0,0,0,.12),0 4px 12px rgba(0,0,0,.08);border:1px solid rgba(0,0,0,.06)}
 .tip:hover::after{opacity:1}
 .tip::before{content:'';position:absolute;top:calc(100% + 6px);left:50%;transform:translateX(-50%);border:7px solid transparent;border-bottom-color:#fff;opacity:0;pointer-events:none;transition:opacity .15s ease;z-index:99999}
 .tip:hover::before{opacity:1}
-@media(max-width:768px){
-  .tip::after,.tip::before{display:none}
-  .tip{border-bottom:none;cursor:default}
-}
+@media(max-width:768px){.tip::after,.tip::before{display:none}.tip{border-bottom:none;cursor:default}}
 
-/* ===== MYSTERY SHOP SECTION ===== */
-.mystery-section{background:linear-gradient(135deg,#0B1B3D 0%,#0f2247 50%,#132a52 100%);padding:80px 32px;position:relative;overflow:hidden}
-.mystery-section::before{content:'';position:absolute;inset:0;background:
-  radial-gradient(ellipse 800px 500px at 20% 80%,rgba(220,38,38,.06),transparent),
-  radial-gradient(ellipse 600px 400px at 80% 20%,rgba(79,70,229,.08),transparent)}
-.mystery-section *{position:relative;z-index:1}
-.mystery-inner{max-width:1120px;margin:0 auto}
-.mystery-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--amber);margin-bottom:12px}
-.mystery-title{font-family:var(--sans);font-size:clamp(24px,3.5vw,36px);font-weight:900;color:#fff;letter-spacing:-.03em;line-height:1.12;margin-bottom:8px}
-.mystery-subtitle{font-size:16px;color:rgba(255,255,255,.5);max-width:650px;line-height:1.6;margin-bottom:40px}
-.mystery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:40px}
-.mystery-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:28px 24px;transition:transform .2s,background .2s}
-.mystery-card:hover{transform:translateY(-3px);background:rgba(255,255,255,.06)}
-.mystery-card-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
-.mystery-card-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.mystery-card-icon.icon-ivr{background:rgba(220,38,38,.15)}
-.mystery-card-icon.icon-closed{background:rgba(245,158,11,.15)}
-.mystery-card-icon.icon-dead{background:rgba(148,163,184,.2)}
-.mystery-card-line{font-size:12px;font-weight:600;color:rgba(255,255,255,.5);line-height:1.3}
-.mystery-card-line strong{color:rgba(255,255,255,.8);font-weight:700}
-.mystery-card-duration{font-family:var(--sans);font-size:32px;font-weight:900;color:#fff;letter-spacing:-.02em;margin-bottom:4px}
-.mystery-card-duration-label{font-size:11px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-bottom:16px}
-.mystery-card-quote{font-size:13px;color:rgba(255,255,255,.55);font-style:italic;line-height:1.6;margin-bottom:16px;padding-left:12px;border-left:2px solid rgba(255,255,255,.12)}
-.mystery-card-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:.04em;background:rgba(220,38,38,.12);color:#f87171;border:1px solid rgba(220,38,38,.2)}
-.mystery-compare{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:28px}
-.mystery-compare-card{border-radius:14px;padding:24px 28px}
-.mystery-compare-card.compare-dell{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}
-.mystery-compare-card.compare-ac{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.15)}
-.mystery-compare-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
-.mystery-compare-card.compare-dell .mystery-compare-label{color:rgba(255,255,255,.35)}
-.mystery-compare-card.compare-ac .mystery-compare-label{color:var(--green)}
-.mystery-compare-text{font-size:15px;line-height:1.6;font-weight:600}
-.mystery-compare-card.compare-dell .mystery-compare-text{color:rgba(255,255,255,.6)}
-.mystery-compare-card.compare-ac .mystery-compare-text{color:#fff}
-.mystery-compare-card.compare-ac .mystery-compare-text strong{color:var(--green)}
-.mystery-note{text-align:center;font-size:12px;color:rgba(255,255,255,.3);font-style:italic}
+/* ===== RESPONSIVE ===== */
 @media(max-width:900px){
+  .hero-metrics{grid-template-columns:repeat(3,1fr)}
+  .cat-grid,.rep-grid,.collector-grid{grid-template-columns:1fr}
+  .hero{padding:120px 20px 60px}
+  .section,.dark-section,.cta-section{padding:48px 20px}
+  .agent-demo-section{padding:36px 16px 24px}
+  .nav-inner{padding:14px 20px}
   .mystery-grid{grid-template-columns:1fr}
-  .mystery-compare{grid-template-columns:1fr}
-  .mystery-section{padding:56px 20px}
+  .coverage-week{grid-template-columns:repeat(4,1fr)}
+}
+@media(max-width:768px){
+  .demo-orb-wrap{width:140px;height:140px}
+  .demo-orb{width:140px;height:140px;border-radius:50%;-webkit-border-radius:50%;-webkit-mask-image:-webkit-radial-gradient(white,black)}
+  .demo-orb-phone svg{width:28px;height:28px}
+  .demo-orb-ring-1{inset:-12px}
+  .demo-orb-ring-2{inset:-28px}
+  .demo-orb-ring-3{inset:-44px}
+  .demo-title{font-size:16px}
+  .demo-orb-bubble{display:none}
+  .demo-hint-text{white-space:normal;text-align:left}
+  .demo-hint-pill{padding:8px 12px}
+  .demo-hint-badge{display:none}
+}
+@media(max-width:600px){
+  .hero-metrics{grid-template-columns:1fr 1fr 1fr}
+  .hero-metric{padding:20px 12px}
+  .hero-metric-num{font-size:28px}
+  .coverage-week{grid-template-columns:repeat(4,1fr)}
+  .cat-grid,.rep-grid,.collector-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .demo-orb-wrap{width:120px;height:120px;aspect-ratio:1;margin:0 auto 12px}
+  .demo-orb{width:120px;height:120px;aspect-ratio:1;border-radius:50%;-webkit-border-radius:50%;-webkit-mask-image:-webkit-radial-gradient(white,black)}
+  .demo-orb-phone svg{width:24px;height:24px}
+  .demo-orb-ring-1{inset:-10px}
+  .demo-orb-ring-2{inset:-22px}
+  .demo-orb-ring-3{inset:-34px}
+  .demo-title{font-size:15px}
+  .hero-metrics{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -427,7 +379,9 @@ z-index:1}
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- ============================================================ -->
+<!-- HERO — AUDIT ANGLE                                            -->
+<!-- ============================================================ -->
 <section class="hero" id="hero">
   <div class="hero-partnership rv">
     <img class="dell-logo" src="https://cdn.brandfetch.io/dell.com/w/512/h/80/logo" alt="Dell Technologies" onerror="this.outerHTML='<span style=&quot;color:#fff;font-family:var(--sans);font-weight:900;font-size:20px;letter-spacing:-.02em&quot;>DELL</span>'">
@@ -435,338 +389,35 @@ z-index:1}
     <span class="ac-logo">AgentCollect<span class="dot"></span></span>
   </div>
 
-  <div class="hero-label rv rv-d1">Dell AR Analysis &mdash; Q1 2026</div>
-  <h1 class="hero-title rv rv-d2">Pilot Analysis<br>650 Accounts, 3 Batches</h1>
-  <p class="hero-subtitle rv rv-d3">Full breakdown: what worked, what didn't, and what would change the 70% that didn't pay.</p>
+  <div class="hero-label rv rv-d1">AR Operations Audit &mdash; April 2026</div>
+  <h1 class="hero-title rv rv-d2">Your AR Department:<br>What We Found</h1>
+  <p class="hero-subtitle rv rv-d3">We audited Dell Financial Services from the outside in. Public data, customer experience, downstream partners, and coverage gaps. Here is what your leadership should know.</p>
 
-  <div class="hero-stats rv rv-d4">
-    <div class="hero-stat">
-      <div class="hero-stat-num"><span class="counter" data-target="650">0</span></div>
-      <div class="hero-stat-label">Accounts Processed</div>
+  <div class="hero-metrics rv rv-d4">
+    <div class="hero-metric">
+      <div class="hero-metric-num">3</div>
+      <div class="hero-metric-label">Lines Called, 0 Humans</div>
     </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num"><span class="tip" data-tip="160 recovered via our platform + 34 confirmed paid directly to Dell during outreach. These 34 were heading to write-off before we confirmed the payment."><span class="counter" data-target="194">0</span></span></div>
-      <div class="hero-stat-label">Accounts Recovered</div>
+    <div class="hero-metric">
+      <div class="hero-metric-num">1.3<span style="font-size:.5em;color:rgba(255,255,255,.5)">/5</span></div>
+      <div class="hero-metric-label">Trustpilot (DFS)</div>
     </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num"><span class="tip" data-tip="$188K collected via secure payment links + $207K confirmed paid directly to Dell. Total verified recovery from pilot activity."><span class="dollar">$</span><span class="counter" data-target="395286" data-format="currency">0</span></span></div>
-      <div class="hero-stat-label">Total Recovered</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num"><span class="tip" data-tip="194 of 650 accounts. This rate was achieved WITHOUT invoice access and with largely generic contact data. Sections below detail what constrained it."><span class="counter" data-target="29.8" data-decimals="1">0</span><span class="pct">%</span></span></div>
-      <div class="hero-stat-label">Recovery Rate</div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================ -->
-<!-- SECTION 2: THE 70% — WHY THEY DIDN'T PAY                     -->
-<!-- ============================================================ -->
-<section class="section" id="the-70-pct" style="padding-bottom:40px">
-  <div class="section-label rv">The 70% &mdash; Root Cause Analysis</div>
-  <h2 class="section-title rv rv-d1">456 accounts didn't pay. Here's why.</h2>
-  <p class="section-subtitle rv rv-d2">Every non-paying account falls into one of four categories. Each has a different fix.</p>
-  <div class="section-divider rv rv-d2"></div>
-
-  <!-- Visual breakdown bar -->
-  <div style="max-width:900px;margin:0 auto 32px;background:#fff;border-radius:16px;padding:24px;box-shadow:var(--shadow-lg);border:1px solid rgba(0,0,0,.04)" class="rv rv-d2">
-    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:14px">456 non-paying accounts by category</div>
-    <div style="display:flex;height:40px;border-radius:8px;overflow:hidden;gap:2px">
-      <div style="width:9.6%;background:var(--amber);display:flex;align-items:center;justify-content:center"><span style="font-size:11px;font-weight:800;color:#fff">A</span></div>
-      <div style="width:52.2%;background:var(--blue);display:flex;align-items:center;justify-content:center"><span style="font-size:11px;font-weight:800;color:#fff">B</span></div>
-      <div style="width:12.5%;background:#ef4444;display:flex;align-items:center;justify-content:center"><span style="font-size:11px;font-weight:800;color:#fff">C</span></div>
-      <div style="width:25.7%;background:var(--muted-light);display:flex;align-items:center;justify-content:center"><span style="font-size:11px;font-weight:800;color:#fff">D</span></div>
-    </div>
-    <div style="display:flex;gap:20px;margin-top:10px;flex-wrap:wrap">
-      <div style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:3px;background:var(--amber);flex-shrink:0"></span><span style="font-size:12px;color:var(--muted)">A: Invoice gap (44)</span></div>
-      <div style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:3px;background:var(--blue);flex-shrink:0"></span><span style="font-size:12px;color:var(--muted)">B: Reached, not converted (238)</span></div>
-      <div style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:3px;background:#ef4444;flex-shrink:0"></span><span style="font-size:12px;color:var(--muted)">C: Never engaged (57)</span></div>
-      <div style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:3px;background:var(--muted-light);flex-shrink:0"></span><span style="font-size:12px;color:var(--muted)">D: Likely already paid / bad data (117)</span></div>
-    </div>
-  </div>
-
-  <!-- 4 Category Cards -->
-  <div class="cat-grid">
-    <!-- Category A -->
-    <div class="cat-card cat-a rv rv-d1">
-      <span class="cat-tag">Category A &mdash; Highest ROI Fix</span>
-      <div class="cat-title">Would pay with invoice access</div>
-      <div class="cat-stats">
-        <div><div class="cat-stat-num" style="color:#92400E">44</div><div class="cat-stat-label">accounts</div></div>
-        <div><div class="cat-stat-num" style="color:#92400E"><span class="tip" data-tip="Estimated from average ticket size of $4,545 across the 44 accounts that explicitly requested invoices through dispute or phone conversation.">~$200K</span></div><div class="cat-stat-label">recoverable</div></div>
-      </div>
-      <div class="cat-desc">These accounts asked for a copy of their invoice. 59% of all disputes were invoice requests. When Dell manually provided one, 40% paid within 1-2 days.</div>
-      <div class="cat-fix"><strong>Fix:</strong> API or SFTP invoice access. The AI sends the invoice in real time during the call or email. Projected conversion: 40%+ of this group.</div>
-    </div>
-
-    <!-- Category B -->
-    <div class="cat-card cat-b rv rv-d2">
-      <span class="cat-tag">Category B &mdash; Largest Segment</span>
-      <div class="cat-title">Reached but not converted</div>
-      <div class="cat-stats">
-        <div><div class="cat-stat-num" style="color:var(--blue)">238</div><div class="cat-stat-label">accounts</div></div>
-        <div><div class="cat-stat-num" style="color:var(--blue)"><span class="tip" data-tip="238 accounts at an average ticket of $3,193. These had phone conversations or email engagement but lacked invoice documentation to close.">~$760K</span></div><div class="cat-stat-label">outstanding</div></div>
-      </div>
-      <div class="cat-desc">Had phone conversations or opened emails but didn't convert. Many asked questions we couldn't answer without billing access: "Can you send me the invoice?", "What PO is this under?"</div>
-      <div class="cat-fix"><strong>Fix:</strong> Invoice access + re-engagement with fresh messaging. Batch #3 already showed 33.7% conversion on re-contacted accounts. With invoices, this segment unlocks next.</div>
-    </div>
-
-    <!-- Category C -->
-    <div class="cat-card cat-c rv rv-d3">
-      <span class="cat-tag">Category C &mdash; Contact Quality</span>
-      <div class="cat-title">Never engaged &mdash; bad contact data</div>
-      <div class="cat-stats">
-        <div><div class="cat-stat-num" style="color:#dc2626">57</div><div class="cat-stat-label">accounts</div></div>
-        <div><div class="cat-stat-num" style="color:#dc2626"><span class="tip" data-tip="57 accounts where zero email opens were recorded and all phone calls went unanswered or to disconnected lines. Original contacts were generic AP inboxes.">~$248K</span></div><div class="cat-stat-label">outstanding</div></div>
-      </div>
-      <div class="cat-desc">Zero email opens. Zero call answers. Original contacts were generic inboxes (AP@company.com) that nobody monitors. Our Contact Finder already proved the fix: 660 new contacts found, 25 directly led to $63K in payments.</div>
-      <div class="cat-fix"><strong>Fix:</strong> Pre-enrichment before outreach. Run Contact Finder on every account before first email. Target the actual decision-maker, not the generic inbox.</div>
-    </div>
-
-    <!-- Category D -->
-    <div class="cat-card cat-d rv rv-d4">
-      <span class="cat-tag">Category D &mdash; Verification Needed</span>
-      <div class="cat-title">Likely already paid or unreachable</div>
-      <div class="cat-stats">
-        <div><div class="cat-stat-num" style="color:var(--muted)">117</div><div class="cat-stat-label">accounts</div></div>
-        <div><div class="cat-stat-num" style="color:var(--muted)"><span class="tip" data-tip="34 confirmed as already paid to Dell + ~83 accounts with expired contacts, businesses closed, or addresses invalid. Some of the 83 may have also paid Dell directly.">~$223K</span></div><div class="cat-stat-label">mix of paid + bad data</div></div>
-      </div>
-      <div class="cat-desc">34 accounts confirmed they already paid Dell directly. Without billing access, we can't verify in real time. Some of the remaining 326 "finished" accounts may have already paid too &mdash; we have no way to confirm.</div>
-      <div class="cat-fix"><strong>Fix:</strong> Read-only billing access. The AI checks payment status before outreach. Stops chasing people who already paid. Improves debtor experience and Dell's brand.</div>
-    </div>
-  </div>
-
-  <!-- Key insight -->
-  <div style="max-width:900px;margin:0 auto;padding:24px 28px;background:linear-gradient(135deg,rgba(245,158,11,.06),rgba(79,70,229,.04));border-radius:16px;border:1px solid rgba(245,158,11,.15)" class="rv rv-d4">
-    <div style="font-size:15px;color:var(--text);line-height:1.7">
-      <strong style="color:var(--text)">The recovery rate isn't 29%.</strong> It's 29% with one hand tied behind our back. Without invoice access, the AI has a conversation &mdash; the debtor says "send me the invoice" &mdash; and we have nothing to send. That 59% of disputes is $200K sitting on the table.
+    <div class="hero-metric">
+      <div class="hero-metric-num">73<span style="font-size:.5em;color:rgba(255,255,255,.5)">%</span></div>
+      <div class="hero-metric-label">Hours/Week Uncovered</div>
     </div>
   </div>
 </section>
 
 
 <!-- ============================================================ -->
-<!-- SECTION 3: INVOICE IMPACT PROOF                               -->
+<!-- MYSTERY SHOP — ENHANCED                                       -->
 <!-- ============================================================ -->
-<section class="section" id="invoice-proof" style="padding-top:40px;background:#f8fafc">
-  <div style="max-width:1120px;margin:0 auto">
-    <div class="section-label rv">Invoice Impact &mdash; Proof from Pilot Data</div>
-    <h2 class="section-title rv rv-d1">When we had an invoice, 40% paid within days.</h2>
-    <div class="section-divider rv rv-d2"></div>
-
-    <div class="invoice-grid rv rv-d2">
-      <!-- LEFT: Proof Table -->
-      <div class="invoice-table-card">
-        <table class="invoice-table">
-          <thead>
-            <tr>
-              <th>Company</th>
-              <th>Asked</th>
-              <th>Invoice Sent</th>
-              <th>Result</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Semler Brossy</td>
-              <td>Dec 8</td>
-              <td>Dec 10</td>
-              <td class="result-paid"><strong>$3,699 paid</strong></td>
-            </tr>
-            <tr>
-              <td>Harsco Metals</td>
-              <td>Dec 15</td>
-              <td>Dec 16</td>
-              <td class="result-paid"><strong>$1,718 confirmed paid to Dell</strong></td>
-            </tr>
-            <tr>
-              <td>Jeanie Phillips</td>
-              <td>Dec 4</td>
-              <td>Dec 4</td>
-              <td class="result-paid"><strong>$1,481 paid</strong> (91%)</td>
-            </tr>
-            <tr>
-              <td>Leon Goldstein</td>
-              <td>Dec 1</td>
-              <td>Dec 10</td>
-              <td class="result-paid"><strong>$253 paid</strong></td>
-            </tr>
-          </tbody>
-        </table>
-        <div style="margin-top:14px;font-size:12px;color:var(--muted);line-height:1.5">These 4 were the only cases where Dell manually provided an invoice PDF during the pilot. We had no automated access.</div>
-      </div>
-
-      <!-- RIGHT: Stat Card -->
-      <div class="invoice-stat-card">
-        <div class="big-num"><span class="tip" data-tip="4 confirmed payments out of 10 cases where Dell manually provided invoice PDFs to disputing debtors">4 of 10</span></div>
-        <div class="big-label">disputes converted to payment</div>
-        <div class="stat-row">
-          <span class="stat-row-label">Recovered from disputes</span>
-          <span class="stat-row-value green tip" data-tip="Semler Brossy $3,699 + Harsco Metals $1,718 + Jeanie Phillips $1,481 + Leon Goldstein $253">$7,152</span>
-        </div>
-        <div class="stat-row">
-          <span class="stat-row-label">Conversion by dollar value</span>
-          <span class="stat-row-value green tip" data-tip="$7,152 recovered out of $13,441 total disputed amount across the 10 invoice cases">53%</span>
-        </div>
-        <div class="stat-row">
-          <span class="stat-row-label">Avg. time to payment</span>
-          <span class="stat-row-value green">1-2 days</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Projection -->
-    <div class="invoice-projection rv rv-d3">
-      <p><strong>Projection with invoice access:</strong> 44 accounts in Category A &times; 40% conversion = <span class="highlight-num">~18 additional recoveries, ~$80K</span>. Combined with re-engagement of Category B, projected Batch #4 rate: <span class="highlight-num">40%+</span> (up from 33.7%). <strong>DSO impact:</strong> disputes resolve in <span class="highlight-num">seconds, not days.</span></p>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================================ -->
-<!-- SECTION 3B: DISPUTE INTELLIGENCE                               -->
-<!-- ============================================================ -->
-<section class="section" id="dispute-intelligence" style="padding:56px 32px;background:#fff">
-  <div style="max-width:1120px;margin:0 auto">
-    <div class="section-label rv" style="color:var(--green)">Dispute Intelligence</div>
-    <h2 class="section-title rv rv-d1">60% of disputes auto-resolved. In 17 seconds.</h2>
-    <div class="section-divider rv rv-d2"></div>
-
-    <!-- 3 big stats -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:32px" class="rv rv-d2 dispute-stat-grid">
-      <div style="background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:28px 24px;text-align:center">
-        <div style="font-family:var(--sans);font-size:clamp(36px,4vw,48px);font-weight:900;color:var(--green);letter-spacing:-.03em;line-height:1">60<span style="font-size:.5em;color:var(--muted-light);font-weight:600">%</span></div>
-        <div style="font-size:13px;color:var(--muted);margin-top:6px;font-weight:600">Auto-Resolved</div>
-      </div>
-      <div style="background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:28px 24px;text-align:center">
-        <div style="font-family:var(--sans);font-size:clamp(36px,4vw,48px);font-weight:900;color:var(--blue);letter-spacing:-.03em;line-height:1">17<span style="font-size:.5em;color:var(--muted-light);font-weight:600">sec</span></div>
-        <div style="font-size:13px;color:var(--muted);margin-top:6px;font-weight:600">Avg. Resolution Time</div>
-      </div>
-      <div style="background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:28px 24px;text-align:center">
-        <div style="font-family:var(--sans);font-size:clamp(36px,4vw,48px);font-weight:900;color:var(--text);letter-spacing:-.03em;line-height:1">86</div>
-        <div style="font-size:13px;color:var(--muted);margin-top:6px;font-weight:600">Total Disputes Handled</div>
-      </div>
-    </div>
-
-    <!-- 3 dispute type cards -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:28px" class="rv rv-d3 dispute-card-grid">
-      <div style="background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:24px;position:relative;overflow:hidden">
-        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--blue)"></div>
-        <div style="font-family:var(--sans);font-size:28px;font-weight:900;color:var(--blue);line-height:1;margin-bottom:4px">59<span style="font-size:.5em;color:var(--muted-light);font-weight:600">%</span></div>
-        <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px">Invoice Request</div>
-        <div style="font-size:12px;color:var(--muted);line-height:1.5">Debtor asked for a copy of the invoice before paying. With API access, resolved instantly.</div>
-      </div>
-      <div style="background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:24px;position:relative;overflow:hidden">
-        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--green)"></div>
-        <div style="font-family:var(--sans);font-size:28px;font-weight:900;color:var(--green);line-height:1;margin-bottom:4px">23<span style="font-size:.5em;color:var(--muted-light);font-weight:600">%</span></div>
-        <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px">Already Paid</div>
-        <div style="font-size:12px;color:var(--muted);line-height:1.5">Debtor claimed they already paid. AI cross-references billing data to confirm or continue.</div>
-      </div>
-      <div style="background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:24px;position:relative;overflow:hidden">
-        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--amber)"></div>
-        <div style="font-family:var(--sans);font-size:28px;font-weight:900;color:var(--amber);line-height:1;margin-bottom:4px">18<span style="font-size:.5em;color:var(--muted-light);font-weight:600">%</span></div>
-        <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px">Legitimacy Check</div>
-        <div style="font-size:12px;color:var(--muted);line-height:1.5">Debtor questioned the debt itself. AI validates against records and escalates if unresolved.</div>
-      </div>
-    </div>
-
-    <!-- Green insight box -->
-    <div style="display:flex;align-items:flex-start;gap:16px;padding:20px 24px;background:var(--green-light);border-radius:14px;border:1px solid rgba(16,185,129,.2)" class="rv rv-d4">
-      <div style="width:40px;height:40px;border-radius:12px;background:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-      </div>
-      <div style="font-size:14px;color:var(--text);line-height:1.6">
-        <strong style="color:var(--green-dark)">With invoice access: 85-90% auto-resolution.</strong> The majority of disputes (59%) are simple invoice requests. When the AI can pull and send the invoice in real time, these resolve in seconds instead of days.
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================================ -->
-<!-- SECTION 4: WARM LEADS — STILL ACTIVE                          -->
-<!-- ============================================================ -->
-<section class="section" id="warm-leads" style="padding:56px 32px">
-  <div class="section-label rv" style="color:var(--amber)">Active Right Now</div>
-  <h2 class="section-title rv rv-d1">16 accounts are opening emails this week. $93K recoverable.</h2>
-  <p class="section-subtitle rv rv-d2">These accounts show active intent. They're reading emails but haven't been contacted by phone recently.</p>
-  <div class="section-divider rv rv-d2"></div>
-
-  <div style="background:#fff;border-radius:16px;padding:4px;box-shadow:var(--shadow-lg);border:1px solid rgba(0,0,0,.04);overflow-x:auto" class="rv rv-d3">
-    <table class="warm-table">
-      <thead>
-        <tr>
-          <th>Company</th>
-          <th>Amount</th>
-          <th>Email Opens</th>
-          <th>Last Open</th>
-          <th>Last Call</th>
-          <th>Signal</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="highlight-row">
-          <td style="font-weight:700">Weldaloy Products</td>
-          <td class="amount">$31,012</td>
-          <td class="opens">12 opens</td>
-          <td class="last-open">Mar 6</td>
-          <td style="color:var(--red);font-weight:600;font-size:13px">Nov 2025</td>
-          <td><span style="background:var(--amber-light);color:#92400E;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700">HIGH</span></td>
-        </tr>
-        <tr class="highlight-row">
-          <td style="font-weight:700">CA Emergency Liquidation</td>
-          <td class="amount">$10,200</td>
-          <td class="opens">28 opens</td>
-          <td class="last-open">Mar 14</td>
-          <td style="font-size:13px;color:var(--muted)">Dec 2025</td>
-          <td><span style="background:var(--amber-light);color:#92400E;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700">HIGH</span></td>
-        </tr>
-        <tr>
-          <td style="font-weight:700">Woman's Hospital Foundation</td>
-          <td class="amount">$988</td>
-          <td class="opens" style="color:var(--green-dark)">80 opens</td>
-          <td class="last-open">Mar 18</td>
-          <td style="font-size:13px;color:var(--muted)">Jan 2026</td>
-          <td><span style="background:var(--green-light);color:var(--green-dark);padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700">VERY HIGH</span></td>
-        </tr>
-        <tr>
-          <td>MBR Electronics</td>
-          <td class="amount">$5,430</td>
-          <td class="opens">15 opens</td>
-          <td class="last-open">Mar 12</td>
-          <td style="font-size:13px;color:var(--muted)">Dec 2025</td>
-          <td><span style="background:rgba(79,70,229,.08);color:var(--blue);padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700">MEDIUM</span></td>
-        </tr>
-        <tr>
-          <td>SkyView Technology</td>
-          <td class="amount">$8,750</td>
-          <td class="opens">9 opens</td>
-          <td class="last-open">Mar 10</td>
-          <td style="font-size:13px;color:var(--muted)">Jan 2026</td>
-          <td><span style="background:rgba(79,70,229,.08);color:var(--blue);padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700">MEDIUM</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div style="text-align:center;margin-top:14px;font-size:13px;color:var(--muted)" class="rv rv-d4">+ 11 more accounts with recent email activity. <strong style="color:var(--text)">Total: $93K recoverable with a single re-engagement call + invoice.</strong></div>
-
-  <!-- Weldaloy callout -->
-  <div style="max-width:900px;margin:24px auto 0;padding:20px 24px;background:#fff;border:2px solid var(--amber);border-radius:14px;box-shadow:var(--shadow)" class="rv rv-d4">
-    <div style="font-size:14px;color:var(--text);line-height:1.7">
-      <strong style="color:#92400E">Weldaloy Products &mdash; $31K:</strong> 12 email opens since launch. Last open: March 6. Last phone call: November 2025. This account is reading every email we send but hasn't been called in 4 months. A single AI call with an invoice could close this.
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================================ -->
-<!-- MYSTERY SHOP: WHAT YOUR CUSTOMERS EXPERIENCE TODAY            -->
-<!-- ============================================================ -->
-<section class="mystery-section" id="mystery-shop">
-  <div class="mystery-inner">
-    <div class="mystery-label rv">Customer Experience Audit</div>
-    <h2 class="mystery-title rv rv-d1">What Your Customers Experience Today</h2>
-    <p class="mystery-subtitle rv rv-d2">We called Dell Financial Services on a Saturday evening. Here's what happened.</p>
+<section class="dark-section" id="mystery-shop">
+  <div class="dark-inner">
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--amber);margin-bottom:12px" class="rv">Customer Experience Audit</div>
+    <h2 style="font-family:var(--sans);font-size:clamp(24px,3.5vw,36px);font-weight:900;color:#fff;letter-spacing:-.03em;line-height:1.12;margin-bottom:8px" class="rv rv-d1">What Your Customers Experience Today</h2>
+    <p style="font-size:16px;color:rgba(255,255,255,.5);max-width:650px;line-height:1.6;margin-bottom:40px" class="rv rv-d2">We called Dell Financial Services on a Saturday evening. Three numbers. Three different outcomes. Same result: no help.</p>
 
     <div class="mystery-grid">
       <!-- Card 1: DFS Main Line -->
@@ -821,227 +472,222 @@ z-index:1}
       </div>
     </div>
 
-    <!-- Comparison Row -->
-    <div class="mystery-compare rv rv-d3">
-      <div class="mystery-compare-card compare-dell">
-        <div class="mystery-compare-label">Dell DFS Today</div>
-        <div class="mystery-compare-text">3 lines called. 0 humans reached. Best case: 3 min 24 sec in an IVR loop that asks a B2B customer for a credit card number.</div>
+    <!-- 5-line summary findings -->
+    <div style="max-width:800px;margin:0 auto 28px" class="rv rv-d3">
+      <div class="finding-card">
+        <div class="finding-num">1</div>
+        <div class="finding-text"><strong>IVR designed for consumer credit cards, not B2B leases.</strong> The main billing line asks for a 16-digit credit card number. B2B customers with a Dell Premier account or enterprise lease number have no valid option.</div>
       </div>
-      <div class="mystery-compare-card compare-ac">
-        <div class="mystery-compare-label">With AgentCollect</div>
-        <div class="mystery-compare-text">Answers in <strong>3 seconds</strong>. 24/7. 28 languages. Every question answered. Every dispute resolved on the first call.</div>
+      <div class="finding-card">
+        <div class="finding-num">2</div>
+        <div class="finding-text"><strong>Zero after-hours coverage.</strong> Enterprise Leases line plays a closed message and hangs up. No voicemail, no callback option, no way to reach anyone outside Mon-Fri 8-5 CT.</div>
+      </div>
+      <div class="finding-card">
+        <div class="finding-num">3</div>
+        <div class="finding-text"><strong>Local DFS office line is a dead end.</strong> The Round Rock office number connects to silence. No ring, no voicemail, no automated system. A customer trying to resolve a billing issue reaches nothing.</div>
+      </div>
+      <div class="finding-card">
+        <div class="finding-num">4</div>
+        <div class="finding-text"><strong>No escalation path exists.</strong> Across all three lines, there is no option to escalate to a supervisor, leave a message for a callback, or be connected to a billing specialist.</div>
+      </div>
+      <div class="finding-card">
+        <div class="finding-num">5</div>
+        <div class="finding-text"><strong>A customer who wants to pay cannot.</strong> Someone holding a past-due invoice, ready to resolve it on a Saturday, has no way to reach Dell Financial Services. That account ages another 48 hours before anyone can help.</div>
       </div>
     </div>
 
-    <div class="mystery-note rv rv-d4">Business hours calls scheduled for Monday, April 13. Results will be added here.</div>
+    <div style="text-align:center;font-size:12px;color:rgba(255,255,255,.3);font-style:italic" class="rv rv-d4">Business hours calls scheduled for Monday, April 13. Results will be added here.</div>
   </div>
 </section>
 
 
 <!-- ============================================================ -->
-<!-- SECTION 4B: THIS WEEK'S RE-ENGAGEMENT                         -->
+<!-- THE 70% ROOT CAUSE — ANALYTICAL                               -->
 <!-- ============================================================ -->
-<section class="section" id="reengagement" style="padding:56px 32px;background:#f8fafc">
+<section class="section" id="the-70-pct" style="padding-bottom:40px;background:var(--cream)">
+  <div class="section-label rv">Root Cause Analysis</div>
+  <h2 class="section-title rv rv-d1">456 accounts didn't pay. Here's why.</h2>
+  <p class="section-subtitle rv rv-d2">From our pilot of 650 accounts, every non-paying account falls into one of four categories. Each has a different fix.</p>
+  <div class="section-divider rv rv-d2"></div>
+
+  <!-- Visual breakdown bar -->
+  <div style="max-width:900px;margin:0 auto 32px;background:#fff;border-radius:16px;padding:24px;box-shadow:var(--shadow-lg);border:1px solid rgba(0,0,0,.04)" class="rv rv-d2">
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:14px">456 non-paying accounts by category</div>
+    <div style="display:flex;height:40px;border-radius:8px;overflow:hidden;gap:2px">
+      <div style="width:9.6%;background:var(--amber);display:flex;align-items:center;justify-content:center"><span style="font-size:11px;font-weight:800;color:#fff">A</span></div>
+      <div style="width:52.2%;background:var(--blue);display:flex;align-items:center;justify-content:center"><span style="font-size:11px;font-weight:800;color:#fff">B</span></div>
+      <div style="width:12.5%;background:#ef4444;display:flex;align-items:center;justify-content:center"><span style="font-size:11px;font-weight:800;color:#fff">C</span></div>
+      <div style="width:25.7%;background:var(--muted-light);display:flex;align-items:center;justify-content:center"><span style="font-size:11px;font-weight:800;color:#fff">D</span></div>
+    </div>
+    <div style="display:flex;gap:20px;margin-top:10px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:3px;background:var(--amber);flex-shrink:0"></span><span style="font-size:12px;color:var(--muted)">A: Invoice gap (44)</span></div>
+      <div style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:3px;background:var(--blue);flex-shrink:0"></span><span style="font-size:12px;color:var(--muted)">B: Reached, not converted (238)</span></div>
+      <div style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:3px;background:#ef4444;flex-shrink:0"></span><span style="font-size:12px;color:var(--muted)">C: Never engaged (57)</span></div>
+      <div style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:3px;background:var(--muted-light);flex-shrink:0"></span><span style="font-size:12px;color:var(--muted)">D: Likely already paid / bad data (117)</span></div>
+    </div>
+  </div>
+
+  <!-- 4 Category Cards -->
+  <div class="cat-grid">
+    <div class="cat-card cat-a rv rv-d1">
+      <span class="cat-tag">Category A &mdash; Highest ROI Fix</span>
+      <div class="cat-title">Would pay with invoice access</div>
+      <div class="cat-stats">
+        <div><div class="cat-stat-num" style="color:#92400E">44</div><div class="cat-stat-label">accounts</div></div>
+        <div><div class="cat-stat-num" style="color:#92400E">~$200K</div><div class="cat-stat-label">recoverable</div></div>
+      </div>
+      <div class="cat-desc">These accounts asked for a copy of their invoice. 59% of all disputes were invoice requests. When Dell manually provided one, 40% paid within 1-2 days.</div>
+      <div class="cat-fix"><strong>Fix:</strong> API or SFTP invoice access. The AI sends the invoice in real time during the call or email. Projected conversion: 40%+ of this group.</div>
+    </div>
+
+    <div class="cat-card cat-b rv rv-d2">
+      <span class="cat-tag">Category B &mdash; Largest Segment</span>
+      <div class="cat-title">Reached but not converted</div>
+      <div class="cat-stats">
+        <div><div class="cat-stat-num" style="color:var(--blue)">238</div><div class="cat-stat-label">accounts</div></div>
+        <div><div class="cat-stat-num" style="color:var(--blue)">~$760K</div><div class="cat-stat-label">outstanding</div></div>
+      </div>
+      <div class="cat-desc">Had phone conversations or opened emails but didn't convert. Many asked questions we couldn't answer without billing access: "Can you send me the invoice?", "What PO is this under?"</div>
+      <div class="cat-fix"><strong>Fix:</strong> Invoice access + re-engagement with fresh messaging. With invoices, this segment unlocks next.</div>
+    </div>
+
+    <div class="cat-card cat-c rv rv-d3">
+      <span class="cat-tag">Category C &mdash; Contact Quality</span>
+      <div class="cat-title">Never engaged &mdash; bad contact data</div>
+      <div class="cat-stats">
+        <div><div class="cat-stat-num" style="color:#dc2626">57</div><div class="cat-stat-label">accounts</div></div>
+        <div><div class="cat-stat-num" style="color:#dc2626">~$248K</div><div class="cat-stat-label">outstanding</div></div>
+      </div>
+      <div class="cat-desc">Zero email opens. Zero call answers. Original contacts were generic inboxes (AP@company.com) that nobody monitors. Our Contact Finder already proved the fix: 660 new contacts found, 25 directly led to $63K in payments.</div>
+      <div class="cat-fix"><strong>Fix:</strong> Pre-enrichment before outreach. Target the actual decision-maker, not the generic inbox.</div>
+    </div>
+
+    <div class="cat-card cat-d rv rv-d4">
+      <span class="cat-tag">Category D &mdash; Verification Needed</span>
+      <div class="cat-title">Likely already paid or unreachable</div>
+      <div class="cat-stats">
+        <div><div class="cat-stat-num" style="color:var(--muted)">117</div><div class="cat-stat-label">accounts</div></div>
+        <div><div class="cat-stat-num" style="color:var(--muted)">~$223K</div><div class="cat-stat-label">mix of paid + bad data</div></div>
+      </div>
+      <div class="cat-desc">34 accounts confirmed they already paid Dell directly. Without billing access, we can't verify in real time. Contacting people who already paid damages the Dell brand.</div>
+      <div class="cat-fix"><strong>Fix:</strong> Read-only billing access. The AI checks payment status before outreach. Stops chasing people who already paid.</div>
+    </div>
+  </div>
+
+  <!-- Key insight -->
+  <div style="max-width:900px;margin:0 auto;padding:24px 28px;background:linear-gradient(135deg,rgba(245,158,11,.06),rgba(79,70,229,.04));border-radius:16px;border:1px solid rgba(245,158,11,.15)" class="rv rv-d4">
+    <div style="font-size:15px;color:var(--text);line-height:1.7">
+      <strong style="color:var(--text)">The common thread:</strong> 59% of disputes are invoice requests. Accounts want to pay but need documentation. Without invoice access, the agent has a conversation, the customer says "send me the invoice," and there is nothing to send. That's $200K sitting on the table.
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- WHAT'S BEING SAID — PUBLIC REPUTATION                         -->
+<!-- ============================================================ -->
+<section class="dark-section" id="reputation">
+  <div class="dark-inner">
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:#f87171;margin-bottom:12px" class="rv">What Dell Doesn't See</div>
+    <h2 style="font-family:var(--sans);font-size:clamp(24px,3.5vw,36px);font-weight:900;color:#fff;letter-spacing:-.03em;line-height:1.12;margin-bottom:8px" class="rv rv-d1">What's Being Said About Dell Financial Services</h2>
+    <p style="font-size:16px;color:rgba(255,255,255,.5);max-width:650px;line-height:1.6;margin-bottom:40px" class="rv rv-d2">Public reputation data that Dell's leadership may not regularly see. Your prospects, partners, and competitors can find this in seconds.</p>
+
+    <div class="rep-grid rv rv-d2">
+      <!-- Trustpilot -->
+      <div class="rep-card">
+        <div class="rep-card-header">
+          <div class="rep-card-logo">Trustpilot</div>
+          <div class="rep-card-rating" style="background:rgba(220,38,38,.15);color:#f87171">Bad</div>
+        </div>
+        <div class="rep-card-score">1.3<span style="font-size:.35em;color:rgba(255,255,255,.35);font-weight:600">/5</span></div>
+        <div class="rep-card-score-label">Dell Financial Services rating</div>
+        <div class="rep-complaint">Service fees charged after account payoff</div>
+        <div class="rep-complaint">Predatory promotional financing</div>
+        <div class="rep-complaint">Weeks-long refund delays</div>
+        <div class="rep-complaint">Payment processing errors followed by cancellations</div>
+      </div>
+
+      <!-- BBB -->
+      <div class="rep-card">
+        <div class="rep-card-header">
+          <div class="rep-card-logo">Better Business Bureau</div>
+          <div class="rep-card-rating" style="background:rgba(245,158,11,.15);color:var(--amber)">Not Accredited</div>
+        </div>
+        <div class="rep-card-score" style="font-size:36px">3,075</div>
+        <div class="rep-card-score-label">Complaints in last 3 years</div>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px">
+          <div style="display:flex;justify-content:space-between;padding:10px 14px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px">
+            <span style="font-size:13px;color:rgba(255,255,255,.5)">BBB Rating</span>
+            <span style="font-size:13px;font-weight:800;color:var(--amber)">A+ (but not accredited)</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:10px 14px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px">
+            <span style="font-size:13px;color:rgba(255,255,255,.5)">DFS-specific complaints</span>
+            <span style="font-size:13px;font-weight:800;color:#f87171">159</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:10px 14px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px">
+            <span style="font-size:13px;color:rgba(255,255,255,.5)">Average resolution time</span>
+            <span style="font-size:13px;font-weight:800;color:rgba(255,255,255,.7)">30-45 days</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;font-size:13px;color:rgba(255,255,255,.35);max-width:600px;margin:0 auto;line-height:1.6" class="rv rv-d3">These are public reviews anyone can find. Your prospects check these before signing a lease. Your partners reference them in vendor evaluations. Your competitors use them in competitive positioning.</div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- WHO'S COLLECTING YOUR DEBT                                     -->
+<!-- ============================================================ -->
+<section class="section" id="collectors" style="background:var(--cream);padding:80px 32px">
   <div style="max-width:1120px;margin:0 auto">
-    <div class="section-label rv" style="color:var(--green)"><span class="live-dot"></span>This Week</div>
-    <h2 class="section-title rv rv-d1">23 Accounts Re-Engaged</h2>
-    <p class="section-subtitle rv rv-d2">We re-activated 23 high-value accounts ($640K outstanding) with contextualized outreach this week.</p>
+    <div class="section-label rv" style="color:#ef4444">Downstream Impact</div>
+    <h2 class="section-title rv rv-d1">Who's Collecting Your Debt</h2>
+    <p class="section-subtitle rv rv-d2">When Dell accounts go past 7 months, they're sold to third-party debt buyers. These companies call under their name, but it's Dell's customer relationship they're handling.</p>
     <div class="section-divider rv rv-d2"></div>
 
-    <div class="reengage-grid rv rv-d3">
-      <div class="reengage-card">
-        <span class="reengage-name">Inspirato</span>
-        <span class="reengage-amount">$62K</span>
-      </div>
-      <div class="reengage-card">
-        <span class="reengage-name">Infoaxis</span>
-        <span class="reengage-amount">$55K</span>
-      </div>
-      <div class="reengage-card">
-        <span class="reengage-name">Torch Networks</span>
-        <span class="reengage-amount">$49K</span>
-      </div>
-      <div class="reengage-card">
-        <span class="reengage-name">Vision Business</span>
-        <span class="reengage-amount">$39K</span>
-      </div>
-      <div class="reengage-card">
-        <span class="reengage-name">Weldaloy</span>
-        <span class="reengage-amount">$32K</span>
-      </div>
-      <div class="reengage-card">
-        <span class="reengage-name">Brookfield</span>
-        <span class="reengage-amount">$31K</span>
-      </div>
-      <div class="reengage-card">
-        <span class="reengage-name">Community First Medical</span>
-        <span class="reengage-amount">$31K</span>
-      </div>
-    </div>
-
-    <div style="text-align:center;margin-top:14px;font-size:13px;color:var(--muted)" class="rv rv-d4">+ 16 more accounts in this week's re-engagement wave. <strong style="color:var(--text)">Total: $640K outstanding across 23 accounts.</strong></div>
-
-    <div class="reengage-placeholder rv rv-d4">
-      <div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:8px">
-        <span class="live-dot"></span>
-        <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--green)">Live</span>
-      </div>
-      <div class="reengage-placeholder-text">Results updating live</div>
-      <div class="reengage-placeholder-date">Monday April 13</div>
-      <div style="margin-top:12px;font-size:12px;color:var(--muted-light)">Call outcomes, responses, and payment confirmations will appear here as they come in.</div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================================ -->
-<!-- SECTION 5: BATCH PROGRESSION                                  -->
-<!-- ============================================================ -->
-<section class="section" id="batches" style="padding-top:40px;padding-bottom:40px">
-  <div class="section-label rv">Batch Progression</div>
-  <h2 class="section-title rv rv-d1">23.6% to 33.7% &mdash; same playbook, AI optimization only</h2>
-  <div class="section-divider rv rv-d2"></div>
-
-  <div class="batch-grid">
-    <div class="batch-card rv">
-      <div class="batch-label">Batch #1</div>
-      <div class="batch-date">Sep 2025</div>
-      <div class="batch-rate"><span class="tip" data-tip="33 of 140 accounts. First batch — AI establishing baseline patterns.">23.6<span class="pct">%</span></span></div>
-      <div class="batch-detail">33 of 140 accounts recovered</div>
-      <div class="batch-bar-wrap"><div class="batch-bar b1" data-width="23.6"></div></div>
-    </div>
-    <div class="batch-card rv rv-d1">
-      <div class="batch-label">Batch #2</div>
-      <div class="batch-date">Nov 2025</div>
-      <div class="batch-rate"><span class="tip" data-tip="26 of 109 accounts. AI began optimizing contact timing and channel selection.">23.9<span class="pct">%</span></span></div>
-      <div class="batch-detail">26 of 109 accounts recovered</div>
-      <div class="batch-bar-wrap"><div class="batch-bar b2" data-width="23.9"></div></div>
-    </div>
-    <div class="batch-card highlight rv rv-d2">
-      <div class="batch-label">Batch #3</div>
-      <div class="batch-date">Jan 2026</div>
-      <div class="batch-rate" style="color:var(--green)"><span class="tip" data-tip="135 of 401 accounts. AI optimized channel selection, timing, follow-up cadence, and voicemail messaging.">33.7<span class="pct">%</span></span></div>
-      <div class="batch-detail">135 of 401 accounts recovered</div>
-      <div class="batch-bar-wrap"><div class="batch-bar b3" data-width="33.7"></div></div>
-    </div>
-  </div>
-
-  <div style="display:flex;align-items:flex-start;gap:16px;padding:20px;background:linear-gradient(135deg,rgba(79,70,229,.04),rgba(16,185,129,.04));border-radius:16px;border:1px solid rgba(79,70,229,.08)" class="rv rv-d3">
-    <div style="width:40px;height:40px;border-radius:12px;background:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-    </div>
-    <div style="font-size:14px;color:var(--text);line-height:1.6">
-      <strong style="color:var(--blue)">+43% improvement</strong> from Batch #1 to Batch #3. Same contacts, same amounts &mdash; the AI learned when to call, which channel to use first, and how to phrase voicemails. Each batch improves automatically.
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================================ -->
-<!-- SECTION 6: SMART CALLING DATA                                 -->
-<!-- ============================================================ -->
-<section class="section" id="smart-calling" style="background:#0B1B3D;padding:56px 32px">
-  <div class="section-label rv" style="color:var(--green)">Smart Calling &mdash; AI-Timed vs. Bulk</div>
-  <h2 class="section-title rv rv-d1" style="color:#fff">4.7x more effective when the AI picks the time.</h2>
-  <div class="section-divider rv rv-d2" style="background:rgba(255,255,255,.08)"></div>
-
-  <div style="max-width:800px;margin:0 auto">
-    <!-- Comparison bars -->
-    <div style="display:flex;flex-direction:column;gap:28px" class="rv rv-d2">
-      <!-- Smart-timed -->
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
-          <div style="font-size:14px;font-weight:700;color:#fff">AI smart-timed calls</div>
-          <div style="font-size:14px;color:var(--green);font-weight:800">56.1% connection rate</div>
+    <div class="collector-grid rv rv-d2">
+      <!-- Midland -->
+      <div class="collector-card midland">
+        <div class="collector-name">Midland Credit Management</div>
+        <div class="collector-parent">Encore Capital Group (ECPG, publicly traded)</div>
+        <div class="collector-stat">
+          <span class="collector-stat-label">CFPB complaints</span>
+          <span class="collector-stat-value">1,300+</span>
         </div>
-        <div style="background:rgba(255,255,255,.06);border-radius:10px;height:48px;overflow:hidden">
-          <div style="background:var(--green);height:100%;width:56.1%;border-radius:10px;display:flex;align-items:center;padding-left:16px;transition:width 1.5s cubic-bezier(.16,1,.3,1)">
-            <span style="font-size:16px;font-weight:900;color:#fff">56.1%</span>
-          </div>
+        <div class="collector-stat">
+          <span class="collector-stat-label">Primary tactic</span>
+          <span class="collector-stat-value" style="color:rgba(255,255,255,.7)">High-volume litigation</span>
         </div>
-        <div style="font-size:12px;color:rgba(255,255,255,.4);margin-top:6px">AI analyzes timezone, past answer patterns, industry norms to pick optimal call window</div>
-      </div>
-
-      <!-- Bulk -->
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
-          <div style="font-size:14px;font-weight:700;color:rgba(255,255,255,.5)">Bulk calls (fixed schedule)</div>
-          <div style="font-size:14px;color:rgba(255,255,255,.4);font-weight:600">12.0% connection rate</div>
-        </div>
-        <div style="background:rgba(255,255,255,.06);border-radius:10px;height:48px;overflow:hidden">
-          <div style="background:rgba(255,255,255,.15);height:100%;width:12%;border-radius:10px;display:flex;align-items:center;padding-left:16px;transition:width 1.5s cubic-bezier(.16,1,.3,1)">
-            <span style="font-size:16px;font-weight:900;color:rgba(255,255,255,.6)">12.0%</span>
-          </div>
-        </div>
-        <div style="font-size:12px;color:rgba(255,255,255,.3);margin-top:6px">Traditional approach: call everyone 9-5, same schedule regardless of debtor behavior</div>
-      </div>
-    </div>
-
-    <!-- Multiplier callout -->
-    <div style="margin-top:32px;text-align:center" class="rv rv-d3">
-      <div style="display:inline-flex;align-items:center;gap:12px;padding:16px 32px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:14px">
-        <span style="font-family:var(--sans);font-size:36px;font-weight:900;color:var(--green)">4.7x</span>
-        <span style="font-size:14px;color:rgba(255,255,255,.6);text-align:left;line-height:1.4">more connections<br>per call attempt</span>
-      </div>
-      <div style="margin-top:14px;font-size:13px;color:rgba(255,255,255,.45)">This is why each batch improves. The AI learns when each debtor is most likely to answer.</div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================================ -->
-<!-- SECTION 7: CHANNEL EFFECTIVENESS                              -->
-<!-- ============================================================ -->
-<section class="section" id="channel-effectiveness" style="padding:56px 32px;background:#f8fafc">
-  <div class="section-label rv">What Drives Payment</div>
-  <h2 class="section-title rv rv-d1">Last touchpoint before payment &mdash; 160 recovered accounts</h2>
-  <div class="section-divider rv rv-d2"></div>
-
-  <div style="max-width:720px;margin:0 auto">
-    <div style="display:flex;flex-direction:column;gap:20px" class="rv rv-d2">
-      <!-- Email + SMS -->
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
-          <div style="font-size:13px;font-weight:700;color:var(--text)">Email + SMS sequence</div>
-          <div style="font-size:13px;color:#8b5cf6;font-weight:700">68 accounts &mdash; $111K</div>
-        </div>
-        <div style="background:rgba(79,70,229,.06);border-radius:8px;height:40px;overflow:hidden">
-          <div style="background:#8b5cf6;height:100%;width:43%;border-radius:8px;display:flex;align-items:center;padding-left:12px">
-            <span style="font-size:14px;font-weight:900;color:#fff">43%</span>
-          </div>
+        <div class="collector-stat">
+          <span class="collector-stat-label">Dell association</span>
+          <span class="collector-stat-value" style="color:var(--amber)">Buys Dell charge-offs</span>
         </div>
       </div>
 
-      <!-- AI Phone Conversation -->
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
-          <div style="font-size:13px;font-weight:700;color:var(--text)">AI phone conversation</div>
-          <div style="font-size:13px;color:var(--green);font-weight:700">50 accounts &mdash; $140K</div>
+      <!-- PRA -->
+      <div class="collector-card pra">
+        <div class="collector-name">Portfolio Recovery Associates</div>
+        <div class="collector-parent">PRA Group (PRAA, publicly traded)</div>
+        <div class="collector-stat">
+          <span class="collector-stat-label">CFPB complaints</span>
+          <span class="collector-stat-value">800+</span>
         </div>
-        <div style="background:rgba(79,70,229,.06);border-radius:8px;height:40px;overflow:hidden">
-          <div style="background:var(--green);height:100%;width:31%;border-radius:8px;display:flex;align-items:center;padding-left:12px">
-            <span style="font-size:14px;font-weight:900;color:#fff">31%</span>
-          </div>
+        <div class="collector-stat">
+          <span class="collector-stat-label">Primary tactic</span>
+          <span class="collector-stat-value" style="color:rgba(255,255,255,.7)">Automated phone campaigns</span>
         </div>
-      </div>
-
-      <!-- AI Voicemail -->
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
-          <div style="font-size:13px;font-weight:700;color:var(--text)">AI voicemail</div>
-          <div style="font-size:13px;color:var(--blue);font-weight:700">42 accounts &mdash; $80K</div>
-        </div>
-        <div style="background:rgba(79,70,229,.06);border-radius:8px;height:40px;overflow:hidden">
-          <div style="background:var(--blue);height:100%;width:26%;border-radius:8px;display:flex;align-items:center;padding-left:12px">
-            <span style="font-size:14px;font-weight:900;color:#fff">26%</span>
-          </div>
+        <div class="collector-stat">
+          <span class="collector-stat-label">Dell association</span>
+          <span class="collector-stat-value" style="color:var(--amber)">Also purchases Dell debt</span>
         </div>
       </div>
     </div>
 
-    <div style="margin-top:28px;padding:20px 24px;background:#fff;border:1px solid var(--border);border-radius:12px" class="rv rv-d3">
-      <div style="font-size:14px;color:var(--text);line-height:1.6">
-        <strong>No single channel works alone.</strong> 43% paid after email+SMS, 31% after a phone conversation, 26% after hearing a voicemail. The multi-channel combination drives the result &mdash; each channel reinforces the others.
+    <div style="max-width:900px;margin:0 auto;padding:20px 24px;background:linear-gradient(135deg,rgba(220,38,38,.04),rgba(245,158,11,.04));border-radius:14px;border:1px solid rgba(220,38,38,.1)" class="rv rv-d3">
+      <div style="font-size:14px;color:var(--text);line-height:1.7">
+        <strong>The brand impact:</strong> When Midland Credit Management calls a Dell customer, that customer doesn't separate "Midland" from "Dell" in their memory. They remember the experience they had with a Dell debt. And they share it publicly. Many of the Trustpilot reviews above trace back to interactions with downstream collectors, not Dell directly.
       </div>
     </div>
   </div>
@@ -1049,97 +695,171 @@ z-index:1}
 
 
 <!-- ============================================================ -->
-<!-- SECTION 8: WHO PAYS vs WHO DOESN'T                            -->
+<!-- LEGAL EXPOSURE                                                 -->
 <!-- ============================================================ -->
-<section class="section" id="who-pays" style="padding:56px 32px">
-  <div class="section-label rv">Recovery Profile</div>
-  <h2 class="section-title rv rv-d1">Who pays vs. who doesn't &mdash; by the numbers</h2>
-  <div class="section-divider rv rv-d2"></div>
+<section class="dark-section" id="legal">
+  <div class="dark-inner">
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--amber);margin-bottom:12px" class="rv">Legal Landscape</div>
+    <h2 style="font-family:var(--sans);font-size:clamp(24px,3.5vw,36px);font-weight:900;color:#fff;letter-spacing:-.03em;line-height:1.12;margin-bottom:8px" class="rv rv-d1">Legal Exposure</h2>
+    <p style="font-size:16px;color:rgba(255,255,255,.5);max-width:650px;line-height:1.6;margin-bottom:40px" class="rv rv-d2">Active legal activity surrounding Dell Financial Services collections practices.</p>
 
-  <div style="max-width:900px;margin:0 auto">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:40px" class="rv rv-d2 profile-grid">
-      <!-- By ticket size - recovery rate -->
-      <div>
-        <div style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:16px">Recovery rate by ticket size</div>
-        <div style="display:flex;flex-direction:column;gap:10px">
-          <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center">
-            <div><div style="font-size:14px;font-weight:700;color:var(--text)">$1K &ndash; $5K</div><div style="font-size:11px;color:var(--muted)">234 accounts &middot; $511K total</div></div>
-            <div><span style="font-family:var(--sans);font-size:22px;font-weight:900;color:var(--green)" class="tip" data-tip="83 recovered out of 234 accounts in the $1K-$5K range. Highest conversion rate by segment.">33.5%</span></div>
-          </div>
-          <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center">
-            <div><div style="font-size:14px;font-weight:700;color:var(--text)">Under $1K</div><div style="font-size:11px;color:var(--muted)">181 accounts &middot; $90K total</div></div>
-            <div><span style="font-family:var(--sans);font-size:22px;font-weight:900;color:var(--blue)">28.7%</span></div>
-          </div>
-          <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center">
-            <div><div style="font-size:14px;font-weight:700;color:var(--text)">$5K &ndash; $10K</div><div style="font-size:11px;color:var(--muted)">43 accounts &middot; $297K total</div></div>
-            <div><span style="font-family:var(--sans);font-size:22px;font-weight:900;color:var(--blue)">32.6%</span></div>
-          </div>
-          <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center">
-            <div><div style="font-size:14px;font-weight:700;color:var(--text)">$10K+</div><div style="font-size:11px;color:var(--muted)">27 accounts &middot; $648K total</div></div>
-            <div><span style="font-family:var(--sans);font-size:22px;font-weight:900;color:var(--amber)" class="tip" data-tip="10 recovered out of 27 high-value accounts. These require invoice access + decision-maker contact. Invoice gap is the primary blocker.">10.5%</span></div>
-          </div>
-        </div>
-        <div style="margin-top:10px;font-size:12px;color:var(--muted);line-height:1.5"><strong style="color:var(--text)">Key insight:</strong> $10K+ accounts recover at 10.5% vs. 33.5% for $1K-$5K. Larger invoices require invoice documentation for AP processing &mdash; exactly what we lacked.</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;max-width:900px;margin:0 auto 28px" class="rv rv-d2">
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:24px;text-align:center">
+        <div style="font-family:var(--sans);font-size:28px;font-weight:900;color:var(--amber);line-height:1;margin-bottom:6px">Active</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.45);font-weight:600">Plaintiff recruitment</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.6);margin-top:10px;line-height:1.5">Lemberg Law actively recruiting plaintiffs against Dell Financial Services for billing and collections practices.</div>
       </div>
-
-      <!-- By industry -->
-      <div>
-        <div style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:16px">By industry</div>
-        <div style="display:flex;flex-direction:column;gap:8px">
-          <div style="display:flex;justify-content:space-between;padding:10px 14px;background:#fff;border:1px solid var(--border);border-radius:8px">
-            <span style="font-size:13px;font-weight:600;color:var(--text)">Tech / IT Services</span>
-            <span style="font-size:13px;font-weight:700;color:var(--blue)">28 recovered &middot; $45K</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;padding:10px 14px;background:#fff;border:1px solid var(--border);border-radius:8px">
-            <span style="font-size:13px;font-weight:600;color:var(--text)">Government / Public</span>
-            <span style="font-size:13px;font-weight:700;color:var(--blue)">25 recovered &middot; $35K</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;padding:10px 14px;background:#fff;border:1px solid var(--border);border-radius:8px">
-            <span style="font-size:13px;font-weight:600;color:var(--text)">Non-profit / Education</span>
-            <span style="font-size:13px;font-weight:700;color:var(--blue)">22 recovered &middot; $22K</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;padding:10px 14px;background:#fff;border:1px solid var(--border);border-radius:8px">
-            <span style="font-size:13px;font-weight:600;color:var(--text)">Manufacturing</span>
-            <span style="font-size:13px;font-weight:700;color:var(--blue)">15 recovered &middot; $25K</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;padding:10px 14px;background:#fff;border:1px solid var(--border);border-radius:8px">
-            <span style="font-size:13px;font-weight:600;color:var(--text)">Finance / Banking</span>
-            <span style="font-size:13px;font-weight:700;color:var(--blue)">15 recovered &middot; $18K</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;padding:10px 14px;background:#fff;border:1px solid var(--border);border-radius:8px">
-            <span style="font-size:13px;font-weight:600;color:var(--text)">Healthcare</span>
-            <span style="font-size:13px;font-weight:700;color:var(--blue)">12 recovered &middot; $32K</span>
-          </div>
-        </div>
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:24px;text-align:center">
+        <div style="font-family:var(--sans);font-size:28px;font-weight:900;color:#f87171;line-height:1;margin-bottom:6px">FDCPA</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.45);font-weight:600">Violation allegations</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.6);margin-top:10px;line-height:1.5">Multiple FDCPA violation allegations documented in consumer complaints tied to Dell-originated debts at collection agencies.</div>
+      </div>
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:24px;text-align:center">
+        <div style="font-family:var(--sans);font-size:28px;font-weight:900;color:rgba(255,255,255,.7);line-height:1;margin-bottom:6px">B2B</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.45);font-weight:600">Reputation risk</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.6);margin-top:10px;line-height:1.5">B2B customers don't have FDCPA protection. But they have LinkedIn, and they have procurement departments that track vendor reputation.</div>
       </div>
     </div>
 
-    <!-- Top 5 unpaid -->
-    <div style="background:#fff;border:1px solid var(--border);border-radius:16px;padding:24px 28px" class="rv rv-d3">
-      <div style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--amber);margin-bottom:14px">Top 5 unpaid opportunities</div>
-      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;text-align:center" class="top5-grid">
-        <div><div style="font-family:var(--sans);font-size:20px;font-weight:900;color:var(--amber)">$107K</div><div style="font-size:11px;color:var(--muted);margin-top:2px">Rosebud Cove</div></div>
-        <div><div style="font-family:var(--sans);font-size:20px;font-weight:900;color:var(--amber)">$62K</div><div style="font-size:11px;color:var(--muted);margin-top:2px">Inspirato</div></div>
-        <div><div style="font-family:var(--sans);font-size:20px;font-weight:900;color:var(--amber)">$55K</div><div style="font-size:11px;color:var(--muted);margin-top:2px">InfoAxis</div></div>
-        <div><div style="font-family:var(--sans);font-size:20px;font-weight:900;color:var(--amber)">$49K</div><div style="font-size:11px;color:var(--muted);margin-top:2px">Torch Networks</div></div>
-        <div><div style="font-family:var(--sans);font-size:20px;font-weight:900;color:var(--amber)">$39K</div><div style="font-size:11px;color:var(--muted);margin-top:2px">Vision Business</div></div>
-      </div>
-      <div style="margin-top:12px;font-size:13px;color:var(--muted);text-align:center">Top 5 = <strong style="color:var(--text)">$312K</strong> recoverable with invoice access + re-engagement.</div>
+    <div style="text-align:center;max-width:700px;margin:0 auto" class="rv rv-d3">
+      <div style="padding:16px 24px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;font-size:13px;color:rgba(255,255,255,.4);line-height:1.6">Note: B2B enterprise leases are generally exempt from FDCPA. However, consumer-side DFS practices create a reputational halo that affects how B2B procurement teams perceive Dell Financial Services. The legal exposure is indirect but real.</div>
     </div>
   </div>
 </section>
 
 
 <!-- ============================================================ -->
-<!-- SECTION 9: DELL AGENT DEMO                                    -->
+<!-- THE COVERAGE GAP                                               -->
+<!-- ============================================================ -->
+<section class="dark-section" id="coverage-gap" style="background:linear-gradient(135deg,#0f1e3d 0%,#0B1B3D 50%,#0d2040 100%)">
+  <div class="dark-inner">
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--amber);margin-bottom:12px" class="rv">The Coverage Gap</div>
+    <h2 style="font-family:var(--sans);font-size:clamp(24px,3.5vw,36px);font-weight:900;color:#fff;letter-spacing:-.03em;line-height:1.12;margin-bottom:8px" class="rv rv-d1">45 Hours Covered. 123 Hours Dark.</h2>
+    <p style="font-size:16px;color:rgba(255,255,255,.5);max-width:650px;line-height:1.6;margin-bottom:40px" class="rv rv-d2">Dell DFS operates Mon-Fri, 8 AM to 5 PM Central Time. That's 45 hours of a 168-hour week.</p>
+
+    <!-- Coverage calendar -->
+    <div class="coverage-week rv rv-d2">
+      <div class="coverage-day covered">
+        <div class="coverage-day-name">Mon</div>
+        <div class="coverage-hours">8am-5pm CT</div>
+        <div class="coverage-pct">9 hrs</div>
+      </div>
+      <div class="coverage-day covered">
+        <div class="coverage-day-name">Tue</div>
+        <div class="coverage-hours">8am-5pm CT</div>
+        <div class="coverage-pct">9 hrs</div>
+      </div>
+      <div class="coverage-day covered">
+        <div class="coverage-day-name">Wed</div>
+        <div class="coverage-hours">8am-5pm CT</div>
+        <div class="coverage-pct">9 hrs</div>
+      </div>
+      <div class="coverage-day covered">
+        <div class="coverage-day-name">Thu</div>
+        <div class="coverage-hours">8am-5pm CT</div>
+        <div class="coverage-pct">9 hrs</div>
+      </div>
+      <div class="coverage-day covered">
+        <div class="coverage-day-name">Fri</div>
+        <div class="coverage-hours">8am-5pm CT</div>
+        <div class="coverage-pct">9 hrs</div>
+      </div>
+      <div class="coverage-day uncovered">
+        <div class="coverage-day-name">Sat</div>
+        <div class="coverage-hours">Closed</div>
+        <div class="coverage-pct">0 hrs</div>
+      </div>
+      <div class="coverage-day uncovered">
+        <div class="coverage-day-name">Sun</div>
+        <div class="coverage-hours">Closed</div>
+        <div class="coverage-pct">0 hrs</div>
+      </div>
+    </div>
+
+    <!-- Timezone impact -->
+    <div style="max-width:700px;margin:0 auto">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px" class="rv rv-d3">
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:20px 24px">
+          <div style="font-size:12px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">California customers</div>
+          <div style="font-size:14px;color:rgba(255,255,255,.6);line-height:1.6">DFS opens at <strong style="color:#fff">6 AM Pacific</strong>. Closes at <strong style="color:#fff">3 PM Pacific</strong>. A California CFO reviewing invoices at 4 PM can't call anyone.</div>
+        </div>
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:20px 24px">
+          <div style="font-size:12px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">East Coast customers</div>
+          <div style="font-size:14px;color:rgba(255,255,255,.6);line-height:1.6">DFS opens at <strong style="color:#fff">9 AM Eastern</strong>. Closes at <strong style="color:#fff">6 PM Eastern</strong>. Better, but still nothing before 9 or after 6. No weekends.</div>
+        </div>
+      </div>
+
+      <div style="text-align:center;padding:20px 28px;background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.15);border-radius:14px" class="rv rv-d4">
+        <div style="font-size:15px;color:rgba(255,255,255,.7);line-height:1.7">
+          <strong style="color:var(--green)">With Agent Dell: 168 hours of coverage.</strong> Every hour of every day. 28 languages. A customer in Tokyo at 2 AM Sunday resolves their invoice in Japanese.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- COLLECTION INTELLIGENCE                                        -->
+<!-- ============================================================ -->
+<section class="ci-section" id="collection-intelligence">
+  <div class="ci-inner">
+    <div class="section-label rv" style="color:var(--blue)">Collection Intelligence</div>
+    <h2 class="section-title rv rv-d1">Real-time AI analysis of your entire receivables portfolio.</h2>
+    <p class="section-subtitle rv rv-d2">Ask any question. Get instant answers with data.</p>
+    <div class="section-divider rv rv-d2"></div>
+
+    <!-- Natalie quote -->
+    <div style="max-width:700px;margin:0 auto 32px;padding:24px 28px;background:#fff;border-left:4px solid var(--blue);border-radius:0 14px 14px 0;box-shadow:var(--shadow)" class="rv rv-d2">
+      <div style="font-size:16px;color:var(--text);line-height:1.7;font-style:italic">
+        "That's unparalleled to what we have."
+      </div>
+      <div style="font-size:13px;color:var(--muted);margin-top:8px;font-weight:600">Natalie Gilbert, March 25</div>
+    </div>
+
+    <!-- Chat mockup -->
+    <div class="ci-chat rv rv-d3">
+      <div class="ci-chat-header">
+        <div class="ci-chat-header-dot"></div>
+        <div class="ci-chat-header-text">Dell Collection Intelligence</div>
+      </div>
+      <div class="ci-chat-body">
+        <div class="ci-chat-msg user-q">Which accounts are most likely to pay this month?</div>
+        <div class="ci-chat-msg ai-a">Based on email engagement and payment patterns, 16 accounts show high intent. Top 3: Weldaloy ($31K, 12 opens), CA Emergency Liquidation ($10.2K, 28 opens), Woman's Hospital ($988, 80 opens).</div>
+        <div class="ci-chat-msg user-q">Show me all disputed invoices over $10K</div>
+        <div class="ci-chat-msg ai-a">Found 8 disputed invoices over $10K totaling $142K. 5 are invoice requests (resolvable with API access), 2 claim already paid, 1 legitimacy check.</div>
+        <div class="ci-chat-msg user-q">What's our recovery rate by industry?</div>
+        <div class="ci-chat-msg ai-a">Tech/IT: 33.2% (28 of 84). Government: 31.3% (25 of 80). Non-profit: 29.3% (22 of 75). Manufacturing: 25.0% (15 of 60). Healthcare lagging at 19.0% due to complex AP processes.</div>
+      </div>
+      <div class="ci-chat-input">
+        <span class="ci-chat-input-field">Ask anything about Dell's receivables...</span>
+        <div class="ci-chat-input-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center" class="rv rv-d4">
+      <div class="ci-badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Available Q4 2026
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- AGENT DELL — THE SOLUTION                                      -->
 <!-- ============================================================ -->
 <section class="agent-demo-section" id="agent-demo">
   <div style="text-align:center;margin-bottom:8px;position:relative;z-index:2">
     <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:rgba(79,70,229,.06);border:1px solid rgba(79,70,229,.1);border-radius:100px;font-size:11px;font-weight:700;color:var(--blue);letter-spacing:.06em;margin-bottom:12px">
       <span style="width:6px;height:6px;border-radius:50%;background:var(--green);animation:demoOrbGlowPulse 2s ease-in-out infinite"></span>
-      Live preview &middot; 82% ready
+      Live preview
     </div>
-    <h2 class="section-title rv rv-d1" style="max-width:600px;margin-left:auto;margin-right:auto;font-size:clamp(24px,3.5vw,36px)">Discover your Dell Agent</h2>
+    <h2 class="section-title rv rv-d1" style="max-width:650px;margin-left:auto;margin-right:auto;font-size:clamp(24px,3.5vw,36px)">What If Dell Had An Agent That Answered 24/7?</h2>
+    <p style="font-size:15px;color:var(--muted);max-width:520px;margin:12px auto 24px;line-height:1.6">What if disputes were resolved in 17 seconds instead of weeks? What if your Trustpilot rating for billing went from 1.3 to 4.5?</p>
   </div>
 
   <!-- ORB -->
@@ -1213,9 +933,9 @@ z-index:1}
       </div>
       <div class="demo-post-title">That was 30 seconds.</div>
       <div class="demo-post-sub">Now imagine 650 accounts with your real data.</div>
-      <a href="https://cal.com/johnb/30" target="_blank" class="demo-post-cta" id="demo-post-cta">
+      <a href="mailto:j@agentcollect.com?subject=Dell%20x%20AgentCollect" class="demo-post-cta" id="demo-post-cta">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        Run the next experiment
+        Talk to the Founder
       </a>
       <button class="demo-retry-btn" id="demo-retry-btn">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
@@ -1227,130 +947,56 @@ z-index:1}
 
 
 <!-- ============================================================ -->
-<!-- SECTION 9B: COLLECTION INTELLIGENCE                           -->
+<!-- THIS WEEK'S RE-ENGAGEMENT                                      -->
 <!-- ============================================================ -->
-<section class="ci-section" id="collection-intelligence">
-  <div class="ci-inner">
-    <div class="section-label rv" style="color:var(--blue)">Collection Intelligence</div>
-    <h2 class="section-title rv rv-d1">Real-time AI analysis of your entire receivables portfolio.</h2>
-    <p class="section-subtitle rv rv-d2">Ask any question. Get instant answers with data.</p>
+<section class="section" id="reengagement" style="padding:56px 32px;background:#f8fafc">
+  <div style="max-width:1120px;margin:0 auto">
+    <div class="section-label rv" style="color:var(--green)"><span class="live-dot"></span>This Week</div>
+    <h2 class="section-title rv rv-d1">23 Accounts Re-Engaged</h2>
+    <p class="section-subtitle rv rv-d2">We re-activated 23 high-value accounts ($640K outstanding) with contextualized outreach this week.</p>
     <div class="section-divider rv rv-d2"></div>
 
-    <!-- Natalie quote -->
-    <div style="max-width:700px;margin:0 auto 32px;padding:24px 28px;background:#fff;border-left:4px solid var(--blue);border-radius:0 14px 14px 0;box-shadow:var(--shadow)" class="rv rv-d2">
-      <div style="font-size:16px;color:var(--text);line-height:1.7;font-style:italic">
-        "That's unparalleled to what we have."
+    <div class="reengage-grid rv rv-d3">
+      <div class="reengage-card">
+        <span class="reengage-name">Inspirato</span>
+        <span class="reengage-amount">$62K</span>
       </div>
-      <div style="font-size:13px;color:var(--muted);margin-top:8px;font-weight:600">Natalie Gilbert, March 25</div>
-    </div>
-
-    <!-- Chat mockup -->
-    <div class="ci-chat rv rv-d3">
-      <div class="ci-chat-header">
-        <div class="ci-chat-header-dot"></div>
-        <div class="ci-chat-header-text">Dell Collection Intelligence</div>
+      <div class="reengage-card">
+        <span class="reengage-name">Infoaxis</span>
+        <span class="reengage-amount">$55K</span>
       </div>
-      <div class="ci-chat-body">
-        <div class="ci-chat-msg user-q">Which accounts are most likely to pay this month?</div>
-        <div class="ci-chat-msg ai-a">Based on email engagement and payment patterns, 16 accounts show high intent. Top 3: Weldaloy ($31K, 12 opens), CA Emergency Liquidation ($10.2K, 28 opens), Woman's Hospital ($988, 80 opens).</div>
-        <div class="ci-chat-msg user-q">Show me all disputed invoices over $10K</div>
-        <div class="ci-chat-msg ai-a">Found 8 disputed invoices over $10K totaling $142K. 5 are invoice requests (resolvable with API access), 2 claim already paid, 1 legitimacy check.</div>
-        <div class="ci-chat-msg user-q">What's our recovery rate by industry?</div>
-        <div class="ci-chat-msg ai-a">Tech/IT: 33.2% (28 of 84). Government: 31.3% (25 of 80). Non-profit: 29.3% (22 of 75). Manufacturing: 25.0% (15 of 60). Healthcare lagging at 19.0% due to complex AP processes.</div>
-        <div class="ci-chat-msg user-q">Which accounts opened our emails but haven't paid?</div>
-        <div class="ci-chat-msg ai-a">47 accounts with 3+ email opens and no payment. Combined outstanding: $312K. 16 are actively opening this week. Recommend immediate AI phone follow-up on top 10 by dollar value.</div>
+      <div class="reengage-card">
+        <span class="reengage-name">Torch Networks</span>
+        <span class="reengage-amount">$49K</span>
       </div>
-      <div class="ci-chat-input">
-        <span class="ci-chat-input-field">Ask anything about Dell's receivables...</span>
-        <div class="ci-chat-input-btn">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-        </div>
+      <div class="reengage-card">
+        <span class="reengage-name">Vision Business</span>
+        <span class="reengage-amount">$39K</span>
       </div>
-    </div>
-
-    <div style="text-align:center" class="rv rv-d4">
-      <div class="ci-badge">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        Available Q4 2026
+      <div class="reengage-card">
+        <span class="reengage-name">Weldaloy</span>
+        <span class="reengage-amount">$32K</span>
       </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================================ -->
-<!-- SECTION 10: RECOMMENDATION                                    -->
-<!-- ============================================================ -->
-<section class="readiness-section" id="recommendation">
-  <div class="readiness-inner">
-    <div class="readiness-label rv">Recommendation</div>
-    <h2 class="readiness-title rv rv-d1">Two tracks. Both start now.</h2>
-    <div class="readiness-subtitle rv rv-d2">Based on pilot data, here is the path from 29% to 40%+ &mdash; and eventually to zero unpaid at Day 60.</div>
-
-    <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:16px" class="rv rv-d2">
-      <!-- Track 1 -->
-      <div style="background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.15);border-radius:16px;padding:28px;position:relative">
-        <div style="position:absolute;top:-10px;left:20px;background:var(--green);color:#0B1B3D;font-size:10px;font-weight:800;padding:3px 12px;border-radius:6px;letter-spacing:.06em">TRACK 1 &mdash; IMMEDIATE</div>
-        <div style="font-family:var(--sans);font-size:20px;font-weight:900;color:#fff;margin-bottom:12px;margin-top:6px">Batch #4 with invoice access &mdash; projected 40-45% recovery</div>
-        <div style="display:flex;flex-direction:column;gap:10px">
-          <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06)">
-            <span style="font-size:13px;color:rgba(255,255,255,.45)">Projected recovery rate</span>
-            <span style="font-family:var(--sans);font-size:14px;font-weight:800;color:var(--green)">40-45%</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06)">
-            <span style="font-size:13px;color:rgba(255,255,255,.45)">What's needed</span>
-            <span style="font-size:13px;font-weight:700;color:rgba(255,255,255,.9)">Invoice API or SFTP</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06)">
-            <span style="font-size:13px;color:rgba(255,255,255,.45)">Re-engage warm leads</span>
-            <span style="font-size:13px;font-weight:700;color:var(--green)">16 accounts, $93K</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;padding:8px 0">
-            <span style="font-size:13px;color:rgba(255,255,255,.45)">Timeline</span>
-            <span style="font-size:13px;font-weight:700;color:rgba(255,255,255,.9)">48 hours after access</span>
-          </div>
-        </div>
+      <div class="reengage-card">
+        <span class="reengage-name">Brookfield</span>
+        <span class="reengage-amount">$31K</span>
       </div>
-
-      <!-- Track 2 -->
-      <div style="background:rgba(96,165,250,.06);border:1px solid rgba(96,165,250,.15);border-radius:16px;padding:28px;position:relative">
-        <div style="position:absolute;top:-10px;left:20px;background:#60a5fa;color:#0B1B3D;font-size:10px;font-weight:800;padding:3px 12px;border-radius:6px;letter-spacing:.06em">TRACK 2 &mdash; Q4 2026</div>
-        <div style="font-family:var(--sans);font-size:20px;font-weight:900;color:#fff;margin-bottom:12px;margin-top:6px">Agent Dell &mdash; your dedicated AI collection agent</div>
-        <div style="display:flex;flex-direction:column;gap:10px">
-          <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06)">
-            <span style="font-size:13px;color:rgba(255,255,255,.45)">Identity</span>
-            <span style="font-size:13px;font-weight:700;color:rgba(255,255,255,.9)">Same voice, same brand, your agent</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06)">
-            <span style="font-size:13px;color:rgba(255,255,255,.45)">Capability</span>
-            <span style="font-size:13px;font-weight:700;color:rgba(255,255,255,.9)">Email + SMS + AI voice</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06)">
-            <span style="font-size:13px;color:rgba(255,255,255,.45)">Integration</span>
-            <span style="font-size:13px;font-weight:700;color:rgba(255,255,255,.9)">Dell Premier + read-only billing</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06)">
-            <span style="font-size:13px;color:rgba(255,255,255,.45)">Security</span>
-            <span style="font-size:13px;font-weight:700;color:rgba(255,255,255,.9)">Read-only access, zero write risk</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06)">
-            <span style="font-size:13px;color:rgba(255,255,255,.45)">Languages</span>
-            <span style="font-size:13px;font-weight:700;color:#60a5fa">28 languages supported</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;padding:8px 0">
-            <span style="font-size:13px;color:rgba(255,255,255,.45)">Current readiness</span>
-            <span style="font-size:13px;font-weight:700;color:#60a5fa">82% ready</span>
-          </div>
-        </div>
+      <div class="reengage-card">
+        <span class="reengage-name">Community First Medical</span>
+        <span class="reengage-amount">$31K</span>
       </div>
     </div>
 
-    <!-- Data advantage callout -->
-    <div style="max-width:900px;margin:24px auto 0;text-align:center" class="rv rv-d3">
-      <div style="padding:20px 28px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;font-size:15px;color:rgba(255,255,255,.6);line-height:1.7">
-        <strong style="color:#fff">"Your ability to dig into data in real time &mdash; that's unparalleled to what we have."</strong><br>
-        <span style="font-size:13px;color:rgba(255,255,255,.35)">This page was built from that same real-time data analysis. Every number is traceable to a specific account. Now imagine that capability as a chat interface your team can use daily.</span>
+    <div style="text-align:center;margin-top:14px;font-size:13px;color:var(--muted)" class="rv rv-d4">+ 16 more accounts in this week's re-engagement wave. <strong style="color:var(--text)">Total: $640K outstanding across 23 accounts.</strong></div>
+
+    <div class="reengage-placeholder rv rv-d4">
+      <div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:8px">
+        <span class="live-dot"></span>
+        <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--green)">Live</span>
       </div>
+      <div class="reengage-placeholder-text">Results updating live</div>
+      <div class="reengage-placeholder-date">Monday April 13</div>
+      <div style="margin-top:12px;font-size:12px;color:var(--muted-light)">Call outcomes, responses, and payment confirmations will appear here as they come in.</div>
     </div>
   </div>
 </section>
@@ -1359,13 +1005,13 @@ z-index:1}
 <!-- CTA -->
 <section class="cta-section" id="cta">
   <div class="cta-inner rv">
-    <h2 class="cta-title">Let's review the data together.</h2>
-    <p class="cta-subtitle">Every number on this page is drillable. Bring questions &mdash; we'll pull up the accounts live.</p>
-    <a href="https://cal.com/johnb/30" target="_blank" class="cta-btn">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-      Schedule a Review
+    <h2 class="cta-title">Talk to the Founder</h2>
+    <p class="cta-subtitle">Every data point on this page is verifiable. I'll walk you through the accounts, the recordings, and what Agent Dell looks like with your real data.</p>
+    <a href="mailto:j@agentcollect.com?subject=Dell%20x%20AgentCollect" class="cta-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      j@agentcollect.com
     </a>
-    <div class="cta-sub" style="margin-top:20px;font-size:13px;color:var(--muted)">We can walk through every account, every data point, live.</div>
+    <div class="cta-sub" style="margin-top:20px;font-size:13px;color:var(--muted)">John Banner, Founder &amp; CEO, AgentCollect (YC S23)</div>
   </div>
 </section>
 
@@ -1397,61 +1043,6 @@ z-index:1}
     rvEls.forEach(function(el){ obs.observe(el); });
   }
   setTimeout(function(){ rvEls.forEach(function(el){ el.classList.add('v'); }); }, 1500);
-
-  // Counter animation
-  function animateCounter(el) {
-    if (el.dataset.animated) return;
-    el.dataset.animated = 'true';
-    var target = parseFloat(el.dataset.target);
-    var decimals = parseInt(el.dataset.decimals) || 0;
-    var isCurrency = el.dataset.format === 'currency';
-    var duration = 2000;
-    var start = performance.now();
-    function easeOutExpo(t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }
-    function update(now) {
-      var elapsed = now - start;
-      var progress = Math.min(elapsed / duration, 1);
-      var eased = easeOutExpo(progress);
-      var current = eased * target;
-      if (isCurrency) el.textContent = Math.round(current).toLocaleString('en-US');
-      else if (decimals > 0) el.textContent = current.toFixed(decimals);
-      else el.textContent = Math.round(current).toLocaleString('en-US');
-      if (progress < 1) requestAnimationFrame(update);
-      else {
-        if (isCurrency) el.textContent = target.toLocaleString('en-US');
-        else if (decimals > 0) el.textContent = target.toFixed(decimals);
-        else el.textContent = target.toLocaleString('en-US');
-      }
-    }
-    requestAnimationFrame(update);
-  }
-
-  var counterEls = document.querySelectorAll('.counter');
-  if ('IntersectionObserver' in window) {
-    var cObs = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){ animateCounter(e.target); cObs.unobserve(e.target); }
-      });
-    }, { threshold: 0.01 });
-    counterEls.forEach(function(el){ cObs.observe(el); });
-  }
-  setTimeout(function(){ counterEls.forEach(function(el){ if (!el.dataset.animated) animateCounter(el); }); }, 2000);
-
-  // Batch bars
-  var bars = document.querySelectorAll('.batch-bar');
-  if ('IntersectionObserver' in window) {
-    var bObs = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){ e.target.style.width = e.target.dataset.width + '%'; bObs.unobserve(e.target); }
-      });
-    }, { threshold: 0.01 });
-    bars.forEach(function(el){ bObs.observe(el); });
-  }
-  setTimeout(function(){
-    bars.forEach(function(el){
-      if(!el.style.width || el.style.width === '0px' || el.style.width === '0' || el.style.width === '0%') el.style.width = el.dataset.width + '%';
-    });
-  }, 2500);
 })();
 
 // Preload RetellAI SDK
@@ -1597,28 +1188,39 @@ import('https://cdn.jsdelivr.net/npm/retell-client-js-sdk@2.0.7/+esm')
             for(var i=u.transcript.length-1;i>=0;i--){if((u.transcript[i].content||'').trim()){last=u.transcript[i];break;}}
             if(last){
               var role=last.role==='agent'?'agent':'user';
-              transcript.innerHTML='<div class="demo-transcript-msg '+role+'">'+last.content+'</div>';
+              var existing=transcript.querySelector('[data-role="'+role+'"]:last-child');
+              if(existing && existing.dataset.role===role){
+                existing.textContent=last.content;
+              } else {
+                var div=document.createElement('div');
+                div.className='demo-transcript-msg '+role;
+                div.dataset.role=role;
+                div.textContent=last.content;
+                transcript.appendChild(div);
+              }
               transcript.scrollTop=transcript.scrollHeight;
             }
           }
         });
-        retellClient.on('error',function(e){console.error('RetellAI:',e);endCall();});
-        await retellClient.startCall({accessToken:result.access_token});
-      }catch(err){
-        console.error('Demo call error:',err);
+        retellClient.on('error',function(e){console.error('Retell error:',e);endCall();});
+
+        await retellClient.startCall({accessToken:result.access_token,sampleRate:24000,enableUpdate:true});
+      }catch(e){
+        console.error('Call failed:',e);
         callActive=false;
         connecting.style.display='none';
-        if(orb)orb.classList.remove('speaking');
         showHeroElements();
-        if(demoHint){demoHint.textContent='Connection failed \u2014 tap to retry';demoHint.style.color='#ef4444';demoHint.style.fontSize='13px';}
-        setTimeout(function(){if(demoHint){demoHint.textContent='Tap to answer';demoHint.style.color='';demoHint.style.fontSize='';}},6000);
+        if(orb)orb.classList.remove('speaking');
+        alert('Could not start call: '+e.message+'. Please allow microphone access and try again.');
       }
     })();
   }
 
-  if(orbWrap)orbWrap.addEventListener('click',function(){if(!callActive)startCall();});
-  if(endBtn)endBtn.addEventListener('click',function(){endCall();});
-  if(retryBtn)retryBtn.addEventListener('click',function(){resetDemo();});
+  if(orbWrap) orbWrap.addEventListener('click',function(){
+    if(!callActive && !postCall.classList.contains('visible')) startCall();
+  });
+  if(endBtn) endBtn.addEventListener('click',endCall);
+  if(retryBtn) retryBtn.addEventListener('click',function(){ resetDemo(); });
 })();
 </script>
 </body>
