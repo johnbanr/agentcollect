@@ -58,7 +58,11 @@
     },
     {
       "source": "/dell",
-      "destination": "/dell-v7.html"
+      "destination": "/dell-v8.html"
+    },
+    {
+      "source": "/dell-v8",
+      "destination": "/dell-v8.html"
     },
     {
       "source": "/dell-v2",
