@@ -252,18 +252,41 @@
       <div style="font-size:13px;font-weight:700;color:#F87171;text-transform:uppercase;letter-spacing:1.5px">Call 1: Hospitalized Patient</div>
       <div style="font-size:12px;opacity:0.4">10 min 0 sec | Rep: Saundit</div>
     </div>
-    <div style="background:rgba(0,0,0,0.2);border-radius:12px;padding:20px;margin-bottom:16px">
-      <div style="font-size:12px;opacity:0.4;margin-bottom:8px">TRANSCRIPT EXCERPT</div>
-      <p style="font-size:14px;line-height:1.8;font-style:italic;opacity:0.9">
-        <span style="color:#F87171;font-weight:600">Caller:</span> "I was in the hospital for two weeks, heart surgery, and I just got back to find several bills from you guys. I'm trying to figure out what I owe and if there's any way to work something out."<br><br>
-        <span style="color:#818CF8;font-weight:600">Rep (Saundit):</span> "Can you give me your customer number, please?"<br><br>
-        <span style="color:#F87171;font-weight:600">Caller:</span> "I don't have it. Everything piled up while I was gone."<br><br>
-        <span style="color:#818CF8;font-weight:600">Rep:</span> "That's not the address we have. Do you have any invoice number?"
-      </p>
-    </div>
-    <audio controls preload="none" style="width:100%;height:40px;border-radius:8px">
+    <audio id="audio1" preload="none" style="display:none">
       <source src="https://dxc03zgurdly9.cloudfront.net/971cf0565e49d90decab1cc1c579165d79360ec207ac662de3459162d34c451b/recording.wav" type="audio/wav">
     </audio>
+    <div style="background:rgba(0,0,0,0.2);border-radius:12px;padding:20px;margin-bottom:16px">
+      <div style="font-size:12px;opacity:0.4;margin-bottom:8px">CLICK ANY LINE TO HEAR IT</div>
+      <div class="ts-line" onclick="playAt('audio1',75)" style="cursor:pointer;padding:8px 12px;border-radius:8px;margin-bottom:6px;transition:background 0.2s;font-size:14px;line-height:1.7">
+        <span style="color:#F87171;font-weight:600">Caller:</span> <span style="opacity:0.9;font-style:italic">"I was in the hospital for two weeks, heart surgery, and I just got back to find several bills from you guys. I'm trying to figure out what I owe and if there's any way to work something out."</span>
+        <span style="float:right;opacity:0.3;font-size:11px">1:15</span>
+      </div>
+      <div class="ts-line" onclick="playAt('audio1',99)" style="cursor:pointer;padding:8px 12px;border-radius:8px;margin-bottom:6px;transition:background 0.2s;font-size:14px;line-height:1.7">
+        <span style="color:#818CF8;font-weight:600">Rep (Saundit):</span> <span style="opacity:0.9;font-style:italic">"Can you give me your customer number, please?"</span>
+        <span style="float:right;opacity:0.3;font-size:11px">1:39</span>
+      </div>
+      <div class="ts-line" onclick="playAt('audio1',105)" style="cursor:pointer;padding:8px 12px;border-radius:8px;margin-bottom:6px;transition:background 0.2s;font-size:14px;line-height:1.7">
+        <span style="color:#F87171;font-weight:600">Caller:</span> <span style="opacity:0.9;font-style:italic">"I don't have it. Everything piled up while I was gone. My daughter was supposed to handle things but... she did her best."</span>
+        <span style="float:right;opacity:0.3;font-size:11px">1:45</span>
+      </div>
+      <div class="ts-line" onclick="playAt('audio1',289)" style="cursor:pointer;padding:8px 12px;border-radius:8px;margin-bottom:6px;transition:background 0.2s;font-size:14px;line-height:1.7">
+        <span style="color:#818CF8;font-weight:600">Rep:</span> <span style="opacity:0.9;font-style:italic">"That's not the address we have. Do you have any invoice number?"</span>
+        <span style="float:right;opacity:0.3;font-size:11px">4:49</span>
+      </div>
+      <div class="ts-line" onclick="playAt('audio1',550)" style="cursor:pointer;padding:8px 12px;border-radius:8px;margin-bottom:6px;transition:background 0.2s;font-size:14px;line-height:1.7">
+        <span style="color:#818CF8;font-weight:600">Rep:</span> <span style="opacity:0.9;font-style:italic">"Thank you, ma'am. Thank you so much for being on the line."</span>
+        <span style="float:right;opacity:0.3;font-size:11px">9:10</span>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;background:rgba(0,0,0,0.15);border-radius:10px;padding:12px 16px">
+      <button onclick="togglePlay('audio1',this)" style="background:#4F46E5;border:none;color:white;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center">&#9654;</button>
+      <div style="flex:1">
+        <div id="progress1" style="background:rgba(255,255,255,0.1);height:4px;border-radius:2px;cursor:pointer;position:relative" onclick="seekAudio(event,'audio1','progress1')">
+          <div id="bar1" style="background:#4F46E5;height:100%;border-radius:2px;width:0%;transition:width 0.1s"></div>
+        </div>
+      </div>
+      <span id="time1" style="font-size:12px;opacity:0.4;min-width:80px;text-align:right">0:00 / 10:00</span>
+    </div>
     <p style="font-size:14px;margin-top:12px;opacity:0.7"><strong>Finding:</strong> Zero empathy. No payment plan offered. No "I'm sorry to hear that." Just: customer number please. Put on hold 3 minutes, asked her name again.</p>
   </div>
 
@@ -305,15 +328,32 @@
       <div style="font-size:12px;opacity:0.4">3 min 47 sec | No human reached</div>
     </div>
     <div style="background:rgba(0,0,0,0.2);border-radius:12px;padding:20px;margin-bottom:16px">
-      <div style="font-size:12px;opacity:0.4;margin-bottom:8px">TRANSCRIPT EXCERPT</div>
-      <p style="font-size:14px;line-height:1.8;font-style:italic;opacity:0.9">
-        <span style="color:#818CF8;font-weight:600">IVR:</span> "This number will soon be discontinued. Please update your records."<br><br>
-        <span style="color:#818CF8;font-weight:600">After 3.5 min hold:</span> "If this is an emergency, please leave a message."
-      </p>
+      <audio id="audio2" preload="none" style="display:none">
+        <source src="https://dxc03zgurdly9.cloudfront.net/2a51e0ca780e290734f64bf16fa952f227ed77233b3de662f18eb148268a8a60/recording.wav" type="audio/wav">
+      </audio>
+      <div style="font-size:12px;opacity:0.4;margin-bottom:8px">CLICK ANY LINE TO HEAR IT</div>
+      <div class="ts-line" onclick="playAt('audio2',4)" style="cursor:pointer;padding:8px 12px;border-radius:8px;margin-bottom:6px;transition:background 0.2s;font-size:14px;line-height:1.7">
+        <span style="color:#818CF8;font-weight:600">IVR:</span> <span style="opacity:0.9;font-style:italic">"Our records show that you have reached us via a phone number that will soon be discontinued."</span>
+        <span style="float:right;opacity:0.3;font-size:11px">0:04</span>
+      </div>
+      <div class="ts-line" onclick="playAt('audio2',70)" style="cursor:pointer;padding:8px 12px;border-radius:8px;margin-bottom:6px;transition:background 0.2s;font-size:14px;line-height:1.7">
+        <span style="color:#818CF8;font-weight:600">Hold message:</span> <span style="opacity:0.9;font-style:italic">"All our representatives are currently assisting other customers. Please remain on the line."</span>
+        <span style="float:right;opacity:0.3;font-size:11px">1:10</span>
+      </div>
+      <div class="ts-line" onclick="playAt('audio2',203)" style="cursor:pointer;padding:8px 12px;border-radius:8px;margin-bottom:6px;transition:background 0.2s;font-size:14px;line-height:1.7">
+        <span style="color:#FBBF24;font-weight:600">Voicemail:</span> <span style="opacity:0.9;font-style:italic">"If this is an emergency, please leave a message after the tone."</span>
+        <span style="float:right;opacity:0.3;font-size:11px">3:23</span>
+      </div>
     </div>
-    <audio controls preload="none" style="width:100%;height:40px;border-radius:8px">
-      <source src="https://dxc03zgurdly9.cloudfront.net/2a51e0ca780e290734f64bf16fa952f227ed77233b3de662f18eb148268a8a60/recording.wav" type="audio/wav">
-    </audio>
+    <div style="display:flex;align-items:center;gap:12px;background:rgba(0,0,0,0.15);border-radius:10px;padding:12px 16px">
+      <button onclick="togglePlay('audio2',this)" style="background:#4F46E5;border:none;color:white;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center">&#9654;</button>
+      <div style="flex:1">
+        <div id="progress2" style="background:rgba(255,255,255,0.1);height:4px;border-radius:2px;cursor:pointer;position:relative" onclick="seekAudio(event,'audio2','progress2')">
+          <div id="bar2" style="background:#4F46E5;height:100%;border-radius:2px;width:0%;transition:width 0.1s"></div>
+        </div>
+      </div>
+      <span id="time2" style="font-size:12px;opacity:0.4;min-width:80px;text-align:right">0:00 / 3:47</span>
+    </div>
     <p style="font-size:14px;opacity:0.7"><strong>Finding:</strong> The 800 number redirects to the same IVR. 3.5 minutes on hold, then voicemail. Patient with a billing emergency gets: "leave a message."</p>
   </div>
 
@@ -473,13 +513,81 @@
   AgentCollect | The end of manual collection. | Confidential
 </div>
 
-<!-- Smooth scroll -->
+<!-- Audio player + transcript sync -->
 <script>
+// Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     e.preventDefault();
     document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
   });
+});
+
+// Jump to timestamp
+function playAt(audioId, seconds) {
+  const audio = document.getElementById(audioId);
+  audio.currentTime = seconds;
+  audio.play();
+  // Highlight the clicked line
+  const lines = audio.closest('.slide') ? audio.parentElement.querySelectorAll('.ts-line') : document.querySelectorAll('.ts-line');
+  lines.forEach(l => l.style.background = 'transparent');
+  event.currentTarget.style.background = 'rgba(79,70,229,0.2)';
+  updateBtn(audioId);
+}
+
+// Toggle play/pause
+function togglePlay(audioId, btn) {
+  const audio = document.getElementById(audioId);
+  if (audio.paused) {
+    audio.play();
+    btn.innerHTML = '&#9646;&#9646;';
+  } else {
+    audio.pause();
+    btn.innerHTML = '&#9654;';
+  }
+}
+
+// Update progress bar
+function updateBtn(audioId) {
+  const audio = document.getElementById(audioId);
+  const num = audioId.replace('audio','');
+  const btn = audio.parentElement.querySelector('button');
+  if (btn) btn.innerHTML = '&#9646;&#9646;';
+}
+
+// Progress bars
+setInterval(() => {
+  ['audio1','audio2'].forEach(id => {
+    const audio = document.getElementById(id);
+    if (!audio) return;
+    const num = id.replace('audio','');
+    const bar = document.getElementById('bar'+num);
+    const time = document.getElementById('time'+num);
+    if (!bar || !time) return;
+    if (audio.duration) {
+      bar.style.width = (audio.currentTime/audio.duration*100)+'%';
+      const cur = Math.floor(audio.currentTime);
+      const dur = Math.floor(audio.duration);
+      time.textContent = Math.floor(cur/60)+':'+String(cur%60).padStart(2,'0')+' / '+Math.floor(dur/60)+':'+String(dur%60).padStart(2,'0');
+    }
+  });
+}, 200);
+
+// Seek on progress bar click
+function seekAudio(e, audioId, progressId) {
+  const bar = document.getElementById(progressId);
+  const audio = document.getElementById(audioId);
+  const rect = bar.getBoundingClientRect();
+  const pct = (e.clientX - rect.left) / rect.width;
+  audio.currentTime = pct * audio.duration;
+  audio.play();
+  updateBtn(audioId);
+}
+
+// Hover effect on transcript lines
+document.querySelectorAll('.ts-line').forEach(line => {
+  line.addEventListener('mouseenter', () => { if(line.style.background !== 'rgba(79, 70, 229, 0.2)') line.style.background = 'rgba(255,255,255,0.05)'; });
+  line.addEventListener('mouseleave', () => { if(line.style.background !== 'rgba(79, 70, 229, 0.2)') line.style.background = 'transparent'; });
 });
 </script>
 
