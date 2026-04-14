@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dell v9</title>
+    <meta name="description" content="Dell pilot recap for Natalie Gilbert.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@600;700;800&amp;family=Plus+Jakarta+Sans:wght@700;800&amp;display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0B1B3D;
+            --amber: #F59E0B;
+            --violet: #4F46E5;
+            --red: #EF4444;
+            --green: #10B981;
+            --mint: #F0FDF4;
+            --ink: #091327;
+            --fog: rgba(11, 27, 61, 0.08);
+            --line: rgba(255, 255, 255, 0.14);
+            --text: rgba(255, 255, 255, 0.84);
+            --shadow: 0 40px 120px rgba(9, 19, 39, 0.22);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            background:
+                radial-gradient(circle at top left, rgba(79, 70, 229, 0.24), transparent 30%),
+                radial-gradient(circle at top right, rgba(245, 158, 11, 0.22), transparent 28%),
+                #f7fafc;
+            color: var(--ink);
+            scroll-behavior: smooth;
+        }
+
+        @media (min-width: 980px) {
+            html {
+                scroll-snap-type: y mandatory;
+            }
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .page-shell::before {
+            content: "";
+            inset: 0;
+            position: fixed;
+            background:
+                linear-gradient(120deg, rgba(255, 255, 255, 0.82), rgba(240, 253, 244, 0.28)),
+                radial-gradient(circle at 15% 15%, rgba(79, 70, 229, 0.16), transparent 22%),
+                radial-gradient(circle at 85% 20%, rgba(16, 185, 129, 0.16), transparent 24%);
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        .page-shell::after {
+            content: "";
+            inset: 0;
+            position: fixed;
+            background-image:
+                linear-gradient(rgba(11, 27, 61, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(11, 27, 61, 0.03) 1px, transparent 1px);
+            background-size: 72px 72px;
+            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 90%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .snap {
+            min-height: 100svh;
+            scroll-snap-align: start;
+            position: relative;
+        }
+
+        .hero,
+        .agent,
+        .cta {
+            padding: 32px;
+            display: grid;
+            align-items: stretch;
+        }
+
+        .hero-card,
+        .agent-card,
+        .cta-card {
+            border-radius: 34px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .hero-card {
+            background:
+                radial-gradient(circle at 20% 20%, rgba(245, 158, 11, 0.18), transparent 28%),
+                radial-gradient(circle at 82% 18%, rgba(79, 70, 229, 0.22), transparent 30%),
+                linear-gradient(145deg, #07142d, #0B1B3D 60%, #102858);
+            color: white;
+            padding: 28px;
+            display: grid;
+            grid-template-columns: 1.3fr 0.9fr;
+            gap: 24px;
+            min-height: calc(100svh - 64px);
+        }
+
+        .hero-copy,
+        .hero-side {
+            display: grid;
+            align-content: space-between;
+        }
+
+        .eyebrow,
+        .mini-pill,
+        .panel-tag,
+        .quote-tag,
+        .stat-kicker {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow,
+        .panel-tag,
+        .quote-tag {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.72);
+        }
+
+        .hero-head {
+            display: grid;
+            gap: 14px;
+            max-width: 760px;
+        }
+
+        .hero-head h1,
+        .cta-card h2 {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            font-size: clamp(46px, 8vw, 104px);
+            font-weight: 800;
+            letter-spacing: -0.06em;
+            line-height: 0.9;
+        }
+
+        .hero-head h1 span,
+        .cta-card h2 span,
+        .agent-title span {
+            display: block;
+        }
+
+        .hero-notes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .mini-pill {
+            font-size: 10px;
+            padding: 10px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 999px;
+            color: rgba(255, 255, 255, 0.82);
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(14px);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+            align-self: end;
+        }
+
+        .signal {
+            padding: 18px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(14px);
+            min-height: 136px;
+        }
+
+        .signal h3,
+        .quote-card blockquote,
+        .agent-title,
+        .metric-label,
+        .copy-line,
+        .cta-copy {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            font-weight: 800;
+        }
+
+        .signal h3 {
+            font-size: 18px;
+            margin-top: 28px;
+            line-height: 1.05;
+        }
+
+        .signal p,
+        .quote-card p,
+        .agent-list li,
+        .panel-copy p,
+        .cta-copy p,
+        .panel-note {
+            font-size: 15px;
+            line-height: 1.2;
+        }
+
+        .hero-side {
+            gap: 18px;
+        }
+
+        .quote-card,
+        .halo-card {
+            padding: 22px;
+            border-radius: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quote-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            backdrop-filter: blur(16px);
+        }
+
+        .quote-card::before,
+        .halo-card::before,
+        .panel::before,
+        .agent-card::before,
+        .cta-card::before {
+            content: "";
+            position: absolute;
+            inset: auto auto -20% -12%;
+            width: 240px;
+            height: 240px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent 70%);
+            pointer-events: none;
+        }
+
+        .quote-card blockquote {
+            font-size: clamp(26px, 4vw, 46px);
+            line-height: 0.92;
+            margin: 18px 0 18px;
+            max-width: 10ch;
+        }
+
+        .quote-card p,
+        .signal p,
+        .halo-card p {
+            color: rgba(255, 255, 255, 0.74);
+            margin-top: 10px;
+        }
+
+        .halo-card {
+            background:
+                linear-gradient(135deg, rgba(245, 158, 11, 0.16), rgba(79, 70, 229, 0.16)),
+                rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            min-height: 220px;
+            display: grid;
+            align-content: end;
+        }
+
+        .halo-number,
+        .stat-number,
+        .panel-number {
+            font-family: "JetBrains Mono", monospace;
+            font-size: clamp(60px, 12vw, 180px);
+            font-weight: 800;
+            line-height: 0.88;
+            letter-spacing: -0.08em;
+        }
+
+        .halo-number {
+            color: white;
+        }
+
+        .split {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .panel {
+            min-height: 100svh;
+            padding: 36px;
+            position: relative;
+            overflow: hidden;
+            display: grid;
+            align-items: end;
+        }
+
+        .problem {
+            background:
+                linear-gradient(160deg, rgba(5, 10, 22, 0.94), rgba(11, 27, 61, 1) 64%),
+                var(--navy);
+            color: white;
+        }
+
+        .problem::after,
+        .solution::after,
+        .agent-card::after,
+        .cta-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(transparent, rgba(255, 255, 255, 0.04)),
+                linear-gradient(90deg, transparent 0 92%, rgba(255, 255, 255, 0.06) 100%);
+            mix-blend-mode: screen;
+            pointer-events: none;
+        }
+
+        .solution {
+            background:
+                radial-gradient(circle at 86% 15%, rgba(16, 185, 129, 0.16), transparent 26%),
+                linear-gradient(180deg, #f7fff8, var(--mint));
+            color: var(--ink);
+        }
+
+        .solution .panel-tag,
+        .solution .panel-note {
+            color: rgba(9, 19, 39, 0.64);
+        }
+
+        .panel-body {
+            max-width: 520px;
+            display: grid;
+            gap: 18px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .panel-stack {
+            display: grid;
+            gap: 10px;
+        }
+
+        .panel-number {
+            color: white;
+        }
+
+        .solution .panel-number {
+            color: var(--green);
+        }
+
+        .panel-copy {
+            display: grid;
+            gap: 8px;
+        }
+
+        .copy-line {
+            font-size: clamp(28px, 3.6vw, 52px);
+            letter-spacing: -0.06em;
+            line-height: 0.92;
+        }
+
+        .problem .copy-line {
+            color: white;
+        }
+
+        .solution .copy-line {
+            color: var(--ink);
+        }
+
+        .panel-note {
+            max-width: 18ch;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .panel-rail {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .stat-chip {
+            padding: 12px 14px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            min-width: 144px;
+        }
+
+        .solution .stat-chip {
+            background: white;
+            border-color: rgba(11, 27, 61, 0.08);
+            box-shadow: 0 18px 40px rgba(11, 27, 61, 0.08);
+        }
+
+        .stat-kicker {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.64);
+        }
+
+        .solution .stat-kicker {
+            color: rgba(9, 19, 39, 0.46);
+        }
+
+        .stat-number {
+            font-size: clamp(30px, 4vw, 60px);
+            line-height: 0.95;
+            margin-top: 8px;
+        }
+
+        .problem .stat-number {
+            color: var(--amber);
+        }
+
+        .solution .stat-number {
+            color: var(--violet);
+        }
+
+        .metric-label {
+            margin-top: 10px;
+            font-size: 18px;
+            line-height: 1;
+            letter-spacing: -0.05em;
+        }
+
+        .agent-card {
+            background:
+                radial-gradient(circle at 10% 10%, rgba(79, 70, 229, 0.2), transparent 25%),
+                radial-gradient(circle at 90% 15%, rgba(245, 158, 11, 0.2), transparent 20%),
+                linear-gradient(140deg, #08142e, #102149 55%, #0c2a3d);
+            color: white;
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 22px;
+            min-height: calc(100svh - 64px);
+        }
+
+        .agent-left,
+        .agent-right {
+            display: grid;
+            align-content: space-between;
+            gap: 16px;
+        }
+
+        .agent-title {
+            font-size: clamp(44px, 7vw, 96px);
+            line-height: 0.9;
+            letter-spacing: -0.06em;
+        }
+
+        .agent-list {
+            list-style: none;
+            display: grid;
+            gap: 14px;
+        }
+
+        .agent-list li {
+            padding: 18px 20px;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: grid;
+            gap: 6px;
+            backdrop-filter: blur(14px);
+        }
+
+        .agent-list strong {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            font-size: 22px;
+            line-height: 1;
+            letter-spacing: -0.05em;
+        }
+
+        .agent-right-grid {
+            display: grid;
+            gap: 14px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .agent-box {
+            padding: 18px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            min-height: 160px;
+            display: grid;
+            align-content: end;
+            gap: 10px;
+        }
+
+        .agent-box:nth-child(1) .stat-number { color: var(--green); }
+        .agent-box:nth-child(2) .stat-number { color: var(--amber); }
+        .agent-box:nth-child(3) .stat-number { color: #8B5CF6; }
+        .agent-box:nth-child(4) .stat-number { color: #F97316; }
+
+        .cta-card {
+            min-height: calc(100svh - 64px);
+            background:
+                radial-gradient(circle at 18% 18%, rgba(79, 70, 229, 0.22), transparent 26%),
+                radial-gradient(circle at 82% 24%, rgba(245, 158, 11, 0.22), transparent 22%),
+                linear-gradient(160deg, #f8fffb, #ecfdf5 42%, #ffffff);
+            padding: 28px;
+            display: grid;
+            align-content: space-between;
+        }
+
+        .cta-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .cta-copy {
+            display: grid;
+            gap: 14px;
+            max-width: 760px;
+        }
+
+        .cta-copy p {
+            color: rgba(9, 19, 39, 0.62);
+            max-width: 20ch;
+        }
+
+        .cta-action {
+            align-self: end;
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .cta-link {
+            text-decoration: none;
+            padding: 18px 24px;
+            border-radius: 999px;
+            font-family: "Plus Jakarta Sans", sans-serif;
+            font-weight: 800;
+            font-size: 15px;
+            letter-spacing: -0.03em;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease;
+        }
+
+        .cta-link.primary {
+            color: white;
+            background: linear-gradient(135deg, var(--navy), var(--violet));
+            box-shadow: 0 20px 60px rgba(79, 70, 229, 0.24);
+        }
+
+        .cta-link.secondary {
+            color: var(--ink);
+            background: white;
+            border: 1px solid rgba(11, 27, 61, 0.08);
+        }
+
+        .cta-link:hover {
+            transform: translateY(-2px);
+        }
+
+        .progress {
+            position: fixed;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: grid;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .progress a {
+            width: 12px;
+            height: 12px;
+            border-radius: 999px;
+            background: rgba(11, 27, 61, 0.18);
+            box-shadow: inset 0 0 0 1px rgba(11, 27, 61, 0.08);
+            transition: transform 220ms ease, background 220ms ease;
+        }
+
+        .progress a.is-active {
+            transform: scale(1.35);
+            background: var(--violet);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(34px) scale(0.98);
+            transition:
+                opacity 700ms cubic-bezier(0.2, 0.7, 0, 1),
+                transform 700ms cubic-bezier(0.2, 0.7, 0, 1);
+        }
+
+        .reveal.in-view {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .stagger-1 { transition-delay: 90ms; }
+        .stagger-2 { transition-delay: 180ms; }
+        .stagger-3 { transition-delay: 270ms; }
+        .stagger-4 { transition-delay: 360ms; }
+
+        @media (max-width: 1100px) {
+            .hero-card,
+            .agent-card,
+            .cta-card {
+                min-height: auto;
+            }
+
+            .hero-card,
+            .agent-card,
+            .split {
+                grid-template-columns: 1fr;
+            }
+
+            .panel {
+                min-height: 56svh;
+            }
+        }
+
+        @media (max-width: 979px) {
+            html {
+                scroll-snap-type: none;
+            }
+
+            .progress {
+                display: none;
+            }
+
+            .snap {
+                min-height: auto;
+            }
+
+            .hero,
+            .agent,
+            .cta {
+                padding: 16px;
+            }
+
+            .hero-card,
+            .agent-card,
+            .cta-card,
+            .panel {
+                border-radius: 24px;
+            }
+
+            .hero-grid,
+            .agent-right-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .panel {
+                min-height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <nav class="progress" aria-label="Section progress">
+            <a href="#hero" class="is-active" aria-label="Hero"></a>
+            <a href="#finding-1" aria-label="Finding 1"></a>
+            <a href="#finding-2" aria-label="Finding 2"></a>
+            <a href="#finding-3" aria-label="Finding 3"></a>
+            <a href="#finding-4" aria-label="Finding 4"></a>
+            <a href="#agent" aria-label="Agent Dell"></a>
+            <a href="#cta" aria-label="Call to action"></a>
+        </nav>
+
+        <section class="hero snap" id="hero">
+            <div class="hero-card">
+                <div class="hero-copy">
+                    <div class="hero-head">
+                        <span class="eyebrow reveal">Pilot hero: Natalie Gilbert.</span>
+                        <h1 class="reveal stagger-1">
+                            <span>Batch 4.</span>
+                            <span>Agent Dell Q4.</span>
+                        </h1>
+                        <div class="hero-notes reveal stagger-2">
+                            <span class="mini-pill">Dell B2B invoice recovery.</span>
+                            <span class="mini-pill">Tomorrow, 11 AM.</span>
+                            <span class="mini-pill">Pilot proved the motion.</span>
+                        </div>
+                    </div>
+
+                    <div class="hero-grid">
+                        <article class="signal reveal stagger-2">
+                            <span class="eyebrow">Signal one</span>
+                            <h3>Proof beats friction.</h3>
+                            <p>Invoice access changed outcomes.</p>
+                        </article>
+                        <article class="signal reveal stagger-3">
+                            <span class="eyebrow">Signal two</span>
+                            <h3>Speed resets deadlocks.</h3>
+                            <p>Three seconds beats hold music.</p>
+                        </article>
+                        <article class="signal reveal stagger-3">
+                            <span class="eyebrow">Signal three</span>
+                            <h3>Contacts were recoverable.</h3>
+                            <p>Enrichment reopened stalled accounts.</p>
+                        </article>
+                        <article class="signal reveal stagger-4">
+                            <span class="eyebrow">Signal four</span>
+                            <h3>Cash arrived this week.</h3>
+                            <p>Woodside made momentum visible.</p>
+                        </article>
+                    </div>
+                </div>
+
+                <aside class="hero-side">
+                    <div class="quote-card reveal stagger-2">
+                        <span class="quote-tag">Natalie quote</span>
+                        <blockquote>“We proved the path.”</blockquote>
+                        <p>Natalie Gilbert</p>
+                        <p>Dell Collections</p>
+                    </div>
+
+                    <div class="halo-card reveal stagger-4">
+                        <span class="quote-tag">Pilot outcome</span>
+                        <div class="halo-number">4</div>
+                        <p>Findings. One clear next step.</p>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="split snap" id="finding-1">
+            <div class="panel problem">
+                <div class="panel-body">
+                    <span class="panel-tag reveal">Finding 01</span>
+                    <div class="panel-stack">
+                        <div class="panel-number reveal stagger-1">59%</div>
+                        <div class="panel-copy">
+                            <div class="copy-line reveal stagger-2">Disputes asked invoices.</div>
+                            <p class="panel-note reveal stagger-3">Delay came from proof.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel solution">
+                <div class="panel-body">
+                    <span class="panel-tag reveal">Answer</span>
+                    <div class="panel-stack">
+                        <div class="panel-number reveal stagger-1">60s</div>
+                        <div class="panel-copy">
+                            <div class="copy-line reveal stagger-2">ar@dell.com answered fast.</div>
+                            <p class="panel-note reveal stagger-3">Proof loop, fully reset.</p>
+                        </div>
+                    </div>
+                    <div class="panel-rail">
+                        <div class="stat-chip reveal stagger-3">
+                            <span class="stat-kicker">Mode</span>
+                            <div class="metric-label">Instant invoice proof.</div>
+                        </div>
+                        <div class="stat-chip reveal stagger-4">
+                            <span class="stat-kicker">Impact</span>
+                            <div class="metric-label">Dispute heat cooled.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="split snap" id="finding-2">
+            <div class="panel problem">
+                <div class="panel-body">
+                    <span class="panel-tag reveal">Finding 02</span>
+                    <div class="panel-stack">
+                        <div class="panel-number reveal stagger-1">82%</div>
+                        <div class="panel-copy">
+                            <div class="copy-line reveal stagger-2">Calls went nowhere.</div>
+                            <p class="panel-note reveal stagger-3">760K stalled behind silence.</p>
+                        </div>
+                    </div>
+                    <div class="panel-rail">
+                        <div class="stat-chip reveal stagger-4">
+                            <span class="stat-kicker">Friction</span>
+                            <div class="metric-label">Humans missed intent.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel solution">
+                <div class="panel-body">
+                    <span class="panel-tag reveal">Answer</span>
+                    <div class="panel-stack">
+                        <div class="panel-number reveal stagger-1">3s</div>
+                        <div class="panel-copy">
+                            <div class="copy-line reveal stagger-2">Agent Dell answered instantly.</div>
+                            <p class="panel-note reveal stagger-3">Intent captured, then routed.</p>
+                        </div>
+                    </div>
+                    <div class="panel-rail">
+                        <div class="stat-chip reveal stagger-3">
+                            <span class="stat-kicker">Languages</span>
+                            <div class="stat-number">28</div>
+                            <div class="metric-label">Global reach, native tone.</div>
+                        </div>
+                        <div class="stat-chip reveal stagger-4">
+                            <span class="stat-kicker">Q4</span>
+                            <div class="metric-label">Ready for volume.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="split snap" id="finding-3">
+            <div class="panel problem">
+                <div class="panel-body">
+                    <span class="panel-tag reveal">Finding 03</span>
+                    <div class="panel-stack">
+                        <div class="panel-number reveal stagger-1">248K</div>
+                        <div class="panel-copy">
+                            <div class="copy-line reveal stagger-2">Contacts were dead.</div>
+                            <p class="panel-note reveal stagger-3">57 accounts lost pathways.</p>
+                        </div>
+                    </div>
+                    <div class="panel-rail">
+                        <div class="stat-chip reveal stagger-4">
+                            <span class="stat-kicker">Blocker</span>
+                            <div class="metric-label">Old data broke outreach.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel solution">
+                <div class="panel-body">
+                    <span class="panel-tag reveal">Answer</span>
+                    <div class="panel-stack">
+                        <div class="panel-number reveal stagger-1">659</div>
+                        <div class="panel-copy">
+                            <div class="copy-line reveal stagger-2">Pre-enrichment rebuilt access.</div>
+                            <p class="panel-note reveal stagger-3">Fresh contacts, fresh momentum.</p>
+                        </div>
+                    </div>
+                    <div class="panel-rail">
+                        <div class="stat-chip reveal stagger-3">
+                            <span class="stat-kicker">Result</span>
+                            <div class="metric-label">Outreach reopened 57 accounts.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="split snap" id="finding-4">
+            <div class="panel problem">
+                <div class="panel-body">
+                    <span class="panel-tag reveal">Finding 04</span>
+                    <div class="panel-stack">
+                        <div class="panel-number reveal stagger-1">1,181</div>
+                        <div class="panel-copy">
+                            <div class="copy-line reveal stagger-2">Paid this week.</div>
+                            <p class="panel-note reveal stagger-3">Woodside Homes moved fast.</p>
+                        </div>
+                    </div>
+                    <div class="panel-rail">
+                        <div class="stat-chip reveal stagger-4">
+                            <span class="stat-kicker">Proof</span>
+                            <div class="metric-label">Cash landed immediately.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel solution">
+                <div class="panel-body">
+                    <span class="panel-tag reveal">Answer</span>
+                    <div class="panel-stack">
+                        <div class="panel-number reveal stagger-1">40-45%</div>
+                        <div class="panel-copy">
+                            <div class="copy-line reveal stagger-2">Projected recovery lift.</div>
+                            <p class="panel-note reveal stagger-3">Scale now feels concrete.</p>
+                        </div>
+                    </div>
+                    <div class="panel-rail">
+                        <div class="stat-chip reveal stagger-3">
+                            <span class="stat-kicker">Next</span>
+                            <div class="metric-label">Batch 4 can move.</div>
+                        </div>
+                        <div class="stat-chip reveal stagger-4">
+                            <span class="stat-kicker">Quarter</span>
+                            <div class="metric-label">Agent Dell, Q4.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="agent snap" id="agent">
+            <div class="agent-card">
+                <div class="agent-left">
+                    <div>
+                        <span class="eyebrow reveal">Agent Dell</span>
+                        <h2 class="agent-title reveal stagger-1">
+                            <span>Three seconds.</span>
+                            <span>Twenty-eight languages.</span>
+                            <span>Q4, ready.</span>
+                        </h2>
+                    </div>
+
+                    <ul class="agent-list">
+                        <li class="reveal stagger-2">
+                            <strong>Voice.</strong>
+                            <span>Calls route with context.</span>
+                        </li>
+                        <li class="reveal stagger-3">
+                            <strong>Email.</strong>
+                            <span>Proof ships in seconds.</span>
+                        </li>
+                        <li class="reveal stagger-4">
+                            <strong>Portal.</strong>
+                            <span>Cash lands without friction.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="agent-right">
+                    <div class="agent-right-grid">
+                        <article class="agent-box reveal stagger-2">
+                            <span class="stat-kicker">Response</span>
+                            <div class="stat-number">3s</div>
+                            <div class="metric-label">Speed feels human.</div>
+                        </article>
+                        <article class="agent-box reveal stagger-3">
+                            <span class="stat-kicker">Coverage</span>
+                            <div class="stat-number">28</div>
+                            <div class="metric-label">Languages already live.</div>
+                        </article>
+                        <article class="agent-box reveal stagger-3">
+                            <span class="stat-kicker">Proof</span>
+                            <div class="stat-number">60s</div>
+                            <div class="metric-label">Invoice reply loop.</div>
+                        </article>
+                        <article class="agent-box reveal stagger-4">
+                            <span class="stat-kicker">Target</span>
+                            <div class="stat-number">Q4</div>
+                            <div class="metric-label">Launch with Batch 4.</div>
+                        </article>
+                    </div>
+
+                    <div class="quote-card reveal stagger-4">
+                        <span class="quote-tag">Hero note</span>
+                        <blockquote>“Pilot first. Then scale.”</blockquote>
+                        <p>Natalie Gilbert</p>
+                        <p>Dell VP</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta snap" id="cta">
+            <div class="cta-card">
+                <div class="cta-top">
+                    <span class="quote-tag" style="color: rgba(9, 19, 39, 0.56);">Next move</span>
+                    <span class="mini-pill" style="color: var(--ink); border-color: rgba(11, 27, 61, 0.08); background: rgba(255, 255, 255, 0.74);">Natalie owns the story.</span>
+                </div>
+
+                <div class="cta-copy">
+                    <h2 class="reveal">
+                        <span>Lets map</span>
+                        <span>the path.</span>
+                    </h2>
+                    <p class="reveal stagger-2">Batch 4 first. Agent Dell Q4.</p>
+                </div>
+
+                <div class="cta-action reveal stagger-3">
+                    <a class="cta-link primary" href="mailto:j@agentcollect.com?subject=Dell%20Batch%204%20and%20Agent%20Dell%20Q4">Lets map the path.</a>
+                    <a class="cta-link secondary" href="#hero">See the proof.</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const sections = [...document.querySelectorAll(".snap")];
+        const reveals = [...document.querySelectorAll(".reveal")];
+        const progressLinks = [...document.querySelectorAll(".progress a")];
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("in-view");
+                }
+            });
+        }, {
+            threshold: 0.2,
+            rootMargin: "0px 0px -10% 0px"
+        });
+
+        reveals.forEach((item) => revealObserver.observe(item));
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) {
+                    return;
+                }
+
+                progressLinks.forEach((link) => {
+                    link.classList.toggle(
+                        "is-active",
+                        link.getAttribute("href") === `#${entry.target.id}`
+                    );
+                });
+            });
+        }, {
+            threshold: 0.55
+        });
+
+        sections.forEach((section) => sectionObserver.observe(section));
+    </script>
+</body>
+</html>
