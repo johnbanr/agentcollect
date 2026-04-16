@@ -1,0 +1,14 @@
+{
+  "name": "AgentCollect",
+  "short_name": "AgentCollect",
+  "icons": [
+    { "src": "/favicon-32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "/favicon-48.png", "sizes": "48x48", "type": "image/png" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/logo-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#433196",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/"
+}
