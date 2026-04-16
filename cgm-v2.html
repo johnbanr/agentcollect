@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CGM Patient AR Pilot — Insights & Recommendations</title>
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="CGM Patient AR — Insights & Recommendations">
+<meta property="og:description" content="14,000 calls/mo. $244K collected. Virtuox patient AR. Prepared for the CGM Revenue Cycle team.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0B1B3D;
+  --white:#FFFFFF;
+  --text:#0B1B3D;
+  --muted:#94A3B8;
+  --amber:#F59E0B;
+  --indigo:#4F46E5;
+  --indigo-light:#818CF8;
+  --red:#EF4444;
+  --green:#10B981;
+  --green-dark:#059669;
+  --green-bg:#F0FDF4;
+  --mono:'JetBrains Mono',monospace;
+  --sans:'Plus Jakarta Sans',system-ui,sans-serif;
+  --body:'Inter',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth;scroll-snap-type:y mandatory;overflow-x:hidden}
+body{background:var(--white);color:var(--text);font-family:var(--body);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
+::selection{background:rgba(79,70,229,.12)}
+
+section{min-height:100vh;scroll-snap-align:start;position:relative;overflow:hidden}
+
+.rv{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.rv.v{opacity:1;transform:none}
+.rv-d1{transition-delay:.1s}
+.rv-d2{transition-delay:.2s}
+.rv-d3{transition-delay:.3s}
+.rv-d4{transition-delay:.4s}
+.rv-d5{transition-delay:.5s}
+.rv-right{transition-delay:.2s}
+
+.split-screen{display:grid;grid-template-columns:1fr 1fr;min-height:100vh}
+.split-left,.split-right{display:flex;flex-direction:column;justify-content:center;padding:clamp(40px,6vw,100px)}
+.split-right{background:var(--green-bg)}
+
+.giant{font-family:var(--mono);font-weight:700;font-size:clamp(60px,12vw,180px);line-height:1;letter-spacing:-.04em}
+.finding-label{font-family:var(--mono);font-size:14px;font-weight:600;letter-spacing:.08em;margin-bottom:32px}
+.finding-desc{font-family:var(--body);font-weight:500;font-size:clamp(18px,1.5vw,24px);color:#fff;margin-top:20px;line-height:1.4}
+.finding-sub{font-family:var(--body);font-weight:400;font-size:clamp(13px,1vw,16px);color:var(--muted);margin-top:10px;line-height:1.5}
+.finding-number{font-family:var(--mono);font-weight:700;font-size:clamp(48px,10vw,140px);line-height:1;letter-spacing:-.03em}
+.finding-detail{font-family:var(--body);font-weight:400;font-size:clamp(12px,.9vw,14px);margin-top:16px;line-height:1.5}
+.solution-label{font-family:var(--mono);font-size:14px;font-weight:600;letter-spacing:.08em;margin-bottom:32px}
+.solution-main{font-family:var(--body);font-weight:500;color:var(--green-dark);margin-top:16px}
+.solution-detail{font-family:var(--body);font-weight:400;font-size:clamp(12px,.9vw,14px);color:var(--muted);margin-top:8px;line-height:1.5}
+.fix-label{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--green-dark);margin-bottom:32px}
+.fix-icon{margin-bottom:24px}
+.fix-icon svg{width:48px;height:48px;stroke:var(--green);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.fix-main{font-family:var(--sans);font-weight:800;font-size:clamp(28px,3vw,48px);color:var(--text);letter-spacing:-.02em;line-height:1.15}
+.fix-desc{font-family:var(--body);font-weight:500;font-size:clamp(15px,1.1vw,18px);color:var(--green-dark);margin-top:14px}
+.fix-detail{font-family:var(--body);font-weight:400;font-size:clamp(12px,.9vw,14px);color:var(--muted);margin-top:8px}
+.fix-stat{font-family:var(--mono);font-weight:400;font-size:clamp(11px,.8vw,13px);color:var(--muted);margin-top:32px;opacity:.7}
+
+.pill-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.pill-sm{display:inline-flex;align-items:center;padding:6px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:100px;font-size:12px;font-weight:600;color:rgba(255,255,255,.5)}
+
+.screen-hero{display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;background:var(--navy);padding:80px clamp(24px,5vw,80px)}
+.hero-title{font-family:var(--sans);font-weight:800;font-size:clamp(36px,6vw,80px);color:#fff;letter-spacing:-.04em;line-height:1.05;margin-bottom:32px}
+.hero-line{width:40px;height:1px;background:rgba(255,255,255,.15);margin:0 auto 32px}
+.hero-partnership{font-size:clamp(13px,1.1vw,16px);color:rgba(255,255,255,.35);font-weight:500;letter-spacing:.02em}
+.hero-stats{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);font-size:11px;color:rgba(255,255,255,.15);font-weight:500;letter-spacing:.06em;text-align:center;white-space:nowrap}
+
+.screen-quote{display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;background:#fff;padding:80px clamp(24px,5vw,80px)}
+.quote-mark{font-size:120px;line-height:1;color:rgba(0,0,0,.05);font-family:Georgia,serif;margin-bottom:-20px}
+.quote-text{font-family:var(--sans);font-weight:600;font-style:italic;font-size:clamp(22px,3vw,40px);color:var(--text);letter-spacing:-.02em;line-height:1.35;max-width:760px}
+.quote-author{font-family:var(--body);font-weight:400;font-size:clamp(13px,1vw,16px);color:var(--muted);margin-top:24px}
+
+/* Mystery shop proof section */
+.screen-proof{background:#F8FAFC;padding:80px clamp(24px,5vw,80px);min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+.proof-head{text-align:center;margin-bottom:48px}
+.proof-kicker{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.1em;color:var(--red);text-transform:uppercase;margin-bottom:16px}
+.proof-title{font-family:var(--sans);font-weight:800;font-size:clamp(28px,4vw,56px);color:var(--text);letter-spacing:-.03em;line-height:1.1;margin-bottom:16px}
+.proof-sub{font-family:var(--body);font-size:clamp(14px,1.1vw,16px);color:var(--muted);max-width:560px;margin:0 auto;line-height:1.5}
+.proof-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:1100px;margin:0 auto;width:100%}
+.proof-card{background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:28px;display:flex;flex-direction:column}
+.proof-card-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+.proof-card-label{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--red);text-transform:uppercase}
+.proof-card-meta{font-size:11px;color:var(--muted);font-weight:500}
+.proof-line{cursor:pointer;padding:10px 14px;border-radius:10px;margin-bottom:8px;font-size:14px;line-height:1.6;border:1px solid rgba(79,70,229,.15);background:rgba(79,70,229,.04);transition:all .2s}
+.proof-line:hover{background:rgba(79,70,229,.08);border-color:rgba(79,70,229,.3)}
+.proof-play{display:inline-block;background:var(--indigo);color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;margin-right:8px;vertical-align:middle;letter-spacing:.04em}
+.proof-caller{color:var(--red);font-weight:600}
+.proof-rep{color:var(--indigo-light);font-weight:600}
+.proof-quote{font-style:italic;color:var(--text);opacity:.85}
+.proof-ts{float:right;opacity:.3;font-size:11px;font-family:var(--mono)}
+.proof-player{display:flex;align-items:center;gap:12px;background:#F1F5F9;border-radius:10px;padding:10px 14px;margin-top:12px}
+.proof-play-btn{background:var(--indigo);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.proof-progress{flex:1;background:#CBD5E1;height:4px;border-radius:2px;cursor:pointer;position:relative}
+.proof-bar{background:var(--indigo);height:100%;border-radius:2px;width:0%;transition:width .1s}
+.proof-time{font-size:11px;color:var(--muted);font-family:var(--mono);min-width:90px;text-align:right}
+.proof-finding{font-size:13px;color:#475569;margin-top:12px;line-height:1.5}
+.proof-finding strong{color:var(--text)}
+
+.screen-agent{display:grid;grid-template-columns:1fr 1fr;min-height:100vh;scroll-snap-align:start;position:relative;overflow:hidden}
+.agent-left{display:flex;flex-direction:column;justify-content:center;padding:clamp(40px,6vw,100px);background:var(--navy)}
+.agent-right{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:clamp(40px,6vw,80px);background:var(--green-bg);text-align:center;gap:0}
+.agent-title{font-family:var(--sans);font-weight:800;font-size:clamp(36px,5vw,72px);color:#fff;letter-spacing:-.03em;line-height:1.1;margin-bottom:8px}
+.agent-sub{font-size:clamp(16px,1.4vw,22px);color:rgba(255,255,255,.4);font-weight:500;margin-bottom:40px}
+.agent-caps{list-style:none;padding:0;display:flex;flex-direction:column;gap:16px}
+.agent-caps li{display:flex;align-items:flex-start;gap:12px;font-size:clamp(13px,1.1vw,16px);color:rgba(255,255,255,.65);font-weight:500;line-height:1.5}
+.agent-caps li .cap-icon{flex-shrink:0;width:20px;height:20px;margin-top:2px}
+.agent-caps li strong{color:rgba(255,255,255,.9);font-weight:700}
+.agent-preview-label{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.1em;color:var(--green-dark);margin-bottom:24px;text-transform:uppercase}
+.agent-try{font-size:clamp(13px,1vw,15px);color:var(--muted);font-weight:500;margin-top:20px;font-style:italic}
+.orb-pills{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:24px}
+.orb-pill{padding:6px 16px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.18);border-radius:100px;font-size:12px;font-weight:600;color:var(--green-dark)}
+.agent-right .demo-connecting-text{color:var(--muted)}
+.agent-right .demo-status{color:var(--indigo)}
+.agent-right .demo-transcript-msg.agent{background:rgba(79,70,229,.08);color:var(--text)}
+.agent-right .demo-transcript-msg.user{background:rgba(0,0,0,.04);color:var(--muted)}
+.agent-right .demo-end-btn{background:rgba(239,68,68,.06);color:#ef4444;border-color:rgba(239,68,68,.15)}
+.agent-right .demo-post-title{color:var(--text)}
+.agent-right .demo-post-sub{color:var(--muted)}
+.agent-right .demo-retry-btn{border-color:rgba(0,0,0,.1);color:var(--muted)}
+.agent-right .demo-retry-btn:hover{border-color:var(--indigo);color:var(--indigo)}
+.agent-right .demo-waveform span{background:rgba(79,70,229,.4)}
+
+.screen-cta{display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;background:#fff;min-height:60vh;padding:80px clamp(24px,5vw,80px)}
+.cta-heading{font-family:var(--sans);font-weight:700;font-size:clamp(24px,3.5vw,48px);color:var(--text);letter-spacing:-.03em;margin-bottom:20px}
+.cta-email{font-size:clamp(14px,1.2vw,18px);color:var(--indigo);text-decoration:none;font-weight:500;transition:opacity .2s}
+.cta-email:hover{opacity:.7}
+.cta-footer{position:absolute;bottom:32px;font-size:12px;color:var(--muted);font-weight:500}
+
+/* Orb widget styles */
+.demo-orb-wrap{position:relative;width:160px;height:160px;aspect-ratio:1;margin:0 auto 12px;cursor:pointer}
+.demo-orb-glow{position:absolute;inset:-40px;border-radius:50%;background:radial-gradient(circle,rgba(67,49,150,.18) 0%,rgba(79,70,229,.06) 40%,transparent 70%);animation:demoOrbGlowPulse 4s ease-in-out infinite}
+.demo-orb-ring{position:absolute;border-radius:50%;border:1.5px solid rgba(67,49,150,.12);pointer-events:none}
+.demo-orb-ring-1{inset:-20px;animation:demoRingPulse 3s ease-out infinite}
+.demo-orb-ring-2{inset:-40px;animation:demoRingPulse 3s ease-out infinite .6s}
+.demo-orb-ring-3{inset:-60px;animation:demoRingPulse 3s ease-out infinite 1.2s}
+@keyframes demoRingPulse{0%{opacity:.6;transform:scale(.95)}50%{opacity:.2;transform:scale(1)}100%{opacity:0;transform:scale(1.05)}}
+.demo-orb{position:relative;width:160px;height:160px;aspect-ratio:1;border-radius:50%;-webkit-border-radius:50%;overflow:hidden;-webkit-mask-image:-webkit-radial-gradient(white,black);mask-image:radial-gradient(white,black);animation:demoOrbDrift 6s ease-in-out infinite;transition:transform .3s,box-shadow .3s;box-shadow:0 0 80px rgba(67,49,150,.25),0 0 160px rgba(79,70,229,.08),inset 0 0 60px rgba(0,0,0,.3)}
+.demo-orb-wrap:hover .demo-orb{transform:scale(1.06)}
+.demo-orb-wrap:active .demo-orb{transform:scale(.95)}
+.demo-orb.speaking{animation:demoOrbDrift 6s ease-in-out infinite,demoOrbPulseSpeak .8s ease-in-out infinite}
+.demo-orb-layer{position:absolute;inset:0;border-radius:50%}
+.demo-orb-layer-1{background:conic-gradient(from 0deg,#433196,#4F46E5,#0B1B3D,#7C3AED,#433196);animation:demoOrbSpin 8s linear infinite}
+.demo-orb-layer-2{background:conic-gradient(from 180deg,rgba(67,49,150,.8),rgba(79,70,229,.5),rgba(11,27,61,.6),rgba(124,58,237,.4),rgba(67,49,150,.8));animation:demoOrbSpin 12s linear infinite reverse;mix-blend-mode:soft-light}
+.demo-orb-layer-3{background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.25) 0%,transparent 50%)}
+.demo-orb-layer-4{background:radial-gradient(circle at 50% 110%,rgba(0,0,0,.4) 0%,transparent 60%)}
+.demo-orb-phone{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:10;transition:opacity .3s,transform .3s}
+.demo-orb-phone svg{width:32px;height:32px;color:#fff;stroke:currentColor;filter:drop-shadow(0 2px 12px rgba(0,0,0,.35));transition:transform .3s}
+.demo-orb-wrap:hover .demo-orb-phone svg{transform:scale(1.12)}
+.demo-orb-particle{position:absolute;width:4px;height:4px;border-radius:50%;animation:demoOrbParticle 4s ease-in-out infinite}
+.demo-orb-particle:nth-child(1){top:-16px;left:30%;animation-delay:0s}
+.demo-orb-particle:nth-child(2){top:20%;right:-12px;animation-delay:1s}
+.demo-orb-particle:nth-child(3){bottom:-12px;left:40%;animation-delay:2s}
+.demo-orb-particle:nth-child(4){top:40%;left:-16px;animation-delay:.5s}
+.demo-orb-particle:nth-child(5){top:-10px;right:25%;animation-delay:1.5s}
+.demo-orb-particle:nth-child(6){bottom:-8px;right:30%;animation-delay:2.5s}
+@keyframes demoOrbSpin{0%{transform:rotate(0deg) scale(1.15)}100%{transform:rotate(360deg) scale(1.15)}}
+@keyframes demoOrbDrift{0%,100%{transform:translateY(0) scale(1)}33%{transform:translateY(-4px) scale(1.01)}66%{transform:translateY(-2px) scale(.995)}}
+@keyframes demoOrbPulseSpeak{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+@keyframes demoOrbGlowPulse{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:.8;transform:scale(1.08)}}
+@keyframes demoOrbParticle{0%,100%{opacity:0;transform:translateY(0) scale(1)}25%{opacity:1}50%{opacity:.8;transform:translateY(-18px) scale(1.4)}75%{opacity:.3}}
+.demo-orb-bubble{position:absolute;top:10px;right:-40px;background:rgba(255,255,255,.3);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.35);border-radius:14px;padding:8px 14px;font-size:13px;font-weight:700;color:var(--text);white-space:nowrap;animation:demoOrbBubble 3s ease-in-out infinite;z-index:15}
+@keyframes demoOrbBubble{0%,100%{opacity:.7;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+.demo-hint{font-size:13px;color:var(--green);opacity:.8;text-align:center;margin-bottom:0;font-weight:600}
+.demo-label{text-align:center;color:var(--muted);font-size:15px;font-weight:600;margin-top:0;margin-bottom:20px;letter-spacing:-.01em;display:none}
+.demo-label .demo-label-hint{display:block;font-size:12px;font-weight:400;color:var(--muted);opacity:.5;margin-top:4px}
+.demo-call-state{display:flex;flex-direction:column;align-items:center;width:100%;max-width:360px;margin:0 auto}
+.demo-connecting{display:none;flex-direction:column;align-items:center;gap:12px;padding:8px 0;animation:demoFadeInUp .3s ease}
+.demo-spinner{width:28px;height:28px;border:3px solid rgba(79,70,229,.15);border-top-color:var(--indigo);border-radius:50%;animation:demoSpin .8s linear infinite}
+@keyframes demoSpin{to{transform:rotate(360deg)}}
+@keyframes demoFadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.demo-connecting-text{color:rgba(255,255,255,.5);font-size:13px;font-weight:500}
+.demo-active{display:none;flex-direction:column;align-items:center;gap:10px;padding:8px 0;width:100%}
+.demo-active.visible{display:flex}
+.demo-status{font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:rgba(129,140,248,1)}
+.demo-waveform{display:flex;align-items:center;justify-content:center;gap:3px;height:40px;padding:4px 0}
+.demo-waveform span{width:3.5px;border-radius:3px;background:rgba(129,140,248,.6);min-height:4px;will-change:height;transition:height .08s linear}
+.demo-transcript{width:100%;max-height:80px;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
+.demo-transcript::-webkit-scrollbar{display:none}
+.demo-transcript-msg{padding:8px 12px;border-radius:12px;font-size:13px;line-height:1.5;margin-bottom:6px;animation:demoFadeInUp .3s ease}
+.demo-transcript-msg.agent{background:rgba(79,70,229,.12);color:rgba(255,255,255,.8)}
+.demo-transcript-msg.user{background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);text-align:right}
+.demo-end-btn{padding:10px 24px;background:rgba(239,68,68,.1);color:#ef4444;border:1px solid rgba(239,68,68,.2);border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px;font-family:var(--sans)}
+.demo-end-btn:hover{background:rgba(239,68,68,.2)}
+.demo-post-call{display:none;flex-direction:column;align-items:center;gap:10px;padding:8px 0;animation:demoFadeInUp .4s ease}
+.demo-post-call.visible{display:flex}
+.demo-post-check{margin-bottom:4px}
+.demo-post-title{font-size:18px;font-weight:800;color:#fff}
+.demo-post-sub{font-size:14px;color:rgba(255,255,255,.5);text-align:center;line-height:1.5;max-width:300px}
+.demo-post-cta{display:flex;align-items:center;gap:8px;padding:14px 28px;background:var(--indigo);color:#fff;border:none;border-radius:14px;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;text-decoration:none;margin-top:6px;box-shadow:0 0 20px rgba(79,70,229,.3);font-family:var(--sans)}
+.demo-post-cta:hover{background:#4338CA;transform:translateY(-1px);box-shadow:0 4px 24px rgba(79,70,229,.4)}
+.demo-retry-btn{background:none;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.4);padding:8px 16px;border-radius:8px;font-size:12px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px;margin-top:2px;font-family:var(--sans)}
+.demo-retry-btn:hover{border-color:rgba(129,140,248,.4);color:rgba(129,140,248,1)}
+
+@media(max-width:900px){
+  .proof-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .split-screen{grid-template-columns:1fr}
+  .split-left{min-height:60vh}
+  .split-right{min-height:40vh}
+  html{scroll-snap-type:none}
+  .screen-hero,.screen-quote,.screen-cta,.screen-proof{padding:60px 24px}
+  .demo-orb-wrap{width:140px;height:140px}
+  .demo-orb{width:140px;height:140px;border-radius:50%;-webkit-border-radius:50%;-webkit-mask-image:-webkit-radial-gradient(white,black)}
+  .demo-orb-phone svg{width:28px;height:28px}
+  .demo-orb-ring-1{inset:-12px}
+  .demo-orb-ring-2{inset:-28px}
+  .demo-orb-ring-3{inset:-44px}
+  .demo-orb-bubble{display:none}
+  .orb-pills{gap:6px}
+  .orb-pill{padding:5px 12px;font-size:11px}
+  .pill-row{justify-content:center}
+  .split-left,.split-right{text-align:center;align-items:center}
+  .rv-right{transition-delay:.1s}
+  .screen-agent{grid-template-columns:1fr}
+  .agent-left{min-height:50vh;text-align:center;align-items:center}
+  .agent-right{min-height:50vh}
+  .agent-caps{align-items:center}
+  .agent-caps li{text-align:left}
+  .hero-stats{white-space:normal;padding:0 24px}
+}
+</style>
+</head>
+<body>
+
+<!-- SCREEN 1: HERO -->
+<section class="screen-hero">
+  <h1 class="hero-title rv">Patient AR Insights<br>&amp; Recommendations</h1>
+  <div class="hero-line rv rv-d1"></div>
+  <div class="hero-partnership rv rv-d2">CGM Revenue Cycle Management &times; AgentCollect</div>
+  <div class="hero-stats rv rv-d3">14,000 calls/mo &middot; $244K collected &middot; Virtuox patient AR &middot; Apr 2026</div>
+</section>
+
+
+<!-- SCREEN 2: FINDING 1 — Voicemail Black Hole -->
+<section class="split-screen">
+  <div class="split-left" style="background:#1E1B2E">
+    <div class="finding-label rv" style="color:rgba(255,255,255,.25)">01</div>
+    <div class="giant rv rv-d1" style="color:var(--amber)" data-count="71" data-suffix="%">0<span style="font-family:var(--sans);font-size:clamp(36px,7vw,100px);font-weight:900">%</span></div>
+    <div class="finding-desc rv rv-d2">of your calls hit voicemail</div>
+    <div class="finding-sub rv rv-d3">10,000 out of 14,000 calls &middot; never reach a human</div>
+  </div>
+  <div class="split-right">
+    <div class="fix-label rv rv-right">the fix</div>
+    <div class="fix-icon rv rv-right rv-d1">
+      <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="20"/><polyline points="24 12 24 24 32 28"/></svg>
+    </div>
+    <div class="fix-main rv rv-right rv-d2">Smart timing</div>
+    <div class="fix-desc rv rv-right rv-d3">Call when patients are active</div>
+    <div class="fix-detail rv rv-right rv-d3">email opens &middot; portal visits &middot; recent activity</div>
+    <div class="fix-stat rv rv-right rv-d4">56% answer rate when smart-timed (4.7x bulk)</div>
+  </div>
+</section>
+
+
+<!-- SCREEN 3: FINDING 2 — Reach Rate Ceiling -->
+<section class="split-screen">
+  <div class="split-left" style="background:#0F172A">
+    <div class="finding-label rv" style="color:rgba(255,255,255,.25)">02</div>
+    <div class="giant rv rv-d1" style="color:var(--indigo-light)" data-count="21" data-suffix="%">0<span style="font-family:var(--sans);font-size:clamp(36px,7vw,100px);font-weight:900">%</span></div>
+    <div class="finding-desc rv rv-d2">patient reach ceiling</div>
+    <div class="finding-sub rv rv-d3">3,000 successful connections &middot; 10 FTEs maxed out</div>
+  </div>
+  <div class="split-right">
+    <div class="fix-label rv rv-right">the fix</div>
+    <div class="fix-icon rv rv-right rv-d1">
+      <svg viewBox="0 0 48 48"><path d="M40 30.76v5.04a3.36 3.36 0 01-3.66 3.36 28.46 28.46 0 01-12.42-4.42 28.08 28.08 0 01-8.64-8.64A28.46 28.46 0 0110.84 13.66 3.36 3.36 0 0114.18 10h5.04a3.36 3.36 0 013.36 2.89c.21 1.61.61 3.2 1.18 4.72a3.36 3.36 0 01-.76 3.54l-2.13 2.13a23.04 23.04 0 008.64 8.64l2.13-2.13a3.36 3.36 0 013.54-.76c1.52.57 3.11.97 4.72 1.18A3.36 3.36 0 0140 30.76z"/></svg>
+    </div>
+    <div class="fix-main rv rv-right rv-d2">3 seconds</div>
+    <div class="fix-desc rv rv-right rv-d3">Agent CGM answers every callback</div>
+    <div class="fix-detail rv rv-right rv-d3">24/7 &middot; knows the account before they say hi</div>
+    <div class="fix-stat rv rv-right rv-d4">Aprima integration &middot; read-only &middot; zero risk</div>
+  </div>
+</section>
+
+
+<!-- SCREEN 4: FINDING 3 — Email Gap -->
+<section class="split-screen">
+  <div class="split-left" style="background:#1C1917">
+    <div class="finding-label rv" style="color:rgba(255,255,255,.25)">03</div>
+    <div class="giant rv rv-d1" style="color:var(--red)" data-count="28675">0</div>
+    <div class="finding-desc rv rv-d2">patients with no email on file</div>
+    <div class="finding-sub rv rv-d3">67% of the base &middot; unreachable by any digital channel</div>
+  </div>
+  <div class="split-right">
+    <div class="fix-label rv rv-right">enrichment pipeline</div>
+    <div class="fix-icon rv rv-right rv-d1">
+      <svg viewBox="0 0 48 48"><circle cx="20" cy="20" r="14"/><line x1="30" y1="30" x2="42" y2="42"/><circle cx="20" cy="16" r="2" fill="var(--green)" stroke="none"/><path d="M16 24c0-2.2 1.8-4 4-4s4 1.8 4 4" fill="none"/></svg>
+    </div>
+    <div class="fix-main rv rv-right rv-d2">60-70%</div>
+    <div class="fix-desc rv rv-right rv-d3">new valid emails within 48h</div>
+    <div class="fix-detail rv rv-right rv-d3">provider records &middot; web &middot; parent entities</div>
+    <div class="fix-stat rv rv-right rv-d4">doubles your contactable base from day one</div>
+  </div>
+</section>
+
+
+<!-- SCREEN 5: FINDING 4 — Aging Concentration -->
+<section class="split-screen">
+  <div class="split-left" style="background:var(--navy)">
+    <div class="finding-label rv" style="color:rgba(255,255,255,.25)">04</div>
+    <div class="giant rv rv-d1" style="color:var(--green)" data-count="98" data-suffix="%">0<span style="font-family:var(--sans);font-size:clamp(36px,7vw,100px);font-weight:900">%</span></div>
+    <div class="finding-desc rv rv-d2">of recovery comes from 90+ day accounts</div>
+    <div class="finding-sub rv rv-d3">$5K from 0-90d &middot; $239K from 90+d &middot; you're fighting the hardest battles</div>
+    <div class="pill-row rv rv-d4">
+      <span class="pill-sm">121-365d: $178K</span>
+      <span class="pill-sm">91-120d: $43K</span>
+      <span class="pill-sm">365+d: $16K</span>
+    </div>
+  </div>
+  <div class="split-right">
+    <div class="fix-label rv rv-right">shift left</div>
+    <div class="fix-icon rv rv-right rv-d1">
+      <svg viewBox="0 0 48 48"><path d="M8 28a16 16 0 1128-14"/><polyline points="8 16 8 28 20 28"/></svg>
+    </div>
+    <div class="fix-main rv rv-right rv-d2">Catch at 30 days</div>
+    <div class="fix-desc rv rv-right rv-d3">Fresh invoices convert 6x</div>
+    <div class="fix-detail rv rv-right rv-d3">email first &middot; SMS second &middot; voice last</div>
+    <div class="fix-stat rv rv-right rv-d4">AI works the full inventory, not just the hard ones</div>
+  </div>
+</section>
+
+
+<!-- SCREEN 6: QUOTE -->
+<section class="screen-quote">
+  <div class="quote-mark rv">&ldquo;</div>
+  <div class="quote-text rv rv-d1">&ldquo;We make 14,000 calls a month on Virtuox. Looking for an automated solution so we don&rsquo;t have to have manual FTEs or manual processes.&rdquo;</div>
+  <div class="quote-author rv rv-d2">Jabar Singh &middot; VP Operations, CGM &middot; April 13 scoping call</div>
+</section>
+
+
+<!-- SCREEN 7: MYSTERY SHOP PROOF -->
+<section class="screen-proof">
+  <div class="proof-head">
+    <div class="proof-kicker rv">We called your billing line</div>
+    <div class="proof-title rv rv-d1">Here&rsquo;s what patients hear today.</div>
+    <div class="proof-sub rv rv-d2">Real calls placed to CGM AR on April 13. Real recordings. Click any line to hear the exact moment.</div>
+  </div>
+  <div class="proof-grid">
+    <div class="proof-card rv rv-d2">
+      <div class="proof-card-head">
+        <div class="proof-card-label">Call 1 &middot; Hospitalized patient</div>
+        <div class="proof-card-meta">10:00 &middot; Rep: Saundit</div>
+      </div>
+      <audio id="audio1" preload="none" style="display:none"><source src="https://dxc03zgurdly9.cloudfront.net/971cf0565e49d90decab1cc1c579165d79360ec207ac662de3459162d34c451b/recording.wav" type="audio/wav"></audio>
+      <div class="proof-line" onclick="playAt('audio1',75)"><span class="proof-play">&#9654; PLAY</span><span class="proof-caller">Patient:</span> <span class="proof-quote">&ldquo;I was in the hospital for two weeks, heart surgery, and I just got back to find several bills.&rdquo;</span><span class="proof-ts">1:15</span></div>
+      <div class="proof-line" onclick="playAt('audio1',99)"><span class="proof-play">&#9654; PLAY</span><span class="proof-rep">Rep:</span> <span class="proof-quote">&ldquo;Can you give me your customer number, please?&rdquo;</span><span class="proof-ts">1:39</span></div>
+      <div class="proof-line" onclick="playAt('audio1',289)"><span class="proof-play">&#9654; PLAY</span><span class="proof-rep">Rep:</span> <span class="proof-quote">&ldquo;That&rsquo;s not the address we have. Do you have any invoice number?&rdquo;</span><span class="proof-ts">4:49</span></div>
+      <div class="proof-player">
+        <button class="proof-play-btn" onclick="togglePlay('audio1',this)">&#9654;</button>
+        <div class="proof-progress" onclick="seekAudio(event,'audio1','progress1')"><div class="proof-bar" id="bar1"></div></div>
+        <span class="proof-time" id="time1">0:00 / 10:00</span>
+      </div>
+      <div class="proof-finding"><strong>Finding:</strong> Zero empathy. No payment plan offered. Just a customer number request.</div>
+    </div>
+    <div class="proof-card rv rv-d3">
+      <div class="proof-card-head">
+        <div class="proof-card-label">Call 2 &middot; Toll-free dead end</div>
+        <div class="proof-card-meta">3:47 &middot; No human reached</div>
+      </div>
+      <audio id="audio2" preload="none" style="display:none"><source src="https://dxc03zgurdly9.cloudfront.net/2a51e0ca780e290734f64bf16fa952f227ed77233b3de662f18eb148268a8a60/recording.wav" type="audio/wav"></audio>
+      <div class="proof-line" onclick="playAt('audio2',4)"><span class="proof-play">&#9654; PLAY</span><span class="proof-rep">IVR:</span> <span class="proof-quote">&ldquo;Our records show you&rsquo;ve reached us via a phone number that will soon be discontinued.&rdquo;</span><span class="proof-ts">0:04</span></div>
+      <div class="proof-line" onclick="playAt('audio2',70)"><span class="proof-play">&#9654; PLAY</span><span class="proof-rep">Hold:</span> <span class="proof-quote">&ldquo;All our representatives are currently assisting other customers.&rdquo;</span><span class="proof-ts">1:10</span></div>
+      <div class="proof-line" onclick="playAt('audio2',203)"><span class="proof-play">&#9654; PLAY</span><span class="proof-rep">Voicemail:</span> <span class="proof-quote">&ldquo;If this is an emergency, please leave a message after the tone.&rdquo;</span><span class="proof-ts">3:23</span></div>
+      <div class="proof-player">
+        <button class="proof-play-btn" onclick="togglePlay('audio2',this)">&#9654;</button>
+        <div class="proof-progress" onclick="seekAudio(event,'audio2','progress2')"><div class="proof-bar" id="bar2"></div></div>
+        <span class="proof-time" id="time2">0:00 / 3:47</span>
+      </div>
+      <div class="proof-finding"><strong>Finding:</strong> 3.5 min hold then &ldquo;leave a message.&rdquo; Every missed callback is revenue walking out.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SCREEN 8: AGENT CGM -->
+<section class="screen-agent" id="agent-demo">
+  <div class="agent-left">
+    <div class="agent-title rv">Agent CGM</div>
+    <div class="agent-sub rv rv-d1">Your brand. Your voice. 24/7.</div>
+    <ul class="agent-caps rv rv-d2">
+      <li>
+        <svg class="cap-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        <span><strong>Phone</strong> &mdash; answers in 3 seconds, every callback</span>
+      </li>
+      <li>
+        <svg class="cap-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="3"/><polyline points="2 7 12 14 22 7"/></svg>
+        <span><strong>Email + SMS</strong> &mdash; multi-channel sequences by aging bucket</span>
+      </li>
+      <li>
+        <svg class="cap-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        <span><strong>Aprima integration</strong> &mdash; read-only, HIPAA-compliant, zero risk</span>
+      </li>
+      <li>
+        <svg class="cap-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.5"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>
+        <span><strong>White-label</strong> &mdash; calls as &ldquo;Virtuox billing&rdquo; or any brand you pick</span>
+      </li>
+    </ul>
+  </div>
+  <div class="agent-right">
+    <div class="agent-preview-label rv">Live Preview</div>
+    <div class="demo-orb-wrap" id="demo-orb-wrap">
+      <div class="demo-orb-ring demo-orb-ring-1"></div>
+      <div class="demo-orb-ring demo-orb-ring-2"></div>
+      <div class="demo-orb-ring demo-orb-ring-3"></div>
+      <div class="demo-orb-glow"></div>
+      <div class="demo-orb-particle" style="background:rgba(67,49,150,.5)"></div>
+      <div class="demo-orb-particle" style="background:rgba(79,70,229,.5)"></div>
+      <div class="demo-orb-particle" style="background:rgba(124,58,237,.3)"></div>
+      <div class="demo-orb-particle" style="background:rgba(67,49,150,.3)"></div>
+      <div class="demo-orb-particle" style="background:rgba(11,27,61,.4)"></div>
+      <div class="demo-orb-particle" style="background:rgba(79,70,229,.3)"></div>
+      <div class="demo-orb" id="demo-orb">
+        <div class="demo-orb-layer demo-orb-layer-1"></div>
+        <div class="demo-orb-layer demo-orb-layer-2"></div>
+        <div class="demo-orb-layer demo-orb-layer-3"></div>
+        <div class="demo-orb-layer demo-orb-layer-4"></div>
+        <div class="demo-orb-phone" id="demo-orb-phone">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+      </div>
+      <div class="demo-orb-bubble" id="demo-orb-bubble">Hi, this is Sarah from Virtuox...</div>
+    </div>
+    <div class="demo-hint" style="margin-top:8px">Tap the orb to answer</div>
+    <div class="orb-pills rv rv-d2">
+      <div class="orb-pill">&ldquo;I already paid&rdquo;</div>
+      <div class="orb-pill">&ldquo;need a payment plan&rdquo;</div>
+      <div class="orb-pill">&ldquo;send me the statement&rdquo;</div>
+    </div>
+    <div class="agent-try rv rv-d3">This is what your patients would hear. Try it.</div>
+    <div class="demo-call-state" id="demo-call-state">
+      <div class="demo-connecting" id="demo-connecting">
+        <div class="demo-spinner"></div>
+        <div class="demo-connecting-text" id="demo-connecting-text">Connecting to Virtuox agent...</div>
+      </div>
+      <div class="demo-active" id="demo-active">
+        <div class="demo-status" id="demo-status">Listening...</div>
+        <div class="demo-waveform" id="demo-waveform">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="demo-transcript" id="demo-transcript"></div>
+        <button class="demo-end-btn" id="demo-end-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          End call
+        </button>
+      </div>
+      <div class="demo-post-call" id="demo-post-call">
+        <div class="demo-post-check">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="demo-post-title">That was 30 seconds.</div>
+        <div class="demo-post-sub">Now imagine 14,000 calls/month with your real data.</div>
+        <a href="mailto:j@agentcollect.com?subject=CGM%20x%20AgentCollect" class="demo-post-cta" id="demo-post-cta">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Talk to the Founder
+        </a>
+        <button class="demo-retry-btn" id="demo-retry-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+          Try another call
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SCREEN 9: PROJECTION -->
+<section class="split-screen">
+  <div class="split-left" style="background:#0B1B3D">
+    <div class="finding-label rv" style="color:rgba(255,255,255,.25)">TODAY</div>
+    <div class="finding-number rv rv-d1" style="color:var(--muted)">$244K</div>
+    <div class="finding-desc rv rv-d2" style="color:rgba(255,255,255,.6)">collected per month</div>
+    <div class="finding-detail rv rv-d3" style="color:rgba(255,255,255,.25)">21% reach rate &middot; 10 FTEs manual &middot; 98% on 90+ day accounts</div>
+  </div>
+  <div class="split-right">
+    <div class="solution-label rv" style="color:var(--green-dark)">WITH AGENTCOLLECT</div>
+    <div class="rv rv-d1" style="font-family:var(--mono);font-weight:700;font-size:clamp(48px,10vw,140px);color:var(--green);line-height:1">$700K</div>
+    <div class="solution-main rv rv-d2" style="font-size:clamp(16px,1.4vw,22px)">projected on the same portfolio</div>
+    <div class="solution-detail rv rv-d3">60%+ reach rate &middot; AI 24/7 &middot; enrichment on 28K missing contacts</div>
+    <div class="solution-detail rv rv-d4" style="margin-top:24px;font-weight:600;color:var(--green-dark)">+$456K incremental monthly &middot; $5.5M/year</div>
+  </div>
+</section>
+
+
+<!-- SCREEN 10: CTA -->
+<section class="screen-cta">
+  <div class="cta-heading rv">Recommended next step</div>
+  <div class="rv rv-d1" style="font-family:var(--sans);font-weight:700;font-size:clamp(18px,2vw,28px);color:var(--text);margin-bottom:16px">EEG pilot on Virtuox</div>
+  <div class="rv rv-d2" style="font-family:var(--body);font-size:15px;color:var(--muted);margin-bottom:40px">670 accounts &middot; 85% email coverage &middot; 48 hours to launch after file delivery</div>
+  <div class="rv rv-d3" style="font-family:var(--sans);font-weight:600;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Hear Agent CGM now</div>
+  <a href="tel:+12137241472" class="rv rv-d4" style="font-family:var(--mono);font-weight:700;font-size:clamp(28px,4vw,48px);color:var(--green);text-decoration:none;display:block;margin-bottom:40px">+1 (213) 724-1472</a>
+  <a href="mailto:j@agentcollect.com?subject=CGM%20-%20EEG%20pilot%20on%20Virtuox" class="cta-email rv rv-d5">j@agentcollect.com</a>
+  <div class="cta-footer">AgentCollect &middot; Confidential &middot; Prepared for CGM Revenue Cycle Management</div>
+</section>
+
+
+<script>
+(function(){
+  var rvEls = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('v'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.15 });
+    rvEls.forEach(function(el){ obs.observe(el); });
+  }
+  setTimeout(function(){ rvEls.forEach(function(el){ el.classList.add('v'); }); }, 2000);
+
+  var counterEls = document.querySelectorAll('[data-count]');
+  if ('IntersectionObserver' in window) {
+    var counterObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          var el = e.target;
+          var target = parseInt(el.getAttribute('data-count'));
+          var prefix = el.getAttribute('data-prefix') || '';
+          var suffix = el.getAttribute('data-suffix') || '';
+          var suffixStyle = 'font-family:var(--sans);font-size:clamp(36px,7vw,100px);font-weight:900';
+          var duration = 1400;
+          var start = performance.now();
+          function tick(now){
+            var progress = Math.min((now - start) / duration, 1);
+            var eased = 1 - Math.pow(1 - progress, 3);
+            var current = Math.round(eased * target);
+            var formatted = current.toLocaleString();
+            el.innerHTML = prefix + formatted + (suffix ? '<span style="'+suffixStyle+'">' + suffix + '</span>' : '');
+            if(progress < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+          counterObs.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    counterEls.forEach(function(el){ counterObs.observe(el); });
+  }
+})();
+
+// Mystery shop audio player with 20s auto-stop
+var stopTimers = {};
+function playAt(audioId, seconds){
+  var audio = document.getElementById(audioId);
+  // Pause other audios
+  ['audio1','audio2'].forEach(function(id){
+    if(id !== audioId){ var a = document.getElementById(id); if(a) a.pause(); }
+  });
+  audio.currentTime = seconds;
+  audio.play();
+  if(stopTimers[audioId]) clearTimeout(stopTimers[audioId]);
+  stopTimers[audioId] = setTimeout(function(){ audio.pause(); }, 20000);
+}
+function togglePlay(audioId, btn){
+  var audio = document.getElementById(audioId);
+  if(audio.paused){ audio.play(); btn.innerHTML='&#10073;&#10073;'; }
+  else { audio.pause(); btn.innerHTML='&#9654;'; }
+}
+function seekAudio(e, audioId, progressId){
+  var audio = document.getElementById(audioId);
+  var bar = document.getElementById(progressId) || e.currentTarget;
+  var rect = bar.getBoundingClientRect();
+  var pct = (e.clientX - rect.left) / rect.width;
+  audio.currentTime = pct * (audio.duration || 0);
+  audio.play();
+}
+setInterval(function(){
+  ['audio1','audio2'].forEach(function(id){
+    var audio = document.getElementById(id);
+    if(!audio || !audio.duration) return;
+    var num = id.replace('audio','');
+    var bar = document.getElementById('bar'+num);
+    var time = document.getElementById('time'+num);
+    if(bar) bar.style.width = (audio.currentTime/audio.duration*100)+'%';
+    if(time){
+      var cur = Math.floor(audio.currentTime);
+      var dur = Math.floor(audio.duration);
+      time.textContent = Math.floor(cur/60)+':'+String(cur%60).padStart(2,'0')+' / '+Math.floor(dur/60)+':'+String(dur%60).padStart(2,'0');
+    }
+  });
+}, 200);
+
+// Preload RetellAI SDK
+import('https://cdn.jsdelivr.net/npm/retell-client-js-sdk@2.0.7/+esm')
+  .then(function(m){ window.__RetellWebClient = m.RetellWebClient; })
+  .catch(function(){});
+
+// Agent CGM WebRTC demo
+(function(){
+  var orbWrap = document.getElementById('demo-orb-wrap');
+  var orb = document.getElementById('demo-orb');
+  var orbPhone = document.getElementById('demo-orb-phone');
+  var connecting = document.getElementById('demo-connecting');
+  var active = document.getElementById('demo-active');
+  var statusEl = document.getElementById('demo-status');
+  var transcript = document.getElementById('demo-transcript');
+  var waveformEl = document.getElementById('demo-waveform');
+  var waveformBars = waveformEl ? waveformEl.querySelectorAll('span') : [];
+  var endBtn = document.getElementById('demo-end-btn');
+  var postCall = document.getElementById('demo-post-call');
+  var retryBtn = document.getElementById('demo-retry-btn');
+  var demoHint = document.querySelector('.demo-hint');
+  var demoBubble = document.getElementById('demo-orb-bubble');
+  var waveAnimId = null, waveMode = 'idle';
+  var callActive = false, retellClient = null, callStartTime = null;
+
+  function animWave(){
+    for(var i=0;i<waveformBars.length;i++){
+      var h;
+      if(waveMode==='agent') h=10+Math.random()*34;
+      else if(waveMode==='user') h=6+Math.random()*18;
+      else h=4+Math.sin(Date.now()/500+i*.6)*3;
+      waveformBars[i].style.height=h+'px';
+    }
+    waveAnimId=requestAnimationFrame(animWave);
+  }
+  function startWave(m){waveMode=m||'idle';if(!waveAnimId)animWave();}
+  function stopWave(){waveMode='idle';if(waveAnimId){cancelAnimationFrame(waveAnimId);waveAnimId=null;}for(var i=0;i<waveformBars.length;i++)waveformBars[i].style.height='4px';}
+
+  function hideHeroElements(){
+    if(demoHint) demoHint.style.display='none';
+    if(demoBubble) demoBubble.style.display='none';
+    if(orbPhone) orbPhone.style.display='none';
+    document.querySelectorAll('.demo-orb-ring').forEach(function(r){r.style.display='none';});
+    var pills = document.querySelector('.orb-pills');
+    if(pills) pills.style.display='none';
+  }
+  function showHeroElements(){
+    if(demoHint) demoHint.style.display='';
+    if(demoBubble) demoBubble.style.display='';
+    if(orbPhone){ orbPhone.style.display=''; orbPhone.style.opacity='1'; }
+    document.querySelectorAll('.demo-orb-ring').forEach(function(r){r.style.display='';});
+    var pills = document.querySelector('.orb-pills');
+    if(pills) pills.style.display='';
+  }
+  function endCall(){
+    callActive=false;
+    if(retellClient){try{retellClient.stopCall();}catch(e){}}
+    retellClient=null;
+    if(window.__micStream){window.__micStream.getTracks().forEach(function(t){t.stop();});window.__micStream=null;}
+    stopWave();
+    if(orb)orb.classList.remove('speaking');
+    statusEl.textContent='Call ended';
+    var duration = callStartTime ? Math.round((Date.now()-callStartTime)/1000) : 30;
+    var postTitle = document.querySelector('.demo-post-title');
+    if(postTitle && duration > 0) postTitle.textContent='That was '+duration+' second'+(duration!==1?'s':'')+'.';
+    setTimeout(function(){
+      connecting.style.display='none';
+      active.classList.remove('visible');
+      transcript.innerHTML='';
+      postCall.classList.add('visible');
+    }, 1500);
+  }
+  function resetDemo(){
+    postCall.classList.remove('visible');
+    showHeroElements();
+    transcript.innerHTML='';
+  }
+  function startCall(){
+    if(callActive)return;
+    callActive=true;
+    callStartTime=Date.now();
+    hideHeroElements();
+    connecting.style.display='flex';
+    active.classList.remove('visible');
+    postCall.classList.remove('visible');
+    if(orb)orb.classList.add('speaking');
+
+    (async function(){
+      try{
+        var micP=navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true,sampleRate:{ideal:48000},channelCount:{ideal:1}}})
+          .then(function(s){window.__micStream=s;})
+          .catch(function(){throw new Error('Microphone access required');});
+        var apiP=fetch('https://backend.widr.app/api/v1/demo/web-call',{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({company_name:'Virtuox',product:'home sleep testing and diagnostic services',amount:'$248'})
+        }).then(async function(r){
+          if(!r.ok)throw new Error('API error '+r.status);
+          return r.json();
+        });
+        var sdkP=Promise.resolve(window.__RetellWebClient).then(function(R){
+          if(R)return R;
+          return import('https://cdn.jsdelivr.net/npm/retell-client-js-sdk@2.0.7/+esm').then(function(m){return m.RetellWebClient;});
+        });
+        var res=await Promise.all([micP,apiP,sdkP]);
+        var result=res[1],RetellWebClient=res[2];
+        if(!result.success||!result.access_token)throw new Error('No access token');
+        retellClient=new RetellWebClient();
+        retellClient.on('call_started',function(){
+          callStartTime=Date.now();
+          connecting.style.display='none';
+          active.classList.add('visible');
+          statusEl.textContent='Your turn \u2014 speak now';
+          startWave('idle');
+          if(orbPhone) orbPhone.style.opacity='0';
+        });
+        retellClient.on('call_ended',function(){endCall();});
+        retellClient.on('agent_start_talking',function(){startWave('agent');statusEl.textContent='Agent speaking...';});
+        retellClient.on('agent_stop_talking',function(){startWave('user');statusEl.textContent='Your turn \u2014 speak now';});
+        retellClient.on('update',function(u){
+          if(u&&u.transcript){
+            var last=null;
+            for(var i=u.transcript.length-1;i>=0;i--){if((u.transcript[i].content||'').trim()){last=u.transcript[i];break;}}
+            if(last){
+              var role=last.role==='agent'?'agent':'user';
+              var existing=transcript.querySelector('[data-role="'+role+'"]:last-child');
+              if(existing && existing.dataset.role===role){
+                existing.textContent=last.content;
+              } else {
+                var div=document.createElement('div');
+                div.className='demo-transcript-msg '+role;
+                div.dataset.role=role;
+                div.textContent=last.content;
+                transcript.appendChild(div);
+              }
+              transcript.scrollTop=transcript.scrollHeight;
+            }
+          }
+        });
+        retellClient.on('error',function(e){console.error('Retell error:',e);endCall();});
+        await retellClient.startCall({accessToken:result.access_token,sampleRate:24000,enableUpdate:true});
+      }catch(e){
+        console.error('Call failed:',e);
+        callActive=false;
+        connecting.style.display='none';
+        showHeroElements();
+        if(orb)orb.classList.remove('speaking');
+        alert('Could not start call: '+e.message+'. Please allow microphone access and try again.');
+      }
+    })();
+  }
+  if(orbWrap) orbWrap.addEventListener('click',function(){
+    if(!callActive && !postCall.classList.contains('visible')) startCall();
+  });
+  if(endBtn) endBtn.addEventListener('click',endCall);
+  if(retryBtn) retryBtn.addEventListener('click',function(){ resetDemo(); });
+})();
+</script>
+</body>
+</html>

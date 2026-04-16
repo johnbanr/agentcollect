@@ -2,6 +2,10 @@
   "rewrites": [
     {
       "source": "/cgm",
+      "destination": "/cgm-v2.html"
+    },
+    {
+      "source": "/cgm-briefing",
       "destination": "/cgm-briefing.html"
     },
     {
