@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/demo-gemini",
+      "destination": "/demo-gemini.html"
+    },
+    {
       "source": "/cgm",
       "destination": "/cgm-v2.html"
     },

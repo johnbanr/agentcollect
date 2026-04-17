@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Parlez à Camille — AgentCollect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --indigo: #4F46E5;
+    --emerald: #10B981;
+    --navy: #0B1B3D;
+    --bg: #FAFBFF;
+    --slate: #475569;
+    --muted: #94A3B8;
+    --border: #E8ECF2;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--navy);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+  }
+  header {
+    padding: 24px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+  }
+  .logo {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    color: var(--navy);
+    display: inline-flex;
+    align-items: center;
+    letter-spacing: -0.01em;
+  }
+  .logo-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--indigo);
+    margin-left: 3px;
+    margin-bottom: 2px;
+    align-self: flex-end;
+  }
+  .tag {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    text-align: center;
+  }
+  h1 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 900;
+    font-size: clamp(28px, 5vw, 44px);
+    line-height: 1.1;
+    margin: 0 0 12px;
+    letter-spacing: -0.02em;
+  }
+  .subtitle {
+    color: var(--slate);
+    font-size: 16px;
+    max-width: 520px;
+    margin: 0 auto 48px;
+    line-height: 1.5;
+  }
+  .call-btn {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: none;
+    background: var(--indigo);
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+    box-shadow: 0 20px 60px -15px rgba(79, 70, 229, 0.45);
+  }
+  .call-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 25px 70px -15px rgba(79, 70, 229, 0.55);
+  }
+  .call-btn:active:not(:disabled) { transform: translateY(0); }
+  .call-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .call-btn.live {
+    background: var(--emerald);
+    box-shadow: 0 20px 60px -15px rgba(16, 185, 129, 0.55);
+  }
+  .call-btn.live::before,
+  .call-btn.live::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid var(--emerald);
+    animation: pulse 2s infinite;
+    opacity: 0;
+  }
+  .call-btn.live::after { animation-delay: 1s; }
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.7; }
+    100% { transform: scale(1.4); opacity: 0; }
+  }
+  .status {
+    margin-top: 32px;
+    min-height: 28px;
+    font-size: 15px;
+    color: var(--slate);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .dot-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--muted);
+  }
+  .dot-indicator.active { background: var(--emerald); animation: blink 1s infinite; }
+  .dot-indicator.speaking { background: var(--indigo); animation: blink 0.6s infinite; }
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0.3; }
+  }
+  .waveform {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    height: 40px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .waveform.active { opacity: 1; }
+  .bar {
+    width: 4px;
+    height: 10px;
+    background: var(--indigo);
+    border-radius: 2px;
+    animation: wave 1s infinite ease-in-out;
+  }
+  .bar:nth-child(2) { animation-delay: 0.1s; }
+  .bar:nth-child(3) { animation-delay: 0.2s; }
+  .bar:nth-child(4) { animation-delay: 0.3s; }
+  .bar:nth-child(5) { animation-delay: 0.4s; }
+  .bar:nth-child(6) { animation-delay: 0.5s; }
+  .bar:nth-child(7) { animation-delay: 0.6s; }
+  @keyframes wave {
+    0%, 100% { height: 10px; }
+    50% { height: 34px; }
+  }
+  .end-btn {
+    margin-top: 20px;
+    padding: 10px 24px;
+    background: transparent;
+    color: var(--slate);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: none;
+  }
+  .end-btn.visible { display: inline-block; }
+  .end-btn:hover { background: var(--navy); color: white; border-color: var(--navy); }
+  .error {
+    margin-top: 20px;
+    padding: 12px 18px;
+    background: #FEF2F2;
+    border: 1px solid #FECACA;
+    border-radius: 10px;
+    color: #991B1B;
+    font-size: 14px;
+    max-width: 520px;
+    display: none;
+  }
+  .error.visible { display: block; }
+  footer {
+    padding: 24px 32px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">AgentCollect<span class="logo-dot"></span></div>
+  <div class="tag">Demo privé</div>
+</header>
+
+<main>
+  <h1>Parlez à Camille</h1>
+  <p class="subtitle">Agent de recouvrement IA, voix native Gemini 2.5 Flash. Cliquez, autorisez le micro, parlez.</p>
+
+  <button id="callBtn" class="call-btn" type="button">Parler à Camille</button>
+
+  <div class="status" id="status">
+    <span class="dot-indicator" id="dotIndicator"></span>
+    <span id="statusText">Prêt</span>
+  </div>
+
+  <div class="waveform" id="waveform">
+    <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
+  <button id="endBtn" class="end-btn" type="button">Terminer l'appel</button>
+
+  <div class="error" id="errorBox"></div>
+</main>
+
+<footer>
+  Test privé — Gemini 2.5 Flash Native Audio Dialog · <span id="modelTag">—</span>
+</footer>
+
+<script type="module">
+// @google/genai via esm.sh so we can use live.connect() directly in-browser
+import { GoogleGenAI, Modality } from 'https://esm.sh/@google/genai@1?bundle';
+
+const SYSTEM_PROMPT = `Tu es Camille, agent de recouvrement pour AgentCollect. Tu parles en français, ton professionnel mais chaleureux. Objectif: aider le débiteur à régler sa facture en retard de manière empathique. Tu proposes un lien de paiement ou un plan en plusieurs fois. Tu ne juges jamais. Tu es brève, directe, humaine. Tu commences toujours par: "Bonjour, c'est Camille d'AgentCollect, je vous appelle au sujet d'une facture en attente. Est-ce un bon moment pour en parler?"`;
+
+const callBtn = document.getElementById('callBtn');
+const endBtn = document.getElementById('endBtn');
+const statusText = document.getElementById('statusText');
+const dotIndicator = document.getElementById('dotIndicator');
+const waveform = document.getElementById('waveform');
+const errorBox = document.getElementById('errorBox');
+const modelTag = document.getElementById('modelTag');
+
+let session = null;
+let micStream = null;
+let micContext = null;
+let micWorklet = null;
+let outputContext = null;
+let playheadTime = 0;
+let active = false;
+
+function setStatus(text, cls) {
+  statusText.textContent = text;
+  dotIndicator.className = 'dot-indicator' + (cls ? ' ' + cls : '');
+}
+function showError(msg) {
+  errorBox.textContent = msg;
+  errorBox.classList.add('visible');
+}
+function clearError() { errorBox.classList.remove('visible'); }
+
+// Float32 [-1,1] -> Int16 little-endian
+function floatTo16BitPCM(f32) {
+  const out = new Int16Array(f32.length);
+  for (let i = 0; i < f32.length; i++) {
+    const s = Math.max(-1, Math.min(1, f32[i]));
+    out[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
+  }
+  return out;
+}
+
+function int16ToBase64(int16) {
+  const bytes = new Uint8Array(int16.buffer, int16.byteOffset, int16.byteLength);
+  let binary = '';
+  for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
+  return btoa(binary);
+}
+
+function base64ToInt16(b64) {
+  const binary = atob(b64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return new Int16Array(bytes.buffer, bytes.byteOffset, bytes.byteLength / 2);
+}
+
+// Inline AudioWorklet: downsamples mic input to 16kHz Int16 PCM, posts chunks up
+const WORKLET_SRC = `
+class MicProcessor extends AudioWorkletProcessor {
+  constructor() {
+    super();
+    this._buf = [];
+    this._bufLen = 0;
+    // emit ~100ms chunks of 16kHz -> 1600 samples
+    this._chunk = 1600;
+    this._srcRate = sampleRate;
+    this._dstRate = 16000;
+    this._ratio = this._srcRate / this._dstRate;
+    this._pos = 0;
+  }
+  process(inputs) {
+    const input = inputs[0];
+    if (!input || !input[0]) return true;
+    const ch = input[0];
+    // linear-interpolated downsample
+    const out = [];
+    while (this._pos < ch.length) {
+      const idx = Math.floor(this._pos);
+      const frac = this._pos - idx;
+      const a = ch[idx] || 0;
+      const b = ch[idx + 1] || a;
+      out.push(a + (b - a) * frac);
+      this._pos += this._ratio;
+    }
+    this._pos -= ch.length;
+    for (let i = 0; i < out.length; i++) {
+      this._buf.push(out[i]);
+      this._bufLen++;
+      if (this._bufLen >= this._chunk) {
+        const f32 = new Float32Array(this._buf);
+        this.port.postMessage(f32);
+        this._buf = [];
+        this._bufLen = 0;
+      }
+    }
+    return true;
+  }
+}
+registerProcessor('mic-processor', MicProcessor);
+`;
+
+async function startCall() {
+  clearError();
+  callBtn.disabled = true;
+  setStatus('Connexion...', 'active');
+
+  try {
+    // 1) mint ephemeral token
+    const tokRes = await fetch('/api/gemini-ephemeral-token', { method: 'POST' });
+    if (!tokRes.ok) {
+      const t = await tokRes.text();
+      throw new Error('Token endpoint: ' + tokRes.status + ' ' + t);
+    }
+    const { token, model } = await tokRes.json();
+    modelTag.textContent = model;
+
+    // 2) connect via @google/genai
+    const ai = new GoogleGenAI({ apiKey: token, httpOptions: { apiVersion: 'v1alpha' } });
+
+    // output audio context for 24kHz PCM playback (queued)
+    outputContext = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 24000 });
+    playheadTime = outputContext.currentTime;
+
+    session = await ai.live.connect({
+      model,
+      config: {
+        responseModalities: [Modality.AUDIO],
+        systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
+      },
+      callbacks: {
+        onopen: () => {
+          setStatus('À l\'écoute', 'active');
+          callBtn.classList.add('live');
+          callBtn.textContent = 'En appel';
+          endBtn.classList.add('visible');
+          waveform.classList.add('active');
+          active = true;
+        },
+        onmessage: (msg) => {
+          // Audio from model
+          const inline = msg?.serverContent?.modelTurn?.parts?.[0]?.inlineData;
+          const dataB64 = inline?.data || msg?.data;
+          if (dataB64) {
+            queuePlayback(dataB64);
+            setStatus('Camille parle...', 'speaking');
+          }
+          if (msg?.serverContent?.turnComplete) {
+            setStatus('À l\'écoute', 'active');
+          }
+        },
+        onerror: (e) => {
+          console.error('Live API error', e);
+          showError('Erreur Live API: ' + (e?.message || e));
+          stopCall();
+        },
+        onclose: (e) => {
+          console.log('Live session closed', e);
+          if (active) stopCall();
+        },
+      },
+    });
+
+    // 3) mic
+    micStream = await navigator.mediaDevices.getUserMedia({
+      audio: { echoCancellation: true, noiseSuppression: true, channelCount: 1 },
+    });
+    micContext = new (window.AudioContext || window.webkitAudioContext)();
+    const workletBlob = new Blob([WORKLET_SRC], { type: 'application/javascript' });
+    const workletUrl = URL.createObjectURL(workletBlob);
+    await micContext.audioWorklet.addModule(workletUrl);
+    URL.revokeObjectURL(workletUrl);
+
+    const src = micContext.createMediaStreamSource(micStream);
+    micWorklet = new AudioWorkletNode(micContext, 'mic-processor');
+    micWorklet.port.onmessage = (evt) => {
+      if (!active || !session) return;
+      const f32 = evt.data;
+      const i16 = floatTo16BitPCM(f32);
+      const b64 = int16ToBase64(i16);
+      try {
+        session.sendRealtimeInput({
+          audio: { data: b64, mimeType: 'audio/pcm;rate=16000' },
+        });
+      } catch (err) {
+        console.warn('send failed', err);
+      }
+    };
+    src.connect(micWorklet);
+    // don't connect worklet to destination — no mic loopback
+
+  } catch (err) {
+    console.error(err);
+    showError('Impossible de démarrer: ' + (err?.message || err));
+    callBtn.disabled = false;
+    setStatus('Prêt');
+  }
+}
+
+function queuePlayback(b64) {
+  if (!outputContext) return;
+  const i16 = base64ToInt16(b64);
+  const f32 = new Float32Array(i16.length);
+  for (let i = 0; i < i16.length; i++) f32[i] = i16[i] / 0x8000;
+  const buf = outputContext.createBuffer(1, f32.length, 24000);
+  buf.copyToChannel(f32, 0);
+  const src = outputContext.createBufferSource();
+  src.buffer = buf;
+  src.connect(outputContext.destination);
+  const now = outputContext.currentTime;
+  const startAt = Math.max(playheadTime, now);
+  src.start(startAt);
+  playheadTime = startAt + buf.duration;
+}
+
+function stopCall() {
+  active = false;
+  try { session?.close(); } catch {}
+  session = null;
+  try { micWorklet?.disconnect(); } catch {}
+  micWorklet = null;
+  try { micStream?.getTracks().forEach(t => t.stop()); } catch {}
+  micStream = null;
+  try { micContext?.close(); } catch {}
+  micContext = null;
+  try { outputContext?.close(); } catch {}
+  outputContext = null;
+  playheadTime = 0;
+  callBtn.classList.remove('live');
+  callBtn.textContent = 'Parler à Camille';
+  callBtn.disabled = false;
+  endBtn.classList.remove('visible');
+  waveform.classList.remove('active');
+  setStatus('Prêt');
+}
+
+callBtn.addEventListener('click', () => {
+  if (active) return;
+  startCall();
+});
+endBtn.addEventListener('click', stopCall);
+window.addEventListener('beforeunload', stopCall);
+</script>
+</body>
+</html>
