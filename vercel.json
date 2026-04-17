@@ -17,6 +17,10 @@
       "destination": "/cgm-internal.html"
     },
     {
+      "source": "/cgm-virtuox",
+      "destination": "/cgm-virtuox.html"
+    },
+    {
       "source": "/uber-freight",
       "destination": "/audit-uber-freight.html"
     },
