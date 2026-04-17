@@ -205,6 +205,56 @@
     display: none;
   }
   .error.visible { display: block; }
+  .voice-picker {
+    margin: 0 auto 32px;
+    max-width: 420px;
+    width: 100%;
+    text-align: left;
+  }
+  .voice-picker label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .voice-picker select {
+    width: 100%;
+    padding: 12px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--navy);
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23475569' d='M6 8L2 4h8z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
+  .voice-picker select:focus {
+    outline: none;
+    border-color: var(--indigo);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+  }
+  .voice-hint {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+  .current-voice {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 6px;
+    font-weight: 500;
+  }
   footer {
     padding: 24px 32px;
     text-align: center;
@@ -225,12 +275,50 @@
   <h1>Parlez à Camille</h1>
   <p class="subtitle">Agent de recouvrement IA, voix native Gemini 2.5 Flash. Cliquez, autorisez le micro, parlez.</p>
 
+  <div class="voice-picker">
+    <label for="voiceSelect">Voix Gemini</label>
+    <select id="voiceSelect">
+      <option value="Zephyr" selected>Zephyr (bright)</option>
+      <option value="Puck">Puck (upbeat)</option>
+      <option value="Charon">Charon (informative)</option>
+      <option value="Kore">Kore (firm)</option>
+      <option value="Fenrir">Fenrir (excitable)</option>
+      <option value="Leda">Leda (youthful)</option>
+      <option value="Orus">Orus (firm)</option>
+      <option value="Aoede">Aoede (breezy)</option>
+      <option value="Callirrhoe">Callirrhoe (easy-going)</option>
+      <option value="Autonoe">Autonoe (bright)</option>
+      <option value="Enceladus">Enceladus (breathy)</option>
+      <option value="Iapetus">Iapetus (clear)</option>
+      <option value="Umbriel">Umbriel (easy-going)</option>
+      <option value="Algieba">Algieba (smooth)</option>
+      <option value="Despina">Despina (smooth)</option>
+      <option value="Erinome">Erinome (clear)</option>
+      <option value="Algenib">Algenib (gravelly)</option>
+      <option value="Rasalgethi">Rasalgethi (informative)</option>
+      <option value="Laomedeia">Laomedeia (upbeat)</option>
+      <option value="Achernar">Achernar (soft)</option>
+      <option value="Alnilam">Alnilam (firm)</option>
+      <option value="Schedar">Schedar (even)</option>
+      <option value="Gacrux">Gacrux (mature)</option>
+      <option value="Pulcherrima">Pulcherrima (forward)</option>
+      <option value="Achird">Achird (friendly)</option>
+      <option value="Zubenelgenubi">Zubenelgenubi (casual)</option>
+      <option value="Vindemiatrix">Vindemiatrix (gentle)</option>
+      <option value="Sadachbia">Sadachbia (lively)</option>
+      <option value="Sadaltager">Sadaltager (knowledgeable)</option>
+      <option value="Sulafat">Sulafat (warm)</option>
+    </select>
+    <div class="voice-hint">Changement de voix appliqué au prochain appel. Toutes les voix sont multilingues (FR supporté).</div>
+  </div>
+
   <button id="callBtn" class="call-btn" type="button">Parler à Camille</button>
 
   <div class="status" id="status">
     <span class="dot-indicator" id="dotIndicator"></span>
     <span id="statusText">Prêt</span>
   </div>
+  <div class="current-voice" id="currentVoice">Voix actuelle : Zephyr</div>
 
   <div class="waveform" id="waveform">
     <div class="bar"></div><div class="bar"></div><div class="bar"></div>
@@ -260,6 +348,12 @@ const dotIndicator = document.getElementById('dotIndicator');
 const waveform = document.getElementById('waveform');
 const errorBox = document.getElementById('errorBox');
 const modelTag = document.getElementById('modelTag');
+const voiceSelect = document.getElementById('voiceSelect');
+const currentVoice = document.getElementById('currentVoice');
+
+voiceSelect.addEventListener('change', () => {
+  currentVoice.textContent = 'Voix actuelle : ' + voiceSelect.value;
+});
 
 let session = null;
 let micStream = null;
@@ -370,11 +464,18 @@ async function startCall() {
     outputContext = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 24000 });
     playheadTime = outputContext.currentTime;
 
+    const selectedVoice = voiceSelect.value || 'Zephyr';
     session = await ai.live.connect({
       model,
       config: {
         responseModalities: [Modality.AUDIO],
         systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
+        speechConfig: {
+          voiceConfig: {
+            prebuiltVoiceConfig: { voiceName: selectedVoice },
+          },
+          languageCode: 'fr-FR',
+        },
       },
       callbacks: {
         onopen: () => {
