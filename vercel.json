@@ -45,6 +45,14 @@
       "destination": "/audit-tebra.html"
     },
     {
+      "source": "/salesforce",
+      "destination": "/audit-salesforce.html"
+    },
+    {
+      "source": "/audit/salesforce",
+      "destination": "/audit-salesforce.html"
+    },
+    {
       "source": "/audit/buildertrend",
       "destination": "/audit-buildertrend.html"
     },

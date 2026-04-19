@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salesforce · AR Operations Audit · Confidential</title>
+<meta property="og:title" content="Salesforce AR Operations Audit · Confidential">
+<meta property="og:description" content="The CRM that invented customer success is paying an agency with 1,281 CFPB complaints to collect its past-due invoices.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#FAF9F6;--bg-2:#F4F2EC;--bg-3:#FFFDFA;
+  --ink:#0E1116;--ink-2:#3F4651;--muted:#6B7280;
+  --line:#E5E0D5;--line-2:#D4CEC0;
+  --indigo:#4338CA;--indigo-soft:#EEF0FF;
+  --red:#B91C1C;--red-soft:#FEF2F2;
+  --green:#047857;
+  --display:'Plus Jakarta Sans',-apple-system,sans-serif;
+  --body:'Inter',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.topbar{border-bottom:1px solid var(--line);background:rgba(250,249,246,.92);backdrop-filter:blur(20px);position:sticky;top:0;z-index:50}
+.topbar-inner{max-width:1100px;margin:0 auto;padding:18px 36px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:inline-flex;align-items:center;gap:6px;font-family:var(--display);font-weight:700;font-size:18px;color:var(--ink);text-decoration:none;letter-spacing:-.015em}
+.brand .dot{width:6px;height:6px;border-radius:50%;background:var(--indigo);margin-left:1px;vertical-align:super;margin-top:-2px;display:inline-block}
+.topbar-meta{font-family:var(--mono);font-size:10px;color:var(--muted);font-weight:500;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.topbar-meta strong{color:var(--ink)}
+.topbar-cta{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:var(--ink);color:#fff;border-radius:100px;font-family:var(--display);font-size:12px;font-weight:700;text-decoration:none;transition:all .2s}
+.topbar-cta:hover{background:var(--indigo)}
+.topbar-cta .arrow{transition:transform .2s;font-size:11px}
+.topbar-cta:hover .arrow{transform:translateX(2px)}
+.expires{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;background:var(--red-soft);color:var(--red);border-radius:6px;font-weight:600}
+.expires::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--red);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+.viewport{min-height:90vh;display:flex;align-items:center;justify-content:center;padding:120px 36px;position:relative}
+.viewport-inner{max-width:1080px;width:100%;margin:0 auto}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.14em;padding:8px 16px;border:1px solid var(--line-2);border-radius:100px;margin-bottom:42px;background:var(--bg-3)}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--indigo)}
+.hero-headline{font-family:var(--display);font-size:clamp(42px,5.8vw,84px);font-weight:800;line-height:1.02;letter-spacing:-.025em;color:var(--ink);margin-bottom:42px;max-width:1040px}
+.hero-headline em{color:var(--red);font-weight:500;font-style:normal}
+.hero-deck{font-family:var(--body);font-size:19px;color:var(--ink-2);max-width:720px;line-height:1.5;margin-bottom:48px}
+.hero-deck strong{color:var(--ink);font-weight:600}
+.hero-meta{display:flex;align-items:center;gap:24px;font-family:var(--mono);font-size:12px;color:var(--muted);flex-wrap:wrap}
+.hero-meta strong{color:var(--ink);font-weight:600}
+.hero-meta .sep{color:var(--line-2)}
+
+.section{padding:140px 36px;border-top:1px solid var(--line)}
+.section.alt{background:var(--bg-3)}
+.section-inner{max-width:1080px;margin:0 auto}
+.section-eyebrow{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.18em;font-weight:500;margin-bottom:24px;display:inline-flex;align-items:center;gap:10px}
+.section-eyebrow.red{color:var(--red)}
+.section-eyebrow.red::before,.section-eyebrow.red::after{content:'';width:28px;height:1px;background:var(--red);opacity:.4}
+.section-title{font-family:var(--display);font-size:clamp(36px,4.8vw,64px);font-weight:800;letter-spacing:-.025em;line-height:1.05;color:var(--ink);margin-bottom:48px;max-width:920px}
+.section-title em{color:var(--red);font-weight:500;font-style:normal}
+.section-title em.indigo{color:var(--indigo)}
+.section-deck{font-family:var(--body);font-size:17px;color:var(--muted);max-width:720px;line-height:1.6;margin-bottom:48px}
+
+/* THE CASE STUDY — Radius self-incriminates */
+.evidence-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:48px 56px;max-width:900px;margin:0 auto;position:relative;box-shadow:0 1px 2px rgba(11,17,22,.04),0 24px 60px rgba(11,17,22,.06)}
+.evidence-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),transparent 70%);border-radius:18px 18px 0 0}
+.evidence-source{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:20px;display:flex;gap:14px;align-items:center}
+.evidence-source strong{color:var(--red);font-weight:600}
+.evidence-quote{font-family:var(--display);font-size:clamp(22px,2.6vw,30px);font-weight:600;line-height:1.35;letter-spacing:-.015em;color:var(--ink);margin-bottom:24px}
+.evidence-quote::before{content:'"';display:block;font-family:var(--display);font-size:80px;line-height:.3;color:var(--red);opacity:.25;margin-bottom:14px;font-weight:500}
+.evidence-link{font-family:var(--mono);font-size:11px;color:var(--indigo);text-decoration:none;border-bottom:1px solid var(--indigo)}
+.evidence-annotation{margin-top:36px;padding:24px;background:var(--red-soft);border-left:4px solid var(--red);border-radius:0 10px 10px 0;font-family:var(--body);font-size:15px;color:var(--ink);line-height:1.6}
+.evidence-annotation strong{color:var(--red);font-weight:700;display:block;margin-bottom:8px;font-family:var(--display);font-size:13px;text-transform:uppercase;letter-spacing:.08em}
+
+/* STATS GRID */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:1080px;margin:0 auto}
+.stat-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:36px 28px;text-align:center}
+.stat-card.red{border-color:rgba(185,28,28,.2);background:var(--red-soft)}
+.stat-value{font-family:var(--display);font-size:clamp(36px,4.2vw,54px);font-weight:900;line-height:1;letter-spacing:-.025em;color:var(--ink);margin-bottom:12px}
+.stat-card.red .stat-value{color:var(--red)}
+.stat-label{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;line-height:1.5;font-weight:500}
+.stat-source{font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:10px;text-transform:uppercase;letter-spacing:.08em;opacity:.8}
+
+/* WHISTLEBLOWER QUOTES */
+.quotes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:1080px;margin:0 auto}
+.quote-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:32px 36px;position:relative}
+.quote-card::before{content:'"';position:absolute;top:14px;left:22px;font-family:var(--display);font-size:60px;line-height:.6;color:var(--red);opacity:.15;font-weight:600}
+.quote-text{font-family:var(--display);font-size:17px;font-weight:600;color:var(--ink);line-height:1.45;margin-bottom:16px;padding-left:14px;position:relative;z-index:2}
+.quote-attrib{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;padding-left:14px}
+.quote-attrib strong{color:var(--ink)}
+
+/* CALL LOG */
+.calls-table{max-width:1020px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.calls-row{display:grid;grid-template-columns:80px 1fr 200px 140px;padding:20px 28px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:12px;align-items:center}
+.calls-row:last-child{border-bottom:none}
+.calls-row.header{background:var(--bg-2);font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:600}
+.calls-row .when{color:var(--muted)}
+.calls-row .target{color:var(--ink);font-weight:500;font-family:var(--body);font-size:13px}
+.calls-row .number{color:var(--muted)}
+.calls-row .result{color:var(--red);font-weight:600}
+.calls-finding{max-width:900px;margin:40px auto 0;padding:28px 36px;background:var(--bg-3);border:1px solid var(--line);border-radius:14px;font-family:var(--body);font-size:15px;color:var(--ink-2);line-height:1.6}
+.calls-finding strong{color:var(--ink);font-weight:600}
+
+/* ORG CHART */
+.org-container{max-width:920px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:14px;padding:40px;overflow:hidden}
+.org-layer{margin-bottom:32px;padding-bottom:32px;border-bottom:1px dashed var(--line)}
+.org-layer:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.org-layer-label{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.14em;margin-bottom:14px;font-weight:600;display:flex;align-items:center;gap:10px}
+.org-layer-label .tag{padding:3px 10px;background:var(--indigo-soft);color:var(--indigo);border-radius:4px;font-size:9px;letter-spacing:.08em}
+.org-layer-label .tag.red{background:var(--red-soft);color:var(--red)}
+.org-people{display:flex;flex-wrap:wrap;gap:12px}
+.org-person{padding:10px 14px;background:var(--bg-2);border:1px solid var(--line);border-radius:8px;font-family:var(--body);font-size:13px;color:var(--ink)}
+.org-person strong{font-weight:600}
+.org-person .role{font-family:var(--mono);font-size:10px;color:var(--muted);display:block;margin-top:2px;letter-spacing:.04em}
+.org-arrow{display:flex;justify-content:center;padding:8px 0;font-size:24px;color:var(--muted)}
+
+/* REPLACEMENT */
+.replace-grid{display:grid;grid-template-columns:1fr 60px 1fr;gap:32px;max-width:980px;margin:0 auto;align-items:center}
+.replace-col{background:#fff;border:1px solid var(--line);border-radius:14px;padding:36px 32px}
+.replace-col.red{border-color:rgba(185,28,28,.25);background:var(--red-soft)}
+.replace-col.indigo{border-color:rgba(67,56,202,.25);background:var(--indigo-soft)}
+.replace-tag{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.14em;font-weight:600;margin-bottom:18px}
+.replace-col.red .replace-tag{color:var(--red)}
+.replace-col.indigo .replace-tag{color:var(--indigo)}
+.replace-title{font-family:var(--display);font-size:22px;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:20px;letter-spacing:-.015em}
+.replace-list{list-style:none;padding:0;margin:0}
+.replace-list li{font-family:var(--body);font-size:14px;color:var(--ink-2);padding:8px 0 8px 22px;position:relative;line-height:1.5}
+.replace-list li::before{content:'•';position:absolute;left:6px;color:var(--muted);font-weight:700}
+.replace-col.indigo .replace-list li::before{color:var(--indigo)}
+.replace-arrow{text-align:center;font-family:var(--display);font-size:40px;color:var(--muted);font-weight:300}
+
+/* CTA */
+.cta-section{padding:140px 36px;background:var(--ink);color:#fff;text-align:center}
+.cta-inner{max-width:780px;margin:0 auto}
+.cta-title{font-family:var(--display);font-size:clamp(36px,4.8vw,56px);font-weight:800;letter-spacing:-.025em;line-height:1.1;margin-bottom:24px}
+.cta-title em{color:#a5b4fc;font-weight:500;font-style:normal}
+.cta-deck{font-family:var(--body);font-size:17px;color:rgba(255,255,255,.7);margin-bottom:40px;line-height:1.6}
+.cta-btn{display:inline-flex;align-items:center;gap:10px;padding:16px 32px;background:#fff;color:var(--ink);border-radius:100px;font-family:var(--display);font-size:15px;font-weight:700;text-decoration:none;transition:all .2s;letter-spacing:-.005em}
+.cta-btn:hover{background:#a5b4fc;transform:translateY(-2px)}
+.cta-signature{margin-top:36px;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.06em;text-transform:uppercase}
+.cta-signature strong{color:#fff}
+
+.footer{padding:32px 36px;border-top:1px solid var(--line);max-width:1140px;margin:0 auto;font-family:var(--mono);font-size:10px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;text-transform:uppercase;letter-spacing:.06em}
+.footer strong{color:var(--ink);font-weight:600}
+
+@media (max-width:980px){
+  .viewport{padding:80px 24px}
+  .section{padding:80px 24px}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .quotes-grid{grid-template-columns:1fr}
+  .calls-row{grid-template-columns:60px 1fr;gap:8px}
+  .calls-row .number,.calls-row .result{grid-column:1/-1;padding-left:68px;font-size:11px}
+  .replace-grid{grid-template-columns:1fr;gap:20px}
+  .replace-arrow{transform:rotate(90deg)}
+  .topbar-inner{padding:14px 24px;flex-direction:column;align-items:flex-start;gap:10px}
+  .topbar-meta{font-size:9px}
+  .evidence-card{padding:32px 28px}
+  .cta-section{padding:80px 24px}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="https://agentcollect.com" class="brand">AgentCollect<span class="dot"></span></a>
+    <div class="topbar-meta">
+      <span>DOC <strong>#SFDC-001</strong></span>
+      <span>·</span>
+      <span class="expires" id="expires">Expires in 30 days</span>
+    </div>
+    <a href="https://cal.com/johnb/30" class="topbar-cta">Talk to the founder <span class="arrow">→</span></a>
+  </div>
+</header>
+
+<section class="viewport">
+  <div class="viewport-inner">
+    <div class="hero-eyebrow"><span class="dot"></span>Confidential AR Audit · For Salesforce Leadership</div>
+    <h1 class="hero-headline">The company that invented customer success is paying an agency with <em>1,281 CFPB complaints</em> to recover its past-due invoices.</h1>
+    <p class="hero-deck">Salesforce has $11.9B in accounts receivable. A slice of that flows through a third-party collection agency whose own employees say they are fined $500 for forgetting a single scripted word and take 90 calls a day. <strong>The agency published a case study about "a CRM software client" on their own website.</strong></p>
+    <div class="hero-meta">
+      <span><strong>8 mystery shop calls</strong></span>
+      <span class="sep">·</span>
+      <span><strong>3 agency offices probed</strong></span>
+      <span class="sep">·</span>
+      <span>April 17, 2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- SMOKING GUN -->
+<section class="section alt">
+  <div class="section-inner">
+    <div class="section-eyebrow red">— The smoking gun —</div>
+    <h2 class="section-title">Radius Global Solutions published a case study about <em>a CRM software client.</em></h2>
+    <p class="section-deck">We did not invent this. Radius wrote it, put it on their public website, and left it there. Here is the opening paragraph, verbatim.</p>
+
+    <div class="evidence-card">
+      <div class="evidence-source">Source: <strong>radiusgs.com/case-studies/b2b-software-debt-collections</strong></div>
+      <p class="evidence-quote">Our client is a Customer Relationship Management (CRM) software. They sought a B2B debt collections partner to simultaneously reduce open receivables while retaining or reactivating customers who had been suspended due to non-payment on software licensing contracts. This was a global initiative with challenges including foreign governances of contracts, money transfer restrictions, and language barriers.</p>
+      <a class="evidence-link" href="https://www.radiusgs.com/case-studies/b2b-software-debt-collections/" target="_blank">Read the full case study →</a>
+
+      <div class="evidence-annotation">
+        <strong>Who fits that profile?</strong>
+        A global CRM software company, B2B licensing model, customer suspensions on non-payment, multi-currency, multi-language, scaled enough to outsource an entire AR function. That description fits one company in the world. The case study is anonymous on purpose. It does not need to be named for you to recognize it.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE NUMBERS -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-eyebrow">— What your brand is paying for —</div>
+    <h2 class="section-title">The agency's <em>track record.</em></h2>
+    <p class="section-deck">Every number below is public. Radius Global Solutions is the agency. These are the complaints, ratings, and patterns logged by consumers, regulators, and the agency's own employees.</p>
+
+    <div class="stats-grid">
+      <div class="stat-card red">
+        <div class="stat-value">1,281</div>
+        <div class="stat-label">CFPB complaints<br>last 3 years</div>
+        <div class="stat-source">Consumer Financial<br>Protection Bureau</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-value">490</div>
+        <div class="stat-label">BBB complaints<br>closed 3 years</div>
+        <div class="stat-source">146 in last 12 months<br>BBB Edina MN</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-value">1.7<span style="font-size:.45em;font-weight:500;color:var(--muted)">/5</span></div>
+        <div class="stat-label">Glassdoor rating<br>Collections rep</div>
+        <div class="stat-source">15 reviews,<br>32% recommend</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-value">90<span style="font-size:.55em">/day</span></div>
+        <div class="stat-label">Calls per agent<br>most are hang-ups</div>
+        <div class="stat-source">Per Indeed reviews<br>of debt collectors</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHISTLEBLOWERS -->
+<section class="section alt">
+  <div class="section-inner">
+    <div class="section-eyebrow red">— What the agents themselves say —</div>
+    <h2 class="section-title">The people making calls on behalf of your brand, <em>in their own words.</em></h2>
+    <p class="section-deck">Verbatim quotes from current and former Radius employees on Glassdoor and Indeed. Nothing edited.</p>
+
+    <div class="quotes-grid">
+      <div class="quote-card">
+        <p class="quote-text">If employees forget to say one word that is scripted, they can lose up to 500 dollars that month.</p>
+        <p class="quote-attrib"><strong>Collections Representative</strong> · Glassdoor</p>
+      </div>
+      <div class="quote-card">
+        <p class="quote-text">Expect at least 90 calls per day, most of them being hang ups or people cursing at them.</p>
+        <p class="quote-attrib"><strong>Debt Collector</strong> · Indeed</p>
+      </div>
+      <div class="quote-card">
+        <p class="quote-text">Upper management sets unobtainable goals for commission employees. Metrics have been changed to make commission almost impossible.</p>
+        <p class="quote-attrib"><strong>Collections Analyst</strong> · Glassdoor</p>
+      </div>
+      <div class="quote-card">
+        <p class="quote-text">Hours are expected to work until assignments are done even if it means working 80 plus hours.</p>
+        <p class="quote-attrib"><strong>Call Center Rep</strong> · Indeed</p>
+      </div>
+      <div class="quote-card">
+        <p class="quote-text">Managers threaten to fire employees or turn off inbounds. Management pits employees against each other.</p>
+        <p class="quote-attrib"><strong>Former Employee</strong> · Indeed management reviews</p>
+      </div>
+      <div class="quote-card">
+        <p class="quote-text">Many customers feel misled about marketing calls, creating negative experiences and forcing agents to handle backlash they didn't cause.</p>
+        <p class="quote-attrib"><strong>Call Center Representative</strong> · Indeed</p>
+      </div>
+    </div>
+
+    <div class="calls-finding" style="margin-top:56px">
+      <strong>The pattern is not an accident.</strong> It is a system designed to squeeze recovery rates out of underpaid, over-surveilled agents who get fined for missing a scripted word. When one of those agents is collecting on behalf of your customer, your brand is the one they remember.
+    </div>
+  </div>
+</section>
+
+<!-- OUR MYSTERY SHOP -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-eyebrow">— We called 8 times —</div>
+    <h2 class="section-title">What your past-due customers experience when <em>they try to pay.</em></h2>
+    <p class="section-deck">April 17, 2026. We placed 8 calls across every published Radius and related Costa Rica BPO number as a small business owner trying to settle a Salesforce balance.</p>
+
+    <div class="calls-table">
+      <div class="calls-row header">
+        <span>Time ET</span>
+        <span>Number called</span>
+        <span>Office</span>
+        <span>Result</span>
+      </div>
+      <div class="calls-row">
+        <span class="when">18:52</span>
+        <span class="target">Main toll-free</span>
+        <span class="number">+1-888-287-5711</span>
+        <span class="result">Voicemail</span>
+      </div>
+      <div class="calls-row">
+        <span class="when">18:53</span>
+        <span class="target">Costa Rica BPO main</span>
+        <span class="number">+1-954-236-4000</span>
+        <span class="result">IVR broken + VM</span>
+      </div>
+      <div class="calls-row">
+        <span class="when">18:53</span>
+        <span class="target">Main toll-free (debtor angle)</span>
+        <span class="number">+1-888-287-5711</span>
+        <span class="result">Voicemail</span>
+      </div>
+      <div class="calls-row">
+        <span class="when">19:21</span>
+        <span class="target">Costa Rica BPO (main reception)</span>
+        <span class="number">+1-954-236-4000</span>
+        <span class="result">Voicemail</span>
+      </div>
+      <div class="calls-row">
+        <span class="when">21:41</span>
+        <span class="target">Jacksonville FL office</span>
+        <span class="number">+1-904-453-8114</span>
+        <span class="result">Generic VM</span>
+      </div>
+      <div class="calls-row">
+        <span class="when">21:41</span>
+        <span class="target">Ambler PA headquarters</span>
+        <span class="number">+1-267-419-1111</span>
+        <span class="result">Extension-only</span>
+      </div>
+      <div class="calls-row">
+        <span class="when">21:44</span>
+        <span class="target">Credit report hotline</span>
+        <span class="number">+1-844-329-0973</span>
+        <span class="result">Voicemail</span>
+      </div>
+      <div class="calls-row">
+        <span class="when">—</span>
+        <span class="target"><strong>Humans reached</strong></span>
+        <span class="number">—</span>
+        <span class="result">0 of 8</span>
+      </div>
+    </div>
+
+    <div class="calls-finding">
+      <strong>A customer who wants to pay you cannot, after 5 PM on a Friday, until Monday morning.</strong> The headquarters IVR refuses generic voicemails (extension-only). The toll-free line redirects to a closed-office message until Monday 9 AM. The Costa Rica-facing US number has no billing or AR menu option at all — only "network operations" or "main reception." Your customer's Friday-afternoon intent to pay dies in voicemail.
+    </div>
+  </div>
+</section>
+
+<!-- ORG CHART + TWO-LAYER STACK -->
+<section class="section alt">
+  <div class="section-inner">
+    <div class="section-eyebrow">— Your stack —</div>
+    <h2 class="section-title">Three layers, three brand exposures.</h2>
+    <p class="section-deck">From public LinkedIn profiles and the agency's own IVR. This is how a past-due Salesforce customer moves through your collection stack.</p>
+
+    <div class="org-container">
+      <div class="org-layer">
+        <div class="org-layer-label">Layer 1 · In-house Salesforce Credit & Collections <span class="tag">INTERNAL</span></div>
+        <div class="org-people">
+          <div class="org-person"><strong>Margarita Prahm</strong><span class="role">Director, Global Credit Risk & Recovery</span></div>
+          <div class="org-person"><strong>Omair Hussain</strong><span class="role">Sr Dir C&C · departed ~March 2026 after 11 years</span></div>
+          <div class="org-person"><strong>Keiko Hoya</strong><span class="role">Sr Manager · Tokyo</span></div>
+          <div class="org-person"><strong>Véronique Piguet</strong><span class="role">Sr Manager</span></div>
+        </div>
+      </div>
+      <div class="org-arrow">↓</div>
+      <div class="org-layer">
+        <div class="org-layer-label">Layer 2 · Costa Rica BPO (level-1 dunning) <span class="tag red">OFFSHORE</span></div>
+        <div class="org-people">
+          <div class="org-person">Bilingual EN/ES outsourced team — <strong>confirmed by Margarita Prahm's public LinkedIn</strong>: <em>"delivered bilingual training to outsourced teams in Costa Rica, aligning global operations with Salesforce best practices."</em></div>
+        </div>
+      </div>
+      <div class="org-arrow">↓</div>
+      <div class="org-layer">
+        <div class="org-layer-label">Layer 3 · Third-party collection agency <span class="tag red">BRAND EXPOSURE</span></div>
+        <div class="org-people">
+          <div class="org-person"><strong>Radius Global Solutions</strong><span class="role">2,200 employees · 14 call center locations · Edina MN + Ambler PA · Manila + Bogota offshore</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE REPLACEMENT -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-eyebrow">— What it should look like —</div>
+    <h2 class="section-title">We replace all three layers with <em class="indigo">AI that never creates a CFPB complaint.</em></h2>
+    <p class="section-deck">Same recovery rate. Zero agent turnover. Every call recorded, every transcript reviewable. No scripted-word fines. No 90-calls-a-day misery.</p>
+
+    <div class="replace-grid">
+      <div class="replace-col red">
+        <div class="replace-tag">Today · Radius stack</div>
+        <div class="replace-title">Your brand, their reputation</div>
+        <ul class="replace-list">
+          <li>1,281 CFPB complaints attached to your collector</li>
+          <li>Agents fined $500 for forgetting scripted words</li>
+          <li>90 calls/day/agent, most hang-ups</li>
+          <li>Closed Fridays 5 PM ET — Monday only</li>
+          <li>Costa Rica dunning under your signature</li>
+          <li>Your NPS takes the hit when customers complain</li>
+        </ul>
+      </div>
+      <div class="replace-arrow">→</div>
+      <div class="replace-col indigo">
+        <div class="replace-tag">With AgentCollect</div>
+        <div class="replace-title">Your brand, our AI, one team</div>
+        <ul class="replace-list">
+          <li>Every call and email audited, zero burnout</li>
+          <li>Multi-language, 24/7, real business hours in every timezone</li>
+          <li>50% collected within 20 days vs industry 10-15% in 4-6 months</li>
+          <li>PCI Level 1, SOC 2, FDCPA compliant by design</li>
+          <li>Already running at Microsoft, Amazon, FedEx scale</li>
+          <li>Integrates directly with Salesforce Billing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2 class="cta-title">15 minutes to show you <em>the full picture.</em></h2>
+    <p class="cta-deck">This audit took one Friday afternoon. A direct call with the founder shows you what a Monday morning conversation with your actual past-due customers sounds like — and what it could sound like instead.</p>
+    <a href="https://cal.com/johnb/30" class="cta-btn">Talk to the founder →</a>
+    <div class="cta-signature">By <strong>John Banner</strong> · Founder, AgentCollect · Y Combinator S23</div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div>DOC <strong>#SFDC-001</strong> · Confidential · Auto-deleted in 30 days</div>
+  <div>Sources: radiusgs.com public case study · CFPB complaint database · BBB Edina MN · Glassdoor · Indeed · LinkedIn public profiles · Mystery shop calls April 17, 2026</div>
+</footer>
+
+<script>
+  const expiresAt = new Date('2026-05-18T00:00:00');
+  function updateExpires() {
+    const now = new Date();
+    const diff = expiresAt - now;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    document.getElementById('expires').textContent = `Expires in ${days} days`;
+  }
+  updateExpires();
+  setInterval(updateExpires, 60000);
+</script>
+
+</body>
+</html>
