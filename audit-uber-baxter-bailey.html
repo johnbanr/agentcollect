@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uber Freight × Baxter Bailey · AR Operations Audit · Confidential</title>
+<meta property="og:title" content="Uber Freight × Baxter Bailey · AR Operations Audit">
+<meta property="og:description" content="Uber's Southaven collection agency. What it costs. What replaces it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#FAF9F6;--bg-2:#F4F2EC;--bg-3:#FFFDFA;
+  --ink:#0E1116;--ink-2:#3F4651;--muted:#6B7280;
+  --line:#E5E0D5;--line-2:#D4CEC0;
+  --indigo:#4338CA;--indigo-soft:#EEF0FF;
+  --red:#B91C1C;--red-soft:#FEF2F2;--green:#047857;
+  --display:'Plus Jakarta Sans',-apple-system,sans-serif;
+  --body:'Inter',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+.topbar{border-bottom:1px solid var(--line);background:rgba(250,249,246,.92);backdrop-filter:blur(20px);position:sticky;top:0;z-index:50}
+.topbar-inner{max-width:1100px;margin:0 auto;padding:18px 36px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.brand{display:inline-flex;align-items:center;gap:2px;font-family:var(--display);font-weight:800;font-size:18px;color:var(--ink);text-decoration:none;letter-spacing:-.02em}
+.brand .dot{width:6px;height:6px;border-radius:50%;background:var(--indigo);margin-left:1px;align-self:flex-start;margin-top:4px}
+.topbar-meta{font-family:var(--mono);font-size:10px;color:var(--muted);font-weight:500;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.topbar-meta strong{color:var(--ink)}
+.topbar-cta{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:var(--ink);color:#fff;border-radius:100px;font-family:var(--display);font-size:12px;font-weight:700;text-decoration:none;transition:all .2s}
+.topbar-cta:hover{background:var(--indigo)}
+.expires{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;background:var(--red-soft);color:var(--red);border-radius:6px;font-weight:600}
+.expires::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--red);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+.viewport{padding:120px 36px}
+.viewport-inner{max-width:1080px;margin:0 auto}
+
+/* HERO */
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.14em;padding:8px 16px;border:1px solid var(--line-2);border-radius:100px;margin-bottom:42px;background:var(--bg-3)}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--indigo)}
+.hero-headline{font-family:var(--display);font-size:clamp(42px,5.8vw,82px);font-weight:800;line-height:1;letter-spacing:-.025em;margin-bottom:42px}
+.hero-headline em{color:var(--red);font-weight:500;font-style:normal}
+.hero-sub{font-family:var(--body);font-size:20px;color:var(--ink-2);max-width:720px;margin-bottom:42px;line-height:1.55}
+.hero-meta{display:flex;align-items:center;gap:24px;font-family:var(--mono);font-size:12px;color:var(--muted);flex-wrap:wrap}
+.hero-meta strong{color:var(--ink);font-weight:600}
+.hero-meta .sep{color:var(--line-2)}
+
+/* PROFILE CARD */
+.profile-section{padding:80px 36px;border-top:1px solid var(--line);background:var(--bg-3)}
+.profile-inner{max-width:980px;margin:0 auto}
+.profile-eyebrow{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.18em;margin-bottom:32px}
+.profile-headline{font-family:var(--display);font-size:clamp(32px,4vw,52px);font-weight:700;line-height:1.05;letter-spacing:-.02em;margin-bottom:48px;max-width:860px}
+.profile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-bottom:48px}
+.profile-cell{padding:28px;background:#fff;border:1px solid var(--line);border-radius:14px}
+.profile-cell .label{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px}
+.profile-cell .value{font-family:var(--display);font-size:17px;font-weight:600;color:var(--ink);line-height:1.35}
+.profile-cell .value a{color:var(--indigo);text-decoration:none;border-bottom:1px dotted var(--indigo)}
+.profile-cell .sub{font-family:var(--body);font-size:13px;color:var(--muted);margin-top:6px}
+
+/* PORTFOLIO (6-BPO) */
+.portfolio-section{padding:140px 36px;border-top:1px solid var(--line);background:var(--bg)}
+.portfolio-inner{max-width:1080px;margin:0 auto}
+.portfolio-eyebrow{font-family:var(--mono);font-size:11px;color:var(--red);text-transform:uppercase;letter-spacing:.18em;font-weight:600;margin-bottom:32px;display:inline-flex;align-items:center;gap:12px}
+.portfolio-eyebrow::before{content:'';width:24px;height:1px;background:var(--red);opacity:.5}
+.portfolio-headline{font-family:var(--display);font-size:clamp(34px,4.6vw,64px);font-weight:800;line-height:1.02;letter-spacing:-.025em;margin-bottom:32px;max-width:920px}
+.portfolio-quote{font-family:var(--display);font-size:22px;font-weight:500;line-height:1.45;color:var(--ink-2);padding:28px 32px;border-left:3px solid var(--indigo);background:var(--indigo-soft);border-radius:0 12px 12px 0;margin-bottom:24px;max-width:880px}
+.portfolio-attrib{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:64px}
+.portfolio-attrib a{color:var(--indigo);text-decoration:none;border-bottom:1px dotted var(--indigo)}
+
+.stack-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.stack-cell{padding:24px;background:#fff;border:1px solid var(--line);border-radius:12px;position:relative}
+.stack-cell .num{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.1em}
+.stack-cell .lob{font-family:var(--display);font-size:17px;font-weight:700;margin:8px 0 4px}
+.stack-cell .vendor{font-family:var(--body);font-size:13px;color:var(--muted)}
+.stack-cell.known{border-color:var(--red);background:var(--red-soft)}
+.stack-cell.known .lob{color:var(--red)}
+
+/* COMPARISON */
+.compare-section{padding:140px 36px;border-top:1px solid var(--line);background:var(--bg-3)}
+.compare-inner{max-width:1080px;margin:0 auto}
+.compare-title{font-family:var(--display);font-size:clamp(32px,4vw,52px);font-weight:800;text-align:center;margin-bottom:72px;letter-spacing:-.02em}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:960px;margin:0 auto}
+.compare-col{padding:40px;border-radius:18px}
+.compare-col.them{background:var(--bg-2);border:1px solid var(--line-2)}
+.compare-col.us{background:var(--indigo);color:#fff}
+.compare-col .label{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.16em;font-weight:600;margin-bottom:24px;opacity:.7}
+.compare-col .name{font-family:var(--display);font-size:28px;font-weight:800;margin-bottom:32px;letter-spacing:-.02em}
+.compare-col ul{list-style:none}
+.compare-col li{padding:12px 0;border-bottom:1px solid rgba(0,0,0,.08);font-size:14px;line-height:1.5}
+.compare-col.us li{border-bottom-color:rgba(255,255,255,.15)}
+.compare-col li:last-child{border-bottom:0}
+.compare-col li strong{font-weight:700;display:block;margin-bottom:2px}
+.compare-col li span{opacity:.75;font-size:13px}
+@media(max-width:720px){.compare-grid{grid-template-columns:1fr}}
+
+/* CTA */
+.cta-section{padding:140px 36px;border-top:1px solid var(--line);background:var(--bg);text-align:center}
+.cta-inner{max-width:780px;margin:0 auto}
+.cta-headline{font-family:var(--display);font-size:clamp(34px,4.6vw,60px);font-weight:800;line-height:1.05;letter-spacing:-.025em;margin-bottom:24px}
+.cta-sub{font-family:var(--body);font-size:18px;color:var(--ink-2);margin-bottom:48px}
+.cta-btn{display:inline-flex;align-items:center;gap:10px;padding:18px 36px;background:var(--ink);color:#fff;border-radius:100px;font-family:var(--display);font-size:16px;font-weight:700;text-decoration:none;transition:all .2s}
+.cta-btn:hover{background:var(--indigo);transform:translateY(-2px)}
+
+footer{padding:60px 36px;border-top:1px solid var(--line);text-align:center;font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.04em}
+footer a{color:var(--indigo);text-decoration:none}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="/" class="brand">AgentCollect<span class="dot"></span></a>
+    <div class="topbar-meta">
+      <span>DOC <strong>UFB-BB-2026-0420</strong></span>
+      <span class="sep">·</span>
+      <span class="expires">Expires in 72h</span>
+    </div>
+    <a href="https://cal.com/jonathanbanner" class="topbar-cta">Talk to the founder →</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="viewport">
+  <div class="viewport-inner">
+    <div class="hero-eyebrow"><span class="dot"></span>AR operations audit · For David Majors, Uber OTC</div>
+    <h1 class="hero-headline">Your past-due freight invoices end up in <em>Southaven, Mississippi</em>.</h1>
+    <p class="hero-sub">Public records name one of the six BPOs in your collections stack. The agency that collects for Uber Freight LLC (DOT 2926893) is a 12-person contingency shop 600 miles from your Hyderabad OTC center. This is what they do, what they cost you, and what replaces them.</p>
+    <div class="hero-meta">
+      <span>Prepared <strong>April 20, 2026</strong></span>
+      <span class="sep">·</span>
+      <span>For <strong>Uber Technologies · OTC · North America</strong></span>
+      <span class="sep">·</span>
+      <span><strong>Public sources only</strong></span>
+    </div>
+  </div>
+</section>
+
+<!-- PROFILE CARD -->
+<section class="profile-section">
+  <div class="profile-inner">
+    <div class="profile-eyebrow">Known vendor · line of business 1 of 6</div>
+    <h2 class="profile-headline">Baxter, Bailey &amp; Associates, Inc.</h2>
+    <div class="profile-grid">
+      <div class="profile-cell">
+        <div class="label">Headquarters</div>
+        <div class="value">6858 Swinnea Rd, Building 4<br>Southaven, MS 38671</div>
+        <div class="sub">300 miles from Uber Freight's Chicago hub</div>
+      </div>
+      <div class="profile-cell">
+        <div class="label">Phone</div>
+        <div class="value"><a href="tel:+18669215873">(866) 921-5873</a></div>
+        <div class="sub">Single toll-free. No portal.</div>
+      </div>
+      <div class="profile-cell">
+        <div class="label">Scope for Uber</div>
+        <div class="value">Uber Freight LLC<br>DOT 2926893</div>
+        <div class="sub">Plus Uber Freight US LLC, DOT 2226417</div>
+      </div>
+      <div class="profile-cell">
+        <div class="label">Business model</div>
+        <div class="value">Contingency collections</div>
+        <div class="sub">"We don't get paid if you don't" — transportation-exclusive</div>
+      </div>
+      <div class="profile-cell">
+        <div class="label">BBB profile</div>
+        <div class="value"><a href="https://www.bbb.org/us/ms/southaven/profile/collections-agencies/baxter-bailey-associates-inc-0543-44041130" target="_blank">Active complaints</a></div>
+        <div class="sub">General Counsel responds to disputes directly</div>
+      </div>
+      <div class="profile-cell">
+        <div class="label">Public complaint pattern</div>
+        <div class="value">Collected, didn't remit</div>
+        <div class="sub">Ripoff Report filings: "settled for a fraction, carrier never paid"</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio-section">
+  <div class="portfolio-inner">
+    <div class="portfolio-eyebrow">The stack you actually manage</div>
+    <h2 class="portfolio-headline">Baxter Bailey is one of six. You manage the other five from Hyderabad.</h2>
+    <div class="portfolio-quote">"Managing a blended team of Uber collectors and 60+ BPO resources across six different lines of business... monitoring vendor performance and ensuring SLA/KPI compliance."</div>
+    <div class="portfolio-attrib">Source: <a href="https://www.uber.com/careers/list/141469" target="_blank">Uber careers — Order To Cash Collections Manager, North America (Hyderabad)</a></div>
+    <div class="stack-grid">
+      <div class="stack-cell known">
+        <div class="num">LOB 01 · CONFIRMED</div>
+        <div class="lob">Uber Freight</div>
+        <div class="vendor">Baxter Bailey &amp; Associates</div>
+      </div>
+      <div class="stack-cell"><div class="num">LOB 02</div><div class="lob">Uber for Business · SMB</div><div class="vendor">Undisclosed BPO</div></div>
+      <div class="stack-cell"><div class="num">LOB 03</div><div class="lob">Uber Eats · merchant</div><div class="vendor">Undisclosed BPO</div></div>
+      <div class="stack-cell"><div class="num">LOB 04</div><div class="lob">Uber for Business · enterprise</div><div class="vendor">Undisclosed BPO</div></div>
+      <div class="stack-cell"><div class="num">LOB 05</div><div class="lob">Rider chargeback recovery</div><div class="vendor">Undisclosed BPO</div></div>
+      <div class="stack-cell"><div class="num">LOB 06</div><div class="lob">Driver / courier recovery</div><div class="vendor">Undisclosed BPO</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="compare-section">
+  <div class="compare-inner">
+    <h2 class="compare-title">Six BPOs, or one AI stack.</h2>
+    <div class="compare-grid">
+      <div class="compare-col them">
+        <div class="label">Today</div>
+        <div class="name">The 6-BPO portfolio</div>
+        <ul>
+          <li><strong>Six contracts, six SLAs</strong><span>Each LOB negotiated separately. Quarterly business reviews × 6.</span></li>
+          <li><strong>Contingency 18–35%</strong><span>Industry standard for B2B SMB long-tail. You pay on every collected dollar.</span></li>
+          <li><strong>Phone-only playbook</strong><span>No multi-channel. Debtor reached 4–6 times before contact.</span></li>
+          <li><strong>No portal for the debtor</strong><span>Debtor calls back (866) 921-5873. Hold times, voicemail, no self-serve pay.</span></li>
+          <li><strong>Hyderabad governance overhead</strong><span>60+ headcount to manage vendor performance and reconcile remittance.</span></li>
+          <li><strong>Public complaint pattern</strong><span>BBB + Ripoff Report filings on at least one vendor. Brand exposure.</span></li>
+        </ul>
+      </div>
+      <div class="compare-col us">
+        <div class="label">With AgentCollect</div>
+        <div class="name">One AI agent, six LOBs</div>
+        <ul>
+          <li><strong>One contract, one SLA</strong><span>Six LOBs on one platform. One QBR.</span></li>
+          <li><strong>Performance pricing</strong><span>Single contingency rate. No platform fee for the pilot.</span></li>
+          <li><strong>Email + SMS + voice + letter + portal</strong><span>Debtor contacted on their channel of choice. First contact under 24h.</span></li>
+          <li><strong>Self-serve pay portal</strong><span>Debtor pays 24/7 without ever picking up the phone.</span></li>
+          <li><strong>Zero vendor governance</strong><span>Your team runs strategy. The AI runs the work.</span></li>
+          <li><strong>Your brand, always</strong><span>Agents call and email as Uber. Debtors never know a third party is involved.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2 class="cta-headline">Replace one LOB. Measure it. Decide.</h2>
+    <p class="cta-sub">Start with Uber Freight's past-due file. No integration. Drag-and-drop Excel. Results in 30 days, benchmarked against Baxter Bailey's historical recovery rate.</p>
+    <a href="https://cal.com/jonathanbanner" class="cta-btn">Talk to the founder →</a>
+  </div>
+</section>
+
+<footer>
+  <div>Prepared for David Majors, Uber OTC North America · <strong>April 20, 2026</strong></div>
+  <div style="margin-top:8px;opacity:.7">All data from public sources: Uber careers, Baxter Bailey's own site, BBB, DOT registry. No proprietary Uber information used.</div>
+  <div style="margin-top:12px"><a href="/">AgentCollect.</a> — The end of manual collection.</div>
+</footer>
+
+</body>
+</html>

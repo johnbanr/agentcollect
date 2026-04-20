@@ -29,6 +29,10 @@
       "destination": "/audit-uber-for-business.html"
     },
     {
+      "source": "/uber-baxter-bailey",
+      "destination": "/audit-uber-baxter-bailey.html"
+    },
+    {
       "source": "/github",
       "destination": "/audit-github.html"
     },
