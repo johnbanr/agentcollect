@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SFTP Onboarding Guide — Respaid (AgentCollect) × CGM Virtuox</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --purple:#684ED1;--text:#0B1B3D;--muted:#475569;--muted-light:#64748B;
+  --border:#E8ECF2;--bg:#FAFBFF;--green:#10B981;--green-dark:#059669;
+  --sans:'Plus Jakarta Sans',system-ui,sans-serif;
+  --body:'Inter',system-ui,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.page{max-width:820px;margin:0 auto;padding:56px 48px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.header{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:28px;border-bottom:2px solid var(--text);margin-bottom:32px}
+.brand{font-family:var(--sans);font-weight:900;font-size:20px;color:var(--text);letter-spacing:-.4px;display:inline-flex;align-items:center;gap:6px}
+.brand .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-left:2px;vertical-align:super;margin-top:-6px}
+.doc-meta{text-align:right;font-size:12px;color:var(--muted);line-height:1.6}
+.doc-meta .label{font-weight:800;color:var(--text);text-transform:uppercase;letter-spacing:.08em;font-size:10px}
+h1{font-family:var(--sans);font-weight:900;font-size:28px;letter-spacing:-.02em;line-height:1.2;margin-bottom:6px}
+.subtitle{font-size:14px;color:var(--muted);margin-bottom:32px}
+h2{font-family:var(--sans);font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-top:32px;margin-bottom:12px}
+h3{font-family:var(--sans);font-weight:800;font-size:16px;color:var(--text);margin-top:20px;margin-bottom:8px}
+p{margin-bottom:12px}
+ul,ol{padding-left:20px;margin-bottom:14px}
+li{margin-bottom:6px}
+.callout{background:linear-gradient(135deg,rgba(16,185,129,.06) 0%,rgba(16,185,129,.12) 100%);border-left:3px solid var(--green);padding:16px 20px;margin:18px 0;border-radius:4px;font-size:14px}
+.callout strong{color:var(--green-dark)}
+.info{background:#FAFBFF;border:1px solid var(--border);padding:16px 20px;margin:16px 0;border-radius:8px;font-size:14px}
+code{font-family:var(--mono);background:#F3F4F6;padding:2px 6px;border-radius:4px;font-size:13px;color:var(--purple)}
+pre{background:#0B1B3D;color:#E8ECF2;padding:16px 20px;border-radius:8px;font-family:var(--mono);font-size:13px;line-height:1.6;overflow-x:auto;margin:14px 0}
+pre code{background:transparent;color:inherit;padding:0}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
+table th,table td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+table th{font-family:var(--sans);font-weight:800;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted-light);background:var(--bg)}
+.step{display:grid;grid-template-columns:36px 1fr;gap:14px;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--border)}
+.step:last-of-type{border-bottom:none}
+.step-num{width:32px;height:32px;border-radius:50%;background:var(--purple);color:#fff;font-family:var(--sans);font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-title{font-family:var(--sans);font-weight:800;font-size:15px;color:var(--text);margin-bottom:4px}
+.step-body{font-size:14px;color:var(--muted);line-height:1.6}
+.stack-pill{display:inline-block;background:var(--bg);border:1px solid var(--border);padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;color:var(--text);margin:2px 4px 2px 0;font-family:var(--mono)}
+.footer-note{margin-top:40px;padding-top:20px;border-top:1px solid var(--border);font-size:11px;color:var(--muted-light);line-height:1.6;text-align:center}
+@media(max-width:640px){
+  .page{padding:32px 24px}
+  .header{flex-direction:column;gap:12px}
+  .doc-meta{text-align:left}
+}
+@media print{
+  body{background:#fff}
+  .page{box-shadow:none;max-width:100%;padding:0}
+  .no-print{display:none !important}
+  pre{background:#F3F4F6;color:#0B1B3D;border:1px solid var(--border)}
+}
+.pdf-btn{position:fixed;top:20px;right:20px;z-index:100;background:var(--text);color:#fff;border:none;padding:10px 18px;border-radius:100px;font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.02em;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.15);display:inline-flex;align-items:center;gap:8px;transition:transform .15s}
+.pdf-btn:hover{transform:translateY(-1px);background:var(--purple)}
+.pdf-btn svg{width:14px;height:14px;stroke:#fff;stroke-width:2;fill:none}
+</style>
+</head>
+<body>
+<button class="pdf-btn no-print" onclick="window.print()" title="Download as PDF">
+  <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+  Download PDF
+</button>
+<div class="page">
+
+<div class="header">
+  <div class="brand">AgentCollect<span class="dot"></span></div>
+  <div class="doc-meta">
+    <div class="label">Technical Guide</div>
+    <div>Ref: AC-CGM-SFTP-2026-04</div>
+    <div>Date: April 20, 2026</div>
+    <div>Confidential</div>
+  </div>
+</div>
+
+<h1>SFTP Onboarding Guide</h1>
+<p class="subtitle">How CGM Virtuox delivers the B2B patient AR invoice feed to AgentCollect. Standard, low-lift, no new enterprise tooling required.</p>
+
+<div class="callout">
+  <strong>TL;DR.</strong> A nightly CSV export from your existing AR system (Aprima, eMDs, or the current data warehouse) dropped into an SFTP folder. We pick it up every morning. That's the whole integration. It works with the stack CGM already runs; no new SAP module, no new middleware, no bespoke engineering on CGM's side.
+</div>
+
+<h2>What We're Building, In One Paragraph</h2>
+<p>CGM's existing AR database already holds every invoice we need. On a nightly schedule (typically 2:00 AM local), the database exports a filtered CSV ("invoices below $20,000, aged 90+ days past due, Virtuox division") and drops it onto an SFTP endpoint. AgentCollect's ingestion service connects to that endpoint on a read-only SSH key, pulls the file, and loads it into the agent's case queue. Payments and dispositions flow back the other way: AgentCollect writes an updated CSV back to the same SFTP in a <code>/results</code> folder; CGM reads it on its next scheduled run. Two CSVs, two folders, one SSH key pair. That's it.</p>
+
+<h2>Why This Is Not a Hard Integration</h2>
+<ul>
+  <li><strong>Every major EHR / practice-management stack supports scheduled CSV exports.</strong> Aprima, eMDs, Epic, Cerner, athenahealth, NextGen all do this natively. CGM IT has almost certainly set up similar feeds for other vendors (eligibility, statements, collections) many times.</li>
+  <li><strong>SFTP is the healthcare industry default.</strong> It predates modern APIs, it's HIPAA-compatible out of the box, and it's what claim clearinghouses, lockbox services, and third-party collectors have used for decades. Every healthcare IT team has done this before.</li>
+  <li><strong>We do not require a new ERP, middleware, or enterprise service bus integration.</strong> Specifically: no SAP module, no Mulesoft, no Informatica, no custom REST endpoints. If Aprima can run a scheduled report and write it to disk, we're done.</li>
+  <li><strong>Read-only SSH keys, not passwords.</strong> CGM generates an SSH key pair, gives us the public key and the SFTP host; we use the private key (stored in our HashiCorp Vault) to pull. No shared passwords, no rotating secrets.</li>
+</ul>
+
+<h2>Typical Setup, Step by Step</h2>
+
+<div class="step">
+  <div class="step-num">1</div>
+  <div>
+    <div class="step-title">CGM IT provisions the SFTP endpoint</div>
+    <div class="step-body">Either a new VM running OpenSSH (30 min setup), a managed SFTP service (AWS Transfer Family, Azure Blob SFTP, etc.), or a slot on an existing shared SFTP server CGM already operates. Any of these work. Typical time: 1&ndash;4 hours.</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">2</div>
+  <div>
+    <div class="step-title">CGM creates an SSH key pair for AgentCollect</div>
+    <div class="step-body">Standard <code>ssh-keygen -t ed25519</code>. Public key installed on the SFTP server; private key sent to AgentCollect via secure channel (1Password shared vault, or direct email to <code>j@agentcollect.com</code> if acceptable to CGM security).</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">3</div>
+  <div>
+    <div class="step-title">CGM configures the nightly AR export from Aprima</div>
+    <div class="step-body">A scheduled report in the AR system (Aprima, eMDs, or the Virtuox data warehouse) filters: <code>balance &lt; 20000</code> AND <code>days_past_due &gt;= 90</code> AND <code>division = 'Virtuox'</code>. Output format is a CSV written to <code>/incoming/</code> on the SFTP endpoint every night. Standard Aprima / eMDs functionality; no custom code.</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">4</div>
+  <div>
+    <div class="step-title">AgentCollect ingests on its side</div>
+    <div class="step-body">Our side is already built. Pulls <code>/incoming/*.csv</code>, validates, loads to the case queue, launches the voice agent. Returns payments and dispositions to <code>/results/*.csv</code>. Tested on previous healthcare clients.</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">5</div>
+  <div>
+    <div class="step-title">Go-live</div>
+    <div class="step-body">We run a 2-day read-only dry run on one day of data to verify format. Then we flip live. Total calendar time from SFTP endpoint ready to first patient call: typically 7&ndash;10 business days on our side.</div>
+  </div>
+</div>
+
+<h2>CSV Schema We Need</h2>
+<table>
+<thead>
+<tr><th>Column</th><th>Type</th><th>Notes</th></tr>
+</thead>
+<tbody>
+<tr><td><code>account_id</code></td><td>string</td><td>Unique patient account identifier</td></tr>
+<tr><td><code>invoice_id</code></td><td>string</td><td>Unique invoice / claim ID</td></tr>
+<tr><td><code>patient_first_name</code></td><td>string</td><td></td></tr>
+<tr><td><code>patient_last_name</code></td><td>string</td><td></td></tr>
+<tr><td><code>phone_primary</code></td><td>string</td><td>E.164 preferred (+1XXXXXXXXXX)</td></tr>
+<tr><td><code>phone_secondary</code></td><td>string</td><td>Optional</td></tr>
+<tr><td><code>balance</code></td><td>decimal</td><td>USD, &lt; $20,000</td></tr>
+<tr><td><code>invoice_date</code></td><td>ISO date</td><td>YYYY-MM-DD</td></tr>
+<tr><td><code>days_past_due</code></td><td>integer</td><td>&ge; 90</td></tr>
+<tr><td><code>provider_name</code></td><td>string</td><td>For scripting: "calling from Virtuox..."</td></tr>
+<tr><td><code>division</code></td><td>string</td><td>"Virtuox" for this feed</td></tr>
+<tr><td><code>statement_url</code></td><td>string</td><td>Optional, for SMS follow-up</td></tr>
+<tr><td><code>consent_flags</code></td><td>string</td><td>Existing DNC / TCPA flags, if any</td></tr>
+</tbody>
+</table>
+<p>If some columns aren't available in the first export, we ingest whatever is there and flag missing fields. Schema evolves in weeks 1&ndash;2 as we learn the feed.</p>
+
+<h2>Security &amp; Compliance</h2>
+<ul>
+  <li><strong>HIPAA BAA</strong> signed between Respaid Inc. (d/b/a AgentCollect) and CompuGroup Medical before any PHI flows. Template attached to the LOI countersignature package.</li>
+  <li><strong>SFTP over SSH (port 22)</strong> with ed25519 or RSA-4096 keys. No password authentication.</li>
+  <li><strong>Key storage:</strong> AgentCollect side uses HashiCorp Vault with automatic rotation every 90 days.</li>
+  <li><strong>Audit trail:</strong> every pull and push logged with timestamp, file hash, and line count. Logs exportable to CGM on request.</li>
+  <li><strong>TCPA:</strong> any DNC / consent flags in the CSV are honored before dial. AgentCollect maintains its own internal DNC list that merges with CGM's.</li>
+  <li><strong>Data residency:</strong> US region only. AWS us-east-1 / us-west-2. No data leaves the US.</li>
+</ul>
+
+<h2>Who Does What</h2>
+<table>
+<thead>
+<tr><th>Step</th><th>CGM</th><th>AgentCollect</th></tr>
+</thead>
+<tbody>
+<tr><td>SFTP endpoint provisioning</td><td>✓ (1&ndash;4h)</td><td></td></tr>
+<tr><td>SSH key pair generation</td><td>✓ (15 min)</td><td></td></tr>
+<tr><td>Aprima export schedule</td><td>✓ (2&ndash;4h)</td><td></td></tr>
+<tr><td>CSV schema validation</td><td>Review</td><td>✓</td></tr>
+<tr><td>Ingestion pipeline</td><td></td><td>✓ (already built)</td></tr>
+<tr><td>Voice agent configuration</td><td></td><td>✓ (already built)</td></tr>
+<tr><td>Virtuox-branded caller ID</td><td>Confirm approval</td><td>✓ (provisioning)</td></tr>
+<tr><td>HIPAA BAA signature</td><td>Sign</td><td>✓ (template ready)</td></tr>
+<tr><td>Dry run &amp; go-live</td><td>Observe</td><td>✓</td></tr>
+</tbody>
+</table>
+
+<h2>What We've Seen Before</h2>
+<p>We've onboarded similar feeds from healthcare and fintech stacks including:</p>
+<div style="margin:12px 0">
+  <span class="stack-pill">Aprima</span>
+  <span class="stack-pill">eMDs</span>
+  <span class="stack-pill">athenahealth</span>
+  <span class="stack-pill">NextGen</span>
+  <span class="stack-pill">NetSuite</span>
+  <span class="stack-pill">Microsoft Dynamics</span>
+  <span class="stack-pill">SAP S/4HANA</span>
+  <span class="stack-pill">Stripe Billing</span>
+  <span class="stack-pill">Salesforce Financial Services</span>
+  <span class="stack-pill">QuickBooks Enterprise</span>
+</div>
+<p>SAP integrations, when they exist, use the same SFTP pattern. SAP is not a prerequisite on the CGM side. Aprima's native scheduled-report feature is sufficient.</p>
+
+<h2>Questions?</h2>
+<p>Direct to Jonathan Banner: <a href="mailto:j@agentcollect.com" style="color:var(--purple);text-decoration:none;font-weight:600">j@agentcollect.com</a>. Happy to hop on a 15-minute call with CGM IT this week to walk through the SFTP endpoint provisioning together.</p>
+
+<div class="footer-note">
+  Respaid Inc. (d/b/a AgentCollect) · YC S23 · j@agentcollect.com · Confidential — For CGM Patient AR onboarding only.
+</div>
+
+</div>
+</body>
+</html>

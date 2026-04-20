@@ -25,6 +25,10 @@
       "destination": "/cgm-loi.html"
     },
     {
+      "source": "/cgm-sftp-guide",
+      "destination": "/cgm-sftp-guide.html"
+    },
+    {
       "source": "/uber-freight",
       "destination": "/audit-uber-freight.html"
     },
