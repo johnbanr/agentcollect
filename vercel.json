@@ -34,7 +34,19 @@
     },
     {
       "source": "/uber-bpo",
-      "destination": "/audit-uber-baxter-bailey.html"
+      "destination": "/audit-uber-aga.html"
+    },
+    {
+      "source": "/uber-aga",
+      "destination": "/audit-uber-aga.html"
+    },
+    {
+      "source": "/uber-ag-adjustments",
+      "destination": "/audit-uber-aga.html"
+    },
+    {
+      "source": "/uber",
+      "destination": "/audit-uber-aga.html"
     },
     {
       "source": "/github",
