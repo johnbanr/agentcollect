@@ -33,6 +33,10 @@
       "destination": "/audit-uber-baxter-bailey.html"
     },
     {
+      "source": "/uber-bpo",
+      "destination": "/audit-uber-baxter-bailey.html"
+    },
+    {
       "source": "/github",
       "destination": "/audit-github.html"
     },
