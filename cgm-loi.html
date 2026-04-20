@@ -56,10 +56,18 @@ ul li{margin-bottom:6px}
 @media print{
   body{background:#fff}
   .page{box-shadow:none;max-width:100%;padding:0}
+  .no-print{display:none !important}
 }
+.pdf-btn{position:fixed;top:20px;right:20px;z-index:100;background:var(--text);color:#fff;border:none;padding:10px 18px;border-radius:100px;font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.02em;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.15);display:inline-flex;align-items:center;gap:8px;transition:transform .15s}
+.pdf-btn:hover{transform:translateY(-1px);background:var(--purple)}
+.pdf-btn svg{width:14px;height:14px;stroke:#fff;stroke-width:2;fill:none}
 </style>
 </head>
 <body>
+<button class="pdf-btn no-print" onclick="window.print()" title="Download as PDF">
+  <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+  Download PDF
+</button>
 <div class="page">
 
 <div class="header">
@@ -125,19 +133,27 @@ ul li{margin-bottom:6px}
 <h2>Billing &amp; Payment</h2>
 <ul>
   <li><strong>Setup fee:</strong> $47,893 invoiced at LOI signature; payable within 7 days via Stripe link or wire transfer.</li>
-  <li><strong>License fee:</strong> $227,364 invoiced at SFTP go-live; Net 30 payment terms, annual prepay.</li>
-  <li><strong>Term:</strong> 12 months, starting the SFTP go-live date (targeted Friday, April 24, 2026).</li>
+  <li><strong>License fee:</strong> $227,364 invoiced at go-live; Net 30 payment terms, annual prepay.</li>
+  <li><strong>Term:</strong> 12 months, starting the go-live date (targeted Friday, April 24, 2026).</li>
 </ul>
 
+<h2>Automated Case Routing (Core Commitment)</h2>
+<p>CGM sets up, by <strong>Friday, April 24, 2026</strong>, an automated routing rule that hands off to AgentCollect every patient AR invoice that meets both conditions:</p>
+<ul>
+  <li>Balance below <strong>$20,000</strong>.</li>
+  <li>Aged <strong>90+ days past due</strong>.</li>
+</ul>
+<p>Handoff runs daily (SFTP, API, or agreed equivalent). AgentCollect returns status, payments, and dispositions on the same channel. This auto-routing rule is the operational backbone of the engagement.</p>
+
 <div class="highlight">
-  <strong>Setup fee discount — lock-in condition.</strong> CGM provides SFTP credentials and Aprima API access by <strong>Wednesday, April 22, 2026</strong>. AgentCollect delivers end-to-end SFTP automation and agent go-live by <strong>Friday, April 24, 2026</strong>. If this window is missed for reasons attributable to CGM, setup reverts to list ($76,893) and monthly reverts to $24,847/month under Manual mode until SFTP live.
+  <strong>Setup fee discount — lock-in condition.</strong> Auto-routing live by <strong>Friday, April 24, 2026</strong>. Setup stays at <strong>$47,893</strong> and monthly at <strong>$18,947/mo</strong>. If auto-routing is not live by that date for reasons attributable to CGM, setup reverts to $76,893 and monthly reverts to $24,847/month under Manual mode until live.
 </div>
 
 <h2>Day-90 Master Conversion (Optional)</h2>
 <p>At day 90 of the engagement, CGM has the option to convert to Master Auto mode on Virtuox and expand to the remaining two divisions (Oncotools, Vitalogy) under a separate SOW:</p>
 <ul>
   <li>Master Auto: <strong>$9,683 / division / month</strong> (replaces $18,947 Virtuox pilot rate).</li>
-  <li>Master Manual: $22,847 / division / month (if SFTP is not live).</li>
+  <li>Master Manual: $22,847 / division / month (if auto-routing is not live).</li>
   <li>Expansion divisions billed under their own SOWs, same Master pricing.</li>
 </ul>
 
