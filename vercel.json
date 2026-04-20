@@ -21,6 +21,10 @@
       "destination": "/cgm-virtuox.html"
     },
     {
+      "source": "/cgm-loi",
+      "destination": "/cgm-loi.html"
+    },
+    {
       "source": "/uber-freight",
       "destination": "/audit-uber-freight.html"
     },
