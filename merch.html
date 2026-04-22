@@ -8,7 +8,7 @@
     <title>Merch — AgentCollect</title>
     <meta name="description" content="20 AgentCollect merch packs for CFOs, VPs of Finance, and Heads of AR. Free — if you have $1M+ in unpaid invoices.">
     <meta property="og:title" content="20 AgentCollect merch packs for finance leaders">
-    <meta property="og:description" content="Cap, hoodie, tote, bottle, notebook, stickers. Free for CFOs / VPs Finance with $1M+ unpaid AR.">
+    <meta property="og:description" content="Leather tote, varsity jacket, cap, bottle, mug, laptop sleeve, notebook, stickers. Free for CFOs / VPs Finance with $1M+ unpaid AR.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.agentcollect.com/merch">
     <meta property="og:image" content="https://www.agentcollect.com/og.png?v=4">
@@ -187,8 +187,8 @@
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label for="hoodieSize">Hoodie size<span class="req">*</span></label>
-                    <select id="hoodieSize" name="hoodieSize" required>
+                    <label for="jacketSize">Jacket size<span class="req">*</span></label>
+                    <select id="jacketSize" name="jacketSize" required>
                         <option value="">Select…</option>
                         <option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
                     </select>
@@ -266,12 +266,12 @@ document.getElementById('merchForm').addEventListener('submit', async function(e
         company: this.company.value,
         title: this.title.value,
         unpaid_ar: unpaidAr,
-        hoodieSize: this.hoodieSize.value,
+        jacketSize: this.jacketSize.value,
         capSize: this.capSize.value,
         address: this.address.value,
         note: this.note.value,
         qualified: isQualified,
-        message: `🎒 MERCH REQUEST\n• Name: ${this.name.value}\n• Title: ${this.title.value} @ ${this.company.value}\n• Email: ${this.email.value}\n• Unpaid AR: ${unpaidAr} ${isQualified ? '✅ QUALIFIED' : '⚠️ waitlist'}\n• Hoodie: ${this.hoodieSize.value} | Cap: ${this.capSize.value}\n• Ship to: ${this.address.value}\n• Note: ${this.note.value}`,
+        message: `🎒 MERCH REQUEST\n• Name: ${this.name.value}\n• Title: ${this.title.value} @ ${this.company.value}\n• Email: ${this.email.value}\n• Unpaid AR: ${unpaidAr} ${isQualified ? '✅ QUALIFIED' : '⚠️ waitlist'}\n• Jacket: ${this.jacketSize.value} | Cap: ${this.capSize.value}\n• Ship to: ${this.address.value}\n• Note: ${this.note.value}`,
         action: 'merch_request',
         source: 'agentcollect-merch'
     };
