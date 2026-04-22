@@ -6,9 +6,9 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.agentcollect.com/merch">
     <title>Merch — AgentCollect</title>
-    <meta name="description" content="50 AgentCollect merch packs for CFOs, VPs of Finance, and Heads of AR at $10M+ companies. Free. Apply here.">
-    <meta property="og:title" content="50 AgentCollect merch packs for finance leaders">
-    <meta property="og:description" content="Cap, hoodie, tote, bottle, stickers. Free for CFOs, VPs Finance, Heads of AR at $10M+ companies.">
+    <meta name="description" content="20 AgentCollect merch packs for CFOs, VPs of Finance, and Heads of AR. Free — if you have $1M+ in unpaid invoices.">
+    <meta property="og:title" content="20 AgentCollect merch packs for finance leaders">
+    <meta property="og:description" content="Cap, hoodie, tote, bottle, notebook, stickers. Free for CFOs / VPs Finance with $1M+ unpaid AR.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.agentcollect.com/merch">
     <meta property="og:image" content="https://www.agentcollect.com/og.png?v=4">
@@ -21,8 +21,8 @@
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         :root{
-            --bg:#FAFBFF;--bg-card:#fff;--bg-dark:#0B1B3D;
-            --border:#E8ECF2;--border-hover:rgba(79,70,229,.25);
+            --bg:#FAFBFF;--bg-card:#fff;
+            --border:#E8ECF2;
             --text:#0B1B3D;--text-mid:#475569;--text-muted:#94A3B8;
             --indigo:#4F46E5;--indigo-dark:#4338CA;--indigo-light:rgba(79,70,229,.06);
             --green:#10B981;--red:#EF4444;
@@ -45,25 +45,31 @@
         .nav-cta{padding:9px 20px;background:var(--indigo);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;transition:all .2s}
         .nav-cta:hover{background:var(--indigo-dark)}
 
-        .hero{padding:140px 32px 40px;max-width:760px;margin:0 auto;text-align:center}
+        .hero{padding:100px 32px 20px;max-width:1040px;margin:0 auto;text-align:center}
         .hero-eyebrow{display:inline-block;padding:6px 14px;background:var(--indigo-light);color:var(--indigo);border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:20px}
         .hero h1{font-size:clamp(36px,5vw,56px);font-weight:900;letter-spacing:-.04em;line-height:1.05;margin-bottom:20px}
         .hero h1 em{font-style:normal;color:var(--indigo)}
-        .hero-sub{font-size:18px;color:var(--text-mid);line-height:1.6;max-width:560px;margin:0 auto 16px}
+        .hero-sub{font-size:18px;color:var(--text-mid);line-height:1.6;max-width:620px;margin:0 auto 16px}
         .hero-meta{font-size:14px;color:var(--text-muted);margin-top:8px}
+        .hero-img{margin:32px auto 0;max-width:1000px;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(11,27,61,.15);position:relative}
+        .hero-img img{display:block;width:100%;height:auto}
+        .hero-img-overlay{position:absolute;bottom:20px;left:20px;background:rgba(11,27,61,.85);backdrop-filter:blur(10px);color:#fff;padding:10px 16px;border-radius:10px;font-size:12px;font-weight:600;letter-spacing:.02em}
 
-        .pack{max-width:760px;margin:32px auto 40px;padding:0 32px}
-        .pack-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-        .pack-item{padding:16px;background:var(--indigo-light);border:1px solid rgba(79,70,229,.1);border-radius:12px;text-align:center;font-size:13px;font-weight:600;color:var(--text)}
-        .pack-item span{display:block;font-size:20px;margin-bottom:4px}
+        .pack{max-width:760px;margin:48px auto 40px;padding:0 32px}
+        .pack-title{text-align:center;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:20px}
+        .pack-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+        .pack-item{padding:14px 10px;background:#fff;border:1px solid var(--border);border-radius:10px;text-align:center;font-size:12px;font-weight:600;color:var(--text-mid);transition:all .2s}
+        .pack-item:hover{border-color:var(--indigo);color:var(--text)}
+        .pack-item span{display:block;font-size:18px;margin-bottom:4px}
 
         .section{max-width:640px;margin:0 auto;padding:0 32px 80px}
         .form-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:32px;box-shadow:0 4px 12px rgba(0,0,0,.04)}
         .form-card h2{font-size:22px;font-weight:800;margin-bottom:6px}
-        .form-card>p{font-size:14px;color:var(--text-muted);margin-bottom:24px}
+        .form-card>p.intro{font-size:14px;color:var(--text-muted);margin-bottom:24px}
         .form-group{margin-bottom:16px}
         .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
         .form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--text)}
+        .form-group label .req{color:var(--red);margin-left:2px}
         .form-group input,.form-group select,.form-group textarea{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:8px;font-family:var(--sans);font-size:14px;color:var(--text);outline:none;transition:border-color .2s;background:#fff}
         .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--indigo)}
         .form-group textarea{resize:vertical;min-height:80px}
@@ -73,6 +79,14 @@
         .form-submit:disabled{opacity:.6;cursor:not-allowed}
         .form-status{margin-top:16px;padding:12px 16px;border-radius:8px;font-size:14px;font-weight:500;display:none}
         .fine-print{font-size:12px;color:var(--text-muted);margin-top:16px;text-align:center;line-height:1.5}
+        .honeypot{position:absolute;left:-9999px;opacity:0;pointer-events:none}
+
+        .success-wrap{display:none;padding:32px;text-align:center}
+        .success-wrap.qualified h2{color:var(--green)}
+        .success-wrap h2{font-size:24px;font-weight:800;margin-bottom:8px}
+        .success-wrap p{font-size:15px;color:var(--text-mid);line-height:1.5;margin-bottom:20px}
+        .cal-embed{margin-top:24px;border:1px solid var(--border);border-radius:12px;overflow:hidden;min-height:620px}
+        .cal-embed iframe{width:100%;border:0;display:block;min-height:620px}
 
         footer{background:#fff;border-top:1px solid var(--border);padding:32px;text-align:center;margin-top:40px}
         .footer-copy{font-size:12px;color:var(--text-muted)}
@@ -82,6 +96,8 @@
             .nav-links{display:none}
             .pack-grid{grid-template-columns:repeat(2,1fr)}
             .form-row{grid-template-columns:1fr}
+            .hero{padding:90px 20px 10px}
+            .hero-img{margin-top:24px;border-radius:14px}
         }
     </style>
 </head>
@@ -101,41 +117,47 @@
 </nav>
 
 <section class="hero">
-    <div class="hero-eyebrow">50 packs · First come, first filtered</div>
+    <div class="hero-eyebrow">20 packs · $1M+ unpaid AR required</div>
     <h1>Free merch for <em>finance leaders</em></h1>
-    <p class="hero-sub">Cap, hoodie, tote, water bottle, stickers. The full kit. Shipped free anywhere in the US — but only if you're a CFO, VP Finance, or Head of AR at a company doing $10M+ in revenue.</p>
-    <p class="hero-meta">No demo required. No sales call. Just post one photo and tag us.</p>
+    <p class="hero-sub">Already sent to 3 CFOs. Sending 20 more. Premium leather tote, varsity jacket, cap, bottle, mug, notebook, laptop sleeve, stickers — free shipping anywhere in the US.</p>
+    <p class="hero-meta">No demo. No sales call. Just post one photo when it arrives.</p>
+    <div class="hero-img">
+        <img src="/merch-assets/pack-hero.png" alt="AgentCollect premium merch pack — leather tote, varsity jacket, cap, bottle, mug, laptop sleeve, notebook, stickers" loading="eager">
+    </div>
 </section>
 
 <section class="pack">
+    <div class="pack-title">What's in the pack</div>
     <div class="pack-grid">
+        <div class="pack-item"><span>🎒</span>Leather tote</div>
+        <div class="pack-item"><span>🧥</span>Varsity jacket</div>
         <div class="pack-item"><span>🧢</span>Embroidered cap</div>
-        <div class="pack-item"><span>👕</span>Premium hoodie</div>
-        <div class="pack-item"><span>🎒</span>Tote bag</div>
         <div class="pack-item"><span>🍶</span>Water bottle</div>
+        <div class="pack-item"><span>☕</span>Ceramic mug</div>
+        <div class="pack-item"><span>💻</span>Laptop sleeve</div>
         <div class="pack-item"><span>📓</span>Notebook + pen</div>
         <div class="pack-item"><span>🔖</span>Sticker set</div>
     </div>
 </section>
 
 <section class="section">
-    <div class="form-card">
+    <div class="form-card" id="formCard">
         <h2>Apply for a pack</h2>
-        <p>Takes 60 seconds. We reply within 48 hours if you're in.</p>
+        <p class="intro">Takes 60 seconds. We reply within 48 hours. All fields required.</p>
         <form id="merchForm">
             <div class="form-row">
                 <div class="form-group">
-                    <label for="name">Full name</label>
+                    <label for="name">Full name<span class="req">*</span></label>
                     <input type="text" id="name" name="name" required autocomplete="name">
                 </div>
                 <div class="form-group">
-                    <label for="email">Work email</label>
+                    <label for="email">Work email<span class="req">*</span></label>
                     <input type="email" id="email" name="email" required autocomplete="email">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label for="title">Your role</label>
+                    <label for="title">Your role<span class="req">*</span></label>
                     <select id="title" name="title" required>
                         <option value="">Select…</option>
                         <option>CFO</option>
@@ -147,32 +169,32 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="company">Company</label>
+                    <label for="company">Company<span class="req">*</span></label>
                     <input type="text" id="company" name="company" required autocomplete="organization">
                 </div>
             </div>
             <div class="form-group">
-                <label for="revenue">Company revenue</label>
-                <select id="revenue" name="revenue" required>
+                <label for="unpaid_ar">Unpaid invoices on your books right now<span class="req">*</span></label>
+                <select id="unpaid_ar" name="unpaid_ar" required>
                     <option value="">Select…</option>
-                    <option>$10M – $50M</option>
-                    <option>$50M – $200M</option>
-                    <option>$200M – $1B</option>
-                    <option>$1B+</option>
-                    <option>Under $10M (waitlist)</option>
+                    <option value="under_1m">Under $1M</option>
+                    <option value="1m_5m">$1M – $5M</option>
+                    <option value="5m_20m">$5M – $20M</option>
+                    <option value="20m_100m">$20M – $100M</option>
+                    <option value="100m_plus">$100M+</option>
                 </select>
-                <p class="form-hint">We prioritize $10M+ companies. Smaller? You'll go on the waitlist.</p>
+                <p class="form-hint">The $1M+ threshold is our only filter. Under $1M goes to waitlist.</p>
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label for="hoodieSize">Hoodie size</label>
+                    <label for="hoodieSize">Hoodie size<span class="req">*</span></label>
                     <select id="hoodieSize" name="hoodieSize" required>
                         <option value="">Select…</option>
                         <option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="capSize">Cap</label>
+                    <label for="capSize">Cap<span class="req">*</span></label>
                     <select id="capSize" name="capSize" required>
                         <option value="">Select…</option>
                         <option>One size (adjustable)</option>
@@ -180,17 +202,36 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="address">Shipping address (US only)</label>
+                <label for="address">Shipping address (US only)<span class="req">*</span></label>
                 <textarea id="address" name="address" required placeholder="Street, City, State, ZIP"></textarea>
             </div>
             <div class="form-group">
-                <label for="note">Anything we should know? (optional)</label>
-                <textarea id="note" name="note" placeholder="e.g. how much AR you have stuck, what tools you use today, or just say hi"></textarea>
+                <label for="note">Anything we should know?<span class="req">*</span></label>
+                <textarea id="note" name="note" required placeholder="What tools do you use today? What's stuck? One sentence is fine."></textarea>
+            </div>
+            <div class="honeypot">
+                <label for="website">Website</label>
+                <input type="text" id="website" name="website" autocomplete="off" tabindex="-1">
             </div>
             <button type="submit" class="form-submit" id="submitBtn">Send my pack 🚀</button>
             <div class="form-status" id="formStatus"></div>
-            <p class="fine-print">By submitting, you agree to receive one shipping confirmation email and (optionally) a friendly follow-up. No spam. Unsubscribe anytime.</p>
+            <p class="fine-print">One shipping email and (optional) a friendly follow-up. No spam. We verify before shipping.</p>
         </form>
+    </div>
+
+    <div class="success-wrap" id="successQualified">
+        <h2>You're in 🎉</h2>
+        <p>We'll verify the details and ship within 5 business days. In the meantime — you have $1M+ stuck. Let's talk.</p>
+        <p><strong>Book 15 min with John (founder/CEO). No slides, no pitch, just a straight conversation about what's stuck and how we'd unstick it.</strong></p>
+        <div class="cal-embed">
+            <iframe src="https://cal.com/johnb/h?embed=true&theme=light" loading="lazy" title="Book a call with John"></iframe>
+        </div>
+    </div>
+
+    <div class="success-wrap" id="successWaitlist">
+        <h2>You're on the waitlist</h2>
+        <p>Packs this round are reserved for finance leaders with $1M+ in unpaid invoices. We'll reach out if capacity opens up — or sooner, if the right opportunity fits.</p>
+        <p>In the meantime, feel free to <a href="/contact" style="color:var(--indigo);font-weight:600">say hi</a>.</p>
     </div>
 </section>
 
@@ -201,26 +242,36 @@
 <script>
 window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>10)});
 
+const QUALIFIED = ['1m_5m','5m_20m','20m_100m','100m_plus'];
+
 document.getElementById('merchForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const btn = document.getElementById('submitBtn');
     const status = document.getElementById('formStatus');
     if (btn.disabled) return;
+
+    // Honeypot
+    if (this.website.value) { return; }
+
     btn.disabled = true;
     btn.textContent = 'Sending…';
     status.style.display = 'none';
+
+    const unpaidAr = this.unpaid_ar.value;
+    const isQualified = QUALIFIED.includes(unpaidAr);
 
     const payload = {
         name: this.name.value,
         email: this.email.value,
         company: this.company.value,
         title: this.title.value,
-        revenue: this.revenue.value,
+        unpaid_ar: unpaidAr,
         hoodieSize: this.hoodieSize.value,
         capSize: this.capSize.value,
         address: this.address.value,
         note: this.note.value,
-        message: `Merch request — ${this.title.value} at ${this.company.value} (${this.revenue.value}). Hoodie: ${this.hoodieSize.value}. Address: ${this.address.value}. Note: ${this.note.value || 'none'}`,
+        qualified: isQualified,
+        message: `🎒 MERCH REQUEST\n• Name: ${this.name.value}\n• Title: ${this.title.value} @ ${this.company.value}\n• Email: ${this.email.value}\n• Unpaid AR: ${unpaidAr} ${isQualified ? '✅ QUALIFIED' : '⚠️ waitlist'}\n• Hoodie: ${this.hoodieSize.value} | Cap: ${this.capSize.value}\n• Ship to: ${this.address.value}\n• Note: ${this.note.value}`,
         action: 'merch_request',
         source: 'agentcollect-merch'
     };
@@ -231,13 +282,15 @@ document.getElementById('merchForm').addEventListener('submit', async function(e
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
         });
-        status.style.background = 'rgba(16,185,129,.08)';
-        status.style.color = 'var(--green)';
-        status.style.border = '1px solid rgba(16,185,129,.2)';
-        status.textContent = "You're on the list. We'll email you within 48 hours. 🙏";
-        status.style.display = 'block';
-        this.reset();
-        btn.textContent = 'Sent ✓';
+
+        document.getElementById('formCard').style.display = 'none';
+        if (isQualified) {
+            document.getElementById('successQualified').style.display = 'block';
+            document.getElementById('successQualified').classList.add('qualified');
+        } else {
+            document.getElementById('successWaitlist').style.display = 'block';
+        }
+        window.scrollTo({top: document.querySelector('.section').offsetTop - 80, behavior: 'smooth'});
     } catch (err) {
         status.style.background = 'rgba(239,68,68,.08)';
         status.style.color = 'var(--red)';
