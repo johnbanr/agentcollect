@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/merch",
+      "destination": "/merch.html"
+    },
+    {
       "source": "/demo-gemini",
       "destination": "/demo-gemini.html"
     },

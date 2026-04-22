@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.agentcollect.com/merch">
+    <title>Merch — AgentCollect</title>
+    <meta name="description" content="50 AgentCollect merch packs for CFOs, VPs of Finance, and Heads of AR at $10M+ companies. Free. Apply here.">
+    <meta property="og:title" content="50 AgentCollect merch packs for finance leaders">
+    <meta property="og:description" content="Cap, hoodie, tote, bottle, stickers. Free for CFOs, VPs Finance, Heads of AR at $10M+ companies.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.agentcollect.com/merch">
+    <meta property="og:image" content="https://www.agentcollect.com/og.png?v=4">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://www.agentcollect.com/og.png?v=4">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23433196'/%3E%3Ctext x='28' y='48' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='46' letter-spacing='-3'%3EA%3C/text%3E%3Ccircle cx='52' cy='16' r='6' fill='white' opacity='0.85'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --bg:#FAFBFF;--bg-card:#fff;--bg-dark:#0B1B3D;
+            --border:#E8ECF2;--border-hover:rgba(79,70,229,.25);
+            --text:#0B1B3D;--text-mid:#475569;--text-muted:#94A3B8;
+            --indigo:#4F46E5;--indigo-dark:#4338CA;--indigo-light:rgba(79,70,229,.06);
+            --green:#10B981;--red:#EF4444;
+            --sans:'Inter',-apple-system,sans-serif;--display:'Plus Jakarta Sans',sans-serif;
+            --max-w:1140px;
+        }
+        html{scroll-behavior:smooth}
+        body{font-family:var(--sans);background:#fff;color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+        h1,h2,h3,h4{font-family:var(--display)}
+        ::selection{background:rgba(79,70,229,.12)}
+
+        .nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+        .nav.scrolled{box-shadow:0 1px 8px rgba(0,0,0,.04)}
+        .nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 32px;display:flex;align-items:center;height:60px}
+        .logo{display:inline-flex;align-items:baseline;text-decoration:none;margin-right:auto;font-family:var(--display);font-size:18px;font-weight:900;letter-spacing:-.04em;color:var(--text)}
+        .dot-circle{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--indigo);margin-left:1px;vertical-align:super}
+        .nav-links{display:flex;gap:28px;margin-right:24px}
+        .nav-links a{color:var(--text-mid);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s;white-space:nowrap}
+        .nav-links a:hover{color:var(--text)}
+        .nav-cta{padding:9px 20px;background:var(--indigo);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;transition:all .2s}
+        .nav-cta:hover{background:var(--indigo-dark)}
+
+        .hero{padding:140px 32px 40px;max-width:760px;margin:0 auto;text-align:center}
+        .hero-eyebrow{display:inline-block;padding:6px 14px;background:var(--indigo-light);color:var(--indigo);border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:20px}
+        .hero h1{font-size:clamp(36px,5vw,56px);font-weight:900;letter-spacing:-.04em;line-height:1.05;margin-bottom:20px}
+        .hero h1 em{font-style:normal;color:var(--indigo)}
+        .hero-sub{font-size:18px;color:var(--text-mid);line-height:1.6;max-width:560px;margin:0 auto 16px}
+        .hero-meta{font-size:14px;color:var(--text-muted);margin-top:8px}
+
+        .pack{max-width:760px;margin:32px auto 40px;padding:0 32px}
+        .pack-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+        .pack-item{padding:16px;background:var(--indigo-light);border:1px solid rgba(79,70,229,.1);border-radius:12px;text-align:center;font-size:13px;font-weight:600;color:var(--text)}
+        .pack-item span{display:block;font-size:20px;margin-bottom:4px}
+
+        .section{max-width:640px;margin:0 auto;padding:0 32px 80px}
+        .form-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:32px;box-shadow:0 4px 12px rgba(0,0,0,.04)}
+        .form-card h2{font-size:22px;font-weight:800;margin-bottom:6px}
+        .form-card>p{font-size:14px;color:var(--text-muted);margin-bottom:24px}
+        .form-group{margin-bottom:16px}
+        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+        .form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--text)}
+        .form-group input,.form-group select,.form-group textarea{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:8px;font-family:var(--sans);font-size:14px;color:var(--text);outline:none;transition:border-color .2s;background:#fff}
+        .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--indigo)}
+        .form-group textarea{resize:vertical;min-height:80px}
+        .form-hint{font-size:12px;color:var(--text-muted);margin-top:4px}
+        .form-submit{padding:14px 28px;background:var(--indigo);color:#fff;border:none;border-radius:10px;font-family:var(--sans);font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;width:100%;margin-top:8px}
+        .form-submit:hover{background:var(--indigo-dark)}
+        .form-submit:disabled{opacity:.6;cursor:not-allowed}
+        .form-status{margin-top:16px;padding:12px 16px;border-radius:8px;font-size:14px;font-weight:500;display:none}
+        .fine-print{font-size:12px;color:var(--text-muted);margin-top:16px;text-align:center;line-height:1.5}
+
+        footer{background:#fff;border-top:1px solid var(--border);padding:32px;text-align:center;margin-top:40px}
+        .footer-copy{font-size:12px;color:var(--text-muted)}
+        .footer-copy a{color:var(--indigo);text-decoration:none}
+
+        @media(max-width:640px){
+            .nav-links{display:none}
+            .pack-grid{grid-template-columns:repeat(2,1fr)}
+            .form-row{grid-template-columns:1fr}
+        }
+    </style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+    <div class="nav-inner">
+        <a href="/" class="logo">AgentCollect<span class="dot-circle"></span></a>
+        <div class="nav-links">
+            <a href="/how-it-works">How it works</a>
+            <a href="/pricing">Pricing</a>
+            <a href="/customers">Customers</a>
+            <a href="/contact">Contact</a>
+        </div>
+        <a href="/contact" class="nav-cta">Book a demo</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-eyebrow">50 packs · First come, first filtered</div>
+    <h1>Free merch for <em>finance leaders</em></h1>
+    <p class="hero-sub">Cap, hoodie, tote, water bottle, stickers. The full kit. Shipped free anywhere in the US — but only if you're a CFO, VP Finance, or Head of AR at a company doing $10M+ in revenue.</p>
+    <p class="hero-meta">No demo required. No sales call. Just post one photo and tag us.</p>
+</section>
+
+<section class="pack">
+    <div class="pack-grid">
+        <div class="pack-item"><span>🧢</span>Embroidered cap</div>
+        <div class="pack-item"><span>👕</span>Premium hoodie</div>
+        <div class="pack-item"><span>🎒</span>Tote bag</div>
+        <div class="pack-item"><span>🍶</span>Water bottle</div>
+        <div class="pack-item"><span>📓</span>Notebook + pen</div>
+        <div class="pack-item"><span>🔖</span>Sticker set</div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="form-card">
+        <h2>Apply for a pack</h2>
+        <p>Takes 60 seconds. We reply within 48 hours if you're in.</p>
+        <form id="merchForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name">Full name</label>
+                    <input type="text" id="name" name="name" required autocomplete="name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Work email</label>
+                    <input type="email" id="email" name="email" required autocomplete="email">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="title">Your role</label>
+                    <select id="title" name="title" required>
+                        <option value="">Select…</option>
+                        <option>CFO</option>
+                        <option>VP Finance</option>
+                        <option>Head of AR / Collections</option>
+                        <option>Controller</option>
+                        <option>Finance Director</option>
+                        <option>Other finance role</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="company">Company</label>
+                    <input type="text" id="company" name="company" required autocomplete="organization">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="revenue">Company revenue</label>
+                <select id="revenue" name="revenue" required>
+                    <option value="">Select…</option>
+                    <option>$10M – $50M</option>
+                    <option>$50M – $200M</option>
+                    <option>$200M – $1B</option>
+                    <option>$1B+</option>
+                    <option>Under $10M (waitlist)</option>
+                </select>
+                <p class="form-hint">We prioritize $10M+ companies. Smaller? You'll go on the waitlist.</p>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="hoodieSize">Hoodie size</label>
+                    <select id="hoodieSize" name="hoodieSize" required>
+                        <option value="">Select…</option>
+                        <option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="capSize">Cap</label>
+                    <select id="capSize" name="capSize" required>
+                        <option value="">Select…</option>
+                        <option>One size (adjustable)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="address">Shipping address (US only)</label>
+                <textarea id="address" name="address" required placeholder="Street, City, State, ZIP"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="note">Anything we should know? (optional)</label>
+                <textarea id="note" name="note" placeholder="e.g. how much AR you have stuck, what tools you use today, or just say hi"></textarea>
+            </div>
+            <button type="submit" class="form-submit" id="submitBtn">Send my pack 🚀</button>
+            <div class="form-status" id="formStatus"></div>
+            <p class="fine-print">By submitting, you agree to receive one shipping confirmation email and (optionally) a friendly follow-up. No spam. Unsubscribe anytime.</p>
+        </form>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-copy">&copy; 2026 AgentCollect, Inc. San Francisco, CA · <a href="/">agentcollect.com</a></div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>10)});
+
+document.getElementById('merchForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    const status = document.getElementById('formStatus');
+    if (btn.disabled) return;
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    status.style.display = 'none';
+
+    const payload = {
+        name: this.name.value,
+        email: this.email.value,
+        company: this.company.value,
+        title: this.title.value,
+        revenue: this.revenue.value,
+        hoodieSize: this.hoodieSize.value,
+        capSize: this.capSize.value,
+        address: this.address.value,
+        note: this.note.value,
+        message: `Merch request — ${this.title.value} at ${this.company.value} (${this.revenue.value}). Hoodie: ${this.hoodieSize.value}. Address: ${this.address.value}. Note: ${this.note.value || 'none'}`,
+        action: 'merch_request',
+        source: 'agentcollect-merch'
+    };
+
+    try {
+        await fetch('https://backend.widr.app/api/demo/track', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+        status.style.background = 'rgba(16,185,129,.08)';
+        status.style.color = 'var(--green)';
+        status.style.border = '1px solid rgba(16,185,129,.2)';
+        status.textContent = "You're on the list. We'll email you within 48 hours. 🙏";
+        status.style.display = 'block';
+        this.reset();
+        btn.textContent = 'Sent ✓';
+    } catch (err) {
+        status.style.background = 'rgba(239,68,68,.08)';
+        status.style.color = 'var(--red)';
+        status.style.border = '1px solid rgba(239,68,68,.2)';
+        status.textContent = 'Something went wrong — please email j@agentcollect.com directly.';
+        status.style.display = 'block';
+        btn.textContent = 'Try again';
+        btn.disabled = false;
+    }
+});
+</script>
+</body>
+</html>
