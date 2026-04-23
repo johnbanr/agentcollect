@@ -89,6 +89,40 @@
         .reading-progress{position:fixed;top:64px;left:0;right:0;height:3px;background:rgba(67,49,150,.07);z-index:999;pointer-events:none}
         .reading-progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--purple),var(--indigo));transition:width .08s linear;box-shadow:0 0 8px rgba(79,70,229,.3)}
 
+        /* Section indicator (desktop + mobile) */
+        .scroll-indicator{position:fixed;right:24px;top:50%;transform:translateY(-50%) translateX(20px);z-index:940;width:210px;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:18px;padding:18px;box-shadow:0 10px 30px rgba(11,27,61,.08);opacity:0;transition:opacity .3s ease, transform .3s ease;pointer-events:none}
+        .scroll-indicator.visible{opacity:1;transform:translateY(-50%) translateX(0);pointer-events:auto}
+        .scroll-indicator-bar{height:4px;background:#F1EDF9;border-radius:100px;overflow:hidden;margin-bottom:14px}
+        .scroll-indicator-fill{height:100%;width:0;background:linear-gradient(90deg,var(--purple),var(--indigo));border-radius:100px;transition:width .1s linear}
+        .scroll-indicator-dots{display:flex;justify-content:center;gap:6px;margin-bottom:14px}
+        .scroll-indicator-dot{width:7px;height:7px;border-radius:50%;background:#E8ECF2;transition:all .3s ease}
+        .scroll-indicator-dot.done{background:rgba(67,49,150,.4)}
+        .scroll-indicator-dot.active{background:var(--purple);transform:scale(1.35);box-shadow:0 0 0 3px rgba(67,49,150,.12)}
+        .scroll-indicator-section{font-family:var(--display);min-height:44px}
+        .scroll-indicator-cat{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--purple);margin-bottom:3px}
+        .scroll-indicator-title{font-size:13px;color:var(--text-mid);line-height:1.35;font-weight:500;font-family:var(--sans)}
+        .scroll-indicator-top{margin-top:12px;padding-top:12px;border-top:1px solid var(--border);width:100%;display:flex;align-items:center;justify-content:center;gap:6px;background:none;border-left:none;border-right:none;border-bottom:none;cursor:pointer;font-family:var(--sans);font-size:11px;color:var(--text-dim);transition:color .2s;padding-bottom:0}
+        .scroll-indicator-top:hover{color:var(--purple)}
+        .scroll-indicator-top svg{width:10px;height:10px}
+
+        /* Mobile bottom bar */
+        .scroll-indicator-mobile{position:fixed;left:0;right:0;bottom:0;z-index:940;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--border);opacity:0;transform:translateY(100%);transition:opacity .3s ease, transform .3s ease;display:none}
+        .scroll-indicator-mobile.visible{opacity:1;transform:translateY(0)}
+        .scroll-indicator-mobile-bar{height:3px;background:#F1EDF9}
+        .scroll-indicator-mobile-fill{height:100%;width:0;background:linear-gradient(90deg,var(--purple),var(--indigo));transition:width .1s linear}
+        .scroll-indicator-mobile-inner{display:flex;align-items:center;gap:12px;padding:10px 16px;max-width:720px;margin:0 auto}
+        .scroll-indicator-mobile-dots{display:flex;gap:4px;flex-shrink:0}
+        .scroll-indicator-mobile-dot{width:6px;height:6px;border-radius:50%;background:#E8ECF2;transition:all .3s}
+        .scroll-indicator-mobile-dot.done{background:rgba(67,49,150,.35)}
+        .scroll-indicator-mobile-dot.active{background:var(--purple);transform:scale(1.2)}
+        .scroll-indicator-mobile-text{flex:1;min-width:0}
+        .scroll-indicator-mobile-cat{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--purple);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .scroll-indicator-mobile-title{font-size:12px;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+        .scroll-indicator-mobile-top{width:36px;height:36px;border-radius:50%;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;flex-shrink:0}
+        .scroll-indicator-mobile-top svg{width:16px;height:16px}
+
+        @media(max-width:1280px){.scroll-indicator{display:none}.scroll-indicator-mobile{display:block}}
+
         .nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(246,243,239,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
         .nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 32px;display:flex;align-items:center;height:64px}
         .logo{display:inline-flex;align-items:baseline;text-decoration:none;margin-right:auto;font-family:var(--display);font-size:18px;font-weight:900;letter-spacing:-.04em;color:var(--text)}
@@ -199,6 +233,35 @@
 <!-- Reading progress bar -->
 <div class="reading-progress" aria-hidden="true">
     <div class="reading-progress-bar"></div>
+</div>
+
+<!-- Desktop scroll indicator -->
+<aside class="scroll-indicator" id="scrollIndicator" aria-hidden="true">
+    <div class="scroll-indicator-bar"><div class="scroll-indicator-fill" id="siBar"></div></div>
+    <div class="scroll-indicator-dots" id="siDots"></div>
+    <div class="scroll-indicator-section">
+        <div class="scroll-indicator-cat" id="siCat">&nbsp;</div>
+        <div class="scroll-indicator-title" id="siTitle">&nbsp;</div>
+    </div>
+    <button class="scroll-indicator-top" id="siTop" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
+        Back to top
+    </button>
+</aside>
+
+<!-- Mobile scroll indicator -->
+<div class="scroll-indicator-mobile" id="scrollIndicatorMobile" aria-hidden="true">
+    <div class="scroll-indicator-mobile-bar"><div class="scroll-indicator-mobile-fill" id="siMobBar"></div></div>
+    <div class="scroll-indicator-mobile-inner">
+        <div class="scroll-indicator-mobile-dots" id="siMobDots"></div>
+        <div class="scroll-indicator-mobile-text">
+            <div class="scroll-indicator-mobile-cat" id="siMobCat">&nbsp;</div>
+            <div class="scroll-indicator-mobile-title" id="siMobTitle">&nbsp;</div>
+        </div>
+        <button class="scroll-indicator-mobile-top" id="siMobTop" aria-label="Back to top">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+        </button>
+    </div>
 </div>
 
 <nav class="nav">
@@ -545,16 +608,90 @@
 
 <script>
 (function(){
-    var bar = document.querySelector('.reading-progress-bar');
+    // Top thin progress bar
+    var topBar = document.querySelector('.reading-progress-bar');
     var article = document.querySelector('.article-body');
-    if (!bar || !article) return;
+
+    // Section indicator
+    var sections = [
+        { id: 'what-milken-believed', title: 'What Milken Actually Believed', category: 'The Argument' },
+        { id: '1958-1973', title: '1958–1973: The Paper Trail', category: 'The Argument' },
+        { id: 'continuity', title: 'An Idea That Kept Its Shape', category: 'The Argument' },
+        { id: 'prosperity-formula', title: 'The Prosperity Formula', category: 'The Roots' },
+        { id: 'watts', title: 'Watts, 1965: Where the Idea Was Born', category: 'The Roots' },
+        { id: 'same-mistake', title: 'The Same Mistake, 55 Years Later', category: 'Today' },
+        { id: 'continuity-not-anniversary', title: 'Milken 2026: Continuity, Not Anniversary', category: 'Today' }
+    ];
+    var categories = [];
+    sections.forEach(function(s){ if (categories.indexOf(s.category) === -1) categories.push(s.category); });
+
+    // Build dots
+    var dotsHtml = categories.map(function(c,i){ return '<span class="scroll-indicator-dot" data-idx="'+i+'" title="'+c+'"></span>'; }).join('');
+    var dotsMobHtml = categories.map(function(c,i){ return '<span class="scroll-indicator-mobile-dot" data-idx="'+i+'"></span>'; }).join('');
+    var siDots = document.getElementById('siDots'); if (siDots) siDots.innerHTML = dotsHtml;
+    var siMobDots = document.getElementById('siMobDots'); if (siMobDots) siMobDots.innerHTML = dotsMobHtml;
+
+    var indicator = document.getElementById('scrollIndicator');
+    var indicatorMob = document.getElementById('scrollIndicatorMobile');
+    var siBar = document.getElementById('siBar');
+    var siMobBar = document.getElementById('siMobBar');
+    var siCat = document.getElementById('siCat');
+    var siTitle = document.getElementById('siTitle');
+    var siMobCat = document.getElementById('siMobCat');
+    var siMobTitle = document.getElementById('siMobTitle');
+    var siTop = document.getElementById('siTop');
+    var siMobTop = document.getElementById('siMobTop');
+
+    function scrollToTop(){ window.scrollTo({top:0, behavior:'smooth'}); }
+    if (siTop) siTop.addEventListener('click', scrollToTop);
+    if (siMobTop) siMobTop.addEventListener('click', scrollToTop);
+
     function update() {
-        var rect = article.getBoundingClientRect();
-        var total = Math.max(1, article.offsetHeight - window.innerHeight + 240);
-        var scrolled = Math.max(0, -rect.top);
-        var pct = Math.min(100, Math.max(0, (scrolled / total) * 100));
-        bar.style.width = pct + '%';
+        // Top progress bar
+        if (topBar && article) {
+            var rect = article.getBoundingClientRect();
+            var total = Math.max(1, article.offsetHeight - window.innerHeight + 240);
+            var scrolled = Math.max(0, -rect.top);
+            var pct = Math.min(100, Math.max(0, (scrolled / total) * 100));
+            topBar.style.width = pct + '%';
+            if (siBar) siBar.style.width = pct + '%';
+            if (siMobBar) siMobBar.style.width = pct + '%';
+        }
+
+        // Visibility toggle (show after 400px scroll)
+        var show = window.scrollY > 400;
+        if (indicator) indicator.classList.toggle('visible', show);
+        if (indicatorMob) indicatorMob.classList.toggle('visible', show);
+
+        // Current section
+        var current = null;
+        for (var i = 0; i < sections.length; i++) {
+            var el = document.getElementById(sections[i].id);
+            if (el) {
+                var r = el.getBoundingClientRect();
+                if (r.top <= 200) current = sections[i];
+            }
+        }
+        if (current) {
+            if (siCat) siCat.textContent = current.category;
+            if (siTitle) siTitle.textContent = current.title;
+            if (siMobCat) siMobCat.textContent = current.category;
+            if (siMobTitle) siMobTitle.textContent = current.title;
+
+            var curCatIdx = categories.indexOf(current.category);
+            ['siDots', 'siMobDots'].forEach(function(cid){
+                var container = document.getElementById(cid);
+                if (!container) return;
+                var dots = container.children;
+                for (var j = 0; j < dots.length; j++) {
+                    dots[j].classList.remove('active', 'done');
+                    if (j === curCatIdx) dots[j].classList.add('active');
+                    else if (j < curCatIdx) dots[j].classList.add('done');
+                }
+            });
+        }
     }
+
     window.addEventListener('scroll', update, {passive:true});
     window.addEventListener('resize', update, {passive:true});
     update();
