@@ -233,96 +233,58 @@
 </header>
 
 <div class="hero-visual" aria-hidden="false">
-<svg viewBox="0 0 1000 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Stylized rear-view mirror illustration with two horizons — past blur on one side, forward clarity on the other.">
+<svg viewBox="0 0 1000 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Typographic hero: the phrase financing in the rear-view mirror, in large serif italic, attributed to Michael Milken.">
     <defs>
         <linearGradient id="heroBg" x1="0" x2="1" y1="0" y2="1">
             <stop offset="0" stop-color="#2E2268"/>
-            <stop offset=".5" stop-color="#433196"/>
-            <stop offset="1" stop-color="#6D56D6"/>
-        </linearGradient>
-        <linearGradient id="past" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0" stop-color="#9A8EDB" stop-opacity=".35"/>
-            <stop offset="1" stop-color="#433196" stop-opacity=".1"/>
-        </linearGradient>
-        <linearGradient id="fwd" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0" stop-color="#FFF" stop-opacity="0"/>
-            <stop offset="1" stop-color="#FFF" stop-opacity=".16"/>
-        </linearGradient>
-        <filter id="soft" x="-10%" y="-10%" width="120%" height="120%">
-            <feGaussianBlur stdDeviation="6"/>
-        </filter>
-        <linearGradient id="mirrorStroke" x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0" stop-color="#FFF" stop-opacity=".9"/>
-            <stop offset="1" stop-color="#FFF" stop-opacity=".35"/>
+            <stop offset=".55" stop-color="#433196"/>
+            <stop offset="1" stop-color="#5B45C2"/>
         </linearGradient>
     </defs>
 
+    <!-- background -->
     <rect x="0" y="0" width="1000" height="480" fill="url(#heroBg)" rx="18"/>
 
-    <!-- grid pattern -->
-    <g stroke="#FFF" stroke-opacity=".06" stroke-width="1">
+    <!-- subtle grid -->
+    <g stroke="#FFF" stroke-opacity=".05" stroke-width="1">
         <line x1="0" y1="80" x2="1000" y2="80"/>
         <line x1="0" y1="160" x2="1000" y2="160"/>
         <line x1="0" y1="240" x2="1000" y2="240"/>
         <line x1="0" y1="320" x2="1000" y2="320"/>
         <line x1="0" y1="400" x2="1000" y2="400"/>
-        <line x1="100" y1="0" x2="100" y2="480"/>
-        <line x1="300" y1="0" x2="300" y2="480"/>
-        <line x1="500" y1="0" x2="500" y2="480"/>
-        <line x1="700" y1="0" x2="700" y2="480"/>
-        <line x1="900" y1="0" x2="900" y2="480"/>
     </g>
 
-    <!-- horizon line -->
-    <line x1="80" y1="300" x2="920" y2="300" stroke="#FFF" stroke-opacity=".3" stroke-width="1" stroke-dasharray="3,6"/>
+    <!-- top eyebrow -->
+    <text x="80" y="68" font-family="'Inter',sans-serif" font-size="12" font-weight="700" fill="#FFF" opacity=".55" letter-spacing=".24em">ESSAY · CAPITAL ALLOCATION</text>
 
-    <!-- rear-view mirror shape -->
-    <g transform="translate(280,110)">
-        <!-- mirror body -->
-        <rect x="0" y="0" width="440" height="180" rx="90" fill="#1A1248" stroke="url(#mirrorStroke)" stroke-width="3"/>
-        <!-- inside mirror: blurred past -->
-        <clipPath id="mirrorClip"><rect x="4" y="4" width="432" height="172" rx="86"/></clipPath>
-        <g clip-path="url(#mirrorClip)">
-            <rect x="0" y="0" width="440" height="180" fill="url(#past)"/>
-            <!-- blurred lines representing "history" -->
-            <g filter="url(#soft)" opacity=".7">
-                <rect x="50" y="40" width="120" height="6" rx="3" fill="#FFF" opacity=".4"/>
-                <rect x="80" y="60" width="90" height="6" rx="3" fill="#FFF" opacity=".3"/>
-                <rect x="40" y="90" width="160" height="6" rx="3" fill="#FFF" opacity=".35"/>
-                <rect x="60" y="110" width="100" height="6" rx="3" fill="#FFF" opacity=".25"/>
-                <rect x="240" y="50" width="100" height="6" rx="3" fill="#FFF" opacity=".3"/>
-                <rect x="260" y="75" width="140" height="6" rx="3" fill="#FFF" opacity=".35"/>
-                <rect x="240" y="105" width="120" height="6" rx="3" fill="#FFF" opacity=".25"/>
-            </g>
-            <!-- center label -->
-            <text x="220" y="100" text-anchor="middle" font-family="'Fraunces',serif" font-size="26" font-style="italic" fill="#FFF" opacity=".85">the past</text>
-        </g>
-        <!-- post -->
-        <rect x="210" y="-30" width="20" height="30" fill="#1A1248" stroke="url(#mirrorStroke)" stroke-width="2" rx="4"/>
+    <!-- hairline decorative rule -->
+    <line x1="80" y1="92" x2="180" y2="92" stroke="#FFF" stroke-opacity=".5" stroke-width="1"/>
+
+    <!-- opening quote mark -->
+    <text x="80" y="220" font-family="'Fraunces',serif" font-style="italic" font-size="180" fill="#FFF" opacity=".18" font-weight="400">&#8220;</text>
+
+    <!-- main quote -->
+    <g font-family="'Fraunces',serif" font-style="italic" fill="#FFF">
+        <text x="150" y="230" font-size="64" font-weight="500" letter-spacing="-.02em">financing</text>
+        <text x="150" y="300" font-size="64" font-weight="500" letter-spacing="-.02em">in the rear-view</text>
+        <text x="150" y="370" font-size="64" font-weight="500" letter-spacing="-.02em">mirror.</text>
     </g>
 
-    <!-- forward windshield view outside mirror -->
-    <g opacity=".95">
-        <text x="80" y="395" font-family="'Plus Jakarta Sans',sans-serif" font-size="15" font-weight="600" fill="#FFF" opacity=".85" letter-spacing=".12em">
-            <tspan>THE</tspan>
-            <tspan x="80" dy="20">ROAD AHEAD</tspan>
-        </text>
-        <!-- road vanishing -->
-        <path d="M 80 440 L 500 305 L 920 440 Z" fill="url(#fwd)" opacity=".5"/>
-        <line x1="500" y1="305" x2="500" y2="440" stroke="#FFF" stroke-opacity=".25" stroke-dasharray="6,8"/>
+    <!-- attribution -->
+    <g transform="translate(150,412)">
+        <line x1="0" y1="-2" x2="32" y2="-2" stroke="#FFF" stroke-opacity=".6" stroke-width="1.5"/>
+        <text x="44" y="4" font-family="'Inter',sans-serif" font-size="14" fill="#FFF" opacity=".8" letter-spacing=".06em" font-weight="500">Michael Milken, circa 1969</text>
     </g>
 
-    <!-- top-right quote -->
-    <g transform="translate(650,60)">
-        <text x="0" y="0" font-family="'Fraunces',serif" font-style="italic" font-size="18" fill="#FFF" opacity=".7">
-            <tspan x="0" dy="0">"financing in the</tspan>
-            <tspan x="0" dy="24">rear-view mirror"</tspan>
-        </text>
-        <text x="0" y="72" font-family="'Inter',sans-serif" font-size="12" fill="#FFF" opacity=".5" letter-spacing=".08em">— MICHAEL MILKEN</text>
+    <!-- top-right brand mark -->
+    <g transform="translate(880,60)">
+        <circle cx="0" cy="0" r="18" fill="#FFF" opacity=".12"/>
+        <text x="0" y="5" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="18" font-weight="900" fill="#FFF">A</text>
+        <circle cx="14" cy="-10" r="3" fill="#FFF" opacity=".9"/>
     </g>
 
-    <!-- bottom caption -->
-    <text x="80" y="60" font-family="'Inter',sans-serif" font-size="12" font-weight="600" fill="#FFF" opacity=".55" letter-spacing=".2em">ESSAY · AGENTCOLLECT</text>
+    <!-- bottom-right caption -->
+    <text x="920" y="445" text-anchor="end" font-family="'Inter',sans-serif" font-size="11" fill="#FFF" opacity=".45" letter-spacing=".14em">AGENTCOLLECT.COM / ESSAY</text>
 </svg>
 </div>
 
