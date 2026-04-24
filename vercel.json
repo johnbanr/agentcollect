@@ -81,6 +81,14 @@
       "destination": "/audit-tebra.html"
     },
     {
+      "source": "/virtuox",
+      "destination": "/audit-virtuox.html"
+    },
+    {
+      "source": "/audit/virtuox",
+      "destination": "/audit-virtuox.html"
+    },
+    {
       "source": "/salesforce",
       "destination": "/audit-salesforce.html"
     },
