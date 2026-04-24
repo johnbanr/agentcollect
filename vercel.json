@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/smart-notif-preview",
+      "destination": "/smart-notif-preview.html"
+    },
+    {
       "source": "/merch",
       "destination": "/merch.html"
     },
