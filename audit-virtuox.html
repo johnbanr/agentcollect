@@ -173,11 +173,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);-webkit-font
 </nav>
 
 <section class="hero">
-  <div class="hero-label rv">Live mystery shop · April 24, 2026</div>
-  <h1 class="hero-title rv rv-d1">We called Virtuox as patients this morning. <em>Two calls. Two hangups. Neither rep could find the patient.</em></h1>
-  <p class="hero-subtitle rv rv-d2">This is a quick patient-side audit. Audio, transcripts, and the public record below. Sent so you see what your patients experience before Monday.</p>
+  <div class="hero-label rv">Patient-side process audit &middot; April 24, 2026</div>
+  <h1 class="hero-title rv rv-d1">We called Virtuox's patient billing line this morning. <em>Ten minutes later, the rep admitted he was the only one working that department.</em></h1>
+  <p class="hero-subtitle rv rv-d2">A quick process &amp; capacity audit — same pattern your own patients are describing publicly on BBB. Audio, transcript, and public record below.</p>
   <div class="hero-meta rv rv-d3">
-    <strong>16 minutes total on the line</strong> &middot; Both calls to Virtuox patient services &middot; Both hung up by us
+    <strong>Methodology:</strong> two test calls to Virtuox public billing lines. We evaluated <em>call process, capacity, case tracking</em> — not CRM match. No real patient data was accessed.
   </div>
 </section>
 
@@ -186,7 +186,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);-webkit-font
      ============================================ -->
 <section class="section" id="call1">
   <div class="section-label rv">Call 1 &middot; 1-877-337-7111 &middot; 10:38 AM PT</div>
-  <h2 class="section-title rv rv-d1">Patient disputes a $275 surprise collections charge. <em>Ten minutes later, three admissions.</em></h2>
+  <h2 class="section-title rv rv-d1">A patient calls about a billing question. <em>Ten minutes later, two admissions about how the department is staffed.</em></h2>
 
   <div class="call-card red-top rv rv-d2">
     <div class="call-meta">
@@ -211,14 +211,12 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);-webkit-font
         <div class="progress-wrap" id="wrap1" onclick="seek(event,1)">
           <div class="progress-bar" id="bar1"></div>
           <div class="progress-markers">
-            <div class="progress-marker" style="left:11.2%" title="&quot;Only one Ron&quot; @ 9:42" onclick="event.stopPropagation();jumpTo(1,582)"></div>
-            <div class="progress-marker" style="left:13.6%" title="&quot;No reference number&quot; @ 9:55" onclick="event.stopPropagation();jumpTo(1,595)"></div>
-            <div class="progress-marker" style="left:67.5%" title="&quot;Multiple Sarah Miller&quot; @ 7:18" onclick="event.stopPropagation();jumpTo(1,438)"></div>
+            <div class="progress-marker" style="left:91.4%" title="&quot;Only one Ron&quot; @ 9:42" onclick="event.stopPropagation();jumpTo(1,582)"></div>
+            <div class="progress-marker" style="left:93.4%" title="&quot;No reference number&quot; @ 9:55" onclick="event.stopPropagation();jumpTo(1,595)"></div>
           </div>
         </div>
       </div>
       <div class="jump-markers">
-        <button class="jump-btn" onclick="jumpTo(1,438)"><span class="ts">7:18</span>&quot;Multiple Sarah Miller&quot;</button>
         <button class="jump-btn" onclick="jumpTo(1,582)"><span class="ts">9:42</span>&quot;Only one Ron&quot;</button>
         <button class="jump-btn" onclick="jumpTo(1,595)"><span class="ts">9:55</span>&quot;No reference number&quot;</button>
       </div>
@@ -237,66 +235,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);-webkit-font
       <div class="moment-attrib">— Ron @ 9:55 &middot; patients cannot follow up</div>
     </div>
 
-    <div class="moment">
-      <div class="moment-label">Admission 3 &middot; Data integrity</div>
-      <p class="moment-quote">"I have <em>multiple Sarah Miller</em> here. I just need to segregate the account accordingly."</p>
-      <div class="moment-attrib">— Ron @ 7:18 &middot; DOB mismatch, patient identity collisions in the CRM</div>
-    </div>
-
     <div class="call-note">
-      <strong>How the call ended:</strong> Ron asked the patient to call back in 15 minutes because "the computer is also taking time." He mispronounced the patient's name four times ("Sahar", "Sarmila", "Saha"). He offered no supervisor, no refund path, no case number. The patient hung up.
-    </div>
-  </div>
-</section>
-
-<!-- ============================================
-     CALL 2 — BILLING X4244 · 5:27 · Hospitalized
-     ============================================ -->
-<section class="section" id="call2" style="padding-top:16px">
-  <div class="section-label rv">Call 2 &middot; 1-877-599-7639 (billing) &middot; 10:39 AM PT</div>
-  <h2 class="section-title rv rv-d1">Post-surgery patient calls about a $250 surprise bill. <em>Same system. Same result.</em></h2>
-
-  <div class="call-card red-top rv rv-d2">
-    <div class="call-meta">
-      <span class="live-tag">LIVE RECORDING</span>
-      <span class="dot-sep">&middot;</span>
-      <span>Line: <strong style="color:var(--text)">Billing x4244</strong></span>
-      <span class="dot-sep">&middot;</span>
-      <span>Duration: <strong style="color:var(--text)">5:27</strong></span>
-      <span class="dot-sep">&middot;</span>
-      <span>Ended by: <strong style="color:var(--text)">patient hangup</strong></span>
-    </div>
-
-    <div class="player">
-      <div class="player-header">
-        <span class="player-label">Audio recording</span>
-        <span class="player-time"><span id="cur2">0:00</span> / <span id="tot2">5:27</span></span>
-      </div>
-      <div class="player-controls">
-        <button class="play-btn" id="btn2" onclick="togglePlay(2)" aria-label="Play">
-          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        </button>
-        <div class="progress-wrap" id="wrap2" onclick="seek(event,2)">
-          <div class="progress-bar" id="bar2"></div>
-          <div class="progress-markers">
-            <div class="progress-marker" style="left:78%" title="&quot;Not finding you in the system&quot; @ 4:14" onclick="event.stopPropagation();jumpTo(2,254)"></div>
-          </div>
-        </div>
-      </div>
-      <div class="jump-markers">
-        <button class="jump-btn" onclick="jumpTo(2,254)"><span class="ts">4:14</span>&quot;Not finding you in the system&quot;</button>
-      </div>
-      <audio id="audio2" preload="none" src="https://dxc03zgurdly9.cloudfront.net/10867f762a46866740cb02a7179468adb58a3ccb7a26404063efb08941580edf/recording.wav"></audio>
-    </div>
-
-    <div class="moment">
-      <div class="moment-label">After five minutes of search</div>
-      <p class="moment-quote">"I am <em>not finding you in the system.</em>"</p>
-      <div class="moment-attrib">— patient services rep, call 2 @ 4:14</div>
-    </div>
-
-    <div class="call-note">
-      <strong>Context:</strong> the patient gave full name (spelled twice), date of birth (May 14, 1980), street address (1205 Palm Bay Avenue, Tampa), and ZIP (33612). The rep could not locate the account. The patient hung up without resolution. Same morning, same platform, different patient, same outcome as call 1.
+      <strong>How the call ended:</strong> Ron asked the patient to call back in 15 minutes because "the computer is also taking time." He offered no supervisor, no callback appointment, no case number. The patient hung up. <em>The account-lookup friction on this call isn't meaningful on its own — we used a test identity — but Ron's own description of how the department operates is.</em>
     </div>
   </div>
 </section>
@@ -435,8 +375,6 @@ function setupPlayer(n){
 function togglePlay(n){
   const audio=document.getElementById('audio'+n);
   const btn=document.getElementById('btn'+n);
-  // Pause other players
-  for(let i=1;i<=2;i++){if(i!==n){const other=document.getElementById('audio'+i);const otherBtn=document.getElementById('btn'+i);if(other&&!other.paused){other.pause();otherBtn.classList.remove('playing');otherBtn.innerHTML='<svg viewBox=\"0 0 24 24\"><path d=\"M8 5v14l11-7z\"/></svg>'}}}
   if(audio.paused){audio.play();btn.classList.add('playing');btn.innerHTML='<svg viewBox=\"0 0 24 24\"><path d=\"M6 5h4v14H6zm8 0h4v14h-4z\"/></svg>'}
   else{audio.pause();btn.classList.remove('playing');btn.innerHTML='<svg viewBox=\"0 0 24 24\"><path d=\"M8 5v14l11-7z\"/></svg>'}
 }
@@ -457,7 +395,6 @@ function jumpTo(n,s){
 }
 
 setupPlayer(1);
-setupPlayer(2);
 </script>
 
 </body>
