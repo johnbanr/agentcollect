@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Fix-Notification Banner Preview — Respaid</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif;
+      background: #F3F4F6;
+      color: #111827;
+      margin: 0;
+      padding: 32px 20px;
+      line-height: 1.5;
+    }
+    .container { max-width: 820px; margin: 0 auto; }
+    h1 { font-size: 28px; margin: 0 0 8px; color: #0B1B3D; }
+    h2 { font-size: 18px; margin: 32px 0 12px; color: #374151; }
+    .meta { color: #6B7280; font-size: 14px; margin-bottom: 24px; }
+    .note { background: #FFFBEB; border-left: 4px solid #F59E0B; padding: 12px 16px; margin: 24px 0; border-radius: 4px; font-size: 14px; color: #78350F; }
+    .portal-frame {
+      background: white; border: 1px solid #E5E7EB; border-radius: 12px; padding: 24px; margin: 16px 0;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    }
+    .portal-header { display: flex; align-items: center; gap: 12px; padding-bottom: 16px; border-bottom: 1px solid #F3F4F6; margin-bottom: 16px; }
+    .portal-logo { font-weight: 700; font-size: 18px; color: #4F46E5; }
+    .portal-label { color: #6B7280; font-size: 13px; }
+
+    /* Exact styles from FixNotificationBanner.tsx */
+    .banner {
+      background: #EEF2FF;
+      color: #1E1B4B;
+      border: 1px solid #C7D2FE;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin: 12px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .banner-content { flex: 1; }
+    .banner-title { font-weight: 600; margin-bottom: 2px; }
+    .banner-body { font-size: 14px; line-height: 1.4; }
+    .banner-dismiss {
+      background: transparent; border: 1px solid #6366F1; color: #4F46E5;
+      border-radius: 6px; padding: 6px 12px; cursor: pointer; font-size: 14px;
+    }
+    .banner-dismiss:hover { background: #6366F1; color: white; }
+
+    .invoice-placeholder {
+      background: #F9FAFB; border: 1px dashed #D1D5DB; padding: 40px 20px;
+      border-radius: 8px; text-align: center; color: #9CA3AF; font-size: 13px;
+    }
+
+    /* Creditor toast */
+    .toast-wrapper { position: relative; min-height: 120px; background: #F9FAFB; border-radius: 8px; padding: 20px; border: 1px solid #E5E7EB; }
+    .toast {
+      background: #111827; color: white; border-radius: 8px; padding: 12px 16px;
+      max-width: 360px; font-size: 14px; display: flex; gap: 10px; align-items: flex-start;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    .toast-icon { color: #34D399; font-size: 18px; }
+    .toast-close { margin-left: auto; background: transparent; border: none; color: #9CA3AF; cursor: pointer; font-size: 18px; line-height: 1; padding: 0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Smart Fix-Notification Banner Preview</h1>
+    <p class="meta">Respaid debtor portal + creditor dashboard. Dormant today (Sentry webhook pas encore config). Rendu statique du composant React tel qu'il apparaîtra.</p>
+
+    <div class="note">
+      <strong>FDCPA-safe choices :</strong> copy neutre (pas de "pay", "debt", "collect"), ton "update" pas "alert", bouton "Got it" pas "Dismiss" (positif), skip auto si PAID/SETTLED, routes critiques seulement.
+    </div>
+
+    <h2>1. Debtor portal (EN) — copy générique actuelle</h2>
+    <div class="portal-frame">
+      <div class="portal-header"><span class="portal-logo">Respaid</span><span class="portal-label">app.respaid.com/en/recovery/SQXXXXXX</span></div>
+      <div class="banner">
+        <div class="banner-content">
+          <div class="banner-title">Update from our team</div>
+          <div class="banner-body">A technical issue affecting your account portal has been resolved. If you were unable to complete an action, please try again.</div>
+        </div>
+        <button class="banner-dismiss">Got it</button>
+      </div>
+      <div class="invoice-placeholder">[ Invoice details, payment options, etc. — rest of debtor page ]</div>
+    </div>
+
+    <h2>2. Debtor portal (FR) — copy générique actuelle</h2>
+    <div class="portal-frame">
+      <div class="portal-header"><span class="portal-logo">Respaid</span><span class="portal-label">app.respaid.com/fr/recovery/SQXXXXXX</span></div>
+      <div class="banner">
+        <div class="banner-content">
+          <div class="banner-title">Mise à jour de notre équipe</div>
+          <div class="banner-body">Un problème technique affectant votre portail a été résolu. Si vous n'avez pas pu compléter une action, veuillez réessayer.</div>
+        </div>
+        <button class="banner-dismiss">Compris</button>
+      </div>
+      <div class="invoice-placeholder">[ Détail facture, options paiement, etc. ]</div>
+    </div>
+
+    <h2>3. Dynamic copy (ta feedback, à implémenter) — EN exemple</h2>
+    <div class="portal-frame">
+      <div class="portal-header"><span class="portal-logo">Respaid</span><span class="portal-label">app.respaid.com/en/payment-details/WPS-SQXXXXXX</span></div>
+      <div class="banner">
+        <div class="banner-content">
+          <div class="banner-title">Update from our team</div>
+          <div class="banner-body">We fixed an issue that was preventing <strong>payment plans from being set up</strong>. You can now try again.</div>
+        </div>
+        <button class="banner-dismiss">Got it</button>
+      </div>
+      <div class="invoice-placeholder">[ Payment page with installment option ]</div>
+    </div>
+
+    <h2>4. Dynamic copy (ta feedback) — FR exemple</h2>
+    <div class="portal-frame">
+      <div class="portal-header"><span class="portal-logo">Respaid</span><span class="portal-label">app.respaid.com/fr/payment-details/WPS-SQXXXXXX</span></div>
+      <div class="banner">
+        <div class="banner-content">
+          <div class="banner-title">Mise à jour de notre équipe</div>
+          <div class="banner-body">Nous avons corrigé un problème qui empêchait <strong>la mise en place des paiements en plusieurs fois</strong>. Vous pouvez maintenant réessayer.</div>
+        </div>
+        <button class="banner-dismiss">Compris</button>
+      </div>
+      <div class="invoice-placeholder">[ Page paiement avec option échéancier ]</div>
+    </div>
+
+    <h2>5. Creditor dashboard — toast (plus court, power user)</h2>
+    <div class="portal-frame">
+      <div class="portal-header"><span class="portal-logo">Respaid</span><span class="portal-label">backend.widr.app/campaigns/XXXX</span></div>
+      <div class="toast-wrapper">
+        <div style="display:flex; justify-content:flex-end;">
+          <div class="toast">
+            <span class="toast-icon">✓</span>
+            <div><strong>Issue resolved</strong><br>Dashboard filters were not applying correctly on the payment page</div>
+            <button class="toast-close" aria-label="Close">×</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Safeguards codés (skip si un seul échoue)</h2>
+    <ul>
+      <li>Status sequence ≠ <code>PAID / SETTLED / CANCELLED / RECOVERED</code></li>
+      <li>Erreur sur routes <code>/payment/* · /dispute/* · /verification/*</code> uniquement</li>
+      <li>Max 1 banner par debtor / 7 jours</li>
+      <li>Max 1 banner par Sentry fingerprint / debtor (lifetime)</li>
+      <li>Max 50 banners par Sentry issue résolu (cap)</li>
+      <li>Skip si Sentry issue résolu &lt;5 min après création (transient)</li>
+    </ul>
+
+    <p class="meta">Rendered 2026-04-24 — <a href="https://github.com/wwwidr/backend-app/blob/main/frontend/debtor-portal/src/components/molecules/FixNotificationBanner/FixNotificationBanner.tsx">Source React component</a></p>
+  </div>
+</body>
+</html>
