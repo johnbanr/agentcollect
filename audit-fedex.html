@@ -366,13 +366,14 @@ body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1
     <div class="beyond-head">
       <div class="beyond-eyebrow">Observation 02: the three phone lines a FedEx debtor can call</div>
       <h2 class="beyond-title">We dialed each of the three AR lines listed on a FedEx past-due notice, as if we were the debtor trying to pay.</h2>
+      <p style="font-family:var(--body);font-size:17px;line-height:1.55;color:var(--ink-2);max-width:780px;margin:28px auto 0">Across 25 combined minutes on the phone, five different FedEx representatives, and one automated IVR system, the outcome was the same on all three lines: <strong style="color:var(--ink)">no account could be located without an account number or invoice number the caller did not have.</strong> Lookup by company name was refused. Lookup by address was refused. Lookup by phone number was refused. The portal register flow requires the same identifiers. Each call ended with the caller being told to come back when the information was found.</p>
     </div>
 
     <div class="portal-findings">
       <div class="pf-card">
-        <div class="pf-num">Line 01 · 1-800-463-3339 (GoFedEx)</div>
-        <div class="pf-text" id="call-1-headline">Call in progress.</div>
-        <div class="pf-sub" id="call-1-sub">Persona: small B2B distribution AP manager. Dunning letter for 3 invoices. Cannot locate them in Billing Online. Observing: time to human, whether a rep can locate the invoice, transfer count, outcome.</div>
+        <div class="pf-num">Line 01 · 1-800-463-3339 (GoFedEx main)</div>
+        <div class="pf-text" id="call-1-headline">10 min 50 sec. The IVR asked for the invoice number. When the caller said she did not have it, the system said verbatim: <em style="color:var(--ink);font-style:italic">"We can't process your request without the invoice number. Please call us back when you find it."</em></div>
+        <div class="pf-sub" id="call-1-sub">After restarting and pressing through to a human (two transfers, LJ then Janet), the second rep also asked for the account number. Address lookup failed. Phone-number lookup failed. The rep's stated path to resolution: <em style="color:var(--ink);font-style:italic">"If you get an invoice from our end, you can see the account number under it."</em> The only way to pay is from the document the debtor already reported not having. The rep then suggested typing "pay invoice" into fedex.com. Call ended by user hangup after 10:50.</div>
       </div>
       <div class="pf-card">
         <div class="pf-num">Line 02 · 1-866-756-3590 (Freight Recovery Collections)</div>
@@ -381,8 +382,8 @@ body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1
       </div>
       <div class="pf-card">
         <div class="pf-num">Line 03 · 1-866-393-4585 (Freight Customer Service)</div>
-        <div class="pf-text" id="call-3-headline">Call in progress.</div>
-        <div class="pf-sub" id="call-3-sub">Persona: small hardware store owner, 8-year account. Polite, confused, wants to pay, never got a final notice from FedEx directly.</div>
+        <div class="pf-text" id="call-3-headline">10 min 24 sec. Passed to the Invoices department. Martha said verbatim: <em style="color:var(--ink);font-style:italic">"Unfortunately, cannot pull up an account using a company name or an address. Need an account number, an invoice number, or statement number."</em></div>
+        <div class="pf-sub" id="call-3-sub">Asked about the online portal as an alternative. Martha said: <em style="color:var(--ink);font-style:italic">"You will be needing an account number or the invoice number to put in the portal for us to make sure that you can register it."</em> The portal at fedex.com/freightbilling requires the same information the caller does not have. Also noted: the hold message announced <em style="color:var(--ink);font-style:italic">"FedEx Freight is separating to become independent effective June first 2026"</em> — an organizational change customers hear before they reach a rep.</div>
       </div>
     </div>
 
