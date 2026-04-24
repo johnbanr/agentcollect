@@ -3,849 +3,461 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Virtuox · AR Operations Audit · Confidential</title>
-<meta property="og:title" content="Virtuox AR Operations Audit · Confidential">
-<meta property="og:description" content="37+ BBB complaints. $3.15M Medicare fraud settlement. 1.2/5 PissedConsumer. Your patients are in collections without prior notice.">
+<title>Virtuox Patient AR Audit · Confidential · For Benedikt Brueckle</title>
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Virtuox Patient AR Audit · Confidential">
+<meta property="og:description" content="We called Virtuox as patients. Two calls, two hangups, same finding. Audio + transcripts inside.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23684ED1'/%3E%3Cpath d='M9 23 L14 9 h4 l5 14 h-3.5 l-1-3 h-5 l-1 3z M13.3 17 h3.4 L15 12z' fill='white'/%3E%3Ccircle cx='24.5' cy='22' r='2' fill='%2310B981'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#FAF9F6;
-  --bg-2:#F4F2EC;
-  --bg-3:#FFFDFA;
-  --ink:#0E1116;
-  --ink-2:#3F4651;
-  --muted:#6B7280;
-  --line:#E5E0D5;
-  --line-2:#D4CEC0;
-  --indigo:#4338CA;
-  --indigo-soft:#EEF0FF;
-  --red:#B91C1C;
-  --red-soft:#FEF2F2;
-  --green:#047857;
-  --display:'Plus Jakarta Sans',-apple-system,sans-serif;
-  --display-tight:'Plus Jakarta Sans',-apple-system,sans-serif;
-  --body:'Inter',-apple-system,sans-serif;
+  --purple:#684ED1;--purple-dark:#5540c0;--purple-light:#9B8CE8;
+  --text:#0B1B3D;--muted:#475569;--muted-light:#64748B;--border:#E8ECF2;--bg:#FAFBFF;
+  --green:#10B981;--green-dark:#059669;--green-light:#D1FAE5;
+  --amber:#F59E0B;--amber-light:#FEF3C7;
+  --red:#dc2626;--red-light:#FEE2E2;
   --mono:'JetBrains Mono',monospace;
+  --sans:'Plus Jakarta Sans',system-ui,sans-serif;
+  --body:'Inter',system-ui,sans-serif;
+  --shadow:0 1px 3px rgba(0,0,0,.1),0 1px 2px rgba(0,0,0,.06);
+  --shadow-lg:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);
+  --shadow-xl:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1);
 }
-html{scroll-behavior:smooth}
-body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:var(--body);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-size:16px;line-height:1.6}
+::selection{background:rgba(104,78,209,.12)}
 
-/* TOPBAR */
-.topbar{border-bottom:1px solid var(--line);background:rgba(250,249,246,.92);backdrop-filter:blur(20px);position:sticky;top:0;z-index:50}
-.topbar-inner{max-width:1100px;margin:0 auto;padding:18px 36px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand{display:inline-flex;align-items:center;gap:6px;font-family:var(--display);font-weight:700;font-size:18px;color:var(--ink);text-decoration:none;letter-spacing:-.015em}
-.brand .dot{width:6px;height:6px;border-radius:50%;background:var(--indigo);margin-left:1px;vertical-align:super;margin-top:-2px;display:inline-block}
-.topbar-meta{font-family:var(--mono);font-size:10px;color:var(--muted);font-weight:500;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.topbar-meta strong{color:var(--ink)}
-.topbar-cta{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:var(--ink);color:#fff;border-radius:100px;font-family:var(--display);font-size:12px;font-weight:700;text-decoration:none;letter-spacing:-.005em;transition:all .2s;text-transform:none}
-.topbar-cta:hover{background:var(--indigo)}
-.topbar-cta .arrow{transition:transform .2s;font-size:11px}
-.topbar-cta:hover .arrow{transform:translateX(2px)}
-.expires{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;background:var(--red-soft);color:var(--red);border-radius:6px;font-weight:600}
-.expires::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--red);animation:pulse 2s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.rv.v{opacity:1;transform:none}
+.rv-d1{transition-delay:.1s}.rv-d2{transition-delay:.2s}.rv-d3{transition-delay:.3s}.rv-d4{transition-delay:.4s}
 
-/* SECTION SHELL */
-.viewport{min-height:90vh;display:flex;align-items:center;justify-content:center;padding:120px 36px;position:relative}
-.viewport-inner{max-width:1080px;width:100%;margin:0 auto}
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(250,251,255,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(0,0,0,.04);transition:box-shadow .3s}
+.nav.scrolled{box-shadow:0 1px 12px rgba(0,0,0,.06)}
+.nav-inner{max-width:1120px;margin:0 auto;padding:16px 32px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{text-decoration:none;font-family:var(--sans);font-weight:900;font-size:17px;color:var(--text);letter-spacing:-.4px;display:inline-flex;align-items:center;gap:6px}
+.nav-logo .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-left:1px;vertical-align:super;margin-top:-4px}
+.nav-badge{font-size:12px;color:var(--muted);font-weight:500;display:flex;align-items:center;gap:8px}
+.nav-badge .conf{background:rgba(220,38,38,0.08);color:var(--red);padding:3px 10px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
 
-/* ============================================
-   1 — HERO
-   ============================================ */
-.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.14em;padding:8px 16px;border:1px solid var(--line-2);border-radius:100px;margin-bottom:42px;background:var(--bg-3)}
-.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--indigo)}
+.hero{position:relative;overflow:visible;padding:130px 32px 80px;text-align:center}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,#0B1B3D 0%,#0f2347 60%,#132a52 100%);z-index:0}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 600px 400px at 50% 30%,rgba(220,38,38,.06) 0%,transparent 70%);z-index:1}
+.hero *{position:relative;z-index:2}
+.hero-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:#F87171;margin-bottom:20px}
+.hero-title{font-family:var(--sans);font-size:clamp(28px,4vw,44px);font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1.15;margin-bottom:16px;max-width:820px;margin-left:auto;margin-right:auto}
+.hero-title em{color:#FCA5A5;font-style:normal}
+.hero-subtitle{font-size:17px;color:rgba(255,255,255,.65);max-width:640px;margin:0 auto 20px;line-height:1.7;font-weight:400}
+.hero-meta{font-size:13px;color:rgba(255,255,255,.4);font-weight:500;letter-spacing:.02em;margin-top:12px}
+.hero-meta strong{color:rgba(255,255,255,.7)}
 
-.hero-headline{font-family:var(--display);font-size:clamp(48px,6.4vw,92px);font-weight:800;line-height:1;letter-spacing:-.025em;color:var(--ink);margin-bottom:42px;max-width:1040px;}
-.hero-headline em{color:var(--red);font-weight:500}
+.section{padding:72px 32px;max-width:1120px;margin:0 auto;position:relative}
+.section-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:#64748b;margin-bottom:12px;text-align:center}
+.section-title{font-family:var(--sans);font-size:clamp(22px,3vw,32px);font-weight:900;letter-spacing:-.03em;line-height:1.15;margin-bottom:16px;text-align:center;max-width:760px;margin-left:auto;margin-right:auto}
+.section-title em{color:var(--red);font-style:normal}
+.section-subtitle{font-size:15px;color:var(--muted);max-width:640px;line-height:1.6;margin-bottom:36px;margin-left:auto;margin-right:auto;text-align:center}
 
-.hero-meta{display:flex;align-items:center;gap:24px;font-family:var(--mono);font-size:12px;color:var(--muted);flex-wrap:wrap}
-.hero-meta strong{color:var(--ink);font-weight:600}
-.hero-meta .sep{color:var(--line-2)}
+/* Call card with audio player */
+.call-card{background:#fff;border-radius:20px;padding:40px;box-shadow:var(--shadow-xl);border:1px solid var(--border);max-width:860px;margin:0 auto}
+.call-card.red-top{border-top:4px solid var(--red)}
+.call-meta{display:flex;gap:20px;font-size:12px;color:var(--muted-light);font-weight:500;letter-spacing:.04em;text-transform:uppercase;margin-bottom:14px;flex-wrap:wrap}
+.call-meta .dot-sep{color:var(--border)}
+.call-meta .live-tag{background:var(--red);color:#fff;padding:3px 10px;border-radius:100px;font-weight:800;letter-spacing:.08em}
+.call-headline{font-family:var(--sans);font-size:clamp(22px,2.6vw,28px);font-weight:900;letter-spacing:-.02em;line-height:1.2;color:var(--text);margin-bottom:24px}
+.call-headline em{color:var(--red);font-style:normal}
 
-/* ============================================
-   2 — THE CONFESSION
-   ============================================ */
-.confession-section{padding:140px 36px 100px;border-top:1px solid var(--line);background:var(--bg-3);position:relative}
-.confession-inner{max-width:980px;margin:0 auto;text-align:center}
+/* Audio player */
+.player{background:var(--text);border-radius:14px;padding:24px 28px;margin-bottom:28px;position:relative}
+.player-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+.player-label{font-size:11px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.12em;text-transform:uppercase}
+.player-time{font-family:var(--mono);font-size:13px;color:rgba(255,255,255,.7);font-weight:500}
+.player-controls{display:flex;align-items:center;gap:16px;margin-bottom:14px}
+.play-btn{width:48px;height:48px;border-radius:50%;background:#fff;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:transform .15s,background .15s}
+.play-btn:hover{transform:scale(1.05);background:var(--purple-light)}
+.play-btn svg{width:16px;height:16px;fill:var(--text);margin-left:2px}
+.play-btn.playing svg{margin-left:0}
+.progress-wrap{flex:1;height:6px;background:rgba(255,255,255,.1);border-radius:100px;position:relative;cursor:pointer;overflow:hidden}
+.progress-bar{position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg,var(--red) 0%,#F87171 100%);border-radius:100px;width:0}
+.progress-markers{position:absolute;inset:0;pointer-events:none}
+.progress-marker{position:absolute;top:-4px;width:14px;height:14px;background:var(--amber);border:2px solid var(--text);border-radius:50%;transform:translateX(-50%);pointer-events:auto;cursor:pointer;transition:transform .15s}
+.progress-marker:hover{transform:translateX(-50%) scale(1.2)}
+.jump-markers{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.jump-btn{background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.3);color:#FCD34D;padding:8px 14px;border-radius:100px;font-size:12px;font-weight:600;cursor:pointer;transition:background .15s}
+.jump-btn:hover{background:rgba(245,158,11,0.22)}
+.jump-btn .ts{font-family:var(--mono);font-weight:700;margin-right:6px;opacity:.7}
 
-.confession-eyebrow{font-family:var(--mono);font-size:11px;color:var(--red);text-transform:uppercase;letter-spacing:.18em;font-weight:600;margin-bottom:48px;display:inline-flex;align-items:center;gap:14px}
-.confession-eyebrow::before,.confession-eyebrow::after{content:'';width:36px;height:1px;background:var(--red);opacity:.4}
+/* Quote blocks inside call card */
+.moment{background:#FAFBFF;border-left:3px solid var(--red);border-radius:8px;padding:20px 24px;margin-bottom:16px}
+.moment-label{font-size:11px;font-weight:800;color:var(--red);letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+.moment-quote{font-family:var(--sans);font-size:19px;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:8px}
+.moment-quote em{color:var(--red);font-style:italic}
+.moment-attrib{font-size:13px;color:var(--muted)}
 
-.big-quote{font-family:var(--display);font-size:clamp(34px,5.2vw,70px);font-weight:700;line-height:1.08;letter-spacing:-.02em;color:var(--ink);margin-bottom:56px;max-width:980px;margin-left:auto;margin-right:auto;}
-.big-quote::before{content:'"';display:block;font-family:var(--display);font-size:160px;line-height:.4;color:var(--red);opacity:.2;margin-bottom:30px;font-weight:500;font-style:normal}
+.call-note{padding:20px 24px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.25);border-radius:10px;margin-top:18px;font-size:14px;color:var(--text);line-height:1.6}
+.call-note strong{color:var(--amber);font-weight:700}
 
-.quote-attrib{font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:64px;letter-spacing:.04em;text-transform:uppercase}
-.quote-attrib strong{color:var(--ink);font-weight:600}
+/* BBB quotes grid */
+.bbb-grid{display:grid;grid-template-columns:1fr;gap:16px;max-width:820px;margin:0 auto}
+.bbb-card{background:#fff;border-left:3px solid var(--red);border-radius:10px;padding:22px 26px;box-shadow:var(--shadow)}
+.bbb-quote{font-family:var(--sans);font-size:17px;font-weight:600;color:var(--text);line-height:1.45;margin-bottom:8px}
+.bbb-attrib{font-size:13px;color:var(--muted)}
 
-/* AUDIO PLAYER */
-.audio-shell{max-width:760px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:18px;padding:32px 36px;position:relative;overflow:hidden;box-shadow:0 1px 2px rgba(11,17,22,.04),0 12px 32px rgba(11,17,22,.06)}
-.audio-shell::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),transparent 90%);pointer-events:none}
+/* Public record stats */
+.record-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:960px;margin:0 auto}
+.record-card{background:#fff;border-radius:14px;padding:24px 20px;box-shadow:var(--shadow);text-align:center;border:1px solid var(--border)}
+.record-num{font-family:var(--sans);font-size:28px;font-weight:900;color:var(--red);letter-spacing:-.02em;line-height:1;margin-bottom:6px}
+.record-label{font-size:12px;color:var(--muted);font-weight:600}
 
-.audio-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;font-family:var(--mono);font-size:11px;color:var(--muted)}
-.audio-meta .live{display:inline-flex;align-items:center;gap:6px;color:var(--red);font-weight:600}
-.audio-meta .live::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 12px rgba(185,28,28,.4);animation:pulse 1.5s ease-in-out infinite}
+/* Compare before/after */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:900px;margin:0 auto}
+.compare-card{background:#fff;border-radius:16px;padding:28px;box-shadow:var(--shadow-lg);border:1px solid var(--border)}
+.compare-card.today{border-top:4px solid #94A3B8}
+.compare-card.fix{border-top:4px solid var(--green)}
+.compare-tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted-light);margin-bottom:8px}
+.compare-tag.good{color:var(--green-dark)}
+.compare-head{font-family:var(--sans);font-size:18px;font-weight:900;letter-spacing:-.02em;margin-bottom:14px;color:var(--text)}
+.compare-row{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid rgba(0,0,0,.04);font-size:14px;line-height:1.5}
+.compare-row:last-child{border-bottom:none}
+.compare-row::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:8px;background:var(--muted-light)}
+.compare-card.fix .compare-row::before{background:var(--green)}
 
-.waveform{position:relative;height:64px;display:flex;align-items:center;gap:2px;margin-bottom:22px;cursor:pointer}
-.bar{flex:1;background:rgba(15,17,22,.18);border-radius:1px;transition:background .2s;min-height:6px}
-.bar.played{background:var(--red)}
-.marker-dot{position:absolute;top:50%;left:89.2%;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#ef4444,var(--red));border:3px solid #fff;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 0 0 rgba(185,28,28,.5),0 4px 12px rgba(185,28,28,.4);animation:marker-pulse 2s ease-in-out infinite;z-index:2}
-@keyframes marker-pulse{0%,100%{box-shadow:0 0 0 0 rgba(185,28,28,.5),0 4px 12px rgba(185,28,28,.4)}50%{box-shadow:0 0 0 18px rgba(185,28,28,0),0 4px 12px rgba(185,28,28,.4)}}
-.marker-dot::after{content:'★';color:#fff;font-size:14px;font-weight:700}
-.marker-label{position:absolute;top:-32px;left:89.2%;transform:translateX(-50%);font-family:var(--mono);font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:.12em;font-weight:600;white-space:nowrap}
+.cta-band{background:linear-gradient(135deg,#0B1B3D 0%,#132a52 100%);padding:60px 32px;text-align:center;color:#fff}
+.cta-band-inner{max-width:720px;margin:0 auto}
+.cta-band-title{font-family:var(--sans);font-size:clamp(22px,2.6vw,30px);font-weight:800;letter-spacing:-.02em;line-height:1.3;margin-bottom:14px;color:#fff}
+.cta-band-sub{font-size:15px;color:rgba(255,255,255,.65);line-height:1.6;margin-bottom:24px}
+.cta-btn{display:inline-block;background:#fff;color:var(--text);font-family:var(--sans);font-weight:800;font-size:14px;padding:14px 28px;border-radius:100px;text-decoration:none;letter-spacing:.02em;transition:transform .15s}
+.cta-btn:hover{transform:translateY(-1px)}
 
-.audio-controls{display:flex;align-items:center;gap:16px}
-.play-main{width:48px;height:48px;border-radius:50%;background:var(--ink);color:#fff;border:0;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
-.play-main:hover{background:var(--indigo);transform:scale(1.05)}
-.play-main.playing{background:var(--red)}
-.audio-time{font-family:var(--mono);font-size:11px;color:var(--muted);font-weight:500}
-.audio-time .current{color:var(--ink);font-weight:600}
-.jump-btn{margin-left:auto;display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:var(--red-soft);color:var(--red);border:1px solid rgba(185,28,28,.3);border-radius:100px;font-family:var(--mono);font-size:11px;font-weight:600;cursor:pointer;transition:all .2s;text-transform:uppercase;letter-spacing:.06em}
-.jump-btn:hover{background:rgba(185,28,28,.12)}
+.footer{background:var(--text);padding:60px 32px;text-align:center;color:rgba(255,255,255,.5)}
+.footer-logo{font-family:var(--sans);font-weight:900;font-size:20px;color:#fff;letter-spacing:-.4px;display:inline-flex;align-items:center;gap:6px;margin-bottom:12px}
+.footer-logo .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-left:2px;vertical-align:super;margin-top:-6px}
+.footer-conf{font-size:13px;margin-bottom:8px;color:rgba(255,255,255,.35)}
+.footer-contact{font-size:14px;color:rgba(255,255,255,.4);margin-top:6px}
+.footer-contact a{color:var(--purple-light);text-decoration:none}
 
-/* ============================================
-   3 — STATS (2 huge numbers)
-   ============================================ */
-.stats-section{padding:140px 36px;border-top:1px solid var(--line);background:var(--bg);position:relative}
-.stats-inner{max-width:1080px;margin:0 auto}
-.stats-eyebrow{text-align:center;font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.18em;font-weight:500;margin-bottom:64px}
-.stats-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:60px;align-items:center;max-width:980px;margin:0 auto}
-.stat-side{text-align:center}
-.stat-tag{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.16em;margin-bottom:24px;font-weight:500}
-.stat-tag.virtuox{color:var(--red)}
-.stat-tag.us{color:var(--indigo)}
-.stat-value{font-family:var(--display);font-size:clamp(80px,13vw,200px);font-weight:900;line-height:.85;letter-spacing:-.04em;}
-.stat-value.virtuox{color:var(--red)}
-.stat-value.us{color:var(--indigo)}
-.stat-label{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:24px;letter-spacing:.04em;line-height:1.7}
-.stat-label strong{color:var(--ink);font-weight:600;display:block;margin-top:4px;text-transform:uppercase;font-size:10px;letter-spacing:.08em}
-.stat-arrow{font-family:var(--display);font-size:60px;color:var(--muted);font-weight:300}
-
-/* ============================================
-   4 — BEYOND THE CALL
-   ============================================ */
-.beyond-section{padding:140px 36px;border-top:1px solid var(--line);background:var(--bg-3)}
-.beyond-inner{max-width:1080px;margin:0 auto}
-.beyond-head{text-align:center;margin-bottom:72px}
-.beyond-eyebrow{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.18em;font-weight:500;margin-bottom:18px}
-.beyond-title{font-family:var(--display);font-size:clamp(36px,4.8vw,64px);font-weight:800;letter-spacing:-.025em;line-height:1.05;color:var(--ink);max-width:780px;margin:0 auto;}
-.beyond-title em{color:var(--indigo)}
-
-.portal-frame{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;max-width:920px;margin:0 auto;position:relative;box-shadow:0 1px 2px rgba(11,17,22,.04),0 24px 60px rgba(11,17,22,.08)}
-.portal-bar{display:flex;align-items:center;gap:8px;padding:14px 20px;background:#F4F2EC;border-bottom:1px solid var(--line)}
-.portal-dot{width:11px;height:11px;border-radius:50%;background:rgba(0,0,0,.12)}
-.portal-dot.r{background:#ff5f57}
-.portal-dot.y{background:#febc2e}
-.portal-dot.g{background:#28c840}
-.portal-url{margin-left:14px;padding:5px 14px;background:#fff;border:1px solid var(--line);border-radius:6px;font-family:var(--mono);font-size:11px;color:var(--muted)}
-.portal-url strong{color:var(--ink)}
-
-.portal-body{padding:64px 56px 80px;min-height:380px;background:linear-gradient(180deg,#fff 0%,#FAFAF7 100%);position:relative}
-.portal-mock-logo{font-family:var(--display);font-size:24px;font-weight:700;color:var(--ink);margin-bottom:8px;letter-spacing:-.02em}
-.portal-mock-logo span{color:var(--indigo)}
-.portal-mock-tag{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:36px;font-weight:500}
-.portal-mock-title{font-family:var(--display);font-size:28px;font-weight:700;color:var(--ink);margin-bottom:8px;letter-spacing:-.015em;}
-.portal-mock-sub{font-family:var(--body);font-size:14px;color:var(--muted);margin-bottom:32px}
-.portal-mock-form{display:flex;flex-direction:column;gap:14px;max-width:380px}
-.portal-mock-input{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px 16px;font-family:var(--body);font-size:13px;color:var(--muted)}
-.portal-mock-btn{background:var(--indigo);color:#fff;border:0;border-radius:8px;padding:14px 16px;font-family:var(--display);font-size:14px;font-weight:600;text-align:center;cursor:not-allowed;opacity:.85;margin-top:6px}
-
-/* annotations */
-.annotation{position:absolute;background:var(--red);color:#fff;padding:8px 14px;border-radius:8px;font-family:var(--mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;box-shadow:0 8px 24px rgba(185,28,28,.25)}
-.annotation::before{content:'';position:absolute;width:0;height:0;border-style:solid}
-.annotation.a1{top:80px;right:60px}
-.annotation.a1::before{left:-8px;top:50%;transform:translateY(-50%);border-width:6px 8px 6px 0;border-color:transparent var(--red) transparent transparent}
-.annotation.a2{bottom:120px;right:60px}
-.annotation.a2::before{left:-8px;top:50%;transform:translateY(-50%);border-width:6px 8px 6px 0;border-color:transparent var(--red) transparent transparent}
-
-.portal-findings{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;max-width:920px;margin:64px auto 0}
-.pf-card{padding:0}
-.pf-num{font-family:var(--mono);font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:14px}
-.pf-text{font-family:var(--display);font-size:19px;font-weight:700;color:var(--ink);line-height:1.3;letter-spacing:-.01em;margin-bottom:10px;}
-.pf-sub{font-family:var(--body);font-size:13px;color:var(--muted);line-height:1.6}
-
-.external-stat{max-width:780px;margin:64px auto 0;padding:36px 44px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--ink);border-radius:0 14px 14px 0;text-align:left}
-.external-stat-quote{font-family:var(--display);font-size:clamp(20px,2.4vw,28px);font-weight:600;line-height:1.35;letter-spacing:-.015em;color:var(--ink);margin-bottom:18px;}
-.external-stat-source{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
-.external-stat-source strong{color:var(--ink);font-weight:600;text-transform:none;font-family:var(--display);letter-spacing:0;font-size:13px}
-
-/* ============================================
-   5 — WHY THIS MATTERS (cross-prospect)
-   ============================================ */
-.why-section{padding:140px 36px;border-top:1px solid var(--line);background:var(--bg)}
-.why-inner{max-width:1080px;margin:0 auto;text-align:center}
-.why-eyebrow{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.18em;font-weight:500;margin-bottom:24px}
-.why-title{font-family:var(--display);font-size:clamp(36px,4.8vw,64px);font-weight:800;letter-spacing:-.025em;line-height:1.05;color:var(--ink);margin-bottom:72px;max-width:880px;margin-left:auto;margin-right:auto;}
-.why-title em{color:var(--red)}
-
-.peer-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;max-width:980px;margin:0 auto}
-.peer-card{background:var(--bg-3);border:1px solid var(--line);border-radius:14px;padding:28px 18px;text-align:center;transition:all .2s;position:relative}
-.peer-card.us{border-color:var(--red);background:var(--red-soft);transform:scale(1.04);box-shadow:0 12px 32px rgba(185,28,28,.12)}
-.peer-card.us::before{content:'YOU';position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;padding:3px 10px;border-radius:6px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em}
-.peer-name{font-family:var(--display);font-size:15px;font-weight:600;color:var(--ink);margin-bottom:14px;letter-spacing:-.005em}
-.peer-time{font-family:var(--display);font-size:30px;font-weight:800;color:var(--red);letter-spacing:-.02em;line-height:1;margin-bottom:8px;}
-.peer-issue{font-family:var(--body);font-size:11px;color:var(--muted);line-height:1.45;min-height:42px}
-
-.why-summary{margin-top:64px;font-family:var(--display);font-size:clamp(20px,2.4vw,28px);font-weight:400;color:var(--ink-2);line-height:1.45;max-width:720px;margin-left:auto;margin-right:auto;letter-spacing:-.005em;}
-.why-summary strong{color:var(--ink);font-weight:600;font-style:normal}
-
-/* ============================================
-   6 — WHAT IS AGENTCOLLECT
-   ============================================ */
-.what-section{padding:140px 36px;border-top:1px solid var(--line);background:var(--bg-3)}
-.what-inner{max-width:980px;margin:0 auto;text-align:center}
-.what-eyebrow{font-family:var(--mono);font-size:11px;color:var(--indigo);text-transform:uppercase;letter-spacing:.18em;font-weight:600;margin-bottom:24px}
-.what-title{font-family:var(--display);font-size:clamp(40px,5.4vw,76px);font-weight:800;letter-spacing:-.025em;line-height:1;color:var(--ink);margin-bottom:36px;}
-.what-title em{color:var(--indigo)}
-.what-pillars{display:flex;align-items:center;justify-content:center;gap:36px;flex-wrap:wrap;margin-top:48px;padding-top:48px;border-top:1px solid var(--line)}
-.pillar{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;color:var(--ink-2);font-weight:500;letter-spacing:.02em;text-transform:uppercase}
-.pillar .icon{width:6px;height:6px;border-radius:50%;background:var(--indigo)}
-
-/* ============================================
-   7 — TRUSTBAR + CTA
-   ============================================ */
-.trust-section{padding:100px 36px 60px;border-top:1px solid var(--line);background:var(--bg);text-align:center}
-.trust-label{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.18em;margin-bottom:40px;font-weight:500}
-.trust-logos{display:flex;align-items:center;justify-content:center;gap:64px;flex-wrap:wrap}
-.trust-logo{height:32px;width:auto;opacity:.6;filter:grayscale(100%);transition:all .2s}
-.trust-logo:hover{opacity:1;filter:grayscale(0%)}
-.trust-logo.tall{height:38px}
-
-.bridge-section{padding:140px 36px;background:var(--bg);text-align:center;border-top:1px solid var(--line);position:relative;overflow:hidden}
-.bridge-section::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;background:radial-gradient(circle,rgba(67,56,202,.06) 0%,transparent 60%);pointer-events:none}
-.bridge-eyebrow{font-family:var(--mono);font-size:11px;color:var(--indigo);text-transform:uppercase;letter-spacing:.18em;font-weight:600;margin-bottom:24px;position:relative}
-.bridge-headline{font-family:var(--display);font-size:clamp(36px,4.8vw,64px);font-weight:800;letter-spacing:-.025em;line-height:1.05;color:var(--ink);margin-bottom:20px;max-width:880px;margin:0 auto 20px;position:relative}
-.bridge-headline em{color:var(--indigo);font-style:normal}
-.bridge-deck{font-family:var(--body);font-size:17px;color:var(--muted);max-width:620px;margin:0 auto 64px;line-height:1.6;position:relative}
-
-/* ORB WIDGET */
-.orb-wrap{position:relative;display:flex;flex-direction:column;align-items:center;cursor:pointer;margin:0 auto 24px;width:240px;z-index:2}
-.orb-bubble{position:absolute;top:6px;right:-72px;background:rgba(67,56,202,.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:12px 18px;font-family:var(--body);font-size:14px;font-weight:600;color:#fff;white-space:nowrap;animation:orbBubble 3s ease-in-out infinite;text-shadow:0 1px 4px rgba(0,0,0,.3);z-index:15;box-shadow:0 12px 32px rgba(67,56,202,.3)}
-.orb-bubble::before{content:'';position:absolute;left:-7px;top:18px;width:0;height:0;border-style:solid;border-width:7px 9px 7px 0;border-color:transparent rgba(67,56,202,.95) transparent transparent}
-@keyframes orbBubble{0%,100%{opacity:.85;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
-.orb-rings{position:absolute;top:20px;left:50%;transform:translateX(-50%);width:160px;height:160px;pointer-events:none}
-.orb-ring{position:absolute;inset:0;border-radius:50%;border:2px solid var(--indigo);opacity:0;animation:orb-ring-pulse 3s ease-out infinite}
-.orb-ring.r2{animation-delay:1s}
-.orb-ring.r3{animation-delay:2s}
-@keyframes orb-ring-pulse{0%{transform:scale(.8);opacity:.6}100%{transform:scale(1.6);opacity:0}}
-.orb-main{width:160px;height:160px;margin-top:20px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#6366F1,#4338CA);display:flex;align-items:center;justify-content:center;box-shadow:0 20px 60px rgba(67,56,202,.35),0 0 0 0 rgba(67,56,202,.4);transition:all .3s;position:relative;z-index:2}
-.orb-wrap:hover .orb-main{transform:scale(1.05);box-shadow:0 30px 80px rgba(67,56,202,.5)}
-.orb-main.speaking{animation:orb-speaking 1.5s ease-in-out infinite}
-@keyframes orb-speaking{0%,100%{box-shadow:0 20px 60px rgba(67,56,202,.35),0 0 0 0 rgba(67,56,202,.4)}50%{box-shadow:0 20px 60px rgba(67,56,202,.5),0 0 0 22px rgba(67,56,202,0)}}
-.orb-icon{font-size:54px;color:#fff;line-height:1}
-
-/* ORB META (calling label / title / hint) */
-.orb-meta{position:relative;z-index:2;margin-bottom:32px}
-.orb-calling-label{font-family:var(--mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--indigo);opacity:.7;margin-bottom:6px}
-.orb-title{font-family:var(--display);font-size:18px;font-weight:800;color:var(--ink);letter-spacing:-.015em;margin-bottom:4px}
-.orb-hint{font-family:var(--body);font-size:14px;color:var(--green);opacity:.85;font-weight:600}
-
-/* ORB STATUS */
-.orb-status{position:relative;z-index:2;max-width:520px;margin:0 auto 32px;padding:32px 36px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 1px 2px rgba(11,17,22,.04),0 24px 60px rgba(11,17,22,.08)}
-.orb-status-line{font-family:var(--display);font-size:15px;font-weight:700;color:var(--ink);margin-bottom:18px}
-.orb-waveform{display:flex;align-items:center;justify-content:center;gap:5px;height:48px;margin-bottom:20px}
-.orb-waveform span{display:block;width:4px;height:8px;border-radius:2px;background:var(--indigo);transition:height .15s}
-.orb-end-btn{padding:10px 22px;background:var(--red);color:#fff;border:0;border-radius:100px;font-family:var(--display);font-size:12px;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:.06em;transition:all .2s}
-.orb-end-btn:hover{background:#991b1b}
-
-.orb-fallback{position:relative;z-index:2;font-family:var(--body);font-size:13px;color:var(--muted);margin-top:24px}
-.orb-fallback span{margin-right:6px}
-.orb-fallback a{color:var(--indigo);text-decoration:none;border-bottom:1px solid var(--indigo);font-weight:500}
-
-/* FOOTER */
-.footer{padding:32px 36px;border-top:1px solid var(--line);max-width:1140px;margin:0 auto;font-family:var(--mono);font-size:10px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;text-transform:uppercase;letter-spacing:.06em}
-.footer strong{color:var(--ink);font-weight:600}
-
-/* RESPONSIVE */
-@media (max-width:980px){
-  .viewport{padding:80px 24px}
-  .stats-grid{grid-template-columns:1fr;gap:48px}
-  .stat-arrow{transform:rotate(90deg)}
-  .portal-findings{grid-template-columns:1fr;gap:32px}
-  .peer-grid{grid-template-columns:repeat(2,1fr)}
-  .peer-card.us{transform:none}
-  .confession-section,.stats-section,.beyond-section,.why-section,.what-section,.bridge-section{padding:80px 24px}
-  .trust-section{padding:60px 24px 30px}
-  .orb-bubble{position:static;margin-bottom:18px;display:inline-block}
-  .orb-bubble::before{display:none}
-  .orb-rings,.orb-main{margin-top:0}
-  .bridge-headline{font-size:28px}
-  .topbar-inner{padding:14px 24px;flex-direction:column;align-items:flex-start;gap:10px}
-  .topbar-meta{font-size:9px}
-  .what-pillars{flex-direction:column;gap:18px}
-  .annotation{display:none}
-  .portal-body{padding:36px 28px 50px}
-  .trust-logos{gap:32px}
-  .trust-logo{height:24px}
-  .trust-logo.tall{height:28px}
+@media(max-width:900px){
+  .compare{grid-template-columns:1fr}
+  .record-grid{grid-template-columns:repeat(2,1fr)}
+  .hero{padding:120px 20px 60px}
+  .section{padding:56px 20px}
+  .call-card{padding:28px 24px}
+  .player{padding:20px 22px}
+}
+@media(max-width:600px){
+  .hero{padding:100px 16px 48px}
+  .section{padding:48px 16px}
+  .call-card{padding:24px 20px}
+  .call-headline{font-size:20px}
+  .player-controls{gap:12px}
+  .moment-quote{font-size:17px}
+  .nav-badge span:not(.conf){display:none}
 }
 </style>
 </head>
 <body>
 
-<audio id="callRec" preload="metadata" src="https://dxc03zgurdly9.cloudfront.net/36776c28ceb6d4bc9dccc8957fd0ba4cc335666f39ac6f58529131a8cfcbf6d8/recording.wav"></audio>
-
-<header class="topbar">
-  <div class="topbar-inner">
-    <a href="https://agentcollect.com" class="brand">AgentCollect<span class="dot"></span></a>
-    <div class="topbar-meta">
-      <span>DOC <strong>#TBRA-001</strong></span>
-      <span>·</span>
-      <span class="expires" id="expires">Expires in 30 days</span>
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="https://www.agentcollect.com">
+      <svg viewBox="0 0 32 32" width="22" height="22"><rect width="32" height="32" rx="7" fill="#684ED1"/><path d="M9 23 L14 9 h4 l5 14 h-3.5 l-1-3 h-5 l-1 3z M13.3 17 h3.4 L15 12z" fill="white"/><circle cx="24.5" cy="22" r="2" fill="#10B981"/></svg>
+      AgentCollect<span class="dot"></span>
+    </a>
+    <div class="nav-badge">
+      <span class="conf">Confidential</span>
+      <span>Virtuox Audit · For Benedikt Brueckle</span>
     </div>
-    <a href="https://cal.com/johnb/30" class="topbar-cta">Talk to the founder <span class="arrow">→</span></a>
   </div>
-</header>
+</nav>
 
-<!-- ============================================
-     1 — HERO
-     ============================================ -->
-<section class="viewport">
-  <div class="viewport-inner">
-    <div class="hero-eyebrow"><span class="dot"></span>Confidential AR Audit · For Benedikt Brueckle</div>
-    <h1 class="hero-headline">We called Virtuox as patients. <em>Two reps. Two calls. Neither could find the patient in your system.</em></h1>
-    <div class="hero-meta">
-      <span>Live mystery shops · April 24, 2026 · 10:38 AM PT</span>
-      <span class="sep">·</span>
-      <span><strong>16 minutes total · 2 hangups</strong></span>
-      <span class="sep">·</span>
-      <span>Audio + transcripts below</span>
-    </div>
+<section class="hero">
+  <div class="hero-label rv">Live mystery shop · April 24, 2026</div>
+  <h1 class="hero-title rv rv-d1">We called Virtuox as patients this morning. <em>Two calls. Two hangups. Neither rep could find the patient.</em></h1>
+  <p class="hero-subtitle rv rv-d2">This is a quick patient-side audit. Audio, transcripts, and the public record below. Sent so you see what your patients experience before Monday.</p>
+  <div class="hero-meta rv rv-d3">
+    <strong>16 minutes total on the line</strong> &middot; Both calls to Virtuox patient services &middot; Both hung up by us
   </div>
 </section>
 
 <!-- ============================================
-     2 — THE CONFESSION
+     CALL 1 — RON · 10:37 · Frustrated collections
      ============================================ -->
-<section class="confession-section">
-  <div class="confession-inner">
-    <div class="confession-eyebrow">The pattern — your own patients, on BBB, this year</div>
-    <p class="big-quote">"I paid every bill I received. A year later, I got a call saying $275 was in collections. No prior contact from Virtuox about this bill."</p>
-    <div class="quote-attrib">— <strong>BBB complaint</strong> · sleep study February 2025 · reported 2026</div>
+<section class="section" id="call1">
+  <div class="section-label rv">Call 1 &middot; 1-877-337-7111 &middot; 10:38 AM PT</div>
+  <h2 class="section-title rv rv-d1">Patient disputes a $275 surprise collections charge. <em>Ten minutes later, three admissions.</em></h2>
 
-    <div style="margin-top:40px;display:grid;grid-template-columns:1fr;gap:20px;max-width:780px;margin-left:auto;margin-right:auto">
-      <div style="padding:28px 32px;background:rgba(220,38,38,0.06);border-left:3px solid var(--red);border-radius:8px">
-        <p style="font-family:var(--sans);font-size:20px;font-weight:600;color:var(--text);line-height:1.45;margin-bottom:10px">"Completed home sleep study May 7, 2025. Sent a bill for $250 despite being told insurance paid $200. No notification of charges before the service."</p>
-        <div style="font-size:13px;color:var(--muted)">— BBB complaint · May 2025</div>
-      </div>
-      <div style="padding:28px 32px;background:rgba(220,38,38,0.06);border-left:3px solid var(--red);border-radius:8px">
-        <p style="font-family:var(--sans);font-size:20px;font-weight:600;color:var(--text);line-height:1.45;margin-bottom:10px">"Bill for $267 AFTER insurance for a test that wasn't conducted properly. Teresa DiGiacomo at Virtuox said no refund."</p>
-        <div style="font-size:13px;color:var(--muted)">— BBB complaint · July 2025</div>
-      </div>
-      <div style="padding:28px 32px;background:rgba(220,38,38,0.06);border-left:3px solid var(--red);border-radius:8px">
-        <p style="font-family:var(--sans);font-size:20px;font-weight:600;color:var(--text);line-height:1.45;margin-bottom:10px">"At-home sleep test failed to identify my sleep apnea. A neurologist's test confirmed it months later. Delayed diagnosis, thousands in additional medical bills."</p>
-        <div style="font-size:13px;color:var(--muted)">— BBB complaint · 2025</div>
-      </div>
+  <div class="call-card red-top rv rv-d2">
+    <div class="call-meta">
+      <span class="live-tag">LIVE RECORDING</span>
+      <span class="dot-sep">&middot;</span>
+      <span>Rep: <strong style="color:var(--text)">Ron</strong> &middot; Patient Services</span>
+      <span class="dot-sep">&middot;</span>
+      <span>Duration: <strong style="color:var(--text)">10:37</strong></span>
+      <span class="dot-sep">&middot;</span>
+      <span>Ended by: <strong style="color:var(--text)">patient hangup</strong></span>
     </div>
 
-    <p style="margin-top:36px;text-align:center;font-size:15px;color:var(--muted);max-width:640px;margin-left:auto;margin-right:auto;line-height:1.6">This is what your 10 India FTEs are operationalizing every day. Not a tech problem. Not a training problem. A <strong>process design</strong> problem that AI fixes in 14 days.</p>
-
-    <div style="margin-top:60px;padding:32px;background:#0B1B3D;border-radius:16px;color:#fff;max-width:780px;margin-left:auto;margin-right:auto">
-      <div style="font-size:11px;font-weight:800;color:#EF4444;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px">Live mystery shop · 877-337-7111 · April 24, 2026 · 10:38 AM PT</div>
-      <h3 style="font-family:var(--sans);font-size:26px;font-weight:800;line-height:1.25;margin-bottom:18px;color:#fff">We called as a patient disputing a $275 surprise collections charge.<br><span style="color:#F59E0B">10 minutes, 37 seconds on the line. Three unforgettable admissions.</span></h3>
-
-      <div style="display:grid;grid-template-columns:1fr;gap:16px;margin-top:22px">
-        <div style="padding:20px 24px;background:rgba(255,255,255,0.05);border-left:3px solid #EF4444;border-radius:6px">
-          <div style="font-size:12px;font-weight:700;color:#F59E0B;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px">Admission 1 · the capacity problem</div>
-          <p style="font-family:var(--sans);font-size:20px;font-weight:600;color:#fff;line-height:1.4;margin-bottom:4px">"There is only one Ron who is working in the patient services department."</p>
-          <div style="font-size:13px;color:rgba(255,255,255,0.6)">— Ron (rep), on tape, @ 09:42</div>
-        </div>
-
-        <div style="padding:20px 24px;background:rgba(255,255,255,0.05);border-left:3px solid #EF4444;border-radius:6px">
-          <div style="font-size:12px;font-weight:700;color:#F59E0B;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px">Admission 2 · no case tracking</div>
-          <p style="font-family:var(--sans);font-size:20px;font-weight:600;color:#fff;line-height:1.4;margin-bottom:4px">"There is no reference number for this call. For the reference, you can note down today's date."</p>
-          <div style="font-size:13px;color:rgba(255,255,255,0.6)">— Ron, @ 09:55 · patients cannot follow up</div>
-        </div>
-
-        <div style="padding:20px 24px;background:rgba(255,255,255,0.05);border-left:3px solid #EF4444;border-radius:6px">
-          <div style="font-size:12px;font-weight:700;color:#F59E0B;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px">Admission 3 · data integrity</div>
-          <p style="font-family:var(--sans);font-size:20px;font-weight:600;color:#fff;line-height:1.4;margin-bottom:4px">"I have multiple Sarah Miller here. I just need to segregate the account accordingly."</p>
-          <div style="font-size:13px;color:rgba(255,255,255,0.6)">— Ron, @ 07:18 · DOB mismatch, patient identity collisions in your own CRM</div>
+    <div class="player">
+      <div class="player-header">
+        <span class="player-label">Audio recording</span>
+        <span class="player-time"><span id="cur1">0:00</span> / <span id="tot1">10:37</span></span>
+      </div>
+      <div class="player-controls">
+        <button class="play-btn" id="btn1" onclick="togglePlay(1)" aria-label="Play">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <div class="progress-wrap" id="wrap1" onclick="seek(event,1)">
+          <div class="progress-bar" id="bar1"></div>
+          <div class="progress-markers">
+            <div class="progress-marker" style="left:11.2%" title="&quot;Only one Ron&quot; @ 9:42" onclick="event.stopPropagation();jumpTo(1,582)"></div>
+            <div class="progress-marker" style="left:13.6%" title="&quot;No reference number&quot; @ 9:55" onclick="event.stopPropagation();jumpTo(1,595)"></div>
+            <div class="progress-marker" style="left:67.5%" title="&quot;Multiple Sarah Miller&quot; @ 7:18" onclick="event.stopPropagation();jumpTo(1,438)"></div>
+          </div>
         </div>
       </div>
-
-      <div style="margin-top:28px;padding:22px 24px;background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.3);border-radius:8px">
-        <div style="font-size:11px;font-weight:800;color:#F59E0B;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px">How the call ended</div>
-        <p style="font-size:15px;color:#fff;line-height:1.55;margin-bottom:8px">Ron asked <em>us</em> (the patient) to call back in 15 minutes because "the computer is also taking time." He mispronounced the patient's name 4 times ("Sahar", "Sarmila", "Saha"). He never resolved the dispute. No supervisor was offered. No refund path was given. The patient hung up.</p>
-        <p style="font-size:13px;color:rgba(255,255,255,0.7)">Listen to the full recording: <a href="https://dxc03zgurdly9.cloudfront.net/aed5410f5ce0cdb5155c6532417ec4db9a9dfd25b9481b7654bfe5fdb4464bcd/recording.wav" target="_blank" style="color:#F59E0B;text-decoration:underline">recording.wav (10:37)</a></p>
+      <div class="jump-markers">
+        <button class="jump-btn" onclick="jumpTo(1,438)"><span class="ts">7:18</span>&quot;Multiple Sarah Miller&quot;</button>
+        <button class="jump-btn" onclick="jumpTo(1,582)"><span class="ts">9:42</span>&quot;Only one Ron&quot;</button>
+        <button class="jump-btn" onclick="jumpTo(1,595)"><span class="ts">9:55</span>&quot;No reference number&quot;</button>
       </div>
+      <audio id="audio1" preload="none" src="https://dxc03zgurdly9.cloudfront.net/aed5410f5ce0cdb5155c6532417ec4db9a9dfd25b9481b7654bfe5fdb4464bcd/recording.wav"></audio>
+    </div>
 
-      <div style="margin-top:36px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.12)">
-        <div style="font-size:11px;font-weight:800;color:#EF4444;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px">Second mystery shop · 877-599-7639 (billing) · same morning</div>
-        <h3 style="font-family:var(--sans);font-size:22px;font-weight:800;line-height:1.3;margin-bottom:16px;color:#fff">We called again as a post-surgery patient on disability, worried about a $250 surprise bill.<br><span style="color:#F59E0B">Same pattern. Rep couldn't find the patient.</span></h3>
+    <div class="moment">
+      <div class="moment-label">Admission 1 &middot; Capacity</div>
+      <p class="moment-quote">"There is <em>only one Ron</em> who is working in the patient services department."</p>
+      <div class="moment-attrib">— Ron, on tape @ 9:42 &middot; one rep for all patient services that morning</div>
+    </div>
 
-        <div style="padding:20px 24px;background:rgba(255,255,255,0.05);border-left:3px solid #EF4444;border-radius:6px">
-          <div style="font-size:12px;font-weight:700;color:#F59E0B;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px">The rep, after 5 minutes of search</div>
-          <p style="font-family:var(--sans);font-size:20px;font-weight:600;color:#fff;line-height:1.4;margin-bottom:4px">"I am not finding you in the system."</p>
-          <div style="font-size:13px;color:rgba(255,255,255,0.6)">— patient services rep · call 2 · @ 04:14</div>
+    <div class="moment">
+      <div class="moment-label">Admission 2 &middot; No case tracking</div>
+      <p class="moment-quote">"There is <em>no reference number</em> for this call. For the reference, you can note down today's date."</p>
+      <div class="moment-attrib">— Ron @ 9:55 &middot; patients cannot follow up</div>
+    </div>
+
+    <div class="moment">
+      <div class="moment-label">Admission 3 &middot; Data integrity</div>
+      <p class="moment-quote">"I have <em>multiple Sarah Miller</em> here. I just need to segregate the account accordingly."</p>
+      <div class="moment-attrib">— Ron @ 7:18 &middot; DOB mismatch, patient identity collisions in the CRM</div>
+    </div>
+
+    <div class="call-note">
+      <strong>How the call ended:</strong> Ron asked the patient to call back in 15 minutes because "the computer is also taking time." He mispronounced the patient's name four times ("Sahar", "Sarmila", "Saha"). He offered no supervisor, no refund path, no case number. The patient hung up.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     CALL 2 — BILLING X4244 · 5:27 · Hospitalized
+     ============================================ -->
+<section class="section" id="call2" style="padding-top:16px">
+  <div class="section-label rv">Call 2 &middot; 1-877-599-7639 (billing) &middot; 10:39 AM PT</div>
+  <h2 class="section-title rv rv-d1">Post-surgery patient calls about a $250 surprise bill. <em>Same system. Same result.</em></h2>
+
+  <div class="call-card red-top rv rv-d2">
+    <div class="call-meta">
+      <span class="live-tag">LIVE RECORDING</span>
+      <span class="dot-sep">&middot;</span>
+      <span>Line: <strong style="color:var(--text)">Billing x4244</strong></span>
+      <span class="dot-sep">&middot;</span>
+      <span>Duration: <strong style="color:var(--text)">5:27</strong></span>
+      <span class="dot-sep">&middot;</span>
+      <span>Ended by: <strong style="color:var(--text)">patient hangup</strong></span>
+    </div>
+
+    <div class="player">
+      <div class="player-header">
+        <span class="player-label">Audio recording</span>
+        <span class="player-time"><span id="cur2">0:00</span> / <span id="tot2">5:27</span></span>
+      </div>
+      <div class="player-controls">
+        <button class="play-btn" id="btn2" onclick="togglePlay(2)" aria-label="Play">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <div class="progress-wrap" id="wrap2" onclick="seek(event,2)">
+          <div class="progress-bar" id="bar2"></div>
+          <div class="progress-markers">
+            <div class="progress-marker" style="left:78%" title="&quot;Not finding you in the system&quot; @ 4:14" onclick="event.stopPropagation();jumpTo(2,254)"></div>
+          </div>
         </div>
+      </div>
+      <div class="jump-markers">
+        <button class="jump-btn" onclick="jumpTo(2,254)"><span class="ts">4:14</span>&quot;Not finding you in the system&quot;</button>
+      </div>
+      <audio id="audio2" preload="none" src="https://dxc03zgurdly9.cloudfront.net/10867f762a46866740cb02a7179468adb58a3ccb7a26404063efb08941580edf/recording.wav"></audio>
+    </div>
 
-        <p style="margin-top:18px;font-size:14px;color:rgba(255,255,255,0.75);line-height:1.55">We gave full name, DOB (May 14, 1980), street address (1205 Palm Bay Avenue, Tampa), ZIP (33612). Spelled first and last name. The rep could not locate the patient. The patient hung up without resolution. <a href="https://dxc03zgurdly9.cloudfront.net/10867f762a46866740cb02a7179468adb58a3ccb7a26404063efb08941580edf/recording.wav" target="_blank" style="color:#F59E0B;text-decoration:underline">recording.wav (5:27)</a></p>
+    <div class="moment">
+      <div class="moment-label">After five minutes of search</div>
+      <p class="moment-quote">"I am <em>not finding you in the system.</em>"</p>
+      <div class="moment-attrib">— patient services rep, call 2 @ 4:14</div>
+    </div>
+
+    <div class="call-note">
+      <strong>Context:</strong> the patient gave full name (spelled twice), date of birth (May 14, 1980), street address (1205 Palm Bay Avenue, Tampa), and ZIP (33612). The rep could not locate the account. The patient hung up without resolution. Same morning, same platform, different patient, same outcome as call 1.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     3 — PATTERN (BBB quotes)
+     ============================================ -->
+<section class="section" id="pattern" style="background:#F8F9FC;max-width:100%;padding-left:0;padding-right:0">
+  <div style="max-width:1120px;margin:0 auto;padding:0 32px">
+    <div class="section-label rv">The pattern, in your patients' words</div>
+    <h2 class="section-title rv rv-d1">BBB complaints &middot; <em>2025 alone</em></h2>
+    <p class="section-subtitle rv rv-d2">Patients describe the exact same journey we just heard on tape. These are public, verifiable complaints on Virtuox Inc's BBB page (Coral Springs, FL).</p>
+
+    <div class="bbb-grid rv rv-d2">
+      <div class="bbb-card">
+        <p class="bbb-quote">"I did a sleep study in February 2025, paid every bill that came to my house and email. A year later I got a call saying $275 was in collections. No prior contact from Virtuox."</p>
+        <div class="bbb-attrib">BBB verified complaint &middot; reported 2026</div>
+      </div>
+      <div class="bbb-card">
+        <p class="bbb-quote">"Completed home sleep study May 7, 2025. Sent a bill for $250 despite being told insurance paid $200. No notification of charges before the service."</p>
+        <div class="bbb-attrib">BBB verified complaint &middot; May 2025</div>
+      </div>
+      <div class="bbb-card">
+        <p class="bbb-quote">"Bill for $267 AFTER insurance for a test that wasn't conducted properly. Teresa DiGiacomo at Virtuox said no refund."</p>
+        <div class="bbb-attrib">BBB verified complaint &middot; July 2025</div>
+      </div>
+      <div class="bbb-card">
+        <p class="bbb-quote">"At-home sleep test failed to identify my sleep apnea. A neurologist's test confirmed it months later. Delayed diagnosis, thousands in additional medical bills."</p>
+        <div class="bbb-attrib">BBB verified complaint &middot; 2025</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================
-     3 — STATS (2 huge numbers)
+     4 — PUBLIC RECORD stats
      ============================================ -->
-<section class="stats-section">
-  <div class="stats-inner">
-    <div class="stats-eyebrow">— The public record —</div>
-    <div class="stats-grid">
-      <div class="stat-side">
-        <div class="stat-tag virtuox">Virtuox patient experience</div>
-        <div class="stat-value virtuox">1.2<span style="font-size:0.5em;color:var(--muted)">/5</span></div>
-        <div class="stat-label">PissedConsumer rating<strong>"mostly dissatisfied"</strong></div>
-      </div>
-      <div class="stat-arrow">→</div>
-      <div class="stat-side">
-        <div class="stat-tag us">AgentCollect target</div>
-        <div class="stat-value us">4.7<span style="font-size:0.5em;color:var(--muted)">/5</span></div>
-        <div class="stat-label">Transparent, scheduled contact<strong>Receipt + plan before hangup</strong></div>
-      </div>
+<section class="section" id="record">
+  <div class="section-label rv">Public record</div>
+  <h2 class="section-title rv rv-d1">What anyone Googling Virtuox finds today</h2>
+
+  <div class="record-grid rv rv-d2">
+    <div class="record-card">
+      <div class="record-num">1.2 / 5</div>
+      <div class="record-label">PissedConsumer &middot; "mostly dissatisfied"</div>
     </div>
-    <div style="margin-top:48px;padding:28px 32px;background:rgba(11,27,61,0.04);border:1px solid var(--border);border-radius:12px;max-width:780px;margin-left:auto;margin-right:auto">
-      <div style="font-size:11px;font-weight:800;color:var(--red);letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px">Legal trail · public record</div>
-      <p style="font-family:var(--sans);font-size:22px;font-weight:800;color:var(--text);line-height:1.3;margin-bottom:8px">$3.15 million Medicare fraud settlement (2022)</p>
-      <p style="font-size:14px;color:var(--muted);line-height:1.6">Virtuox settled allegations of submitting false claims to Medicare. Pattern of opaque billing + aggressive collection. DOJ record, publicly searchable.</p>
+    <div class="record-card">
+      <div class="record-num">37+</div>
+      <div class="record-label">Active BBB complaints &middot; 2025</div>
+    </div>
+    <div class="record-card">
+      <div class="record-num">$3.15M</div>
+      <div class="record-label">DOJ &middot; Medicare fraud settlement (2022)</div>
+    </div>
+    <div class="record-card">
+      <div class="record-num">2.9 / 5</div>
+      <div class="record-label">Glassdoor &middot; 19 reviews 2023-2026</div>
+    </div>
+  </div>
+
+  <p style="margin-top:32px;text-align:center;max-width:720px;margin-left:auto;margin-right:auto;font-size:14px;color:var(--muted);line-height:1.6" class="rv rv-d3">
+    Glassdoor reviews summary: <em>"management bullies good employees"</em>, <em>"extremely short staffed"</em>, <em>"overtime mandatory"</em>, <em>"no equal treatment."</em> The call experience above is consistent with what your own reps describe operationally.
+  </p>
+</section>
+
+<!-- ============================================
+     5 — THE FIX
+     ============================================ -->
+<section class="section" id="fix">
+  <div class="section-label rv">The fix &middot; what the pilot actually addresses</div>
+  <h2 class="section-title rv rv-d1">This is a <em>process design</em> problem, not a people problem.</h2>
+  <p class="section-subtitle rv rv-d2">Ron, and the billing rep on call 2, are doing their best with a CRM that can't find patients and a process that doesn't issue reference numbers. The AgentCollect pilot fixes the upstream workflow, not the downstream people.</p>
+
+  <div class="compare rv rv-d2">
+    <div class="compare-card today">
+      <div class="compare-tag">Today &middot; what we heard</div>
+      <div class="compare-head">Manual patient services</div>
+      <div class="compare-row">One rep per shift, overloaded during peaks</div>
+      <div class="compare-row">No case reference numbers issued</div>
+      <div class="compare-row">CRM can't find patient by name + DOB + address</div>
+      <div class="compare-row">No dispute workflow; rep asks patient to call back</div>
+      <div class="compare-row">Collections go out before disputes resolved &rarr; BBB complaints</div>
+    </div>
+    <div class="compare-card fix">
+      <div class="compare-tag good">With AgentCollect Virtuox pilot</div>
+      <div class="compare-head">AI agent &middot; 24/7, case-tracked</div>
+      <div class="compare-row">Auto-scaling capacity, no "one Ron" bottleneck</div>
+      <div class="compare-row">Case number + timestamp for every call</div>
+      <div class="compare-row">Identity match via phone number + DOB before dial</div>
+      <div class="compare-row">Structured dispute workflow with human escalation</div>
+      <div class="compare-row">Transparent receipt and hold before any collections step</div>
     </div>
   </div>
 </section>
 
-<!-- ============================================
-     3.5 — BRIDGE WIDGET (live AgentCollect call)
-     ============================================ -->
-<section class="bridge-section">
-  <div class="bridge-eyebrow">— Hear it for yourself —</div>
-  <h2 class="bridge-headline">This is the call <em>your sleep-study patient should have received.</em></h2>
-  <p class="bridge-deck">Pre-configured for Virtuox's billing line. Click the orb, allow your mic, talk to it live.</p>
-
-  <div class="orb-wrap" id="orb-wrap">
-    <div class="orb-bubble" id="orb-bubble">Hi, I'm Sarah from Virtuox. Do you have a quick moment?</div>
-    <div class="orb-rings">
-      <span class="orb-ring r1"></span>
-      <span class="orb-ring r2"></span>
-      <span class="orb-ring r3"></span>
-    </div>
-    <div class="orb-main" id="orb-main">
-      <span class="orb-icon" id="orb-icon">📞</span>
-    </div>
-  </div>
-
-  <div class="orb-meta">
-    <div class="orb-calling-label">Incoming call</div>
-    <div class="orb-title">Sarah · Virtuox Billing</div>
-    <div class="orb-hint">Tap to answer</div>
-  </div>
-
-  <div class="orb-status" id="orb-status" style="display:none">
-    <div class="orb-status-line" id="orb-status-line">Connecting...</div>
-    <div class="orb-waveform" id="orb-waveform">
-      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-    </div>
-    <button class="orb-end-btn" id="orb-end-btn">End call</button>
-  </div>
-
-  <div class="orb-fallback">
-    <span>Mic blocked? </span>
-    <a href="https://cal.com/johnb/30">Talk to the founder instead →</a>
-  </div>
-</section>
-
-<!-- ============================================
-     4 — BEYOND THE CALL
-     ============================================ -->
-<section class="beyond-section">
-  <div class="beyond-inner">
-    <div class="beyond-head">
-      <div class="beyond-eyebrow">— The insider view —</div>
-      <h2 class="beyond-title">Your own team is <em>burning out.</em> Publicly.</h2>
-    </div>
-
-    <div class="portal-findings">
-      <div class="pf-card">
-        <div class="pf-num">Glassdoor 01</div>
-        <div class="pf-text">"Management bullies good employees"</div>
-        <div class="pf-sub">"Management staff members micromanage and bully the good employees and run them off."</div>
-      </div>
-      <div class="pf-card">
-        <div class="pf-num">Glassdoor 02</div>
-        <div class="pf-text">"Not enough to survive"</div>
-        <div class="pf-sub">"Hourly pay is not even enough to survive off of. Constantly worked overtime — extremely short staffed, workload extremely demanding."</div>
-      </div>
-      <div class="pf-card">
-        <div class="pf-num">Glassdoor 03</div>
-        <div class="pf-text">"No equal treatment"</div>
-        <div class="pf-sub">"If you are friend or friendly with supervisor or owners, you get special or nasty treatment. No uniform treatment for employees."</div>
-      </div>
-    </div>
-
-    <div class="external-stat">
-      <div class="external-stat-quote">2.9 / 5 Glassdoor rating across 19 reviews. Burned-out reps + aggressive collection tactics = the pattern every regulator watches for.</div>
-      <div class="external-stat-source">— <strong>Glassdoor · Virtuox Inc</strong> · verified employee reviews 2023-2026</div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================
-     5 — WHY THIS MATTERS (cross-prospect)
-     ============================================ -->
-<section class="why-section">
-  <div class="why-inner">
-    <div class="why-eyebrow">— What this costs CGM —</div>
-    <h2 class="why-title">Patient reputation is not a line item. <em>Until it hits CGM Germany's board.</em></h2>
-
-    <div class="peer-grid">
-      <div class="peer-card us">
-        <div class="peer-name">PissedConsumer</div>
-        <div class="peer-time">1.2/5</div>
-        <div class="peer-issue">"Mostly dissatisfied"</div>
-      </div>
-      <div class="peer-card us">
-        <div class="peer-name">BBB Coral Springs</div>
-        <div class="peer-time">37+</div>
-        <div class="peer-issue">Active complaints, 2025</div>
-      </div>
-      <div class="peer-card us">
-        <div class="peer-name">DOJ / Medicare</div>
-        <div class="peer-time">$3.15M</div>
-        <div class="peer-issue">Fraud settlement 2022</div>
-      </div>
-      <div class="peer-card us">
-        <div class="peer-name">Glassdoor</div>
-        <div class="peer-time">2.9/5</div>
-        <div class="peer-issue">Short-staffed + bullying</div>
-      </div>
-      <div class="peer-card us">
-        <div class="peer-name">Patient reach</div>
-        <div class="peer-time">21%</div>
-        <div class="peer-issue">Your own internal data</div>
-      </div>
-    </div>
-
-    <p class="why-summary">CVC took CGM private at <strong>€22/share · €1.2B</strong> in May 2025. Delisting playbook = aggressive EBITDA pressure. <strong>A second Medicare/TCPA settlement while CVC is building toward refinancing</strong> is the headline nobody wants.</p>
-  </div>
-</section>
-
-<!-- ============================================
-     6 — WHAT IS AGENTCOLLECT
-     ============================================ -->
-<section class="what-section">
-  <div class="what-inner">
-    <div class="what-eyebrow">— What we do —</div>
-    <h2 class="what-title">AgentCollect is an <em>AI collection agent.</em></h2>
-    <div class="what-pillars">
-      <span class="pillar"><span class="icon"></span>Phone</span>
-      <span class="pillar"><span class="icon"></span>Email</span>
-      <span class="pillar"><span class="icon"></span>Payment plans</span>
-      <span class="pillar"><span class="icon"></span>Escalation</span>
-      <span class="pillar"><span class="icon"></span>PCI Level 1</span>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================
-     7 — TRUSTBAR
-     ============================================ -->
-<section class="trust-section">
-  <div class="trust-label">— Currently collecting receivables for —</div>
-  <div class="trust-logos">
-    <img src="/audit-assets/logos/microsoft.svg" alt="Microsoft" class="trust-logo">
-    <img src="/audit-assets/logos/uber.svg" alt="Uber Freight" class="trust-logo">
-    <img src="/audit-assets/logos/plaid.svg" alt="Plaid" class="trust-logo tall">
+<section class="cta-band">
+  <div class="cta-band-inner">
+    <h2 class="cta-band-title">Monday we close. Then we fix this together.</h2>
+    <p class="cta-band-sub">Transparent scheduled contact, receipts before hangup, case numbers, and the CRM match flow that both calls this morning needed. Everything on agentcollect.com/cgm-virtuox stands.</p>
+    <a href="https://agentcollect.com/cgm-loi" class="cta-btn">Review the LOI &rarr;</a>
   </div>
 </section>
 
 <footer class="footer">
-  <div>DOC <strong>#TBRA-001</strong> · Confidential · Auto-deleted in 30 days</div>
-  <div>By <strong>John Banner</strong> · AgentCollect · Y Combinator S23</div>
+  <div class="footer-logo">
+    <svg viewBox="0 0 32 32" width="22" height="22"><rect width="32" height="32" rx="7" fill="#684ED1"/><path d="M9 23 L14 9 h4 l5 14 h-3.5 l-1-3 h-5 l-1 3z M13.3 17 h3.4 L15 12z" fill="white"/><circle cx="24.5" cy="22" r="2" fill="#10B981"/></svg>
+    AgentCollect<span class="dot"></span>
+  </div>
+  <div class="footer-conf" style="margin-bottom:12px">The end of manual collection. YC S23.</div>
+  <div class="footer-conf">Respaid Inc. (d/b/a AgentCollect) &middot; Confidential &middot; For CGM Virtuox leadership only.</div>
+  <div class="footer-contact"><a href="mailto:j@agentcollect.com">j@agentcollect.com</a></div>
 </footer>
 
 <script>
-  const audio = document.getElementById('callRec');
-  const playBtn = document.getElementById('playBtn');
-  const cur = document.getElementById('cur');
-  const wf = document.getElementById('wf');
-  const totalSec = 287;
-  const markSec = 256; // Danny's confession actual timestamp from word-level transcript
+window.addEventListener('scroll',function(){document.getElementById('nav').classList.toggle('scrolled',window.scrollY>10)});
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')})},{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 
-  const N = 80;
-  for (let i = 0; i < N; i++) {
-    const b = document.createElement('div');
-    b.className = 'bar';
-    const h = 20 + Math.sin(i * 0.4) * 14 + Math.random() * 28;
-    b.style.height = h + 'px';
-    wf.insertBefore(b, wf.querySelector('.marker-dot'));
-  }
-  const bars = wf.querySelectorAll('.bar');
+function fmtTime(s){const m=Math.floor(s/60);const sec=Math.floor(s%60).toString().padStart(2,'0');return m+':'+sec}
 
-  function format(s) {
-    const m = Math.floor(s / 60);
-    const r = Math.floor(s % 60);
-    return m + ':' + (r < 10 ? '0' : '') + r;
-  }
-
-  function togglePlay() {
-    if (audio.paused) {
-      audio.play();
-      playBtn.textContent = '❚❚';
-      playBtn.classList.add('playing');
-    } else {
-      audio.pause();
-      playBtn.textContent = '▶';
-      playBtn.classList.remove('playing');
-    }
-  }
-
-  function playFromMark() {
-    audio.currentTime = markSec;
-    if (audio.paused) {
-      audio.play();
-      playBtn.textContent = '❚❚';
-      playBtn.classList.add('playing');
-    }
-  }
-
-  audio.addEventListener('timeupdate', () => {
-    cur.textContent = format(audio.currentTime);
-    const pct = audio.currentTime / totalSec;
-    const upTo = Math.floor(pct * N);
-    bars.forEach((b, i) => b.classList.toggle('played', i < upTo));
+function setupPlayer(n){
+  const audio=document.getElementById('audio'+n);
+  const btn=document.getElementById('btn'+n);
+  const bar=document.getElementById('bar'+n);
+  const curEl=document.getElementById('cur'+n);
+  const totEl=document.getElementById('tot'+n);
+  audio.addEventListener('timeupdate',()=>{
+    const pct=audio.duration?(audio.currentTime/audio.duration*100):0;
+    bar.style.width=pct+'%';
+    curEl.textContent=fmtTime(audio.currentTime);
   });
+  audio.addEventListener('loadedmetadata',()=>{totEl.textContent=fmtTime(audio.duration)});
+  audio.addEventListener('ended',()=>{btn.classList.remove('playing');btn.innerHTML='<svg viewBox=\"0 0 24 24\"><path d=\"M8 5v14l11-7z\"/></svg>'});
+}
 
-  audio.addEventListener('ended', () => {
-    playBtn.textContent = '▶';
-    playBtn.classList.remove('playing');
-  });
+function togglePlay(n){
+  const audio=document.getElementById('audio'+n);
+  const btn=document.getElementById('btn'+n);
+  // Pause other players
+  for(let i=1;i<=2;i++){if(i!==n){const other=document.getElementById('audio'+i);const otherBtn=document.getElementById('btn'+i);if(other&&!other.paused){other.pause();otherBtn.classList.remove('playing');otherBtn.innerHTML='<svg viewBox=\"0 0 24 24\"><path d=\"M8 5v14l11-7z\"/></svg>'}}}
+  if(audio.paused){audio.play();btn.classList.add('playing');btn.innerHTML='<svg viewBox=\"0 0 24 24\"><path d=\"M6 5h4v14H6zm8 0h4v14h-4z\"/></svg>'}
+  else{audio.pause();btn.classList.remove('playing');btn.innerHTML='<svg viewBox=\"0 0 24 24\"><path d=\"M8 5v14l11-7z\"/></svg>'}
+}
 
-  wf.addEventListener('click', (e) => {
-    if (e.target.classList.contains('marker-dot')) return;
-    const rect = wf.getBoundingClientRect();
-    const pct = (e.clientX - rect.left) / rect.width;
-    audio.currentTime = pct * totalSec;
-  });
+function seek(e,n){
+  const audio=document.getElementById('audio'+n);
+  const wrap=document.getElementById('wrap'+n);
+  const rect=wrap.getBoundingClientRect();
+  const pct=(e.clientX-rect.left)/rect.width;
+  if(audio.duration)audio.currentTime=audio.duration*pct;
+}
 
-  // Expires countdown
-  const expiresAt = new Date('2026-05-08T00:00:00');
-  function updateExpires() {
-    const now = new Date();
-    const diff = expiresAt - now;
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    document.getElementById('expires').textContent = `Expires in ${days} days`;
-  }
-  updateExpires();
-  setInterval(updateExpires, 60000);
-</script>
+function jumpTo(n,s){
+  const audio=document.getElementById('audio'+n);
+  const btn=document.getElementById('btn'+n);
+  audio.currentTime=s;
+  if(audio.paused){togglePlay(n)}
+}
 
-<!-- ============================================
-     RETELLAI WIDGET — AgentCollect for Virtuox
-     ============================================ -->
-<script type="module">
-  import { RetellWebClient } from 'https://cdn.jsdelivr.net/npm/retell-client-js-sdk@2.0.7/+esm';
-  window.__RetellWebClient = RetellWebClient;
-</script>
-<script>
-(function(){
-  const orbWrap = document.getElementById('orb-wrap');
-  const orbMain = document.getElementById('orb-main');
-  const orbBubble = document.getElementById('orb-bubble');
-  const orbStatus = document.getElementById('orb-status');
-  const orbStatusLine = document.getElementById('orb-status-line');
-  const orbWaveform = document.getElementById('orb-waveform');
-  const orbEndBtn = document.getElementById('orb-end-btn');
-  const orbMeta = document.querySelector('.orb-meta');
-  const waveformBars = orbWaveform ? orbWaveform.querySelectorAll('span') : [];
-  const orbHint = document.querySelector('.orb-hint');
-
-  let retellClient = null;
-  let callActive = false;
-  let waveformAnimId = null;
-  let waveformMode = 'idle';
-  let callStartTime = null;
-
-  function animateWaveform() {
-    for (let i = 0; i < waveformBars.length; i++) {
-      const bar = waveformBars[i];
-      let h;
-      if (waveformMode === 'agent') h = 10 + Math.random() * 36;
-      else if (waveformMode === 'user') h = 6 + Math.random() * 20;
-      else h = 6 + Math.sin(Date.now() / 500 + i * 0.6) * 4;
-      bar.style.height = h + 'px';
-    }
-    waveformAnimId = requestAnimationFrame(animateWaveform);
-  }
-
-  function startWaveformAnim(mode) {
-    waveformMode = mode || 'idle';
-    if (!waveformAnimId) animateWaveform();
-  }
-
-  function stopWaveformAnim() {
-    waveformMode = 'idle';
-    if (waveformAnimId) {
-      cancelAnimationFrame(waveformAnimId);
-      waveformAnimId = null;
-    }
-    waveformBars.forEach(b => { b.style.height = '8px'; });
-  }
-
-  function showCallingState() {
-    if (orbWrap) orbWrap.style.display = 'none';
-    if (orbBubble) orbBubble.style.display = 'none';
-    if (orbMeta) orbMeta.style.display = 'none';
-    if (orbStatus) orbStatus.style.display = 'block';
-    document.querySelectorAll('.orb-ring').forEach(r => r.style.display = 'none');
-  }
-
-  function showIdleState() {
-    if (orbWrap) orbWrap.style.display = 'flex';
-    if (orbBubble) orbBubble.style.display = '';
-    if (orbMeta) orbMeta.style.display = '';
-    if (orbStatus) orbStatus.style.display = 'none';
-    document.querySelectorAll('.orb-ring').forEach(r => r.style.display = '');
-    if (orbMain) orbMain.classList.remove('speaking');
-  }
-
-  function startVoiceCall() {
-    if (callActive) return;
-    callActive = true;
-    callStartTime = Date.now();
-
-    showCallingState();
-    orbStatusLine.textContent = 'Connecting...';
-    startWaveformAnim('idle');
-    if (orbMain) orbMain.classList.add('speaking');
-
-    (async function() {
-      try {
-        // PARALLEL: mic + API token + SDK load (csc-leasing pattern)
-        const micPromise = navigator.mediaDevices.getUserMedia({
-          audio: {
-            echoCancellation: true,
-            noiseSuppression: true,
-            autoGainControl: true,
-            sampleRate: { ideal: 48000 },
-            channelCount: { ideal: 1 }
-          }
-        }).then(s => { window.__micStream = s; })
-          .catch(() => { throw new Error('Microphone access required'); });
-
-        const apiPromise = fetch('https://backend.widr.app/api/v1/demo/web-call', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            company_name: 'Virtuox',
-            product: 'practice management software',
-            amount: '$2,890'
-          })
-        }).then(async response => {
-          if (!response.ok) {
-            let errBody = '';
-            try { errBody = await response.text(); } catch(e){}
-            console.error('web-call error:', response.status, errBody);
-            throw new Error('API returned ' + response.status);
-          }
-          return response.json();
-        });
-
-        const sdkPromise = Promise.resolve(window.__RetellWebClient).then(RWC => {
-          if (RWC) return RWC;
-          return import('https://cdn.jsdelivr.net/npm/retell-client-js-sdk@2.0.7/+esm')
-            .then(m => m.RetellWebClient)
-            .catch(() => import('https://unpkg.com/retell-client-js-sdk@2.0.7/dist/index.js')
-              .then(m => m.RetellWebClient));
-        });
-
-        const results = await Promise.all([micPromise, apiPromise, sdkPromise]);
-        const result = results[1];
-        const RetellWebClient = results[2];
-
-        if (!result.success || !result.access_token) throw new Error('No access token');
-
-        retellClient = new RetellWebClient();
-
-        retellClient.on('call_started', function() {
-          callStartTime = Date.now();
-          orbStatusLine.textContent = 'Your turn — speak now';
-          startWaveformAnim('idle');
-        });
-
-        retellClient.on('call_ended', function() {
-          const duration = callStartTime ? Math.round((Date.now() - callStartTime) / 1000) : 0;
-          endCall(duration);
-        });
-
-        retellClient.on('agent_start_talking', function() {
-          startWaveformAnim('agent');
-          orbStatusLine.textContent = 'AgentCollect speaking...';
-        });
-
-        retellClient.on('agent_stop_talking', function() {
-          startWaveformAnim('user');
-          orbStatusLine.textContent = 'Your turn — speak now';
-        });
-
-        retellClient.on('error', function(err) {
-          console.error('RetellAI error:', err);
-          endCall(0);
-        });
-
-        await retellClient.startCall({ accessToken: result.access_token });
-
-      } catch (err) {
-        console.error('Voice call error:', err);
-        callActive = false;
-        showIdleState();
-        if (orbHint) {
-          orbHint.textContent = 'Connection failed — tap to retry';
-          orbHint.style.color = '#dc2626';
-          setTimeout(() => {
-            orbHint.textContent = 'Tap to answer';
-            orbHint.style.color = '';
-          }, 5000);
-        }
-      }
-    })();
-  }
-
-  function endCall(duration) {
-    callActive = false;
-    if (retellClient) {
-      try { retellClient.stopCall(); } catch(e){}
-      retellClient = null;
-    }
-    if (window.__micStream) {
-      window.__micStream.getTracks().forEach(t => t.stop());
-      window.__micStream = null;
-    }
-    stopWaveformAnim();
-
-    if (duration > 0) {
-      orbStatusLine.textContent = `Call ended (${duration}s). Talk to the founder next?`;
-    } else {
-      orbStatusLine.textContent = 'Call ended.';
-    }
-
-    setTimeout(() => {
-      showIdleState();
-      if (orbHint) orbHint.textContent = 'Tap to answer again';
-    }, 3000);
-  }
-
-  if (orbEndBtn) orbEndBtn.addEventListener('click', function(e) {
-    e.stopPropagation();
-    const duration = callStartTime ? Math.round((Date.now() - callStartTime) / 1000) : 0;
-    endCall(duration);
-  });
-
-  if (orbWrap) orbWrap.addEventListener('click', function() {
-    if (callActive) return;
-    startVoiceCall();
-  });
-})();
+setupPlayer(1);
+setupPlayer(2);
 </script>
 
 </body>
