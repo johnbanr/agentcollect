@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FedEx · Pre-Collection AR Audit · Confidential</title>
+<meta property="og:title" content="FedEx Pre-Collection AR Audit · Confidential">
+<meta property="og:description" content="On Batch #1, 43% of the customers you sent to 3rd-party collection opened a dispute with one question: where is my invoice.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#FAF9F6;
+  --bg-2:#F4F2EC;
+  --bg-3:#FFFDFA;
+  --ink:#0E1116;
+  --ink-2:#3F4651;
+  --muted:#6B7280;
+  --line:#E5E0D5;
+  --line-2:#D4CEC0;
+  --indigo:#4338CA;
+  --indigo-soft:#EEF0FF;
+  --red:#B91C1C;
+  --red-soft:#FEF2F2;
+  --green:#047857;
+  --display:'Plus Jakarta Sans',-apple-system,sans-serif;
+  --display-tight:'Plus Jakarta Sans',-apple-system,sans-serif;
+  --body:'Inter',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* TOPBAR */
+.topbar{border-bottom:1px solid var(--line);background:rgba(250,249,246,.92);backdrop-filter:blur(20px);position:sticky;top:0;z-index:50}
+.topbar-inner{max-width:1100px;margin:0 auto;padding:18px 36px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:inline-flex;align-items:center;gap:6px;font-family:var(--display);font-weight:700;font-size:18px;color:var(--ink);text-decoration:none;letter-spacing:-.015em}
+.brand .dot{width:6px;height:6px;border-radius:50%;background:var(--indigo);margin-left:1px;vertical-align:super;margin-top:-2px;display:inline-block}
+.topbar-meta{font-family:var(--mono);font-size:10px;color:var(--muted);font-weight:500;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.topbar-meta strong{color:var(--ink)}
+.topbar-cta{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:var(--ink);color:#fff;border-radius:100px;font-family:var(--display);font-size:12px;font-weight:700;text-decoration:none;letter-spacing:-.005em;transition:all .2s;text-transform:none}
+.topbar-cta:hover{background:var(--indigo)}
+.topbar-cta .arrow{transition:transform .2s;font-size:11px}
+.topbar-cta:hover .arrow{transform:translateX(2px)}
+.expires{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;background:var(--red-soft);color:var(--red);border-radius:6px;font-weight:600}
+.expires::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--red);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* SECTION SHELL */
+.viewport{min-height:90vh;display:flex;align-items:center;justify-content:center;padding:120px 36px;position:relative}
+.viewport-inner{max-width:1080px;width:100%;margin:0 auto}
+
+/* ============================================
+   1 — HERO
+   ============================================ */
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.14em;padding:8px 16px;border:1px solid var(--line-2);border-radius:100px;margin-bottom:42px;background:var(--bg-3)}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--indigo)}
+
+.hero-headline{font-family:var(--display);font-size:clamp(48px,6.4vw,92px);font-weight:800;line-height:1;letter-spacing:-.025em;color:var(--ink);margin-bottom:42px;max-width:1040px;}
+.hero-headline em{color:var(--red);font-weight:500}
+
+.hero-meta{display:flex;align-items:center;gap:24px;font-family:var(--mono);font-size:12px;color:var(--muted);flex-wrap:wrap}
+.hero-meta strong{color:var(--ink);font-weight:600}
+.hero-meta .sep{color:var(--line-2)}
+
+/* ============================================
+   2 — THE CONFESSION
+   ============================================ */
+.confession-section{padding:140px 36px 100px;border-top:1px solid var(--line);background:var(--bg-3);position:relative}
+.confession-inner{max-width:980px;margin:0 auto;text-align:center}
+
+.confession-eyebrow{font-family:var(--mono);font-size:11px;color:var(--red);text-transform:uppercase;letter-spacing:.18em;font-weight:600;margin-bottom:48px;display:inline-flex;align-items:center;gap:14px}
+.confession-eyebrow::before,.confession-eyebrow::after{content:'';width:36px;height:1px;background:var(--red);opacity:.4}
+
+.big-quote{font-family:var(--display);font-size:clamp(34px,5.2vw,70px);font-weight:700;line-height:1.08;letter-spacing:-.02em;color:var(--ink);margin-bottom:56px;max-width:980px;margin-left:auto;margin-right:auto;}
+.big-quote::before{content:'"';display:block;font-family:var(--display);font-size:160px;line-height:.4;color:var(--red);opacity:.2;margin-bottom:30px;font-weight:500;font-style:normal}
+
+.quote-attrib{font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:64px;letter-spacing:.04em;text-transform:uppercase}
+.quote-attrib strong{color:var(--ink);font-weight:600}
+
+/* AUDIO PLAYER */
+.audio-shell{max-width:760px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:18px;padding:32px 36px;position:relative;overflow:hidden;box-shadow:0 1px 2px rgba(11,17,22,.04),0 12px 32px rgba(11,17,22,.06)}
+.audio-shell::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),transparent 90%);pointer-events:none}
+
+.audio-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.audio-meta .live{display:inline-flex;align-items:center;gap:6px;color:var(--red);font-weight:600}
+.audio-meta .live::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 12px rgba(185,28,28,.4);animation:pulse 1.5s ease-in-out infinite}
+
+.waveform{position:relative;height:64px;display:flex;align-items:center;gap:2px;margin-bottom:22px;cursor:pointer}
+.bar{flex:1;background:rgba(15,17,22,.18);border-radius:1px;transition:background .2s;min-height:6px}
+.bar.played{background:var(--red)}
+.marker-dot{position:absolute;top:50%;left:89.2%;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#ef4444,var(--red));border:3px solid #fff;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 0 0 rgba(185,28,28,.5),0 4px 12px rgba(185,28,28,.4);animation:marker-pulse 2s ease-in-out infinite;z-index:2}
+@keyframes marker-pulse{0%,100%{box-shadow:0 0 0 0 rgba(185,28,28,.5),0 4px 12px rgba(185,28,28,.4)}50%{box-shadow:0 0 0 18px rgba(185,28,28,0),0 4px 12px rgba(185,28,28,.4)}}
+.marker-dot::after{content:'★';color:#fff;font-size:14px;font-weight:700}
+.marker-label{position:absolute;top:-32px;left:89.2%;transform:translateX(-50%);font-family:var(--mono);font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:.12em;font-weight:600;white-space:nowrap}
+
+.audio-controls{display:flex;align-items:center;gap:16px}
+.play-main{width:48px;height:48px;border-radius:50%;background:var(--ink);color:#fff;border:0;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+.play-main:hover{background:var(--indigo);transform:scale(1.05)}
+.play-main.playing{background:var(--red)}
+.audio-time{font-family:var(--mono);font-size:11px;color:var(--muted);font-weight:500}
+.audio-time .current{color:var(--ink);font-weight:600}
+.jump-btn{margin-left:auto;display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:var(--red-soft);color:var(--red);border:1px solid rgba(185,28,28,.3);border-radius:100px;font-family:var(--mono);font-size:11px;font-weight:600;cursor:pointer;transition:all .2s;text-transform:uppercase;letter-spacing:.06em}
+.jump-btn:hover{background:rgba(185,28,28,.12)}
+
+/* ============================================
+   3 — STATS (2 huge numbers)
+   ============================================ */
+.stats-section{padding:140px 36px;border-top:1px solid var(--line);background:var(--bg);position:relative}
+.stats-inner{max-width:1080px;margin:0 auto}
+.stats-eyebrow{text-align:center;font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.18em;font-weight:500;margin-bottom:64px}
+.stats-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:60px;align-items:center;max-width:980px;margin:0 auto}
+.stat-side{text-align:center}
+.stat-tag{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.16em;margin-bottom:24px;font-weight:500}
+.stat-tag.tebra{color:var(--red)}
+.stat-tag.us{color:var(--indigo)}
+.stat-value{font-family:var(--display);font-size:clamp(80px,13vw,200px);font-weight:900;line-height:.85;letter-spacing:-.04em;}
+.stat-value.tebra{color:var(--red)}
+.stat-value.us{color:var(--indigo)}
+.stat-label{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:24px;letter-spacing:.04em;line-height:1.7}
+.stat-label strong{color:var(--ink);font-weight:600;display:block;margin-top:4px;text-transform:uppercase;font-size:10px;letter-spacing:.08em}
+.stat-arrow{font-family:var(--display);font-size:60px;color:var(--muted);font-weight:300}
+
+/* ============================================
+   4 — BEYOND THE CALL
+   ============================================ */
+.beyond-section{padding:140px 36px;border-top:1px solid var(--line);background:var(--bg-3)}
+.beyond-inner{max-width:1080px;margin:0 auto}
+.beyond-head{text-align:center;margin-bottom:72px}
+.beyond-eyebrow{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.18em;font-weight:500;margin-bottom:18px}
+.beyond-title{font-family:var(--display);font-size:clamp(36px,4.8vw,64px);font-weight:800;letter-spacing:-.025em;line-height:1.05;color:var(--ink);max-width:780px;margin:0 auto;}
+.beyond-title em{color:var(--indigo)}
+
+.portal-frame{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;max-width:920px;margin:0 auto;position:relative;box-shadow:0 1px 2px rgba(11,17,22,.04),0 24px 60px rgba(11,17,22,.08)}
+.portal-bar{display:flex;align-items:center;gap:8px;padding:14px 20px;background:#F4F2EC;border-bottom:1px solid var(--line)}
+.portal-dot{width:11px;height:11px;border-radius:50%;background:rgba(0,0,0,.12)}
+.portal-dot.r{background:#ff5f57}
+.portal-dot.y{background:#febc2e}
+.portal-dot.g{background:#28c840}
+.portal-url{margin-left:14px;padding:5px 14px;background:#fff;border:1px solid var(--line);border-radius:6px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.portal-url strong{color:var(--ink)}
+
+.portal-body{padding:64px 56px 80px;min-height:380px;background:linear-gradient(180deg,#fff 0%,#FAFAF7 100%);position:relative}
+.portal-mock-logo{font-family:var(--display);font-size:24px;font-weight:700;color:var(--ink);margin-bottom:8px;letter-spacing:-.02em}
+.portal-mock-logo span{color:var(--indigo)}
+.portal-mock-tag{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:36px;font-weight:500}
+.portal-mock-title{font-family:var(--display);font-size:28px;font-weight:700;color:var(--ink);margin-bottom:8px;letter-spacing:-.015em;}
+.portal-mock-sub{font-family:var(--body);font-size:14px;color:var(--muted);margin-bottom:32px}
+.portal-mock-form{display:flex;flex-direction:column;gap:14px;max-width:380px}
+.portal-mock-input{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px 16px;font-family:var(--body);font-size:13px;color:var(--muted)}
+.portal-mock-btn{background:var(--indigo);color:#fff;border:0;border-radius:8px;padding:14px 16px;font-family:var(--display);font-size:14px;font-weight:600;text-align:center;cursor:not-allowed;opacity:.85;margin-top:6px}
+
+/* annotations */
+.annotation{position:absolute;background:var(--red);color:#fff;padding:8px 14px;border-radius:8px;font-family:var(--mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;box-shadow:0 8px 24px rgba(185,28,28,.25)}
+.annotation::before{content:'';position:absolute;width:0;height:0;border-style:solid}
+.annotation.a1{top:80px;right:60px}
+.annotation.a1::before{left:-8px;top:50%;transform:translateY(-50%);border-width:6px 8px 6px 0;border-color:transparent var(--red) transparent transparent}
+.annotation.a2{bottom:120px;right:60px}
+.annotation.a2::before{left:-8px;top:50%;transform:translateY(-50%);border-width:6px 8px 6px 0;border-color:transparent var(--red) transparent transparent}
+
+.portal-findings{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;max-width:920px;margin:64px auto 0}
+.pf-card{padding:0}
+.pf-num{font-family:var(--mono);font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:14px}
+.pf-text{font-family:var(--display);font-size:19px;font-weight:700;color:var(--ink);line-height:1.3;letter-spacing:-.01em;margin-bottom:10px;}
+.pf-sub{font-family:var(--body);font-size:13px;color:var(--muted);line-height:1.6}
+
+.external-stat{max-width:780px;margin:64px auto 0;padding:36px 44px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--ink);border-radius:0 14px 14px 0;text-align:left}
+.external-stat-quote{font-family:var(--display);font-size:clamp(20px,2.4vw,28px);font-weight:600;line-height:1.35;letter-spacing:-.015em;color:var(--ink);margin-bottom:18px;}
+.external-stat-source{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.external-stat-source strong{color:var(--ink);font-weight:600;text-transform:none;font-family:var(--display);letter-spacing:0;font-size:13px}
+
+/* ============================================
+   5 — WHY THIS MATTERS (cross-prospect)
+   ============================================ */
+.why-section{padding:140px 36px;border-top:1px solid var(--line);background:var(--bg)}
+.why-inner{max-width:1080px;margin:0 auto;text-align:center}
+.why-eyebrow{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.18em;font-weight:500;margin-bottom:24px}
+.why-title{font-family:var(--display);font-size:clamp(36px,4.8vw,64px);font-weight:800;letter-spacing:-.025em;line-height:1.05;color:var(--ink);margin-bottom:72px;max-width:880px;margin-left:auto;margin-right:auto;}
+.why-title em{color:var(--red)}
+
+.peer-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;max-width:980px;margin:0 auto}
+.peer-card{background:var(--bg-3);border:1px solid var(--line);border-radius:14px;padding:28px 18px;text-align:center;transition:all .2s;position:relative}
+.peer-card.us{border-color:var(--red);background:var(--red-soft);transform:scale(1.04);box-shadow:0 12px 32px rgba(185,28,28,.12)}
+.peer-card.us::before{content:'YOU';position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;padding:3px 10px;border-radius:6px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em}
+.peer-name{font-family:var(--display);font-size:15px;font-weight:600;color:var(--ink);margin-bottom:14px;letter-spacing:-.005em}
+.peer-time{font-family:var(--display);font-size:30px;font-weight:800;color:var(--red);letter-spacing:-.02em;line-height:1;margin-bottom:8px;}
+.peer-issue{font-family:var(--body);font-size:11px;color:var(--muted);line-height:1.45;min-height:42px}
+
+.why-summary{margin-top:64px;font-family:var(--display);font-size:clamp(20px,2.4vw,28px);font-weight:400;color:var(--ink-2);line-height:1.45;max-width:720px;margin-left:auto;margin-right:auto;letter-spacing:-.005em;}
+.why-summary strong{color:var(--ink);font-weight:600;font-style:normal}
+
+/* ============================================
+   6 — WHAT IS AGENTCOLLECT
+   ============================================ */
+.what-section{padding:140px 36px;border-top:1px solid var(--line);background:var(--bg-3)}
+.what-inner{max-width:980px;margin:0 auto;text-align:center}
+.what-eyebrow{font-family:var(--mono);font-size:11px;color:var(--indigo);text-transform:uppercase;letter-spacing:.18em;font-weight:600;margin-bottom:24px}
+.what-title{font-family:var(--display);font-size:clamp(40px,5.4vw,76px);font-weight:800;letter-spacing:-.025em;line-height:1;color:var(--ink);margin-bottom:36px;}
+.what-title em{color:var(--indigo)}
+.what-pillars{display:flex;align-items:center;justify-content:center;gap:36px;flex-wrap:wrap;margin-top:48px;padding-top:48px;border-top:1px solid var(--line)}
+.pillar{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;color:var(--ink-2);font-weight:500;letter-spacing:.02em;text-transform:uppercase}
+.pillar .icon{width:6px;height:6px;border-radius:50%;background:var(--indigo)}
+
+/* ============================================
+   7 — TRUSTBAR + CTA
+   ============================================ */
+.trust-section{padding:100px 36px 60px;border-top:1px solid var(--line);background:var(--bg);text-align:center}
+.trust-label{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.18em;margin-bottom:40px;font-weight:500}
+.trust-logos{display:flex;align-items:center;justify-content:center;gap:64px;flex-wrap:wrap}
+.trust-logo{height:32px;width:auto;opacity:.6;filter:grayscale(100%);transition:all .2s}
+.trust-logo:hover{opacity:1;filter:grayscale(0%)}
+.trust-logo.tall{height:38px}
+
+.bridge-section{padding:140px 36px;background:var(--bg);text-align:center;border-top:1px solid var(--line);position:relative;overflow:hidden}
+.bridge-section::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;background:radial-gradient(circle,rgba(67,56,202,.06) 0%,transparent 60%);pointer-events:none}
+.bridge-eyebrow{font-family:var(--mono);font-size:11px;color:var(--indigo);text-transform:uppercase;letter-spacing:.18em;font-weight:600;margin-bottom:24px;position:relative}
+.bridge-headline{font-family:var(--display);font-size:clamp(36px,4.8vw,64px);font-weight:800;letter-spacing:-.025em;line-height:1.05;color:var(--ink);margin-bottom:20px;max-width:880px;margin:0 auto 20px;position:relative}
+.bridge-headline em{color:var(--indigo);font-style:normal}
+.bridge-deck{font-family:var(--body);font-size:17px;color:var(--muted);max-width:620px;margin:0 auto 64px;line-height:1.6;position:relative}
+
+/* ORB WIDGET */
+.orb-wrap{position:relative;display:flex;flex-direction:column;align-items:center;cursor:pointer;margin:0 auto 24px;width:240px;z-index:2}
+.orb-bubble{position:absolute;top:6px;right:-72px;background:rgba(67,56,202,.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:12px 18px;font-family:var(--body);font-size:14px;font-weight:600;color:#fff;white-space:nowrap;animation:orbBubble 3s ease-in-out infinite;text-shadow:0 1px 4px rgba(0,0,0,.3);z-index:15;box-shadow:0 12px 32px rgba(67,56,202,.3)}
+.orb-bubble::before{content:'';position:absolute;left:-7px;top:18px;width:0;height:0;border-style:solid;border-width:7px 9px 7px 0;border-color:transparent rgba(67,56,202,.95) transparent transparent}
+@keyframes orbBubble{0%,100%{opacity:.85;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+.orb-rings{position:absolute;top:20px;left:50%;transform:translateX(-50%);width:160px;height:160px;pointer-events:none}
+.orb-ring{position:absolute;inset:0;border-radius:50%;border:2px solid var(--indigo);opacity:0;animation:orb-ring-pulse 3s ease-out infinite}
+.orb-ring.r2{animation-delay:1s}
+.orb-ring.r3{animation-delay:2s}
+@keyframes orb-ring-pulse{0%{transform:scale(.8);opacity:.6}100%{transform:scale(1.6);opacity:0}}
+.orb-main{width:160px;height:160px;margin-top:20px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#6366F1,#4338CA);display:flex;align-items:center;justify-content:center;box-shadow:0 20px 60px rgba(67,56,202,.35),0 0 0 0 rgba(67,56,202,.4);transition:all .3s;position:relative;z-index:2}
+.orb-wrap:hover .orb-main{transform:scale(1.05);box-shadow:0 30px 80px rgba(67,56,202,.5)}
+.orb-main.speaking{animation:orb-speaking 1.5s ease-in-out infinite}
+@keyframes orb-speaking{0%,100%{box-shadow:0 20px 60px rgba(67,56,202,.35),0 0 0 0 rgba(67,56,202,.4)}50%{box-shadow:0 20px 60px rgba(67,56,202,.5),0 0 0 22px rgba(67,56,202,0)}}
+.orb-icon{font-size:54px;color:#fff;line-height:1}
+
+/* ORB META (calling label / title / hint) */
+.orb-meta{position:relative;z-index:2;margin-bottom:32px}
+.orb-calling-label{font-family:var(--mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--indigo);opacity:.7;margin-bottom:6px}
+.orb-title{font-family:var(--display);font-size:18px;font-weight:800;color:var(--ink);letter-spacing:-.015em;margin-bottom:4px}
+.orb-hint{font-family:var(--body);font-size:14px;color:var(--green);opacity:.85;font-weight:600}
+
+/* ORB STATUS */
+.orb-status{position:relative;z-index:2;max-width:520px;margin:0 auto 32px;padding:32px 36px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 1px 2px rgba(11,17,22,.04),0 24px 60px rgba(11,17,22,.08)}
+.orb-status-line{font-family:var(--display);font-size:15px;font-weight:700;color:var(--ink);margin-bottom:18px}
+.orb-waveform{display:flex;align-items:center;justify-content:center;gap:5px;height:48px;margin-bottom:20px}
+.orb-waveform span{display:block;width:4px;height:8px;border-radius:2px;background:var(--indigo);transition:height .15s}
+.orb-end-btn{padding:10px 22px;background:var(--red);color:#fff;border:0;border-radius:100px;font-family:var(--display);font-size:12px;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:.06em;transition:all .2s}
+.orb-end-btn:hover{background:#991b1b}
+
+.orb-fallback{position:relative;z-index:2;font-family:var(--body);font-size:13px;color:var(--muted);margin-top:24px}
+.orb-fallback span{margin-right:6px}
+.orb-fallback a{color:var(--indigo);text-decoration:none;border-bottom:1px solid var(--indigo);font-weight:500}
+
+/* FOOTER */
+.footer{padding:32px 36px;border-top:1px solid var(--line);max-width:1140px;margin:0 auto;font-family:var(--mono);font-size:10px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;text-transform:uppercase;letter-spacing:.06em}
+.footer strong{color:var(--ink);font-weight:600}
+
+/* RESPONSIVE */
+@media (max-width:980px){
+  .viewport{padding:80px 24px}
+  .stats-grid{grid-template-columns:1fr;gap:48px}
+  .stat-arrow{transform:rotate(90deg)}
+  .portal-findings{grid-template-columns:1fr;gap:32px}
+  .peer-grid{grid-template-columns:repeat(2,1fr)}
+  .peer-card.us{transform:none}
+  .confession-section,.stats-section,.beyond-section,.why-section,.what-section,.bridge-section{padding:80px 24px}
+  .trust-section{padding:60px 24px 30px}
+  .orb-bubble{position:static;margin-bottom:18px;display:inline-block}
+  .orb-bubble::before{display:none}
+  .orb-rings,.orb-main{margin-top:0}
+  .bridge-headline{font-size:28px}
+  .topbar-inner{padding:14px 24px;flex-direction:column;align-items:flex-start;gap:10px}
+  .topbar-meta{font-size:9px}
+  .what-pillars{flex-direction:column;gap:18px}
+  .annotation{display:none}
+  .portal-body{padding:36px 28px 50px}
+  .trust-logos{gap:32px}
+  .trust-logo{height:24px}
+  .trust-logo.tall{height:28px}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="https://agentcollect.com" class="brand">AgentCollect<span class="dot"></span></a>
+    <div class="topbar-meta">
+      <span>DOC <strong>#FDEX-001</strong></span>
+      <span>·</span>
+      <span class="expires" id="expires">Expires in 30 days</span>
+    </div>
+    <a href="https://cal.com/johnb/30" class="topbar-cta">Talk to the founder <span class="arrow">→</span></a>
+  </div>
+</header>
+
+<!-- ============================================
+     1 — HERO
+     ============================================ -->
+<section class="viewport">
+  <div class="viewport-inner">
+    <div class="hero-eyebrow"><span class="dot"></span>Confidential AR Audit · For Herb Wells &amp; Kevin Johnson</div>
+    <h1 class="hero-headline">Your customers want to pay you. They can't find the invoice, so you sent them to <em>3rd-party collection.</em></h1>
+    <div class="hero-meta">
+      <span>One active campaign</span>
+      <span class="sep">·</span>
+      <span><strong>898 accounts, $448K, Batch #1</strong></span>
+      <span class="sep">·</span>
+      <span>Six days live · data from your own Respaid dashboard</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     2 — THE CONFESSION
+     ============================================ -->
+<section class="confession-section">
+  <div class="confession-inner">
+    <div class="confession-eyebrow">The message you never read</div>
+    <p class="big-quote">None of them seem to exist. I cannot pay for something that seemingly does not exist.</p>
+    <div class="quote-attrib">— <strong>Lisa Forry</strong>, AP Controller, Hanover Foods / Aunt Kitty's Food Inc · $83.11 · Your case SQ5BGQM7V · April 15, 2026</div>
+
+    <div class="audio-shell" style="text-align:left">
+      <div class="audio-meta">
+        <span class="live">FROM YOUR RESPAID DASHBOARD</span>
+        <span>sequence SQ5BGQM7V · dispute opened 22:56 UTC</span>
+      </div>
+      <p style="font-family:var(--body);font-size:16px;line-height:1.65;color:var(--ink);margin:8px 0 0;padding:24px 28px;background:var(--bg-2);border-radius:12px;border-left:3px solid var(--red)">Is there any way we can get more details on these invoices? I've logged into our FedEx account and searched for the three invoice numbers that you have listed. <strong>None of them seem to exist.</strong> The only past due balance that we have showing on the account is not the same price as the one you have listed. <strong>I've searched under every account number for every division that we have an account with, and nothing seems to be relating to this.</strong> I cannot pay for something that seemingly does not exist.</p>
+      <div style="margin-top:20px;font-family:var(--mono);font-size:11px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px">
+        <span>Invoices on the dunning letter: <strong style="color:var(--ink)">924297999, 924297998, 923391656</strong></span>
+        <span>Route before Respaid: <strong style="color:var(--red)">none</strong> &middot; went straight to 3rd-party</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     3 — STATS (2 huge numbers)
+     ============================================ -->
+<section class="stats-section">
+  <div class="stats-inner">
+    <div class="stats-eyebrow">— The disputes we received on Batch #1 —</div>
+    <div class="stats-grid">
+      <div class="stat-side">
+        <div class="stat-tag tebra">FedEx, today</div>
+        <div class="stat-value tebra">43%</div>
+        <div class="stat-label">of disputes opened are: "where is my invoice"<strong>27 of 63 in 6 days</strong></div>
+      </div>
+      <div class="stat-arrow">→</div>
+      <div class="stat-side">
+        <div class="stat-tag us">White-label, pre-3rd-party</div>
+        <div class="stat-value us">0</div>
+        <div class="stat-label">invoices the customer can't find<strong>SFTP-synced PDFs before the first dunning email</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     3.5 — BRIDGE WIDGET (live AgentCollect call)
+     ============================================ -->
+<section class="bridge-section">
+  <div class="bridge-eyebrow">— Hear it for yourself —</div>
+  <h2 class="bridge-headline">This is the call Lisa Forry <em>should have received</em> from FedEx AR.</h2>
+  <p class="bridge-deck">White-label preview. Click the orb, allow your mic, talk to a FedEx-branded AgentCollect live.</p>
+
+  <div class="orb-wrap" id="orb-wrap">
+    <div class="orb-bubble" id="orb-bubble">Hi, this is Sarah from FedEx accounts receivable. Do you have a moment?</div>
+    <div class="orb-rings">
+      <span class="orb-ring r1"></span>
+      <span class="orb-ring r2"></span>
+      <span class="orb-ring r3"></span>
+    </div>
+    <div class="orb-main" id="orb-main">
+      <span class="orb-icon" id="orb-icon">📞</span>
+    </div>
+  </div>
+
+  <div class="orb-meta">
+    <div class="orb-calling-label">Incoming call · white-label preview</div>
+    <div class="orb-title">Sarah · FedEx AR</div>
+    <div class="orb-hint">Tap to answer</div>
+  </div>
+
+  <div class="orb-status" id="orb-status" style="display:none">
+    <div class="orb-status-line" id="orb-status-line">Connecting...</div>
+    <div class="orb-waveform" id="orb-waveform">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <button class="orb-end-btn" id="orb-end-btn">End call</button>
+  </div>
+
+  <div class="orb-fallback">
+    <span>Mic blocked? </span>
+    <a href="https://cal.com/johnb/30">Talk to the founder instead →</a>
+  </div>
+</section>
+
+<!-- ============================================
+     4 — BEYOND THE CALL
+     ============================================ -->
+<section class="beyond-section">
+  <div class="beyond-inner">
+    <div class="beyond-head">
+      <div class="beyond-eyebrow">— Beyond the dispute —</div>
+      <h2 class="beyond-title">Three numbers from your <em>own Respaid dashboard</em> that should not exist.</h2>
+    </div>
+
+    <div class="portal-findings">
+      <div class="pf-card">
+        <div class="pf-num">Finding 01 · Invoice-visibility gap</div>
+        <div class="pf-text">29 of 63 open disputes are: "I cannot find this invoice on FedEx Billing Online."</div>
+        <div class="pf-sub">Customers are sent a dunning letter with a FedEx invoice number they cannot see in their own portal. They physically cannot pay what you're billing for.</div>
+      </div>
+      <div class="pf-card">
+        <div class="pf-num">Finding 02 · Paid-you-directly gap</div>
+        <div class="pf-text">12 customers paid FedEx directly between your file upload and our first outreach.</div>
+        <div class="pf-sub">These are customers who would have paid you without 3rd-party collection fees. They just needed to be reached. Your AR did not reach them. We did, five days later, and they told us they already paid.</div>
+      </div>
+      <div class="pf-card">
+        <div class="pf-num">Finding 03 · Internal-debtor gap</div>
+        <div class="pf-text">9 sequences are FedEx's own employees, tied to cost-center codes like 'Sn2000 Mct Us2'.</div>
+        <div class="pf-sub">@fedex.com emails sent to 3rd-party collection. We paused them manually to protect the relationship. No AR process should ever externalize an internal cost-center reconciliation.</div>
+      </div>
+    </div>
+
+    <div class="external-stat">
+      <div class="external-stat-quote">"As my local FedEx team could not reconcile in an appropriate timeframe the legitimacy of these invoices, we were billed to these old accounts and as a result causing you all to escalate this to a collections matter which I was hoping to avoid."</div>
+      <div class="external-stat-source">— <strong>A FedEx customer, writing back to Respaid in Batch #1</strong> · addressed to CJ and Stephanie on the FedEx Management Team</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     5 — WHY THIS MATTERS (cross-prospect)
+     ============================================ -->
+<section class="why-section">
+  <div class="why-inner" style="max-width:1140px">
+    <div class="why-eyebrow">— The wall —</div>
+    <h2 class="why-title">These are the people you sent to collection. <em>In their own words.</em></h2>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px;max-width:1140px;margin:0 auto;text-align:left">
+
+      <div style="background:var(--bg-3);border:1px solid var(--line);border-left:3px solid var(--red);border-radius:12px;padding:26px 28px">
+        <p style="font-family:var(--display);font-size:17px;font-weight:600;line-height:1.4;color:var(--ink);margin-bottom:16px">"We have no record of these invoices or charges."</p>
+        <p style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Request for proof &middot; Batch #1 &middot; SQ5NP2GAH</p>
+      </div>
+
+      <div style="background:var(--bg-3);border:1px solid var(--line);border-left:3px solid var(--red);border-radius:12px;padding:26px 28px">
+        <p style="font-family:var(--display);font-size:17px;font-weight:600;line-height:1.4;color:var(--ink);margin-bottom:16px">"I was unable to look them up online. Please provide the following invoices so they can be investigated."</p>
+        <p style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Request for proof &middot; Batch #1 &middot; SQ5MFCPXV</p>
+      </div>
+
+      <div style="background:var(--bg-3);border:1px solid var(--line);border-left:3px solid var(--red);border-radius:12px;padding:26px 28px">
+        <p style="font-family:var(--display);font-size:17px;font-weight:600;line-height:1.4;color:var(--ink);margin-bottom:16px">"We never received invoice, please provide invoice."</p>
+        <p style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Request for proof &middot; Batch #1 &middot; SQ34BYMYG</p>
+      </div>
+
+      <div style="background:var(--bg-3);border:1px solid var(--line);border-left:3px solid var(--red);border-radius:12px;padding:26px 28px">
+        <p style="font-family:var(--display);font-size:17px;font-weight:600;line-height:1.4;color:var(--ink);margin-bottom:16px">"Why have I not received any communication from FedEx regarding these past due invoices?"</p>
+        <p style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Request for proof &middot; Batch #1 &middot; SQXK338AX</p>
+      </div>
+
+      <div style="background:var(--bg-3);border:1px solid var(--line);border-left:3px solid var(--indigo);border-radius:12px;padding:26px 28px">
+        <p style="font-family:var(--display);font-size:17px;font-weight:600;line-height:1.4;color:var(--ink);margin-bottom:16px">"Payment has been made in full to FedEx online."</p>
+        <p style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Already paid &middot; Batch #1 &middot; SQL5V06SG</p>
+      </div>
+
+      <div style="background:var(--bg-3);border:1px solid var(--line);border-left:3px solid var(--indigo);border-radius:12px;padding:26px 28px">
+        <p style="font-family:var(--display);font-size:17px;font-weight:600;line-height:1.4;color:var(--ink);margin-bottom:16px">"These bills were paid on 4/9 directly through the FedEx website. I will forward you payment confirmations."</p>
+        <p style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Already paid &middot; Batch #1 &middot; SQS58V2HN</p>
+      </div>
+
+      <div style="background:var(--bg-3);border:1px solid var(--line);border-left:3px solid var(--red);border-radius:12px;padding:26px 28px">
+        <p style="font-family:var(--display);font-size:17px;font-weight:600;line-height:1.4;color:var(--ink);margin-bottom:16px">"Our FedEx account is automatically paid each month from our corporate offices. These bills are for another account that our information is mistakenly tied to, ending in 7352 and our account ends in 2178."</p>
+        <p style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Wrong account &middot; Batch #1 &middot; SQTYNLSND</p>
+      </div>
+
+      <div style="background:var(--bg-3);border:1px solid var(--line);border-left:3px solid var(--red);border-radius:12px;padding:26px 28px">
+        <p style="font-family:var(--display);font-size:17px;font-weight:600;line-height:1.4;color:var(--ink);margin-bottom:16px">"Charged me twice the quote after begging our company for years to use them. We ship a lot of guitars but <strong>never again with FedEx.</strong>"</p>
+        <p style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Lost customer &middot; Batch #1</p>
+      </div>
+
+      <div style="background:var(--bg-3);border:1px solid var(--line);border-left:3px solid var(--red);border-radius:12px;padding:26px 28px">
+        <p style="font-family:var(--display);font-size:17px;font-weight:600;line-height:1.4;color:var(--ink);margin-bottom:16px">"Since I had no invoices associated to these charges, no way to see these in any of my online billing profiles for my active accounts, I took the liberty of reaching out to your payments dept who gave me the website <span style="font-family:var(--mono);font-size:14px;color:var(--indigo)">fedex.com/payment/invoice</span> where I went in one by one and entered the information and paid these charges effective today."</p>
+        <p style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Had to discover a hidden URL to pay you &middot; Batch #1</p>
+      </div>
+
+    </div>
+
+    <p class="why-summary" style="margin-top:72px">Of 63 disputes in the first six days, <strong>zero are about disputing the debt itself.</strong> They are about not being able to see it, not having been told about it, or having already paid it. This is not a collection problem. <strong>It's an AR visibility problem.</strong></p>
+  </div>
+</section>
+
+<!-- ============================================
+     6 — WHAT IS AGENTCOLLECT
+     ============================================ -->
+<section class="what-section">
+  <div class="what-inner">
+    <div class="what-eyebrow">— What we propose —</div>
+    <h2 class="what-title">Put AgentCollect <em>inside your AR.</em> White-label. FedEx-branded. <em>Before</em> the 3rd-party letter.</h2>
+    <p style="font-family:var(--body);font-size:17px;line-height:1.6;color:var(--muted);max-width:720px;margin:0 auto 16px">Your customers get a call, an email and an SMS from <strong style="color:var(--ink)">FedEx AR</strong> three days after the invoice goes past-due. SFTP-synced, so the invoice PDF is attached before the first outreach. The 29 customers who today write "I cannot find this invoice" get the PDF in their inbox. The 12 who already paid you get auto-closed by the sync. The 9 internal debtors never leave your building.</p>
+    <p style="font-family:var(--body);font-size:15px;line-height:1.6;color:var(--muted);max-width:720px;margin:0 auto 48px">Batch #1 is already running. The same engine runs white-label, under your name, at your fee level. 3rd-party only catches what pre-collection cannot.</p>
+    <div class="what-pillars">
+      <span class="pillar"><span class="icon"></span>Voice</span>
+      <span class="pillar"><span class="icon"></span>Email</span>
+      <span class="pillar"><span class="icon"></span>SMS</span>
+      <span class="pillar"><span class="icon"></span>SFTP sync</span>
+      <span class="pillar"><span class="icon"></span>Payment plans</span>
+      <span class="pillar"><span class="icon"></span>PCI Level 1</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     7 — TRUSTBAR
+     ============================================ -->
+<section class="trust-section">
+  <div class="trust-label">— Currently collecting receivables for —</div>
+  <div class="trust-logos">
+    <img src="/audit-assets/logos/microsoft.svg" alt="Microsoft" class="trust-logo">
+    <img src="/audit-assets/logos/uber.svg" alt="Uber Freight" class="trust-logo">
+    <img src="/audit-assets/logos/plaid.svg" alt="Plaid" class="trust-logo tall">
+  </div>
+</section>
+
+<footer class="footer">
+  <div>DOC <strong>#FDEX-001</strong> · Confidential · For Herb Wells &amp; Kevin Johnson · Auto-deleted in 30 days</div>
+  <div>By <strong>John Banner</strong> · AgentCollect · Y Combinator S23</div>
+</footer>
+
+<script>
+  // Expires countdown
+  const expiresAt = new Date('2026-05-24T00:00:00');
+  function updateExpires() {
+    const now = new Date();
+    const diff = expiresAt - now;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    document.getElementById('expires').textContent = `Expires in ${days} days`;
+  }
+  updateExpires();
+  setInterval(updateExpires, 60000);
+</script>
+
+<!-- ============================================
+     RETELLAI WIDGET — AgentCollect for Tebra
+     ============================================ -->
+<script type="module">
+  import { RetellWebClient } from 'https://cdn.jsdelivr.net/npm/retell-client-js-sdk@2.0.7/+esm';
+  window.__RetellWebClient = RetellWebClient;
+</script>
+<script>
+(function(){
+  const orbWrap = document.getElementById('orb-wrap');
+  const orbMain = document.getElementById('orb-main');
+  const orbBubble = document.getElementById('orb-bubble');
+  const orbStatus = document.getElementById('orb-status');
+  const orbStatusLine = document.getElementById('orb-status-line');
+  const orbWaveform = document.getElementById('orb-waveform');
+  const orbEndBtn = document.getElementById('orb-end-btn');
+  const orbMeta = document.querySelector('.orb-meta');
+  const waveformBars = orbWaveform ? orbWaveform.querySelectorAll('span') : [];
+  const orbHint = document.querySelector('.orb-hint');
+
+  let retellClient = null;
+  let callActive = false;
+  let waveformAnimId = null;
+  let waveformMode = 'idle';
+  let callStartTime = null;
+
+  function animateWaveform() {
+    for (let i = 0; i < waveformBars.length; i++) {
+      const bar = waveformBars[i];
+      let h;
+      if (waveformMode === 'agent') h = 10 + Math.random() * 36;
+      else if (waveformMode === 'user') h = 6 + Math.random() * 20;
+      else h = 6 + Math.sin(Date.now() / 500 + i * 0.6) * 4;
+      bar.style.height = h + 'px';
+    }
+    waveformAnimId = requestAnimationFrame(animateWaveform);
+  }
+
+  function startWaveformAnim(mode) {
+    waveformMode = mode || 'idle';
+    if (!waveformAnimId) animateWaveform();
+  }
+
+  function stopWaveformAnim() {
+    waveformMode = 'idle';
+    if (waveformAnimId) {
+      cancelAnimationFrame(waveformAnimId);
+      waveformAnimId = null;
+    }
+    waveformBars.forEach(b => { b.style.height = '8px'; });
+  }
+
+  function showCallingState() {
+    if (orbWrap) orbWrap.style.display = 'none';
+    if (orbBubble) orbBubble.style.display = 'none';
+    if (orbMeta) orbMeta.style.display = 'none';
+    if (orbStatus) orbStatus.style.display = 'block';
+    document.querySelectorAll('.orb-ring').forEach(r => r.style.display = 'none');
+  }
+
+  function showIdleState() {
+    if (orbWrap) orbWrap.style.display = 'flex';
+    if (orbBubble) orbBubble.style.display = '';
+    if (orbMeta) orbMeta.style.display = '';
+    if (orbStatus) orbStatus.style.display = 'none';
+    document.querySelectorAll('.orb-ring').forEach(r => r.style.display = '');
+    if (orbMain) orbMain.classList.remove('speaking');
+  }
+
+  function startVoiceCall() {
+    if (callActive) return;
+    callActive = true;
+    callStartTime = Date.now();
+
+    showCallingState();
+    orbStatusLine.textContent = 'Connecting...';
+    startWaveformAnim('idle');
+    if (orbMain) orbMain.classList.add('speaking');
+
+    (async function() {
+      try {
+        // PARALLEL: mic + API token + SDK load (csc-leasing pattern)
+        const micPromise = navigator.mediaDevices.getUserMedia({
+          audio: {
+            echoCancellation: true,
+            noiseSuppression: true,
+            autoGainControl: true,
+            sampleRate: { ideal: 48000 },
+            channelCount: { ideal: 1 }
+          }
+        }).then(s => { window.__micStream = s; })
+          .catch(() => { throw new Error('Microphone access required'); });
+
+        const apiPromise = fetch('https://backend.widr.app/api/v1/demo/web-call', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            company_name: 'FedEx',
+            product: 'shipping',
+            amount: '$83.11'
+          })
+        }).then(async response => {
+          if (!response.ok) {
+            let errBody = '';
+            try { errBody = await response.text(); } catch(e){}
+            console.error('web-call error:', response.status, errBody);
+            throw new Error('API returned ' + response.status);
+          }
+          return response.json();
+        });
+
+        const sdkPromise = Promise.resolve(window.__RetellWebClient).then(RWC => {
+          if (RWC) return RWC;
+          return import('https://cdn.jsdelivr.net/npm/retell-client-js-sdk@2.0.7/+esm')
+            .then(m => m.RetellWebClient)
+            .catch(() => import('https://unpkg.com/retell-client-js-sdk@2.0.7/dist/index.js')
+              .then(m => m.RetellWebClient));
+        });
+
+        const results = await Promise.all([micPromise, apiPromise, sdkPromise]);
+        const result = results[1];
+        const RetellWebClient = results[2];
+
+        if (!result.success || !result.access_token) throw new Error('No access token');
+
+        retellClient = new RetellWebClient();
+
+        retellClient.on('call_started', function() {
+          callStartTime = Date.now();
+          orbStatusLine.textContent = 'Your turn — speak now';
+          startWaveformAnim('idle');
+        });
+
+        retellClient.on('call_ended', function() {
+          const duration = callStartTime ? Math.round((Date.now() - callStartTime) / 1000) : 0;
+          endCall(duration);
+        });
+
+        retellClient.on('agent_start_talking', function() {
+          startWaveformAnim('agent');
+          orbStatusLine.textContent = 'AgentCollect speaking...';
+        });
+
+        retellClient.on('agent_stop_talking', function() {
+          startWaveformAnim('user');
+          orbStatusLine.textContent = 'Your turn — speak now';
+        });
+
+        retellClient.on('error', function(err) {
+          console.error('RetellAI error:', err);
+          endCall(0);
+        });
+
+        await retellClient.startCall({ accessToken: result.access_token });
+
+      } catch (err) {
+        console.error('Voice call error:', err);
+        callActive = false;
+        showIdleState();
+        if (orbHint) {
+          orbHint.textContent = 'Connection failed — tap to retry';
+          orbHint.style.color = '#dc2626';
+          setTimeout(() => {
+            orbHint.textContent = 'Tap to answer';
+            orbHint.style.color = '';
+          }, 5000);
+        }
+      }
+    })();
+  }
+
+  function endCall(duration) {
+    callActive = false;
+    if (retellClient) {
+      try { retellClient.stopCall(); } catch(e){}
+      retellClient = null;
+    }
+    if (window.__micStream) {
+      window.__micStream.getTracks().forEach(t => t.stop());
+      window.__micStream = null;
+    }
+    stopWaveformAnim();
+
+    if (duration > 0) {
+      orbStatusLine.textContent = `Call ended (${duration}s). Talk to the founder next?`;
+    } else {
+      orbStatusLine.textContent = 'Call ended.';
+    }
+
+    setTimeout(() => {
+      showIdleState();
+      if (orbHint) orbHint.textContent = 'Tap to answer again';
+    }, 3000);
+  }
+
+  if (orbEndBtn) orbEndBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    const duration = callStartTime ? Math.round((Date.now() - callStartTime) / 1000) : 0;
+    endCall(duration);
+  });
+
+  if (orbWrap) orbWrap.addEventListener('click', function() {
+    if (callActive) return;
+    startVoiceCall();
+  });
+})();
+</script>
+
+</body>
+</html>

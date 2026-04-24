@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/fedex",
+      "destination": "/audit-fedex.html"
+    },
+    {
+      "source": "/audit/fedex",
+      "destination": "/audit-fedex.html"
+    },
+    {
       "source": "/smart-notif-preview",
       "destination": "/smart-notif-preview.html"
     },
