@@ -1787,6 +1787,7 @@
     var playTimeouts = [];
     var retellClient = null;
     var callActive = false;
+    var buildSessionId = 0;
 
     // ===== HELPERS =====
     function cleanDomain(input) {
@@ -1897,6 +1898,7 @@
 
     function fetchCompanyFromAPI(domain) {
         apiPending = true;
+        var sessionAtStart = buildSessionId;
         var controller = new AbortController();
         var timeoutId = setTimeout(function() { controller.abort(); }, 30000);
 
@@ -1912,6 +1914,7 @@
             return response.json();
         })
         .then(function(result) {
+            if (sessionAtStart !== buildSessionId) return; // stale response — a newer startBuild fired
             apiPending = false;
             if (!result.success || !result.data) return;
             if (currentDomain !== domain) return; // user changed domain
@@ -2045,6 +2048,7 @@
             }
         })
         .catch(function(err) {
+            if (sessionAtStart !== buildSessionId) return;
             apiPending = false;
             console.log('API call failed (using cached/default data):', err.message);
             clearSkeletons();
@@ -2360,6 +2364,18 @@
     }
 
     function startBuild(domain) {
+        // Reset transient state so re-entering the same (or any) domain works cleanly.
+        // Without this, old scan timeouts keep firing and a stale in-flight API call
+        // can race and overwrite currentCompany after the new build has started.
+        buildSessionId++;
+        clearTimeouts();
+        isPlaying = false;
+        apiPending = false;
+        var existingBadge = document.getElementById('live-data-badge');
+        if (existingBadge && existingBadge.parentNode) existingBadge.parentNode.removeChild(existingBadge);
+        var scanReset = document.getElementById('dossier-scan');
+        if (scanReset) scanReset.innerHTML = '';
+
         var data = getCompanyData(domain);
         currentCompany = data;
         currentDomain = domain;
