@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/steve",
+      "destination": "/people/steve-beranek/index.html"
+    },
+    {
+      "source": "/people/steve-beranek",
+      "destination": "/people/steve-beranek/index.html"
+    },
+    {
       "source": "/fedex",
       "destination": "/audit-fedex.html"
     },
