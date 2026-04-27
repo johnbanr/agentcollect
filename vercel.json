@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/steve-beranek",
+      "destination": "/people/steve-beranek/index.html"
+    },
+    {
       "source": "/steve",
       "destination": "/people/steve-beranek/index.html"
     },
