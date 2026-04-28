@@ -13,6 +13,14 @@
       "destination": "/people/steve-beranek/index.html"
     },
     {
+      "source": "/steve-preview",
+      "destination": "/people/steve-beranek-preview/index.html"
+    },
+    {
+      "source": "/people/steve-beranek-preview",
+      "destination": "/people/steve-beranek-preview/index.html"
+    },
+    {
       "source": "/fedex",
       "destination": "/audit-fedex.html"
     },
