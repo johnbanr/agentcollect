@@ -1974,6 +1974,9 @@
     // ===== VOICE CALL (RetellAI WebRTC) =====
     async function startVoiceCall() {
         if (callActive) return;
+        // Defensive cleanup: stale RetellWebClient from a previous attempt holds
+        // the mic + peer connection and will block the new startCall().
+        if (retellClient) { try { retellClient.stopCall(); } catch(e) {} retellClient = null; }
 
         var data = currentCompany;
         callActive = true;
@@ -2046,6 +2049,8 @@
             coConnectSub.innerHTML = 'Book a demo to try it live with your company data.<br><br>' +
                 '<a href="https://cal.com/johnb/30" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:var(--indigo);color:#fff;border-radius:12px;font-size:14px;font-weight:600;text-decoration:none">Book a demo</a>';
             callActive = false;
+            // Cleanup any half-initialized client so the next attempt can start fresh
+            if (retellClient) { try { retellClient.stopCall(); } catch(e) {} retellClient = null; }
         }
     }
 

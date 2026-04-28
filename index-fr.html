@@ -3441,6 +3441,9 @@
     // Inline voice call (replaces full-screen overlay for initial experience)
     function startInlineVoiceCall() {
         if (callActive) return;
+        // Defensive cleanup: any stale RetellWebClient from a previous attempt
+        // still holds the mic + peer connection and will block the new startCall().
+        if (retellClient) { try { retellClient.stopCall(); } catch(e) {} retellClient = null; }
         callActive = true;
 
         // Show connecting state
@@ -3533,6 +3536,8 @@
             } catch (err) {
                 console.error('Voice call error:', err);
                 callActive = false;
+                // Cleanup any half-initialized client so the next attempt can start fresh
+                if (retellClient) { try { retellClient.stopCall(); } catch(e) {} retellClient = null; }
                 uwConnecting.style.display = 'none';
                 uwVoiceIdle.style.display = '';
                 uwVoiceActive.classList.remove('visible');
