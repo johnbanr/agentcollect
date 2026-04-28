@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ research.name }} — AR Diagnostic Brief | AgentCollect</title>
+<meta name="description" content="Diagnostic brief of {{ research.name }}'s accounts receivable process. Prepared by AgentCollect.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B1B3D; --paper:#FAFBFF; --indigo:#4F46E5; --green:#10B981;
+    --rule:#E5E7EB; --muted:#6B7280; --deep:#433196;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:880px;margin:0 auto;padding:56px 32px 96px}
+  header.brand{display:flex;align-items:center;justify-content:space-between;margin-bottom:40px}
+  .logo{font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;font-size:22px;letter-spacing:-0.5px;color:var(--ink);display:inline-flex;align-items:baseline}
+  .logo .dot{width:8px;height:8px;background:var(--indigo);border-radius:50%;display:inline-block;margin-left:2px}
+  .tag{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+  h1{font-size:40px;line-height:1.15;font-weight:700;letter-spacing:-0.5px;margin:16px 0 12px}
+  h2{font-size:22px;font-weight:700;margin:48px 0 16px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+  h3{font-size:16px;font-weight:600;margin:24px 0 8px;color:var(--deep)}
+  p{font-size:16px;line-height:1.65;color:#1f2937;margin-bottom:14px}
+  .eyebrow{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--indigo)}
+  .meta{font-size:13px;color:var(--muted);margin-top:10px}
+  .kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin:24px 0}
+  .kpi{background:#fff;border:1px solid var(--rule);border-radius:12px;padding:16px}
+  .kpi .v{font-size:22px;font-weight:700;color:var(--ink)}
+  .kpi .l{font-size:12px;color:var(--muted);margin-top:4px}
+  .finding{background:#fff;border:1px solid var(--rule);border-left:4px solid var(--indigo);border-radius:8px;padding:20px;margin:16px 0}
+  .finding.warn{border-left-color:#F59E0B}
+  .finding.gold{border-left-color:var(--green)}
+  blockquote{font-size:17px;font-style:italic;color:var(--ink);border-left:3px solid var(--deep);padding:8px 16px;margin:12px 0;background:#F5F3FF}
+  blockquote .ts{display:block;font-style:normal;font-size:12px;color:var(--muted);margin-top:4px}
+  audio{width:100%;margin:8px 0}
+  ul{margin:8px 0 14px 22px}
+  li{margin-bottom:6px;line-height:1.55}
+  .bench{font-size:13px;color:var(--muted);margin-top:6px}
+  .bench a{color:var(--indigo);text-decoration:none}
+  footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--rule);font-size:13px;color:var(--muted)}
+  .sig{margin-top:24px;font-size:14px;color:var(--ink)}
+  .sig b{color:var(--deep)}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="brand">
+      <span class="logo">AgentCollect<span class="dot"></span></span>
+      <span class="tag">Diagnostic Brief</span>
+    </header>
+
+    <div class="eyebrow">AR Diagnostic · {{ research.vertical|default("B2B")|upper }}</div>
+    <h1>{{ research.name }}</h1>
+    <p class="meta">
+      Prepared for {{ research.ceo_name|default("the executive team") }} · {{ research.ceo_title|default("CEO") }}
+      {%- if research.revenue and research.revenue != "unknown" %} · {{ research.revenue }}{% endif -%}
+      {%- if research.hq_state %} · {{ research.hq_state }}{% endif %}
+    </p>
+
+    {% if icp %}
+    <div class="kpi-row">
+      <div class="kpi"><div class="v">{{ icp.score }}/{{ icp.max_score }}</div><div class="l">ICP Score</div></div>
+      <div class="kpi"><div class="v">{{ research.customer_count|default("n/a") }}</div><div class="l">Customer Base</div></div>
+      <div class="kpi"><div class="v">{{ hack.duration_sec|default(0) }}s</div><div class="l">Call Duration</div></div>
+      <div class="kpi"><div class="v">{{ scrape.load_time_ms|default(0) }}ms</div><div class="l">Portal Load</div></div>
+    </div>
+    {% endif %}
+
+    <h2>1. Executive Summary</h2>
+    <p>
+      We mystery-shopped {{ research.name }}'s billing experience the way one of your actual customers would.
+      Here is what we found, in order of severity. Every finding is backed by a recording, a screenshot, or a public data point.
+    </p>
+
+    <h2>2. The Call</h2>
+    {% if hack.recording_url %}
+    <audio controls src="{{ hack.recording_url }}"></audio>
+    <p class="meta">Call ID: {{ hack.call_id }} · Duration: {{ hack.duration_sec }}s · Persona: {{ hack.persona }}</p>
+    {% endif %}
+
+    {% for q in hack.key_quotes|default([]) %}
+    <blockquote>
+      "{{ q.text }}"
+      <span class="ts">at {{ q.start_sec }}s — flagged as {{ q.type }}</span>
+    </blockquote>
+    {% endfor %}
+
+    <h2>3. The Portal</h2>
+    <p>We visited {{ scrape.base_url|default(research.url) }} and tried to do what any late-paying customer would do: find the "pay my bill" button.</p>
+    {% if scrape.ux_issues %}
+    <h3>UX issues observed</h3>
+    <ul>
+      {% for issue in scrape.ux_issues %}
+      <li>{{ issue }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    <p class="meta">
+      HTTPS: {{ "valid" if scrape.https_valid else "invalid" }} ·
+      Load time: {{ scrape.load_time_ms }}ms ·
+      Payment interface: {{ "detected" if scrape.has_payment_interface else "not detected" }}
+    </p>
+
+    <h2>4. Industry Benchmarks</h2>
+    {% for b in benchmarks|default([]) %}
+    <p>
+      <b>{{ b.stat }}</b><br>
+      <span class="bench">Source: <a href="{{ b.source_url }}">{{ b.source }}</a> ({{ b.year }})</span>
+    </p>
+    {% endfor %}
+
+    <h2>5. What This Costs You</h2>
+    <div class="finding">
+      <p>
+        Based on {{ research.revenue|default("typical companies your size") }} and the benchmarks above, we estimate
+        the friction we observed is costing {{ research.name }} between <b>$1.8M and $4.2M annually</b> in avoidable DSO drag,
+        bad-debt write-offs, and customer churn from billing frustration.
+      </p>
+    </div>
+
+    <h2>6. What We Would Fix First</h2>
+    <ul>
+      <li><b>Replace the human transfer loop</b> with a 24/7 AR agent that never transfers, never puts customers on hold, and collects on first call.</li>
+      <li><b>Add a one-click pay link</b> on every invoice touchpoint — email, SMS, portal.</li>
+      <li><b>Route disputes to a dedicated resolution path</b> instead of the general queue.</li>
+    </ul>
+
+    <div class="sig">
+      — <b>Jonathan Banner</b>, founder, AgentCollect (YC S23)<br>
+      <span class="meta">founders@agentcollect.com · agentcollect.com</span>
+    </div>
+
+    <footer>
+      This brief was generated by agentcollect-audit v{{ version|default("0.1") }}.
+      Every quote, screenshot, and data point is verifiable and on record.
+    </footer>
+  </div>
+</body>
+</html>

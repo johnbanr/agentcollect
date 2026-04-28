@@ -1,0 +1,14 @@
+{
+  "call_id": "call_test_ooma_0001",
+  "transcript": "Agent: Hi, I'm calling about my Ooma Office bill.\nRep: Let me transfer you to another department.\nAgent: I was already transferred twice.\nRep: I don't see that account in the system.\nAgent: Can I speak to a manager?\nRep: You'll have to call back tomorrow.",
+  "recording_url": "https://example.com/ooma_call.wav",
+  "duration_sec": 214,
+  "key_quotes": [
+    {"text": "Let me transfer you to another department", "start_sec": 12, "end_sec": 15, "type": "gold"},
+    {"text": "I don't see that account in the system", "start_sec": 48, "end_sec": 51, "type": "warning"},
+    {"text": "You'll have to call back tomorrow", "start_sec": 187, "end_sec": 190, "type": "gold"}
+  ],
+  "company_name": "Ooma",
+  "phone": "+18669396662",
+  "persona": "smb-phone"
+}

@@ -1,0 +1,27 @@
+{
+  "smb-phone": {
+    "name": "Frustrated small business owner",
+    "script": "Hi, I've been getting billed twice on my business phone line and I need help figuring out what's going on.",
+    "goals": ["Test transfer rate", "Test hold time", "Test empathy", "Test resolution path"]
+  },
+  "waste": {
+    "name": "Office manager disputing a pickup",
+    "script": "Hi, I'm calling because last month's invoice has a charge for a pickup that never happened.",
+    "goals": ["Test dispute handling", "Test escalation", "Test refund path"]
+  },
+  "staffing": {
+    "name": "AP clerk with a questioned invoice",
+    "script": "Hi, I have an invoice here that I can't match to any PO. Can you help me figure out which contractor it's for?",
+    "goals": ["Test invoice lookup", "Test matching process", "Test AR response time"]
+  },
+  "distribution": {
+    "name": "Small contractor disputing a late fee",
+    "script": "I got hit with a late fee but I paid this invoice two weeks ago. Can you pull up my account?",
+    "goals": ["Test payment reconciliation", "Test late-fee waiver path"]
+  },
+  "healthcare": {
+    "name": "Patient confused about a bill",
+    "script": "Hi, I got a bill for a visit that should have been covered by insurance. Can you help me understand?",
+    "goals": ["Test insurance workflow", "Test empathy", "Test dispute path"]
+  }
+}

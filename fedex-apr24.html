@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>FedEx × Respaid — Pilot Recap, 9 days in</title>
+  <meta name="description" content="Pilot recap for Herb Wells. Friday 24 April 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0B1B3D;
+      --amber: #F59E0B;
+      --violet: #4F46E5;
+      --red: #EF4444;
+      --green: #10B981;
+      --mint: #F0FDF4;
+      --ink: #091327;
+      --fog: rgba(11, 27, 61, 0.08);
+      --line: rgba(255, 255, 255, 0.14);
+      --text: rgba(255, 255, 255, 0.84);
+      --shadow: 0 40px 120px rgba(9, 19, 39, 0.22);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      background:
+        radial-gradient(circle at top left, rgba(79, 70, 229, 0.24), transparent 30%),
+        radial-gradient(circle at top right, rgba(245, 158, 11, 0.22), transparent 28%),
+        #f7fafc;
+      color: var(--ink);
+      scroll-behavior: smooth;
+    }
+
+    @media (min-width: 980px) {
+      html { scroll-snap-type: y mandatory; }
+    }
+
+    body { font-family: "Inter", sans-serif; min-height: 100vh; overflow-x: hidden; }
+
+    .page-shell::before {
+      content: ""; inset: 0; position: fixed;
+      background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.82), rgba(240, 253, 244, 0.28)),
+        radial-gradient(circle at 15% 15%, rgba(79, 70, 229, 0.16), transparent 22%),
+        radial-gradient(circle at 85% 20%, rgba(16, 185, 129, 0.16), transparent 24%);
+      pointer-events: none; z-index: -2;
+    }
+
+    .page-shell::after {
+      content: ""; inset: 0; position: fixed;
+      background-image:
+        linear-gradient(rgba(11, 27, 61, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(11, 27, 61, 0.03) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 90%);
+      pointer-events: none; z-index: -1;
+    }
+
+    .snap { min-height: 100svh; scroll-snap-align: start; position: relative; }
+
+    .hero, .agent, .cta { padding: 32px; display: grid; align-items: stretch; }
+
+    .hero-card, .agent-card, .cta-card {
+      border-radius: 34px; overflow: hidden; box-shadow: var(--shadow); position: relative;
+    }
+
+    .hero-card {
+      background:
+        radial-gradient(circle at 20% 20%, rgba(245, 158, 11, 0.18), transparent 28%),
+        radial-gradient(circle at 82% 18%, rgba(79, 70, 229, 0.22), transparent 30%),
+        linear-gradient(145deg, #07142d, #0B1B3D 60%, #102858);
+      color: white; padding: 28px;
+      display: grid; grid-template-columns: 1.3fr 0.9fr; gap: 24px;
+      min-height: calc(100svh - 64px);
+    }
+
+    .hero-copy, .hero-side { display: grid; align-content: space-between; }
+
+    .eyebrow, .mini-pill, .panel-tag, .quote-tag, .stat-kicker {
+      font-family: "Plus Jakarta Sans", sans-serif; font-weight: 800;
+      letter-spacing: 0.12em; text-transform: uppercase;
+    }
+
+    .eyebrow, .panel-tag, .quote-tag {
+      font-size: 11px; color: rgba(255, 255, 255, 0.72);
+    }
+
+    .hero-head { display: grid; gap: 14px; max-width: 760px; }
+
+    .hero-head h1, .cta-card h2 {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: clamp(46px, 8vw, 104px);
+      font-weight: 800; letter-spacing: -0.06em; line-height: 0.9;
+    }
+
+    .hero-head h1 span, .cta-card h2 span, .agent-title span { display: block; }
+
+    .hero-notes { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .mini-pill {
+      font-size: 10px; padding: 10px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 999px;
+      color: rgba(255, 255, 255, 0.82); background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(14px);
+    }
+
+    .hero-grid {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px; align-self: end;
+    }
+
+    .signal {
+      padding: 18px; border-radius: 24px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(14px); min-height: 136px;
+    }
+
+    .signal h3, .quote-card blockquote, .agent-title, .metric-label, .copy-line, .cta-copy {
+      font-family: "Plus Jakarta Sans", sans-serif; font-weight: 800;
+    }
+
+    .signal h3 { font-size: 18px; margin-top: 28px; line-height: 1.05; }
+    .signal p, .quote-card p, .agent-list li, .panel-copy p, .cta-copy p, .panel-note {
+      font-size: 15px; line-height: 1.2;
+    }
+
+    .hero-side { gap: 18px; }
+
+    .quote-card, .halo-card {
+      padding: 22px; border-radius: 28px; position: relative; overflow: hidden;
+    }
+
+    .quote-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(16px);
+    }
+
+    .quote-card::before, .halo-card::before, .panel::before, .agent-card::before, .cta-card::before {
+      content: ""; position: absolute; inset: auto auto -20% -12%;
+      width: 240px; height: 240px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent 70%);
+      pointer-events: none;
+    }
+
+    .quote-card blockquote {
+      font-size: clamp(26px, 4vw, 46px); line-height: 0.92;
+      margin: 18px 0 18px; max-width: 12ch;
+    }
+
+    .quote-card p, .signal p, .halo-card p {
+      color: rgba(255, 255, 255, 0.74); margin-top: 10px;
+    }
+
+    .halo-card {
+      background:
+        linear-gradient(135deg, rgba(245, 158, 11, 0.16), rgba(79, 70, 229, 0.16)),
+        rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      min-height: 220px; display: grid; align-content: end;
+    }
+
+    .halo-number, .stat-number, .panel-number {
+      font-family: "JetBrains Mono", monospace;
+      font-size: clamp(60px, 12vw, 180px);
+      font-weight: 800; line-height: 0.88; letter-spacing: -0.08em;
+    }
+
+    .halo-number { color: white; }
+
+    .split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .panel {
+      min-height: 100svh; padding: 36px; position: relative; overflow: hidden;
+      display: grid; align-items: end;
+    }
+
+    .problem {
+      background:
+        linear-gradient(160deg, rgba(5, 10, 22, 0.94), rgba(11, 27, 61, 1) 64%),
+        var(--navy);
+      color: white;
+    }
+
+    .problem::after, .solution::after, .agent-card::after, .cta-card::after {
+      content: ""; position: absolute; inset: 0;
+      background:
+        linear-gradient(transparent, rgba(255, 255, 255, 0.04)),
+        linear-gradient(90deg, transparent 0 92%, rgba(255, 255, 255, 0.06) 100%);
+      mix-blend-mode: screen; pointer-events: none;
+    }
+
+    .solution {
+      background:
+        radial-gradient(circle at 86% 15%, rgba(16, 185, 129, 0.16), transparent 26%),
+        linear-gradient(180deg, #f7fff8, var(--mint));
+      color: var(--ink);
+    }
+
+    .solution .panel-tag, .solution .panel-note { color: rgba(9, 19, 39, 0.64); }
+
+    .panel-body {
+      max-width: 560px; display: grid; gap: 18px;
+      position: relative; z-index: 1;
+    }
+
+    .panel-stack { display: grid; gap: 10px; }
+    .panel-number { color: white; }
+    .solution .panel-number { color: var(--green); }
+    .panel-copy { display: grid; gap: 8px; }
+
+    .copy-line {
+      font-size: clamp(28px, 3.6vw, 52px);
+      letter-spacing: -0.06em; line-height: 0.92;
+    }
+
+    .problem .copy-line { color: white; }
+    .solution .copy-line { color: var(--ink); }
+    .panel-note { max-width: 26ch; color: rgba(255, 255, 255, 0.7); }
+
+    .panel-rail { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .stat-chip {
+      padding: 12px 14px; border-radius: 18px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      min-width: 144px;
+    }
+
+    .solution .stat-chip {
+      background: white; border-color: rgba(11, 27, 61, 0.08);
+      box-shadow: 0 18px 40px rgba(11, 27, 61, 0.08);
+    }
+
+    .stat-kicker { font-size: 10px; color: rgba(255, 255, 255, 0.64); }
+    .solution .stat-kicker { color: rgba(9, 19, 39, 0.46); }
+
+    .stat-number { font-size: clamp(30px, 4vw, 60px); line-height: 0.95; margin-top: 8px; }
+    .problem .stat-number { color: var(--amber); }
+    .solution .stat-number { color: var(--violet); }
+
+    .metric-label { margin-top: 10px; font-size: 18px; line-height: 1.15; letter-spacing: -0.03em; }
+
+    /* Batches section — custom split for pilot narrative */
+    .batches { padding: 32px; }
+    .batches-card {
+      border-radius: 34px; overflow: hidden; box-shadow: var(--shadow);
+      background:
+        radial-gradient(circle at 18% 18%, rgba(79, 70, 229, 0.18), transparent 26%),
+        radial-gradient(circle at 82% 24%, rgba(16, 185, 129, 0.16), transparent 22%),
+        linear-gradient(160deg, #f8fffb, #ecfdf5 42%, #ffffff);
+      padding: 40px;
+      min-height: calc(100svh - 64px);
+      display: grid; gap: 32px;
+      align-content: space-between;
+    }
+    .batches-head { display: grid; gap: 14px; max-width: 820px; }
+    .batches-head h2 {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: clamp(38px, 5.5vw, 68px);
+      font-weight: 800; letter-spacing: -0.05em; line-height: 0.92;
+      color: var(--ink);
+    }
+    .batches-head p { font-size: 17px; line-height: 1.4; color: rgba(9,19,39,0.64); max-width: 600px; }
+    .batches-eyebrow { color: rgba(9,19,39,0.56); }
+    .batch-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    .batch-card {
+      padding: 28px; border-radius: 26px;
+      background: white; border: 1px solid rgba(11,27,61,0.06);
+      box-shadow: 0 22px 60px rgba(11,27,61,0.06);
+      display: grid; gap: 18px;
+    }
+    .batch-card.b2 { background: linear-gradient(160deg, #ffffff, #eef2ff); border-color: rgba(79,70,229,0.12); }
+    .batch-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+    .batch-title { font-family: "Plus Jakarta Sans", sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.03em; color: var(--ink); }
+    .batch-when { font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--violet); }
+    .batch-big { font-family: "JetBrains Mono", monospace; font-weight: 800; font-size: clamp(48px, 7vw, 84px); letter-spacing: -0.06em; line-height: 0.9; color: var(--ink); }
+    .batch-big-sub { font-size: 13px; color: rgba(9,19,39,0.56); font-weight: 600; margin-top: 6px; }
+    .batch-rail { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; border-top: 1px solid rgba(11,27,61,0.06); padding-top: 18px; }
+    .batch-stat .k { font-family: "JetBrains Mono", monospace; font-weight: 800; font-size: 22px; letter-spacing: -0.04em; color: var(--violet); }
+    .batch-stat .l { font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(9,19,39,0.52); margin-top: 4px; }
+
+    .common-signal { display: flex; gap: 14px; align-items: center; padding: 20px 24px; border-radius: 20px; background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.25); }
+    .common-dot { width: 14px; height: 14px; background: var(--green); border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 0 6px rgba(16,185,129,0.18); }
+    .common-signal p { font-size: 15px; line-height: 1.45; color: var(--ink); font-weight: 500; }
+    .common-signal strong { color: var(--ink); font-weight: 800; }
+
+    /* Resolution buckets section */
+    .buckets-section { padding: 32px; }
+    .buckets-card {
+      border-radius: 34px; overflow: hidden; box-shadow: var(--shadow);
+      background:
+        radial-gradient(circle at 15% 15%, rgba(245,158,11,0.18), transparent 28%),
+        radial-gradient(circle at 85% 20%, rgba(79,70,229,0.2), transparent 26%),
+        linear-gradient(145deg, #07142d, #0B1B3D 60%, #102858);
+      color: white; padding: 40px;
+      min-height: calc(100svh - 64px);
+      display: grid; gap: 28px;
+    }
+    .buckets-head { display: grid; gap: 14px; max-width: 820px; }
+    .buckets-head h2 {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: clamp(38px, 5.5vw, 68px);
+      font-weight: 800; letter-spacing: -0.05em; line-height: 0.92;
+    }
+    .buckets-head p { font-size: 16px; line-height: 1.45; color: rgba(255,255,255,0.72); max-width: 620px; }
+    .buckets-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+    .bucket {
+      padding: 24px; border-radius: 22px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(12px);
+      display: grid; gap: 10px; align-content: start;
+    }
+    .bucket .n { font-family: "JetBrains Mono", monospace; font-weight: 800; font-size: clamp(34px, 4.5vw, 56px); letter-spacing: -0.05em; line-height: 0.9; color: var(--amber); }
+    .bucket .t { font-family: "Plus Jakarta Sans", sans-serif; font-weight: 800; font-size: 15px; line-height: 1.15; letter-spacing: -0.02em; }
+    .bucket .d { font-size: 13px; line-height: 1.45; color: rgba(255,255,255,0.66); }
+    .bucket:nth-child(1) .n { color: #34D399; }
+    .bucket:nth-child(2) .n { color: #F59E0B; }
+    .bucket:nth-child(3) .n { color: #818CF8; }
+    .bucket:nth-child(4) .n { color: #F97316; }
+    .bucket-total { padding: 22px 28px; border-radius: 20px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+    .bucket-total-left { display: flex; gap: 16px; align-items: baseline; }
+    .bucket-total-n { font-family: "JetBrains Mono", monospace; font-weight: 800; font-size: 42px; letter-spacing: -0.04em; color: white; }
+    .bucket-total-l { font-size: 14px; color: rgba(255,255,255,0.72); font-weight: 500; }
+    .bucket-total strong { color: white; font-weight: 800; }
+    .bucket-total-r { font-size: 13px; color: rgba(255,255,255,0.6); max-width: 360px; line-height: 1.4; text-align: right; }
+
+    /* CTA */
+    .cta-card {
+      min-height: calc(100svh - 64px);
+      background:
+        radial-gradient(circle at 18% 18%, rgba(79, 70, 229, 0.22), transparent 26%),
+        radial-gradient(circle at 82% 24%, rgba(16, 185, 129, 0.22), transparent 22%),
+        linear-gradient(160deg, #f8fffb, #ecfdf5 42%, #ffffff);
+      padding: 40px;
+      display: grid; align-content: space-between;
+    }
+    .cta-top { display: flex; justify-content: space-between; gap: 20px; align-items: flex-start; }
+    .cta-copy { display: grid; gap: 14px; max-width: 820px; }
+    .cta-copy h2 { color: var(--ink); }
+    .cta-copy p { color: rgba(9, 19, 39, 0.62); max-width: 38ch; font-size: 17px; line-height: 1.4; font-weight: 500; }
+    .asks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 10px; }
+    .ask {
+      padding: 26px; border-radius: 22px; background: white;
+      border: 1px solid rgba(11,27,61,0.06); box-shadow: 0 22px 60px rgba(11,27,61,0.06);
+      display: grid; gap: 10px;
+    }
+    .ask-n { font-family: "Plus Jakarta Sans", sans-serif; font-weight: 800; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--violet); }
+    .ask h3 { font-family: "Plus Jakarta Sans", sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.03em; line-height: 1.15; color: var(--ink); }
+    .ask p { font-size: 14px; line-height: 1.5; color: rgba(9,19,39,0.62); font-weight: 400; }
+    .future-pill { display: inline-flex; gap: 8px; align-items: center; font-size: 12px; font-weight: 700; color: rgba(9,19,39,0.52); padding: 8px 14px; border-radius: 999px; background: rgba(79,70,229,0.08); border: 1px solid rgba(79,70,229,0.15); letter-spacing: 0.04em; width: fit-content; }
+    .future-pill::before { content: "→"; color: var(--violet); font-weight: 800; }
+
+    /* Quote cards inside light panels */
+    .solution .quote-block {
+      padding: 20px 22px; border-radius: 18px;
+      background: white; border: 1px solid rgba(11,27,61,0.06);
+      box-shadow: 0 12px 30px rgba(11,27,61,0.05);
+      font-size: 14.5px; line-height: 1.5; color: rgba(9,19,39,0.72);
+      font-style: italic; max-width: 460px;
+    }
+    .quote-block-byline { display: block; font-style: normal; font-size: 12px; color: rgba(9,19,39,0.48); margin-top: 8px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+
+    .progress {
+      position: fixed; right: 18px; top: 50%; transform: translateY(-50%);
+      display: grid; gap: 10px; z-index: 10;
+    }
+    .progress a {
+      width: 12px; height: 12px; border-radius: 999px;
+      background: rgba(11, 27, 61, 0.18);
+      box-shadow: inset 0 0 0 1px rgba(11, 27, 61, 0.08);
+      transition: transform 220ms ease, background 220ms ease;
+    }
+    .progress a.is-active { transform: scale(1.35); background: var(--violet); }
+
+    .reveal {
+      opacity: 0; transform: translateY(34px) scale(0.98);
+      transition: opacity 700ms cubic-bezier(0.2, 0.7, 0, 1),
+                  transform 700ms cubic-bezier(0.2, 0.7, 0, 1);
+    }
+    .reveal.in-view { opacity: 1; transform: translateY(0) scale(1); }
+    .stagger-1 { transition-delay: 80ms; }
+    .stagger-2 { transition-delay: 160ms; }
+    .stagger-3 { transition-delay: 240ms; }
+    .stagger-4 { transition-delay: 320ms; }
+
+    @media (max-width: 900px) {
+      .progress { display: none; }
+      .hero-card { grid-template-columns: 1fr; min-height: auto; padding: 24px; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .split { grid-template-columns: 1fr; }
+      .panel { min-height: auto; padding: 28px; }
+      .batches-card, .buckets-card, .cta-card, .agent-card { padding: 24px; min-height: auto; }
+      .batch-grid, .buckets-grid, .asks { grid-template-columns: 1fr; }
+      .bucket-total { flex-direction: column; align-items: flex-start; }
+      .bucket-total-r { text-align: left; }
+      .batch-rail { grid-template-columns: repeat(2, 1fr); }
+      .cta-top { flex-direction: column; gap: 12px; }
+      html { scroll-snap-type: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-shell">
+
+  <nav class="progress" aria-hidden="true">
+    <a href="#hero" class="is-active"></a>
+    <a href="#batches"></a>
+    <a href="#engagement"></a>
+    <a href="#voices"></a>
+    <a href="#buckets"></a>
+    <a href="#next"></a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero snap" id="hero">
+    <div class="hero-card">
+      <div class="hero-copy">
+        <div class="hero-head">
+          <span class="eyebrow reveal">Pilot recap · 24 April 2026</span>
+          <h1 class="reveal stagger-1">
+            <span>9 days in.</span>
+            <span>Signal is strong.</span>
+            <span>Let's keep going.</span>
+          </h1>
+          <div class="hero-notes">
+            <span class="mini-pill reveal stagger-2">Prepared for Herb Wells</span>
+            <span class="mini-pill reveal stagger-3">FedEx × Respaid</span>
+            <span class="mini-pill reveal stagger-3">$838K across 2 cohorts</span>
+          </div>
+        </div>
+
+        <div class="hero-grid">
+          <article class="signal reveal stagger-2">
+            <span class="eyebrow">Signal one</span>
+            <h3>Customers are reading.</h3>
+            <p>43% email open, well above B2B norms.</p>
+          </article>
+          <article class="signal reveal stagger-3">
+            <span class="eyebrow">Signal two</span>
+            <h3>Customers are clicking.</h3>
+            <p>32% payment-link click rate.</p>
+          </article>
+          <article class="signal reveal stagger-3">
+            <span class="eyebrow">Signal three</span>
+            <h3>Cash is moving.</h3>
+            <p>$10.5K resolved on Batch #1, 9 days.</p>
+          </article>
+          <article class="signal reveal stagger-4">
+            <span class="eyebrow">Signal four</span>
+            <h3>Pattern repeats.</h3>
+            <p>Batch #2, 48h in, same early traction.</p>
+          </article>
+        </div>
+      </div>
+
+      <aside class="hero-side">
+        <div class="quote-card reveal stagger-2">
+          <span class="quote-tag">What this report is</span>
+          <blockquote>"Early, honest, and useful."</blockquote>
+          <p>9-day read on Batch #1.</p>
+          <p>48-hour read on Batch #2.</p>
+        </div>
+
+        <div class="halo-card reveal stagger-4">
+          <span class="quote-tag">Asks inside</span>
+          <div class="halo-number">2</div>
+          <p>Simple inputs to sharpen Batch #3.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- BATCHES SIDE-BY-SIDE -->
+  <section class="batches snap" id="batches">
+    <div class="batches-card">
+      <div class="batches-head">
+        <span class="eyebrow batches-eyebrow reveal">Two batches, one engine</span>
+        <h2 class="reveal stagger-1">We split the file into two waves.<br>Both are showing the same early signal.</h2>
+        <p class="reveal stagger-2">Batch #1 went live 04/15 with 898 accounts. Batch #2 went live 04/22 with 868 accounts. Same cadence, same AI workflow, two different starting dates. The point of running them staggered was to see whether the first read holds up. It does.</p>
+      </div>
+
+      <div class="batch-grid">
+        <div class="batch-card reveal stagger-2">
+          <div class="batch-head">
+            <div class="batch-title">Batch #1</div>
+            <div class="batch-when">Day 9 · live 04/15</div>
+          </div>
+          <div>
+            <div class="batch-big">$10.5K</div>
+            <div class="batch-big-sub">Resolved or in verification · 25 accounts · 898 total, $448K portfolio</div>
+          </div>
+          <div class="batch-rail">
+            <div class="batch-stat"><div class="k">43%</div><div class="l">Email open</div></div>
+            <div class="batch-stat"><div class="k">32%</div><div class="l">Link click</div></div>
+            <div class="batch-stat"><div class="k">99.7%</div><div class="l">Accounts dialed</div></div>
+          </div>
+        </div>
+
+        <div class="batch-card b2 reveal stagger-3">
+          <div class="batch-head">
+            <div class="batch-title">Batch #2</div>
+            <div class="batch-when">Hour 48 · live 04/22</div>
+          </div>
+          <div>
+            <div class="batch-big">$2.3K</div>
+            <div class="batch-big-sub">Recovered in 48 hours · 8 accounts · 868 total, $390K portfolio</div>
+          </div>
+          <div class="batch-rail">
+            <div class="batch-stat"><div class="k">842</div><div class="l">AI calls placed</div></div>
+            <div class="batch-stat"><div class="k">73</div><div class="l">Successful contacts</div></div>
+            <div class="batch-stat"><div class="k">4</div><div class="l">Verif. in progress</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="common-signal reveal stagger-4">
+        <div class="common-dot"></div>
+        <p><strong>What's identical across both waves:</strong> engagement spikes in the first hours, resolution buckets emerge in the same proportions, and the first cash events land before the second email has even fired. The engine behaves consistently — that's what you want to see before scaling.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINDING 01 — ENGAGEMENT -->
+  <section class="split snap" id="engagement">
+    <div class="panel problem">
+      <div class="panel-body">
+        <span class="panel-tag reveal">Finding 01 · Industry norm</span>
+        <div class="panel-stack">
+          <div class="panel-number reveal stagger-1">18%</div>
+          <div class="panel-copy">
+            <div class="copy-line reveal stagger-2">Typical B2B open rate.</div>
+            <p class="panel-note reveal stagger-3">2–5% payment-link click on cold outreach.</p>
+          </div>
+        </div>
+        <div class="panel-rail">
+          <div class="stat-chip reveal stagger-4">
+            <span class="stat-kicker">Ceiling</span>
+            <div class="metric-label">What most campaigns cap at.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel solution">
+      <div class="panel-body">
+        <span class="panel-tag reveal">What Batch #1 did</span>
+        <div class="panel-stack">
+          <div class="panel-number reveal stagger-1">43%</div>
+          <div class="panel-copy">
+            <div class="copy-line reveal stagger-2">Opened the first email.</div>
+            <p class="panel-note reveal stagger-3">389 of 898 accounts. 2,449 open events logged.</p>
+          </div>
+        </div>
+        <div class="panel-rail">
+          <div class="stat-chip reveal stagger-3">
+            <span class="stat-kicker">Click rate</span>
+            <div class="stat-number">32%</div>
+            <div class="metric-label">289 accounts clicked payment link.</div>
+          </div>
+          <div class="stat-chip reveal stagger-4">
+            <span class="stat-kicker">Calls</span>
+            <div class="stat-number">895</div>
+            <div class="metric-label">of 898 accounts dialed.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINDING 02 — WHAT DEBTORS SAY -->
+  <section class="split snap" id="voices">
+    <div class="panel problem">
+      <div class="panel-body">
+        <span class="panel-tag reveal">Finding 02 · What we heard back</span>
+        <div class="panel-stack">
+          <div class="panel-number reveal stagger-1">27</div>
+          <div class="panel-copy">
+            <div class="copy-line reveal stagger-2">Debtors wrote back.</div>
+            <p class="panel-note reveal stagger-3">Each one uploaded a formal reply through the portal.</p>
+          </div>
+        </div>
+        <div class="panel-rail">
+          <div class="stat-chip reveal stagger-4">
+            <span class="stat-kicker">Pattern</span>
+            <div class="metric-label">Most want invoice copies.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel solution">
+      <div class="panel-body">
+        <span class="panel-tag reveal">Two clear categories</span>
+        <div class="panel-stack">
+          <div class="panel-number reveal stagger-1">23 / 4</div>
+          <div class="panel-copy">
+            <div class="copy-line reveal stagger-2">"Send me the invoice." / "I already paid."</div>
+            <p class="panel-note reveal stagger-3">85% want documentation before paying. 15% uploaded a signed receipt.</p>
+          </div>
+        </div>
+
+        <div class="quote-block reveal stagger-3">
+          "I've logged into our FedEx account and searched the three invoice numbers. None seem to exist. I cannot pay for something I can't find."
+          <span class="quote-block-byline">— Debtor, Batch #1</span>
+        </div>
+        <div class="quote-block reveal stagger-4">
+          "Total paid: $1,068.48 on 08/04/2026. Proof of direct debit attached."
+          <span class="quote-block-byline">— Debtor, Batch #1 (resolved)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUCKETS -->
+  <section class="buckets-section snap" id="buckets">
+    <div class="buckets-card">
+      <div class="buckets-head">
+        <span class="eyebrow reveal">Exception handling · $80,545 across 4 buckets</span>
+        <h2 class="reveal stagger-1">Where the other 18% of the file sits.</h2>
+        <p class="reveal stagger-2">These are accounts that need something other than a standard recovery path. The pilot is surfacing them in structured buckets so they can be triaged — not blindly dialed. This is the part of the value that compounds invisibly: every bucket identified here is time FedEx never spends chasing a wall.</p>
+      </div>
+
+      <div class="buckets-grid">
+        <div class="bucket reveal stagger-1">
+          <div class="n">34</div>
+          <div class="t">Paid already,<br>awaiting verification</div>
+          <div class="d">Debtor named the date and amount paid directly to FedEx. Flagged for reconciliation. $14,585.</div>
+        </div>
+        <div class="bucket reveal stagger-2">
+          <div class="n">103</div>
+          <div class="t">Contact data needs<br>refresh</div>
+          <div class="d">Phone dead or wrong person. 63 confirmed wrong, 40 unreachable on every number on file. $49,975.</div>
+        </div>
+        <div class="bucket reveal stagger-3">
+          <div class="n">13</div>
+          <div class="t">Invoice not received<br>by customer</div>
+          <div class="d">Debtor cannot locate the invoice in their FedEx portal. Queued for document delivery. $10,801.</div>
+        </div>
+        <div class="bucket reveal stagger-4">
+          <div class="n">5</div>
+          <div class="t">Closed, insolvent,<br>or represented</div>
+          <div class="d">Business closed, counsel represented, or in bankruptcy. $5,184.</div>
+        </div>
+      </div>
+
+      <div class="bucket-total reveal stagger-4">
+        <div class="bucket-total-left">
+          <div class="bucket-total-n">155</div>
+          <div class="bucket-total-l"><strong>accounts</strong> surfaced for exception handling<br>$80,545 · 18% of Batch #1</div>
+        </div>
+        <div class="bucket-total-r">Every one of these is documented, structured, and ready for follow-up on the FedEx side. That's the operational win the pilot is designed to produce.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / NEXT MOVES -->
+  <section class="cta snap" id="next">
+    <div class="cta-card">
+      <div class="cta-top">
+        <span class="quote-tag" style="color: rgba(9, 19, 39, 0.56);">Next moves · two small inputs</span>
+        <span class="mini-pill" style="color: var(--ink); border-color: rgba(11, 27, 61, 0.08); background: rgba(255, 255, 255, 0.74);">Decision lives with Herb.</span>
+      </div>
+
+      <div class="cta-copy">
+        <h2 class="reveal">
+          <span>Two asks.</span>
+          <span>Both tighten the pilot.</span>
+        </h2>
+        <p class="reveal stagger-2">Neither is an expansion ask. Both are control mechanisms that make the next read cleaner, faster, and more defensible internally.</p>
+
+        <div class="asks">
+          <div class="ask reveal stagger-2">
+            <div class="ask-n">Ask 01 · Control</div>
+            <h3>Daily SFTP feed of paid &amp; closed invoices.</h3>
+            <p>Read-only. Once a debtor tells us they already paid, we need to confirm in hours not days. This suppresses resolved accounts automatically, improves reporting accuracy, and stops us asking a customer twice. Integration already built, live on 3 other enterprise accounts.</p>
+          </div>
+          <div class="ask reveal stagger-3">
+            <div class="ask-n">Ask 02 · Learning</div>
+            <h3>A 1,000-account cohort from the last 30 days of billing.</h3>
+            <p>Batches #1 and #2 are legacy aged AR. A fresh-aging cohort would let us compare the engine's behavior on newer invoices — where the invoice is still recognized and the contact is still fresh. Same KPIs, 10-day read, published side-by-side.</p>
+          </div>
+        </div>
+
+        <span class="future-pill reveal stagger-4">Future state, once the pilot scales: FedEx-branded deployment discussion</span>
+      </div>
+
+      <div class="cta-action reveal stagger-4" style="display: flex; gap: 14px; flex-wrap: wrap; align-self: end; margin-top: 12px;">
+        <span style="font-size: 12px; color: rgba(9,19,39,0.48); font-weight: 600; letter-spacing: 0.04em;">Prepared by John Banner · j@respaid.com · Pulled directly from production data, 24 April 2026 · 16:00 UTC</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  const sections = [...document.querySelectorAll(".snap")];
+  const reveals = [...document.querySelectorAll(".reveal")];
+  const progressLinks = [...document.querySelectorAll(".progress a")];
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) entry.target.classList.add("in-view");
+    });
+  }, { threshold: 0.2, rootMargin: "0px 0px -10% 0px" });
+  reveals.forEach((item) => revealObserver.observe(item));
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      progressLinks.forEach((link) => {
+        link.classList.toggle("is-active", link.getAttribute("href") === `#${entry.target.id}`);
+      });
+    });
+  }, { threshold: 0.55 });
+  sections.forEach((section) => sectionObserver.observe(section));
+</script>
+
+</body>
+</html>

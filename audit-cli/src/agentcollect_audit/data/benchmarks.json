@@ -1,0 +1,340 @@
+{
+  "version": "1.0",
+  "last_updated": "2026-04-06",
+  "notes": "Curated benchmark database for AgentCollect audit reports. STRICT RULE: only recognized brands (McKinsey, Federal Reserve, AFP, NACHA, PwC, Deloitte, Atradius, Salesforce, NIST, Gartner, Forrester). Each stat has source_brand, source_url, year, verified flag, use_when guidance, and math_template for dollar-amount impact calculations. verified=true means the stat was confirmed via WebSearch citing the named source in the same sentence as the number. verified=false means TBD — we know the report exists or the stat is approximately right but need to re-verify the exact figure and URL.",
+  "categories": {
+    "payment_acceptance": [
+      {
+        "id": "afp_2025_check_b2b",
+        "stat": "Only 26% of organizations now make B2B payments by check, a 7-point drop from 2022 — businesses are actively shifting away from paper.",
+        "source_brand": "AFP",
+        "source_full_name": "AFP 2025 Digital Payments Survey (J.P. Morgan underwriter)",
+        "source_url": "https://www.jpmorgan.com/content/dam/jpmorgan/images/payments/afp-digital-payments-survey-2025/2025-afp-digital-payments-survey-report-ada.pdf",
+        "year": 2025,
+        "verified": true,
+        "applies_to": ["all_b2b", "enterprise_b2b", "smb_b2b"],
+        "use_when": "Prospect is still heavily check-based or forces customers to mail paper checks",
+        "math_template": "If 74% of your peers have moved off checks and you still route invoices through the mail, you're adding 5-10 days of float PER invoice and lagging the AFP benchmark by a full survey cycle."
+      },
+      {
+        "id": "afp_2025_faster_payments_b2b",
+        "stat": "28% of organizations are already using faster/real-time payments for B2B settlement.",
+        "source_brand": "AFP",
+        "source_full_name": "AFP 2025 Digital Payments Survey",
+        "source_url": "https://www.jpmorgan.com/content/dam/jpmorgan/images/payments/afp-digital-payments-survey-2025/2025-afp-digital-payments-survey-report-ada.pdf",
+        "year": 2025,
+        "verified": true,
+        "applies_to": ["all_b2b", "enterprise_b2b"],
+        "use_when": "Prospect does not offer real-time, same-day ACH, or RTP rails",
+        "math_template": "Nearly 1 in 3 of your direct competitors can already accept same-day funds. Every day you don't = a day of customer friction AND a day of your own cash sitting in float."
+      },
+      {
+        "id": "fed_sbcs_2024_check_dominant",
+        "stat": "Checks are still the #1 payment method accepted by US small businesses, followed by credit cards and cash — despite universal consumer card expectations.",
+        "source_brand": "Federal Reserve",
+        "source_full_name": "Federal Reserve 2024 Report on Payments — Findings from the 2023 Small Business Credit Survey",
+        "source_url": "https://www.fedsmallbusiness.org/reports/survey/2024/2024-report-on-payments",
+        "year": 2024,
+        "verified": true,
+        "applies_to": ["smb_b2b"],
+        "use_when": "Contextualizing why SMB customers still struggle with digital-only checkout",
+        "math_template": "Your customers' finance teams are wired for check workflows. If you don't accept ACH + card AND provide a simple way to pay by check, you're forcing them to choose between convenience and compliance with their own AP process."
+      }
+    ],
+    "dso_benchmarks": [
+      {
+        "id": "pwc_wcs_2425_global_dso",
+        "stat": "Global DSO has risen 5.7% over the past decade, from 47.3 days in 2015 to 50.0 days in 2024. North America alone is up 5.5%.",
+        "source_brand": "PwC",
+        "source_full_name": "PwC Working Capital Study 24/25",
+        "source_url": "https://www.pwc.co.uk/services/value-creation/insights/working-capital-study/2024.html",
+        "year": 2024,
+        "verified": true,
+        "applies_to": ["all_b2b", "enterprise_b2b"],
+        "use_when": "Prospect's DSO is above 50 days or trending up",
+        "math_template": "Every 1 day of DSO on $X annual revenue = $X/365 locked in receivables. If you're at 65 days and the global median is 50, that's 15 × (revenue/365) in working capital you're financing for free."
+      },
+      {
+        "id": "atradius_us_2024_overdue",
+        "stat": "Half of all B2B invoices issued by US companies are currently overdue. Overdue invoices are turned into cash an average of 20 days past due.",
+        "source_brand": "Atradius",
+        "source_full_name": "Atradius Payment Practices Barometer — United States 2024",
+        "source_url": "https://atradius.us/knowledge-and-research/reports/b2b-payment-practices-trends-united-states-2024",
+        "year": 2024,
+        "verified": true,
+        "applies_to": ["all_b2b", "smb_b2b", "enterprise_b2b"],
+        "use_when": "Prospect has a large overdue bucket or slow-paying customers",
+        "math_template": "If 50% of your AR is overdue and the US average turnaround is DSO+20, every $1M in overdue invoices costs ~$1M × 20/365 × cost_of_capital in financing cost. On $10M overdue at 10% cost of capital = ~$55K in pure float cost per year."
+      },
+      {
+        "id": "atradius_us_2024_late_reason",
+        "stat": "The #1 cited reason for late B2B payments in the US is administrative inefficiencies in the customer's AP process.",
+        "source_brand": "Atradius",
+        "source_full_name": "Atradius Payment Practices Barometer — United States 2024",
+        "source_url": "https://atradius.us/knowledge-and-research/reports/b2b-payment-practices-trends-united-states-2024",
+        "year": 2024,
+        "verified": true,
+        "applies_to": ["all_b2b"],
+        "use_when": "Prospect blames customers but their own billing UX is the friction",
+        "math_template": "If your customers cite 'admin inefficiency' as the reason they pay late, every extra click, every unclear invoice, every missing portal login is directly subtracting from your cash conversion."
+      },
+      {
+        "id": "saas_dso_median_2024",
+        "stat": "Median DSO for B2B SaaS is 50 days (Cloud/IT Infrastructure segment). Top-quartile SaaS firms run DSO 15-25% below their industry average.",
+        "source_brand": "TBD",
+        "source_full_name": "State of B2B Payments 2024 (Upflow) — looking for a McKinsey/KPMG/Deloitte SaaS benchmark citation",
+        "source_url": null,
+        "year": 2024,
+        "verified": false,
+        "notes": "Need first-party SaaS benchmark from KPMG/Bessemer/OpenView. Current source is a vendor blog.",
+        "applies_to": ["vertical_saas_smb", "enterprise_b2b"],
+        "use_when": "SaaS prospect with DSO > 50 days",
+        "math_template": "Top-quartile SaaS collects in ~40 days. If you're at 65 days, you're 25 days × (ARR/365) behind the top quartile in working capital efficiency."
+      }
+    ],
+    "payment_friction_cost": [
+      {
+        "id": "pymnts_2024_lost_business_payment_miscommunication",
+        "stat": "80%+ of executives say they've lost business because of a payment process miscommunication (2024).",
+        "source_brand": "TBD",
+        "source_full_name": "PYMNTS Intelligence — looking for original 2024 study citation",
+        "source_url": null,
+        "year": 2024,
+        "verified": false,
+        "notes": "Seen in secondary coverage; need to track down original PYMNTS report",
+        "applies_to": ["all_b2b"],
+        "use_when": "Prospect has opaque billing or no clear payment options page",
+        "math_template": "If 8 in 10 executives have lost deals over payment confusion, every unclear invoice is a lost-deal risk. On a 20-deal-per-month pipeline, even a 5% friction-induced churn = 1 deal/month lost = $X/year."
+      },
+      {
+        "id": "atradius_2024_bad_debt_us",
+        "stat": "US B2B companies write off an average of 8% of all B2B credit sales as bad debt.",
+        "source_brand": "Atradius",
+        "source_full_name": "Atradius Payment Practices Barometer — United States 2024",
+        "source_url": "https://atradius.us/knowledge-and-research/reports/b2b-payment-practices-trends-united-states-2024",
+        "year": 2024,
+        "verified": true,
+        "applies_to": ["all_b2b", "smb_b2b"],
+        "use_when": "Always — this is a foundational pain point",
+        "math_template": "On $X in annual B2B credit sales, the US average write-off is X × 0.08. For a $50M company that's $4M/year being burned. Even a 25% improvement = $1M recovered."
+      },
+      {
+        "id": "deloitte_manual_invoice_cost",
+        "stat": "Manual invoice processing costs $12-25 per invoice; automated best-in-class AP teams process at $1.42-$2.78 per invoice — a ~78% cost reduction.",
+        "source_brand": "TBD",
+        "source_full_name": "IOFM Benchmark (reported in Deloitte / Centime analyses) — need direct IOFM/APQC source",
+        "source_url": null,
+        "year": 2024,
+        "verified": false,
+        "notes": "Need first-party APQC or IOFM benchmark report URL",
+        "applies_to": ["all_b2b"],
+        "use_when": "Prospect has manual invoice/collections operations",
+        "math_template": "If you process N invoices/year manually at $15 each vs. $2.78 automated, savings = N × $12.22. At 50K invoices/year = $611K in pure process cost."
+      }
+    ],
+    "ar_team_size": [
+      {
+        "id": "gartner_ar_rework_hours",
+        "stat": "Finance departments can save up to 25,000 hours of avoidable rework per year by leveraging automation in daily A/R operations.",
+        "source_brand": "Gartner",
+        "source_full_name": "Gartner Finance research (cited across HighRadius / Emagia analyses)",
+        "source_url": null,
+        "year": 2024,
+        "verified": false,
+        "notes": "Need direct Gartner report URL — the 25K hours figure is widely cited but needs a primary-source link",
+        "applies_to": ["enterprise_b2b"],
+        "use_when": "Prospect has a large manual AR team",
+        "math_template": "25,000 hours × $45/hr fully loaded analyst cost = $1.125M per year in recoverable team capacity per Gartner's finding."
+      }
+    ],
+    "online_payment_adoption": [
+      {
+        "id": "salesforce_connected_customer_self_service",
+        "stat": "69% of B2B buyers say it's absolutely critical or very important for vendors to offer self-service options.",
+        "source_brand": "Salesforce",
+        "source_full_name": "Salesforce State of the Connected Customer",
+        "source_url": "https://www.salesforce.com/eu/resources/research-reports/state-of-the-connected-customer/",
+        "year": 2023,
+        "verified": true,
+        "applies_to": ["all_b2b", "smb_b2b", "enterprise_b2b"],
+        "use_when": "Prospect has no self-service portal, forces phone calls, or buries 'pay online' behind login walls",
+        "math_template": "7 out of every 10 buyers consider self-service critical. If you force them to call to pay, you're actively violating the expectation of the majority of your own customers."
+      },
+      {
+        "id": "salesforce_b2b_consumer_expectation",
+        "stat": "82% of business buyers want the same experience when buying for work as they get buying for themselves.",
+        "source_brand": "Salesforce",
+        "source_full_name": "Salesforce State of the Connected Customer",
+        "source_url": "https://www.salesforce.com/eu/resources/research-reports/state-of-the-connected-customer/",
+        "year": 2023,
+        "verified": true,
+        "applies_to": ["all_b2b"],
+        "use_when": "Prospect's billing UX is clearly more '1998 ERP' than '2024 Stripe checkout'",
+        "math_template": "If your customer can pay their Netflix in 3 clicks on their phone, but paying your invoice takes 7 steps and a desktop login, you're losing against an expectation set by Amazon, not your competitors."
+      }
+    ],
+    "small_business_payment_preferences": [
+      {
+        "id": "fed_sbcs_80pct_payment_challenges",
+        "stat": "80% of small businesses reported challenges related to how they send and receive payments. Top complaints: fees and payments not arriving fast enough.",
+        "source_brand": "Federal Reserve",
+        "source_full_name": "Federal Reserve 2024 Report on Payments — Small Business Credit Survey",
+        "source_url": "https://www.fedsmallbusiness.org/reports/survey/2024/2024-report-on-payments",
+        "year": 2024,
+        "verified": true,
+        "applies_to": ["smb_b2b"],
+        "use_when": "SMB-focused prospect",
+        "math_template": "4 out of 5 of your SMB customers are already frustrated with B2B payments in general — per the Fed. You don't need to convince them there's a problem. You need to show you solve it."
+      },
+      {
+        "id": "fed_boston_2025_smb_fees",
+        "stat": "Credit card processing fees are the most common payments challenge cited by small businesses, especially in retail, leisure and hospitality.",
+        "source_brand": "Federal Reserve",
+        "source_full_name": "Federal Reserve Bank of Boston — 2025 analysis of SBCS payments data",
+        "source_url": "https://www.bostonfed.org/news-and-events/news/2025/02/what-are-the-top-payments-challenges-facing-small-businesses.aspx",
+        "year": 2025,
+        "verified": true,
+        "applies_to": ["smb_b2b", "restaurant_pos"],
+        "use_when": "Prospect serves SMBs that accept cards and are fee-sensitive",
+        "math_template": "If your SMB customers are already losing 2-3% to card fees, any additional friction on YOUR side (disputes, chargebacks, reversed payments) is intolerable."
+      }
+    ],
+    "after_hours_support": [
+      {
+        "id": "after_hours_tbd",
+        "stat": "TBD — specific stat on % of B2B vendors with 24/7 or extended-hours billing support",
+        "source_brand": "TBD",
+        "source_full_name": null,
+        "source_url": null,
+        "year": null,
+        "verified": false,
+        "notes": "Looking for a J.D. Power, Gartner, or Forrester after-hours B2B support stat. Current proxy: Salesforce State of Service reports availability expectations.",
+        "applies_to": ["all_b2b"],
+        "use_when": "Prospect's billing line closes at 5pm local — mystery shop evidence",
+        "math_template": null
+      }
+    ],
+    "identity_verification_standards": [
+      {
+        "id": "nist_800_63_4_2025",
+        "stat": "NIST SP 800-63-4 (finalized July 2025) defines three Identity Assurance Levels (IAL1-3) that financial services, healthcare, and regulated industries use as the baseline for identity proofing when handling sensitive transactions.",
+        "source_brand": "NIST",
+        "source_full_name": "NIST Special Publication 800-63-4 Digital Identity Guidelines",
+        "source_url": "https://pages.nist.gov/800-63-4/",
+        "year": 2025,
+        "verified": true,
+        "applies_to": ["all_b2b", "enterprise_b2b"],
+        "use_when": "Prospect handles card data, banking info, or takes payment over the phone without any identity check",
+        "math_template": "NIST 800-63 is the federal baseline. If your billing line takes a card number without ANY identity proofing step, you are not even at IAL1 — you're below the bar the federal government sets for 'any identity interaction at all.'"
+      }
+    ],
+    "bad_debt_writeoff_rates": [
+      {
+        "id": "atradius_na_usmca_6pct",
+        "stat": "Bad debts average 6% of all B2B credit sales across North America (USMCA).",
+        "source_brand": "Atradius",
+        "source_full_name": "Atradius Payment Practices Barometer — North America (USMCA) 2024",
+        "source_url": "https://group.atradius.com/knowledge-and-research/reports/b2b-payment-practices-trends-north-america-(usmca)-2024",
+        "year": 2024,
+        "verified": true,
+        "applies_to": ["all_b2b"],
+        "use_when": "Calculating addressable bad-debt recovery opportunity across a multi-region prospect",
+        "math_template": "6% of B2B credit sales as bad debt is the NA benchmark. For $X in B2B revenue, your expected write-off is X × 0.06 — if you're above that, you have a collections problem; if you're at benchmark, AgentCollect can push you below it."
+      }
+    ],
+    "payment_method_friction": [
+      {
+        "id": "nacha_b2b_ach_growth_2024",
+        "stat": "B2B ACH payments grew 11.6% in 2024 to 7.3 billion payments — the fastest-growing segment of the ACH Network. Same-Day ACH B2B grew 50.5% in volume.",
+        "source_brand": "NACHA",
+        "source_full_name": "NACHA 2024 ACH Network Statistics",
+        "source_url": "https://www.nacha.org/news/same-day-ach-passes-major-milestone-2024-ach-network-shows-higher-growth",
+        "year": 2024,
+        "verified": true,
+        "applies_to": ["all_b2b"],
+        "use_when": "Prospect doesn't offer ACH or Same-Day ACH as a payment option",
+        "math_template": "While B2B ACH grew 11.6% and Same-Day ACH B2B grew 50.5% last year, you're still sending wire instructions by email. Your customers are literally asking for the rail you don't support."
+      },
+      {
+        "id": "afp_2024_fraud_checks",
+        "stat": "63% of organizations experienced attempted or actual check fraud in 2024 — making checks the most fraud-prone payment method.",
+        "source_brand": "AFP",
+        "source_full_name": "AFP 2025 Payments Fraud and Control Survey",
+        "source_url": "https://www.truist.com/content/dam/truist-bank/us/en/documents/info/cci/2025-afp-payments-fraud-control-survey-report-key-highlights.pdf",
+        "year": 2024,
+        "verified": true,
+        "applies_to": ["all_b2b"],
+        "use_when": "Prospect still relies heavily on checks",
+        "math_template": "Nearly 2 in 3 companies had check fraud attempts in 2024 (AFP). Every invoice you force onto checks is a fraud surface you're choosing to own."
+      }
+    ]
+  },
+  "by_vertical": {
+    "healthcare_practice_saas": [
+      {
+        "id": "healthcare_tbd_1",
+        "stat": "TBD — dental/vet/medical practice payment DSO benchmark",
+        "source_brand": "TBD",
+        "source_url": null,
+        "verified": false,
+        "notes": "Looking for AMA, ADA, or AVMA practice management benchmark on AR/DSO"
+      }
+    ],
+    "smb_phone_voip": [
+      {
+        "id": "voip_tbd_1",
+        "stat": "TBD — VoIP/UCaaS billing and churn benchmarks",
+        "source_brand": "TBD",
+        "source_url": null,
+        "verified": false,
+        "notes": "Looking for Gartner UCaaS MQ churn/billing data"
+      }
+    ],
+    "restaurant_pos": [
+      {
+        "id": "restaurant_pos_fed_fees",
+        "stat": "Retail, leisure and hospitality businesses (including restaurants) are MORE likely than other industries to cite card processing fees as their top payment challenge.",
+        "source_brand": "Federal Reserve",
+        "source_full_name": "Federal Reserve Bank of Boston analysis of Small Business Credit Survey payments data",
+        "source_url": "https://www.bostonfed.org/news-and-events/news/2025/02/what-are-the-top-payments-challenges-facing-small-businesses.aspx",
+        "year": 2025,
+        "verified": true,
+        "applies_to": ["restaurant_pos"],
+        "use_when": "Restaurant POS prospect (SpotOn, Toast, Square)",
+        "math_template": "Your restaurant customers are ALREADY the most fee-sensitive segment in the Fed data. Any added friction on your billing side compounds a pain they already feel every day."
+      }
+    ],
+    "vertical_saas_smb": [
+      {
+        "id": "vertical_saas_tbd",
+        "stat": "TBD — DSO + churn benchmark for vertical SaaS serving SMBs (Jobber, ServiceTitan, Procore)",
+        "source_brand": "TBD",
+        "source_url": null,
+        "verified": false,
+        "notes": "Looking for Bessemer Cloud Index or KeyBanc SaaS survey segmented by SMB vertical"
+      }
+    ],
+    "field_service_saas": [
+      {
+        "id": "field_service_tbd",
+        "stat": "TBD — field service SaaS customer payment behavior benchmark",
+        "source_brand": "TBD",
+        "source_url": null,
+        "verified": false,
+        "notes": "Looking for Housecall Pro / ServiceTitan / Jobber aggregate payment data, or ASA (Aberdeen) field service report"
+      }
+    ]
+  },
+  "coverage_gaps": {
+    "need_followup": [
+      "after_hours_support — no recognized-brand stat found in 40 min window",
+      "healthcare_practice_saas — need AMA/ADA/AVMA primary data",
+      "smb_phone_voip — need Gartner UCaaS billing data",
+      "vertical_saas_smb — need Bessemer / KeyBanc SaaS survey cut",
+      "field_service_saas — need industry association data",
+      "ar_team_size — Gartner 25K hours figure needs primary URL",
+      "payment_friction_cost — need PYMNTS primary report URL for 80%-lost-business stat",
+      "saas_dso_benchmarks — need first-party KPMG/Deloitte cut (currently Upflow secondary)"
+    ]
+  }
+}
