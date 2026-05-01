@@ -45,6 +45,10 @@
       "destination": "/cgm-v2.html"
     },
     {
+      "source": "/cgm-proposal",
+      "destination": "/cgm-proposal.html"
+    },
+    {
       "source": "/cgm-briefing",
       "destination": "/cgm-briefing.html"
     },
