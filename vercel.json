@@ -121,6 +121,14 @@
       "destination": "/audit-tebra.html"
     },
     {
+      "source": "/1800accountant",
+      "destination": "/audit-1800accountant.html"
+    },
+    {
+      "source": "/audit/1800accountant",
+      "destination": "/audit-1800accountant.html"
+    },
+    {
       "source": "/virtuox",
       "destination": "/audit-virtuox.html"
     },
@@ -1599,6 +1607,22 @@
     {
       "source": "/customers/lafayette",
       "destination": "/customers/lafayette/index.html"
+    },
+    {
+      "source": "/customers/cgm",
+      "destination": "/customers/cgm/index.html"
+    },
+    {
+      "source": "/cgm-story",
+      "destination": "/customers/cgm/index.html"
+    },
+    {
+      "source": "/people/benedikt-brueckle",
+      "destination": "/customers/cgm/index.html"
+    },
+    {
+      "source": "/benedikt-brueckle",
+      "destination": "/customers/cgm/index.html"
     },
     {
       "source": "/report/2026-b2b-recovery-benchmark",
