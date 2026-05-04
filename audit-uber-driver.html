@@ -201,34 +201,37 @@ body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1
 <!-- THE FINDING -->
 <section class="confession-section">
   <div class="confession-inner">
-    <div class="confession-eyebrow">The driver-debtor channel</div>
-    <p class="big-quote">Uber's driver help center lists no phone number, no email, no chat. Only an in-app form.</p>
-    <div class="quote-attrib">&mdash; <strong>help.uber.com/driving-and-delivering</strong> &middot; Verified May 4, 2026</div>
+    <div class="confession-eyebrow">Recorded today &middot; May 4, 2026</div>
+    <p class="big-quote">There have been too many invalid entries. For security reasons, we'll unfortunately need to end this call.</p>
+    <div class="quote-attrib">&mdash; <strong>Automated system</strong> &middot; Uber Driver Support &middot; 1-800-593-7069 &middot; 65 seconds</div>
 
     <div class="transcript-shell">
       <div class="transcript-meta">
-        <span class="live">SIMULATION</span>
-        <span>Driver with negative balance trying to settle</span>
+        <span class="live">CALL &middot; LIVE RECORDING</span>
+        <span>1-800-593-7069 &middot; Driver Support</span>
       </div>
       <div class="chat-log">
-        <div class="chat-bubble system">Driver opens app. Sees negative balance from a damage claim.</div>
-        <div class="chat-bubble caller">
-          <span class="speaker">Driver (debtor)</span>
-          I want to pay the $340 damage charge so I can keep driving. Where do I send the money?
-        </div>
+        <div class="chat-bubble system">Caller: driver with $340 negative balance from passenger damage claim, wants to settle today by card.</div>
         <div class="chat-bubble rep">
-          <span class="speaker">Uber app &mdash; "Help" section</span>
-          Earnings &gt; Negative balance &gt; "Earnings will be applied to your balance until it reaches zero." No payment option. No human.
+          <span class="speaker">Automated System</span>
+          Phone support is currently only available for drivers. If you're a driver, please enter the ten-digit phone number associated with your account.
         </div>
         <div class="chat-bubble caller">
           <span class="speaker">Driver (debtor)</span>
-          I don't want to wait. I want to settle today. Phone number?
+          I'm not exactly sure which number is tied to my account&mdash;could you try by name or address?
         </div>
         <div class="chat-bubble rep">
-          <span class="speaker">Uber app</span>
-          [No phone number listed anywhere on the driver help center.]
+          <span class="speaker">Automated System</span>
+          Please enter the phone number associated with your driver account.
         </div>
-        <div class="chat-bubble system">Outcome: driver cannot pay even when they want to. Uber waits for offset against future earnings only.</div>
+        <div class="chat-bubble rep" style="border:2px solid var(--red);background:var(--red-soft)">
+          <span class="speaker" style="color:var(--red)">Automated System &middot; Final</span>
+          There have been too many invalid entries. For security reasons, we'll unfortunately need to end this call. Please contact our support team through the help section of your app. Goodbye.
+        </div>
+        <div class="chat-bubble system">Outcome: driver who wants to pay $340 today cannot. Same caller-ID gate as Uber for Business. The "phone support" line that does exist exits drivers who can't authenticate by phone number.</div>
+      </div>
+      <div style="margin-top:18px;padding-top:18px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;color:var(--muted)">
+        <a href="https://dxc03zgurdly9.cloudfront.net/343a18e1a9b3bb2475db6172d4c08a7d930a2cb4d1426b0e226929b23b5191ec/recording.wav" style="color:var(--indigo);text-decoration:none;border-bottom:1px dotted var(--indigo)">▶ Listen to the full recording (65s)</a>
       </div>
     </div>
   </div>
