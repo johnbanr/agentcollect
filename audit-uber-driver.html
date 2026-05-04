@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uber Driver Debt &middot; AR Operations Audit &middot; Confidential</title>
+<meta property="og:title" content="Uber Driver Debt AR Operations Audit &middot; Confidential">
+<meta property="og:description" content="When a driver owes Uber money, there is no phone. No human. Just an in-app form and an email that may or may not arrive.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#FAF9F6;--bg-2:#F4F2EC;--bg-3:#FFFDFA;
+  --ink:#0E1116;--ink-2:#3F4651;--muted:#6B7280;
+  --line:#E5E0D5;--line-2:#D4CEC0;
+  --indigo:#4338CA;--indigo-soft:#EEF0FF;
+  --red:#B91C1C;--red-soft:#FEF2F2;--green:#047857;
+  --display:'Plus Jakarta Sans',-apple-system,sans-serif;
+  --body:'Inter',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+.topbar{border-bottom:1px solid var(--line);background:rgba(250,249,246,.92);backdrop-filter:blur(20px);position:sticky;top:0;z-index:50}
+.topbar-inner{max-width:1100px;margin:0 auto;padding:18px 36px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.brand{display:inline-flex;align-items:center;gap:6px;font-family:var(--display);font-weight:700;font-size:18px;color:var(--ink);text-decoration:none;letter-spacing:-.015em}
+.brand .dot{width:6px;height:6px;border-radius:50%;background:var(--indigo);margin-left:1px;vertical-align:super;margin-top:-2px;display:inline-block}
+.topbar-meta{font-family:var(--mono);font-size:10px;color:var(--muted);font-weight:500;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.topbar-meta strong{color:var(--ink)}
+.topbar-cta{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:var(--ink);color:#fff;border-radius:100px;font-family:var(--display);font-size:12px;font-weight:700;text-decoration:none;letter-spacing:-.005em;transition:all .2s}
+.topbar-cta:hover{background:var(--indigo)}
+.topbar-cta .arrow{transition:transform .2s;font-size:11px}
+.topbar-cta:hover .arrow{transform:translateX(2px)}
+.expires{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;background:var(--red-soft);color:var(--red);border-radius:6px;font-weight:600}
+.expires::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--red);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+.viewport{min-height:90vh;display:flex;align-items:center;justify-content:center;padding:120px 36px;position:relative}
+.viewport-inner{max-width:1080px;width:100%;margin:0 auto}
+
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.14em;padding:8px 16px;border:1px solid var(--line-2);border-radius:100px;margin-bottom:42px;background:var(--bg-3)}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--indigo)}
+
+.hero-headline{font-family:var(--display);font-size:clamp(48px,6.4vw,92px);font-weight:800;line-height:1;letter-spacing:-.025em;color:var(--ink);margin-bottom:42px;max-width:1040px}
+.hero-headline em{color:var(--red);font-weight:500;font-style:normal}
+
+.hero-meta{display:flex;align-items:center;gap:24px;font-family:var(--mono);font-size:12px;color:var(--muted);flex-wrap:wrap}
+.hero-meta strong{color:var(--ink);font-weight:600}
+.hero-meta .sep{color:var(--line-2)}
+
+.confession-section{padding:140px 36px 100px;border-top:1px solid var(--line);background:var(--bg-3);position:relative}
+.confession-inner{max-width:980px;margin:0 auto;text-align:center}
+
+.confession-eyebrow{font-family:var(--mono);font-size:11px;color:var(--red);text-transform:uppercase;letter-spacing:.18em;font-weight:600;margin-bottom:48px;display:inline-flex;align-items:center;gap:14px}
+.confession-eyebrow::before,.confession-eyebrow::after{content:'';width:36px;height:1px;background:var(--red);opacity:.4}
+
+.big-quote{font-family:var(--display);font-size:clamp(34px,5.2vw,70px);font-weight:700;line-height:1.08;letter-spacing:-.02em;color:var(--ink);margin-bottom:56px;max-width:980px;margin-left:auto;margin-right:auto}
+.big-quote::before{content:'\201C';display:block;font-family:var(--display);font-size:160px;line-height:.4;color:var(--red);opacity:.2;margin-bottom:30px;font-weight:500;font-style:normal}
+
+.quote-attrib{font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:64px;letter-spacing:.04em;text-transform:uppercase}
+.quote-attrib strong{color:var(--ink);font-weight:600}
+
+.transcript-shell{max-width:760px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:18px;padding:32px 36px;position:relative;overflow:hidden;box-shadow:0 1px 2px rgba(11,17,22,.04),0 12px 32px rgba(11,17,22,.06)}
+.transcript-shell::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),transparent 90%);pointer-events:none}
+
+.transcript-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.transcript-meta .live{display:inline-flex;align-items:center;gap:6px;color:var(--red);font-weight:600}
+.transcript-meta .live::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 12px rgba(185,28,28,.4);animation:pulse 1.5s ease-in-out infinite}
+
+.chat-log{display:flex;flex-direction:column;gap:16px;margin-bottom:22px}
+
+.chat-bubble{max-width:85%;padding:14px 18px;border-radius:16px;font-family:var(--body);font-size:14px;line-height:1.55;position:relative}
+.chat-bubble.caller{align-self:flex-end;background:var(--indigo-soft);color:var(--ink);border-bottom-right-radius:4px}
+.chat-bubble.rep{align-self:flex-start;background:#F4F2EC;color:var(--ink);border-bottom-left-radius:4px}
+.chat-bubble.system{align-self:center;background:var(--red-soft);color:var(--red);font-family:var(--mono);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;border-radius:8px;padding:10px 18px;max-width:100%}
+.chat-bubble .speaker{font-family:var(--mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;display:block}
+.chat-bubble.caller .speaker{color:var(--indigo)}
+.chat-bubble.rep .speaker{color:var(--red)}
+
+.alt-section{padding:140px 36px;border-top:1px solid var(--line);background:var(--bg)}
+.alt-inner{max-width:780px;margin:0 auto;text-align:center}
+.alt-eyebrow{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.18em;font-weight:500;margin-bottom:24px}
+.alt-title{font-family:var(--display);font-size:clamp(28px,3.6vw,44px);font-weight:800;letter-spacing:-.025em;line-height:1.1;color:var(--ink);margin-bottom:48px}
+.alt-title em{color:var(--red)}
+.alt-options{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:600px;margin:0 auto}
+.alt-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:32px 28px;text-align:left}
+.alt-card-icon{font-size:28px;margin-bottom:14px}
+.alt-card-title{font-family:var(--display);font-size:17px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.alt-card-sub{font-family:var(--body);font-size:13px;color:var(--muted);line-height:1.55}
+.alt-card-sub code{font-family:var(--mono);font-size:12px;background:var(--bg-2);padding:2px 6px;border-radius:4px}
+
+.stats-section{padding:140px 36px;border-top:1px solid var(--line);background:var(--bg);position:relative}
+.stats-inner{max-width:1080px;margin:0 auto}
+.stats-eyebrow{text-align:center;font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.18em;font-weight:500;margin-bottom:64px}
+.stats-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:60px;align-items:center;max-width:980px;margin:0 auto}
+.stat-side{text-align:center}
+.stat-tag{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.16em;margin-bottom:24px;font-weight:500}
+.stat-tag.them{color:var(--red)}
+.stat-tag.us{color:var(--indigo)}
+.stat-value{font-family:var(--display);font-size:clamp(80px,13vw,200px);font-weight:900;line-height:.85;letter-spacing:-.04em}
+.stat-value.them{color:var(--red)}
+.stat-value.us{color:var(--indigo)}
+.stat-label{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:24px;letter-spacing:.04em;line-height:1.7}
+.stat-label strong{color:var(--ink);font-weight:600;display:block;margin-top:4px;text-transform:uppercase;font-size:10px;letter-spacing:.08em}
+.stat-arrow{font-family:var(--display);font-size:60px;color:var(--muted);font-weight:300}
+
+.beyond-section{padding:140px 36px;border-top:1px solid var(--line);background:var(--bg-3)}
+.beyond-inner{max-width:1080px;margin:0 auto}
+.beyond-head{text-align:center;margin-bottom:72px}
+.beyond-eyebrow{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.18em;font-weight:500;margin-bottom:18px}
+.beyond-title{font-family:var(--display);font-size:clamp(36px,4.8vw,64px);font-weight:800;letter-spacing:-.025em;line-height:1.05;color:var(--ink);max-width:780px;margin:0 auto}
+.beyond-title em{color:var(--indigo)}
+
+.portal-findings{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;max-width:920px;margin:0 auto}
+.pf-card{padding:0}
+.pf-num{font-family:var(--mono);font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:14px}
+.pf-text{font-family:var(--display);font-size:19px;font-weight:700;color:var(--ink);line-height:1.3;letter-spacing:-.01em;margin-bottom:10px}
+.pf-sub{font-family:var(--body);font-size:13px;color:var(--muted);line-height:1.6}
+
+.external-stat{max-width:780px;margin:64px auto 0;padding:36px 44px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--ink);border-radius:0 14px 14px 0;text-align:left}
+.external-stat-quote{font-family:var(--display);font-size:clamp(20px,2.4vw,28px);font-weight:600;line-height:1.35;letter-spacing:-.015em;color:var(--ink);margin-bottom:18px}
+.external-stat-source{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.external-stat-source strong{color:var(--ink);font-weight:600;text-transform:none;font-family:var(--display);letter-spacing:0;font-size:13px}
+
+.what-section{padding:140px 36px;border-top:1px solid var(--line);background:var(--bg)}
+.what-inner{max-width:980px;margin:0 auto;text-align:center}
+.what-eyebrow{font-family:var(--mono);font-size:11px;color:var(--indigo);text-transform:uppercase;letter-spacing:.18em;font-weight:600;margin-bottom:24px}
+.what-title{font-family:var(--display);font-size:clamp(40px,5.4vw,76px);font-weight:800;letter-spacing:-.025em;line-height:1;color:var(--ink);margin-bottom:36px}
+.what-title em{color:var(--indigo)}
+.what-pillars{display:flex;align-items:center;justify-content:center;gap:36px;flex-wrap:wrap;margin-top:48px;padding-top:48px;border-top:1px solid var(--line)}
+.pillar{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;color:var(--ink-2);font-weight:500;letter-spacing:.02em;text-transform:uppercase}
+.pillar .icon{width:6px;height:6px;border-radius:50%;background:var(--indigo)}
+
+.trust-section{padding:100px 36px 60px;border-top:1px solid var(--line);background:var(--bg-3);text-align:center}
+.trust-label{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.18em;margin-bottom:40px;font-weight:500}
+.trust-logos{display:flex;align-items:center;justify-content:center;gap:64px;flex-wrap:wrap}
+.trust-logo{height:32px;width:auto;opacity:.6;filter:grayscale(100%);transition:all .2s}
+.trust-logo:hover{opacity:1;filter:grayscale(0%)}
+.trust-logo.tall{height:38px}
+
+.bridge-section{padding:140px 36px;background:var(--bg-3);text-align:center;border-top:1px solid var(--line);position:relative;overflow:hidden}
+.bridge-eyebrow{font-family:var(--mono);font-size:11px;color:var(--indigo);text-transform:uppercase;letter-spacing:.18em;font-weight:600;margin-bottom:24px;position:relative}
+.bridge-headline{font-family:var(--display);font-size:clamp(36px,4.8vw,64px);font-weight:800;letter-spacing:-.025em;line-height:1.05;color:var(--ink);margin-bottom:20px;max-width:880px;margin:0 auto 20px;position:relative}
+.bridge-headline em{color:var(--indigo);font-style:normal}
+.bridge-deck{font-family:var(--body);font-size:17px;color:var(--muted);max-width:620px;margin:0 auto 40px;line-height:1.6;position:relative}
+.bridge-cta{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--indigo);color:#fff;border-radius:100px;font-family:var(--display);font-size:15px;font-weight:700;text-decoration:none;transition:all .2s;position:relative}
+.bridge-cta:hover{background:var(--ink);transform:translateY(-2px)}
+
+.footer{padding:32px 36px;border-top:1px solid var(--line);max-width:1140px;margin:0 auto;font-family:var(--mono);font-size:10px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;text-transform:uppercase;letter-spacing:.06em}
+.footer strong{color:var(--ink);font-weight:600}
+
+@media (max-width:980px){
+  .viewport{padding:80px 24px}
+  .stats-grid{grid-template-columns:1fr;gap:48px}
+  .stat-arrow{transform:rotate(90deg)}
+  .portal-findings{grid-template-columns:1fr;gap:32px}
+  .confession-section,.stats-section,.beyond-section,.what-section,.bridge-section,.alt-section{padding:80px 24px}
+  .trust-section{padding:60px 24px 30px}
+  .topbar-inner{padding:14px 24px;flex-direction:column;align-items:flex-start;gap:10px}
+  .topbar-meta{font-size:9px}
+  .what-pillars{flex-direction:column;gap:18px}
+  .alt-options{grid-template-columns:1fr}
+  .trust-logos{gap:32px}
+  .trust-logo{height:24px}
+  .trust-logo.tall{height:28px}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="https://agentcollect.com" class="brand">AgentCollect<span class="dot"></span></a>
+    <div class="topbar-meta">
+      <span>DOC <strong>#UDR-001</strong></span>
+      <span>&middot;</span>
+      <span class="expires" id="expires">Expires in 30 days</span>
+    </div>
+    <a href="https://cal.com/johnb/30" class="topbar-cta">Talk to the founder <span class="arrow">&rarr;</span></a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="viewport">
+  <div class="viewport-inner">
+    <div class="hero-eyebrow"><span class="dot"></span>Confidential AR Audit &middot; Driver Debt Channel &middot; For Uber Order-to-Cash</div>
+    <h1 class="hero-headline">When a driver owes Uber money, there's <em>no phone. No human. No path.</em></h1>
+    <div class="hero-meta">
+      <span>Negative balances, damage charges, fare adjustments</span>
+      <span class="sep">&middot;</span>
+      <span><strong>Zero phone numbers published</strong></span>
+      <span class="sep">&middot;</span>
+      <span>Recorded May 4, 2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- THE FINDING -->
+<section class="confession-section">
+  <div class="confession-inner">
+    <div class="confession-eyebrow">The driver-debtor channel</div>
+    <p class="big-quote">Uber's driver help center lists no phone number, no email, no chat. Only an in-app form.</p>
+    <div class="quote-attrib">&mdash; <strong>help.uber.com/driving-and-delivering</strong> &middot; Verified May 4, 2026</div>
+
+    <div class="transcript-shell">
+      <div class="transcript-meta">
+        <span class="live">SIMULATION</span>
+        <span>Driver with negative balance trying to settle</span>
+      </div>
+      <div class="chat-log">
+        <div class="chat-bubble system">Driver opens app. Sees negative balance from a damage claim.</div>
+        <div class="chat-bubble caller">
+          <span class="speaker">Driver (debtor)</span>
+          I want to pay the $340 damage charge so I can keep driving. Where do I send the money?
+        </div>
+        <div class="chat-bubble rep">
+          <span class="speaker">Uber app &mdash; "Help" section</span>
+          Earnings &gt; Negative balance &gt; "Earnings will be applied to your balance until it reaches zero." No payment option. No human.
+        </div>
+        <div class="chat-bubble caller">
+          <span class="speaker">Driver (debtor)</span>
+          I don't want to wait. I want to settle today. Phone number?
+        </div>
+        <div class="chat-bubble rep">
+          <span class="speaker">Uber app</span>
+          [No phone number listed anywhere on the driver help center.]
+        </div>
+        <div class="chat-bubble system">Outcome: driver cannot pay even when they want to. Uber waits for offset against future earnings only.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ONLY ALTERNATIVES -->
+<section class="alt-section">
+  <div class="alt-inner">
+    <div class="alt-eyebrow">&mdash; Your driver's only options &mdash;</div>
+    <h2 class="alt-title">If the driver wants to settle, here's <em>everything Uber offers them.</em></h2>
+    <div class="alt-options">
+      <div class="alt-card">
+        <div class="alt-card-icon">📱</div>
+        <div class="alt-card-title">In-app form &mdash; one direction</div>
+        <div class="alt-card-sub">Submit, wait, refresh. Uber's standard reply window for driver issues is 24-72 hours via templated email. No callback option.</div>
+      </div>
+      <div class="alt-card">
+        <div class="alt-card-icon">🏢</div>
+        <div class="alt-card-title">Greenlight Hub &mdash; in person</div>
+        <div class="alt-card-sub">Drive to a physical location during business hours. Most cities have one. Drivers who already lost income to a damage claim now lose another half-day.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS CONTRAST -->
+<section class="stats-section">
+  <div class="stats-inner">
+    <div class="stats-eyebrow">&mdash; The contrast &mdash;</div>
+    <div class="stats-grid">
+      <div class="stat-side">
+        <div class="stat-tag them">Driver-debtor today</div>
+        <div class="stat-value them">0</div>
+        <div class="stat-label">Phone numbers published<strong>App form or in-person only</strong></div>
+      </div>
+      <div class="stat-arrow">&rarr;</div>
+      <div class="stat-side">
+        <div class="stat-tag us">AgentCollect</div>
+        <div class="stat-value us">24/7</div>
+        <div class="stat-label">Voice + email + payment plans<strong>Driver pays the moment they want to</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEYOND THE CALL -->
+<section class="beyond-section">
+  <div class="beyond-inner">
+    <div class="beyond-head">
+      <div class="beyond-eyebrow">&mdash; Why this is an AR problem, not a support problem &mdash;</div>
+      <h2 class="beyond-title">Drivers who want to pay <em>can't.</em> Drivers who want to dispute <em>wait weeks.</em></h2>
+    </div>
+
+    <div class="portal-findings">
+      <div class="pf-card">
+        <div class="pf-num">Finding 01</div>
+        <div class="pf-text">No active payment path</div>
+        <div class="pf-sub">A driver carrying a negative balance from a damage charge or fare adjustment cannot proactively pay it down. Uber's only mechanism is offset against future earnings.</div>
+      </div>
+      <div class="pf-card">
+        <div class="pf-num">Finding 02</div>
+        <div class="pf-text">Disputes route through templated email</div>
+        <div class="pf-sub">Drivers report multi-week back-and-forth with generic responses. The agent who reviews the dispute is rarely the agent who replies. State turns over each round.</div>
+      </div>
+      <div class="pf-card">
+        <div class="pf-num">Finding 03</div>
+        <div class="pf-text">Churn risk on the highest-LTV partners</div>
+        <div class="pf-sub">A driver waiting on a $340 dispute is a driver not earning. Drivers with strong unit economics have the most leverage to switch platforms while they wait.</div>
+      </div>
+    </div>
+
+    <div class="external-stat">
+      <div class="external-stat-quote">"Negative balances are deducted from future earnings until zero. Drivers in the same area report similar issues."</div>
+      <div class="external-stat-source">&mdash; <strong>Uber Drivers Forum</strong> &middot; uberpeople.net negative-balance thread</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IS AGENTCOLLECT -->
+<section class="what-section">
+  <div class="what-inner">
+    <div class="what-eyebrow">&mdash; What we do &mdash;</div>
+    <h2 class="what-title">AgentCollect is an <em>AI collection agent.</em></h2>
+    <div class="what-pillars">
+      <span class="pillar"><span class="icon"></span>Phone</span>
+      <span class="pillar"><span class="icon"></span>Email</span>
+      <span class="pillar"><span class="icon"></span>SMS</span>
+      <span class="pillar"><span class="icon"></span>Payment plans</span>
+      <span class="pillar"><span class="icon"></span>PCI Level 1</span>
+    </div>
+  </div>
+</section>
+
+<!-- BRIDGE / CTA -->
+<section class="bridge-section">
+  <div class="bridge-eyebrow">&mdash; The companion audits &mdash;</div>
+  <h2 class="bridge-headline">This is one of <em>three doors</em> Uber's debtors knock on.</h2>
+  <p class="bridge-deck">Driver debt is one channel. The B2B SMB channel is another. The third-party agency layer is the third. Each has its own broken door.</p>
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative">
+    <a href="https://agentcollect.com/uber-for-business" class="bridge-cta">B2B SMB audit &rarr;</a>
+    <a href="https://agentcollect.com/uber-aga" class="bridge-cta" style="background:var(--ink)">AGA agency audit &rarr;</a>
+  </div>
+</section>
+
+<!-- TRUSTBAR -->
+<section class="trust-section">
+  <div class="trust-label">&mdash; Currently collecting receivables for &mdash;</div>
+  <div class="trust-logos">
+    <img src="/audit-assets/logos/microsoft.svg" alt="Microsoft" class="trust-logo">
+    <img src="/audit-assets/logos/uber.svg" alt="Uber" class="trust-logo">
+    <img src="/audit-assets/logos/plaid.svg" alt="Plaid" class="trust-logo tall">
+  </div>
+</section>
+
+<footer class="footer">
+  <div>DOC <strong>#UDR-001</strong> &middot; Confidential &middot; Auto-deleted in 30 days</div>
+  <div>By <strong>John Banner</strong> &middot; AgentCollect &middot; Y Combinator S23</div>
+</footer>
+
+<script>
+  const expiresAt = new Date('2026-06-03T00:00:00');
+  function updateExpires() {
+    const now = new Date();
+    const diff = expiresAt - now;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    document.getElementById('expires').textContent = `Expires in ${days} days`;
+  }
+  updateExpires();
+  setInterval(updateExpires, 60000);
+</script>
+
+</body>
+</html>

@@ -77,6 +77,14 @@
       "destination": "/audit-uber-for-business.html"
     },
     {
+      "source": "/uber-driver",
+      "destination": "/audit-uber-driver.html"
+    },
+    {
+      "source": "/uber-drivers",
+      "destination": "/audit-uber-driver.html"
+    },
+    {
       "source": "/uber-baxter-bailey",
       "destination": "/audit-uber-baxter-bailey.html"
     },
