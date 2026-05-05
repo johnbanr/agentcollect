@@ -9,6 +9,10 @@
       "destination": "/campfire.html"
     },
     {
+      "source": "/replit",
+      "destination": "/replit.html"
+    },
+    {
       "source": "/steve-beranek",
       "destination": "/people/steve-beranek/index.html"
     },
