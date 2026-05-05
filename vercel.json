@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/demo/youcom",
+      "destination": "/demo-youcom.html"
+    },
+    {
       "source": "/demo/checkr",
       "destination": "/demo-checkr.html"
     },
