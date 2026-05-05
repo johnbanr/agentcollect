@@ -83,10 +83,10 @@ body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1
 .waveform{position:relative;height:64px;display:flex;align-items:center;gap:2px;margin-bottom:22px;cursor:pointer}
 .bar{flex:1;background:rgba(15,17,22,.18);border-radius:1px;transition:background .2s;min-height:6px}
 .bar.played{background:var(--red)}
-.marker-dot{position:absolute;top:50%;left:91.4%;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#ef4444,var(--red));border:3px solid #fff;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 0 0 rgba(185,28,28,.5),0 4px 12px rgba(185,28,28,.4);animation:marker-pulse 2s ease-in-out infinite;z-index:2}
+.marker-dot{position:absolute;top:50%;left:93.4%;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#ef4444,var(--red));border:3px solid #fff;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 0 0 rgba(185,28,28,.5),0 4px 12px rgba(185,28,28,.4);animation:marker-pulse 2s ease-in-out infinite;z-index:2}
 @keyframes marker-pulse{0%,100%{box-shadow:0 0 0 0 rgba(185,28,28,.5),0 4px 12px rgba(185,28,28,.4)}50%{box-shadow:0 0 0 18px rgba(185,28,28,0),0 4px 12px rgba(185,28,28,.4)}}
 .marker-dot::after{content:'★';color:#fff;font-size:14px;font-weight:700}
-.marker-label{position:absolute;top:-32px;left:91.4%;transform:translateX(-50%);font-family:var(--mono);font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:.12em;font-weight:600;white-space:nowrap}
+.marker-label{position:absolute;top:-32px;left:93.4%;transform:translateX(-50%);font-family:var(--mono);font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:.12em;font-weight:600;white-space:nowrap}
 
 .audio-controls{display:flex;align-items:center;gap:16px}
 .play-main{width:48px;height:48px;border-radius:50%;background:var(--ink);color:#fff;border:0;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
@@ -264,8 +264,8 @@ body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1
 <section class="confession-section">
   <div class="confession-inner">
     <div class="confession-eyebrow">The moment</div>
-    <p class="big-quote">There is only one Ron who is working in the patient services department.</p>
-    <div class="quote-attrib"><strong>Ron</strong>, Virtuox Patient Services · 1-877-337-7111 · on tape @ 9:42</div>
+    <p class="big-quote">There is no reference number for this call. For the reference, you can note down today's date.</p>
+    <div class="quote-attrib"><strong>Patient Services rep</strong>, Virtuox · 1-877-337-7111 · on tape @ 9:55</div>
 
     <div class="audio-shell">
       <div class="audio-meta">
@@ -273,7 +273,7 @@ body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1
         <span>1-877-337-7111 · Virtuox patient line · 10:37 total</span>
       </div>
       <div class="waveform" id="wf">
-        <span class="marker-label">★ "ONLY ONE RON"</span>
+        <span class="marker-label">★ "NO REFERENCE NUMBER"</span>
         <div class="marker-dot" onclick="playFromMark()"></div>
       </div>
       <div class="audio-controls">
@@ -354,18 +354,18 @@ body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1
     <div class="portal-findings">
       <div class="pf-card">
         <div class="pf-num">Finding 01</div>
-        <div class="pf-text">"There is no reference number for this call."</div>
-        <div class="pf-sub">Ron @ 9:55 on tape. A patient calling about a past-due balance has nothing to attach a future call, a payment, or a dispute to. Dunning notices keep going out. The patient who tried to resolve leaves no trace in the recovery workflow.</div>
+        <div class="pf-text">No case number means the patient call leaves no trace in the recovery workflow.</div>
+        <div class="pf-sub">When a past-due patient calls in, nothing in the system records that they reached out. Dunning notices keep going out. Collection escalation keeps happening on schedule. The original willing-to-pay call disappears.</div>
       </div>
       <div class="pf-card">
         <div class="pf-num">Finding 02</div>
-        <div class="pf-text">"Only one Ron working patient services."</div>
-        <div class="pf-sub">Ron @ 9:42. One human handling every past-due patient who calls in. Most hang up before they get through. Each lost call is a balance that ages out instead of being recovered.</div>
+        <div class="pf-text">Single human capacity ceiling on inbound patient calls.</div>
+        <div class="pf-sub">The rep on tape said he was the only person handling patient services that morning. One human, one call at a time, no parallel coverage. Most past-due patients hang up before they get through. Each abandoned call is a balance that ages out instead of being recovered.</div>
       </div>
       <div class="pf-card">
         <div class="pf-num">Finding 03</div>
         <div class="pf-text">BBB pattern: paid every bill, sent to collections a year later.</div>
-        <div class="pf-sub">"I did a sleep study in February 2025, paid every bill that came to my house and email. A year later I got a call saying $275 was in collections. No prior contact from Virtuox." (BBB verified, reported 2026.) The dunning gap. A balance aged silently then surfaced as a cold collections call. By then the patient is already a churn risk.</div>
+        <div class="pf-sub">"I did a sleep study in February 2025, paid every bill that came to my house and email. A year later I got a call saying $275 was in collections. No prior contact from Virtuox." (BBB verified, reported 2026.) A balance aged silently then surfaced as a cold collections call. By then the patient is already a churn risk.</div>
       </div>
     </div>
 
@@ -427,7 +427,7 @@ body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1
   const cur = document.getElementById('cur');
   const wf = document.getElementById('wf');
   const totalSec = 637;
-  const markSec = 582;
+  const markSec = 595;
 
   const N = 80;
   for (let i = 0; i < N; i++) {
