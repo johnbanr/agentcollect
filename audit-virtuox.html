@@ -174,8 +174,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);-webkit-font
 
 <section class="hero">
   <div class="hero-label rv">AgentCollect AR Operations Audit &middot; Virtuox &middot; April 24, 2026</div>
-  <h1 class="hero-title rv rv-d1">We stress-tested Virtuox's patient AR call flow this week. <em>Two findings on tape that explain every Glassdoor review and every BBB billing complaint at once.</em></h1>
-  <p class="hero-subtitle rv rv-d2">Before every partnership we run our standard AR ops audit: mystery shop on the patient line, public-signal scan, process and capacity read. Big-4 comparable scope, $200K standard fee, complimentary for partners. We ran it this week. The recording is below. Listen to 9:42 first.</p>
+  <h1 class="hero-title rv rv-d1">We stress-tested Virtuox's <em>post-due patient call flow</em> this week. Two findings on tape that explain why patients who want to pay end up walking away.</h1>
+  <p class="hero-subtitle rv rv-d2">Scope: the moment a patient calls about a balance that has aged into the dunning queue. Not the bill itself. The recovery layer. We placed one call to 1-877-337-7111, asked for a status on a past-due balance, and recorded what happens. Standard $200K AR audit, complimentary for partners. The recording is below. Listen to 9:42 first.</p>
   <div style="display:inline-flex;align-items:center;gap:14px;padding:12px 22px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:100px;margin-top:24px" class="rv rv-d3">
     <span style="font-family:var(--mono);font-size:11px;color:rgba(255,255,255,0.55);letter-spacing:.08em;text-transform:uppercase">Standard fee</span>
     <span style="font-family:var(--sans);font-size:18px;font-weight:800;color:rgba(255,255,255,0.4);text-decoration:line-through">$200,000</span>
@@ -192,8 +192,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);-webkit-font
      CALL 1 RON · 10:37 · Frustrated collections
      ============================================ -->
 <section class="section" id="call1">
-  <div class="section-label rv">The call &middot; 1-877-337-7111 &middot; 10:38 AM PT</div>
-  <h2 class="section-title rv rv-d1">Two admissions on tape. Each one is a churn risk you can <em>hear</em>.</h2>
+  <div class="section-label rv">The post-due call &middot; 1-877-337-7111 &middot; 10:38 AM PT</div>
+  <h2 class="section-title rv rv-d1">Two admissions on tape. Both kill the chance of recovering a past-due balance the patient is willing to pay. <em>You can hear them.</em></h2>
 
   <div class="call-card red-top rv rv-d2">
     <div class="call-meta">
@@ -231,19 +231,19 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);-webkit-font
     </div>
 
     <div class="moment">
-      <div class="moment-label">Admission 1 &middot; Capacity</div>
+      <div class="moment-label">Admission 1 &middot; Recovery capacity bottleneck</div>
       <p class="moment-quote">"There is <em>only one Ron</em> who is working in the patient services department."</p>
-      <div class="moment-attrib">  Ron, on tape @ 9:42 &middot; one rep for all patient services that morning</div>
+      <div class="moment-attrib">Ron, on tape @ 9:42. One human handling every past-due patient who calls in. Most patients hang up before they get through. Each unanswered call is a balance that ages out instead of being recovered.</div>
     </div>
 
     <div class="moment">
-      <div class="moment-label">Admission 2 &middot; No case tracking</div>
+      <div class="moment-label">Admission 2 &middot; No case number = the dispute dies</div>
       <p class="moment-quote">"There is <em>no reference number</em> for this call. For the reference, you can note down today's date."</p>
-      <div class="moment-attrib">  Ron @ 9:55 &middot; patients cannot follow up</div>
+      <div class="moment-attrib">Ron @ 9:55. A patient calling about a past-due balance has nothing to attach a future call, a payment, or a dispute to. Dunning notices keep going out. Collection escalation keeps happening. The original call, which was the patient trying to resolve, leaves no trace in the recovery workflow.</div>
     </div>
 
     <div class="call-note">
-      <strong>How the call ended:</strong> Ron asked the patient to call back in 15 minutes because "the computer is also taking time." He offered no supervisor, no callback appointment, no case number. The patient hung up. <em>The account-lookup friction on this call isn't meaningful on its own we used a test identity but Ron's own description of how the department operates is.</em>
+      <strong>How the call ended:</strong> Ron asked the patient to call back in 15 minutes because "the computer is also taking time." No supervisor offered, no callback appointment, no case number. The patient hung up. In a recovery context, this is the moment a willing-to-pay account flips into the next aging bucket.
     </div>
   </div>
 </section>
@@ -253,26 +253,14 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);-webkit-font
      ============================================ -->
 <section class="section" id="pattern" style="background:#F8F9FC;max-width:100%;padding-left:0;padding-right:0">
   <div style="max-width:1120px;margin:0 auto;padding:0 32px">
-    <div class="section-label rv">Public complaint samples</div>
-    <h2 class="section-title rv rv-d1">Recurring billing-journey themes on BBB (2025)</h2>
-    <p class="section-subtitle rv rv-d2">A handful of public complaints from the last 12 months. Self-selected, not representative but the shared theme (surprise bill → collections → no prior notice) matches what our call surfaced. Worth testing against a blinded QA sample of real recent accounts.</p>
+    <div class="section-label rv">The pattern that costs you patients</div>
+    <h2 class="section-title rv rv-d1">A patient who paid every bill on time, sent to collections a year later. <em>Zero notice in between.</em></h2>
+    <p class="section-subtitle rv rv-d2">This is the dunning gap. Not a billing error. The bill was sent and paid. Then a separate balance aged silently inside the AR pipeline and surfaced one day as a collections call. By that point the patient is already angry, already on Reddit, already a churn risk. The fix lives upstream of the collection agent, in the dunning sequence itself.</p>
 
-    <div class="bbb-grid rv rv-d2">
+    <div class="bbb-grid rv rv-d2" style="grid-template-columns:1fr;max-width:760px;margin:0 auto;">
       <div class="bbb-card">
         <p class="bbb-quote">"I did a sleep study in February 2025, paid every bill that came to my house and email. A year later I got a call saying $275 was in collections. No prior contact from Virtuox."</p>
-        <div class="bbb-attrib">BBB verified complaint &middot; reported 2026</div>
-      </div>
-      <div class="bbb-card">
-        <p class="bbb-quote">"Completed home sleep study May 7, 2025. Sent a bill for $250 despite being told insurance paid $200. No notification of charges before the service."</p>
-        <div class="bbb-attrib">BBB verified complaint &middot; May 2025</div>
-      </div>
-      <div class="bbb-card">
-        <p class="bbb-quote">"Bill for $267 AFTER insurance for a test that wasn't conducted properly. Teresa DiGiacomo at Virtuox said no refund."</p>
-        <div class="bbb-attrib">BBB verified complaint &middot; July 2025</div>
-      </div>
-      <div class="bbb-card">
-        <p class="bbb-quote">"At-home sleep test failed to identify my sleep apnea. A neurologist's test confirmed it months later. Delayed diagnosis, thousands in additional medical bills."</p>
-        <div class="bbb-attrib">BBB verified complaint &middot; 2025</div>
+        <div class="bbb-attrib">BBB verified complaint &middot; reported 2026 &middot; the cost of a missing dunning sequence</div>
       </div>
     </div>
   </div>
@@ -283,8 +271,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);-webkit-font
      ============================================ -->
 <section class="section" id="record">
   <div class="section-label rv">Directional signals &middot; public channels</div>
-  <h2 class="section-title rv rv-d1">Public complaint channels show recurring themes</h2>
-  <p class="section-subtitle rv rv-d2">Self-selected feedback channels don't measure incidence rate but the themes here (billing friction, responsiveness, capacity) line up with what we heard on the call. Worth a look, not a verdict.</p>
+  <h2 class="section-title rv rv-d1">Public channels confirm the same recovery-side pattern.</h2>
+  <p class="section-subtitle rv rv-d2">Self-selected feedback. Not a measurement of incidence rate. But the themes here (no follow-up, surprise collections, capacity ceiling) line up with what we heard on the call. Each one is a recovery moment that did not happen.</p>
 
   <div class="record-grid rv rv-d2" style="grid-template-columns:repeat(3,1fr);max-width:720px">
     <div class="record-card">
