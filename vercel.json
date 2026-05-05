@@ -5,6 +5,10 @@
       "destination": "/demo-checkr.html"
     },
     {
+      "source": "/campfire",
+      "destination": "/campfire.html"
+    },
+    {
       "source": "/steve-beranek",
       "destination": "/people/steve-beranek/index.html"
     },
