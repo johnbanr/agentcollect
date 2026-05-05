@@ -13,6 +13,10 @@
       "destination": "/replit.html"
     },
     {
+      "source": "/decagon",
+      "destination": "/decagon.html"
+    },
+    {
       "source": "/steve-beranek",
       "destination": "/people/steve-beranek/index.html"
     },
